@@ -7,9 +7,6 @@ use App\Http\Controllers\Api\DoctorProfileController;
 use App\Http\Controllers\Api\PatientProfileController;
 use App\Http\Controllers\Api\HospitalProfileController;
 use App\Http\Controllers\Api\NgoProfileController;
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 Route::get('/test', function () {
@@ -18,7 +15,5 @@ Route::get('/test', function () {
         'status' => 'OK'
     ]);
 });
-
-ss
 
 
