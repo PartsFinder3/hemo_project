@@ -199,7 +199,9 @@ class FrontendController extends Controller
                 
         ));
     }
-
+   function pull(){
+    
+   }
     public function adByMakes($slug, $id)
     {
         $make = CarMakes::where('id', $id)->where('slug', $slug)->firstOrFail();
