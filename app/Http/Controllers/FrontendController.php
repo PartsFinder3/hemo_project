@@ -53,7 +53,10 @@ class FrontendController extends Controller
             ->take(5)
             ->get();
         $randomMakes = CarMakes::limit(8)->get();
-        $sParts = SpareParts::take(24)->get();
+        // $sParts = SpareParts::take(24)->get();
+        $sParts = SpareParts::where('image','1763569479.webp')->get();
+        dd($sParts);
+
         $cities = City::all();
         return view('Frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
     }
