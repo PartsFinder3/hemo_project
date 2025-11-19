@@ -196,9 +196,9 @@ class FrontendController extends Controller
             'randomParts',
             'cities',
 
-
+abdul
             
-asasassas        ));
+        ));
     }
 
     public function adByMakes($slug, $id)
