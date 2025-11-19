@@ -244,8 +244,8 @@
             @foreach ($sParts as $p)
                 <div class="part-card">
                     @if ($p->image)
-                          {{$p->image}}
-                        <img src="{{ asset('storage/spareparts/' . $p->image) }}" alt="{{ $p->name }}">
+                        
+                        <img src="{{ asset('storage/blog_images/' . $p->image) }}" alt="{{ $p->name }}">
                     @else
                         <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
                     @endif
