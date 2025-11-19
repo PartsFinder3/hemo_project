@@ -55,7 +55,7 @@ class FrontendController extends Controller
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(24)->get();
         $cities = City::all();
-        return view('Frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
+        return view('frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
     }
 
     public function getModelsByMake($makeId)
