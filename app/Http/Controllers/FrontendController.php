@@ -195,8 +195,7 @@ class FrontendController extends Controller
             'ads',
             'randomParts',
             'cities',
-
-abdul
+pull
             
         ));
     }
