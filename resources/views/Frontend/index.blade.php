@@ -247,7 +247,7 @@
                     {{$p->image}}
                         <img src="{{ asset($p->image) }}" alt="{{ $p->name }}">
                     @else
-                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
+                        {{-- <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" /> --}}
                     @endif
                     <a style="text-decoration: none; color: black;"
                         href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
