@@ -57,7 +57,7 @@ class FrontendController extends Controller
         $cities = City::all();
         return view('frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
     }
-
+     sdsddss
     public function getModelsByMake($makeId)
     {
         $models = CarModels::where('car_make_id', $makeId)->get();
