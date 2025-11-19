@@ -53,8 +53,8 @@ class FrontendController extends Controller
             ->take(5)
             ->get();
         $randomMakes = CarMakes::limit(8)->get();
-        // $sParts = SpareParts::take(24)->get();
-        $sParts = SpareParts::where('image','1763569479.webp')->get();
+        $sParts = SpareParts::take(24)->get();
+        // $sParts = SpareParts::where('image','1763569479.webp')->get();
         dd($sParts);
             exit;
         $cities = City::all();
