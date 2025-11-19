@@ -115,7 +115,7 @@
                                     <td>{{ $part->category->name ?? 'N/A' }}</td>
                                     <td>
                                         @if ($part->image)
-                                            <img src="{ asset('storage/spareparts/1763572954.webp') }}" width="80">
+                                            <img src="{{ asset('storage/spareparts/1763572954.webp') }}" alt="Spare Part" width="80">
                                         @endif
                                     </td>
                                     <td>
