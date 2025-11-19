@@ -5,7 +5,7 @@
             <h1>Showing Results for {{ $part->name }}.</h1>
             {{-- <p></p> --}}
         </div>
-
+ss
         <div class="search-card">
             <div class="card-header">
                 <div class="free-text">100% FREE</div>
