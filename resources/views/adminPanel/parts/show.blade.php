@@ -115,9 +115,8 @@
                                     <td>{{ $part->category->name ?? 'N/A' }}</td>
                                     <td>
                                         @if ($part->image)
-                                        {{$part->image}}
-                                            <img src="{{ asset('storage/' . $part->image) }}" width="80">
-                                        @endif
+                                                    <img src="{{ asset($part->image) }}" width="80">
+                                                @endif
                                     </td>
                                     <td>
                                         <a href="{{route('admin.parts.meta',$part->id)}}" class="btn btn-warning">SEO</a>
