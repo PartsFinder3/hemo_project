@@ -162,40 +162,27 @@
             <!-- Example Card -->
             @foreach ($ads as $ad)
                 <div class="card">
-                    @php
-                        $images = json_decode($ad->images, true);
-                    @endphp
+                    <div class="image-box">
+                        <img src="{{ asset($images[0]) }}" alt="Product">
+                    </div>
 
-                    @if (is_array($images) && isset($images[0]))
-                        <img src="{{ asset('' . $images[0]) }}" alt="Product">
-                    @endif
                     <div class="card-body">
                         <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                            class="card-title">{{ $ad->title }}</a>
+                        class="card-title">{{ $ad->title }}</a>
+
                         <div class="price">AED {{ $ad->price }}</div>
                         <div class="meta">
                             Availability: In Stock <br>
                             Condition: {{ $ad->condition }} <br>
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
                         </div>
-                        @php
-                            $ad->shop->supplier->whatsapp;
-                        @endphp
+
                         <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                            </a>
-
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
+                            <a class="btn whatsapp">WhatsApp</a>
+                            <a class="btn call">Click to Call</a>
                         </div>
-
                     </div>
                 </div>
+
             @endforeach
 
             {{-- <div class="card">
@@ -349,4 +336,72 @@
     </section>
 
     @include('Frontend.layout.company')
+
+
+
+<style>
+    .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* IMAGE BOX FIXED */
+.card .image-box {
+    width: 100%;
+    height: 200px; /* Fixed height */
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+}
+
+.card .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Image box mein hi rahegi */
+}
+
+/* CARD BODY */
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+/* TITLE BOX FIXED HEIGHT */
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* max 2 lines only */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 42px; /* height fix so design stable */
+    margin-bottom: 10px;
+}
+
+/* PRICE & META */
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.meta {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+/* BUTTONS ALWAYS BOTTOM */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+</style>
 @endsection
