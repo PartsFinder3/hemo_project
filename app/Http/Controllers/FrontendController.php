@@ -52,8 +52,8 @@ class FrontendController extends Controller
             ->orderBy('ads_count', 'desc')
             ->take(5)
             ->get();
-        $randomMakes = CarMakes::limit(8)->get();
-        // $sParts = SpareParts::take(24)->get();
+        // $randomMakes = CarMakes::limit(8)->get();
+        $sParts = SpareParts::take(24)->get();
         $sParts = SpareParts::all();
  
         $cities = City::all();
