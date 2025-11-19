@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+        use App\Models\Domain; 
 
 class SupplierController extends Controller
 {
@@ -62,8 +63,9 @@ class SupplierController extends Controller
 
     public function showRequests()
     {
+        $domain = Domain::first();
         $requests = Requests::all();
-        return view('adminPanel.SupplierRequests.show', compact('requests'));
+        return view('adminPanel.SupplierRequests.show', compact('requests','domain'));
     }
 
     public function acceptRequest($id)

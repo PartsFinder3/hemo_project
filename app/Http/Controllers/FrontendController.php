@@ -185,7 +185,7 @@ class FrontendController extends Controller
             ->take(5)
             ->get();
         $cities = City::all();
-
+        $domain = Domain::with('cities')->first();
         return view('frontend.PartSearch', compact(
             'part',
             'carMakes',
@@ -195,7 +195,8 @@ class FrontendController extends Controller
             'parts',
             'ads',
             'randomParts',
-            'cities'
+            'cities',
+            'domain'
         ));
     }
 
@@ -218,7 +219,7 @@ class FrontendController extends Controller
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
-
+        $domain = Domain::with('cities')->first();
         $randomParts = SpareParts::withCount('ads')
             ->orderBy('ads_count', 'desc')
             ->take(5)
@@ -238,14 +239,15 @@ class FrontendController extends Controller
             'carAds',
             'randomParts',
             'cities',
-            'randomMakes'
+            'randomMakes',
+            'domain'
         ));
     }
 
     public function adByCity($slug, $id)
     {
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
-
+         $domain = Domain::with('cities')->first();
         $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
                 ->where('is_approved', true)
@@ -283,7 +285,8 @@ class FrontendController extends Controller
             'parts',
             'randomParts',
             'cities',
-            'randomMakes'
+            'randomMakes',
+            'domain'
         ));
     }
 

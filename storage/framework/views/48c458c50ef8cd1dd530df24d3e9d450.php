@@ -1,8 +1,7 @@
-@extends('Frontend.layout.main')
-@section('main-section')
+<?php $__env->startSection('main-section'); ?>
 <div class="hero-section"> 
          <div class="hero-text d-flex justify-content-center align-items-center flex-column">
-            <h1 style="text-align: center">{{$ad->title}}</h1>
+            <h1 style="text-align: center"><?php echo e($ad->title); ?></h1>
             <p>You Can View Part Details Below.</p>
             <!-- 2) Double chevron -->
             <span class="scroll-bounce" aria-hidden="true">
@@ -46,18 +45,18 @@
         <div class="row g-4">
             <!-- Left: Carousel -->
             <div class="col-md-6">
-                @php
+                <?php
                     $images = is_string($ad->images) ? json_decode($ad->images, true) : $ad->images;
-                @endphp
+                ?>
 
                 <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @foreach ($images as $key => $image)
-                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                <img src="{{ asset('storage/' . $image) }}" class="d-block w-100"
-                                    alt="Car Image {{ $key + 1 }}">
+                        <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="carousel-item <?php echo e($key == 0 ? 'active' : ''); ?>">
+                                <img src="<?php echo e(asset('storage/' . $image)); ?>" class="d-block w-100"
+                                    alt="Car Image <?php echo e($key + 1); ?>">
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
@@ -74,38 +73,38 @@
 
             <!-- Right: Details -->
             <div class="col-md-6">
-                <h3 class="product-title">{{ $ad->title }}</h3>
+                <h3 class="product-title"><?php echo e($ad->title); ?></h3>
                 <p class="text-muted">Condition: <strong>
-                        @if ($ad->condition == 'new')
+                        <?php if($ad->condition == 'new'): ?>
                             New
-                        @elseif ($ad->condition == 'used')
+                        <?php elseif($ad->condition == 'used'): ?>
                             Used
-                        @endif
+                        <?php endif; ?>
                     </strong></p>
-                @php
+                <?php
                     $location = $ad->shop->supplier->city->name ?? 'Unknown';
                     $contact = $ad->shop->supplier->whatsapp;
                     $make = $ad->carMake->name ?? 'Unknown';
                     $model = $ad->carModel->name ?? 'Unknown';
                     $year = $ad->year->year ?? 'Unknown';
                     $shopName = $ad->shop->name ?? 'Unknown';
-                @endphp
-                <p class="text-muted">Supplier Location: <strong>{{ $location }}</strong></p>
-                <p class="price">AED: {{ $ad->price }}</p>
+                ?>
+                <p class="text-muted">Supplier Location: <strong><?php echo e($location); ?></strong></p>
+                <p class="price">AED: <?php echo e($ad->price); ?></p>
 
                 <div class="d-flex gap-2 my-3">
                     <a href="javascript:void(0)" class="btn whatsapp"
-                        onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                        onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
                         <i class="fa-brands fa-whatsapp"></i> WhatsApp
                     </a>
 
                     <a href="javascript:void(0)" class="btn call"
-                        onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                        onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
                         <i class="fa-solid fa-phone"></i> Click to Call
                     </a>
                 </div>
 
-                {{-- <p class="text-success fw-semibold">⭐ 98.9% Positive Feedback</p> --}}
+                
             </div>
         </div>
 
@@ -121,30 +120,26 @@
                 <tbody>
                     <tr>
                         <td>Make</td>
-                        <td>{{$make}}</td>
+                        <td><?php echo e($make); ?></td>
                     </tr>
                     <tr>
                         <td>Model</td>
-                        <td>{{$model}}</td>
+                        <td><?php echo e($model); ?></td>
                     </tr>
                     <tr>
                         <td>Year</td>
-                        <td>{{$year}}</td>
+                        <td><?php echo e($year); ?></td>
                     </tr>
-                    {{-- <tr>
-                        <td>Part Category</td>
-                        <td>Body Panel</td>
-                    </tr> --}}
+                    
                     <tr>
                         <td>Parts Supplier</td>
-                        <td>{{$shopName}}</td>
+                        <td><?php echo e($shopName); ?></td>
                     </tr>
-                    {{-- <tr>
-                        <td>Ref. No.</td>
-                        <td>UAE-381-15983</td>
-                    </tr> --}}
+                    
                 </tbody>
             </table>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('Frontend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\hemo_project\resources\views/Frontend/view-add.blade.php ENDPATH**/ ?>

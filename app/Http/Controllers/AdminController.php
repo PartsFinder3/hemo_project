@@ -13,7 +13,7 @@ use App\Models\Shops;
 use App\Models\SpareParts;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
-
+use App\Models\Domain; 
 class AdminController extends Controller
 {
     public function index()
@@ -27,13 +27,21 @@ class AdminController extends Controller
         $totalSuppliers = Suppliers::where('is_active', true)->count();
         $totalShops = Shops::where('is_active',true)->count();
         $suppliers = Suppliers::latest()->get();
-        return view('adminPanel.index', compact('buyerInquiries', 'requests', 'ads', 'carAds', 'totalParts', 'totalMakes', 'totalSuppliers', 'totalShops', 'suppliers'));
+        $domain = Domain::first();
+           return view('adminPanel.index', compact(
+        'buyerInquiries', 'requests', 'ads', 'carAds', 
+        'totalParts', 'totalMakes', 'totalSuppliers', 
+        'totalShops', 'suppliers', 'domain'
+    ));
+       
     }
 
     public function showAds()
     {
+        $domain = Domain::first();
+
         $shopAds = Ads::where('is_approved', false)->get();
-        return view('adminPanel.adApproves.ad', compact('shopAds'));
+        return view('adminPanel.adApproves.ad', compact('shopAds','domain'));
     }
 
     public function approveAd(Request $request, $id)
@@ -47,8 +55,10 @@ class AdminController extends Controller
 
     public function showCarAds()
     {
+$domain = Domain::first();
+
         $carAds = CarAds::where('is_approved', false)->get();
-        return view('adminPanel.adApproves.carAd', compact('carAds'));
+        return view('adminPanel.adApproves.carAd', compact('carAds' , 'domain'));
     }
 
     public function approveCarAd(Request $request, $id)

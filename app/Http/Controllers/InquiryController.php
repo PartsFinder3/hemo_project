@@ -7,6 +7,7 @@ use App\Models\Inquiries;
 use App\Models\InquiryUsage;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
+use App\Models\Domain; 
 use Illuminate\Support\Facades\Log as FacadesLog;
 use Log;
 
@@ -37,8 +38,10 @@ class InquiryController extends Controller
 
     public function index()
     {
+        $domain = Domain::first();
+        
         $inquiries = BuyerInquiry::latest()->get();
-        return view('adminPanel.enquiries.show', compact('inquiries'));
+        return view('adminPanel.enquiries.show', compact('inquiries','domain'));
     }
 
     public function sendinquiryWhatsApp($id)
