@@ -28,7 +28,7 @@ use App\Services\InquiryService;
 
 use function Ramsey\Uuid\v1;
 
-class FrontendController extends Controller
+class frontendController extends Controller
 {
     protected $inquiryService;
 
@@ -53,11 +53,11 @@ class FrontendController extends Controller
             ->take(5)
             ->get();
         $randomMakes = CarMakes::limit(8)->get();
-        $sParts = SpareParts::take(200)->get();
+        $sParts = SpareParts::take(24)->get();
         $cities = City::all();
-        return view('Frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
+        return view('frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
     }
-    
+  
     public function getModelsByMake($makeId)
     {
         $models = CarModels::where('car_make_id', $makeId)->get();
@@ -93,7 +93,7 @@ class FrontendController extends Controller
 
     public function buyerPage(BuyerInquiry $buyerInquiry)
     {
-        return view('Frontend.buyer', compact('buyerInquiry'));
+        return view('frontend.buyer', compact('buyerInquiry'));
     }
 
     public function getBuyerWhatsApp(Request $request, BuyerInquiry $buyerInquiry)
@@ -219,7 +219,7 @@ class FrontendController extends Controller
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
-        $domain = Domain::with('cities')->first();
+      
         $randomParts = SpareParts::withCount('ads')
             ->orderBy('ads_count', 'desc')
             ->take(5)
@@ -228,7 +228,7 @@ class FrontendController extends Controller
         $cities = City::all();
         $randomMakes = CarMakes::limit(8)->get();
 
-        return view('frontend.make-search', compact(
+        return view('Frontend.make-search', compact(
             'make',
             'carMakes',
             'makes',
@@ -240,7 +240,7 @@ class FrontendController extends Controller
             'randomParts',
             'cities',
             'randomMakes',
-            'domain'
+         
         ));
     }
 
@@ -309,19 +309,19 @@ class FrontendController extends Controller
     public function aboutPage()
     {
         // $domain = Domain::first();
-        return view('Frontend.about');
+        return view('frontend.about');
     }
 
     public function viewAd($slug, $id)
     {
         $ad = Ads::where('id', $id)->where('slug', $slug)->firstOrFail();
-        return view('Frontend.view-add', compact('ad'));
+        return view('frontend.view-add', compact('ad'));
     }
 
     public function viewCarAd($slug, $id)
     {
         $ad = CarAds::where('id', $id)->where('slug', $slug)->firstOrFail();
-        return view('Frontend.view-car-ad', compact('ad'));
+        return view('frontend.view-car-ad', compact('ad'));
     }
 
     public function viewShop($id)
@@ -344,7 +344,7 @@ class FrontendController extends Controller
         $inquiryCount = Inquiries::where('supplier_id', $shop->supplier_id)->sum('used_inquiries');
         // $shop->inquiry_count = $inquiryCount;
         $totalAds = $shopAds->count() + $shopCarAds->count();
-        return view('Frontend.shops.shop', compact('shop', 'profile', 'shopParts', 'shopMakes', 'shopHours', 'shopGallery', 'shopAds', 'shopCarAds', 'inquiryCount', 'totalAds'));
+        return view('frontend.shops.shop', compact('shop', 'profile', 'shopParts', 'shopMakes', 'shopHours', 'shopGallery', 'shopAds', 'shopCarAds', 'inquiryCount', 'totalAds'));
     }
 
     public function blogs()
@@ -352,7 +352,7 @@ class FrontendController extends Controller
         $domain = Domain::first();
         $blogs = $domain->blogs()->latest()->get();
         $categories = BlogCategory::all();
-        return view('Frontend.blogs.index', compact('blogs', 'domain', 'categories'));
+        return view('frontend.blogs.index', compact('blogs', 'domain', 'categories'));
     }
 
     public function blogView($slug, $id)
@@ -361,7 +361,7 @@ class FrontendController extends Controller
         $blog = $domain->blogs()->where('id', $id)->where('slug', $slug)->firstOrFail();
         $blog->increment('is_view');
         $categories = BlogCategory::all();
-        return view('Frontend.blogs.view', compact('blog', 'domain', 'categories'));
+        return view('frontend.blogs.view', compact('blog', 'domain', 'categories'));
     }
 
     public function viewBlogByCategory($id)
@@ -370,22 +370,22 @@ class FrontendController extends Controller
         $category = BlogCategory::findOrFail($id);
         $blogs = $domain->blogs()->where('category_id', $category->id)->latest()->get();
         $categories = BlogCategory::all();
-        return view('Frontend.blogs.index', compact('blogs', 'domain', 'categories'));
+        return view('frontend.blogs.index', compact('blogs', 'domain', 'categories'));
     }
 
     public function signupPage()
     {
         $cities = City::all();
-        return view('Frontend.signup', compact('cities'));
+        return view('frontend.signup', compact('cities'));
     }
 
     public function termsAndConditions()
     {
-        return view('Frontend.blogs.terms');
+        return view('frontend.blogs.terms');
     }
     public function privacyPolicy()
     {
-        return view('Frontend.blogs.privacy');
+        return view('frontend.blogs.privacy');
     }
 
     public function makePart($id)
@@ -412,7 +412,7 @@ class FrontendController extends Controller
         $parts = SpareParts::all();
         $ads = Ads::where('part_id', $part->id)->get();
         $carAds = CarAds::latest()->get();
-        return view('Frontend.make-part', compact('part', 'makes', 'randomParts', 'cities', 'randomMakes','years','parts','ads','carAds'));
+        return view('frontend.make-part', compact('part', 'makes', 'randomParts', 'cities', 'randomMakes','years','parts','ads','carAds'));
     }
 
 }
