@@ -352,68 +352,71 @@
 
 
 <style>
-    .card {
+   .card {
     display: flex;
     flex-direction: column;
+    height: 380px; /* FIXED height */
     border: 1px solid #ddd;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     background: #fff;
 }
 
-/* IMAGE BOX FIXED */
-.card .image-box {
+.image-box {
+    height: 160px; /* FIXED IMAGE AREA */
     width: 100%;
-    height: 200px; /* Fixed height */
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    border-bottom: 1px solid #eee;
 }
 
-.card .image-box img {
+.image-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Image box mein hi rahegi */
+    object-fit: cover; /* Image fit nicely */
 }
 
-/* CARD BODY */
 .card-body {
     flex: 1;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    padding: 12px;
 }
 
-/* TITLE BOX FIXED HEIGHT */
 .card-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* max 2 lines only */
-    -webkit-box-orient: vertical;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 1.2;
+    max-height: 38px; /* 2 line limit */
     overflow: hidden;
-    font-size: 16px;
-    font-weight: 600;
-    min-height: 42px; /* height fix so design stable */
-    margin-bottom: 10px;
 }
 
-/* PRICE & META */
 .price {
-    font-size: 18px;
+    margin: 5px 0;
     font-weight: bold;
-    margin-bottom: 8px;
 }
 
 .meta {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-    flex: 1;
+    flex: 1; /* Push buttons down */
+    font-size: 13px;
+    color: #555;
 }
 
-/* BUTTONS ALWAYS BOTTOM */
 .buttons {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+    margin-top: auto; /* Always push to bottom */
 }
+
+.btn {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
 
 </style>
 @endsection
