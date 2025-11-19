@@ -116,7 +116,7 @@
                                     <td>
                                         @if ($part->image)
                                                       
-                                 <img src="{{ asset('storage/' . $part->image) }}" alt="Spare Part">
+                                <img src="{{ asset('storage/spareparts/1763572954.webp') }}" alt="Spare Part">
 
 
                                                 @endif
