@@ -38,6 +38,10 @@
                         transform: translateY(3px);
                     }
                 }
+                .hero-section {
+    background: none !important;
+    background-image: none !important;
+}
             </style>
 
             {{-- <p>Your one-stop solution for all your automotive needs.</p> --}}
