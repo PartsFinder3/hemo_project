@@ -135,6 +135,8 @@
             <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
                     <?php if($make->logo): ?>
+                    <?php echo e($make->logo); ?>
+
                         <img src="<?php echo e(asset($make->logo)); ?>" alt="<?php echo e($make->name); ?>">
                     <?php endif; ?>
                     <h4><?php echo e(strtoupper($make->name)); ?></h4>
@@ -366,25 +368,22 @@
     border: 2px solid #e1e5e9;
     margin-top: -10px;
 }
-/* Make the whole section block so title is on top */
 #condition-group {
-    display: block; /* keep block for title above radios */
+    display: block;
 }
 
-/* Radio buttons in a row */
 .radio-group {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px; /* space between each radio option */
-    margin-top: 5px; /* optional spacing below title */
+    gap: 20px; 
+    margin-top: 5px; 
 }
 
-/* Each radio option */
 .radio-option {
     display: flex;
     align-items: center;
-    gap: 5px; /* space between input and label */
+    gap: 5px; 
 }
 
  </style>
