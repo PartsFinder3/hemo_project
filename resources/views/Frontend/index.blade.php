@@ -467,28 +467,12 @@
 
 .meta {
     font-size: 14px;
-    color: #555;
     margin-bottom: 10px;
     line-height: 1.4;
 }
 
-.buttons {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-}
 
-.buttons .btn {
-    flex: 1;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 4px;
-    font-size: 14px;
-    color: inherit; /* keep original text color */
-    background-color: inherit; /* keep original button color */
-    border: 1px solid #ccc; /* optional: matches theme */
-    text-decoration: none;
-}
+
 
  </style>
 @endsection

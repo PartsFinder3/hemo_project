@@ -385,6 +385,79 @@
     align-items: center;
     gap: 5px; 
 }
+.card {
+    width: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* slight lift on hover */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* stronger shadow */
+    border-color: #aaa; /* subtle border change on hover */
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em;
+    overflow: hidden;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.meta {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.buttons .btn {
+    flex: 1;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: inherit; /* keep original text color */
+    background-color: inherit; /* keep original button color */
+    border: 1px solid #ccc; /* optional: matches theme */
+    text-decoration: none;
+}
 
  </style>
 <?php $__env->stopSection(); ?>
