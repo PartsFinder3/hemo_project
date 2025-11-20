@@ -3,8 +3,7 @@
 @section('main-section')
 <style>
     .domain-about-section {
-        justify-content: center; /* horizontal center */
-        align-items: center;     /* vertical center */
+     
         padding: 80px 20px;
         min-height: 70vh;
         background: linear-gradient(135deg, #6a11cb, #2575fc);
