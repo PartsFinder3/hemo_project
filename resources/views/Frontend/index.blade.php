@@ -337,7 +337,7 @@
         </div>
         <div class="map-img">
             @if($domain && $domain->map_img)
-                <img src="{{ asset('storage/' . $domain->map_img) }}" alt="Map" />
+                <img src="{{ asset( $domain->map_img) }}" alt="Map" />
             @endif
         </div>
     </section>
