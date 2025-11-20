@@ -34,9 +34,7 @@ class ShopController extends Controller
         $shopGallery = ShopGallery::where('shop_id', $shop->id)->get();
         $shopAds = Ads::where('shop_id', $shop->id)->get();
         $shopCarAds = CarAds::where('shop_id', $shop->id)->get();
-        foreach ($shopParts as $shopPart) {
-    dd($shopPart->part->name); // فرض کیا کہ ShopParts ماڈل میں part ریلیشن موجود ہے
-}
+      
 
         return view('adminPanel.shop.view', compact('shop', 'profile', 'shopParts', 'shopMakes', 'shopHours', 'shopGallery', 'shopAds', 'shopCarAds'));
     }
