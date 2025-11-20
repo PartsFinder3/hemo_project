@@ -455,13 +455,12 @@
     .price {
         font-size: 18px;
         font-weight: bold;
-        color: #27ae60;
+      
         margin-bottom: 5px;
     }
 
     .meta {
         font-size: 14px;
-        color: #555;
         margin-bottom: 10px;
         line-height: 1.4;
     }
@@ -478,7 +477,6 @@
     padding: 5px 0;
     border-radius: 4px;
     font-size: 14px;
-    color: #fff; /* keep button text white */
     text-decoration: none;
     background-color: inherit; /* keep your original button color */
     border: 1px solid #ccc; /* optional: match your theme */
