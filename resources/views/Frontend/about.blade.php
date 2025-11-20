@@ -3,7 +3,6 @@
 @section('main-section')
 <style>
     .domain-about-section {
-        display: flex;
         justify-content: center; /* horizontal center */
         align-items: center;     /* vertical center */
         padding: 80px 20px;
@@ -17,6 +16,7 @@
     .domain-about-content {
         max-width: 800px;
         width: 100%;
+        font-size: 15px;
     }
 
     .domain-about-content p {
