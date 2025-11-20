@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (Auth::guard('supplier')->attempt($credentials)) {
             $supplier = Auth::guard('supplier')->user();
-
+          
             // check expiry
             $today = now();
             if ($supplier->end_date && $today->gt($supplier->end_date)) {
@@ -37,15 +37,16 @@ class AuthController extends Controller
                 return redirect()->route('supplier.login.expire')
                     ->with('error', 'Your subscription has expired. Please renew to continue.');
             }
-
-            if ($supplier->is_active) {
-                return redirect()->route('supplier.panel')
-                    ->with('success', 'Login successful.');
-            } else {
-                Auth::guard('supplier')->logout();
-                return redirect()->route('supplier.login.expire')
-                    ->with('error', 'Your subscription has expired. Please renew to continue.');
-            }
+             if ((int)$supplier->is_active === 1) {
+                 
+                    return redirect()->route('supplier.panel')
+                        ->with('success', 'Login successful.');
+                } else {
+                    Auth::guard('supplier')->logout();
+                    return redirect()->route('supplier.login.expire')
+                        ->with('error', 'Your subscription has expired. Please renew to continue.');
+                }
+        
         }
 
         return back()->withErrors([

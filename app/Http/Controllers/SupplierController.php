@@ -107,8 +107,9 @@ class SupplierController extends Controller
 
     public function showSuppliers()
     {
+        $domain = Domain::first();
         $suppliers = Suppliers::with(['latestSubscription'])->latest()->get();
-        return view('adminPanel.suppliers.show', compact('suppliers'));
+        return view('adminPanel.suppliers.show', compact('suppliers','domain'));
     }
 
 
@@ -239,14 +240,16 @@ class SupplierController extends Controller
             return response()->json(['error' => 'Server error: ' . $e->getMessage()], 500);
         }
     }
+public function activeSupplierToggle($id)
+{
+    $supplier = Suppliers::findOrFail($id);
+    
+    $supplier->is_active = !$supplier->is_active;
+    
+    $supplier->save();
 
-    public function activeSupplierToggle($id)
-    {
-        $supplier = Suppliers::findOrFail($id);
-        $supplier->is_active = !$supplier->is_active;
-        $supplier->save();
-        return redirect()->back();
-    }
+    return redirect()->back();
+}
 
     public function verifiedSupplier($id)
     {
