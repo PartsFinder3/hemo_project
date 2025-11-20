@@ -184,14 +184,14 @@
                                 @if ($shopAds->count() > 0)
                                     @foreach ($shopAds as $ad)
                                         <div class="card h-90 shadow-sm border-0 rounded-3">
-                                            @php
-                                                $images = json_decode($ad->images, true);
-                                            @endphp
-
-                             @if(!empty($images[0]))
-    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-@endif
-
+                                          
+                                    @php
+                                            $images = json_decode($ad->images, true);
+                                        @endphp
+                                       {{$images[0]}}
+                                        @if(!empty($images[0]))
+                                            <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                                        @endif
                                             <div class="card-body">
                                                 <h6 class="fw-semibold">{{ $ad->title }}</h6>
                                                 <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
