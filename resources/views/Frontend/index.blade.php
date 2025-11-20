@@ -521,7 +521,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 150px;           /* fixed width */
-    height: 100px;          /* fixed height */
+    height: 115px;          /* fixed height */
     margin: 10px;
     text-decoration: none;
     color: black;
