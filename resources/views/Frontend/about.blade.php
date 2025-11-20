@@ -3,7 +3,7 @@
 @section('main-section')
 <style>
     .domain-about-section {
-     
+     display: '';
         padding: 80px 20px;
         min-height: 70vh;
         background: linear-gradient(135deg, #6a11cb, #2575fc);
