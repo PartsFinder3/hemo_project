@@ -15,7 +15,7 @@
     .domain-about-content {
         max-width: 800px;
         width: 100%;
-        font-size: 15px;
+        font-size: 20px;
     }
 
     .domain-about-content p {
