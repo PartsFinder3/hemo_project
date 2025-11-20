@@ -471,7 +471,9 @@
     line-height: 1.4;
 }
 
-
+.btn.whatsapp {
+    background: var(--whatsapp-btn);
+}
 
 
  </style>
