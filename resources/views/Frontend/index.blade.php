@@ -20,7 +20,7 @@
                 <select class="dropdown" id="make" name="car_make_id">
                     <option disabled selected value="">Select Your Make</option>
                     @foreach ($makes as $make)
-                        <option value="{{ $make->id }}"><strong>{{ $make->name }}</strong>    </option>
+                        <option value="{{ $make->id }}">    {{ $make->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -577,6 +577,95 @@
     max-width: 500px; /* limit form width */
 }
 
+ #make {
+        font-weight: bold;      /* makes selected value bold */
+        padding: 8px 12px;
+        font-size: 16px;
+    }
 
+    #make option {
+        font-weight: bold;      /* makes dropdown options bold */
+    }
+
+    /* Optional: make the select box look nicer */
+    #make {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+
+    .dropdown {
+    font-weight: bold;       /* selected value bold */
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Make all options bold */
+.dropdown option {
+    font-weight: bold;
+}
+
+/* Focus state for dropdowns */
+.dropdown:focus {
+    outline: none;
+    border-color: #6a11cb;  /* matches gradient theme */
+    box-shadow: 0 0 6px rgba(106,17,203,0.3);
+}
+
+/* Ensure parts dropdown shows when enabled */
+#parts-dropdown:enabled {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Radio buttons bold text */
+.radio-option label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Hero section adjustments */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 10%;
+    gap: 50px;
+}
+
+/* Align search card to left under hero text */
+.search-card {
+    align-self: flex-start;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Buttons bold */
+.find-btn, .btn {
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 30px 5%;
+        gap: 30px;
+    }
+
+    .dropdown {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
  </style>
 @endsection
