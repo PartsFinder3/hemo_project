@@ -515,6 +515,46 @@
     color: black;
     margin-top: 5px;
 }
+.make {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 120px;           /* fixed width */
+    height: 150px;          /* fixed height */
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    background: #fff;
+}
+
+.make:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #ccc;
+}
+
+.make img {
+    width: 60px;            /* fixed image width */
+    height: 60px;           /* fixed image height */
+    object-fit: contain;     /* keep logo proportions */
+    margin-bottom: 8px;
+}
+
+.make h4 {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2em;
+    height: 2.4em;          /* max 2 lines */
+    overflow: hidden;
+}
 
 
  </style>
