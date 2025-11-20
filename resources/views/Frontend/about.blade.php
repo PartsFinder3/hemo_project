@@ -3,7 +3,9 @@
 @section('main-section')
 <style>
     .domain-about-section {
-     display: '';
+        display: flex; /* center content */
+        justify-content: center;
+        align-items: center;
         padding: 80px 20px;
         min-height: 70vh;
         background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -13,14 +15,15 @@
     }
 
     .domain-about-content {
-        max-width: 800px;
+        max-width: 900px;
         width: 100%;
-        font-size: 20px;
+        font-size: 24px; /* bigger text */
+        line-height: 2;  /* better spacing */
     }
 
     .domain-about-content p {
-        font-size: 1.2rem;
-        line-height: 1.8;
+        font-size: 24px; /* make paragraph bigger too */
+        line-height: 2;
         margin: 0 auto;
     }
 
@@ -28,8 +31,8 @@
         .domain-about-section {
             padding: 50px 15px;
         }
-        .domain-about-content p {
-            font-size: 1rem;
+        .domain-about-content, .domain-about-content p {
+            font-size: 18px; /* smaller on mobile */
         }
     }
 </style>
