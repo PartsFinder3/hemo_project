@@ -2,9 +2,7 @@
 @section('main-section')
     <div class="hero-section">
         <div class="hero-text d-flex justify-content-center align-items-center flex-column">
-            <h1>About Our Vision</h1>
-                        <span class="scroll-bounce" aria-hidden="true">
-
+          
                 <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M6 7l6 6 6-6M6 13l6 6 6-6" />
