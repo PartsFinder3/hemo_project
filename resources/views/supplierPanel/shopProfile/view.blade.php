@@ -189,6 +189,7 @@
                                             @endphp
 
                                             @if (is_array($images) && isset($images[0]))
+                                            {{$images[0]}}
                                                 <img src="{{ asset('storage/' . $images[0]) }}"
                                                     class="card-img-top img-fluid" alt="Product">
                                             @endif
