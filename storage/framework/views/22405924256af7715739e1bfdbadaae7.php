@@ -168,9 +168,9 @@
                         $images = json_decode($ad->images, true);
                     ?>
 
-                    <?php if(is_array($images) && isset($images[0])): ?>
-                        <img src="<?php echo e(asset('' . $images[0])); ?>" alt="Product">
-                    <?php endif; ?>
+                         <?php if(!empty($images[0])): ?>
+                                            <img src="<?php echo e(asset($images[0])); ?>" class="card-img-top img-fluid" alt="Product">
+               <?php endif; ?>
                     <div class="card-body">
                         <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
                             class="card-title"><?php echo e($ad->title); ?></a>

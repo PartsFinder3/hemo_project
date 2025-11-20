@@ -167,9 +167,9 @@
                         $images = json_decode($ad->images, true);
                     @endphp
 
-                    @if (is_array($images) && isset($images[0]))
-                        <img src="{{ asset('' . $images[0]) }}" alt="Product">
-                    @endif
+                         @if(!empty($images[0]))
+                                            <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+               @endif
                     <div class="card-body">
                         <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
                             class="card-title">{{ $ad->title }}</a>
@@ -416,6 +416,78 @@
     align-items: center;
     gap: 5px; 
 }
+  .card {
+        width: 300px; /* fixed width */
+        height: 450px; /* fixed height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin: 10px;
+    }
 
+    .card img {
+        width: 100%;
+        height: 180px; /* fixed image height */
+        object-fit: cover; /* image fills the box and keeps aspect ratio */
+    }
+
+    .card-body {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+
+    .card-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        line-height: 1.2em;
+        height: 3.6em; /* max 3 lines */
+        overflow: hidden;
+    }
+
+    .price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #27ae60;
+        margin-bottom: 5px;
+    }
+
+    .meta {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .buttons .btn {
+        flex: 1;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .buttons .whatsapp {
+        background-color: #25D366;
+    }
+
+    .buttons .call {
+        background-color: #007bff;
+    }
  </style>
 @endsection
