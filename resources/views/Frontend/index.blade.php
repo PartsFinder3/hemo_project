@@ -520,7 +520,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 120px;           /* fixed width */
+    width: 150px;           /* fixed width */
     height: 150px;          /* fixed height */
     margin: 10px;
     text-decoration: none;
@@ -540,7 +540,7 @@
 }
 
 .make img {
-    width: 60px;            /* fixed image width */
+    width: 90%;            /* fixed image width */
     height: 60px;           /* fixed image height */
     object-fit: contain;     /* keep logo proportions */
     margin-bottom: 8px;
