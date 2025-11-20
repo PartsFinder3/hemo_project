@@ -66,7 +66,7 @@ class SparePartsController extends Controller
             'category_id' => 'required|exists:part_category,id',
             'name' => 'required|string|max:255',
             'oem_number' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+ 
         ]);
 
         $imagePath = $sparePart->image;
