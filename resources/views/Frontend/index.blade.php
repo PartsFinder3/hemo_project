@@ -472,22 +472,17 @@
         flex-wrap: wrap;
     }
 
-    .buttons .btn {
-        flex: 1;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 4px;
-        font-size: 14px;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .buttons .whatsapp {
-        background-color: #25D366;
-    }
-
-    .buttons .call {
-        background-color: #007bff;
-    }
+  .buttons .btn {
+    flex: 1;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff; /* keep button text white */
+    text-decoration: none;
+    background-color: inherit; /* keep your original button color */
+    border: 1px solid #ccc; /* optional: match your theme */
+}
+    
  </style>
 @endsection
