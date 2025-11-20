@@ -188,7 +188,7 @@
                                     @php
                                             $images = json_decode($ad->images, true);
                                         @endphp
-                                       {{$images[0]}}
+                                    
                                         @if(!empty($images[0]))
                                             <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
                                         @endif
