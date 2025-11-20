@@ -136,9 +136,8 @@
             @foreach ($carMakes as $make)
                 <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
                     @if($make->logo)
-                  
-                      <img src="{{ asset($make->logo) }}" alt="{{ $make->name }}">
-
+                   {{$make->logo}}
+                        <img src="{{ asset('storage/logo/1755517993.png') }}" alt="{{ $make->name }}">
                     @endif
                     <h4>{{ strtoupper($make->name) }}</h4>
                 </a>
@@ -248,7 +247,7 @@
                         href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
                 <div class="part-card">
                     @if ($p->image)
-                
+                 {{$p->image}}
                       <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
                     @else
                         <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
