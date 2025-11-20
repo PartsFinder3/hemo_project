@@ -1,5 +1,4 @@
-@extends('Frontend.layout.main')
-@section('main-section')
+<?php $__env->startSection('main-section'); ?>
     <div class="hero-section">
         <div class="hero-text">
             <h1>Find Your Perfect Parts</h1>
@@ -12,14 +11,14 @@
                 <div class="search-title">Search Your Part Here</div>
             </div>
 
-            <form action="{{ route('buyer.inquiry.send') }}" method="post">
-                @csrf
+            <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
+                <?php echo csrf_field(); ?>
                 <div class="form-group" id="make-group">
                     <select class="dropdown" id="make" name="car_make_id">
                         <option disabled selected value="">Select Your Make</option>
-                        @foreach ($makes as $make)
-                            <option value="{{ $make->id }}">{{ $make->name }}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
 
@@ -32,18 +31,18 @@
                 <div class="form-group" id="year-group">
                     <select class="dropdown" id="year" name="year_id">
                         <option value="">Select Your Model Year</option>
-                        @foreach ($years as $year)
-                            <option value="{{ $year->id }}">{{ $year->year }}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
 
                 <div class="form-group hidden" id="parts-group">
                     <select id="parts-dropdown" class="dropdown" disabled>
                         <option disabled selected value="">Select a part to add</option>
-                        @foreach ($parts as $part)
-                            <option value="{{ $part->id }}">{{ $part->name }}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                     <div id="parts-tags" class="parts-tags"></div>
                 </div>
@@ -86,7 +85,7 @@
         <div class="steps">
             <div class="step">
                 <div class="step-icon">
-                    <img src="{{ asset('Frontend/assets/1.png') }}" alt="Step 1" />
+                    <img src="<?php echo e(asset('Frontend/assets/1.png')); ?>" alt="Step 1" />
                 </div>
                 <div class="step-text">
                     <h3>Enter Your Part Requirement</h3>
@@ -99,7 +98,7 @@
 
             <div class="step">
                 <div class="step-icon">
-                    <img src="{{ asset('Frontend/assets/2.png') }}" alt="Step 2" />
+                    <img src="<?php echo e(asset('Frontend/assets/2.png')); ?>" alt="Step 2" />
                 </div>
                 <div class="step-text">
                     <h3>Receive Price Quotes on WhatsApp</h3>
@@ -112,7 +111,7 @@
 
             <div class="step">
                 <div class="step-icon">
-                    <img src="{{ asset('Frontend/assets/3.png') }}" alt="Step 3" />
+                    <img src="<?php echo e(asset('Frontend/assets/3.png')); ?>" alt="Step 3" />
                 </div>
                 <div class="step-text">
                     <h3>Sit Back and Relax</h3>
@@ -133,14 +132,14 @@
         </div>
 
         <div class="brands">
-            @foreach ($carMakes as $make)
-                <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
-                    @if($make->logo)
-                        <img src="{{ asset($make->logo) }}" alt="{{ $make->name }}">
-                    @endif
-                    <h4>{{ strtoupper($make->name) }}</h4>
+            <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
+                    <?php if($make->logo): ?>
+                        <img src="<?php echo e(asset($make->logo)); ?>" alt="<?php echo e($make->name); ?>">
+                    <?php endif; ?>
+                    <h4><?php echo e(strtoupper($make->name)); ?></h4>
                 </a>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </section>
 
@@ -151,87 +150,55 @@
         </div>
         <div class="filters">
             <a href="#" class="active">All</a>
-            @foreach ($randomParts as $part)
-                <a href="{{ route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id]) }}">
-                    {{ $part->name }}
+            <?php $__currentLoopData = $randomParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e(route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id])); ?>">
+                    <?php echo e($part->name); ?>
+
                 </a>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
 
         <div class="grid" id="productGrid1">
             <!-- Example Card -->
-            @foreach ($ads as $ad)
+            <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card">
-                    @php
+                    <?php
                         $images = json_decode($ad->images, true);
-                    @endphp
+                    ?>
 
-                    @if (is_array($images) && isset($images[0]))
-                        <img src="{{ asset('' . $images[0]) }}" alt="Product">
-                    @endif
+                    <?php if(is_array($images) && isset($images[0])): ?>
+                        <img src="<?php echo e(asset('' . $images[0])); ?>" alt="Product">
+                    <?php endif; ?>
                     <div class="card-body">
-                        <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                            class="card-title">{{ $ad->title }}</a>
-                        <div class="price">AED {{ $ad->price }}</div>
+                        <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
+                            class="card-title"><?php echo e($ad->title); ?></a>
+                        <div class="price">AED <?php echo e($ad->price); ?></div>
                         <div class="meta">
                             Availability: In Stock <br>
-                            Condition: {{ $ad->condition }} <br>
+                            Condition: <?php echo e($ad->condition); ?> <br>
                             Delivery: Ask Supplier <br>
                             Warranty: Ask Supplier
                         </div>
-                        @php
+                        <?php
                             $ad->shop->supplier->whatsapp;
-                        @endphp
+                        ?>
                         <div class="buttons">
                             <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                                onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
                             <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                                onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
                                 <i class="fa-solid fa-phone"></i> Click to Call
                             </a>
                         </div>
 
                     </div>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-            {{-- <div class="card">
-                <img src="assets/ad (2).jpg" alt="Product">
-                <div class="card-body">
-                    <a href="" class="card-title">Mercedes Cla200 2019 Window Switch Panel</a>
-                    <div class="price">AED 100</div>
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: Used <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    <div class="buttons">
-                        <a href="#" class="btn whatsapp">WhatsApp</a>
-                        <a href="#" class="btn call">Click to Call</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/ad (2).jpg" alt="Product">
-                <div class="card-body">
-                    <a href="" class="card-title">Mercedes Cla200 2019 Window Switch Panel</a>
-                    <div class="price">AED 100</div>
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: Used <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    <div class="buttons">
-                        <a href="#" class="btn whatsapp">WhatsApp</a>
-                        <a href="#" class="btn call">Click to Call</a>
-                    </div>
-                </div>
-            </div> --}}
+            
 
             <!-- Repeat similar cards... -->
         </div>
@@ -241,22 +208,23 @@
     <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
-            @foreach ($sParts as $p)
+            <?php $__currentLoopData = $sParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <a style="text-decoration: none; color: black;"
-                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+                        href="<?php echo e(route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id])); ?>">
                 <div class="part-card">
-                    @if ($p->image)
+                    <?php if($p->image): ?>
                 
-                      <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
-                    @else
-                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
-                    @endif
+                      <img src="<?php echo e(asset('storage/' . $p->image)); ?>" alt="Spare Part" >
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('Frontend/assets/quote.png')); ?>" alt="<?php echo e($p->name); ?>" />
+                    <?php endif; ?>
                    
-                        {{ $p->name }}
+                        <?php echo e($p->name); ?>
+
                    
                 </div>
                  </a>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </section>
     <section class="ad-cards">
@@ -266,49 +234,49 @@
         </div>
         <div class="filters">
             <a href="#" class="active">All</a>
-            @foreach ($randomMakes as $make)
-                <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}">{{ $make->name }}</a>
-            @endforeach
+            <?php $__currentLoopData = $randomMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>"><?php echo e($make->name); ?></a>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
 
         <div class="grid" id="productGrid2">
             <!-- Example Card -->
-            @foreach ($carAds as $ad)
+            <?php $__currentLoopData = $carAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card">
-                    @php
+                    <?php
                         $images = json_decode($ad->images, true);
-                    @endphp
+                    ?>
 
-                    @if (is_array($images) && isset($images[0]))
-                        <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
-                    @endif
+                    <?php if(is_array($images) && isset($images[0])): ?>
+                        <img src="<?php echo e(asset('storage/' . $images[0])); ?>" alt="Product">
+                    <?php endif; ?>
                     <div class="card-body">
-                        <a href="{{ route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id]) }}"
-                            class="card-title">{{ $ad->title }}</a>
-                        {{-- <div class="price">AED {{ $ad->price }}</div> --}}
+                        <a href="<?php echo e(route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id])); ?>"
+                            class="card-title"><?php echo e($ad->title); ?></a>
+                        
                         <div class="meta">
                             Availability: In Stock <br>
-                            {{-- Condition: {{ $ad->condition }} <br> --}}
+                            
                             Delivery: Ask Supplier <br>
                             Warranty: Ask Supplier
                         </div>
-                        @php
+                        <?php
                             $ad->shop->supplier->whatsapp;
-                        @endphp
+                        ?>
                         <div class="buttons">
                             <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                                onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
                             <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                                onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
                                 <i class="fa-solid fa-phone"></i> Click to Call
                             </a>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
             <!-- Repeat similar cards... -->
@@ -329,9 +297,9 @@
             </ul>
         </div>
         <div class="map-img">
-            @if($domain && $domain->map_img)
-                <img src="{{ asset('storage/' . $domain->map_img) }}" alt="Map" />
-            @endif
+            <?php if($domain && $domain->map_img): ?>
+                <img src="<?php echo e(asset('storage/' . $domain->map_img)); ?>" alt="Map" />
+            <?php endif; ?>
         </div>
     </section>
     <!-- Locations -->
@@ -341,16 +309,16 @@
 
         </div>
         <div class="locations-grid">
-            @if($domain && $domain->cities)
-                @foreach ($domain->cities as $city)
-                    <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="location-card"><i
-                            class="fa-solid fa-location-dot"></i> {{ $city->name }}</a>
-                @endforeach
-            @endif
+            <?php if($domain && $domain->cities): ?>
+                <?php $__currentLoopData = $domain->cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <a href="<?php echo e(route('city.ads', ['slug' => $city->slug, 'id' => $city->id])); ?>" class="location-card"><i
+                            class="fa-solid fa-location-dot"></i> <?php echo e($city->name); ?></a>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
         </div>
     </section>
 
-    @include('Frontend.layout.company')
+    <?php echo $__env->make('Frontend.layout.company', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <style>
         .search-card {
     background: rgba(255, 255, 255, 0.95);
@@ -398,23 +366,28 @@
     border: 2px solid #e1e5e9;
     margin-top: -10px;
 }
+/* Make the whole section block so title is on top */
 #condition-group {
-    display: block;
+    display: block; /* keep block for title above radios */
 }
 
+/* Radio buttons in a row */
 .radio-group {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
+    gap: 20px; /* space between each radio option */
+    margin-top: 5px; /* optional spacing below title */
 }
 
+/* Each radio option */
 .radio-option {
     display: flex;
     align-items: center;
-    gap: 5px; 
+    gap: 5px; /* space between input and label */
 }
 
  </style>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('Frontend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/index.blade.php ENDPATH**/ ?>
