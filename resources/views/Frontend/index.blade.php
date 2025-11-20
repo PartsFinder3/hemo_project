@@ -491,7 +491,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     overflow: hidden;
     background: #fff;
     transition: 0.3s ease;
