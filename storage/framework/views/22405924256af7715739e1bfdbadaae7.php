@@ -215,7 +215,7 @@
                         href="<?php echo e(route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id])); ?>">
                 <div class="part-card">
                     <?php if($p->image): ?>
-             
+                        
                       <img src="<?php echo e(asset('storage/' . $p->image)); ?>" alt="Spare Part" >
                     <?php else: ?>
                         <img src="<?php echo e(asset('Frontend/assets/quote.png')); ?>" alt="<?php echo e($p->name); ?>" />
@@ -442,6 +442,45 @@
 
 .btn.whatsapp {
     background: var(--whatsapp-btn);
+}
+.part-card {
+    width: 150px;            /* fix width */
+    height: 180px;           /* fix height */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.3s ease;
+}
+
+/* Hover effect */
+.part-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #ccc;
+}
+
+/* Fix image size */
+.part-card img {
+    width: 80px; 
+    height: 80px;
+    object-fit: contain;     /* Image stays inside nicely */
+}
+
+/* Text styling */
+.part-card-text {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    margin-top: 5px;
 }
 
 
