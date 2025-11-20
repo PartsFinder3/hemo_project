@@ -1,49 +1,50 @@
-@extends('supplierPanel.layout.main')
-@section('main-section')
+<?php $__env->startSection('main-section'); ?>
     <div class="container my-4">
         <div class="row justify-content-center">
             <div class="col-lg-12 col-md-12">
                 <!-- Profile Card -->
                 <div class="card shadow-sm border-0 rounded-3">
                     <!-- Cover Image -->
-                    @if ($profile && $profile->cover)
-                        <img src="{{ asset('storage/' . $profile->cover) }}" class="card-img-top rounded-top" alt="Cover">
-                    @else
-                        <img src="{{ asset('assets/compiled/jpg/Head.png') }}" class="card-img-top rounded-top" alt="Cover">
-                    @endif
+                    <?php if($profile && $profile->cover): ?>
+                        <img src="<?php echo e(asset('storage/' . $profile->cover)); ?>" class="card-img-top rounded-top" alt="Cover">
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('assets/compiled/jpg/Head.png')); ?>" class="card-img-top rounded-top" alt="Cover">
+                    <?php endif; ?>
                     <div class="card-body">
                         <div class="row align-items-center">
                             <!-- Shop Image -->
                             <div class="col-md-2 col-3 text-center">
-                                @if ($profile && $profile->profile_image)
-                                    <img src="{{ asset('storage/' . $profile->profile_image) }}"
+                                <?php if($profile && $profile->profile_image): ?>
+                                    <img src="<?php echo e(asset('storage/' . $profile->profile_image)); ?>"
                                         class="img-fluid rounded-circle border border-3 border-white shadow"
                                         alt="Shop Logo">
-                                @else
-                                    <img src="{{ asset('assets/compiled/jpg/2.jpg') }}"
+                                <?php else: ?>
+                                    <img src="<?php echo e(asset('assets/compiled/jpg/2.jpg')); ?>"
                                         class="img-fluid rounded-circle border border-3 border-white shadow"
                                         alt="Shop Logo">
-                                @endif
+                                <?php endif; ?>
                             </div>
 
                             <!-- Shop Info -->
                             <div class="col-md-7 col-9">
                                 <h4 class="mb-0">
-                                    {{ $shop->name }}
-                                    @if ($shop->supplier->is_verified)
+                                    <?php echo e($shop->name); ?>
+
+                                    <?php if($shop->supplier->is_verified): ?>
                                         <span class="badge bg-warning text-dark">Verified</span>
-                                    @endif
+                                    <?php endif; ?>
                                 </h4>
                                 <p class="text-muted mb-1">
                                     <i class="bi bi-geo-alt-fill text-danger"></i>
-                                    {{ $profile?->address ? $profile->address . ' ' . $shop->supplier->city->name : $shop->supplier->city->name }}
+                                    <?php echo e($profile?->address ? $profile->address . ' ' . $shop->supplier->city->name : $shop->supplier->city->name); ?>
+
 
                                 </p>
                             </div>
 
                             <!-- Action Buttons -->
                             <div class="col-md-3 col-12 text-md-end text-start mt-2 mt-md-0">
-                                <a href="{{ route('supplier.shop.profile.create', $shop->id) }}"
+                                <a href="<?php echo e(route('supplier.shop.profile.create', $shop->id)); ?>"
                                     class="btn btn-orange btn-sm w-100 w-md-auto">Edit Profile</a>
                             </div>
                         </div>
@@ -51,20 +52,13 @@
                         <hr>
 
                         <!-- About Section -->
-                        @if (isset($profile) && $profile->description)
+                        <?php if(isset($profile) && $profile->description): ?>
                             <h6>About</h6>
-                            <p class="text-muted">{{ $profile->description }}</p>
-                        @endif
+                            <p class="text-muted"><?php echo e($profile->description); ?></p>
+                        <?php endif; ?>
 
                         <!-- Contact Buttons -->
-                        {{-- <div class="d-flex flex-wrap gap-2 mt-3">
-                            <a href="https://wa.me/" target="_blank" class="btn btn-success btn-sm">
-                                <i class="bi bi-whatsapp"></i> WhatsApp
-                            </a>
-                            <a href="tel:" class="btn btn-info btn-sm">
-                                <i class="bi bi-telephone"></i> Call Now
-                            </a>
-                        </div> --}}
+                        
                     </div>
                 </div>
                 <div class="card shadow-sm border-0 rounded-3 mt-4">
@@ -72,27 +66,24 @@
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                             <h5 class="mb-0">Deals in Parts</h5>
                             <div class="d-flex align-items-center gap-2">
-                                @if ($shop->supplier->is_verified)
+                                <?php if($shop->supplier->is_verified): ?>
                                     <span class="badge bg-success-subtle text-success">
                                         <i class="bi bi-check-circle"></i> Verified by Business
                                     </span>
-                                @endif
-                                {{-- <span>
-                                    <a href="{{ route('supplier.shop.profile.parts.create', $shop->id) }}"
-                                        class="btn btn-orange">Add
-                                        Parts</a>
-                                </span> --}}
+                                <?php endif; ?>
+                                
                             </div>
                         </div>
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
-                        @foreach ($shopParts as $part)
+                        <?php $__currentLoopData = $shopParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col">
         <div class="p-2 border rounded text-center">
-            {{ $part->part->name ?? 'Unknown' }}
+            <?php echo e($part->part->name ?? 'Unknown'); ?>
+
         </div>
     </div>
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
@@ -103,24 +94,21 @@
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                             <h5 class="mb-0">Deals in Cars</h5>
                             <div class="d-flex align-items-center gap-2">
-                                @if ($shop->supplier->is_verified)
+                                <?php if($shop->supplier->is_verified): ?>
                                     <span class="badge bg-success-subtle text-success">
                                         <i class="bi bi-check-circle"></i> Verified by Business
                                     </span>
-                                @endif
-                                {{-- <span>
-                                    <a href="" class="btn btn-orange">Add
-                                        Makes</a>
-                                </span> --}}
+                                <?php endif; ?>
+                                
                             </div>
                         </div>
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2">
-                            @foreach ($shopMakes as $make)
+                            <?php $__currentLoopData = $shopMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="col">
-                                    <div class="p-2 border rounded text-center">{{ $make->make->name }}</div>
+                                    <div class="p-2 border rounded text-center"><?php echo e($make->make->name); ?></div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
@@ -131,44 +119,45 @@
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                             <h5 class="fw-bold mb-4">📍 Location & Hours</h5>
                             <span>
-                                <a href="{{ route('supplier.shops.hours.create', $shop->id) }}" class="btn btn-orange">Add
+                                <a href="<?php echo e(route('supplier.shops.hours.create', $shop->id)); ?>" class="btn btn-orange">Add
                                     Hours</a>
                             </span>
                         </div>
                         <div class="row">
                             <div class="col-md-5">
-                                <p class="text-muted mb-0">{{ $profile?->address ? $profile->address . ' ' . $shop->supplier->city->name : $shop->supplier->city->name }}
+                                <p class="text-muted mb-0"><?php echo e($profile?->address ? $profile->address . ' ' . $shop->supplier->city->name : $shop->supplier->city->name); ?>
+
 
                                 </p>
                             </div>
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Mon</span>
-                                    <span>{{ $shopHours->monday ?? 'OFF' }}</span>
+                                    <span><?php echo e($shopHours->monday ?? 'OFF'); ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Tue</span>
-                                    <span>{{ $shopHours->tuesday ?? 'OFF' }}</span>
+                                    <span><?php echo e($shopHours->tuesday ?? 'OFF'); ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Wed</span>
-                                    <span>{{ $shopHours->wednesday ?? 'OFF' }}</span>
+                                    <span><?php echo e($shopHours->wednesday ?? 'OFF'); ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Thu</span>
-                                    <span>{{ $shopHours->thursday ?? 'OFF' }}</span>
+                                    <span><?php echo e($shopHours->thursday ?? 'OFF'); ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Fri</span>
-                                    <span class="text">{{ $shopHours->friday ?? 'OFF' }}</span>
+                                    <span class="text"><?php echo e($shopHours->friday ?? 'OFF'); ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Sat</span>
-                                    <span class="text">{{ $shopHours->saturday ?? 'OFF' }}</span>
+                                    <span class="text"><?php echo e($shopHours->saturday ?? 'OFF'); ?></span>
                                 </div>
                                 <div class="d-flex justify-content-between border-bottom py-2">
                                     <span class="fw-semibold">Sun</span>
-                                    <span>{{ $shopHours->sunday ?? 'OFF' }}</span>
+                                    <span><?php echo e($shopHours->sunday ?? 'OFF'); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -181,38 +170,33 @@
                         <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             <div class="col">
-                                @if ($shopAds->count() > 0)
-                                    @foreach ($shopAds as $ad)
+                                <?php if($shopAds->count() > 0): ?>
+                                    <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="card h-90 shadow-sm border-0 rounded-3">
-                                            @php
+                                            <?php
                                                 $images = json_decode($ad->images, true);
-                                            @endphp
+                                            ?>
 
-                             @if(!empty($images[0]))
-    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-@endif
-
+                                       <?php if(!empty($images[0])): ?>
+    <img src="<?php echo e(asset('storage/ad_images/' . basename($images[0]))); ?>" 
+         class="card-img-top img-fluid" alt="Product">
+<?php endif; ?>
                                             <div class="card-body">
-                                                <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                                <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
+                                                <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
+                                                <h5 class="text-danger fw-bold">AED <?php echo e($ad->price); ?></h5>
                                                 <ul class="list-unstyled small">
                                                     <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                    <li><b>Condition:</b> {{ $ad->condition }}</li>
+                                                    <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
                                                     <li><b>Delivery:</b> Ask Supplier</li>
                                                     <li><b>Warranty:</b> Ask Supplier</li>
                                                 </ul>
                                                 <div class="d-flex gap-2">
-                                                    {{-- <a href="#" class="btn btn-outline-success w-80">
-                                                <i class="bi bi-whatsapp"></i> Whatsapp
-                                            </a>
-                                            <a href="#" class="btn btn-outline-primary w-80">
-                                                <i class="bi bi-telephone"></i> Call
-                                            </a> --}}
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                @endif
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endif; ?>
                             </div>
                             <!-- More ads as needed -->
                         </div>
@@ -224,39 +208,34 @@
                         <h5 class="fw-bold mb-4">Car Ads</h5>
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             <div class="col">
-                                @if ($shopCarAds->count() > 0)
-                                    @foreach ($shopCarAds as $ad)
+                                <?php if($shopCarAds->count() > 0): ?>
+                                    <?php $__currentLoopData = $shopCarAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="card h-90 shadow-sm border-0 rounded-3">
-                                            @php
+                                            <?php
                                                 $images = json_decode($ad->images, true);
-                                            @endphp
+                                            ?>
 
-                                            @if (is_array($images) && isset($images[0]))
-                                                <img src="{{ asset('storage/' . $images[0]) }}"
+                                            <?php if(is_array($images) && isset($images[0])): ?>
+                                                <img src="<?php echo e(asset('storage/' . $images[0])); ?>"
                                                     class="card-img-top img-fluid" alt="Product">
-                                            @endif
+                                            <?php endif; ?>
                                             <div class="card-body">
-                                                <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                                {{-- <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5> --}}
+                                                <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
+                                                
                                                 <ul class="list-unstyled small">
                                                     <li><b>Availability:</b> <span class="text-success">In Stock</span>
                                                     </li>
-                                                    <li><b>Condition:</b> {{ $ad->condition }}</li>
+                                                    <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
                                                     <li><b>Delivery:</b> Ask Supplier</li>
                                                     <li><b>Warranty:</b> Ask Supplier</li>
                                                 </ul>
                                                 <div class="d-flex gap-2">
-                                                    {{-- <a href="#" class="btn btn-outline-success w-80">
-                                                <i class="bi bi-whatsapp"></i> Whatsapp
-                                            </a>
-                                            <a href="#" class="btn btn-outline-primary w-80">
-                                                <i class="bi bi-telephone"></i> Call
-                                            </a> --}}
+                                                    
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                @endif
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endif; ?>
                             </div>
                             <!-- More ads as needed -->
                         </div>
@@ -266,22 +245,24 @@
                     <div class="card-header">
                         <h5 class="card-title">Our Gallery</h5>
                         <span>
-                            <a href="{{ route('supplier.shops.gallery.create', $shop->id) }}" class="btn btn-orange">Add
+                            <a href="<?php echo e(route('supplier.shops.gallery.create', $shop->id)); ?>" class="btn btn-orange">Add
                                 Image</a>
                         </span>
                     </div>
                     <div class="card-body">
                         <div class="row g-2">
-                            @foreach ($shopGallery as $image)
+                            <?php $__currentLoopData = $shopGallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="col-6 col-md-4 col-lg-3">
-                                    <img src="{{ asset('storage/' . $image->image_path) }}" class="img-fluid rounded"
+                                    <img src="<?php echo e(asset('storage/' . $image->image_path)); ?>" class="img-fluid rounded"
                                         alt="">
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('supplierPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/supplierPanel/shopProfile/view.blade.php ENDPATH**/ ?>

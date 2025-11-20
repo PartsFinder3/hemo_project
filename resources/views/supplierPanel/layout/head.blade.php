@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $domain->name }} - Supplier Dashboard</title>
+    <title> - Supplier Dashboard</title>
 
     {{-- Favicons --}}
     <link rel="shortcut icon" href="{{ asset('assets/compiled/svg/favicon.svg') }}" type="image/x-icon">
@@ -270,7 +270,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-2 shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" style="max-width: 100px" href="#">
-                <img style="width: 50%; height: 100%" src="{{ asset('storage/' . $domain->logo) }}" alt="Logo">
+                {{-- <img style="width: 50%; height: 100%" src="{{ asset('storage/' . $domain->logo) }}" alt="Logo"> --}}
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
