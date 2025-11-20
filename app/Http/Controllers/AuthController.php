@@ -38,7 +38,7 @@ class AuthController extends Controller
                     ->with('error', 'Your subscription has expired. Please renew to continue.');
             }
              if ((int)$supplier->is_active === 1) {
-                 return "hi";
+                
                     return redirect()->route('supplier.panel')
                         ->with('success', 'Login successful.');
                 } else {
