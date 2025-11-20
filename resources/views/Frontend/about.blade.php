@@ -1,4 +1,4 @@
-@include('frontend.layout.head')
+@extends('frontend.layout.main')
 
 @section('main-section')
 
