@@ -481,7 +481,7 @@
     background: var(--whatsapp-btn);
 }
 .part-card {
-    width: 150px;            /* fix width */
+    width: 250px;            /* fix width */
     height: 180px;           /* fix height */
     border: 1px solid #ddd;
     border-radius: 10px;
