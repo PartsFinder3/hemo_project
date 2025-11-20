@@ -1,0 +1,1 @@
+<?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/auth/layout/footer.blade.php ENDPATH**/ ?>
