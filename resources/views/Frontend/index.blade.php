@@ -2,9 +2,9 @@
 @section('main-section')
 <div class="hero-section container">
     <!-- Hero Text Centered -->
-    <div class="hero-text text-center mb-2">
+    <div class="hero-text text-center mb-2" style="font-size: 40px;">
         <h1>Find Your Perfect Parts</h1>
-        
+
     </div>
 
     <!-- Your existing form, left aligned -->
