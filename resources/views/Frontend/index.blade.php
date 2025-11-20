@@ -137,7 +137,8 @@
                 <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
                     @if($make->logo)
                    
-                        <img src="{{ asset('{{ $make->name }}') }}" alt="{{ $make->name }}">
+                        <img src="{{ asset('storage/logo/' . $make->name) }}" alt="{{ $make->name }}">
+
                     @endif
                     <h4>{{ strtoupper($make->name) }}</h4>
                 </a>

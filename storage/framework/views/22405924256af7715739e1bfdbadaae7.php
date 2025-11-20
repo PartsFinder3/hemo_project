@@ -135,9 +135,8 @@
             <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
                     <?php if($make->logo): ?>
-                    <?php echo e($make->logo); ?>
-
-                        <img src="<?php echo e(asset($make->logo)); ?>" alt="<?php echo e($make->name); ?>">
+                   
+                        <img src="<?php echo e(asset('{{ $make->name); ?>') }}" alt="<?php echo e($make->name); ?>">
                     <?php endif; ?>
                     <h4><?php echo e(strtoupper($make->name)); ?></h4>
                 </a>
