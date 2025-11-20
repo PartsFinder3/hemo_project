@@ -1,76 +1,79 @@
 <?php $__env->startSection('main-section'); ?>
-    <div class="hero-section">
-        <div class="hero-text">
-            <h1>Find Your Perfect Parts</h1>
-            <p>Your one-stop solution for all your automotive needs.</p>
+<div class="hero-section container">
+    <!-- Hero Text Centered -->
+    <div class="hero-text text-center mb-2">
+        <h1>Find Your Perfect Parts</h1>
+    </div>
+
+    <!-- Your existing form, left aligned -->
+    <div class="search-card" style="max-width: 500px;">
+        <div class="card-header">
+            <div class="free-text">100% FREE</div>
+            <div class="search-title">Search Your Part Here</div>
         </div>
 
-        <div class="search-card">
-            <div class="card-header">
-                <div class="free-text">100% FREE</div>
-                <div class="search-title">Search Your Part Here</div>
+        <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
+            <?php echo csrf_field(); ?>
+            <div class="form-group" id="make-group">
+                <select class="dropdown" id="make" name="car_make_id">
+                    <option disabled selected value="">Select Your Make</option>
+                    <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
             </div>
 
-            <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
-                <?php echo csrf_field(); ?>
-                <div class="form-group" id="make-group">
-                    <select class="dropdown" id="make" name="car_make_id">
-                        <option disabled selected value="">Select Your Make</option>
-                        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                </div>
+            <div class="form-group" id="model-group">
+                <select class="dropdown" id="model" name="car_model_id">
+                    <option value="">Select Your Model</option>
+                </select>
+            </div>
 
-                <div class="form-group" id="model-group">
-                    <select class="dropdown" id="model" name="car_model_id">
-                        <option value="">Select Your Model</option>
-                    </select>
-                </div>
+            <div class="form-group" id="year-group">
+                <select class="dropdown" id="year" name="year_id">
+                    <option value="">Select Your Model Year</option>
+                    <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+            </div>
 
-                <div class="form-group" id="year-group">
-                    <select class="dropdown" id="year" name="year_id">
-                        <option value="">Select Your Model Year</option>
-                        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                </div>
+            <div class="form-group hidden" id="parts-group">
+                <select id="parts-dropdown" class="dropdown" disabled>
+                    <option disabled selected value="">Select a part to add</option>
+                    <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+                <div id="parts-tags" class="parts-tags"></div>
+            </div>
 
-                <div class="form-group hidden" id="parts-group">
-                    <select id="parts-dropdown" class="dropdown" disabled>
-                        <option disabled selected value="">Select a part to add</option>
-                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                    <div id="parts-tags" class="parts-tags"></div>
-                </div>
-
-                <div class="form-group hidden" id="condition-group">
-                    <div class="condition-section">
-                        <div class="condition-title">Condition Required ?</div>
-                        <div class="radio-group">
-                            <div class="radio-option">
-                                <input type="radio" id="used" name="condition" value="used" />
-                                <label for="used">Used</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="new" name="condition" value="new" checked />
-                                <label for="new">New</label>
-                            </div>
-                            <div class="radio-option">
-                                <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
-                                <label for="does_not_matter">Doesn't matter</label>
-                            </div>
+            <div class="form-group hidden" id="condition-group">
+                <div class="condition-section">
+                    <div class="condition-title">Condition Required ?</div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="used" name="condition" value="used" />
+                            <label for="used">Used</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="new" name="condition" value="new" checked />
+                            <label for="new">New</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
+                            <label for="doesnt-matter">Doesn't matter</label>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <button class="find-btn" id="find-btn" disabled>Find My Part</button>
-            </form>
-        </div>
+            <button class="find-btn" id="find-btn" disabled>Find My Part</button>
+        </form>
     </div>
+</div>
+
+
 
     </main>
     <!-- How It Works -->
@@ -135,9 +138,10 @@
             <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
                     <?php if($make->logo): ?>
-                    <?php echo e($make->logo); ?>
+               
+                      <img src="<?php echo e(asset('storage/' . $make->logo)); ?>" alt="<?php echo e($make->name); ?>">
+                      
 
-                      <img src="<?php echo e(asset($make->logo)); ?>" alt="<?php echo e($make->name); ?>">
                     <?php endif; ?>
                     <h4><?php echo e(strtoupper($make->name)); ?></h4>
                 </a>
@@ -481,6 +485,63 @@
     text-align: center;
     color: black;
     margin-top: 5px;
+}
+.make {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 150px;           /* fixed width */
+    height: 115px;          /* fixed height */
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    background: #fff;
+}
+
+.make:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #ccc;
+}
+
+.make img {
+    width: 90%;            /* fixed image width */
+    height: 60px;           /* fixed image height */
+    object-fit: contain;     /* keep logo proportions */
+    margin-bottom: 8px;
+}
+
+.make h4 {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2em;
+    height: 2.4em;          /* max 2 lines */
+    overflow: hidden;
+}
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center hero text horizontally */
+    padding: 50px 10%;
+    gap: 50px;
+}
+
+.hero-text {
+    text-align: center;
+}
+
+.search-card {
+    align-self: flex-start; /* align form to left */
+    width: 100%;
+    max-width: 500px; /* limit form width */
 }
 
 

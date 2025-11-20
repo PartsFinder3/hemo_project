@@ -188,6 +188,7 @@ nav .logo img {
 
 .hero-section {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 50px 10%;
@@ -227,19 +228,17 @@ nav .logo img {
 }
 
 .hero-text {
+    width: 100%;
+    height: 10%;
     flex: 1;
     color: var(--primary-color);
 }
 
 .hero-text h1 {
-    font-size: 4rem;
+    font-size: 40px;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    /* margin-top: -50px; */
 }
 
 @media (max-width: 1200px) {
@@ -396,7 +395,7 @@ nav .logo img {
 
 .dropdown {
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     border: 2px solid #e1e5e9;
     border-radius: 10px;
     font-size: 16px;
@@ -428,7 +427,7 @@ nav .logo img {
     font-weight: 600;
     color: var(--secondary-color);
     margin-bottom: 15px;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .radio-group {
@@ -517,7 +516,7 @@ nav .logo img {
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     font-family: 'Montserrat', sans-serif;
 }
 
