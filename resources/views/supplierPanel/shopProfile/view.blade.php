@@ -86,11 +86,13 @@
                         </div>
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
-                            @foreach ($shopParts as $part)
-                                <div class="col">
-                                    <div class="p-2 border rounded text-center">{{ $part->part->name }}</div>
-                                </div>
-                            @endforeach
+                        @foreach ($shopParts as $part)
+    <div class="col">
+        <div class="p-2 border rounded text-center">
+            {{ $part->part->name ?? 'Unknown' }}
+        </div>
+    </div>
+@endforeach
                         </div>
                     </div>
                 </div>
