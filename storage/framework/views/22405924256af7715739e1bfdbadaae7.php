@@ -136,7 +136,8 @@
                 <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
                     <?php if($make->logo): ?>
                    
-                        <img src="<?php echo e(asset('{{ $make->name); ?>') }}" alt="<?php echo e($make->name); ?>">
+                      <img src="<?php echo e(asset($make->logo)); ?>" alt="<?php echo e($make->name); ?>">
+                        
                     <?php endif; ?>
                     <h4><?php echo e(strtoupper($make->name)); ?></h4>
                 </a>
@@ -214,7 +215,7 @@
                         href="<?php echo e(route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id])); ?>">
                 <div class="part-card">
                     <?php if($p->image): ?>
-                
+             
                       <img src="<?php echo e(asset('storage/' . $p->image)); ?>" alt="Spare Part" >
                     <?php else: ?>
                         <img src="<?php echo e(asset('Frontend/assets/quote.png')); ?>" alt="<?php echo e($p->name); ?>" />
