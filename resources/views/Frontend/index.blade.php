@@ -4,6 +4,7 @@
     <!-- Hero Text Centered -->
     <div class="hero-text text-center mb-2">
         <h1>Find Your Perfect Parts</h1>
+        
     </div>
 
     <!-- Your existing form, left aligned -->
