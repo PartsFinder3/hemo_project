@@ -34,7 +34,7 @@ class ShopController extends Controller
         $shopGallery = ShopGallery::where('shop_id', $shop->id)->get();
         $shopAds = Ads::where('shop_id', $shop->id)->get();
         $shopCarAds = CarAds::where('shop_id', $shop->id)->get();
-        dd($shopParts);
+        dd($shopParts->part->name);
         return view('adminPanel.shop.view', compact('shop', 'profile', 'shopParts', 'shopMakes', 'shopHours', 'shopGallery', 'shopAds', 'shopCarAds'));
     }
 
