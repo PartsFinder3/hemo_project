@@ -248,7 +248,7 @@
                 <div class="part-card">
                     @if ($p->image)
                         {{$p->image}}
-                      <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
+                      <img src="{{ asset( $p->image) }}" alt="Spare Part" >
                     @else
                         <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
                     @endif
