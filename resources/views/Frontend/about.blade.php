@@ -4,22 +4,25 @@
 <style>
     .domain-about-section {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: center; /* horizontal center */
+        align-items: center;     /* vertical center */
         padding: 80px 20px;
         min-height: 70vh;
-        background: linear-gradient(135deg, #28252b, #153f86); /* purple to blue gradient */
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
         color: white;
         text-align: center;
+        box-sizing: border-box;
     }
 
     .domain-about-content {
         max-width: 800px;
+        width: 100%;
     }
 
     .domain-about-content p {
         font-size: 1.2rem;
         line-height: 1.8;
+        margin: 0 auto;
     }
 
     @media (max-width: 768px) {
