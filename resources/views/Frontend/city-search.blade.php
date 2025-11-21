@@ -77,6 +77,9 @@
     height: 50px !important;
     font-family: 'Montserrat', sans-serif;
 }
+.dropdown option{
+    font-weight: bold;
+}
 
 </style>
  <div class="hero-section_p">
