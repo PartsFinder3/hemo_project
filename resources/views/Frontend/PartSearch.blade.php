@@ -191,31 +191,41 @@
 .dropdown{
     font-weight: 700 !important;
 }
-
 .condition-section {
     background: #f8f9fa;
-    padding: 10px 15px;
+    padding: 15px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-    margin-top: 10px; /* اوپر سے فاصلے کے لیے */
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* چھوٹی screens میں wrap ہو جائے */
-    align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
+.condition-section .condition-title {
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-.radio-option {
+.condition-section .radio-group {
+    display: flex;
+    flex-direction: row;  /* Row-wise alignment */
+    flex-wrap: wrap;      /* Mobile پر wrap ہو جائے */
+    align-items: center;
+    gap: 20px;            /* Radios کے درمیان gap */
+}
+
+.condition-section .radio-option {
     display: flex;
     align-items: center;
-    gap: 5px; 
+    gap: 5px;             /* Radio اور label کے درمیان gap */
+}
+
+/* Optional: responsive behavior */
+@media (max-width: 768px) {
+    .condition-section .radio-group {
+        gap: 15px;
+    }
 }
 
 </style>
