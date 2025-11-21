@@ -212,6 +212,30 @@
 .dropdown{
     font-weight: 700 !important;
 }
+ .condition-section {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    margin-top: -10px;
+}
+#condition-group {
+    display: block;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 5px; 
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
 </style>
 </style>
 @section('main-section')
