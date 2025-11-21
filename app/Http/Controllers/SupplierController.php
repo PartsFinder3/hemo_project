@@ -128,7 +128,7 @@ class SupplierController extends Controller
 
         // If supplier account is not active, block inquiries
         if (!$supplier->is_active) {
-            return view('supplierPanel.index', [
+            return view('c', [
                 'usages' => collect(),
                 'shopPartIds' => [],
                 'makes' => CarMakes::all(),
