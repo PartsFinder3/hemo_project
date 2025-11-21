@@ -167,43 +167,48 @@
 
         <div class="grid" id="productGrid1">
             <!-- Example Card -->
-            @foreach ($ads as $ad)
-                <div class="card">
-                    @php
-                        $images = json_decode($ad->images, true);
-                    @endphp
+     @foreach ($ads as $ad)
+    <div class="pf-card">
+        @php
+            $images = json_decode($ad->images, true);
+        @endphp
 
-                         @if(!empty($images[0]))
-                                            <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-               @endif
-                    <div class="card-body">
-                        <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                            class="card-title">{{ $ad->title }}</a>
-                        <div class="price">AED {{ $ad->price }}</div>
-                        <div class="meta">
-                            Availability: In Stock <br>
-                            Condition: {{ $ad->condition }} <br>
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
-                        </div>
-                        @php
-                            $ad->shop->supplier->whatsapp;
-                        @endphp
-                        <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                            </a>
+        <div class="pf-card-img">
+            @if(!empty($images[0]))
+                <img src="{{ asset($images[0]) }}" alt="Product">
+            @else
+                <img src="{{ asset('Frontend/assets/no-image.png') }}" alt="No Image">
+            @endif
+        </div>
 
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
-                        </div>
+        <div class="pf-card-body">
+            <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
+                class="pf-card-title">{{ $ad->title }}</a>
 
-                    </div>
-                </div>
-            @endforeach
+            <div class="pf-card-price">AED {{ $ad->price }}</div>
+
+            <div class="pf-card-meta">
+                Availability: In Stock <br>
+                Condition: {{ $ad->condition }} <br>
+                Delivery: Ask Supplier <br>
+                Warranty: Ask Supplier
+            </div>
+
+            <div class="pf-card-buttons">
+                <a href="javascript:void(0)" class="pf-btn pf-whatsapp"
+                    onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}','{{ $ad->shop->supplier->whatsapp }}','{{ $ad->title }}')">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+
+                <a href="javascript:void(0)" class="pf-btn pf-call"
+                    onclick="callSupplier('{{ $ad->shop->supplier->is_active }}','{{ $ad->shop->supplier->whatsapp }}')">
+                    <i class="fa-solid fa-phone"></i> Call
+                </a>
+            </div>
+
+        </div>
+    </div>
+@endforeach
 
             {{-- <div class="card">
                 <img src="assets/ad (2).jpg" alt="Product">
@@ -464,17 +469,18 @@
 }
 
 .card-title {
-       font-size: 16px;
+    font-size: 16px;
     font-weight: 600;
+    margin-bottom: 5px;
     line-height: 1.2em;
-    height: 2.4em;                /* max 2 lines */
+    height: 3.6em;
     overflow: hidden;
 }
 
 .price {
     font-size: 18px;
     font-weight: bold;
-    margin: 5px 0;
+    margin-bottom: 5px;
 }
 
 .meta {
@@ -673,5 +679,117 @@
         padding: 8px 10px;
     }
 }
+/* CARD WRAPPER */
+.pf-card {
+    width: 300px;
+    height: 450px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+    margin: 10px;
+}
+
+.pf-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.2);
+}
+
+/* IMAGE AREA */
+.pf-card-img {
+    width: 100%;
+    height: 180px;             /* FIXED */
+    background: #f5f5f5;
+    overflow: hidden;
+}
+
+.pf-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Keep design even */
+}
+
+/* BODY */
+.pf-card-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+/* TITLE */
+.pf-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    text-decoration: none;
+    line-height: 1.3em;
+    height: 2.6em;             /* max 2 lines */
+    overflow: hidden;
+    display: block;
+}
+
+/* PRICE */
+.pf-card-price {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 6px 0;
+    color: #111;
+}
+
+/* META TEXT */
+.pf-card-meta {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.4em;
+    margin-bottom: 8px;
+}
+
+/* BUTTONS */
+.pf-card-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+/* BASIC BUTTON STYLE */
+.pf-btn {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    gap: 6px;
+    align-items: center;
+    transition: 0.2s;
+}
+
+/* WHATSAPP BTN */
+.pf-whatsapp {
+    background: #25D366;
+}
+
+.pf-whatsapp:hover {
+    background: #1ebe57;
+}
+
+/* CALL BTN */
+.pf-call {
+    background: #007bff;
+}
+
+.pf-call:hover {
+    background: #0064d4;
+}
+
  </style>
 @endsection
