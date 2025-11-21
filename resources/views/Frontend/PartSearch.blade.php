@@ -206,7 +206,12 @@
 .btn.call:hover {
   
 }
-
+.dropdown option {
+    font-weight: 700 !important;
+}
+.dropdown{
+    font-weight: 700 !important;
+}
 </style>
 </style>
 @section('main-section')
