@@ -80,7 +80,9 @@
 .dropdown option{
     font-weight: bold;
 }
-
+.dropdown {
+    font-weight: bold !important;
+}
 </style>
  <div class="hero-section_p">
          <div class="hero_section_text">
