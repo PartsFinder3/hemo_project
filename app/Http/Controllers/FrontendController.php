@@ -303,7 +303,7 @@ class FrontendController extends Controller
         //     ->get();
 
         $shops = Shops::where('is_active', 1)->get();
-        return view('frontend.shops.view', compact('shops'));
+        return view('Frontend.shops.view', compact('shops'));
     }
 
     public function aboutPage()
