@@ -101,8 +101,18 @@
     align-items: center;
     gap: 5px; 
 }
-
-
+.card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+}
 </style>
 </style>
 @section('main-section')
