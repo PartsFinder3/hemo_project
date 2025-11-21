@@ -102,6 +102,13 @@
     align-items: center;
     gap: 5px; 
 }
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain !important; /* full image dikhayega */
+    background-color: #f7f7f7; /* optional clean background */
+    padding: 5px; /* thoda gap for clean look */
+}
 </style>
 </style>
 <div class="hero-section_p">
