@@ -77,30 +77,9 @@
     height: 50px !important;
     font-family: 'Montserrat', sans-serif;
 }
- .condition-section {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #e1e5e9;
-    margin-top: -10px;
-}
-#condition-group {
-    display: block;
-}
 
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
-}
 
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 5px; 
-}
+
 
 
 /* Card Container */
@@ -212,20 +191,22 @@
 .dropdown{
     font-weight: 700 !important;
 }
- .condition-section {
+
+.condition-section {
     background: #f8f9fa;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-    margin-top: -10px;
-}
-#condition-group {
-    display: block;
+    margin-top: 10px; /* اوپر سے فاصلے کے لیے */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .radio-group {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; /* چھوٹی screens میں wrap ہو جائے */
     align-items: center;
     gap: 20px; 
     margin-top: 5px; 
@@ -236,6 +217,7 @@
     align-items: center;
     gap: 5px; 
 }
+
 </style>
 </style>
 @section('main-section')
