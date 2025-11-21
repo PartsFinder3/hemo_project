@@ -107,6 +107,59 @@
     align-items: center;
     gap: 5px; 
 }
+.brands {
+    display: flex;
+    flex-wrap: wrap;          /* اگر زیادہ brands ہوں تو wrap ہو جائیں */
+    justify-content: center;  /* horizontally center */
+    align-items: center;      /* vertically center */
+    gap: 20px;                /* brand cards کے درمیان gap */
+    margin-top: 30px;
+}
+
+.brands .make {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    width: 120px;             /* brand card width */
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.brands .make:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Brand Image */
+.brands .make img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;   /* image distort نہ ہو */
+    margin-bottom: 10px;
+}
+
+/* Brand Name */
+.brands .make h4 {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    word-wrap: break-word; /* اگر name لمبا ہو */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .brands .make {
+        width: 100px;
+    }
+    .brands .make img {
+        width: 60px;
+        height: 60px;
+    }
+}
 </style>
  <div class="hero-section_p">
          <div class="hero_section_text">
