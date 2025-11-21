@@ -17,7 +17,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-align: center
+    text-align: center;
+    font-weight: bolder;
    }
    .secound_hero_section{
     widows: 100%;
@@ -493,7 +494,9 @@
 .card img {
     width: 100%;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain !important; /* full image dikhayega */
+    background-color: #f7f7f7; /* optional clean background */
+    padding: 5px; /* thoda gap for clean look */
 }
 
 .card-body {
