@@ -1,7 +1,6 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 <style>
- 
     .hero-section_p{
        width: 100%;
        height: auto;
@@ -78,10 +77,11 @@
     height: 50px !important;
     font-family: 'Montserrat', sans-serif;
 }
+
 </style>
  <div class="hero-section_p">
          <div class="hero_section_text">
-              <h1>Showing Results for {{ $city->name }}.</h1>
+               <h1>Find Your Perfect Parts</h1>
          </div>
         <div class="secound_hero_section">
              <div class="part_finder_card">
