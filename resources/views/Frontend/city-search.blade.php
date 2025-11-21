@@ -135,8 +135,8 @@
 
 /* Brand Image */
 .brands .make img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;   /* image distort نہ ہو */
     margin-bottom: 10px;
 }
