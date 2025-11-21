@@ -185,7 +185,7 @@ class FrontendController extends Controller
             ->take(5)
             ->get();
         $cities = City::all();
-        return view('frontend.PartSearch', compact(
+        return view('Frontend.PartSearch', compact(
             'part',
             'carMakes',
             'makes',
