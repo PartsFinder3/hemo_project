@@ -101,6 +101,7 @@
         <nav>
             <div class="logo">
                 @if($domain && $domain->logo)
+                {{$domain->logo}}
                     <img src="{{ asset('storage/' . $domain->logo) }}" alt="">
                 @endif
             </div>
