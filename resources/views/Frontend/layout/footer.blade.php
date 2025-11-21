@@ -6,6 +6,7 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="footer-logo">
                         @if($domain && $domain->logo)
+                        {{ $domain->logo}}
                             <img src="{{asset('storage/' . $domain->logo)}}" alt="">
                         @endif
                     </div>
