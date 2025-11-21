@@ -1,5 +1,13 @@
 @extends('Frontend.layout.main')
 @section('main-section')
+<style>
+    #productCarousel .carousel-inner img {
+    width: 100%;       /* full width of carousel */
+    height: auto;      /* maintain aspect ratio */
+    object-fit: contain; /* poori image dikhayega, crop nahi hoga */
+    background-color: #f7f7f7; /* optional: clean background */
+}
+</style>
 <div class="hero-section"> 
          <div class="hero-text d-flex justify-content-center align-items-center flex-column">
             <h1 style="text-align: center">{{$ad->title}}</h1>
