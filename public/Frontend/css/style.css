@@ -1041,6 +1041,7 @@ h2.section-title {
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
+         padding: 10px;
 }
 
 .card:hover {
