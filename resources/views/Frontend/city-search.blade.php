@@ -99,7 +99,7 @@
                 <select class="dropdown" id="make" name="car_make_id">
                     <option disabled selected value="">Select Your Make</option>
                     @foreach ($makes as $make)
-                        <option value="{{ $make->id }}">    {{ $make->name }}</option>
+                        <option value="{{ $make->id }}" style="font-weight: bold;">    {{ $make->name }}</option>
                     @endforeach
                 </select>
             </div>
