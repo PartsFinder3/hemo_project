@@ -76,11 +76,7 @@
     height: 50px !important;
     font-family: 'Montserrat', sans-serif;
 }
-.grid {
-    display: flex; /* ya grid */
-    flex-wrap: wrap;
-    gap: 15px !important; /* <-- spacing yahan control hoga */
-}
+
 </style>
 <div class="hero-section_p">
          <div class="hero_section_text">
@@ -488,7 +484,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     margin: 10px;
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-  margin: 0 !important;
+     padding: 10px;
 }
 
 .card:hover {
