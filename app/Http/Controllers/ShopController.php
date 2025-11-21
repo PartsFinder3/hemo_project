@@ -76,76 +76,63 @@ class ShopController extends Controller
         return view('adminPanel.shopProfile.create', compact('shop', 'profile'));
     }
 
-    public function storeProfile(Request $request, $id)
-    {
-        $request->validate([
-            'description' => 'nullable|string',
-            'address' => 'nullable|string',
-            'cover' => 'nullable|image|max:2048',
-            'profile_image' => 'nullable|image|max:2048',
-        ]);
+  public function storeProfile(Request $request, $id)
+{
+    // ✅ Validation
+    $request->validate([
+        'description' => 'nullable|string',
+        'address' => 'nullable|string',
+        'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
 
-        $shop = Shops::findOrFail($id);
+    // ✅ Get Shop
+    $shop = Shops::findOrFail($id);
 
-        // ✅ Check if profile already exists
-        $profile = ShopProfile::where('shop_id', $shop->id)->first();
+    // ✅ Get or create ShopProfile
+    $profile = ShopProfile::firstOrNew(['shop_id' => $shop->id]);
 
-        if (!$profile) {
-            $profile = new ShopProfile();
-            $profile->shop_id = $shop->id;
+    // ✅ Update text fields
+    $profile->description = $request->description;
+    $profile->address = $request->address;
+
+    // ✅ Handle Cover Image
+    if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
+        $file = $request->file('cover');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+
+        $directory = storage_path('app/public/covers');
+        if (!File::exists($directory)) {
+            File::makeDirectory($directory, 0755, true);
         }
 
-        // ✅ Update fields
-        $profile->description = $request->input('description');
-        $profile->address = $request->input('address');
+        // Move file as-is
+        $file->move($directory, $fileName);
 
-        // ✅ Handle Cover Image
-        if ($request->hasFile('cover')) {
-            $cover = $request->file('cover');
-            $cover_name = time() . '_cover.webp';
-
-            $manager = new ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
-            $image = $manager->read($cover)->toWebp(90);
-
-            $directory = storage_path('app/public/covers');
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0755, true);
-            }
-
-            $path = $directory . '/' . $cover_name;
-            $image->save($path);
-
-            $profile->cover = 'covers/' . $cover_name;
-        }
-
-        // ✅ Handle Profile Image
-        if ($request->hasFile('profile_image')) {
-            $profile_image = $request->file('profile_image');
-            $profile_name = time() . '_profile.webp';
-
-            $manager = new ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
-            $image = $manager->read($profile_image)->toWebp(90);
-
-            $directory = storage_path('app/public/profile_images');
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0755, true);
-            }
-
-            $path = $directory . '/' . $profile_name;
-            $image->save($path);
-
-            $profile->profile_image = 'profile_images/' . $profile_name;
-        }
-
-        $profile->save();
-        $currentMiddleware = collect(request()->route()->gatherMiddleware());
-
-        // if ($currentMiddleware->contains('supplier')) {
-        return redirect()->back()->with('success', 'Shop profile updated successfully.');
-
-        // return redirect()->route('shops.view')->with('success', 'Shop profile updated successfully.');
+        $profile->cover = 'covers/' . $fileName;
     }
 
+    // ✅ Handle Profile Image
+    if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid()) {
+        $file = $request->file('profile_image');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+
+        $directory = storage_path('app/public/profile_images');
+        if (!File::exists($directory)) {
+            File::makeDirectory($directory, 0755, true);
+        }
+
+        $file->move($directory, $fileName);
+
+        $profile->profile_image = 'profile_images/' . $fileName;
+    }
+
+    // ✅ Save profile
+    $profile->save();
+
+    // ✅ Redirect back with success
+    return redirect()->back()->with('success', 'Shop profile updated successfully.');
+}
 
     public function createParts($id)
     {

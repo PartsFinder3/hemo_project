@@ -67,7 +67,7 @@
                         </div> --}}
                     </div>
                 </div>
-                <div class="card shadow-sm border-0 rounded-3 mt-4">
+                {{-- <div class="card shadow-sm border-0 rounded-3 mt-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                             <h5 class="mb-0">Deals in Parts</h5>
@@ -76,29 +76,29 @@
                                     <span class="badge bg-success-subtle text-success">
                                         <i class="bi bi-check-circle"></i> Verified by Business
                                     </span>
-                                @endif
+                                @endif --}}
                                 {{-- <span>
                                     <a href="{{ route('supplier.shop.profile.parts.create', $shop->id) }}"
                                         class="btn btn-orange">Add
                                         Parts</a>
                                 </span> --}}
-                            </div>
-                        </div>
+                            {{-- </div>
+                        </div> --}}
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
-                        @foreach ($shopParts as $part)
+                        {{-- @foreach ($shopParts as $part)
     <div class="col">
         <div class="p-2 border rounded text-center">
             {{ $part->part->name ?? 'Unknown' }}
         </div>
     </div>
-@endforeach
+@endforeach --}}
                         </div>
                     </div>
                 </div>
 
                 <!-- Deals in Cars -->
-                <div class="card shadow-sm border-0 rounded-3 mt-4">
+                {{-- <div class="card shadow-sm border-0 rounded-3 mt-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                             <h5 class="mb-0">Deals in Cars</h5>
@@ -112,7 +112,7 @@
                                     <a href="" class="btn btn-orange">Add
                                         Makes</a>
                                 </span> --}}
-                            </div>
+                            {{-- </div>
                         </div>
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2">
@@ -123,7 +123,7 @@
                             @endforeach
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Location & Hours -->
                 <div class="card shadow-sm border-0 rounded-3 mt-4">
@@ -176,48 +176,44 @@
                 </div>
 
                 <!-- Car Ads -->
-                <div class="card shadow-sm border-0 rounded-3 mt-4">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
-                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                            <div class="col">
-                                @if ($shopAds->count() > 0)
-                                    @foreach ($shopAds as $ad)
-                                        <div class="card h-90 shadow-sm border-0 rounded-3">
-                                          
-                                    @php
-                                            $images = json_decode($ad->images, true);
-                                        @endphp
-                                    
-                                        @if(!empty($images[0]))
-                                            <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-                                        @endif
-                                            <div class="card-body">
-                                                <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                                <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
-                                                <ul class="list-unstyled small">
-                                                    <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                    <li><b>Condition:</b> {{ $ad->condition }}</li>
-                                                    <li><b>Delivery:</b> Ask Supplier</li>
-                                                    <li><b>Warranty:</b> Ask Supplier</li>
-                                                </ul>
-                                                <div class="d-flex gap-2">
-                                                    {{-- <a href="#" class="btn btn-outline-success w-80">
-                                                <i class="bi bi-whatsapp"></i> Whatsapp
-                                            </a>
-                                            <a href="#" class="btn btn-outline-primary w-80">
-                                                <i class="bi bi-telephone"></i> Call
-                                            </a> --}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
+    <div class="card shadow-sm border-0 rounded-3 mt-4 card-wrapper">
+    <div class="card-body">
+        <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            @if ($shopAds->count() > 0)
+                @foreach ($shopAds as $ad)
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 rounded-3">
+                            @php
+                                $images = json_decode($ad->images, true);
+                            @endphp
+
+                            @if(!empty($images[0]))
+                                <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                            @endif
+
+                            <div class="card-body">
+                                <h6 class="fw-semibold">{{ $ad->title }}</h6>
+                                <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
+                                <ul class="list-unstyled small">
+                                    <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
+                                    <li><b>Condition:</b> {{ $ad->condition }}</li>
+                                    <li><b>Delivery:</b> Ask Supplier</li>
+                                    <li><b>Warranty:</b> Ask Supplier</li>
+                                </ul>
                             </div>
-                            <!-- More ads as needed -->
                         </div>
                     </div>
+                @endforeach
+            @else
+                <div class="col">
+                    <p>No ads found.</p>
                 </div>
+            @endif
+        </div>
+    </div>
+</div>
+
                 <!-- Car Ads -->
                 <div class="card shadow-sm border-0 rounded-3 mt-4">
                     <div class="card-body">
@@ -284,4 +280,41 @@
             </div>
         </div>
     </div>
+    <style>
+        .card-wrapper .card {
+    width: 100%; /* card takes full width of its column */
+    height: 100%; /* card fills height of column */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-wrapper .card img.card-img-top {
+    height: 300px; /* taller image */
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card-wrapper .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-wrapper .card-body h6,
+.card-wrapper .card-body h5 {
+    /* margin-bottom: 0.5rem; */
+}
+
+.card-wrapper .card-body ul li {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+}
+
+.card-wrapper .card-body .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+    </style>
 @endsection

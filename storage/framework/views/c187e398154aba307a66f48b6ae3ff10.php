@@ -61,57 +61,19 @@
                         
                     </div>
                 </div>
-                <div class="card shadow-sm border-0 rounded-3 mt-4">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-                            <h5 class="mb-0">Deals in Parts</h5>
-                            <div class="d-flex align-items-center gap-2">
-                                <?php if($shop->supplier->is_verified): ?>
-                                    <span class="badge bg-success-subtle text-success">
-                                        <i class="bi bi-check-circle"></i> Verified by Business
-                                    </span>
-                                <?php endif; ?>
+                
                                 
-                            </div>
-                        </div>
+                            
 
                         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
-                        <?php $__currentLoopData = $shopParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <div class="col">
-        <div class="p-2 border rounded text-center">
-            <?php echo e($part->part->name ?? 'Unknown'); ?>
-
-        </div>
-    </div>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        
                         </div>
                     </div>
                 </div>
 
                 <!-- Deals in Cars -->
-                <div class="card shadow-sm border-0 rounded-3 mt-4">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-                            <h5 class="mb-0">Deals in Cars</h5>
-                            <div class="d-flex align-items-center gap-2">
-                                <?php if($shop->supplier->is_verified): ?>
-                                    <span class="badge bg-success-subtle text-success">
-                                        <i class="bi bi-check-circle"></i> Verified by Business
-                                    </span>
-                                <?php endif; ?>
-                                
-                            </div>
-                        </div>
-
-                        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2">
-                            <?php $__currentLoopData = $shopMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="col">
-                                    <div class="p-2 border rounded text-center"><?php echo e($make->make->name); ?></div>
-                                </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </div>
-                    </div>
-                </div>
+                
+                            
 
                 <!-- Location & Hours -->
                 <div class="card shadow-sm border-0 rounded-3 mt-4">
@@ -165,43 +127,44 @@
                 </div>
 
                 <!-- Car Ads -->
-                <div class="card shadow-sm border-0 rounded-3 mt-4">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
-                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                            <div class="col">
-                                <?php if($shopAds->count() > 0): ?>
-                                    <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="card h-90 shadow-sm border-0 rounded-3">
-                                            <?php
-                                                $images = json_decode($ad->images, true);
-                                            ?>
+    <div class="card shadow-sm border-0 rounded-3 mt-4 card-wrapper">
+    <div class="card-body">
+        <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            <?php if($shopAds->count() > 0): ?>
+                <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 rounded-3">
+                            <?php
+                                $images = json_decode($ad->images, true);
+                            ?>
 
-                                       <?php if(!empty($images[0])): ?>
-    <img src="<?php echo e(asset('storage/ad_images/' . basename($images[0]))); ?>" 
-         class="card-img-top img-fluid" alt="Product">
-<?php endif; ?>
-                                            <div class="card-body">
-                                                <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
-                                                <h5 class="text-danger fw-bold">AED <?php echo e($ad->price); ?></h5>
-                                                <ul class="list-unstyled small">
-                                                    <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                    <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
-                                                    <li><b>Delivery:</b> Ask Supplier</li>
-                                                    <li><b>Warranty:</b> Ask Supplier</li>
-                                                </ul>
-                                                <div class="d-flex gap-2">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <?php endif; ?>
+                            <?php if(!empty($images[0])): ?>
+                                <img src="<?php echo e(asset($images[0])); ?>" class="card-img-top img-fluid" alt="Product">
+                            <?php endif; ?>
+
+                            <div class="card-body">
+                                <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
+                                <h5 class="text-danger fw-bold">AED <?php echo e($ad->price); ?></h5>
+                                <ul class="list-unstyled small">
+                                    <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
+                                    <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
+                                    <li><b>Delivery:</b> Ask Supplier</li>
+                                    <li><b>Warranty:</b> Ask Supplier</li>
+                                </ul>
                             </div>
-                            <!-- More ads as needed -->
                         </div>
                     </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php else: ?>
+                <div class="col">
+                    <p>No ads found.</p>
                 </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
                 <!-- Car Ads -->
                 <div class="card shadow-sm border-0 rounded-3 mt-4">
                     <div class="card-body">
@@ -263,6 +226,43 @@
             </div>
         </div>
     </div>
+    <style>
+        .card-wrapper .card {
+    width: 100%; /* card takes full width of its column */
+    height: 100%; /* card fills height of column */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-wrapper .card img.card-img-top {
+    height: 300px; /* taller image */
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.card-wrapper .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-wrapper .card-body h6,
+.card-wrapper .card-body h5 {
+    /* margin-bottom: 0.5rem; */
+}
+
+.card-wrapper .card-body ul li {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+}
+
+.card-wrapper .card-body .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('supplierPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/supplierPanel/shopProfile/view.blade.php ENDPATH**/ ?>
