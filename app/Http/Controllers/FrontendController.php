@@ -385,9 +385,10 @@ class FrontendController extends Controller
     }
     public function privacyPolicy()
     {
-        return view('Frontend.blogs.privacy');
+        return view('frontend.blogs.privacy');
     }
 
+    
     public function makePart($id)
     {
         // Current domain from middleware
