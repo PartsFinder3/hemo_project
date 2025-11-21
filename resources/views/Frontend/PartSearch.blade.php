@@ -177,7 +177,6 @@
 .btn.whatsapp {
     flex: 1;
  
-    color: white;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -194,8 +193,7 @@
 /* Call Button */
 .btn.call {
     flex: 1;
-    background-color: #FF9500;
-    color: white;
+
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -206,7 +204,7 @@
 }
 
 .btn.call:hover {
-    background-color: #e58300;
+  
 }
 
 </style>
