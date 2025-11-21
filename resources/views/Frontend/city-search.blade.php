@@ -109,11 +109,11 @@
 }
 .brands {
     display: flex;
-    flex-wrap: wrap;          /* اگر زیادہ brands ہوں تو wrap ہو جائیں */
-    justify-content: center;  /* horizontally center */
-    align-items: center;      /* vertically center */
-    gap: 20px;                /* brand cards کے درمیان gap */
-    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;           /* gap تھوڑا بڑا کیا */
+    margin-top: 40px;
 }
 
 .brands .make {
@@ -122,44 +122,48 @@
     align-items: center;
     text-decoration: none;
     color: #000;
-    width: 120px;             /* brand card width */
-    padding: 10px;
+    width: 150px;         /* width بڑا کیا */
+    padding: 15px;        /* padding بڑھایا */
     border-radius: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .brands .make:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Brand Image */
 .brands .make img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;   /* image distort نہ ہو */
-    margin-bottom: 10px;
+    width: 100px;         /* image بڑا کیا */
+    height: 100px;        /* image بڑا کیا */
+    object-fit: contain;
+    margin-bottom: 15px;  /* name سے gap بڑھایا */
 }
 
-/* Brand Name */
 .brands .make h4 {
-    font-size: 14px;
+    font-size: 16px;      /* text بڑا کیا */
     font-weight: 700;
     text-align: center;
     margin: 0;
-    word-wrap: break-word; /* اگر name لمبا ہو */
+    word-wrap: break-word;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .brands .make {
-        width: 100px;
+        width: 120px;
+        padding: 10px;
     }
     .brands .make img {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+    .brands .make h4 {
+        font-size: 14px;
     }
 }
+
 </style>
  <div class="hero-section_p">
          <div class="hero_section_text">
