@@ -176,7 +176,7 @@
 /* WhatsApp Button */
 .btn.whatsapp {
     flex: 1;
-    background-color: #25D366;
+ 
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -188,7 +188,7 @@
 }
 
 .btn.whatsapp:hover {
-    background-color: #1ebe57;
+  
 }
 
 /* Call Button */
