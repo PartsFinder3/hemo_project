@@ -113,6 +113,12 @@
     transition: transform 0.3s, box-shadow 0.3s;
     background-color: #fff;
 }
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: auto;
+}
 </style>
 </style>
 @section('main-section')
