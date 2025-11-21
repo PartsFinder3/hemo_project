@@ -101,24 +101,112 @@
     align-items: center;
     gap: 5px; 
 }
+/* Card Container */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Individual Card */
 .card {
-    width: 300px;
+    width: 300px;                  /* fixed width */
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #fff;
 }
+
+/* Card hover effect */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Card Image */
+.card img {
+    width: 100%;
+    height: 180px;                  /* fixed height */
+    object-fit: contain;             /* maintain aspect ratio */
+    background: #f7f7f7;            /* optional background */
+    padding: 5px;
+}
+
+/* Card Body */
+.card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+/* Card Title */
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    height: auto;
+    line-height: 1.2em;
+    overflow: hidden;
+}
+
+/* Price */
+.price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Meta info */
+.meta {
+    font-size: 14px;
+}
+
+/* Buttons */
 .buttons {
     display: flex;
     gap: 10px;
-    justify-content: center;
     margin-top: auto;
+    justify-content: center;
 }
+
+.btn.whatsapp {
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    text-align: center;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn.call {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    text-align: center;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+/* Responsive Cards */
+@media(max-width:768px){
+    .card {
+        width: 100%;       /* full width on mobile */
+    }
+}
+
 </style>
 </style>
 @section('main-section')
