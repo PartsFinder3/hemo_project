@@ -274,7 +274,7 @@ class FrontendController extends Controller
         $cities = City::all();
         $randomMakes = CarMakes::limit(8)->get();
 
-        return view('frontend.city-search', compact(
+        return view('Frontend.city-search', compact(
             'city',
             'ads',
             'carAds',
