@@ -192,31 +192,154 @@
     font-weight: 700 !important;
 }
 
+/* Hero Section Parent */
+.hero-section_p {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 10%;
+}
+
+/* Hero Section Text */
+.hero_section_text h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+/* Second Hero Section */
+.secound_hero_section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Part Finder Card */
+.part_finder_card {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Car Form Card */
+.car {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Free Text */
+.free-text {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Search Title */
+.search-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Dropdowns */
+.dropdown {
+    width: 100%;
+    padding: 10px 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Find Button */
+.find-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-color), #ff9500);
+    color: var(--primary-color);
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 50px;
+    transition: 0.3s;
+}
+
+/* Condition Section */
 .condition-section {
     background: #f8f9fa;
-    padding: 10px 15px;
+    padding: 15px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-    margin-top: 10px; /* اوپر سے فاصلے کے لیے */
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+/* Condition Title */
+.condition-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Radio Group */
 .radio-group {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap; /* چھوٹی screens میں wrap ہو جائے */
+    flex-wrap: wrap;
     align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
+    gap: 20px;
 }
 
+/* Radio Option */
 .radio-option {
     display: flex;
     align-items: center;
-    gap: 5px; 
+    gap: 5px;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .part_finder_card {
+        max-width: 100%;
+    }
+
+    .radio-group {
+        gap: 15px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 2.5rem;
+    }
+}
+
 
 </style>
 </style>
