@@ -101,110 +101,112 @@
     align-items: center;
     gap: 5px; 
 }
-/* Card Container */
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-}
 
-/* Individual Card */
+
+/* Card Container */
 .card {
-    width: 300px;                  /* fixed width */
-    background: #fff;
-    border-radius: 10px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
+    margin: 10px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Card hover effect */
+/* Hover effect */
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 /* Card Image */
 .card img {
     width: 100%;
-    height: 180px;                  /* fixed height */
-    object-fit: contain;             /* maintain aspect ratio */
-    background: #f7f7f7;            /* optional background */
+    height: 180px;
+    object-fit: contain; /* Ensure full part image shows */
+    background-color: #f7f7f7;
     padding: 5px;
 }
 
 /* Card Body */
 .card-body {
-    padding: 10px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
     flex-grow: 1;
 }
 
-/* Card Title */
+/* Title */
 .card-title {
     font-size: 16px;
     font-weight: 600;
-    height: auto;
+    margin-bottom: 8px;
     line-height: 1.2em;
+    height: 3.6em; /* Max 2 lines */
     overflow: hidden;
 }
 
 /* Price */
 .price {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
+    color: #ff6600;
+    margin-bottom: 8px;
 }
 
 /* Meta info */
 .meta {
     font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    line-height: 1.4;
 }
 
-/* Buttons */
+/* Buttons Container */
 .buttons {
     display: flex;
     gap: 10px;
-    margin-top: auto;
     justify-content: center;
 }
 
+/* WhatsApp Button */
 .btn.whatsapp {
+    flex: 1;
     background-color: #25D366;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 6px 10px;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
-    display: flex;
-    gap: 5px;
-    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
+.btn.whatsapp:hover {
+    background-color: #1ebe57;
+}
+
+/* Call Button */
 .btn.call {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 6px 10px;
+    flex: 1;
+    background-color: #FF9500;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
-    display: flex;
-    gap: 5px;
-    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-/* Responsive Cards */
-@media(max-width:768px){
-    .card {
-        width: 100%;       /* full width on mobile */
-    }
+.btn.call:hover {
+    background-color: #e58300;
 }
 
 </style>
