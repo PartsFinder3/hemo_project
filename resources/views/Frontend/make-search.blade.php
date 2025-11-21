@@ -197,7 +197,7 @@
 
         <div class="brands">
             @foreach ($carMakes as $m)
-                <a href="{{ route('makes.show', $m->id) }}" class="make">
+               <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}" class="make">
                     @if($m->logo)
                         <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}">
                   
