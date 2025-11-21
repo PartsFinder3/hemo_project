@@ -1,7 +1,7 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 <style>
-    <style>
+ 
     .hero-section_p{
        width: 100%;
        height: auto;
@@ -77,35 +77,6 @@
     /* margin-top: 10px; */
     height: 50px !important;
     font-family: 'Montserrat', sans-serif;
-}
-.condition-section {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #e1e5e9;
-    margin-top: -10px;
-}
-#condition-group {
-    display: block;
-}
-
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 5px; 
-}
-.card-title,
-.card-body label,
-.card-body select option {
-    font-weight: 700 !important;
 }
 </style>
  <div class="hero-section_p">
