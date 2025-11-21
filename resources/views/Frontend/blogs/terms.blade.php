@@ -1,4 +1,4 @@
-@extends('frontend.blogs.layout.main')
+@extends('Frontend.blogs.layout.main')
 @section('main-section')
 <section style="margin: 50px" class="terms-container py-5 px-4">
     <div class="container">
