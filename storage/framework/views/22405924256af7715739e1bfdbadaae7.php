@@ -1,24 +1,99 @@
 <?php $__env->startSection('main-section'); ?>
-<div class="hero-section container">
-    <!-- Hero Text Centered -->
-    <div class="hero-text text-center mb-2">
-        <h1>Find Your Perfect Parts</h1>
-    </div>
+<style>
+    .hero-section_p{
+       width: 100%;
+       height: auto;
+       display: flex;
+       flex-direction: column
+    }
+   .hero_section_text{
+     width: 100%;
+     height: 7%;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center
+   }
+   .secound_hero_section{
+    widows: 100%;
+    height: 88%;
+   
+    display: flex;
+    flex-direction: row;   
+}
+   .part_finder_card{
+     width: 50%;
+     height: 100%;
+     
+   }
+   .search-title{
+      padding-bottom: 10px;
+   }
+   .car{
+    width: 400px !important;
+   
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-left: 140px;
 
-    <!-- Your existing form, left aligned -->
-    <div class="search-card" style="max-width: 500px;">
-        <div class="card-header">
-            <div class="free-text">100% FREE</div>
-            <div class="search-title">Search Your Part Here</div>
-        </div>
+   }
 
-        <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
+
+   .free-text {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: -15px;
+    
+}
+.find-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-color), #ff9500);
+    color: var(--primary-color);
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    /* margin-top: 10px; */
+    height: 50px !important;
+    font-family: 'Montserrat', sans-serif;
+}
+</style>
+<div class="hero-section_p">
+         <div class="hero_section_text">
+               <h1>Find Your Perfect Parts</h1>
+         </div>
+        <div class="secound_hero_section">
+             <div class="part_finder_card">
+             <div class="car">
+              <div class="card-header">
+                 <div class="free-text">100% FREE</div>
+                <div class="search-title">Search Your Part Here</div>
+              </div>
+               <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
             <?php echo csrf_field(); ?>
             <div class="form-group" id="make-group">
                 <select class="dropdown" id="make" name="car_make_id">
                     <option disabled selected value="">Select Your Make</option>
                     <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+                        <option value="<?php echo e($make->id); ?>">    <?php echo e($make->name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
@@ -70,6 +145,12 @@
 
             <button class="find-btn" id="find-btn" disabled>Find My Part</button>
         </form>
+             </div>
+        </div>
+
+ 
+
+     
     </div>
 </div>
 
@@ -215,7 +296,7 @@
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             <?php $__currentLoopData = $sParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-             <a style="text-decoration: none; color: black;"
+             <a style="text-decoration: none; color: black; width:250px; "
                         href="<?php echo e(route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id])); ?>">
                 <div class="part-card">
                     <?php if($p->image): ?>
@@ -304,7 +385,7 @@
         </div>
         <div class="map-img">
             <?php if($domain && $domain->map_img): ?>
-                <img src="<?php echo e(asset('storage/' . $domain->map_img)); ?>" alt="Map" />
+                <img src="<?php echo e(asset( $domain->map_img)); ?>" alt="Map" />
             <?php endif; ?>
         </div>
     </section>
@@ -448,7 +529,7 @@
     background: var(--whatsapp-btn);
 }
 .part-card {
-    width: 150px;            /* fix width */
+    width: 250px;            /* fix width */
     height: 180px;           /* fix height */
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -458,7 +539,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     overflow: hidden;
     background: #fff;
     transition: 0.3s ease;
@@ -544,7 +625,96 @@
     max-width: 500px; /* limit form width */
 }
 
+ #make {
+        font-weight: bold;      /* makes selected value bold */
+        padding: 8px 12px;
+        font-size: 16px;
+    }
 
+    #make option {
+        font-weight: bold;      /* makes dropdown options bold */
+    }
+
+    /* Optional: make the select box look nicer */
+    #make {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+
+    .dropdown {
+    font-weight: bold;       /* selected value bold */
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Make all options bold */
+.dropdown option {
+    font-weight: bold;
+}
+
+/* Focus state for dropdowns */
+.dropdown:focus {
+    outline: none;
+    border-color: #6a11cb;  /* matches gradient theme */
+    box-shadow: 0 0 6px rgba(106,17,203,0.3);
+}
+
+/* Ensure parts dropdown shows when enabled */
+#parts-dropdown:enabled {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Radio buttons bold text */
+.radio-option label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Hero section adjustments */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 10%;
+    gap: 50px;
+}
+
+/* Align search card to left under hero text */
+.search-card {
+    align-self: flex-start;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Buttons bold */
+.find-btn, .btn {
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 30px 5%;
+        gap: 30px;
+    }
+
+    .dropdown {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
  </style>
 <?php $__env->stopSection(); ?>
 
