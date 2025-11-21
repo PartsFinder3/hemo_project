@@ -84,7 +84,7 @@
             @foreach ($carMakes as $m)
                 <a href="{{ route('makes.show', $m->id) }}" class="make">
                     @if($m->logo)
-                        <img src="{{ asset($m->logo) }}" alt="{{ $m->name }}">
+                          <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}">
                     @endif
                     <h4>{{ strtoupper($m->name) }}</h4>
                 </a>
