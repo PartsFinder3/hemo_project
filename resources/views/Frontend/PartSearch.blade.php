@@ -101,6 +101,58 @@
     align-items: center;
     gap: 5px; 
 }
+
+/* Card container */
+.grid .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* top se start ho */
+    align-items: center;        /* center horizontally */
+    text-align: center;
+    padding: 10px;
+    margin: 15px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Image fix */
+.grid .card img {
+    width: 100%;       /* full card width */
+    height: 200px;     /* fixed height */
+    object-fit: cover; /* crop properly without distortion */
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Card body */
+.grid .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Optional: title, price */
+.card-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Buttons alignment */
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 </style>
 </style>
 @section('main-section')
