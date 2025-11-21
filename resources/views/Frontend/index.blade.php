@@ -435,6 +435,13 @@
     margin: 10px;
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
+.card-img-top {
+    width: 100%;
+    height: 180px;                /* FIXED image height */
+    object-fit: cover;            /* crop image neatly */
+    background: #f8f8f8;          /* for missing image look */
+    display: block;
+}
 
 .card:hover {
     transform: translateY(-5px); /* slight lift on hover */
@@ -449,26 +456,25 @@
 }
 
 .card-body {
-    padding: 10px;
+       padding: 10px;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
 }
 
 .card-title {
-    font-size: 16px;
+       font-size: 16px;
     font-weight: 600;
-    margin-bottom: 5px;
     line-height: 1.2em;
-    height: 3.6em;
+    height: 2.4em;                /* max 2 lines */
     overflow: hidden;
 }
 
 .price {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin: 5px 0;
 }
 
 .meta {
