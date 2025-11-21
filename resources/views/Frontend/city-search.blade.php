@@ -102,6 +102,11 @@
     align-items: center;
     gap: 5px; 
 }
+.card-title,
+.card-body label,
+.card-body select option {
+    font-weight: 700 !important;
+}
 </style>
  <div class="hero-section_p">
          <div class="hero_section_text">
