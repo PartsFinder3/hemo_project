@@ -77,6 +77,103 @@
     height: 50px !important;
     font-family: 'Montserrat', sans-serif;
 }
+.card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;       /* fixed height for alignment */
+    object-fit: contain;  /* poora image dikhai de without cropping */
+    background-color: #f7f7f7;
+    display: block;
+}
+
+.card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* content top se start ho */
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: auto;  /* dynamic height for title */
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.btn.whatsapp {
+    background-color: #25D366;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn.call {
+    background-color: #007bff;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .grid .card {
+        width: 100%;
+    }
+
+    .card img {
+        height: 200px;
+    }
+}
+
 
 </style>
 <div class="hero-section_p">
@@ -750,115 +847,6 @@
     .dropdown {
         font-size: 14px;
         padding: 8px 10px;
-    }
-}
-/* Card container */
-.grid .card {
-    width: 300px;                /* fixed width for uniformity */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* top align content */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #fff;
-}
-
-/* Hover effect for cards */
-.grid .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-/* Image inside card */
-.grid .card img {
-    width: 100%;
-    height: 180px;           /* fixed height for alignment */
-    object-fit: cover;       /* ensures no stretching */
-    border-bottom: 1px solid #eee;
-    background-color: #f7f7f7;
-}
-
-/* Card body */
-.card-body {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-grow: 1;
-}
-
-/* Card title */
-.card-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    line-height: 1.2em;
-    height: 3.6em; /* max 2 lines */
-    overflow: hidden;
-}
-
-/* Price */
-.price {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Meta info */
-.meta {
-    font-size: 14px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-/* Buttons container */
-.buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: auto;
-}
-
-/* WhatsApp button */
-.btn.whatsapp {
-    background-color: #25D366;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-}
-
-/* Call button */
-.btn.call {
-    background-color: #007bff;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-}
-
-/* Responsive grid */
-@media (max-width: 768px) {
-    .grid .card {
-        width: 100%;       /* full width on mobile */
-    }
-
-    .card img {
-        height: 200px;
     }
 }
 
