@@ -46,7 +46,7 @@
                         00971-55-7872262
                     </a>
 
-                    {{-- <div class="social-icons">
+                    <div class="social-icons">
                         <a href="#" class="social-icon facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
@@ -56,7 +56,7 @@
                         <a href="#" class="social-icon pinterest">
                             <i class="fab fa-pinterest"></i>
                         </a>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
 
