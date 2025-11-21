@@ -1,4 +1,4 @@
-@extends('Frontend.layout.main')
+@extends('supplierPanel.layout.main')
 @section('main-section')
 <div class="hero-section container">
     <!-- Hero Text Centered -->
