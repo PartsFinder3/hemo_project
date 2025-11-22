@@ -13,7 +13,6 @@
                        
                     </div>
             </a>
-            ss
                     <p class="footer-description">
                         We are car spare parts price comparison website helping you get the best local deals on spare
                         parts in UAE
