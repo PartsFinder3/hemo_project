@@ -860,6 +860,7 @@
  <script>
 
     function sendProductInquiryWhatsapp() {
+        alert('hi');
     let formData = new FormData(document.getElementById('productInquiryForm'));
 
     fetch("{{ route('product.inquiry.send') }}", {
