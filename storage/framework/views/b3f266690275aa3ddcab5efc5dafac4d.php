@@ -98,7 +98,8 @@
         <nav>
             <div class="logo">
                 <?php if($domain && $domain->logo): ?>
-                    <img src="<?php echo e(asset('storage/' . $domain->logo)); ?>" alt="">
+              
+                    <img src="<?php echo e(asset( $domain->logo)); ?>" alt="">
                 <?php endif; ?>
             </div>
             <div class="nav-menu" id="nav-menu">
