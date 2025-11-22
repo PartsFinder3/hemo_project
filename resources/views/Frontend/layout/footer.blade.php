@@ -4,13 +4,15 @@
             <div class="row">
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4">
+            <a href="https://partsfinder.ae">
+
                   <div class="footer-logo">
                    
               
                             <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
                        
                     </div>
-
+            </a>
                     <p class="footer-description">
                         We are car spare parts price comparison website helping you get the best local deals on spare
                         parts in UAE
