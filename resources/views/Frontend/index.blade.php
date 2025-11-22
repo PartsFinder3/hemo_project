@@ -369,13 +369,8 @@
                             $ad->shop->supplier->whatsapp;
                         @endphp
                         <div class="buttons">
-                          <form id="inquiryForm">
-                                @csrf
-                                <input type="hidden" name="ad_id" value="{{ $ad->id }}">
-                                <input type="hidden" name="supplier_id" value="{{ $ad->shop->supplier->id }}">
-                            </form>
-
-                            <a href="javascript:void(0)" class="btn whatsapp" onclick="sendProductInquiryWhatsapp()">
+                            <a href="javascript:void(0)" class="btn whatsapp"
+                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
@@ -857,32 +852,32 @@
 }
 
  </style>
- <script>
 
-    function sendProductInquiryWhatsapp() {
-        alert('hi');
-    let formData = new FormData(document.getElementById('productInquiryForm'));
 
-    fetch("{{ route('product.inquiry.send') }}", {
-        method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
+     <script>
+        function contactSupplier(isActive, number, title) {
+            if (isActive == 1) {
+                let message = encodeURIComponent("Hello, I'm interested in your ad: " + title);
+                let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        if (data.success) {
-            // WhatsApp open
-            let whatsapp = "{{ $ad->shop->supplier->whatsapp }}";
-            let msg = encodeURIComponent("Hello, I am interested in: {{ $ad->title }}");
-            window.open("https://wa.me/" + whatsapp + "?text=" + msg, "_blank");
-        } else {
-            alert("Something went wrong!");
+                let url = isMobile ?
+                    `https://wa.me/${number}?text=${message}` :
+                    `https://web.whatsapp.com/send?phone=${number}&text=${message}`;
+
+                window.open(url, "_blank");
+            } else {
+                // Supplier inactive → stay on same page
+                window.location.reload();
+            }
         }
-    })
-    .catch(err => console.log(err));
-}
- </script>
+
+        function callSupplier(isActive, number) {
+            if (isActive == 1) {
+                window.location.href = `tel:${number}`;
+            } else {
+                // Supplier inactive → stay on same page
+                window.location.reload();
+            }
+        }
+    </script>
 @endsection

@@ -598,4 +598,30 @@
 }
 
     </style>
+       <script>
+        function contactSupplier(isActive, number, title) {
+            if (isActive == 1) {
+                let message = encodeURIComponent("Hello, I'm interested in your ad: " + title);
+                let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                let url = isMobile ?
+                    `https://wa.me/${number}?text=${message}` :
+                    `https://web.whatsapp.com/send?phone=${number}&text=${message}`;
+
+                window.open(url, "_blank");
+            } else {
+                // Supplier inactive → stay on same page
+                window.location.reload();
+            }
+        }
+
+        function callSupplier(isActive, number) {
+            if (isActive == 1) {
+                window.location.href = `tel:${number}`;
+            } else {
+                // Supplier inactive → stay on same page
+                window.location.reload();
+            }
+        }
+    </script>
 @endsection
