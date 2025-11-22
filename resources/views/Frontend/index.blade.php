@@ -3,7 +3,7 @@
 <style>
     .hero-section_p{
        width: 100%;
-       height: 550px;
+       height: 650px;
        display: flex;
        flex-direction: column;
        background-color:red;
