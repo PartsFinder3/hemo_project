@@ -17,6 +17,10 @@
 .bg-orange {
     background: var(--accent-color);
 }
+body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
 
 .text-end {
     display: flex;
