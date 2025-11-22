@@ -96,17 +96,18 @@
 
     <main>
         <nav>
+            <a href="https://partsfinder.ae">
             <div class="logo">
-                <?php if($domain && $domain->logo): ?>
               
-                    <img src="<?php echo e(asset( $domain->logo)); ?>" alt="">
-                <?php endif; ?>
+              
+                    <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
+            
             </div>
+            </a>
             <div class="nav-menu" id="nav-menu">
                 <ul>
                     <li><a href="<?php echo e(route('frontend.index')); ?>">Home</a></li>
                     <li><a href="<?php echo e(route('about.page')); ?>">About</a></li>
-                    
                     <li><a href="<?php echo e(route('frontend.blogs')); ?>">Blogs</a></li>
                 </ul>
                 <span class="hero-btns">
@@ -121,14 +122,32 @@
             </div>
         </nav>
 <style>
-
+ nav{
+ 
+    background-color: white;
+ }
     nav .logo {
-    width: 100px;
+    width: 60px;
     z-index: 1001;
 }
-
+nav a{
+    color: black !important;
+}
 nav .logo img {
     width: 65% !important;
 }
 
+.hero-btns a {
+    text-decoration: none;
+    padding: 7px 25px;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+        font-size: 15px !important;
+            border-radius: 50rem !important;
+height: 35px;
+}
 </style><?php /**PATH C:\laragon\www\partsfinder\resources\views/frontend/layout/head.blade.php ENDPATH**/ ?>
