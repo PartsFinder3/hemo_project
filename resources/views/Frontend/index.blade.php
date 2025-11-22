@@ -49,7 +49,7 @@
 .hero_image_section {
     width: 50%;
     height: 100%;
-    background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+    background-image: url('https://partsfinder.ae/storage/profile_images/hero_section_image.png');
     background-size: cover;
     background-position: center;
     border-radius: 20px;
