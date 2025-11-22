@@ -104,6 +104,10 @@
     max-height: 180px !important;  /* 5–6 items */
     overflow-y: auto !important;
 }
+body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
 </style>
 
    <div class="hero_section_text">
