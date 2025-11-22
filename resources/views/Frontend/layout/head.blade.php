@@ -152,6 +152,6 @@ nav .logo img {
     padding-right: 50px !important;
         font-size: 15px !important;
             border-radius: 50rem !important;
-
+height: 35px;
 }
 </style>
