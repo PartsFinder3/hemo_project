@@ -9,17 +9,23 @@
 
                         </style>
                         <!-- Left Info Section -->
-                        <div class="col-md-5 bg-grey text-white d-flex flex-column justify-content-center p-4" id="w-left">
-                            <div class="logo">
-                                    <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
-                            </div>
-                            <i class="fa-brands fa-whatsapp" id="icon"></i>
-                            <h4 class="mb-3">Safe & Secure</h4>
-                            <p class="small">
-                                For a safe and secure experience on <strong>partsfinder.ae</strong>,
-                                only verified users can connect with sellers.
-                            </p>
-                        </div>
+<div class="col-md-5 bg-grey text-white d-flex flex-column justify-content-center p-4" id="w-left">
+    <div class="logo mb-3">
+        <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
+    </div>
+
+    <div class="d-flex align-items-center mb-2">
+        <h4 class="mb-0 ms-2">Safe & Secure</h4>
+        <i class="fa-brands fa-whatsapp" id="icon"></i>
+
+    </div>
+
+    <p class="small">
+        For a safe and secure experience on <strong>partsfinder.ae</strong>,
+        only verified users can connect with sellers.
+    </p>
+</div>
+
 
                         <!-- Right Form Section -->
                         <div class="col-md-7 bg-light p-4">
@@ -269,10 +275,26 @@
     </div>
 
     <style>
+            body, main, header, nav, .hero-section, .hero-section_p {
+            background-image: none !important;
+            background: none !important;
+        }
         .logo{
                  width: 170px;
                  margin-left:37px;
         }
+        #w-left #icon {
+    font-size: 30px;
+     margin-left: 30;
+     margin-top: 7px;
+
+}
+.fa-whatsapp:before {
+    content: "\f232";
+    margin-left: 40px;
+}
+
+
         :root {
             --whatsapp-btn: #25D366;
             --whatsapp-hover: #128C7E;
