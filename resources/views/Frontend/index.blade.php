@@ -193,7 +193,7 @@
         </div>
 
         <div class="hero_image_section">
-            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image.png" alt="">
+            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
         </div>
     </div>
 </div>
