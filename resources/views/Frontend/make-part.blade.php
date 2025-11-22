@@ -2,21 +2,6 @@
 @section('main-section')
   @include('Frontend.hero_section', ['part' => "Find Your Perfect Parts"])
     </main>
-    {{-- <section class="carMakes">
-        <div class="section-text">
-            <h3>TOP MAKES</h3>
-            <h2>Browse By Brands</h2>
-        </div>
-
-        <div class="brands">
-            @foreach ($carMakes as $make)
-                <a href="{{ route('makes.show', $make->id) }}" class="make">
-                    <img src="{{ asset('' . $make->logo) }}" alt="{{ $make->name }}">
-                    <h4>{{ strtoupper($make->name) }}</h4>
-                </a>
-            @endforeach
-        </div>
-    </section> --}}
 
     <section class="ad-cards">
         <div class="section-text">
