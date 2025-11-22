@@ -11,6 +11,9 @@
                         </style>
                         <!-- Left Info Section -->
                         <div class="col-md-5 bg-grey text-white d-flex flex-column justify-content-center p-4" id="w-left">
+                            <div class="logo">
+                                    <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
+                            </div>
                             <i class="fa-brands fa-whatsapp" id="icon"></i>
                             <h4 class="mb-3">Safe & Secure</h4>
                             <p class="small">
@@ -470,6 +473,14 @@
     </div>
 
     <style>
+            body, main, header, nav, .hero-section, .hero-section_p {
+            background-image: none !important;
+            background: none !important;
+        }
+        .logo{
+                 width: 170px;
+                 margin-left:37px;
+        }
         :root {
             --whatsapp-btn: #25D366;
             --whatsapp-hover: #128C7E;
