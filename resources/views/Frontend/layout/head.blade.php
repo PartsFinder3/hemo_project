@@ -98,7 +98,7 @@
     </div>
 
     <main>
-        {{-- <nav>
+        <nav>
             <div class="logo">
                 @if($domain && $domain->logo)
               
@@ -121,7 +121,7 @@
                 <span></span>
                 <span></span>
             </div>
-        </nav> --}}
+        </nav>
 <style>
 
     nav .logo {
