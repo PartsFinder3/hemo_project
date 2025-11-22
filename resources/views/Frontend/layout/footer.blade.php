@@ -5,7 +5,10 @@
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4">
                   <div class="footer-logo">
-                        <img src="https://partsfinder.ae/storage/logo/1760776182.webp" alt="Logo" class="img-fluid">
+                        @if($domain && $domain->logo)
+              
+                            <img src="{{ asset( $domain->logo) }}" alt="">
+                        @endif
                     </div>
 
                     <p class="footer-description">
