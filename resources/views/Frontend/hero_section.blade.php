@@ -5,7 +5,7 @@
     height: 630px;
     display: flex;
     flex-direction: column;
-        background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+    background-color:#2e2d2d;
 }
 .hero_section_text {
     width: 100%;
