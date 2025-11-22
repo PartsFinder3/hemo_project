@@ -148,8 +148,8 @@ nav .logo img {
     font-size: 18px;
     border-radius: 8px;
     transition: 0.3s ease;
-    padding-left: 70px !important;
-    padding-right: 70px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
         font-size: 15px !important;
             border-radius: 50rem !important;
 
