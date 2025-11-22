@@ -51,17 +51,15 @@
 
 .hero_image_section {
     width: 50%;
-    height: 100%;
+    height: 400px; /* fixed height */
     margin-right: 10%;
     margin-top: 60px;
     background-image: url('https://partsfinder.ae/storage/profile_images/hero_section_image.png');
-    background-size: cover;       /* پوری container پر fill کرے */
-    background-position: center;  /* center میں رکھے */
-    background-repeat: no-repeat; /* repeat نہ ہو */
-    border-radius: 15px;          /* optional */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* optional shadow */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
 }
-
 .hero_image_section img {
     width: 500px;          
     height: 400px;        
