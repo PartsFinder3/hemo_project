@@ -53,10 +53,15 @@
     width: 50%;
     height: 100%;
     margin-right: 10%;
-       background-image: url('https://partsfinder.ae/storage/profile_images/hero_section_image.png');
-
-
+    margin-top: 60px;
+    background-image: url('https://partsfinder.ae/storage/profile_images/hero_section_image.png');
+    background-size: cover;       /* پوری container پر fill کرے */
+    background-position: center;  /* center میں رکھے */
+    background-repeat: no-repeat; /* repeat نہ ہو */
+    border-radius: 15px;          /* optional */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* optional shadow */
 }
+
 .hero_image_section img {
     width: 500px;          
     height: 400px;        
@@ -131,6 +136,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
     display: flex;
     align-items: center;
     gap: 5px; 
+}
+body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
 }
 </style>
 
