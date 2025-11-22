@@ -140,4 +140,17 @@ nav .logo img {
     width: 65% !important;
 }
 
+.hero-btns a {
+    text-decoration: none;
+    padding: 10px 25px;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    padding-left: 70px !important;
+    padding-right: 70px !important;
+        font-size: 15px !important;
+            border-radius: 50rem !important;
+
+}
 </style>
