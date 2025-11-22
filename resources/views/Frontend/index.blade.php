@@ -34,6 +34,8 @@
     width: 50%;
     display: flex;
     justify-content: flex-start; /* card left align */
+    margin-top: -70px;
+    
 }
 
 .car {
