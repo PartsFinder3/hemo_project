@@ -331,7 +331,12 @@
                         ?>
                         <div class="buttons">
                             <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
+                             onclick="contactSupplier(
+                                '<?php echo e($ad->shop->supplier->is_active); ?>',
+                                '<?php echo e($ad->shop->supplier->whatsapp); ?>',
+                                <?php echo json_encode($ad->title); ?>
+
+                            )">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
