@@ -127,8 +127,11 @@
     background-color: white;
  }
     nav .logo {
-    width: 60px;
     z-index: 1001;
+      width: 170px;
+      position: absolute;
+      margin-top: -30px;
+      margin-left: 0px;
 }
 nav a{
     color: black !important;
