@@ -375,7 +375,7 @@
                                 <input type="hidden" name="supplier_id" value="{{ $ad->shop->supplier->id }}">
                             </form>
 
-                            <a href="javascript:void(0)" class="btn whatsapp" onclick="sendInquiryThenWhatsapp()">
+                            <a href="javascript:void(0)" class="btn whatsapp" onclick="sendProductInquiryWhatsapp()">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
@@ -857,4 +857,31 @@
 }
 
  </style>
+ <script>
+
+    function sendProductInquiryWhatsapp() {
+    let formData = new FormData(document.getElementById('productInquiryForm'));
+
+    fetch("{{ route('product.inquiry.send') }}", {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.success) {
+            // WhatsApp open
+            let whatsapp = "{{ $ad->shop->supplier->whatsapp }}";
+            let msg = encodeURIComponent("Hello, I am interested in: {{ $ad->title }}");
+            window.open("https://wa.me/" + whatsapp + "?text=" + msg, "_blank");
+        } else {
+            alert("Something went wrong!");
+        }
+    })
+    .catch(err => console.log(err));
+}
+ </script>
 @endsection
