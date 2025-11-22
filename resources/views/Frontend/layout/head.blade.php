@@ -100,10 +100,10 @@
     <main>
         <nav>
             <div class="logo">
-                @if($domain && $domain->logo)
               
-                    <img src="{{ asset( $domain->logo) }}" alt="">
-                @endif
+              
+                    <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
+            
             </div>
             <div class="nav-menu" id="nav-menu">
                 <ul>
