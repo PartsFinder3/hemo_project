@@ -121,10 +121,7 @@
             </div>
         </nav>
 <style>
-nav{
-    width: 100%;
-    height: 56px;
-}
+
     nav .logo {
     width: 100px;
     z-index: 1001;
