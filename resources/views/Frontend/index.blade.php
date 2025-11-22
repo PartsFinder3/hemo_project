@@ -331,11 +331,7 @@
                         @endphp
                         <div class="buttons">
                             <a href="javascript:void(0)" class="btn whatsapp"
-                             onclick="contactSupplier(
-                                '{{ $ad->shop->supplier->is_active }}',
-                                '{{ $ad->shop->supplier->whatsapp }}',
-                                {!! json_encode($ad->title) !!}
-                            )">
+                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
