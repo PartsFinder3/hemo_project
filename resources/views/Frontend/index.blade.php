@@ -68,7 +68,12 @@
     cursor: pointer;
     height: 50px;
 }
-
+.hero_image_section img {
+    width: 100%;          /* container ke width ke hisaab se scale */
+    height: auto;         /* aspect ratio maintain */
+    border-radius: 20px;  /* optional rounded corners */
+    object-fit: cover;    /* agar container ka aspect ratio fix ho */
+}
 /* Responsive */
 @media (max-width: 768px) {
     .secound_hero_section {
