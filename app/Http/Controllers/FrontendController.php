@@ -90,6 +90,21 @@ class FrontendController extends Controller
 
         return redirect()->route('buyer.contacts', ['buyerInquiry' => $buyerInquiry->id]);
     }
+public function sendProductInquiry(Request $request)
+{
+    $request->validate([
+        'ad_id' => 'required|integer',
+        'supplier_id' => 'required|integer',
+    ]);
+
+    InquiryUsage::create([
+        'ad_id' => $request->ad_id,
+        'supplier_id' => $request->supplier_id,
+        'ip' => $request->ip(),
+    ]);
+
+    return response()->json(['success' => true]);
+}
 
     public function buyerPage(BuyerInquiry $buyerInquiry)
     {

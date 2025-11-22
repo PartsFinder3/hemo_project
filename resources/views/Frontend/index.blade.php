@@ -369,8 +369,13 @@
                             $ad->shop->supplier->whatsapp;
                         @endphp
                         <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                          <form id="inquiryForm">
+                                @csrf
+                                <input type="hidden" name="ad_id" value="{{ $ad->id }}">
+                                <input type="hidden" name="supplier_id" value="{{ $ad->shop->supplier->id }}">
+                            </form>
+
+                            <a href="javascript:void(0)" class="btn whatsapp" onclick="sendInquiryThenWhatsapp()">
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 

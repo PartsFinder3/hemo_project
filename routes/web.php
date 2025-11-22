@@ -319,6 +319,8 @@ Route::get('/',[FrontendController::class,'index'])->name('frontend.index');
 Route::get('/get-models/{makeId}', [FrontendController::class, 'getModelsByMake']);
 // Inquiries Send
 Route::post('/buyers/inquiry/send', [FrontendController::class, 'sendInquiry'])->name('buyer.inquiry.send');
+Route::post('/product/inquiry/send', [FrontendController::class, 'sendProductInquiry'])
+    ->name('product.inquiry.send');
 Route::get('/buyer/contacts/{buyerInquiry}',[FrontendController::class,'buyerPage'])->name('buyer.contacts');
 Route::post('/buyers/whatsapp/{buyerInquiry}', [FrontendController::class, 'getBuyerWhatsApp'])->name('buyer.whatsapp.get');
 
