@@ -127,8 +127,7 @@
     background-color: white;
  }
     nav .logo {
-    width: 100px;
-    height: 90%;
+    width: 80px;
     z-index: 1001;
 }
 nav a{
