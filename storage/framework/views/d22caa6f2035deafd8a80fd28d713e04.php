@@ -5,7 +5,10 @@
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4">
                   <div class="footer-logo">
-                        <img src="https://partsfinder.ae/storage/logo/1760776182.webp" alt="Logo" class="img-fluid">
+                   
+              
+                            <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
+                       
                     </div>
 
                     <p class="footer-description">

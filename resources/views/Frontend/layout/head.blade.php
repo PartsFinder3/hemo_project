@@ -124,10 +124,11 @@
         </nav>
 <style>
  nav{
+ 
     background-color: white;
  }
     nav .logo {
-    width: 80px;
+    width: 65px;
     z-index: 1001;
 }
 nav a{

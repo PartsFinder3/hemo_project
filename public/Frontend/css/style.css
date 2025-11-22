@@ -79,6 +79,7 @@ main {
 nav {
     /* position: absolute;
     top: 0; */
+    height: 70px !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -382,20 +383,18 @@ nav {
     max-height: 200px;
     margin-bottom: 20px;
 }
-
 .dropdown {
     width: 100%;
-    padding: 5px;
-    border: 2px solid #e1e5e9;
-    border-radius: 10px;
-    font-size: 16px;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    max-height: 150px; /* تقریباً 5-6 options */
+    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
 }
-
+.select2-results__options {
+    max-height: 180px !important;  /* 5–6 items */
+    overflow-y: auto !important;
+}
 .dropdown:focus {
     outline: none;
     border-color: var(--accent-color);
