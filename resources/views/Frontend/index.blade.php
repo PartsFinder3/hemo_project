@@ -1,5 +1,14 @@
 @extends('Frontend.layout.main')
 @section('main-section')
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <style>
 .hero-section_p {
     width: 100%;
@@ -93,7 +102,18 @@
         height: 250px;
     }
 }
-
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    max-height: 150px; /* تقریباً 5-6 options */
+    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
+}
+.select2-results__options {
+    max-height: 180px !important;  /* 5–6 items */
+    overflow-y: auto !important;
+}
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
@@ -800,5 +820,10 @@
                 window.location.reload();
             }
         }
+
+        
     </script>
+    <script>
+</script>
+
 @endsection
