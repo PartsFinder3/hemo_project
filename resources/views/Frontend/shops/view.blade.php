@@ -205,6 +205,10 @@
         margin-bottom: 30px;
         font-weight: 700;
     }
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
 </style>
 @section('main-section')
 
