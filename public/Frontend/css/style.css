@@ -79,7 +79,7 @@ main {
 nav {
     /* position: absolute;
     top: 0; */
-    height: 70px !important;
+    height: 60px !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
