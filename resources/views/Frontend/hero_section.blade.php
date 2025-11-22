@@ -53,8 +53,9 @@
     width: 50%;
     height: 100%;
     margin-right: 10%;
-    margin-top: 60px;
-    background-color: black;
+       background-image: url('https://partsfinder.ae/storage/profile_images/hero_section_image.png');
+
+
 }
 .hero_image_section img {
     width: 500px;          
@@ -206,7 +207,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
         </div>
 
         <div class="hero_image_section">
-            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image.png" alt="">
+            {{-- <img src="https://partsfinder.ae/storage/profile_images/hero_section_image.png" alt=""> --}}
         </div>
     </div>
 
