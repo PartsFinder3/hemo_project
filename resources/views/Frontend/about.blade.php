@@ -35,6 +35,10 @@
             font-size: 18px; /* smaller on mobile */
         }
     }
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
 </style>
 
 <div class="domain-about-section">
