@@ -98,39 +98,172 @@
     </div>
 
     <main>
-        <nav>
-            <div class="logo">
-                @if($domain && $domain->logo)
-              
-                    <img src="{{ asset( $domain->logo) }}" alt="">
-                @endif
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <ul>
-                    <li><a href="{{ route('frontend.index') }}">Home</a></li>
-                    <li><a href="{{ route('about.page') }}">About</a></li>
-                    <li><a href="{{ route('frontend.blogs') }}">Blogs</a></li>
-                </ul>
-                <span class="hero-btns">
-                    <a href="{{ route('supplier.login') }}" class="login-btn">Login</a>
-                    <a href="{{ route('frontend.signup') }}" class="signup-btn">Sign Up</a>
-                </span>
-            </div>
-            <div class="burger-menu" id="burger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
+      <nav class="custom-navbar">
+    <div class="custom-navbar-logo">
+        <img src="{{ asset($domain->logo) }}" alt="Logo">
+    </div>
+    <div class="custom-navbar-menu" id="custom-nav-menu">
+        <ul>
+            <li><a href="{{ route('frontend.index') }}">Home</a></li>
+            <li><a href="{{ route('about.page') }}">About</a></li>
+            <li><a href="{{ route('frontend.blogs') }}">Blogs</a></li>
+        </ul>
+        <span class="custom-navbar-buttons">
+            <a href="{{ route('supplier.login') }}" class="custom-login-btn">Login</a>
+            <a href="{{ route('frontend.signup') }}" class="custom-signup-btn">Sign Up</a>
+        </span>
+    </div>
+    <div class="custom-burger-menu" id="custom-burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
 <style>
 
-    nav .logo {
-    width: 100px;
-    z-index: 1001;
+.custom-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1000;
 }
 
-nav .logo img {
-    width: 65% !important;
+.custom-navbar-logo img {
+    width: 65px; /* adjust as needed */
+}
+
+.custom-navbar-menu ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-navbar-menu ul li a {
+    text-decoration: none;
+    color: #000; /* black text */
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.custom-navbar-menu ul li a:hover {
+    color: #ff9500; /* hover color */
+}
+
+.custom-navbar-buttons a {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.custom-login-btn {
+    color: #fff;
+    background: #888;
+}
+
+.custom-login-btn:hover {
+    background: #555;
+}
+
+.custom-signup-btn {
+    color: #fff;
+    background: #ff6700;
+}
+
+.custom-signup-btn:hover {
+    background: #e55a00;
+}
+
+.custom-burger-menu {
+    display: none; /* show via media query for mobile */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.custom-burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+}
+.custom-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1000;
+}
+
+.custom-navbar-logo img {
+    width: 65px; /* adjust as needed */
+}
+
+.custom-navbar-menu ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-navbar-menu ul li a {
+    text-decoration: none;
+    color: #000; /* black text */
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.custom-navbar-menu ul li a:hover {
+    color: #ff9500; /* hover color */
+}
+
+.custom-navbar-buttons a {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.custom-login-btn {
+    color: #fff;
+    background: #888;
+}
+
+.custom-login-btn:hover {
+    background: #555;
+}
+
+.custom-signup-btn {
+    color: #fff;
+    background: #ff6700;
+}
+
+.custom-signup-btn:hover {
+    background: #e55a00;
+}
+
+.custom-burger-menu {
+    display: none; /* show via media query for mobile */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.custom-burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #000;
 }
 
 </style>
