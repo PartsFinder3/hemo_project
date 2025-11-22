@@ -128,6 +128,7 @@
  }
     nav .logo {
     width: 100px;
+    height: 90%;
     z-index: 1001;
 }
 nav a{
