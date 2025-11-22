@@ -182,4 +182,4 @@
             <img src="https://partsfinder.ae/storage/profile_images/hero_section_image.png" alt="">
         </div>
     </div>
-</div>
+
