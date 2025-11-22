@@ -8,16 +8,16 @@
     flex-direction: column;
         background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
 }
-
 .hero_section_text {
     width: 100%;
     font-size: 4rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    color: black;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: none;           /* gradient remove */
+    -webkit-background-clip: unset;  /* gradient clip remove */
+    -webkit-text-fill-color: black;  /* solid black text */
+    color: black;               /* fallback color */
 }
 
 .secound_hero_section {
