@@ -11,7 +11,7 @@
         <meta name="description" content="{{ $meta->description }}">
         <meta name="keywords" content="{{ $meta->focus_keywords }}">
         <meta name="author" content="{{ $meta->title }}">
-        {{-- <meta name="image" content="{{ asset('storage/' . $domain->partMeta) }}"> --}}
+        <meta name="image" content="{{ asset( $domain->partMeta) }}">
 
         <script type="application/ld+json">
         {!! $meta->structure_data !!}

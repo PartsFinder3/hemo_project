@@ -5,7 +5,8 @@
        width: 100%;
        height: auto;
        display: flex;
-       flex-direction: column
+       flex-direction: column;
+       background-color:red;
     }
    .hero_section_text{
      width: 100%;
