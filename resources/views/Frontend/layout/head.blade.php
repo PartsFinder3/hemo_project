@@ -98,7 +98,7 @@
     </div>
 
     <main>
-        <nav>
+        {{-- <nav>
             <div class="logo">
                 @if($domain && $domain->logo)
               
@@ -109,7 +109,6 @@
                 <ul>
                     <li><a href="{{ route('frontend.index') }}">Home</a></li>
                     <li><a href="{{ route('about.page') }}">About</a></li>
-                    {{-- <li><a href="{{ route('view.shops') }}">Shops</a></li> --}}
                     <li><a href="{{ route('frontend.blogs') }}">Blogs</a></li>
                 </ul>
                 <span class="hero-btns">
@@ -122,7 +121,7 @@
                 <span></span>
                 <span></span>
             </div>
-        </nav>
+        </nav> --}}
 <style>
 
     nav .logo {
