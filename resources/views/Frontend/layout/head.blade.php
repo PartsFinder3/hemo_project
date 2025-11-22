@@ -130,7 +130,7 @@
 }
 
 nav .logo img {
-    width: 60%;
+    width: 60% !important;
 }
 
 </style>
