@@ -26,7 +26,7 @@
    .secound_hero_section{
     widows: 100%;
     height: 88%;
-   
+     
     display: flex;
     flex-direction: row;   
 }
@@ -176,84 +176,90 @@
     }
 }
 
-
+.hero_image_section{
+    width: 50%;
+    background-color: red;
+}
 </style>
 <div class="hero-section_p">
          <div class="hero_section_text">
                <h1>Find Your Perfect Parts</h1>
          </div>
-        <div class="secound_hero_section">
-             <div class="part_finder_card">
-             <div class="car">
-              <div class="card-header">
-                 <div class="free-text">100% FREE</div>
-                <div class="search-title">Search Your Part Here</div>
-              </div>
-               <form action="{{ route('buyer.inquiry.send') }}" method="post">
-            @csrf
-            <div class="form-group" id="make-group">
-                <select class="dropdown" id="make" name="car_make_id">
-                    <option disabled selected value="">Select Your Make</option>
-                    @foreach ($makes as $make)
-                        <option value="{{ $make->id }}">    {{ $make->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+         <div class="secound_hero_section">
+            <div class="part_finder_card">
+                    <div class="car">
+                    <div class="card-header">
+                        <div class="free-text">100% FREE</div>
+                        <div class="search-title">Search Your Part Here</div>
+                    </div>
+                    <form action="{{ route('buyer.inquiry.send') }}" method="post">
+                    @csrf
+                    <div class="form-group" id="make-group">
+                        <select class="dropdown" id="make" name="car_make_id">
+                            <option disabled selected value="">Select Your Make</option>
+                            @foreach ($makes as $make)
+                                <option value="{{ $make->id }}">    {{ $make->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <div class="form-group" id="model-group">
-                <select class="dropdown" id="model" name="car_model_id">
-                    <option value="">Select Your Model</option>
-                </select>
-            </div>
+                    <div class="form-group" id="model-group">
+                        <select class="dropdown" id="model" name="car_model_id">
+                            <option value="">Select Your Model</option>
+                        </select>
+                    </div>
 
-            <div class="form-group" id="year-group">
-                <select class="dropdown" id="year" name="year_id">
-                    <option value="">Select Your Model Year</option>
-                    @foreach ($years as $year)
-                        <option value="{{ $year->id }}">{{ $year->year }}</option>
-                    @endforeach
-                </select>
-            </div>
+                    <div class="form-group" id="year-group">
+                        <select class="dropdown" id="year" name="year_id">
+                            <option value="">Select Your Model Year</option>
+                            @foreach ($years as $year)
+                                <option value="{{ $year->id }}">{{ $year->year }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-            <div class="form-group hidden" id="parts-group">
-                <select id="parts-dropdown" class="dropdown" disabled>
-                    <option disabled selected value="">Select a part to add</option>
-                    @foreach ($parts as $part)
-                        <option value="{{ $part->id }}">{{ $part->name }}</option>
-                    @endforeach
-                </select>
-                <div id="parts-tags" class="parts-tags"></div>
-            </div>
+                    <div class="form-group hidden" id="parts-group">
+                        <select id="parts-dropdown" class="dropdown" disabled>
+                            <option disabled selected value="">Select a part to add</option>
+                            @foreach ($parts as $part)
+                                <option value="{{ $part->id }}">{{ $part->name }}</option>
+                            @endforeach
+                        </select>
+                        <div id="parts-tags" class="parts-tags"></div>
+                    </div>
 
-            <div class="form-group hidden" id="condition-group">
-                <div class="condition-section">
-                    <div class="condition-title">Condition Required ?</div>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="used" name="condition" value="used" />
-                            <label for="used">Used</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="new" name="condition" value="new" checked />
-                            <label for="new">New</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
-                            <label for="doesnt-matter">Doesn't matter</label>
+                    <div class="form-group hidden" id="condition-group">
+                        <div class="condition-section">
+                            <div class="condition-title">Condition Required ?</div>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="used" name="condition" value="used" />
+                                    <label for="used">Used</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="new" name="condition" value="new" checked />
+                                    <label for="new">New</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
+                                    <label for="doesnt-matter">Doesn't matter</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <button class="find-btn" id="find-btn" disabled>Find My Part</button>
+                </form>
+                    </div>
                 </div>
+
+        
+
+            
             </div>
+         <div class="hero_image_section">
 
-            <button class="find-btn" id="find-btn" disabled>Find My Part</button>
-        </form>
-             </div>
-        </div>
-
- 
-
-     
-    </div>
+         </div>
 </div>
 
 
