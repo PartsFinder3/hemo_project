@@ -131,7 +131,7 @@
     z-index: 1001;
 }
 nav a{
-    color: black;
+    color: black !important;
 }
 nav .logo img {
     width: 65% !important;
