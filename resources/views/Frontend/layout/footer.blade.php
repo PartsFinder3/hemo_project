@@ -51,17 +51,18 @@
                         00971-55-7872262
                     </a>
 
-                    <div class="social-icons">
-                        <a href="#" class="social-icon facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-icon twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon pinterest">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
+                 <div class="social-icons">
+                    <a href="https://www.facebook.com/partsfinderuae/" class="social-icon facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://medium.com/@partsfinder" class="social-icon medium" target="_blank">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                    <a href="https://www.pinterest.com/partsfinderae/" class="social-icon pinterest" target="_blank">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                </div>
+
                 </div>
             </div>
 
