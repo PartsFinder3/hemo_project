@@ -178,6 +178,7 @@
 
 .hero_image_section{
     width: 50%;
+    height: 100%;
     background-color: red;
 }
 </style>
