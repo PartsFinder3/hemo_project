@@ -10,6 +10,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
 .hero-section_p {
     width: 100%;
     height: 630px;
@@ -114,10 +118,7 @@
     max-height: 180px !important;  /* 5–6 items */
     overflow-y: auto !important;
 }
-body, main, header, nav, .hero-section, .hero-section_p {
-    background-image: none !important;
-    background: none !important;
-}
+
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
