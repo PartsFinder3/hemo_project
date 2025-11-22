@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     @if($domain && $domain->logo)
-        <link rel="icon" href="{{ asset('storage/' . $domain->logo) }}">
+        <link rel="icon" href="{{ asset($domain->logo) }}">
     @endif
     {{-- <style>
                                   @media (max-width:480px){
@@ -124,6 +124,10 @@
             </div>
         </nav>
 <style>
+nav{
+    width: 100%;
+    height: 56px;
+}
     nav .logo {
     width: 100px;
     z-index: 1001;

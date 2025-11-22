@@ -120,4 +120,18 @@
                 <span></span>
             </div>
         </nav>
-<?php /**PATH C:\laragon\www\partsfinder\resources\views/frontend/layout/head.blade.php ENDPATH**/ ?>
+<style>
+nav{
+    width: 100%;
+    height: 56px;
+}
+    nav .logo {
+    width: 100px;
+    z-index: 1001;
+}
+
+nav .logo img {
+    width: 65% !important;
+}
+
+</style><?php /**PATH C:\laragon\www\partsfinder\resources\views/frontend/layout/head.blade.php ENDPATH**/ ?>
