@@ -49,13 +49,16 @@
 .hero_image_section {
     width: 50%;
     height: 100%;
-    background-image: url('https://partsfinder.ae/storage/profile_images/hero_section_image.png');
     background-size: cover;
     background-position: center;
     border-radius: 20px;
 }
-
-/* Form & buttons */
+.hero_image_section img {
+    width: 500px;          
+    height: 400px;         
+    border-radius: 20px; 
+    object-fit: cover;   
+}
 .find-btn {
     width: 100%;
     background: linear-gradient(135deg, var(--accent-color), #ff9500);
@@ -68,12 +71,7 @@
     cursor: pointer;
     height: 50px;
 }
-.hero_image_section img {
-    width: 100%;          /* container ke width ke hisaab se scale */
-    height: auto;         /* aspect ratio maintain */
-    border-radius: 20px;  /* optional rounded corners */
-    object-fit: cover;    /* agar container ka aspect ratio fix ho */
-}
+
 /* Responsive */
 @media (max-width: 768px) {
     .secound_hero_section {
@@ -166,7 +164,9 @@
             </div>
         </div>
 
-        <div class="hero_image_section"></div>
+        <div class="hero_image_section">
+            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image.png" alt="">
+        </div>
     </div>
 </div>
 
