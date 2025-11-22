@@ -99,12 +99,14 @@
 
     <main>
         <nav>
+            <a href="https://partsfinder.ae">
             <div class="logo">
               
               
                     <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
             
             </div>
+            </a>
             <div class="nav-menu" id="nav-menu">
                 <ul>
                     <li><a href="{{ route('frontend.index') }}">Home</a></li>

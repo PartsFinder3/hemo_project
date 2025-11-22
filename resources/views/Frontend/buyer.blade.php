@@ -14,7 +14,7 @@
                             <i class="fa-brands fa-whatsapp" id="icon"></i>
                             <h4 class="mb-3">Safe & Secure</h4>
                             <p class="small">
-                                For a safe and secure experience on <strong>thepartfinder.ae</strong>,
+                                For a safe and secure experience on <strong>partsfinder.ae</strong>,
                                 only verified users can connect with sellers.
                             </p>
                         </div>
