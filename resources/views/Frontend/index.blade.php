@@ -1,69 +1,60 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 <style>
-    .hero-section_p{
-       width: 100%;
-       height: 630px;
-       display: flex;
-       flex-direction: column;
+.hero-section_p {
+    width: 100%;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+}
 
-        background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
-    }
-   .hero_section_text{
-     width: 100%;
-     height: 7%;
+.hero_section_text {
+    width: 100%;
     font-size: 4rem;
     font-weight: 700;
-    line-height: 1.2;
+    text-align: center;
     margin-bottom: 20px;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: center;
-    font-weight: bolder;
-   }
-   .secound_hero_section{
-    widows: 100%;
-    height: 88%;
-     
-    display: flex;
-    flex-direction: row;   
 }
-   .part_finder_card{
-     width: 50%;
-     height: 100%;
-     
-   }
-   .search-title{
-      padding-bottom: 10px;
-   }
-   .car{
-    width: 400px !important;
-   
+
+.secound_hero_section {
+    width: 100%;
+    height: calc(100% - 80px); /* adjust hero text height */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.part_finder_card {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start; /* card left align */
+}
+
+.car {
+    width: 400px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    width: 450px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-left: 140px;
-
-   }
-
-
-   .free-text {
-    background: var(--accent-color);
-    color: var(--primary-color);
-    padding: 8px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 14px;
-    display: inline-block;
-    margin-top: -15px;
-    
 }
+
+.hero_image_section {
+    width: 50%;
+    height: 100%;
+    background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+}
+
+/* Form & buttons */
 .find-btn {
     width: 100%;
     background: linear-gradient(135deg, var(--accent-color), #ff9500);
@@ -74,132 +65,47 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
-    /* margin-top: 10px; */
-    height: 50px !important;
-    font-family: 'Montserrat', sans-serif;
-}
-.card {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #fff;
+    height: 50px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.card img {
-    width: 100%;
-    height: 180px;       /* fixed height for alignment */
-    object-fit: contain;  /* poora image dikhai de without cropping */
-    background-color: #f7f7f7;
-    display: block;
-}
-
-.card-body {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* content top se start ho */
-    flex-grow: 1;
-}
-
-.card-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    line-height: 1.2em;
-    height: auto;  /* dynamic height for title */
-}
-
-.price {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.meta {
-    font-size: 14px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: auto;
-}
-
-.btn.whatsapp {
-    background-color: #25D366;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-}
-
-.btn.call {
-    background-color: #007bff;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-    .grid .card {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .part_finder_card,
+    .hero_image_section {
         width: 100%;
     }
 
-    .card img {
-        height: 200px;
+    .hero_image_section {
+        height: 250px;
     }
 }
 
-.hero_image_section{
-    width: 50%;
-    height: 100%;
-    background-color: red;
-}
 </style>
 <div class="hero-section_p">
-         <div class="hero_section_text">
-               <h1>Find Your Perfect Parts</h1>
-         </div>
-         <div class="secound_hero_section">
-            <div class="part_finder_card">
-                    <div class="car">
-                    <div class="card-header">
-                        <div class="free-text">100% FREE</div>
-                        <div class="search-title">Search Your Part Here</div>
-                    </div>
-                    <form action="{{ route('buyer.inquiry.send') }}" method="post">
+    <div class="hero_section_text">
+        <h1>Find Your Perfect Parts</h1>
+    </div>
+
+    <div class="secound_hero_section">
+        <div class="part_finder_card">
+            <div class="car">
+                <div class="card-header">
+                    <div class="free-text">100% FREE</div>
+                    <div class="search-title">Search Your Part Here</div>
+                </div>
+                <form action="{{ route('buyer.inquiry.send') }}" method="post">
                     @csrf
                     <div class="form-group" id="make-group">
                         <select class="dropdown" id="make" name="car_make_id">
                             <option disabled selected value="">Select Your Make</option>
                             @foreach ($makes as $make)
-                                <option value="{{ $make->id }}">    {{ $make->name }}</option>
+                                <option value="{{ $make->id }}">{{ $make->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -251,16 +157,11 @@
 
                     <button class="find-btn" id="find-btn" disabled>Find My Part</button>
                 </form>
-                    </div>
-                </div>
-
-        
-
-            
             </div>
-         <div class="hero_image_section">
+        </div>
 
-         </div>
+        <div class="hero_image_section"></div>
+    </div>
 </div>
 
 
