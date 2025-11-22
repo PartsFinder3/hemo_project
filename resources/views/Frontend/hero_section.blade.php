@@ -52,11 +52,9 @@
 .hero_image_section {
     width: 50%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
     margin-right: 10%;
     margin-top: 60px;
-    background-color: black
+    background-color: black;
 }
 .hero_image_section img {
     width: 500px;          
