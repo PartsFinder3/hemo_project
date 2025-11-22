@@ -35,6 +35,7 @@
     display: flex;
     justify-content: flex-start; /* card left align */
     margin-top: -70px;
+    margin-left: 10%;
     
 }
 
@@ -53,12 +54,13 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    border-radius: 20px;
+    margin-right: 10%;
+    margin-top: 60px;
+
 }
 .hero_image_section img {
     width: 500px;          
-    height: 400px;         
-    border-radius: 20px; 
+    height: 400px;        
     object-fit: cover;   
 }
 .find-btn {
@@ -175,6 +177,23 @@
 
 
     </main>
+     <section class="map">
+        <div class="map-text">
+            <ul>
+                <li>Save Time, Save Money</li>
+                <li>Search 10,000+ Auto Parts in One Go</li>
+                <li>Check Prices & Stock of Top Part Suppliers</li>
+                <li>Car, Van, and SUV Parts Fitted & Delivered</li>
+                <li>Genuine, Aftermarket, Used & New Parts</li>
+            </ul>
+        </div>
+        <div class="map-img">
+            @if($domain && $domain->map_img)
+          
+                <img src="{{ asset( $domain->map_img) }}" alt="Map" />
+            @endif
+        </div>
+    </section>
     <!-- How It Works -->
     <section class="how-it-works-section">
         <div class="how-text">
@@ -422,23 +441,7 @@
     </section>
 
     <!-- Map -->
-    <section class="map">
-        <div class="map-text">
-            <ul>
-                <li>Save Time, Save Money</li>
-                <li>Search 10,000+ Auto Parts in One Go</li>
-                <li>Check Prices & Stock of Top Part Suppliers</li>
-                <li>Car, Van, and SUV Parts Fitted & Delivered</li>
-                <li>Genuine, Aftermarket, Used & New Parts</li>
-            </ul>
-        </div>
-        <div class="map-img">
-            @if($domain && $domain->map_img)
-          
-                <img src="{{ asset( $domain->map_img) }}" alt="Map" />
-            @endif
-        </div>
-    </section>
+   
     <!-- Locations -->
     <section class="locations-section">
         <div class="section-text">
