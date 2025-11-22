@@ -41,7 +41,7 @@
     <!-- Include Select2 CSS & JS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    {{-- <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     @if($domain && $domain->logo)
         <link rel="icon" href="{{ asset($domain->logo) }}">
     @endif
