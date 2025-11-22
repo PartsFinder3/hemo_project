@@ -15,7 +15,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: black;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
