@@ -8,7 +8,7 @@
         align-items: center;
         padding: 80px 20px;
         min-height: 70vh;
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
+    
         color: white;
         text-align: center;
         box-sizing: border-box;
