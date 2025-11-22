@@ -123,3 +123,14 @@
                 <span></span>
             </div>
         </nav>
+<style>
+    nav .logo {
+    width: 100px;
+    z-index: 1001;
+}
+
+nav .logo img {
+    width: 60%;
+}
+
+</style>

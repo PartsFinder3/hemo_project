@@ -89,14 +89,6 @@ nav {
     z-index: 1000;
 }
 
-nav .logo {
-    width: 100px;
-    z-index: 1001;
-}
-
-nav .logo img {
-    width: 60%;
-}
 
 .nav-menu {
     display: flex;
