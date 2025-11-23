@@ -159,5 +159,85 @@ height: 35px;
 }
 .nav-menu.active {
     background: #ffffff !important;
+    color: white;
 }
+/* Tablet & Mobile */
+@media (max-width: 992px) {
+
+    /* Menu ko right se slide banayenge */
+    #nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 230px;
+        background: #fff;
+        padding: 25px 20px;
+        flex-direction: column;
+        gap: 25px;
+        transition: 0.3s;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        z-index: 999;
+    }
+
+    /* Menu open hote hi show */
+    #nav-menu.active {
+        right: 0;
+    }
+
+    /* UL vertical */
+    #nav-menu ul {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0;
+    }
+
+    #nav-menu ul li a {
+        font-size: 16px !important;
+    }
+
+    /* Buttons vertical */
+    .hero-btns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-btns a {
+        width: 100%;
+        text-align: center;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Burger show */
+    #burger-menu {
+        display: flex !important;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    #burger-menu span {
+        width: 25px;
+        height: 3px;
+        background: black;
+        border-radius: 2px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+
+    nav .logo {
+        width: 130px;
+        margin-top: -15px;
+    }
+
+    .hero-btns a {
+        font-size: 13px !important;
+        height: auto;
+    }
+
+}
+
 </style>
