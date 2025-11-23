@@ -97,7 +97,24 @@
             background: rgba(0, 0, 0, 0.3);
         }
 
-      
+        .profile-avatar {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid var(--primary-color);
+            z-index: 10;
+        }
 
         .profile-content {
             margin-top: 60px;
