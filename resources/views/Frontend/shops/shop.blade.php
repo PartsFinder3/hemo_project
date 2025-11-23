@@ -105,7 +105,7 @@
                             <!-- Location & Hours -->
                             <div class="info-card">
                                 <div class="card-header-section">
-                                    <h5 class="section-title">📍 Location & Hours</h5>
+                                    <h5 class="section-title_h5">📍 Location & Hours</h5>
                                 </div>
                                 <div class="location-content">
                                     <div class="address-section">
