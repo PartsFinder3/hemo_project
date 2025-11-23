@@ -290,7 +290,8 @@ public function delete($type, $id)
             'fuel_id' => 'nullable',
             'engine_size_id' => 'nullable',
             'part_id' => 'required|exists:spare_parts,id',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'currency' => 'required|string|in:AED,USD,SAR,PKR,INR,EUR,GBP,CNY,JPY,CAD,AUD,CHF',
         ]);
 
         $supplier = Auth::guard('supplier')->user();
@@ -320,6 +321,7 @@ public function delete($type, $id)
         $ad->part_id = $request->input('part_id');
         $ad->condition = $request->input('condition');
         $ad->shop_id = $shop_id;
+        $ad->currency = $request->input('currency');
 
         $imagePaths = [];
 
