@@ -182,6 +182,7 @@ height: 35px;
     /* Menu open hote hi show */
     #nav-menu.active {
         right: 0;
+            width: 100% !important;
     }
 
     /* UL vertical */
