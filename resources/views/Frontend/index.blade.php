@@ -153,7 +153,10 @@
     padding: 5px;
 }
 
-
+#productGrid1, #productGrid2 {
+  grid-auto-rows: minmax(0, auto); /* height flexible */
+  justify-content: start;          /* left align */
+}
 #productGrid1 .card-body {
     padding: 10px; /* optional, only inner spacing */
 }
