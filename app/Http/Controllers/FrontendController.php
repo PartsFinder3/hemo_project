@@ -318,7 +318,7 @@ public function sendProductInquiry(Request $request)
         //     ->get();
 
         $shops = Shops::where('is_active', 1)->get();
-        {}
+      
         return view('Frontend.shops.view', compact('shops'));
     }
 

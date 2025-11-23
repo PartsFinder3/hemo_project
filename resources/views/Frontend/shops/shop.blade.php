@@ -4,254 +4,53 @@
         <div class="container-fluid py-0">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <div class="profile-card">
-                        <!-- Header -->
-                        <div class="header-section position-relative">
-                            <!-- Cover Image -->
-                            @if ($profile && $profile->cover)
-                                <img src="{{ asset('storage/' . $profile->cover) }}" class="w-100 header-image"
-                                    alt="Cover">
-                            @else
-                                <img src="{{ asset('assets/compiled/jpg/Head.png') }}" class="w-100 header-image"
-                                    alt="Cover">
-                            @endif
+                   <div class="pc-card">
 
-                            <!-- Overlay (optional dark fade) -->
-                            <div class="header-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                        <!-- Cover + Overlay -->
+                        <div class="pc-cover-section position-relative">
+                            <img src="{{ $profile && $profile->cover ? asset('storage/' . $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
+                                class="pc-cover-image w-100" alt="Cover">
 
-                            <!-- Profile Image -->
-                            <div class="profile-avatar position-absolute start-50 translate-middle-x">
-                                @if ($profile && $profile->profile_image)
-                                    <img src="{{ asset('storage/' . $profile->profile_image) }}"
-                                        class="img-fluid rounded-circle border border-3 border-white shadow"
-                                        alt="Shop Logo">
-                                @else
-                                    <img src="{{ asset('assets/compiled/jpg/2.jpg') }}"
-                                        class="img-fluid rounded-circle border border-3 border-white shadow"
-                                        alt="Shop Logo">
-                                @endif
+                            <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+                            <!-- Profile Image + Social Icons -->
+                            <div class="pc-profile-top position-absolute start-50 translate-middle-x text-center">
+                                <img src="{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/2.jpg') }}"
+                                    class="pc-profile-avatar rounded-circle border border-3 border-white shadow" alt="Shop Logo">
+
+                                <div class="pc-social-icons mt-2">
+                                    <a href="#" class="pc-social-icon pc-facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="pc-social-icon pc-tiktok"><i class="fab fa-tiktok"></i></a>
+                                    <a href="#" class="pc-social-icon pc-twitter"><i class="fab fa-twitter"></i></a>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Content -->
-                        <div class="profile-content">
-                            <h1 class="shop-name">
+                        <!-- Content Section -->
+                        <div class="pc-profile-content text-center mt-5 pt-4">
+                            <h1 class="pc-shop-name fw-bold">
                                 {{ $shop->name ?? 'Shop Name Here' }}
-                                @if ($shop->supplier->is_verified)
-                                    <span class="badge">Verified</span>
+                                @if ($shop->supplier?->is_verified)
+                                    <span class="pc-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
                                 @endif
                             </h1>
 
-                            <div class="shop-stats">
-                                <div class="stat-item">📦 {{$totalAds}} Items Listed</div>
-                                <div class="stat-item">💬 {{$inquiryCount}} Enquiries</div>
+                            <div class="pc-shop-stats mt-2">
+                                <span class="pc-stat-item">📦 {{$totalAds}} Items Listed</span>
+                                <span class="pc-stat-item">💬 {{$inquiryCount}} Enquiries</span>
                             </div>
 
-                            <div class="about-section">
-                                <h3 class="about-title">About</h3>
-                                @if (isset($profile) && $profile->description)
-                                    <p class="about-text">
-                                        {{ $profile->description }}
-                                    </p>
-                                @endif
-                            </div>
-
-                            <div class="contact-buttons">
-                                @php
-                                    $contact = $shop->supplier->whatsapp;
-                                @endphp
-                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $contact) }}" target="_blank"
-                                    class="btn btn-sm btn-success w-100 my-1 contact-btn whatsapp-btn">
+                            <div class="pc-contact-buttons mt-3 d-flex justify-content-center gap-2">
+                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}" target="_blank" class="pc-btn pc-btn-success btn-sm">
                                     <i class="fab fa-whatsapp me-1"></i> WhatsApp
                                 </a>
-                                <a href="tel:{{ $contact }}" class="btn btn-sm btn-warning w-100 my-1 contact-btn call-btn">
+                                <a href="tel:{{ $shop->supplier->whatsapp }}" class="pc-btn pc-btn-warning btn-sm">
                                     <i class="fas fa-phone me-1"></i> Call
                                 </a>
                             </div>
-
-                            <!-- Deals in Parts -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                    <h5 class="section-title_h5"> Deals in Parts</h5>
-                                    @if ($shop->supplier->is_verified)
-                                        <span class="verified-badge">
-                                            <i class="bi bi-check-circle"></i> Verified
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="parts-grid">
-                   
-                                </div>
-                            </div>
-
-                            <!-- Deals in Cars -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                   
-                                    <h5 class="section-title_h5" style="color: black !important;">Deals in Cars</h5>
-                                    @if ($shop->supplier->is_verified)
-                                        <span class="verified-badge">
-                                            <i class="bi bi-check-circle"></i> Verified
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="makes-grid">
-                                    @foreach ($shopMakes as $make)
-                                        <div class="make-item">{{ $make->make->name }}</div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            <!-- Location & Hours -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                    <h5 class="section-title_h5">📍 Location & Hours</h5>
-                                </div>
-                                <div class="location-content">
-                                    <div class="address-section">
-                                        <p class="address-text">
-                                            {{ $profile?->address ? $profile->address . ' ' . $shop->supplier->city->name : $shop->supplier->city->name }}
-                                        </p>
-                                    </div>
-                                    <div class="hours-section">
-                                        <div class="hours-grid">
-                                            <div class="day-row">
-                                                <span class="day">Mon</span>
-                                                <span class="time">{{ $shopHours->monday ?? 'OFF' }}</span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Tue</span>
-                                                <span class="time">{{ $shopHours->tuesday ?? 'OFF' }}</span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Wed</span>
-                                                <span class="time">{{ $shopHours->wednesday ?? 'OFF' }}</span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Thu</span>
-                                                <span class="time">{{ $shopHours->thursday ?? 'OFF' }}</span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Fri</span>
-                                                <span class="time">{{ $shopHours->friday ?? 'OFF' }}</span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Sat</span>
-                                                <span class="time">{{ $shopHours->saturday ?? 'OFF' }}</span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Sun</span>
-                                                <span class="time">{{ $shopHours->sunday ?? 'OFF' }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gallery -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                    <h5 class="section-title_h5">Our Gallery</h5>
-                                </div>
-                                <div class="gallery-grid">
-                                    @foreach ($shopGallery as $image)
-                                        <div class="gallery-item">
-                                            {{$image->image_path}}
-                                            <img src="{{ $image->image_path}}"
-                                                 class="gallery-image" alt="Gallery Image"
-                                                 onclick="openImageModal(this.src)">
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- TOP ADS Section -->
-                        <section class="ad-cards">
-                            <div class="section-text">
-                                <h3>TOP ADS</h3>
-                            </div>
-                            <div class="products-grid" id="productGrid1">
-                                @foreach ($shopAds as $ad)
-                                    <div class="product-card">
-                                        @php
-                                            $images = json_decode($ad->images, true);
-                                        @endphp
-
-                                        @if (is_array($images) && isset($images[0]))
-                                            <div class="product-image">
-                                                <img src="{{ asset( $images[0]) }}" alt="Product">
-                                            </div>
-                                        @endif
-                                        <div class="product-body">
-                                            <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                                                class="product-title">{{ $ad->title }}</a>
-                                            <div class="product-price">AED {{ $ad->price }}</div>
-                                            <div class="product-meta">
-                                                <div class="meta-item">Availability: In Stock</div>
-                                                <div class="meta-item">Condition: {{ $ad->condition }}</div>
-                                                <div class="meta-item">Delivery: Ask Supplier</div>
-                                                <div class="meta-item">Warranty: Ask Supplier</div>
-                                            </div>
-                                            <div class="product-buttons">
-                                                <a href="javascript:void(0)" class="btn-product whatsapp"
-                                                    onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn-product call"
-                                                    onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                                    <i class="fa-solid fa-phone"></i> Call
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="pagination" id="pagination1"></div>
-                        </section>
-
-                        <!-- TOP CAR ADS Section -->
-                        <section class="ad-cards">
-                            <div class="section-text">
-                                <h3>TOP CAR ADS</h3>
-                            </div>
-                            <div class="products-grid" id="productGrid2">
-                                @foreach ($shopCarAds as $ad)
-                                    <div class="product-card">
-                                        @php
-                                            $images = json_decode($ad->images, true);
-                                        @endphp
-
-                                        @if (is_array($images) && isset($images[0]))
-                                            <div class="product-image">
-                                                <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
-                                            </div>
-                                        @endif
-                                        <div class="product-body">
-                                            <a href="{{ route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id]) }}"
-                                                class="product-title">{{ $ad->title }}</a>
-                                            <div class="product-meta">
-                                                <div class="meta-item">Availability: In Stock</div>
-                                                <div class="meta-item">Delivery: Ask Supplier</div>
-                                                <div class="meta-item">Warranty: Ask Supplier</div>
-                                            </div>
-                                            <div class="product-buttons">
-                                                <a href="javascript:void(0)" class="btn-product whatsapp"
-                                                    onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn-product call"
-                                                    onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                                    <i class="fa-solid fa-phone"></i> Call
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="pagination" id="pagination2"></div>
-                        </section>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -924,6 +723,96 @@
             position: relative;
             overflow: hidden;
         }
+        .pc-card {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.pc-cover-section {
+    position: relative;
+    height: 250px;
+}
+
+.pc-cover-image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.pc-cover-overlay {
+    background: rgba(0,0,0,0.35);
+}
+
+.pc-profile-top {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pc-profile-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.pc-social-icons {
+    margin-top: 10px;
+}
+
+.pc-social-icon {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    transition: transform 0.3s;
+}
+
+.pc-facebook { background: #3b5998; }
+.pc-tiktok { background: #000; }
+.pc-twitter { background: #1da1f2; }
+
+.pc-social-icon:hover {
+    transform: scale(1.1);
+}
+
+.pc-profile-content {
+    padding-top: 60px;
+    text-align: center;
+}
+
+.pc-shop-name .pc-verified-badge {
+    background-color: #28a745;
+    color: #fff;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+    margin-left: 6px;
+}
+
+.pc-shop-stats .pc-stat-item {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.pc-contact-buttons .pc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
     </style>
 
     <!-- JS -->
