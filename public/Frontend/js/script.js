@@ -789,7 +789,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 // `;
 // document.head.appendChild(style);
-function sendProductInquiryWhatsapp() {
+function sendProductInquiryWhatsapp(whatsapp, title) {
     let formData = new FormData(document.getElementById('productInquiryForm'));
 
     fetch("{{ route('product.inquiry.send') }}", {
@@ -801,14 +801,11 @@ function sendProductInquiryWhatsapp() {
     })
     .then(response => response.json())
     .then(data => {
-
         if (data.success) {
-            // WhatsApp open
-            let whatsapp = "{{ $ad->shop->supplier->whatsapp }}";
-            let msg = encodeURIComponent("Hello, I am interested in: {{ $ad->title }}");
+            let msg = encodeURIComponent("Hello, I am interested in: " + title);
             window.open("https://wa.me/" + whatsapp + "?text=" + msg, "_blank");
         } else {
-            alert("Something went wrong!");
+            alert("کچھ غلط ہو گیا!");
         }
     })
     .catch(err => console.log(err));
