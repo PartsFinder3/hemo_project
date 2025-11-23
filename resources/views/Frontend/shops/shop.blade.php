@@ -14,11 +14,12 @@
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
                             <!-- Profile Image + Social Icons -->
-                        <div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
+<div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
     @if ($profile && $profile->profile_image)
         <img src="{{ asset('storage/' . $profile->profile_image) }}"
-            class="img-fluid rounded-circle border border-3 border-white shadow"
-            alt="Shop Logo">
+            class="rounded-circle border border-3 border-white shadow"
+            alt="Shop Logo"
+            style="width: 150px; height: 150px; object-fit: cover;">
     @endif
 </div>
 
@@ -688,11 +689,12 @@
         }
 
         /* Fix for profile image responsiveness */
-       .profile-avatar img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover; /* تصویر proportionate رہے */
-}
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
 
         /* Full width container */
         .container-fluid {
