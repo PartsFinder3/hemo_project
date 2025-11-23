@@ -317,12 +317,8 @@ public function sendProductInquiry(Request $request)
         //     ->orderByDesc('total_inquiries')
         //     ->get();
 
-        $shops = Shops::all();
-          foreach($shops as $shop){
-        // Access the supplier of this individual shop
-        echo $shop->supplier->is_verified;
-    }
-    exit;
+        $shops = Shops::where('is_active', 1)->get();
+        {}
         return view('Frontend.shops.view', compact('shops'));
     }
 
