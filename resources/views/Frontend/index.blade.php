@@ -122,7 +122,7 @@
     grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
     gap: 15px; /* space between cards */
     padding-left: 0;  /* remove any container left padding */
-    margin-left: 30px;
+   
 }
 
 #productGrid1 .card {
