@@ -14,13 +14,14 @@
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
                             <!-- Profile Image + Social Icons -->
-                           <div class="profile-avatar position-absolute bottom-0 start-0 ms-3 mb-3" style="margin-left: 200px;">
-                            @if ($profile && $profile->profile_image)
-                                <img src="{{ asset('storage/' . $profile->profile_image) }}"
-                                    class="img-fluid rounded-circle border border-3 border-white shadow"
-                                    alt="Shop Logo">
-                          
-                            @endif
+                        <div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
+    @if ($profile && $profile->profile_image)
+        <img src="{{ asset('storage/' . $profile->profile_image) }}"
+            class="img-fluid rounded-circle border border-3 border-white shadow"
+            alt="Shop Logo">
+    @endif
+</div>
+
                         </div>
                         </div>
 
