@@ -726,93 +726,314 @@
         .pc-card {
     position: relative;
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    border-radius: 15px;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.pc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Cover Section */
 .pc-cover-section {
     position: relative;
-    height: 250px;
+    height: 280px;
+    overflow: hidden;
 }
 
 .pc-cover-image {
     object-fit: cover;
     height: 100%;
     width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.pc-card:hover .pc-cover-image {
+    transform: scale(1.05);
 }
 
 .pc-cover-overlay {
-    background: rgba(0,0,0,0.35);
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
 }
 
+/* Profile Top Section */
 .pc-profile-top {
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
 }
 
 .pc-profile-avatar {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
 }
 
+.pc-card:hover .pc-profile-avatar {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* Social Icons */
 .pc-social-icons {
-    margin-top: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .pc-social-icon {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     color: #fff;
     border-radius: 50%;
-    margin: 0 5px;
-    transition: transform 0.3s;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.2);
 }
 
-.pc-facebook { background: #3b5998; }
-.pc-tiktok { background: #000; }
-.pc-twitter { background: #1da1f2; }
+.pc-facebook { background: linear-gradient(135deg, #3b5998, #8b9dc3); }
+.pc-tiktok { background: linear-gradient(135deg, #000000, #69c9d0); }
+.pc-twitter { background: linear-gradient(135deg, #1da1f2, #aab8c2); }
 
 .pc-social-icon:hover {
-    transform: scale(1.1);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.5);
 }
 
+/* Profile Content */
 .pc-profile-content {
-    padding-top: 60px;
+    padding: 70px 30px 30px;
     text-align: center;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
 }
 
-.pc-shop-name .pc-verified-badge {
-    background-color: #28a745;
-    color: #fff;
-    padding: 2px 8px;
-    font-size: 0.8rem;
-    border-radius: 12px;
-    margin-left: 6px;
-}
-
-.pc-shop-stats .pc-stat-item {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-.pc-contact-buttons .pc-btn {
+.pc-shop-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
+.pc-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #fff;
+    padding: 6px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.pc-verified-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
+}
+
+.pc-verified-badge i {
+    font-size: 0.9rem;
+}
+
+/* Shop Stats */
+.pc-shop-stats {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.pc-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: var(--tertiary-color);
+    font-weight: 500;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.pc-stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    background: #fff;
+}
+
+/* Contact Buttons */
+.pc-contact-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.pc-btn-success {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+}
+
+.pc-btn-warning {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+.pc-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: white;
+}
+
+.pc-btn-success:hover {
+    background: linear-gradient(135deg, #128c7e, #25d366);
+}
+
+.pc-btn-warning:hover {
+    background: linear-gradient(135deg, #fd7e14, #ffc107);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pc-card {
+        max-width: 95%;
+        margin: 0 auto 30px;
+        border-radius: 15px;
+    }
+    
+    .pc-cover-section {
+        height: 220px;
+    }
+    
+    .pc-profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .pc-profile-top {
+        bottom: -50px;
+    }
+    
+    .pc-profile-content {
+        padding: 60px 20px 25px;
+    }
+    
+    .pc-shop-name {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .pc-shop-stats {
+        gap: 15px;
+    }
+    
+    .pc-stat-item {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    .pc-contact-buttons {
+        gap: 10px;
+    }
+    
+    .pc-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pc-cover-section {
+        height: 180px;
+    }
+    
+    .pc-profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-width: 3px;
+    }
+    
+    .pc-shop-name {
+        font-size: 1.5rem;
+    }
+    
+    .pc-social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .pc-contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pc-btn {
+        width: 200px;
+        justify-content: center;
+    }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pc-card {
+    animation: fadeInUp 0.6s ease-out;
+}
     </style>
 
     <!-- JS -->
