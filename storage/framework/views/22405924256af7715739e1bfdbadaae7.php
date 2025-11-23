@@ -120,8 +120,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
     gap: 15px; /* space between cards */
-    padding-left: 0;  /* remove any container left padding */
-    margin-left: 0;   /* remove any container left margin */
+ 
+   
 }
 
 #productGrid1 .card {
@@ -216,6 +216,100 @@
         grid-template-columns: 1fr;
     }
 }
+/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
+@media (max-width: 992px) {
+
+    .hero-section_p {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 2.5rem !important;
+        padding: 0 20px;
+    }
+
+    .secound_hero_section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+        height: auto;
+    }
+
+    .part_finder_card {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .hero_image_section {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero_image_section img {
+        width: 90%;
+        height: auto;
+        max-width: 380px;
+    }
+}
+
+/* ======= Responsive 768px (Mobile) ======= */
+@media (max-width: 768px) {
+
+    .hero_section_text h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    .car {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .hero_image_section img {
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    .find-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+}
+
+/* ======= Responsive 480px (Small Mobile) ======= */
+@media (max-width: 480px) {
+
+    .hero_section_text h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .car {
+        max-width: 330px;
+    }
+
+    .hero_image_section img {
+        max-width: 260px;
+    }
+
+    .dropdown {
+        font-size: 14px;
+        padding: 7px;
+    }
+}
+
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
@@ -891,9 +985,44 @@
             }
         }
 
-        
-    </script>
-    <script>
+        function setupPagination(gridId, paginationId, perPage = 6) {
+    const products = document.querySelectorAll(`#${gridId} .card`);
+    const totalPages = Math.ceil(products.length / perPage);
+    const pagination = document.getElementById(paginationId);
+
+    function showPage(page) {
+        products.forEach((product, i) => {
+            product.style.display =
+                i >= (page - 1) * perPage && i < page * perPage
+                    ? "block"
+                    : "none";
+        });
+        pagination.querySelectorAll("button").forEach((btn, i) => {
+            btn.classList.toggle("active", i + 1 === page);
+        });
+    }
+
+    pagination.innerHTML = ""; // clear old buttons
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.innerText = i;
+        btn.addEventListener("click", () => showPage(i));
+        pagination.appendChild(btn);
+    }
+
+    if (totalPages > 0) {
+        showPage(1);
+    }
+}
+
+// Call for both sections
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupPagination("productGrid1", "pagination1", 8);
+    setupPagination("productGrid2", "pagination2", 8);
+});
+
 </script>
 
 <?php $__env->stopSection(); ?>

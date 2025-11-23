@@ -58,4 +58,5 @@ class Shops extends Model
     {
         return $this->hasMany(BuyerInvoices::class, 'shop_id');
     }
+    
 }

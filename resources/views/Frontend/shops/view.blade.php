@@ -241,10 +241,14 @@
 
                             <!-- Info -->
                             <div class="col-md-7 col-sm-6 col-8">
+                               <div class="row">
                                 <a href="{{ route('view.shop', $shop->id) }}" class="supplier-title fw-bold d-block mb-2">
                                     {{ $shop->name ?? 'Shop Name Here' }}
                                 </a>
-
+                             @if ($shop->supplier->is_verified)
+                                    <span class="badge">Verified</span>
+                                @endif
+                               </div>
                                 <div class="feature-badge text-muted small mb-1">
                                     <i class="fas fa-check-circle text-success me-1"></i>
                                     Warranty: Ask Supplier
