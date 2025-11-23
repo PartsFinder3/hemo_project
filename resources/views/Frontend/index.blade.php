@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Select2 CSS -->
-{{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -117,7 +117,106 @@
     max-height: 180px !important;  /* 5–6 items */
     overflow-y: auto !important;
 }
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+    padding-left: 0;  /* remove any container left padding */
+    margin-left: 0;   /* remove any container left margin */
+}
 
+#productGrid1 .card {
+    width: 280px;
+    padding: 0; /* remove all padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+#productGrid1 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-color: #aaa;
+}
+
+/* Card image */
+#productGrid1 .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+}
+
+
+#productGrid1 .card-body {
+    padding: 10px; /* optional, only inner spacing */
+}
+
+/* Card title */
+#productGrid1 .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em; /* limit to 2 lines */
+    overflow: hidden;
+}
+
+/* Price */
+#productGrid1 .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Meta info */
+#productGrid1 .meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+#productGrid1 .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#productGrid1 .buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+#productGrid1 .buttons a.whatsapp {
+    background: #25D366;
+}
+
+#productGrid1 .buttons a.call {
+    background: #0b5ed7;
+}
+
+@media (max-width: 1024px) {
+    #productGrid1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #productGrid1 {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
@@ -305,45 +404,83 @@
             @endforeach
         </div>
 
-            <div class="custom-grid" id="productGrid1">
-                @foreach ($ads as $ad)
-                    <div class="custom-card">
-                        @php
-                            $images = json_decode($ad->images, true);
-                        @endphp
+        <div class="grid" id="productGrid1">
+            <!-- Example Card -->
+            @foreach ($ads as $ad)
+                <div class="card">
+                    @php
+                        $images = json_decode($ad->images, true);
+                    @endphp
 
-                        @if(!empty($images[0]))
-                            <img src="{{ asset($images[0]) }}" class="custom-card-img" alt="Product">
-                        @endif
-
-                        <div class="custom-card-body">
-                            <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                                class="custom-card-title">{{ $ad->title }}</a>
-                            
-                            <div class="custom-price">AED {{ $ad->price }}</div>
-
-                            <div class="custom-meta">
-                                Availability: In Stock <br>
-                                Condition: {{ $ad->condition }} <br>
-                                Delivery: Ask Supplier <br>
-                                Warranty: Ask Supplier
-                            </div>
-
-                            <div class="custom-buttons">
-                                <a href="javascript:void(0)" class="btn whatsapp"
-                                    onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                </a>
-
-                                <a href="javascript:void(0)" class="btn call"
-                                    onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                    <i class="fa-solid fa-phone"></i> Click to Call
-                                </a>
-                            </div>
+                         @if(!empty($images[0]))
+                                            <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+               @endif
+                    <div class="card-body">
+                        <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
+                            class="card-title">{{ $ad->title }}</a>
+                        <div class="price">AED {{ $ad->price }}</div>
+                        <div class="meta">
+                            Availability: In Stock <br>
+                            Condition: {{ $ad->condition }} <br>
+                            Delivery: Ask Supplier <br>
+                            Warranty: Ask Supplier
                         </div>
+                        @php
+                            $ad->shop->supplier->whatsapp;
+                        @endphp
+                        <div class="buttons">
+                            <a href="javascript:void(0)" class="btn whatsapp"
+                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
+
+                            <a href="javascript:void(0)" class="btn call"
+                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                                <i class="fa-solid fa-phone"></i> Click to Call
+                            </a>
+                        </div>
+
                     </div>
-                @endforeach
+                </div>
+            @endforeach
+
+            {{-- <div class="card">
+                <img src="assets/ad (2).jpg" alt="Product">
+                <div class="card-body">
+                    <a href="" class="card-title">Mercedes Cla200 2019 Window Switch Panel</a>
+                    <div class="price">AED 100</div>
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Condition: Used <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+                    <div class="buttons">
+                        <a href="#" class="btn whatsapp">WhatsApp</a>
+                        <a href="#" class="btn call">Click to Call</a>
+                    </div>
+                </div>
             </div>
+            <div class="card">
+                <img src="assets/ad (2).jpg" alt="Product">
+                <div class="card-body">
+                    <a href="" class="card-title">Mercedes Cla200 2019 Window Switch Panel</a>
+                    <div class="price">AED 100</div>
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Condition: Used <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+                    <div class="buttons">
+                        <a href="#" class="btn whatsapp">WhatsApp</a>
+                        <a href="#" class="btn call">Click to Call</a>
+                    </div>
+                </div>
+            </div> --}}
+
+            <!-- Repeat similar cards... -->
+        </div>
 
         <div class="pagination" id="pagination1"></div>
     </section>
@@ -509,7 +646,7 @@
     gap: 5px; 
 }
 .card {
-    width: 100%;   
+    width: 300px;
     height: 450px;
     display: flex;
     flex-direction: column;
@@ -755,129 +892,6 @@
         font-size: 14px;
         padding: 8px 10px;
     }
-}
-#productGrid2 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 20px; /* card ke beech ka gap */
-}
-
-@media (max-width: 1200px) {
-    #productGrid2 {
-        grid-template-columns: repeat(3, 1fr); /* medium screen: 3 cards */
-    }
-}
-
-@media (max-width: 992px) {
-    #productGrid2 {
-        grid-template-columns: repeat(2, 1fr); /* tablets: 2 cards */
-    }
-}
-
-@media (max-width: 576px) {
-    #productGrid2 {
-        grid-template-columns: 1fr; /* mobile: 1 card */
-    }
-}
-
-/* Grid container */
-.custom-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* gap between cards */
-    justify-content: flex-start;
-}
-
-/* Card */
-.custom-card {
-    flex: 1 1 23%; /* 4 cards per row */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s;
-}
-
-.custom-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Image - fixed height, width 100% */
-.custom-card-img {
-    width: 100%;
-    height: 180px; /* fixed height */
-    object-fit: contain; /* zoom out, whole image visible */
-    background-color: white; /* optional: show background if image smaller */
-    display: block;
-}
-/* Card body */
-.custom-card-body {
-    padding: 15px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Title */
-.custom-card-title {
-    display: block;
-    font-size: 1rem; /* text size same as before */
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #333;
-    text-decoration: none;
-}
-
-/* Price */
-.custom-price {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #e74c3c;
-}
-
-/* Meta */
-.custom-meta {
-    font-size: 0.85rem;
-    color: #555;
-    margin-bottom: 15px;
-    line-height: 1.4; /* spacing same as before */
-}
-
-/* Buttons - one row */
-.custom-buttons {
-    display: flex;
-    gap: 10px; /* space between buttons */
-    flex-wrap: nowrap; /* keep in one row */
-}
-
-.custom-buttons a {
-    flex: 1; /* same width for both buttons */
-    padding: 8px 0;
-    font-size: 0.85rem;
-    border-radius: 4px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-}
-
-.custom-buttons a.whatsapp { background-color: #25D366; }
-.custom-buttons a.call { background-color: #3498db; }
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .custom-card { flex: 1 1 30%; }
-}
-
-@media (max-width: 900px) {
-    .custom-card { flex: 1 1 45%; }
-}
-
-@media (max-width: 600px) {
-    .custom-card { flex: 1 1 100%; }
 }
 
  </style>
