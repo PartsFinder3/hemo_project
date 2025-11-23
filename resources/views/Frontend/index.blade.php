@@ -429,9 +429,10 @@
                             $ad->shop->supplier->whatsapp;
                         @endphp
                         <div class="buttons">
-<button type="button" onclick="sendProductInquiryWhatsapp('{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-   WhatsApp 
-</button>
+                            <a href="javascript:void(0)" class="btn whatsapp"
+                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
 
                             <a href="javascript:void(0)" class="btn call"
                                 onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
@@ -564,7 +565,7 @@
 
     <!-- Map -->
    
-
+    
     <!-- Locations -->
     <section class="locations-section">
         <div class="section-text">
