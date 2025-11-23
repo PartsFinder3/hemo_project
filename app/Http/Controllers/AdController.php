@@ -178,11 +178,12 @@ class AdController extends Controller
 
                 $path = $directory . '/' . $image_name;
                 $image->save($path);
-
+                     
                 $imagePaths[] = 'storage/ad_images/' . $image_name;
+
             }
         }
-
+        dd($imagePaths);
         $ad->images = json_encode($imagePaths);
         $ad->save();
 
