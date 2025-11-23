@@ -14,16 +14,14 @@
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
                             <!-- Profile Image + Social Icons -->
-                            <div class="pc-profile-top position-absolute start-50 translate-middle-x text-center">
-                                <img src="{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/2.jpg') }}"
-                                    class="pc-profile-avatar rounded-circle border border-3 border-white shadow" alt="Shop Logo">
-
-                                <div class="pc-social-icons mt-2">
-                                    <a href="#" class="pc-social-icon pc-facebook"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#" class="pc-social-icon pc-tiktok"><i class="fab fa-tiktok"></i></a>
-                                    <a href="#" class="pc-social-icon pc-twitter"><i class="fab fa-twitter"></i></a>
-                                </div>
-                            </div>
+                           <div class="profile-avatar position-absolute bottom-0 start-0 ms-3 mb-3">
+                            @if ($profile && $profile->profile_image)
+                                <img src="{{ asset('storage/' . $profile->profile_image) }}"
+                                    class="img-fluid rounded-circle border border-3 border-white shadow"
+                                    alt="Shop Logo">
+                          
+                            @endif
+                        </div>
                         </div>
 
                         <!-- Content Section -->
