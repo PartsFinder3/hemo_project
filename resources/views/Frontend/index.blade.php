@@ -203,8 +203,7 @@
 }
 
 #productGrid1 .buttons a.call {
-    width: 100% !important;
-    height: 30px;
+
    background: var(--accent-color);
 }
 
