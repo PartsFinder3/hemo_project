@@ -178,7 +178,7 @@
 
                                         @if (is_array($images) && isset($images[0]))
                                             <div class="product-image">
-                                                <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
+                                                <img src="{{ asset( $images[0]) }}" alt="Product">
                                             </div>
                                         @endif
                                         <div class="product-body">
