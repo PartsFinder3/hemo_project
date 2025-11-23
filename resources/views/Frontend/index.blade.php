@@ -899,21 +899,29 @@
 
 
      <script>
-        function contactSupplier(isActive, number, title) {
-            if (isActive == 1) {
-                let message = encodeURIComponent("Hello, I'm interested in your ad: " + title);
-                let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+function contactSupplier(isActive, number, title) {
+    if (isActive == 1) {
+        // Remove + if exists
+        number = number.replace(/\+/g, '');
+        let message = encodeURIComponent("Hello, I'm interested in your ad: " + title);
+        let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-                let url = isMobile ?
-                    `https://wa.me/${number}?text=${message}` :
-                    `https://web.whatsapp.com/send?phone=${number}&text=${message}`;
-
-                window.open(url, "_blank");
-            } else {
-                // Supplier inactive → stay on same page
-                window.location.reload();
-            }
+        let url;
+        if (isMobile) {
+            url = `https://wa.me/${number}?text=${message}`;
+        } else {
+            url = `https://web.whatsapp.com/send?phone=${number}&text=${message}`;
         }
+
+        // Open in same tab as fallback
+        let win = window.open(url, "_blank");
+        if (!win) {
+            window.location.href = url; // fallback if popup blocked
+        }
+    } else {
+        window.location.reload();
+    }
+}
 
         function callSupplier(isActive, number) {
             if (isActive == 1) {
