@@ -265,6 +265,10 @@
 
     <style>
         /* Enhanced responsive profile card styles */
+            body, main, header, nav, .hero-section, .hero-section_p {
+            background-image: none !important;
+            background: none !important;
+        }
         .profile-card {
             background: var(--primary-color);
             border-radius: 0;

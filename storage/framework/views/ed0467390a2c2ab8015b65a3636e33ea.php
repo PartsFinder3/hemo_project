@@ -157,7 +157,7 @@
                                 <div class="gallery-grid">
                                     <?php $__currentLoopData = $shopGallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="gallery-item">
-                                            <img src="<?php echo e(asset('storage/' . $image->image_path)); ?>"
+                                            <img src="<?php echo e($image->image_path); ?>"
                                                  class="gallery-image" alt="Gallery Image"
                                                  onclick="openImageModal(this.src)">
                                         </div>
@@ -180,7 +180,7 @@
 
                                         <?php if(is_array($images) && isset($images[0])): ?>
                                             <div class="product-image">
-                                                <img src="<?php echo e(asset('storage/' . $images[0])); ?>" alt="Product">
+                                                <img src="<?php echo e(asset( $images[0])); ?>" alt="Product">
                                             </div>
                                         <?php endif; ?>
                                         <div class="product-body">
