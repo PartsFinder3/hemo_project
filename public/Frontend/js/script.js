@@ -349,9 +349,10 @@ function setupPagination(gridId, paginationId, perPage = 6) {
 }
 
 // Call for both sections
-setupPagination("productGrid1", "pagination1", 8);
-setupPagination("productGrid2", "pagination2", 8);
-
+document.addEventListener("DOMContentLoaded", function () {
+    setupPagination("productGrid1", "pagination1", 8);
+    setupPagination("productGrid2", "pagination2", 8);
+});
 
 // Mobile Menu Functionality
 const burgerMenu = document.getElementById("burger-menu");
