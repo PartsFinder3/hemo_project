@@ -208,6 +208,39 @@
     background-image: none !important;
     background: none !important;
 }
+.feature-badges .badge {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+    margin-bottom: 6px;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+.badge-verified {
+    background-color: #28a745; /* green */
+}
+
+.badge-warranty {
+    background-color: #007bff; /* blue */
+}
+
+.badge-delivery {
+    background-color: #fd7e14; /* orange */
+}
+
+.badge-city {
+    background-color: #6f42c1; /* purple */
+}
+
+.feature-badges .badge i {
+    font-size: 0.8rem;
+}
+
 </style>
 <?php $__env->startSection('main-section'); ?>
 
@@ -239,33 +272,24 @@
                             </div>
 
                             <!-- Info -->
-                            <div class="col-md-7 col-sm-6 col-8">
-                               <div class="row">
-                                <a href="<?php echo e(route('view.shop', $shop->id)); ?>" class="supplier-title fw-bold d-block mb-2">
-                                    <?php echo e($shop->name ?? 'Shop Name Here'); ?>
+                                <div class="col-md-7 col-sm-6 col-8">
+                                    <div class="row">
+                                        <a href="<?php echo e(route('view.shop', $shop->id)); ?>" class="supplier-title fw-bold d-block mb-2">
+                                            <?php echo e($shop->name ?? 'Shop Name Here'); ?>
 
-                                </a>
-                             <?php if($shop->supplier->is_verified): ?>
-                                    <span class="badge">Verified</span>
-                                <?php endif; ?>
-                               </div>
-                                <div class="feature-badge text-muted small mb-1">
-                                    <i class="fas fa-check-circle text-success me-1"></i>
-                                    Warranty: Ask Supplier
+                                        </a>
+
+                                        <?php if($shop->supplier && $shop->supplier->is_verified): ?>
+                                            <span class="badge badge-verified mb-2"><i class="fas fa-check-circle me-1"></i> Verified</span>
+                                        <?php endif; ?>
+
+                                        <div class="feature-badges mb-2">
+                                            <span class="badge badge-warranty"><i class="fas fa-shield-alt me-1"></i> Warranty: Ask Supplier</span>
+                                            <span class="badge badge-delivery"><i class="fas fa-truck me-1"></i> Delivering: Ask Supplier</span>
+                                            <span class="badge badge-city"><i class="fas fa-map-marker-alt me-1"></i> <?php echo e($shop->supplier->city->name ?? 'City Not Available'); ?></span>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="feature-badge text-muted small mb-1">
-                                    <i class="fas fa-check-circle text-success me-1"></i>
-                                    Delivering: Ask Supplier
-                                </div>
-
-                                <div class="location-info text-muted small">
-                                    <i class="fas fa-map-marker-alt text-danger me-1"></i>
-                                    <?php echo e($shop->supplier->city->name ?? 'City Not Available'); ?>
-
-                                </div>
-                            </div>
-
                             <!-- Actions -->
                             <div class="col-md-3 col-sm-3 col-12 text-md-end mt-3 mt-md-0">
                                 <div class="d-flex d-md-block flex-wrap gap-2">

@@ -209,37 +209,11 @@
     background-image: none !important;
     background: none !important;
 }
-.feature-badges .badge {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 8px;
-    margin-bottom: 6px;
-    padding: 5px 10px;
+.supplier-title span {
     font-size: 0.85rem;
-    border-radius: 20px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    color: #fff;
-}
-
-.badge-verified {
-    background-color: #28a745; /* green */
-}
-
-.badge-warranty {
-    background-color: #007bff; /* blue */
-}
-
-.badge-delivery {
-    background-color: #fd7e14; /* orange */
-}
-
-.badge-city {
-    background-color: #6f42c1; /* purple */
-}
-
-.feature-badges .badge i {
-    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 5px;
+    color: #6c757d; /* Bootstrap muted gray */
 }
 
 </style>
@@ -275,13 +249,14 @@
                             <!-- Info -->
                                 <div class="col-md-7 col-sm-6 col-8">
                                     <div class="row">
-                                        <a href="{{ route('view.shop', $shop->id) }}" class="supplier-title fw-bold d-block mb-2">
+                                       <a href="{{ route('view.shop', $shop->id) }}" class="supplier-title fw-bold d-block mb-2">
                                             {{ $shop->name ?? 'Shop Name Here' }}
+                                            @if ($shop->supplier?->is_verified)
+                                                <span class="text-success fw-bold ms-1">Varied</span>
+                                            @endif
                                         </a>
 
-                                        @if ($shop->supplier && $shop->supplier->is_verified)
-                                            <span class="badge badge-verified mb-2"><i class="fas fa-check-circle me-1"></i> Verified</span>
-                                        @endif
+                                     
 
                                         <div class="feature-badges mb-2">
                                             <span class="badge badge-warranty"><i class="fas fa-shield-alt me-1"></i> Warranty: Ask Supplier</span>
