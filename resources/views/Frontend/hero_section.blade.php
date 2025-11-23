@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    
 <style>
 .hero-section_p {
@@ -247,7 +250,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
                 <form action="{{ route('buyer.inquiry.send') }}" method="post">
                     @csrf
                     <div class="form-group" id="make-group">
-                        <select class="dropdown" id="make" name="car_make_id">
+                        <select class="dropdown mySelect" id="make" name="car_make_id">
                             <option disabled selected value="">Select Your Make</option>
                             @foreach ($makes as $make)
                                 <option value="{{ $make->id }}">{{ $make->name }}</option>
@@ -310,3 +313,38 @@ body, main, header, nav, .hero-section, .hero-section_p {
         </div>
     </div>
 
+<script>
+    <script>
+$(document).ready(function () {
+
+    // سب dropdowns پر select2 سرچ
+    $('.dropdown').select2({
+        placeholder: "Select option",
+        allowClear: true,
+        width: '100%'
+    });
+
+    // Make → Model Ajax Load Example (اگر موجود ہو)
+    $('#make').on('change', function () {
+        let makeId = $(this).val();
+
+        $.ajax({
+            url: "/get-models/" + makeId,
+            type: "GET",
+            success: function (data) {
+                $('#model').empty();
+                $('#model').append('<option value="">Select Your Model</option>');
+                $.each(data, function (key, value) {
+                    $('#model').append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+
+                // دوبارہ select2 refresh
+                $('#model').trigger('change.select2');
+            }
+        });
+    });
+
+});
+</script>
+
+</script>

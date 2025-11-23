@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    
 <style>
 .hero-section_p {
@@ -5,7 +8,8 @@
     height: 630px;
     display: flex;
     flex-direction: column;
-    background-color:#2e2d2d;
+       background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+
 }
 .hero_section_text {
     width: 100%;
@@ -41,7 +45,7 @@
 .car {
     width: 400px;
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -104,6 +108,132 @@
     max-height: 180px !important;  /* 5–6 items */
     overflow-y: auto !important;
 }
+body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+ .condition-section {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    margin-top: -10px;
+}
+#condition-group {
+    display: block;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 5px; 
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
+@media (max-width: 992px) {
+
+    .hero-section_p {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 2.5rem !important;
+        padding: 0 20px;
+    }
+
+    .secound_hero_section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+        height: auto;
+    }
+
+    .part_finder_card {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .hero_image_section {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero_image_section img {
+        width: 90%;
+        height: auto;
+        max-width: 380px;
+    }
+}
+
+/* ======= Responsive 768px (Mobile) ======= */
+@media (max-width: 768px) {
+
+    .hero_section_text h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    .car {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .hero_image_section img {
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    .find-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+}
+
+/* ======= Responsive 480px (Small Mobile) ======= */
+@media (max-width: 480px) {
+
+    .hero_section_text h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .car {
+        max-width: 330px;
+    }
+
+    .hero_image_section img {
+        max-width: 260px;
+    }
+
+    .dropdown {
+        font-size: 14px;
+        padding: 7px;
+    }
+}
+
 </style>
 
    <div class="hero_section_text">
@@ -120,7 +250,7 @@
                 <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
                     <?php echo csrf_field(); ?>
                     <div class="form-group" id="make-group">
-                        <select class="dropdown" id="make" name="car_make_id">
+                        <select class="dropdown mySelect" id="make" name="car_make_id">
                             <option disabled selected value="">Select Your Make</option>
                             <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
@@ -179,8 +309,42 @@
         </div>
 
         <div class="hero_image_section">
-            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image.png" alt="">
+            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
         </div>
     </div>
-</div>
-<?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>
+
+<script>
+    <script>
+$(document).ready(function () {
+
+    // سب dropdowns پر select2 سرچ
+    $('.dropdown').select2({
+        placeholder: "Select option",
+        allowClear: true,
+        width: '100%'
+    });
+
+    // Make → Model Ajax Load Example (اگر موجود ہو)
+    $('#make').on('change', function () {
+        let makeId = $(this).val();
+
+        $.ajax({
+            url: "/get-models/" + makeId,
+            type: "GET",
+            success: function (data) {
+                $('#model').empty();
+                $('#model').append('<option value="">Select Your Model</option>');
+                $.each(data, function (key, value) {
+                    $('#model').append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+
+                // دوبارہ select2 refresh
+                $('#model').trigger('change.select2');
+            }
+        });
+    });
+
+});
+</script>
+
+</script><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>

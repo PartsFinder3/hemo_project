@@ -774,3 +774,164 @@ function sendProductInquiryWhatsapp(whatsapp, title) {
     })
     .catch(err => console.log(err));
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize Select2 for all dropdowns
+    $('.mySelect').each(function() {
+        $(this).select2({
+            placeholder: $(this).find('option:first').text(),
+            allowClear: true,
+            width: '100%',
+            dropdownAutoWidth: true,
+            minimumResultsForSearch: 0, // سرچ ہمیشہ دکھائیں
+            dropdownParent: $(this).parent()
+        });
+    });
+
+    // باقی آپ کا موجودہ JavaScript کوڈ یہاں رہے گا
+    const makeSelect = document.getElementById("make");
+    const modelSelect = document.getElementById("model");
+    const yearSelect = document.getElementById("year");
+    const partsDropdown = document.getElementById("parts-dropdown");
+    const partsTagsContainer = document.getElementById("parts-tags");
+    const findBtn = document.getElementById("find-btn");
+
+    const modelGroup = document.getElementById("model-group");
+    const yearGroup = document.getElementById("year-group");
+    const partsGroup = document.getElementById("parts-group");
+    const conditionGroup = document.getElementById("condition-group");
+
+    let selectedParts = [];
+
+    // helpers (keep your original animations)
+    function showFormGroup(group) {
+        group.classList.remove("hidden");
+        setTimeout(() => group.classList.add("show"), 50);
+    }
+    function hideFormGroup(group) {
+        group.classList.remove("show");
+        setTimeout(() => group.classList.add("hidden"), 300);
+    }
+
+    function updateFindButton() {
+        const hasBasicInfo =
+            makeSelect.value && modelSelect.value && yearSelect.value;
+        const hasParts = selectedParts.length > 0;
+        findBtn.disabled = !(hasBasicInfo && hasParts);
+    }
+
+    function createPartTag(partId) {
+        const partOption = document.querySelector(
+            `#parts-dropdown option[value="${partId}"]`
+        );
+        const partName = partOption ? partOption.textContent : partId;
+        const tag = document.createElement("div");
+        tag.className = "part-tag";
+        tag.innerHTML = `${partName} <button type="button" class="remove-btn">&times;</button>`;
+        tag.querySelector(".remove-btn").addEventListener("click", () =>
+            removePart(partId, tag)
+        );
+        partsTagsContainer.appendChild(tag);
+    }
+
+    function removePart(partId, tagNode) {
+        selectedParts = selectedParts.filter((p) => p !== partId);
+        if (tagNode) tagNode.remove();
+        updateFindButton();
+    }
+
+    // FETCH MODELS when make changes - Select2 compatible
+    $('#make').on('change', async function () {
+        const makeId = this.value;
+
+        // Reset model dropdown with loading state
+        $('#model').empty().append('<option value="">Loading...</option>');
+        $('#model').prop('disabled', true);
+        $('#model').trigger('change.select2');
+
+        // Hide later groups
+        hideFormGroup(partsGroup);
+        hideFormGroup(conditionGroup);
+
+        if (!makeId) {
+            $('#model').empty().append('<option value="">Select Your Model</option>');
+            $('#model').trigger('change.select2');
+            updateFindButton();
+            return;
+        }
+
+        try {
+            const endpointBase = window.getModelsUrl;
+            const res = await fetch(endpointBase + encodeURIComponent(makeId));
+
+            if (!res.ok)
+                throw new Error("HTTP " + res.status + " " + res.statusText);
+
+            const data = await res.json();
+            
+            $('#model').empty();
+            $('#model').append('<option value="">Select Your Model</option>');
+
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach((m) => {
+                    $('#model').append(`<option value="${m.id}">${m.name}</option>`);
+                });
+                showFormGroup(modelGroup);
+                $('#model').prop('disabled', false);
+            } else {
+                $('#model').append('<option value="">No models available</option>');
+                showFormGroup(modelGroup);
+                $('#model').prop('disabled', true);
+            }
+
+            // Refresh Select2
+            $('#model').trigger('change.select2');
+        } catch (err) {
+            console.error("Error fetching models:", err);
+            $('#model').empty().append('<option value="">Error loading models</option>');
+            $('#model').trigger('change.select2');
+            showFormGroup(modelGroup);
+            $('#model').prop('disabled', true);
+        }
+        updateFindButton();
+    });
+
+    // Progressive reveal with Select2 compatibility
+    $('#model').on('change', function () {
+        if (this.value) {
+            showFormGroup(yearGroup);
+            $('#year').prop('disabled', false);
+        } else {
+            hideFormGroup(yearGroup);
+            hideFormGroup(partsGroup);
+            hideFormGroup(conditionGroup);
+            $('#year').prop('disabled', true);
+            $('#parts-dropdown').prop('disabled', true);
+        }
+        updateFindButton();
+    });
+
+    $('#year').on('change', function () {
+        if (this.value) {
+            showFormGroup(partsGroup);
+            $('#parts-dropdown').prop('disabled', false);
+        } else {
+            hideFormGroup(partsGroup);
+            hideFormGroup(conditionGroup);
+            $('#parts-dropdown').prop('disabled', true);
+        }
+        updateFindButton();
+    });
+
+    $('#parts-dropdown').on('change', function () {
+        if (this.value && !selectedParts.includes(this.value)) {
+            selectedParts.push(this.value);
+            createPartTag(this.value);
+            $(this).val('').trigger('change.select2');
+            showFormGroup(conditionGroup);
+            updateFindButton();
+        }
+    });
+
+    // باقی کوڈ...
+});
