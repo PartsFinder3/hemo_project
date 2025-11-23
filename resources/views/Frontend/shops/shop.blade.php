@@ -874,13 +874,14 @@
     align-items: center;
     gap: 8px;
     font-size: 1rem;
-    color: var(--tertiary-color);
+    color: black;
     font-weight: 500;
     padding: 8px 16px;
     background: rgba(255,255,255,0.8);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
+    font-weight: bold;
 }
 
 .pc-stat-item:hover {
