@@ -923,9 +923,44 @@
             }
         }
 
-        
-    </script>
-    <script>
+        function setupPagination(gridId, paginationId, perPage = 6) {
+    const products = document.querySelectorAll(`#${gridId} .card`);
+    const totalPages = Math.ceil(products.length / perPage);
+    const pagination = document.getElementById(paginationId);
+
+    function showPage(page) {
+        products.forEach((product, i) => {
+            product.style.display =
+                i >= (page - 1) * perPage && i < page * perPage
+                    ? "block"
+                    : "none";
+        });
+        pagination.querySelectorAll("button").forEach((btn, i) => {
+            btn.classList.toggle("active", i + 1 === page);
+        });
+    }
+
+    pagination.innerHTML = ""; // clear old buttons
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.innerText = i;
+        btn.addEventListener("click", () => showPage(i));
+        pagination.appendChild(btn);
+    }
+
+    if (totalPages > 0) {
+        showPage(1);
+    }
+}
+
+// Call for both sections
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupPagination("productGrid1", "pagination1", 8);
+    setupPagination("productGrid2", "pagination2", 8);
+});
+
 </script>
 
 @endsection
