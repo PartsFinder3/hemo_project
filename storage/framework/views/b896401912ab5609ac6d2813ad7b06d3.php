@@ -313,38 +313,4 @@ body, main, header, nav, .hero-section, .hero-section_p {
         </div>
     </div>
 
-<script>
-    <script>
-$(document).ready(function () {
-
-    // سب dropdowns پر select2 سرچ
-    $('.dropdown').select2({
-        placeholder: "Select option",
-        allowClear: true,
-        width: '100%'
-    });
-
-    // Make → Model Ajax Load Example (اگر موجود ہو)
-    $('#make').on('change', function () {
-        let makeId = $(this).val();
-
-        $.ajax({
-            url: "/get-models/" + makeId,
-            type: "GET",
-            success: function (data) {
-                $('#model').empty();
-                $('#model').append('<option value="">Select Your Model</option>');
-                $.each(data, function (key, value) {
-                    $('#model').append('<option value="' + value.id + '">' + value.name + '</option>');
-                });
-
-                // دوبارہ select2 refresh
-                $('#model').trigger('change.select2');
-            }
-        });
-    });
-
-});
-</script>
-
-</script><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>
