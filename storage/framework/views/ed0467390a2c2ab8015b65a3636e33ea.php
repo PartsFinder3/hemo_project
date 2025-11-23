@@ -153,11 +153,13 @@
                             <!-- Gallery -->
                             <div class="info-card">
                                 <div class="card-header-section">
-                                    <h5 class="section-title">Our Gallery</h5>
+                                    <h5 class="section-title_h5">Our Gallery</h5>
                                 </div>
                                 <div class="gallery-grid">
                                     <?php $__currentLoopData = $shopGallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="gallery-item">
+                                            <?php echo e($image->image_path); ?>
+
                                             <img src="<?php echo e($image->image_path); ?>"
                                                  class="gallery-image" alt="Gallery Image"
                                                  onclick="openImageModal(this.src)">

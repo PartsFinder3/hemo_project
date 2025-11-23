@@ -151,11 +151,12 @@
                             <!-- Gallery -->
                             <div class="info-card">
                                 <div class="card-header-section">
-                                    <h5 class="section-title">Our Gallery</h5>
+                                    <h5 class="section-title_h5">Our Gallery</h5>
                                 </div>
                                 <div class="gallery-grid">
                                     @foreach ($shopGallery as $image)
                                         <div class="gallery-item">
+                                            {{$image->image_path}}
                                             <img src="{{ $image->image_path}}"
                                                  class="gallery-image" alt="Gallery Image"
                                                  onclick="openImageModal(this.src)">
