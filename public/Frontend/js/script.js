@@ -350,9 +350,10 @@ function setupPagination(gridId, paginationId, perPage = 6) {
 
 // Call for both sections
 
+document.addEventListener("DOMContentLoaded", () => {
     setupPagination("productGrid1", "pagination1", 8);
     setupPagination("productGrid2", "pagination2", 8);
-
+});
 
 // Mobile Menu Functionality
 const burgerMenu = document.getElementById("burger-menu");
