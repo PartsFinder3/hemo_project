@@ -116,7 +116,106 @@
     max-height: 180px !important;  /* 5–6 items */
     overflow-y: auto !important;
 }
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+    padding-left: 0;  /* remove any container left padding */
+    margin-left: 0;   /* remove any container left margin */
+}
 
+#productGrid1 .card {
+    width: 280px;
+    padding: 0; /* remove all padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+#productGrid1 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-color: #aaa;
+}
+
+/* Card image */
+#productGrid1 .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+}
+
+
+#productGrid1 .card-body {
+    padding: 10px; /* optional, only inner spacing */
+}
+
+/* Card title */
+#productGrid1 .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em; /* limit to 2 lines */
+    overflow: hidden;
+}
+
+/* Price */
+#productGrid1 .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Meta info */
+#productGrid1 .meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+#productGrid1 .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#productGrid1 .buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+#productGrid1 .buttons a.whatsapp {
+    background: #25D366;
+}
+
+#productGrid1 .buttons a.call {
+    background: #0b5ed7;
+}
+
+@media (max-width: 1024px) {
+    #productGrid1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #productGrid1 {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
