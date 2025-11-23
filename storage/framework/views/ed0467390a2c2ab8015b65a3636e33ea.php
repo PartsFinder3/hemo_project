@@ -73,7 +73,7 @@
                             <!-- Deals in Parts -->
                             <div class="info-card">
                                 <div class="card-header-section">
-                                    <h5 class="section-title"> Deals in Parts</h5>
+                                    <h5 class="section-title_h5"> Deals in Parts</h5>
                                     <?php if($shop->supplier->is_verified): ?>
                                         <span class="verified-badge">
                                             <i class="bi bi-check-circle"></i> Verified
@@ -88,7 +88,8 @@
                             <!-- Deals in Cars -->
                             <div class="info-card">
                                 <div class="card-header-section">
-                                    <h5 class="section-title">Deals in Cars</h5>
+                                   
+                                    <h5 class="section-title_h5" style="color: black !important;">Deals in Cars</h5>
                                     <?php if($shop->supplier->is_verified): ?>
                                         <span class="verified-badge">
                                             <i class="bi bi-check-circle"></i> Verified
@@ -267,6 +268,10 @@
 
     <style>
         /* Enhanced responsive profile card styles */
+            body, main, header, nav, .hero-section, .hero-section_p {
+            background-image: none !important;
+            background: none !important;
+        }
         .profile-card {
             background: var(--primary-color);
             border-radius: 0;
@@ -441,7 +446,7 @@
         .section-title {
             font-size: 1.2rem;
             font-weight: bold;
-            color: black;
+            color: black !important;
             margin: 0;
         }
 
