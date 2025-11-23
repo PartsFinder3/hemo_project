@@ -143,7 +143,8 @@ class AdController extends Controller
             'fuel_id' => 'required',
             'engine_size_id' => 'required',
             'part_id' => 'required|exists:spare_parts,id',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'currency' => 'required|string|in:AED,USD,SAR,PKR,INR,EUR,GBP,CNY,JPY,CAD,AUD,CHF'
         ]);
 
         $ad = Ads::findOrFail($id);
@@ -159,6 +160,8 @@ class AdController extends Controller
         $ad->engine_size_id = $request->input('engine_size_id');
         $ad->part_id = $request->input('part_id');
         $ad->condition = $request->input('condition');
+        $ad->currency = $request->input('currency');
+
         $imagePaths = [];
 
         if ($request->hasFile('images')) {

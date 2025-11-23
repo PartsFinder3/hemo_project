@@ -124,6 +124,27 @@
                                                 aria-describedby="helpId" placeholder="" value="{{ $ad->price }}" />
                                         </div>
                                         <div class="mb-3">
+                                            <label for="" class="form-label">Currency Type</label>
+
+                                            <select class="form-select form-select-lg" name="currency" id="currency">
+                                                <option disabled>Select Currency</option>
+
+                                                <option value="AED" {{ $ad->currency == 'AED' ? 'selected' : '' }}>AED — UAE Dirham</option>
+                                                <option value="USD" {{ $ad->currency == 'USD' ? 'selected' : '' }}>USD — US Dollar</option>
+                                                <option value="SAR" {{ $ad->currency == 'SAR' ? 'selected' : '' }}>SAR — Saudi Riyal</option>
+                                                <option value="PKR" {{ $ad->currency == 'PKR' ? 'selected' : '' }}>PKR — Pakistani Rupee</option>
+                                                <option value="INR" {{ $ad->currency == 'INR' ? 'selected' : '' }}>INR — Indian Rupee</option>
+                                                <option value="EUR" {{ $ad->currency == 'EUR' ? 'selected' : '' }}>EUR — Euro</option>
+                                                <option value="GBP" {{ $ad->currency == 'GBP' ? 'selected' : '' }}>GBP — British Pound</option>
+                                                <option value="CNY" {{ $ad->currency == 'CNY' ? 'selected' : '' }}>Chinese Yuan</option>
+                                                <option value="JPY" {{ $ad->currency == 'JPY' ? 'selected' : '' }}>Japanese Yen</option>
+                                                <option value="CAD" {{ $ad->currency == 'CAD' ? 'selected' : '' }}>Canadian Dollar</option>
+                                                <option value="AUD" {{ $ad->currency == 'AUD' ? 'selected' : '' }}>Australian Dollar</option>
+                                                <option value="CHF" {{ $ad->currency == 'CHF' ? 'selected' : '' }}>Swiss Franc</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
                                             <label for="" class="form-label">Warranty</label>
                                             <input type="text" class="form-control" name="warranty" id=""
                                                 aria-describedby="helpId" placeholder="" value="{{ $ad->warranty }}" />
