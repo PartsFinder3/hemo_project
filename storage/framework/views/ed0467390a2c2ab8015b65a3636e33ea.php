@@ -81,9 +81,7 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="parts-grid">
-                                    <?php $__currentLoopData = $shopParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="part-item"><?php echo e($part->part->name); ?></div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                   
                                 </div>
                             </div>
 

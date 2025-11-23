@@ -80,9 +80,7 @@
                                     @endif
                                 </div>
                                 <div class="parts-grid">
-                                    @foreach ($shopParts as $part)
-                                        <div class="part-item">{{ $part->part->name }}</div>
-                                    @endforeach
+                   
                                 </div>
                             </div>
 
