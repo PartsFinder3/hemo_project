@@ -688,12 +688,11 @@
         }
 
         /* Fix for profile image responsiveness */
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
+       .profile-avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* تصویر proportionate رہے */
+}
 
         /* Full width container */
         .container-fluid {
