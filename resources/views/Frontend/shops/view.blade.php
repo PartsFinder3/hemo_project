@@ -210,10 +210,62 @@
     background: none !important;
 }
 .supplier-title span {
-    font-size: 0.85rem;
-    font-weight: 400;
-    margin-left: 5px;
-    color: #6c757d; /* Bootstrap muted gray */
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 8px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.supplier-title span::before {
+    content: "✓";
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+.supplier-title:hover span {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    background: linear-gradient(135deg, #218838, #1e9e8a);
+}
+
+/* Alternative icon version using Font Awesome */
+.supplier-title span.verified-badge {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+}
+
+.supplier-title span.verified-badge::before {
+    content: "\f058"; /* Font Awesome check-circle icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 0.7rem;
+}
+
+/* For premium suppliers */
+.supplier-title span.premium-badge {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+.supplier-title span.premium-badge::before {
+    content: "⭐";
+    font-size: 0.65rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .supplier-title span {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+        margin-left: 6px;
+    }
 }
 
 </style>
@@ -249,13 +301,12 @@
                             <!-- Info -->
                                 <div class="col-md-7 col-sm-6 col-8">
                                     <div class="row">
-                                       <a href="{{ route('view.shop', $shop->id) }}" class="supplier-title fw-bold d-block mb-2">
-                                            {{ $shop->name ?? 'Shop Name Here' }}
-                                            @if ($shop->supplier?->is_verified)
-                                                <span class="text-success fw-bold ms-1">Varied</span>
-                                            @endif
-                                        </a>
-
+                                     <a href="{{ route('view.shop', $shop->id) }}" class="supplier-title fw-bold d-block mb-2">
+                                        {{ $shop->name ?? 'Shop Name Here' }}
+                                        @if ($shop->supplier?->is_verified)
+                                            <span class="verified-badge">Verified</span>
+                                        @endif
+                                    </a>
                                      
 
                                         <div class="feature-badges mb-2">
