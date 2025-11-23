@@ -155,7 +155,7 @@
                                 <div class="gallery-grid">
                                     @foreach ($shopGallery as $image)
                                         <div class="gallery-item">
-                                            <img src="{{ asset('storage/' . $image->image_path) }}"
+                                            <img src="{{ $image->image_path) }}"
                                                  class="gallery-image" alt="Gallery Image"
                                                  onclick="openImageModal(this.src)">
                                         </div>
