@@ -210,6 +210,7 @@
     background: none !important;
 }
 .supplier-title span {
+    float: right;
     display: inline-flex;
     align-items: center;
     gap: 4px;
