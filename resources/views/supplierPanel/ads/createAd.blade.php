@@ -93,7 +93,7 @@
                                             <label class="form-label">Fuel</label>
                                             <select class="form-select form-select-lg" name="fuel_id" id="">
                                                 <option value="">Select one</option>
-                                                {{-- <option value="999">N/A</option> --}}
+                                                <option value="N/A">N/A</option>
                                                 @foreach ($fuels as $fuel)
                                                     <option value="{{ $fuel->id }}">{{ $fuel->type }}</option>
                                                 @endforeach
