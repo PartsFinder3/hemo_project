@@ -157,4 +157,152 @@ nav .logo img {
             border-radius: 50rem !important;
 height: 35px;
 }
+nav {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* ---------------- LOGO ---------------- */
+
+nav .logo {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+}
+
+nav .logo img {
+    width: 100%;
+}
+
+/* ---------------- NAV MENU ---------------- */
+
+nav .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav .nav-menu ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav .nav-menu ul li a {
+    text-decoration: none;
+    color: black !important;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-btns a {
+    text-decoration: none;
+    padding: 7px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 30px;
+    transition: 0.3s ease;
+    background: black;
+    color: white !important;
+}
+
+.hero-btns a:hover {
+    opacity: 0.8;
+}
+
+/* ---------------- BURGER MENU (MOBILE) ---------------- */
+
+.burger-menu {
+    display: none; /* default hidden */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: black;
+    border-radius: 2px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablet & Mobile */
+@media (max-width: 992px) {
+
+    nav .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 200px;
+        height: auto;
+        background: white;
+        padding: 25px;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        transition: 0.3s;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    nav .nav-menu ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    /* When active menu opens */
+    .nav-menu.active {
+        right: 0;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+    nav {
+        padding: 10px 15px;
+    }
+
+    nav .logo {
+        width: 130px;
+    }
+}
+.nav-menu.active {
+    background: #ffffff !important;
+}
 </style>
+<script>
+document.getElementById("burger-menu").addEventListener("click", function () {
+    document.getElementById("nav-menu").classList.toggle("active");
+});
+</script>
