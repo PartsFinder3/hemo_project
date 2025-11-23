@@ -264,7 +264,7 @@ Route::middleware(['auth:supplier'])->group(function () {
     Route::get('/shop/ads/approved/{id}', [AdController::class, 'approvedads'])->name('supplier.ads.approved');
     Route::get('/shop/ads/waiting/{id}', [AdController::class, 'waitingForApproval'])->name('shop.ads.waiting');
     Route::get('/shop/ads/{id}/{slug}/edit', [AdController::class, 'edit'])->name('shop.ads.edit');
-    Route::post('/shop/ads/{id}/{slug}/edit', [AdController::class, 'update'])->name('shop.ads.update');
+    Route::post('/shop/ads/{id}/{slug}/edit', [AdController::class, 'update'])->name('supplier.ads.update');
     Route::get('/ads/toggle/{type}/{id}', [AdController::class, 'isActive'])
         ->name('supplier.ads.toggleActive');
     // Route::get('/shop/ads/delete/{id}', [AdController::class, 'delete'])->name('supplier.ads.delete');
