@@ -203,7 +203,8 @@
 }
 
 #productGrid1 .buttons a.call {
-    background: #0b5ed7;
+    
+   background: var(--accent-color);
 }
 
 @media (max-width: 1024px) {
@@ -524,8 +525,8 @@
                         @endphp
                         <div class="buttons">
                    
-                                 <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}" target="_blank"
-                                        class="btn btn-sm btn-success w-100 my-1">
+                         <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}" target="_blank"
+                           class="btn btn-sm btn-success w-100 my-1">
                                         <i class="fab fa-whatsapp me-1"></i> WhatsApp
                                     </a>
                             <a href="javascript:void(0)" class="btn call"
