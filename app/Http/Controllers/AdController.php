@@ -183,7 +183,7 @@ class AdController extends Controller
 
             }
         }
-        dd($imagePaths);
+       
         $ad->images = json_encode($imagePaths);
         $ad->save();
 
