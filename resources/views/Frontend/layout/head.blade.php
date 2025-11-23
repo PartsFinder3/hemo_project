@@ -178,6 +178,9 @@ height: 35px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         z-index: 999;
     }
+        nav .logo img {
+            width: 50% !important;
+        }
 
     /* Menu open hote hi show */
     #nav-menu.active {
@@ -233,7 +236,9 @@ height: 35px;
         width: 130px;
         margin-top: -15px;
     }
-
+        nav .logo img {
+            width: 40% !important;
+        }
     .hero-btns a {
         font-size: 13px !important;
         height: auto;
