@@ -21,6 +21,8 @@ use App\Models\ShopProfile;
 use App\Models\SpareParts;
 use App\Models\Suppliers;
 use App\Models\Years;
+
+
 use App\Models\Shops;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -36,9 +38,17 @@ class FrontendController extends Controller
     {
         $this->inquiryService = $inquiryService;
     }
-    public function index()
+
+    public function index(Request $request)
     {
+          $host =$request->getHost();
         
+       
+          $Domains=Domain::all();
+        $currentDomain = $Domains->first(function($domain) use ($host) {
+                return $domain->domain_url == $host;
+            });
+          dd($currentDomain);
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(60)
             ->get();
