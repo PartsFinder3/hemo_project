@@ -163,7 +163,7 @@ nav {
     opacity: 0;
 }
 
-.burger-menu.active span:nth-child(3) {
+.active span:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
@@ -1306,14 +1306,12 @@ h2.section-title {
     color: #ffffff;
 }
 
-/* Featured locations */
-/* .location-card:nth-child(1),
+ .location-card:nth-child(1),
 .location-card:nth-child(6) {
-    background: rgba(255, 107, 53, 0.1);
-    border-color: rgba(255, 107, 53, 0.3);
-} */
+    background: white;
+    border-color: white;
+} 
 
-/* Mobile optimizations */
 @media (max-width: 768px) {
     .locations-section {
         padding: 60px 4%;
