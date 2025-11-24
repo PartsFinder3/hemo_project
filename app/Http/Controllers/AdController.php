@@ -127,69 +127,71 @@ class AdController extends Controller
         return view('supplierPanel.ads.edit', compact('ad', 'makes', 'models', 'years', 'fuels', 'engineSize', 'parts'));
     }
 
-    public function update(Request $request, $id, $slug)
-    {
-        // Update logic here
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'warranty' => 'nullable|string|max:255',
-            'delivery' => 'nullable|string|max:255',
-            'car_make_id' => 'required|exists:car_makes,id',
-            'car_model_id' => 'required|exists:car_models,id',
-            'condition' => 'required|string',
-            'year_id' => 'required',
-            'fuel_id' => 'required',
-            'engine_size_id' => 'required',
-            'part_id' => 'required|exists:spare_parts,id',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-             'currency' => 'required|string|in:AED,USD,SAR,PKR,INR,EUR,GBP,CNY,JPY,CAD,AUD,CHF',
-          
-        ]);
+public function update(Request $request, $id, $slug)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
+        'warranty' => 'nullable|string|max:255',
+        'delivery' => 'nullable|string|max:255',
+        'car_make_id' => 'required|exists:car_makes,id',
+        'car_model_id' => 'required|exists:car_models,id',
+        'condition' => 'required|string',
+        'year_id' => 'required',
+        'fuel_id' => 'required',
+        'engine_size_id' => 'required',
+        'part_id' => 'required|exists:spare_parts,id',
+        'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'currency' => 'required|string|in:AED,USD,SAR,PKR,INR,EUR,GBP,CNY,JPY,CAD,AUD,CHF',
+    ]);
 
-        $ad = Ads::findOrFail($id);
-        $ad->title = $request->input('title');
-        $ad->description = $request->input('description');
-        $ad->price = $request->input('price');
-        $ad->warranty = $request->input('warranty');
-        $ad->delivery = $request->input('delivery');
-        $ad->car_make_id = $request->input('car_make_id');
-        $ad->car_model_id = $request->input('car_model_id');
-        $ad->year_id = $request->input('year_id');
-        $ad->fuel_id = $request->input('fuel_id');
-        $ad->engine_size_id = $request->input('engine_size_id');
-        $ad->part_id = $request->input('part_id');
-        $ad->condition = $request->input('condition');
-        $ad->currency = $request->input('currency');
-     
-        $imagePaths = [];
+    $ad = Ads::findOrFail($id);
+    $ad->title = $request->input('title');
+    $ad->description = $request->input('description');
+    $ad->price = $request->input('price');
+    $ad->warranty = $request->input('warranty');
+    $ad->delivery = $request->input('delivery');
+    $ad->car_make_id = $request->input('car_make_id');
+    $ad->car_model_id = $request->input('car_model_id');
+    $ad->year_id = $request->input('year_id');
+    $ad->fuel_id = $request->input('fuel_id');
+    $ad->engine_size_id = $request->input('engine_size_id');
+    $ad->part_id = $request->input('part_id');
+    $ad->condition = $request->input('condition');
+    $ad->currency = $request->input('currency');
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $image_name = uniqid() . '.webp';
+    // Keep old images
+    $imagePaths = json_decode($ad->images, true) ?? [];
 
-                $manager = new ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
-                $image = $manager->read($imageFile)->toWebp(90);
+    // Only process new images if user selected any
+    if ($request->hasFile('images')) {
+        $imagePaths = []; // optional: reset if you want to replace old images completely
+        foreach ($request->file('images') as $imageFile) {
+            $image_name = uniqid() . '.webp';
 
-                $directory = storage_path('app/public/ad_images');
-                if (!File::exists($directory)) {
-                    File::makeDirectory($directory, 0755, true);
-                }
+            $manager = new ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
+            $image = $manager->read($imageFile)->toWebp(90);
 
-                $path = $directory . '/' . $image_name;
-                $image->save($path);
-                     
-                $imagePaths[] = 'storage/ad_images/' . $image_name;
-
+            $directory = storage_path('app/public/ad_images');
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0755, true);
             }
-        }
-       
-        $ad->images = json_encode($imagePaths);
-        $ad->save();
 
-        return redirect()->route('supplier.ads.index', $ad->shop_id)->with('success', 'Ad updated successfully.');
+            $path = $directory . '/' . $image_name;
+            $image->save($path);
+
+            $imagePaths[] = 'storage/ad_images/' . $image_name;
+        }
     }
+
+    $ad->images = json_encode($imagePaths);
+    $ad->save();
+
+    return redirect()->route('supplier.ads.index', $ad->shop_id)
+                     ->with('success', 'Ad updated successfully.');
+}
+
 
     // public function isActive($id)
     // {
