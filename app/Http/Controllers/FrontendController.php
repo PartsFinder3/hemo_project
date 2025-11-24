@@ -231,7 +231,7 @@ public function sendProductInquiry(Request $request)
             'ads',
             'randomParts',
             'cities',
-
+            'getFAQS'
                 
         ));
     }
