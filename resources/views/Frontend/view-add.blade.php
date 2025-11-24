@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kia Sportage 2020 Bumper VF3WC5FS1BW004796 for Sale</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+@extends('Frontend.layout.main')
+@section('main-section')
+
     <style>
         body, main, header, nav, .hero-section, .hero-section_p {
             background-image: none !important;
@@ -263,5 +253,4 @@
             }
         }
     </script>
-</body>
-</html>
+@endsection
