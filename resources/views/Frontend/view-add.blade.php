@@ -79,7 +79,7 @@
         
             #productCarousel .carousel-inner img {
                 width: 100%;
-                height: 250px; /* ← sirf yeh rakho */
+                height: 300px; /* ← sirf yeh rakho */
                 object-fit: contain;
                 background-color: #f7f7f7;
             }
