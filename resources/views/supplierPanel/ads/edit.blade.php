@@ -77,7 +77,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Fuel</label>
                                             <select class="form-select form-select-lg" name="fuel_id" id="fuelSelect">
-                                                <option value="N/A">N/A</option>
+                                                <option value="0">N/A</option>
                                                 <option value="{{ $ad->fuel_id }}">{{ $ad->fuel->type }}</option>
                                                 
                                             </select>
