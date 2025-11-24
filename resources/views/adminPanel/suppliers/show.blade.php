@@ -78,17 +78,14 @@
                                     <td>{{ $supplier->city->name }}</td>
                                     <td>{{ $supplier->whatsapp }}</td>
                                     @if (auth()->guard('admins')->user()->role == 'admin')
-                                      <td>
-                                            <form action="{{ route('suppliers.active.toggle', $supplier->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                <label class="switch">
-                                                    <input type="checkbox" name="is_active" onchange="this.form.submit()" {{ $supplier->is_active ? 'checked' : '' }}>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </form>
-
-
-                                        <td>
+                                                        <td>
+                                                            <a href="{{ route('suppliers.active.toggle', $supplier->id) }}">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" {{ $supplier->is_active ? 'checked' : '' }}>
+                                                                    <span class="slider round"></span>
+                                                                </label>
+                                                            </a>
+                                                        </td>
                                             @if ($supplier->is_verified)
                                                 <a href="{{ route('suppliers.verified.toggle', $supplier->id) }}"
                                                     class="btn btn-warning">Unverify</a>
@@ -144,7 +141,6 @@
         </section>
     </div>
     <style>
-/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -152,14 +148,13 @@
   height: 24px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
+  pointer-events: none; /* prevent direct clicking on checkbox */
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -170,7 +165,6 @@
   border-radius: 24px;
 }
 
-/* The slider before (the circle) */
 .slider:before {
   position: absolute;
   content: "";
@@ -182,16 +176,14 @@
   border-radius: 50%;
 }
 
-/* When checked */
 input:checked + .slider {
-  background-color: #2196F3; /* blue */
+  background-color: #2196F3;
 }
 
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Blur effect when not active */
 input:not(:checked) + .slider {
   filter: blur(1px);
 }
