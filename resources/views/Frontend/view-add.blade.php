@@ -124,6 +124,9 @@
             padding-left: 40px;
             color: #e00;
         }
+        .buttons_ct{
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -178,7 +181,7 @@
                 <p class="text-muted">Supplier Location: <strong>{{ $location }}</strong></p>
                 <p class="price">AED: {{ $ad->price }}</p>
 
-<div class="d-flex gap-4 my-4">
+<div class="d-flex gap-4 my-4 buttons_ct">
 
     <div class="text-center">
         <a href="javascript:void(0)" class="round-btn"
