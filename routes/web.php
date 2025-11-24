@@ -84,7 +84,7 @@ Route::prefix('admin')->group(function () {
 
 Route::post('/faqs', [FAsController::class, 'store_faqs'])->name('faqs.store_faqs'); // Add via AJAX
 Route::delete('/faq/{id}', [FAsController::class, 'destroy_fas'])->name('faq.delete');
-// Optional edit/update
+
 Route::get('/admin/faqs/{id}/edit', [FAsController::class, 'edit_faqs'])->name('faqs.edit');
 Route::post('/faqs/{id}', [FAsController::class, 'update_faqs'])->name('faqs.update');
 });

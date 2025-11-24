@@ -10,7 +10,7 @@ class FAsController extends Controller
     //\
 
   function data($id){
-     $faqs = Faq::all();
+     $faqs = Faq::where('domain_id',$id)->get();
       $domain_id=$id;
     return view('adminPanel.faqs.index', compact('faqs','domain_id'));
     
