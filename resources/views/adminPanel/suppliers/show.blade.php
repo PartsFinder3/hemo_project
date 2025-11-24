@@ -79,11 +79,14 @@
                                     <td>{{ $supplier->whatsapp }}</td>
                                     @if (auth()->guard('admins')->user()->role == 'admin')
                                       <td>
-   @if ($supplier->is_active)
-        <i class="fa fa-check text-success"></i> <!-- Active: green check -->
-    @else
-        <i class="fa fa-times text-danger"></i> <!-- Inactive: red cross -->
-    @endif
+                                            <form action="{{ route('suppliers.active.toggle', $supplier->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                <label class="switch">
+                                                    <input type="checkbox" name="is_active" onchange="this.form.submit()" {{ $supplier->is_active ? 'checked' : '' }}>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </form>
+
 
                                         <td>
                                             @if ($supplier->is_verified)
@@ -140,4 +143,57 @@
 
         </section>
     </div>
+    <style>
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+/* The slider before (the circle) */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* When checked */
+input:checked + .slider {
+  background-color: #2196F3; /* blue */
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Blur effect when not active */
+input:not(:checked) + .slider {
+  filter: blur(1px);
+}
+</style>
 @endsection
