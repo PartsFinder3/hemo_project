@@ -81,7 +81,7 @@
                 width: 100%;
                 height: 300px; /* ← sirf yeh rakho */
                 object-fit: contain;
-                background-color: #f7f7f7;
+                background-color: white;
             }
         
         .carousel-control-prev, .carousel-control-next {
