@@ -79,7 +79,7 @@
         
         #productCarousel .carousel-inner img {
             width: 100%;
-              height: 350px;
+              height: 250px;
             height: auto;
             object-fit: contain;
             background-color: #f7f7f7;
