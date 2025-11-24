@@ -202,6 +202,10 @@
                                     <li><b>Warranty:</b> Ask Supplier</li>
                                 </ul>
                             </div>
+                               <a class="dropdown-item"
+                                                    href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
+                                                    <i class="bi bi-pencil-square me-2"></i>Edit
+                                                </a>
                         </div>
                     </div>
                 @endforeach
