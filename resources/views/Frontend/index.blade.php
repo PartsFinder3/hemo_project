@@ -317,7 +317,10 @@
         padding: 7px;
     }
 }
-
+.btn_call_index{
+    width: 200px;
+    background-color: red;
+    }
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
@@ -535,7 +538,7 @@
                            class="btn btn-sm btn-success w-100 my-1">
                                         <i class="fab fa-whatsapp me-1"></i> WhatsApp
                                     </a>
-                            <a href="javascript:void(0)" class=""
+                            <a href="javascript:void(0)" class="btn_call_index"
                                 onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
                                 <i class="fa-solid fa-phone"></i> Click to Call
                             </a>
