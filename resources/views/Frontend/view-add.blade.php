@@ -115,6 +115,12 @@
                 font-size: 14px;
             }
         }
+        .fa-whatsapp:before{
+            font-size: 70px;
+        }
+        .fa-phone:before{
+            font-size: 70px;
+        }
     </style>
 </head>
 <body>
