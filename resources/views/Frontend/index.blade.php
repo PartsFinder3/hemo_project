@@ -197,6 +197,7 @@
     font-weight: bold;
     text-decoration: none;
     color: #fff;
+    width: 215px;
 }
 
 #productGrid1 .buttons a.whatsapp {
