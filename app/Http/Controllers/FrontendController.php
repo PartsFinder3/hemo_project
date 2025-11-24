@@ -36,11 +36,9 @@ class FrontendController extends Controller
     {
         $this->inquiryService = $inquiryService;
     }
-
-public function index(Request $request)
+    public function index()
     {
-          $host = $request->getHost();
-          dd($host);
+        
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(60)
             ->get();
