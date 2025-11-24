@@ -196,5 +196,9 @@
     .bi-question-circle{
         margin-top: -7px;
     }
+    .align-items-center{
+        padding-right: 0px;
+
+    }
 </style>
 @endsection
