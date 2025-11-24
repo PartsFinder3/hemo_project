@@ -698,7 +698,7 @@
             <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
 
         </div>
-        <div class="locations-grid">
+        <div class="locations-grid" style="background-color: white">
             @if($domain && $domain->cities)
                 @foreach ($domain->cities as $city)
                     <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="location-card"><i
