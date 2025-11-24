@@ -77,13 +77,12 @@
             background-color: #f8f9fa;
         }
         
-        #productCarousel .carousel-inner img {
-            width: 100%;
-              height: 250px;
-            height: auto;
-            object-fit: contain;
-            background-color: #f7f7f7;
-        }
+            #productCarousel .carousel-inner img {
+                width: 100%;
+                height: 250px; /* ← sirf yeh rakho */
+                object-fit: contain;
+                background-color: #f7f7f7;
+            }
         
         .carousel-control-prev, .carousel-control-next {
             background-color: rgba(0,0,0,0.2);
