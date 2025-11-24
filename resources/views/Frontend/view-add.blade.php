@@ -1,6 +1,6 @@
 @extends('Frontend.layout.main')
 @section('main-section')
-
+ <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     <style>
         body, main, header, nav, .hero-section, .hero-section_p {
             background-image: none !important;
