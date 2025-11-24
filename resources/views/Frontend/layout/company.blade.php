@@ -40,56 +40,7 @@
                                 </div>
                             </div>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#general2" aria-expanded="false" aria-controls="general2">
-                                        What kind of parts can I buy through Partsfinder?
-                                    </button>
-                                </h3>
-                                <div id="general2" class="accordion-collapse collapse"
-                                    data-bs-parent="#generalServiceAccordion">
-                                    <div class="accordion-body">
-                                        Partsfinder connects you with sellers offering a wide range of auto parts,
-                                        including
-                                        OEM, aftermarket, used, and refurbished parts for various makes and models.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#general3" aria-expanded="false" aria-controls="general3">
-                                        Do you sell spare parts?
-                                    </button>
-                                </h3>
-                                <div id="general3" class="accordion-collapse collapse"
-                                    data-bs-parent="#generalServiceAccordion">
-                                    <div class="accordion-body">
-                                        No, Partsfinder does not sell spare parts directly. We act as a platform to
-                                        connect
-                                        you with verified sellers who can provide the parts you need.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#general4" aria-expanded="false" aria-controls="general4">
-                                        Do you offer spare parts finding services across the UAE?
-                                    </button>
-                                </h3>
-                                <div id="general4" class="accordion-collapse collapse"
-                                    data-bs-parent="#generalServiceAccordion">
-                                    <div class="accordion-body">
-                                        Yes, Partsfinder operates across all areas of the UAE, helping you locate
-                                        sellers
-                                        nationwide.
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                   @endforeach
