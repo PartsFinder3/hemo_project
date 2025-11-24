@@ -176,7 +176,7 @@
             onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
-        <p class="btn-label">WhatsApp</p>
+      
     </div>
 
     <div class="text-center">
@@ -184,7 +184,7 @@
             onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
             <i class="fa-solid fa-phone"></i>
         </a>
-        <p class="btn-label">Click to Call</p>
+       
     </div>
 
 </div>
