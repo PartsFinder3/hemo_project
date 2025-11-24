@@ -181,10 +181,9 @@
                 @endphp
                 <p class="text-muted">Supplier Location: <strong>{{ $location }}</strong></p>
                 <p class="text-muted">Warranty: {{ $ad->warranty }}</strong></p>
-
                 <p class="price"> {{ $ad->currency }}: {{ $ad->price }}</p>
               
-                <p class="text-muted">Warranty: {{ $ad->warranty }}</strong></p>
+                
                  <div class="d-flex gap-4 my-4 buttons_ct">
 
     <div class="text-center">
