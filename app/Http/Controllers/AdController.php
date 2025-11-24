@@ -145,7 +145,7 @@ class AdController extends Controller
             'part_id' => 'required|exists:spare_parts,id',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'currency' => 'required|string|in:AED,USD,SAR,PKR,INR,EUR,GBP,CNY,JPY,CAD,AUD,CHF',
-              'domain' => 'required|string|max:255', 
+          
         ]);
 
         $ad = Ads::findOrFail($id);
@@ -162,7 +162,7 @@ class AdController extends Controller
         $ad->part_id = $request->input('part_id');
         $ad->condition = $request->input('condition');
         $ad->currency = $request->input('currency');
-        $ad->domain = $request->input('domain');
+     
         $imagePaths = [];
 
         if ($request->hasFile('images')) {
@@ -297,6 +297,8 @@ public function delete($type, $id)
             'part_id' => 'required|exists:spare_parts,id',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'currency' => 'required|string|in:AED,USD,SAR,PKR,INR,EUR,GBP,CNY,JPY,CAD,AUD,CHF',
+             'domain' => 'required|string|max:255',
+            
         ]);
 
         $supplier = Auth::guard('supplier')->user();
@@ -327,6 +329,7 @@ public function delete($type, $id)
         $ad->condition = $request->input('condition');
         $ad->shop_id = $shop_id;
         $ad->currency = $request->input('currency');
+        $ad->domain = $request->input('domain');
 
         $imagePaths = [];
 

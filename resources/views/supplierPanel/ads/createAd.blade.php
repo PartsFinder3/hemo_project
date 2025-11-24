@@ -98,8 +98,8 @@
                                                     <option value="{{ $fuel->id }}">{{ $fuel->type }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-
+                                         </div>
+                                           <input type="hidden" name="domain" value="{{ request()->getHost() }}">
                                         <div class="mb-3">
                                             <label class="form-label">Engine Size</label>
                                             <select class="form-select form-select-lg" name="engine_size_id" id="">
