@@ -121,7 +121,7 @@
             color: green
         }
         .fa-phone:before{
-            font-size: 40px;
+            font-size: 44px;
         
             color: #e00;
         }
