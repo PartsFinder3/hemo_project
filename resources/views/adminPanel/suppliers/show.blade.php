@@ -79,15 +79,11 @@
                                     <td>{{ $supplier->whatsapp }}</td>
                                     @if (auth()->guard('admins')->user()->role == 'admin')
                                       <td>
-                                            @if ($supplier->is_active)
-                                                <a href="{{ route('suppliers.active.toggle', $supplier->id) }}" class="btn btn-warning">
-                                                    <i class="fa fa-check"></i> <!-- Active: check mark -->
-                                                </a>
-                                            @else
-                                                <a href="{{ route('suppliers.active.toggle', $supplier->id) }}" class="btn btn-secondary">
-                                                    <i class="fa fa-times"></i> <!-- Inactive: cross mark -->
-                                                </a>
-                                            @endif
+   @if ($supplier->is_active)
+        <i class="fa fa-check text-success"></i> <!-- Active: green check -->
+    @else
+        <i class="fa fa-times text-danger"></i> <!-- Inactive: red cross -->
+    @endif
 
                                         <td>
                                             @if ($supplier->is_verified)
