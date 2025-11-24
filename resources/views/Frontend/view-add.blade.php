@@ -116,10 +116,10 @@
             }
         }
         .fa-whatsapp:before{
-            font-size: 70px;
+            font-size: 50px;
         }
         .fa-phone:before{
-            font-size: 70px;
+            font-size: 50px;
         }
     </style>
 </head>
