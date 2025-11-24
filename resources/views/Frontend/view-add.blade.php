@@ -1,18 +1,133 @@
-@extends('Frontend.layout.main')
-@section('main-section')
-<style>
-    #productCarousel .carousel-inner img {
-    width: 100%;       /* full width of carousel */
-    height: auto;      /* maintain aspect ratio */
-    object-fit: contain; /* poori image dikhayega, crop nahi hoga */
-    background-color: #f7f7f7; /* optional: clean background */
-}
-   body, main, header, nav, .hero-section, .hero-section_p {
-    background-image: none !important;
-    background: none !important;
-}
-</style>
-   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kia Sportage 2020 Bumper VF3WC5FS1BW004796 for Sale</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body, main, header, nav, .hero-section, .hero-section_p {
+            background-image: none !important;
+            background: none !important;
+        }
+        
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e00;
+            margin: 15px 0;
+        }
+        
+        .btn.whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn.whatsapp:hover {
+            background-color: #128C7E;
+            color: white;
+        }
+        
+        .btn.call {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .btn.call:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        .spec-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .spec-table th {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .spec-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .spec-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        #productCarousel .carousel-inner img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background-color: #f7f7f7;
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            background-color: rgba(0,0,0,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .carousel-control-prev {
+            left: 10px;
+        }
+        
+        .carousel-control-next {
+            right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-title {
+                font-size: 20px;
+            }
+            
+            .price {
+                font-size: 24px;
+            }
+            
+            .btn.whatsapp, .btn.call {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
     <div class="container my-5">
         <div class="row g-4">
             <!-- Left: Carousel -->
@@ -25,7 +140,7 @@
                     <div class="carousel-inner">
                         @foreach ($images as $key => $image)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                <img src="{{ asset( $image) }}" class="d-block w-100"
+                                <img src="{{ asset($image) }}" class="d-block w-100"
                                     alt="Car Image {{ $key + 1 }}">
                             </div>
                         @endforeach
@@ -119,7 +234,10 @@
         </div>
     </div>
 
-       <script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
         function contactSupplier(isActive, number, title) {
             if (isActive == 1) {
                 let message = encodeURIComponent("Hello, I'm interested in your ad: " + title);
@@ -145,4 +263,5 @@
             }
         }
     </script>
-@endsection
+</body>
+</html>
