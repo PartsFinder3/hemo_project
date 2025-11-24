@@ -319,7 +319,30 @@
         padding: 7px;
     }
 }
+.buttons a.whatsapp,
+.buttons a.call {
+    flex: 1;                    /* equal width */
+    text-align: center;
+    padding: 10px;              /* same padding */
+    height: 50px;               /* fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
 
+/* Separate colors */
+.buttons a.whatsapp {
+    background: #25D366;
+}
+
+.buttons a.call {
+    background: var(--accent-color);
+}
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">
