@@ -143,7 +143,8 @@
                                     <td>{{ mb_strlen($domain->about) > 20 ? substr($domain->about, 0, 20) . '...' : $domain->about }}
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-secondary">+Add</a>
+                                      <a href="{{ route('addFAQs.faqs', $domain->id) }}" class="btn btn-secondary">+Add</a>
+
                                     </td>
                                     <td>
                                         <a class="btn btn-info" href="{{ route('domain.update', $domain->id) }}"><i

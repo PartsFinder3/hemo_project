@@ -28,6 +28,7 @@ use App\Http\Controllers\SparePartsController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SupplierSettingController;
 use App\Http\Controllers\SiteMapController;
+use App\Http\Controllers\FAsController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\Artisan;
 // use Illuminate\Support\Facades\Request;
@@ -76,6 +77,17 @@ Route::post('domain/create', [DomainController::class, 'create'])->name('domain.
 Route::get('domain/delete/{id}', [DomainController::class, 'delete'])->name('domain.delete');
 Route::get('domain/edit/{id}', [DomainController::class, 'update'])->name('domain.update');
 Route::post('domain/edit/{id}', [DomainController::class, 'edit'])->name('domain.edit');
+// <----------------------------- FAQS ------------------------>
+
+Route::get('add/Faqs/{id}', [FAsController::class, 'data'])->name('addFAQs.faqs');
+Route::prefix('admin')->group(function () {
+
+Route::post('/faqs', [FAsController::class, 'store_faqs'])->name('faqs.store_faqs'); // Add via AJAX
+Route::delete('/faq/{id}', [FAsController::class, 'destroy_fas'])->name('faq.delete');
+// Optional edit/update
+Route::get('/admin/faqs/{id}/edit', [FAsController::class, 'edit_faqs'])->name('faqs.edit');
+Route::post('/faqs/{id}', [FAsController::class, 'update_faqs'])->name('faqs.update');
+});
 
 // <--------------------------- CityController --------------------------->
 Route::get('/city', [CityController::class, 'index'])->name('city.show');
