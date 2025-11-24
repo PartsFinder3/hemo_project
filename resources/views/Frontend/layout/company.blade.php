@@ -13,7 +13,7 @@
 </section>
 </style>
     <!-- FAQs -->
-    @if($getFAQS)
+@if($getFAQS->count() > 0)
     <section class="faqs">
         <div class="container py-5">
             <div class="row justify-content-center">
