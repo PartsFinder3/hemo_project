@@ -254,7 +254,7 @@ public function sendProductInquiry(Request $request)
         $domain_id=$currentDomain->id;
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')
-            ->take(24)
+            ->take(60)
             ->get();
 
         $models = CarModels::all();
