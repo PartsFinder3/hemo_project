@@ -51,7 +51,7 @@ class FrontendController extends Controller
             });
         $domain_id=$currentDomain->id;
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
-        dd($getFAQS);
+       
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(60)
             ->get();
@@ -69,7 +69,7 @@ class FrontendController extends Controller
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
-        return view('Frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts'));
+        return view('Frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts','getFAQS'));
     }
     
     public function getModelsByMake($makeId)
