@@ -143,9 +143,11 @@
                                     <td>{{ mb_strlen($domain->about) > 20 ? substr($domain->about, 0, 20) . '...' : $domain->about }}
                                     </td>
                                     <td>
-                                      <a href="{{ route('addFAQs.faqs', $domain->id) }}" class="btn btn-secondary">+Add</a>
+                                     <a href="{{ route('addFAQs.faqs', $domain->id) }}" class="btn btn-primary btn-sm d-flex align-items-center" style="gap:5px;">
+                                        <i class="bi bi-plus-lg"></i> + Add FAQ
+                                    </a>
 
-                                    </td>
+                                   </td>
                                     <td>
                                         <a class="btn btn-info" href="{{ route('domain.update', $domain->id) }}"><i
                                                 class="fa-solid fa-pen-to-square"></i>
