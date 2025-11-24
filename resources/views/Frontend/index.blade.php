@@ -535,7 +535,7 @@
                            class="btn btn-sm btn-success w-100 my-1">
                                         <i class="fab fa-whatsapp me-1"></i> WhatsApp
                                     </a>
-                            <a href="javascript:void(0)" class="btn call"
+                            <a href="javascript:void(0)" class=""
                                 onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
                                 <i class="fa-solid fa-phone"></i> Click to Call
                             </a>
