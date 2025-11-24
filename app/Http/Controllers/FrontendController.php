@@ -43,8 +43,6 @@ class FrontendController extends Controller
     public function index(Request $request)
     {
           $host =$request->getHost();
-        
-       
           $Domains=Domain::all();
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
@@ -60,7 +58,10 @@ class FrontendController extends Controller
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
-        $ads = Ads::where('is_approved', true)->latest()->get();
+        $ads = Ads::where('is_approved', true)
+           ->where('domain', $host)
+           ->latest()
+           ->get();
         $carAds = CarAds::where('is_approved', true)->latest()->get();
         $randomParts = SpareParts::withCount('ads')
             ->orderBy('ads_count', 'desc')
