@@ -197,7 +197,7 @@
         margin-top: -7px;
     }
     .align-items-center{
-        padding-right: 0px;
+        padding-right: 0px !important;
 
     }
 </style>
