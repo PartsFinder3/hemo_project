@@ -343,6 +343,18 @@
 .buttons a.call {
     background: var(--accent-color);
 }
+
+.step-icon {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto 20px auto;
+}
+
+.step-icon img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
 </style>
 <div class="hero-section_p">
     <div class="hero_section_text">

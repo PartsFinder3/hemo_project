@@ -862,17 +862,7 @@ nav {
     box-sizing: border-box;
 }
 
-.step-icon {
-    width: 200px !important;
-    height: 200px !important;
-    margin: 0 auto 20px auto;
-}
 
-.step-icon img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-}
 
 .step-text h3 {
     font-size: 1.2rem;
