@@ -203,10 +203,16 @@
 }
 
 #productGrid1 .buttons a.call {
-
-   background: var(--accent-color);
+    background: var(--accent-color);
+    padding: 10px;       /* same as WhatsApp button */
+    height: auto;        /* remove fixed 30px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;  /* same as WhatsApp */
+    font-weight: bold;
+    color: #fff;
 }
-
 @media (max-width: 1024px) {
     #productGrid1 {
         grid-template-columns: repeat(2, 1fr);
