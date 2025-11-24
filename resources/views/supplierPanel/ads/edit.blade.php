@@ -177,7 +177,7 @@
                                             </span>
                                         </div>
 
-                                        <button type="submit" class="btn btn-orange">Create Ad</button>
+                                        <button type="submit" class="btn btn-orange">Update Ad</button>
                                     </form>
                                 </div>
                             </div>
