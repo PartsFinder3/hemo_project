@@ -10,10 +10,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
-    /* body, main, header, nav, .hero-section, .hero-section_p {
+    body, main, header, nav, .hero-section, .hero-section_p {
     background-image: none !important;
     background: none !important;
-} */
+}
 .hero-section_p {
     width: 100%;
     height: 630px;
@@ -54,7 +54,7 @@
 
 .car {
     width: 400px;
-    background: rgba(255, 255, 255, 0.95);
+    background: white;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
