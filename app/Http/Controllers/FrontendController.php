@@ -236,7 +236,7 @@ public function sendProductInquiry(Request $request)
         ));
     }
 
-    public function adByMakes($slug, $id)
+    public function adByMakes(Request $request , $slug, $id)
     {
         $make = CarMakes::where('id', $id)->where('slug', $slug)->firstOrFail();
 
@@ -246,7 +246,13 @@ public function sendProductInquiry(Request $request)
         $carAds = CarAds::where('car_make_id', $make->id)
             ->where('is_approved', true)
             ->latest()->get();
-
+    $host =$request->getHost();
+          $Domains=Domain::all();
+        $currentDomain = $Domains->first(function($domain) use ($host) {
+                return $domain->domain_url == $host;
+            });
+        $domain_id=$currentDomain->id;
+        $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(24)
             ->get();
@@ -276,11 +282,12 @@ public function sendProductInquiry(Request $request)
             'randomParts',
             'cities',
             'randomMakes',
-            'domain'
+            'domain',
+            'getFAQS'
         ));
     }
 
-    public function adByCity($slug, $id)
+    public function adByCity(Request $request , $slug, $id)
     {
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
          $domain = Domain::with('cities')->first();
@@ -289,7 +296,13 @@ public function sendProductInquiry(Request $request)
                 ->where('is_approved', true)
             ;
         })->latest()->get();
-
+ $host =$request->getHost();
+          $Domains=Domain::all();
+        $currentDomain = $Domains->first(function($domain) use ($host) {
+                return $domain->domain_url == $host;
+            });
+        $domain_id=$currentDomain->id;
+        $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carAds = CarAds::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
                 ->where('is_approved', true)
@@ -322,7 +335,8 @@ public function sendProductInquiry(Request $request)
             'randomParts',
             'cities',
             'randomMakes',
-            'domain'
+            'domain',
+            'getFAQS'
         ));
     }
 
