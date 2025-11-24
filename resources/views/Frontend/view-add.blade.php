@@ -117,11 +117,12 @@
         }
         .fa-whatsapp:before{
             font-size: 50px;
+                padding-right: 40px;
             color: green
         }
         .fa-phone:before{
             font-size: 50px;
-            padding-left: 40px;
+        
             color: #e00;
         }
         .buttons_ct{
