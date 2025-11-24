@@ -1,6 +1,12 @@
 @extends('supplierPanel.layout.main')
 
 @section('main-section')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if(session('success'))
+    <script>
+        swal("Success!", "{{ session('success') }}", "success");
+    </script>
+@endif
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
