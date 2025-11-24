@@ -190,4 +190,11 @@
             });
         });
     </script>
+
+
+<style>
+    .bi-question-circle{
+        margin-top: -7px;
+    }
+</style>
 @endsection
