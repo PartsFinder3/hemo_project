@@ -143,7 +143,7 @@
                                     <td>{{ mb_strlen($domain->about) > 20 ? substr($domain->about, 0, 20) . '...' : $domain->about }}
                                     </td>
                                     <td>
-                                     <a href="{{ route('addFAQs.faqs', $domain->id) }}" class="btn btn-primary btn-sm d-flex align-items-center" style="">
+                                     <a href="{{ route('addFAQs.faqs', $domain->id) }}" class="btn btn-primary btn-sm d-flex align-items-center" style="gap:5px;">
                                          Add FAQ  <i class="bi bi-question-circle"></i>
                                     </a>
 
