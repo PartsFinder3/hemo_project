@@ -76,11 +76,15 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Fuel</label>
-                                            <select class="form-select form-select-lg" name="fuel_id" id="fuelSelect">
-                                                <option value="0">N/A</option>
-                                                <option value="{{ $ad->fuel_id }}">{{ $ad->fuel->type }}</option>
-                                                
-                                            </select>
+                                       <select class="form-select form-select-lg" name="fuel_id" id="fuelSelect">
+                                            <option value="0" {{ $ad->fuel_id == 0 ? 'selected' : '' }}>N/A</option>
+
+                                            @foreach($fuels as $fuel)
+                                                <option value="{{ $fuel->id }}" {{ $ad->fuel_id == $fuel->id ? 'selected' : '' }}>
+                                                    {{ $fuel->type }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         </div>
 
                                         <div class="mb-3">
