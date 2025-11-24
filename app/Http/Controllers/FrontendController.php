@@ -21,6 +21,7 @@ use App\Models\ShopProfile;
 use App\Models\SpareParts;
 use App\Models\Suppliers;
 use App\Models\Years;
+use App\Models\Faq;
 
 
 use App\Models\Shops;
@@ -48,7 +49,9 @@ class FrontendController extends Controller
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-          dd($currentDomain->id);
+        $domain_id=$currentDomain->id;
+        $getFAQS=Faq::where('domain_id',$domain_id)->get();
+        dd($getFAQS);
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(60)
             ->get();
