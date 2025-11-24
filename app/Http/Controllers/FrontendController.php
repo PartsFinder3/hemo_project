@@ -197,12 +197,18 @@ public function sendProductInquiry(Request $request)
         }
     }
 
-    public function adByPart($partName, $id)
+    public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
 
         $ads = Ads::where('part_id', $part->id)->get();
-
+          $host =$request->getHost();
+          $Domains=Domain::all();
+        $currentDomain = $Domains->first(function($domain) use ($host) {
+                return $domain->domain_url == $host;
+            });
+        $domain_id=$currentDomain->id;
+        $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(24)
             ->get();
