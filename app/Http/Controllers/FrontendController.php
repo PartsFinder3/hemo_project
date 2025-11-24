@@ -48,7 +48,7 @@ class FrontendController extends Controller
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-          dd($currentDomain->domain_url);
+          dd($currentDomain->id);
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(60)
             ->get();
