@@ -144,7 +144,7 @@
                                     </td>
                                     <td>
                                      <a href="{{ route('addFAQs.faqs', $domain->id) }}" class="btn btn-primary btn-sm d-flex align-items-center" style="gap:5px;">
-                                        <i class="bi bi-plus-lg"></i> + Add FAQ
+                                        <i class="bi bi-plus-lg"></i> Add FAQ
                                     </a>
 
                                    </td>
