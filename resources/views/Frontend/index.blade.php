@@ -495,26 +495,7 @@
         </div>
     </section>
 
-    <section class="carMakes">
-        <div class="section-text">
-            <h3>TOP MAKES</h3>
-            <h2>Browse By Brands</h2>
-        </div>
 
-        <div class="brands">
-            @foreach ($carMakes as $make)
-                <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
-                    @if($make->logo)
-               
-                      <img src="{{ asset('storage/' . $make->logo) }}" alt="{{ $make->name }}">
-                      
-
-                    @endif
-                    <h4>{{ strtoupper($make->name) }}</h4>
-                </a>
-            @endforeach
-        </div>
-    </section>
 
     <section class="ad-cards">
         <div class="section-text">
@@ -609,6 +590,26 @@
         </div>
 
         <div class="pagination" id="pagination1"></div>
+    </section>
+        <section class="carMakes">
+        <div class="section-text">
+            <h3>TOP MAKES</h3>
+            <h2>Browse By Brands</h2>
+        </div>
+
+        <div class="brands">
+            @foreach ($carMakes as $make)
+                <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
+                    @if($make->logo)
+               
+                      <img src="{{ asset('storage/' . $make->logo) }}" alt="{{ $make->name }}">
+                      
+
+                    @endif
+                    <h4>{{ strtoupper($make->name) }}</h4>
+                </a>
+            @endforeach
+        </div>
     </section>
     <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
