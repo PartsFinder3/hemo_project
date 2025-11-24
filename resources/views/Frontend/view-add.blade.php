@@ -180,7 +180,8 @@
                     $shopName = $ad->shop->name ?? 'Unknown';
                 @endphp
                 <p class="text-muted">Supplier Location: <strong>{{ $location }}</strong></p>
-                <p class="price">AED: {{ $ad->price }}</p>
+                <p class="price"> {{ $ad->currency }}: {{ $ad->price }}</p>
+                <p class="price">Warranty: {{ $ad->warranty }}</p>
 
 <div class="d-flex gap-4 my-4 buttons_ct">
 
