@@ -1,62 +1,44 @@
 @extends('Frontend.layout.main')
+
 @section('main-section')
 <style>
-    /* Section styling */
     .domain-about-section {
-        display: flex;
+        display: ''; /* center content */
         justify-content: center;
         align-items: center;
         padding: 80px 20px;
         min-height: 70vh;
-        background: #ffffff; /* pure white background */
-        color: #333333; /* dark text for contrast */
+    
+        color: white;
         text-align: center;
         box-sizing: border-box;
     }
 
-    /* Content wrapper */
     .domain-about-content {
-        max-width: 850px;
+        max-width: 900px;
         width: 100%;
-        font-size: 22px;
-        line-height: 1.8;
-        padding: 40px 30px;
-        background-color: #f9f9f9; /* subtle off-white card */
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* soft shadow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        font-size: 24px; /* bigger text */
+        line-height: 2;  /* better spacing */
     }
 
     .domain-about-content p {
-        margin: 0 0 20px 0;
-        font-size: 20px;
+        font-size: 24px; /* make paragraph bigger too */
+        line-height: 2;
+        margin: 0 auto;
     }
 
-    /* Hover effect on desktop */
-    @media (min-width: 769px) {
-        .domain-about-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-    }
-
-    /* Responsive adjustments */
     @media (max-width: 768px) {
         .domain-about-section {
-            padding: 60px 15px;
+            padding: 50px 15px;
         }
         .domain-about-content, .domain-about-content p {
-            font-size: 18px;
-            line-height: 1.6;
-            padding: 30px 20px;
+            font-size: 18px; /* smaller on mobile */
         }
     }
-
-    /* Reset other backgrounds */
     body, main, header, nav, .hero-section, .hero-section_p {
-        background-image: none !important;
-        background: none !important;
-    }
+    background-image: none !important;
+    background: none !important;
+}
 </style>
 
 <div class="domain-about-section">
