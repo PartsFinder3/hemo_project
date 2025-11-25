@@ -22,7 +22,7 @@ class SupplierController extends Controller
     public function requestPage()
     {
         $cities = City::all();
-        return view('adminPanel.auth.supplier-signup', compact('cities'));
+        return view('Frontend.signup', compact('cities'));
     }
 
     public function createRequest(Request $request)
