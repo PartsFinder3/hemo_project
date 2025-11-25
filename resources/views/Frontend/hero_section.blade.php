@@ -270,6 +270,22 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding-right: 5px;
     color: black;
 }
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default .select2-selection--multiple {
+    min-height: 50px;        /* initial height */
+    height: auto !important;  /* let it grow */
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+/* Selected tags */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    display: flex;
+    flex-wrap: wrap;       /* allow multiple tags to wrap */
+    gap: 5px;
+    padding: 5px;
+}
+
 </style>
 
    <div class="hero_section_text">
