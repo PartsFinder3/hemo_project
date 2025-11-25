@@ -12,13 +12,12 @@
             --primary-orange-hover: #d44822;
             --primary-dark-light: #2a2f4a;
         }
-
-        .login-container {
-            width: 100%;
-            width: 1200px;
-            margin: 0 auto;
-        }
-
+.login-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* optional, for small screens */
+}
         .signup-card {
             background: white;
             border-radius: 20px;
