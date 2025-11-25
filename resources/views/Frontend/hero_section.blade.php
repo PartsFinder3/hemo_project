@@ -333,5 +333,48 @@ $('#make').select2({
         cache: true
     }
 });
+$('#model').select2({
+    placeholder: "Select Your Model",
+    ajax: {
+        url: '/search-models',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return {
+                q: params.term,
+                make_id: $('#make').val()
+            };
+        },
+        processResults: function(data) {
+            return {
+                results: $.map(data, function(item) {
+                    return { id: item.id, text: item.name };
+                })
+            };
+        },
+        cache: true
+    }
+});
+$('#year').select2({
+    placeholder: "Select Year",
+    ajax: {
+        url: '/search-years',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return {
+                q: params.term,
+                model_id: $('#model').val()
+            };
+        },
+        processResults: function(data) {
+            return {
+                results: $.map(data, function(item) {
+                    return { id: item.id, text: item.text };
+                })
+            };
+        }
+    }
+});
 
 </script>

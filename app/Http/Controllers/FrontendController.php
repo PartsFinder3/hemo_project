@@ -479,4 +479,31 @@ public function searchMakes(Request $request)
 
     return response()->json($data);
 }
+
+public function searchModels(Request $request)
+{
+    $search = $request->q;
+    $make_id = $request->make_id;
+
+    $data = CarModels::where('make_id', $make_id)
+        ->where('name', 'LIKE', "%$search%")
+        ->select('id', 'name')
+        ->limit(20)
+        ->get();
+
+    return response()->json($data);
+}
+public function searchYears(Request $request)
+{
+    $search = $request->q;
+    $model_id = $request->model_id;
+
+    $data = CarYears::where('model_id', $model_id)
+        ->where('year', 'LIKE', "%$search%")
+        ->select('id', 'year as text')
+        ->limit(20)
+        ->get();
+
+    return response()->json($data);
+}
 }
