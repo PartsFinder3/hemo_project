@@ -46,9 +46,9 @@
                     <h5 class="footer-title">Need Help?</h5>
                     <p class="mb-3" style="color: #adb5bd; font-size: 1.1rem; font-weight: 600;">Contact Us</p>
 
-                    <a href="tel:00971557872262" class="contact-phone">
+                    <a href="tel:+971 50 256 6002" class="contact-phone">
                         <i class="fas fa-phone"></i>
-                        00971-55-7872262
+                        +971 50 256 6002
                     </a>
 
                  <div class="social-icons">
