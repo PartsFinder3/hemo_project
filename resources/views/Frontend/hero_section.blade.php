@@ -400,57 +400,61 @@ $('#parts-dropdown').select2({
     }
 });
 </script>
-
 <script>
-$('#make').on('select2:select', function () {
-    console.log("Make Selected");
+$(document).ready(function() {
+    // Get DOM elements
+    const partsGroup = document.getElementById("parts-group");
+    const partsDropdown = document.getElementById("parts-dropdown");
+    const conditionGroup = document.getElementById("condition-group");
+    const findBtn = document.getElementById("find-btn");
 
-    $('#model').val(null).trigger('change');
-    $('#year').val(null).trigger('change');
+    let partSelected = false;
 
-    partsGroup.classList.add("hidden");
-    conditionGroup.classList.add("hidden");
+    // Initialize Select2 for all dropdowns
+    $('#make').select2({ placeholder: "Select Your Make" });
+    $('#model').select2({ placeholder: "Select Your Model" });
+    $('#year').select2({ placeholder: "Select Year" });
+    $('#parts-dropdown').select2({ placeholder: "Select Part" });
 
-    partSelected = false;
-    updateButton();
-});
+    function updateButton() {
+        findBtn.disabled = !partSelected;
+    }
 
-// --- SHOW YEAR WHEN MODEL SELECTED ---
-$('#model').on('select2:select', function () {
-    console.log("Model Selected");
+    // Make selected
+    $('#make').on('select2:select', function () {
+        $('#model').val(null).trigger('change');
+        $('#year').val(null).trigger('change');
 
-    $('#year').val(null).trigger('change');
+        partsGroup.classList.add("hidden");
+        conditionGroup.classList.add("hidden");
+        partSelected = false;
+        updateButton();
+    });
 
-    partsGroup.classList.add("hidden");
-    conditionGroup.classList.add("hidden");
+    // Model selected
+    $('#model').on('select2:select', function () {
+        $('#year').val(null).trigger('change');
 
-    partSelected = false;
-    updateButton();
-});
+        partsGroup.classList.add("hidden");
+        conditionGroup.classList.add("hidden");
+        partSelected = false;
+        updateButton();
+    });
 
-// --- SHOW PARTS WHEN YEAR SELECTED ---
-$('#year').on('select2:select', function () {
-    console.log("Year Selected");
+    // Year selected
+    $('#year').on('select2:select', function () {
+        partsGroup.classList.remove("hidden");
+        partsDropdown.disabled = false;
+        partSelected = false;
+        conditionGroup.classList.add("hidden");
+        updateButton();
+    });
 
-    partsGroup.classList.remove("hidden");
-    partsDropdown.disabled = false;
-
-    updateButton();
-});
-
-// --- WHEN USER SELECTS A PART ---
-partsDropdown.addEventListener("change", function () {
-    console.log("Part Selected");
-
-    partSelected = true;
-    conditionGroup.classList.remove("hidden");
-
-    updateButton();
-});
-$('#parts-dropdown').on('select2:select', function () {
-    console.log("Part Selected");
-    partSelected = true;
-    conditionGroup.classList.remove("hidden");
-    updateButton();
+    // Part selected
+    $('#parts-dropdown').on('select2:select', function () {
+        partSelected = true;
+        conditionGroup.classList.remove("hidden");
+        updateButton();
+    });
 });
 </script>
