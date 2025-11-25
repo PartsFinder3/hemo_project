@@ -173,5 +173,6 @@
                 window.location.reload();
             }
         }
+        
     </script>
 @endsection

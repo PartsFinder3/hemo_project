@@ -236,8 +236,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script>
-            // Mobile Menu Functionality
+<script>          
 const burgerMenu = document.getElementById("burger-menu");
 const navMenu = document.getElementById("nav-menu");
 
