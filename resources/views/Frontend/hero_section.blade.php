@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let partSelected = false; // Track if user selected any part
 
     // --- SHOW MODEL WHEN MAKE SELECTED ---
-    $('#make').on('change', function () {
+   $('#make').on('select2:select', function () {
         console.log("Make Selected");
         $('#model').val(null).trigger('change');
         $('#year').val(null).trigger('change');
@@ -405,7 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // --- SHOW YEAR WHEN MODEL SELECTED ---
-    $('#model').on('change', function () {
+   $('#model').on('select2:select', function () {
         console.log("Model Selected");
         $('#year').val(null).trigger('change');
         partsGroup.classList.add("hidden");
@@ -415,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // --- SHOW PARTS WHEN YEAR SELECTED ---
-    $('#year').on('change', function () {
+    $('#year').on('select2:select', function () {
         console.log("Year Selected");
         partsGroup.classList.remove("hidden");
         partsDropdown.disabled = false;
