@@ -107,6 +107,25 @@
         .abdul-signup-left { display: none; }
         .abdul-signup-right { padding: 30px 20px; }
     }
+    .abdul-input-group {
+    display: flex;
+    gap: 0; /* no gap, so borders meet perfectly */
+}
+
+.abdul-input-group .abdul-form-select {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-right: none;
+    border-left: 2px solid #e9ecef; /* optional for separation */
+    flex-shrink: 0;
+}
+
+.abdul-input-group .abdul-form-control {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-left: none;
+    flex-grow: 1;
+}
 </style>
 
 <div class="toast-container position-fixed top-0 start-0 p-3" style="z-index:1100;">
