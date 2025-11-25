@@ -13,11 +13,12 @@
             --primary-dark-light: #2a2f4a;
         }
 
-        .login-container {
-            width: 100%;
-            width: 1200px;
-            margin: 0 auto;
-        }
+.login-container {
+    width: 100%;        /* پورا اسپیس لے لے */
+    max-width: 1200px;  /* زیادہ چوڑائی نہیں بڑھے گی */
+    margin: 0 auto;     /* سینٹر میں آئے گا */
+    padding: 0 15px;    /* موبائل پر کناروں سے بچائے */
+}
 
         .signup-card {
             background: white;
