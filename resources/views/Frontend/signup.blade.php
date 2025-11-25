@@ -13,7 +13,7 @@
             --primary-dark-light: #2a2f4a;
         }
 
-        .container {
+        .container-fluid {
             width: 100%;
             width: 1200px;
             margin: 0 auto;
