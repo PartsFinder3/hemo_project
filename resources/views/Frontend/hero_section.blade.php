@@ -312,6 +312,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
     </div>
 
 <script>
+    const partsGroup = document.getElementById("parts-group");
+const partsDropdown = document.getElementById("parts-dropdown");
+const conditionGroup = document.getElementById("condition-group");
+let partSelected = false;
 $('#make').select2({
     placeholder: "Select Your Make",
     ajax: {
@@ -449,7 +453,8 @@ function updateButton() {
     const makeOk = $('#make').val() != null;
     const modelOk = $('#model').val() != null;
     const yearOk = $('#year').val() != null;
-    const partOk = partSelected && $('#parts-dropdown').val() && $('#parts-dropdown').val().length > 0;
+ const partOk = partSelected && $('#parts-dropdown').val() && $('#parts-dropdown').val().length > 0;
+
         const partOk = partSelected;
 
     $('#find-btn').prop("disabled", !(makeOk && modelOk && yearOk && partOk));
