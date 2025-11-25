@@ -271,7 +271,7 @@
                     <article class="blog-card">
                         <img src="{{ asset('storage/' . $b->image) }}" alt="{{ $b->title }}">
                         <div class="card-body">
-<a href="{{route('frontend.blog.view', ['slug' => $b->slug, 'id' => $b->id])}}" class="read-more">
+<a href="{{route('frontend.blog.view', ['slug' => $b->slug, 'id' => $b->id])}}">
                             <h2 class="card-title">{{ $b->title }}</h2>
 </a>
                             <p class="card-text">{{ Str::limit(strip_tags($b->content), 150, '...') }}</p>
