@@ -441,18 +441,16 @@ $('#year').on('select2:select', function () {
 
 $('#parts-dropdown').on('select2:select', function () {
     console.log("Part Selected");
-
     partSelected = true;
     $('#condition-group').removeClass("hidden");
-
     updateButton();
 });
 function updateButton() {
     const makeOk = $('#make').val() != null;
     const modelOk = $('#model').val() != null;
     const yearOk = $('#year').val() != null;
-    const partOk = $('#parts-dropdown').val() && $('#parts-dropdown').val().length > 0;
-    const partOk = partSelected;
+    const partOk = partSelected && $('#parts-dropdown').val() && $('#parts-dropdown').val().length > 0;
+        const partOk = partSelected;
 
     $('#find-btn').prop("disabled", !(makeOk && modelOk && yearOk && partOk));
 }
