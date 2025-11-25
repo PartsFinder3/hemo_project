@@ -257,9 +257,12 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding: 10px; /* bigger click area */
     font-size: 16px;
 }
-.dropdown {
-  font-weight: bold;
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #5897fb;
+    color: white;
+    font-weight: bold;
 }
+
 </style>
 
    <div class="hero_section_text">
