@@ -1,7 +1,7 @@
 @extends('Frontend.layout.main')
 
 @section('main-section')
-@include('Frontend.hero_section', ['part' => "Find Your Perfect Parts"])
+@include('Frontend.hero_section', ['part' => "Find Your Parts in ". $part->name])
 
     </main>
     {{-- <section class="carMakes">
