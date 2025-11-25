@@ -272,8 +272,8 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     </div>
 
                     <div class="form-group hidden" id="parts-group">
-                        <select id="parts-dropdown" class="dropdown" name="parts[]" multiple disabled>
-                            <option disabled selected value="">Select a part to add</option>
+                        <select id="parts-dropdown" class="dropdown" name="parts[]" multiple >
+                            <option  selected value="">Select a part to add</option>
                             @foreach ($parts as $part)
                                 <option value="{{ $part->id }}">{{ $part->name }}</option>
                             @endforeach
@@ -434,11 +434,11 @@ $('#year').on('select2:select', function () {
     console.log("Year Selected");
 
     partsGroup.classList.remove("hidden");
-    partsDropdown.disabled = false;
-
+    partsDropdown.disabled = false; // <-- yahi remove karo
+    $('#parts-dropdown').prop('disabled', false); // Select2 ke liye bhi
+    partSelected = false;
     updateButton();
 });
-
 $('#parts-dropdown').on('select2:select', function () {
     console.log("Part Selected");
     partSelected = true;
