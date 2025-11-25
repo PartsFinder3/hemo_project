@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     @if($domain && $domain->logo)
-        <link rel="icon" href="{{ asset($domain->logo) }}">
+        <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
     @endif
     {{-- <style>
                                   @media (max-width:480px){
