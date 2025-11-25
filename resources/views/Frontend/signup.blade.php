@@ -1,126 +1,235 @@
 @extends('Frontend.layout.main')
 
 @section('main-section')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
 <style>
-    /* Copy all the styles from your login page */
-    body, main, header, nav, .hero-section, .hero-section_p { background: none !important; }
+    body, main, header, nav, .hero-section, .hero-section_p {
+        background-image: none !important;
+        background: none !important;
+    }
+
     :root {
         --primary-orange: #ff7700;
         --primary-dark: #2b2d2f;
         --primary-orange-hover: #d44822;
-        --whatsapp-btn: #25D366;
-        --whatsapp-hover: #128C7E;
+        --primary-dark-light: #2a2f4a;
     }
-    .btn-whatsapp { /* same styles as login */ }
-    .login-container { width: 100%; max-width: 1200px; margin: 0 auto; }
-    .login-card { border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); min-height: 600px; overflow:hidden; }
-    .login-left { background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-hover)); color:white; padding:60px 40px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
-    .login-left .feature-list { list-style:none; text-align:left; padding:0; }
-    .login-left .feature-list li { margin-bottom:15px; display:flex; align-items:center; }
-    .login-left .feature-list li i { margin-right:10px; font-size:1.2rem; }
-    .login-right { padding:60px 50px; display:flex; flex-direction:column; justify-content:center; }
-    .login-header { text-align:center; margin-bottom:40px; }
-    .login-title { color:var(--primary-dark); font-size:2.2rem; font-weight:700; margin-bottom:10px; }
-    .login-subtitle { color:#6c757d; font-size:1.1rem; }
-    .form-group { margin-bottom:25px; }
-    .form-label { font-weight:600; color:var(--primary-dark); margin-bottom:8px; font-size:1rem; }
-    .form-control { height:55px; border-radius:12px; padding:15px 20px; font-size:1rem; border:2px solid #e9ecef; background:#f8f9fa; }
-    .form-control:focus { border-color:var(--primary-orange); background:white; box-shadow:0 0 0 3px rgba(233,84,38,0.1); outline:none; }
-    .btn-login { background: linear-gradient(135deg, var(--primary-orange), var(--primary-orange-hover)); border:none; border-radius:12px; height:55px; font-weight:600; font-size:1.1rem; text-transform:uppercase; letter-spacing:0.5px; }
-    .btn-login:hover { background: linear-gradient(135deg, var(--primary-orange-hover), #c23d1e); transform:translateY(-2px); box-shadow:0 10px 25px rgba(233,84,38,0.3); }
-    .signup-link { text-align:center; margin-top:20px; color:#6c757d; }
-    .signup-link a { color:var(--primary-orange); font-weight:600; text-decoration:none; }
-    .signup-link a:hover { color:var(--primary-orange-hover); text-decoration:underline; }
-    @media (max-width:767.98px) { .login-left { display:none; } }
+
+    .container-fluid {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .signup-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        overflow: hidden;
+        min-height: 650px;
+    }
+
+    .signup-left {
+        background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-hover) 100%);
+        color: white;
+        padding: 60px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: left;
+        height: 100%;
+    }
+
+    .signup-left .logo {
+        max-width: 200px;
+        margin-bottom: 20px;
+        align-self: center;
+    }
+
+    .signup-left h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+    .signup-left p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 15px; }
+
+    #steps { display: flex; flex-direction: column; align-items: flex-start; padding-left: 20px; margin-top: 10px; gap: 8px; }
+    #steps h4 { margin-bottom: 10px; }
+
+    .signup-right { padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
+
+    .signup-header { text-align: center; margin-bottom: 30px; }
+    .signup-title { color: var(--primary-dark); font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+    .signup-subtitle { color: #6c757d; font-size: 1rem; }
+
+    .form-label { font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; font-size: 1rem; }
+
+    .form-control, .form-select {
+        height: 55px;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 1rem;
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary-orange);
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(233,84,38,0.15);
+    }
+
+    .input-group .form-select { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: none; }
+    .input-group .form-control { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+
+    .btn-signup {
+        background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-hover) 100%);
+        border: none;
+        border-radius: 12px;
+        height: 55px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .btn-signup:hover {
+        background: linear-gradient(135deg, var(--primary-orange-hover) 0%, #c23d1e 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(233,84,38,0.3);
+    }
+
+    .login-link { text-align: center; margin-top: 20px; color: #6c757d; }
+    .login-link a { color: var(--primary-orange); font-weight: 600; text-decoration: none; }
+    .login-link a:hover { color: var(--primary-orange-hover); text-decoration: underline; }
+
+    @media (max-width: 767.98px) {
+        .signup-left { display: none; }
+        .signup-right { padding: 30px 20px; }
+    }
 </style>
 
-<div class="container-fluid login-container">
+<div class="toast-container position-fixed top-0 start-0 p-3" style="z-index:1100;">
+    @if(session('success'))
+        <div class="toast align-items-center text-bg-success border-0 show" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">{{ session('success') }}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="toast align-items-center text-bg-danger border-0 show" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">{{ session('error') }}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    @endif
+</div>
+
+<div class="container-fluid">
     <div class="row g-0 justify-content-center">
         <div class="col-xl-10 col-lg-11 col-md-12">
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @elseif (session('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
-            <div class="card login-card">
+            <div class="card signup-card">
                 <div class="row g-0 h-100">
+
                     <!-- Left Side -->
                     <div class="col-lg-6 d-none d-lg-flex">
-                        <div class="login-left w-100">
-                            <div class="logo mb-3" style="max-width:200px;">
+                        <div class="signup-left w-100">
+                            <div class="logo">
                                 @if($domain && $domain->logo)
                                     <img style="width:100%" src="{{ $domain->logo }}" alt="">
                                 @endif
                             </div>
-                            <p class="brand-subtitle">Join UAE’s Largest Car Parts Network</p>
-                            <ul class="feature-list">
-                                <li><i class="fas fa-shield-alt"></i>Verified suppliers and genuine parts</li>
-                                <li><i class="fas fa-shipping-fast"></i>Fast delivery across UAE</li>
-                                <li><i class="fas fa-tools"></i>Expert support available</li>
-                                <li><i class="fas fa-award"></i>Best prices guaranteed</li>
+                            <h1>Join PartsFinder</h1>
+                            <p>Ready to Join the UAE’s Largest Car Parts Network?</p>
+                            <p style="font-weight:700;">Showcase your business to thousands of car owners and garages actively searching for car parts across the UAE.</p>
+
+                            <ul id="steps">
+                                <h4>Why Join PartsFinder UAE?</h4>
+                                <li>As easy as using WhatsApp</li>
+                                <li>Reach thousands of car part buyers instantly</li>
+                                <li>Perfect for both new and used part sellers</li>
+                                <li>Trusted by part suppliers all over the UAE</li>
+                                <li>Stay ahead of your competition with more visibility</li>
                             </ul>
+                            <p>Join PartsFinder UAE Today — Grow Your Sales Faster Than Ever!</p>
                         </div>
                     </div>
 
-                    <!-- Right Side - Signup Form -->
+                    <!-- Right Side -->
                     <div class="col-lg-6">
-                        <div class="login-right">
-                            <div class="login-header">
-                                <h2 class="login-title">Create Account</h2>
-                                <p class="login-subtitle">Fill in your details to get started</p>
+                        <div class="signup-right">
+                            <div class="signup-header">
+                                <h2 class="signup-title">Create Account</h2>
+                                <p class="signup-subtitle">Fill in the details to get started</p>
                             </div>
 
-                            <form method="POST" action="{{ route('supplier.create') }}">
+                            <form action="{{ route('supplier.create') }}" method="POST">
                                 @csrf
 
-                                <div class="form-group">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Enter your full name" required>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter your full name" required name="name">
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Business Name</label>
-                                    <input type="text" class="form-control" name="business_name" placeholder="Enter your business name" required>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-building me-2"></i>Business Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter your business name" required name="business_name">
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-city me-2"></i>Select City</label>
+                                    <select class="form-select" required name="city_id">
+                                        <option selected disabled>Choose city</option>
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Phone</label>
-                                    <input type="text" class="form-control" name="phone" placeholder="Enter your phone number" required>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                                    <input type="email" class="form-control" placeholder="Enter your email" required name="email">
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Enter password" required>
+                                <div class="mb-3">
+                                    <label class="form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                                    <div class="input-group">
+                                        <select class="form-select" style="max-width:120px;" name="country_code">
+                                            <option value="">Select Country</option>
+                                          @include('Frontend.contries')
+                                            <!-- Add more as needed -->
+                                        </select>
+                                        <input type="tel" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                    </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-login w-100 mt-4">
-                                    <i class="fas fa-user-plus me-2"></i> Sign Up
-                                </button>
+                                <button type="submit" class="btn btn-signup w-100 mt-3"><i class="fas fa-user-check me-2"></i> Sign Up</button>
                             </form>
 
-                            <div class="signup-link">
-                                Already have an account? <a href="{{ route('supplier.login') }}">Sign In</a>
+                            <div class="login-link">
+                                Already have an account? <a href="{{ route('supplier.login') }}">Login here</a>
                             </div>
                         </div>
                     </div>
-                    <!-- End Right Side -->
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    const toastElList = [].slice.call(document.querySelectorAll(".toast"));
+    toastElList.map(function(toastEl){
+        const toast = new bootstrap.Toast(toastEl, {delay:4000});
+        toast.show();
+    });
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 @endsection
