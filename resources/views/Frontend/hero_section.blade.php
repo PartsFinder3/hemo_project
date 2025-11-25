@@ -439,15 +439,7 @@ $('#year').on('select2:select', function () {
     updateButton();
 });
 
-// --- WHEN USER SELECTS A PART ---
-partsDropdown.addEventListener("change", function () {
-    console.log("Part Selected");
 
-    partSelected = true;
-    conditionGroup.classList.remove("hidden");
-
-    updateButton();
-});
 $('#parts-dropdown').on('select2:select', function () {
     console.log("Part Selected");
     partSelected = true;
