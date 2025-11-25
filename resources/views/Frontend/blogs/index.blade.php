@@ -271,7 +271,7 @@
                     <article class="blog-card">
                         <img src="{{ asset('storage/' . $b->image) }}" alt="{{ $b->title }}">
                         <div class="card-body">
-                            <span class="badge">{{ $b->category->name }}</span>
+
                             <h2 class="card-title">{{ $b->title }}</h2>
                             <p class="card-text">{{ Str::limit(strip_tags($b->content), 150, '...') }}</p>
                             <div class="card-meta">
