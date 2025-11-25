@@ -12,12 +12,13 @@
             --primary-orange-hover: #d44822;
             --primary-dark-light: #2a2f4a;
         }
-.login-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px; /* optional, for small screens */
-}
+
+        .login-container {
+            width: 100%;
+            width: 1200px;
+            margin: 0 auto;
+        }
+
         .signup-card {
             background: white;
             border-radius: 20px;
@@ -175,9 +176,10 @@
             }
         }
     </style>
+    <div class="container-fluid login-container">
 
     <!-- Toast Container -->
-    <div class="toast-container position-fixed top-0 start-0 p-3 login-container"  style="z-index: 1100;">
+    <div class="toast-container position-fixed top-0 start-0 p-3"  style="z-index: 1100;">
         @if (session('success'))
             <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
                 aria-atomic="true">
@@ -486,7 +488,7 @@
             </div>
         </div>
     </div>
-
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toastElList = [].slice.call(document.querySelectorAll(".toast"));
