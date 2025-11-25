@@ -13,12 +13,11 @@
             --primary-dark-light: #2a2f4a;
         }
 
-.login-container {
-    width: 100%;        /* پورا اسپیس لے لے */
-    max-width: 1200px;  /* زیادہ چوڑائی نہیں بڑھے گی */
-    margin: 0 auto;     /* سینٹر میں آئے گا */
-    padding: 0 15px;    /* موبائل پر کناروں سے بچائے */
-}
+        .container {
+            width: 100%;
+            width: 1200px;
+            margin: 0 auto;
+        }
 
         .signup-card {
             background: white;
@@ -177,7 +176,6 @@
             }
         }
     </style>
-    <div class="container-fluid login-container">
 
     <!-- Toast Container -->
     <div class="toast-container position-fixed top-0 start-0 p-3"  style="z-index: 1100;">
@@ -489,7 +487,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const toastElList = [].slice.call(document.querySelectorAll(".toast"));
