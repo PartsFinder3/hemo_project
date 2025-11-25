@@ -4,26 +4,7 @@
   @include('Frontend.hero_section', ['part' => "Showing Results for". $make->name])
 
     </main>
-    <section class="carMakes">
-        <div class="section-text">
-            <h3>TOP MAKES</h3>
-            <h2>Browse By Brands</h2>
-        </div>
-
-        <div class="brands">
-            @foreach ($carMakes as $m)
-               <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}" class="make">
-                    @if($m->logo)
-                        <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}">
-                  
-                    @endif
-                    <h4>{{ strtoupper($m->name) }}</h4>
-                </a>
-            @endforeach
-        </div>
-    </section>
-
-    <section class="ad-cards">
+     <section class="ad-cards">
         <div class="section-text">
             <h3>{{ $make->name }} ADS</h3>
             <h2>Find the Best Deals For You</h2>
@@ -77,6 +58,26 @@
 
         <div class="pagination" id="pagination1"></div>
     </section>
+    <section class="carMakes">
+        <div class="section-text">
+            <h3>TOP MAKES</h3>
+            <h2>Browse By Brands</h2>
+        </div>
+
+        <div class="brands">
+            @foreach ($carMakes as $m)
+               <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}" class="make">
+                    @if($m->logo)
+                        <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}">
+                  
+                    @endif
+                    <h4>{{ strtoupper($m->name) }}</h4>
+                </a>
+            @endforeach
+        </div>
+    </section>
+
+   
 
         <section class="ad-cards">
         <div class="section-text">
