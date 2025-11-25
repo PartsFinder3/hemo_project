@@ -176,7 +176,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // alert(`Searching for ${partNames.join(', ')} for ${yearName} ${makeName} ${modelName} in ${searchData.condition} condition!`);
     });
 });
+console.log("Make:", makeSelect.value);
+console.log("Model:", modelSelect.value);
+console.log("Year:", yearSelect.value);
+console.log("Parts:", selectedParts);
 
+updateFindButton();
 
 // document.addEventListener("DOMContentLoaded", function () {
 //     // DOM refs
