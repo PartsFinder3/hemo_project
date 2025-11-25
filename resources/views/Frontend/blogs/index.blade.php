@@ -24,6 +24,8 @@
         color: white;
         padding: 60px 20px;
         text-align: center;
+        border-radius: 10px;
+        margin-bottom: 40px;
     }
 
     .page-header h1 {
@@ -252,6 +254,12 @@
 </style>
 
 <!-- Page Header -->
+<div class="page-header">
+    <div class="container">
+        <h1>Latest Articles</h1>
+        <p>Discover the latest insights in Sedans, SUVs, and more.</p>
+    </div>
+</div>
 
 <!-- Main Content -->
 <div class="container">
@@ -284,17 +292,8 @@
             </div>
 
             <!-- Pagination -->
-            <div class="pagination">
-                <span class="page-item">Previous</span>
-                <a href="#" class="page-item active">1</a>
-                <a href="#" class="page-item">2</a>
-                <a href="#" class="page-item">3</a>
-                <a href="#" class="page-item">Next</a>
-            </div>
-        </div>
 
-        <!-- Sidebar -->
-     
+        </div>
     </div>
 </div>
 @endsection
