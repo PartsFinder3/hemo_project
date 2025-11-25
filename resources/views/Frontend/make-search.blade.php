@@ -180,8 +180,8 @@
 
     <style>
         .card {
-    width: 300px;
-    height: 450px;
+   width: 100%;
+    padding: 0; /* remove all padding */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -189,8 +189,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    height: 470px;
 }
 
 .card:hover {
