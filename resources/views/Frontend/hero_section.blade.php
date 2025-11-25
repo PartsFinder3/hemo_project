@@ -272,7 +272,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     </div>
 
                     <div class="form-group hidden" id="parts-group">
-                        <select id="parts-dropdown" class="dropdown" disabled>
+                        <select id="parts-dropdown" class="dropdown" name="parts[]" multiple disabled>
                             <option disabled selected value="">Select a part to add</option>
                             @foreach ($parts as $part)
                                 <option value="{{ $part->id }}">{{ $part->name }}</option>
@@ -397,7 +397,8 @@ $('#parts-dropdown').select2({
             };
         },
         cache: true
-    }
+    },
+    multiple: true
 });
 </script>
 
@@ -450,6 +451,7 @@ function updateButton() {
     const makeOk = $('#make').val() != null;
     const modelOk = $('#model').val() != null;
     const yearOk = $('#year').val() != null;
+    const partOk = $('#parts-dropdown').val() && $('#parts-dropdown').val().length > 0;
     const partOk = partSelected;
 
     $('#find-btn').prop("disabled", !(makeOk && modelOk && yearOk && partOk));
