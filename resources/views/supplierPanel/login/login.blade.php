@@ -1,4 +1,7 @@
   @extends('Frontend.layout.main')
+  @extends('Frontend.layout.main')
+@section('main-section')
+
   <style>
         :root {
             --primary-orange: #ff7700;
@@ -588,3 +591,4 @@
     <!-- Bootstrap JS (for responsive behavior only, no custom JS) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
+@endsection
