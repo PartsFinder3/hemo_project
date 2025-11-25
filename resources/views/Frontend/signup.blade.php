@@ -143,7 +143,7 @@
                         <div class="abdul-signup-left w-100">
                             <div class="abdul-logo">
                                 @if($domain && $domain->logo)
-                                    <img style="width:100%" src="{{ $domain->logo }}" alt="">
+                                    <img style="width:100%" src="https://partsfinder.ae/storage/logo/44444.png" alt="">
                                 @endif
                             </div>
                             <h1>Join PartsFinder</h1>
