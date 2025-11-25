@@ -272,12 +272,12 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     </div>
 
                     <div class="form-group hidden" id="parts-group">
-<select id="parts-dropdown" class="dropdown" disabled multiple>
+                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
 
-    @foreach ($parts as $part)
-        <option value="{{ $part->id }}">{{ $part->name }}</option>
-    @endforeach
-</select>
+                        @foreach ($parts as $part)
+                            <option value="{{ $part->id }}">{{ $part->name }}</option>
+                        @endforeach
+                    </select>
 
                         <div id="parts-tags" class="parts-tags"></div>
                     </div>
