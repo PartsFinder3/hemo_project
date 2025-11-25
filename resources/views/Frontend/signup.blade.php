@@ -2,26 +2,26 @@
 
 @section('main-section')
 <style>
-    body, main, header, nav, .hero-section, .hero-section_p {
+    body, main, header, nav, .abdul-hero-section, .abdul-hero-section_p {
         background-image: none !important;
         background: none !important;
     }
 
     :root {
-        --primary-orange: #ff7700;
-        --primary-dark: #2b2d2f;
-        --primary-orange-hover: #d44822;
-        --primary-dark-light: #2a2f4a;
+        --abdul-primary-orange: #ff7700;
+        --abdul-primary-dark: #2b2d2f;
+        --abdul-primary-orange-hover: #d44822;
+        --abdul-primary-dark-light: #2a2f4a;
     }
 
-    .container-fluid {
+    .abdul-container-fluid {
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 15px;
     }
 
-    .signup-card {
+    .abdul-signup-card {
         background: white;
         border-radius: 20px;
         box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -29,8 +29,8 @@
         min-height: 650px;
     }
 
-    .signup-left {
-        background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-hover) 100%);
+    .abdul-signup-left {
+        background: linear-gradient(135deg, var(--abdul-primary-orange) 0%, var(--abdul-primary-orange-hover) 100%);
         color: white;
         padding: 60px 40px;
         display: flex;
@@ -41,27 +41,27 @@
         height: 100%;
     }
 
-    .signup-left .logo {
+    .abdul-signup-left .abdul-logo {
         max-width: 200px;
         margin-bottom: 20px;
         align-self: center;
     }
 
-    .signup-left h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
-    .signup-left p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 15px; }
+    .abdul-signup-left h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+    .abdul-signup-left p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 15px; }
 
-    #steps { display: flex; flex-direction: column; align-items: flex-start; padding-left: 20px; margin-top: 10px; gap: 8px; }
-    #steps h4 { margin-bottom: 10px; }
+    #abdul-steps { display: flex; flex-direction: column; align-items: flex-start; padding-left: 20px; margin-top: 10px; gap: 8px; }
+    #abdul-steps h4 { margin-bottom: 10px; }
 
-    .signup-right { padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
+    .abdul-signup-right { padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; }
 
-    .signup-header { text-align: center; margin-bottom: 30px; }
-    .signup-title { color: var(--primary-dark); font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
-    .signup-subtitle { color: #6c757d; font-size: 1rem; }
+    .abdul-signup-header { text-align: center; margin-bottom: 30px; }
+    .abdul-signup-title { color: var(--abdul-primary-dark); font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+    .abdul-signup-subtitle { color: #6c757d; font-size: 1rem; }
 
-    .form-label { font-weight: 600; color: var(--primary-dark); margin-bottom: 8px; font-size: 1rem; }
+    .abdul-form-label { font-weight: 600; color: var(--abdul-primary-dark); margin-bottom: 8px; font-size: 1rem; }
 
-    .form-control, .form-select {
+    .abdul-form-control, .abdul-form-select {
         height: 55px;
         border: 2px solid #e9ecef;
         border-radius: 12px;
@@ -71,17 +71,17 @@
         transition: all 0.3s ease;
     }
 
-    .form-control:focus, .form-select:focus {
-        border-color: var(--primary-orange);
+    .abdul-form-control:focus, .abdul-form-select:focus {
+        border-color: var(--abdul-primary-orange);
         background-color: #fff;
         box-shadow: 0 0 0 3px rgba(233,84,38,0.15);
     }
 
-    .input-group .form-select { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: none; }
-    .input-group .form-control { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+    .abdul-input-group .abdul-form-select { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: none; }
+    .abdul-input-group .abdul-form-control { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
 
-    .btn-signup {
-        background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-hover) 100%);
+    .abdul-btn-signup {
+        background: linear-gradient(135deg, var(--abdul-primary-orange) 0%, var(--abdul-primary-orange-hover) 100%);
         border: none;
         border-radius: 12px;
         height: 55px;
@@ -93,19 +93,19 @@
         transition: all 0.3s ease;
     }
 
-    .btn-signup:hover {
-        background: linear-gradient(135deg, var(--primary-orange-hover) 0%, #c23d1e 100%);
+    .abdul-btn-signup:hover {
+        background: linear-gradient(135deg, var(--abdul-primary-orange-hover) 0%, #c23d1e 100%);
         transform: translateY(-2px);
         box-shadow: 0 10px 25px rgba(233,84,38,0.3);
     }
 
-    .login-link { text-align: center; margin-top: 20px; color: #6c757d; }
-    .login-link a { color: var(--primary-orange); font-weight: 600; text-decoration: none; }
-    .login-link a:hover { color: var(--primary-orange-hover); text-decoration: underline; }
+    .abdul-login-link { text-align: center; margin-top: 20px; color: #6c757d; }
+    .abdul-login-link a { color: var(--abdul-primary-orange); font-weight: 600; text-decoration: none; }
+    .abdul-login-link a:hover { color: var(--abdul-primary-orange-hover); text-decoration: underline; }
 
     @media (max-width: 767.98px) {
-        .signup-left { display: none; }
-        .signup-right { padding: 30px 20px; }
+        .abdul-signup-left { display: none; }
+        .abdul-signup-right { padding: 30px 20px; }
     }
 </style>
 
@@ -129,16 +129,16 @@
     @endif
 </div>
 
-<div class="container-fluid">
+<div class="abdul-container-fluid">
     <div class="row g-0 justify-content-center">
         <div class="col-xl-10 col-lg-11 col-md-12">
-            <div class="card signup-card">
+            <div class="card abdul-signup-card">
                 <div class="row g-0 h-100">
 
                     <!-- Left Side -->
                     <div class="col-lg-6 d-none d-lg-flex">
-                        <div class="signup-left w-100">
-                            <div class="logo">
+                        <div class="abdul-signup-left w-100">
+                            <div class="abdul-logo">
                                 @if($domain && $domain->logo)
                                     <img style="width:100%" src="{{ $domain->logo }}" alt="">
                                 @endif
@@ -147,7 +147,7 @@
                             <p>Ready to Join the UAE’s Largest Car Parts Network?</p>
                             <p style="font-weight:700;">Showcase your business to thousands of car owners and garages actively searching for car parts across the UAE.</p>
 
-                            <ul id="steps">
+                            <ul id="abdul-steps">
                                 <h4>Why Join PartsFinder UAE?</h4>
                                 <li>As easy as using WhatsApp</li>
                                 <li>Reach thousands of car part buyers instantly</li>
@@ -161,28 +161,28 @@
 
                     <!-- Right Side -->
                     <div class="col-lg-6">
-                        <div class="signup-right">
-                            <div class="signup-header">
-                                <h2 class="signup-title">Create Account</h2>
-                                <p class="signup-subtitle">Fill in the details to get started</p>
+                        <div class="abdul-signup-right">
+                            <div class="abdul-signup-header">
+                                <h2 class="abdul-signup-title">Create Account</h2>
+                                <p class="abdul-signup-subtitle">Fill in the details to get started</p>
                             </div>
 
                             <form action="{{ route('supplier.create') }}" method="POST">
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label class="form-label"><i class="fas fa-user me-2"></i>Full Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter your full name" required name="name">
+                                    <label class="abdul-form-label"><i class="fas fa-user me-2"></i>Full Name</label>
+                                    <input type="text" class="abdul-form-control" placeholder="Enter your full name" required name="name">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label"><i class="fas fa-building me-2"></i>Business Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter your business name" required name="business_name">
+                                    <label class="abdul-form-label"><i class="fas fa-building me-2"></i>Business Name</label>
+                                    <input type="text" class="abdul-form-control" placeholder="Enter your business name" required name="business_name">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label"><i class="fas fa-city me-2"></i>Select City</label>
-                                    <select class="form-select" required name="city_id">
+                                    <label class="abdul-form-label"><i class="fas fa-city me-2"></i>Select City</label>
+                                    <select class="abdul-form-select" required name="city_id">
                                         <option selected disabled>Choose city</option>
                                         @foreach($cities as $city)
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -191,26 +191,25 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
-                                    <input type="email" class="form-control" placeholder="Enter your email" required name="email">
+                                    <label class="abdul-form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                                    <input type="email" class="abdul-form-control" placeholder="Enter your email" required name="email">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
-                                    <div class="input-group">
-                                        <select class="form-select" style="max-width:120px;" name="country_code">
+                                    <label class="abdul-form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                                    <div class="abdul-input-group">
+                                        <select class="abdul-form-select" style="max-width:120px;" name="country_code">
                                             <option value="">Select Country</option>
                                           @include('Frontend.contries')
-                                            <!-- Add more as needed -->
                                         </select>
-                                        <input type="tel" class="form-control" placeholder="Enter phone number" name="phone" required>
+                                        <input type="tel" class="abdul-form-control" placeholder="Enter phone number" name="phone" required>
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-signup w-100 mt-3"><i class="fas fa-user-check me-2"></i> Sign Up</button>
+                                <button type="submit" class="abdul-btn-signup w-100 mt-3"><i class="fas fa-user-check me-2"></i> Sign Up</button>
                             </form>
 
-                            <div class="login-link">
+                            <div class="abdul-login-link">
                                 Already have an account? <a href="{{ route('supplier.login') }}">Login here</a>
                             </div>
                         </div>
