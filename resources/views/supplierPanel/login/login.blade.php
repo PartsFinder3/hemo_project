@@ -432,6 +432,102 @@
                 padding: 25px 15px;
             }
         }
+        @media (max-width: 991.98px) {
+    .login-card {
+        flex-direction: column;
+    }
+
+    .login-left {
+        display: block;
+        text-align: center;
+        padding: 40px 30px;
+    }
+
+    .login-right {
+        padding: 40px 30px;
+    }
+
+    .brand-title {
+        font-size: 2rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1rem;
+    }
+
+    .feature-list li {
+        justify-content: center;
+        font-size: 1rem;
+    }
+}
+
+/* Small tablets / large mobiles: 576px - 767px */
+@media (max-width: 767.98px) {
+    body {
+        padding: 10px;
+    }
+
+    .login-right {
+        padding: 30px 25px;
+    }
+
+    .login-left {
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 1.8rem;
+    }
+
+    .brand-title {
+        font-size: 1.8rem;
+    }
+
+    .form-control {
+        height: 50px;
+        font-size: 0.95rem;
+    }
+
+    .btn-login {
+        height: 50px;
+        font-size: 1rem;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+}
+
+/* Extra small mobiles: <576px */
+@media (max-width: 575.98px) {
+    .login-card {
+        border-radius: 15px;
+        margin: 10px;
+    }
+
+    .login-right {
+        padding: 25px 20px;
+    }
+
+    .login-left {
+        padding: 25px 15px;
+    }
+
+    .brand-logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .feature-list li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .login-title {
+        font-size: 1.6rem;
+    }
+}
     </style>
 
     <div class="container-fluid login-container">
