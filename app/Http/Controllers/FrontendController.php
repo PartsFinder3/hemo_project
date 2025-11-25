@@ -495,11 +495,10 @@ public function searchYears(Request $request)
 {
     $search = $request->q;
 
-    $data = Years::where('year', 'LIKE', "%$search%")
-        ->orderBy('created_at', 'desc') 
-        ->select('id', 'year as text')
-        ->get();
-
+$data = Years::where('year', 'LIKE', "%$search%")
+    ->orderByRaw('CAST(year AS UNSIGNED) DESC')
+    ->select('id', 'year as text')
+    ->get();
     return response()->json($data);
 }
 public function searchParts(Request $request)
