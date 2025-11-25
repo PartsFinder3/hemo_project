@@ -3,42 +3,54 @@
 <style>
     /* Section styling */
     .domain-about-section {
-        display: flex; /* flex for centering */
+        display: flex;
         justify-content: center;
         align-items: center;
-        padding: 100px 20px;
+        padding: 80px 20px;
         min-height: 70vh;
-        background: linear-gradient(135deg, #ff7700, #ff9900); /* gradient background */
-        color: #fff;
+        background: #1a1a1a; /* dark background */
+        color: #f1f1f1;
         text-align: center;
         box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Decorative accent line */
+    .domain-about-section::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 4px;
+        background: #ff7700;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
     }
 
     /* Content wrapper */
     .domain-about-content {
-        max-width: 900px;
+        max-width: 850px;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background for readability */
+        font-size: 22px;
+        line-height: 1.9;
         padding: 40px 30px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        font-size: 24px;
-        line-height: 2;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.05); /* subtle overlay */
+        border-left: 5px solid #ff7700; /* side accent line */
+        border-radius: 8px;
+        transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    /* Paragraph styling */
     .domain-about-content p {
-        font-size: 24px;
-        line-height: 2;
-        margin: 0 auto 20px auto;
+        margin: 0 0 20px 0;
     }
 
-    /* Hover effect on desktop */
+    /* Hover effect */
     @media (min-width: 769px) {
         .domain-about-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.1);
         }
     }
 
@@ -49,12 +61,16 @@
         }
         .domain-about-content, .domain-about-content p {
             font-size: 18px;
-            line-height: 1.8;
+            line-height: 1.7;
             padding: 30px 20px;
+        }
+        .domain-about-section::before {
+            width: 60px;
+            top: 20px;
         }
     }
 
-    /* Remove any existing hero/backgrounds */
+    /* Reset other backgrounds */
     body, main, header, nav, .hero-section, .hero-section_p {
         background-image: none !important;
         background: none !important;
