@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('supplierPanel.layout.main')
+@section('main-section')
     <title>Subscription Expired</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -80,8 +77,7 @@
             color: var(--primary-orange);
         }
     </style>
-</head>
-<body>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
@@ -142,5 +138,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+
+
+    @endsection
