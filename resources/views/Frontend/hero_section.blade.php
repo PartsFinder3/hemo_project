@@ -446,4 +446,19 @@ $('#parts-dropdown').on('select2:select', function () {
     conditionGroup.classList.remove("hidden");
     updateButton();
 });
+function updateButton() {
+    const makeVal = $('#make').val();
+    const modelVal = $('#model').val();
+    const yearVal = $('#year').val();
+    const partVal = $('#parts-dropdown').val();
+    
+    const findBtn = $('#find-btn');
+
+    // Enable the button only if make, model, year, and part are selected
+    if (makeVal && modelVal && yearVal && partVal) {
+        findBtn.prop('disabled', false);
+    } else {
+        findBtn.prop('disabled', true);
+    }
+}
 </script>
