@@ -233,57 +233,105 @@ body, main, header, nav, .hero-section, .hero-section_p {
         padding: 7px;
     }
 }
-/* Increase dropdown height and font size */
-.select2-container .select2-selection--single,
-.select2-container .select2-selection--multiple {
-    height: 40px;  /* adjust height */
-    font-size: 18px; /* adjust text size */
-}
-
-/* Adjust placeholder vertically */
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-weight: bold;
-    color: black; /* optional */
-}
-
-
-/* Adjust multiple select tags container */
-.select2-container--default.select2-container--focus .select2-selection--multiple .select2-selection__rendered {
-    min-height: 50px;  /* increase height */
-    line-height: 1.5;  
-    font-size: 18px;
-}
-
-/* Optional: make dropdown options bigger */
-.select2-container--default .select2-results__option {
-    font-weight: bold;
-    color: black; /* optional */
-}
+/* === Select2 container for single and multiple === */
 .select2-container--default {
-    background-color: #5897fb;
-    color: white;
-    font-weight: bold;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
-    cursor: default;
-    padding-left: 2px;
-    padding-right: 5px;
-    color: black;
-}
-.select2-container--default.select2-container--focus .select2-selection--multiple,
-.select2-container--default .select2-selection--multiple {
-    min-height: 50px;        /* initial height */
-    height: auto !important;  /* let it grow */
-    line-height: 1.5;
+    font-family: inherit;
     font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
 }
 
-/* Selected tags */
+/* === Single select === */
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    padding: 5px 10px;
+    line-height: 28px;
+    box-sizing: border-box;
+}
+
+/* Placeholder text */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #999;
+}
+
+/* Selected text */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 28px;
+}
+
+/* === Multiple select === */
+.select2-container--default .select2-selection--multiple {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: text;
+    min-height: 40px;
+    height: auto !important;       /* allow box to grow */
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+/* Placeholder for multiple select */
+.select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+    color: #999;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+/* Rendered selected tags */
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     display: flex;
-    flex-wrap: wrap;       /* allow multiple tags to wrap */
+    flex-wrap: wrap;               /* wrap tags to next line */
     gap: 5px;
-    padding: 5px;
+    padding: 0;
+}
+
+/* Each selected tag */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #e4e4e4;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin: 2px 2px 2px 0;
+    font-size: 16px;
+    font-weight: bold;            /* make tags bold */
+    color: #333;
+}
+
+/* Remove hover highlight if you want */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    margin-right: 4px;
+    cursor: pointer;
+    color: #888;
+}
+
+/* === Dropdown results === */
+.select2-container--default .select2-results__option {
+    padding: 6px 12px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.select2-container--default .select2-results__option--highlighted {
+    background-color: #5897fb;
+    color: white;
+}
+
+/* Scroll inside dropdown */
+.select2-results__options {
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 </style>
