@@ -236,7 +236,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* Increase dropdown height and font size */
 .select2-container .select2-selection--single,
 .select2-container .select2-selection--multiple {
-    height: 50px;  /* adjust height */
+    height: 40px;  /* adjust height */
     font-size: 18px; /* adjust text size */
 }
 
