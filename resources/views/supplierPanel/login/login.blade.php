@@ -41,11 +41,12 @@
             color: white;
         }
 
-        .login-container {
-            width: 100%;
-            width: 1200px;
-            margin: 0 auto;
-        }
+.login-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 15px; /* ensures spacing on mobile */
+    margin: 0 auto;
+}
 
         .login-card {
             background: white;
@@ -363,7 +364,13 @@
                 padding: 40px 30px;
                 text-align: center;
             }
-
+    .login-card {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .login-left, .login-right {
+        flex: 1 1 100% !important;
+    }
             .brand-title {
                 font-size: 2rem;
             }
@@ -424,13 +431,9 @@
                 margin: 10px;
             }
 
-            .login-right {
-                padding: 25px 20px;
-            }
-
-            .login-left {
-                padding: 25px 15px;
-            }
+    .login-left, .login-right {
+        padding: 20px 10px;
+    }
         }
         @media (max-width: 991.98px) {
     .login-card {
