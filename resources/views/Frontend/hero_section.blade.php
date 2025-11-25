@@ -242,8 +242,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
 /* Adjust placeholder vertically */
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 50px; /* same as height for vertical centering */
+    font-weight: bold;
+    color: black; /* optional */
 }
+
 
 /* Adjust multiple select tags container */
 .select2-container--default.select2-container--focus .select2-selection--multiple .select2-selection__rendered {
@@ -254,10 +256,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
 /* Optional: make dropdown options bigger */
 .select2-container--default .select2-results__option {
-    padding: 10px; /* bigger click area */
-    font-size: 16px;
+    font-weight: bold;
+    color: black; /* optional */
 }
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+.select2-container--default {
     background-color: #5897fb;
     color: white;
     font-weight: bold;
