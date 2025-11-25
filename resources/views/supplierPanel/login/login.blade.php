@@ -12,21 +12,8 @@
             --whatsapp-hover: #128C7E;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark-light) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-        }
+
 
          .btn-whatsapp {
             background: linear-gradient(135deg, var(--whatsapp-btn), var(--whatsapp-hover));
