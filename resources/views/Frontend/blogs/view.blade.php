@@ -25,7 +25,7 @@
         padding: 60px 20px;
         text-align: center;
         border-radius: 10px;
-        margin-bottom: 30px; /* Space below header */
+        margin-bottom: 30px;
     }
 
     .page-header h1 {
@@ -46,25 +46,9 @@
     }
 
     .col-main {
-        flex: 0 0 70%;
-        max-width: 70%;
+        flex: 0 0 100%;
+        max-width: 100%;
         padding: 0 15px;
-    }
-
-    .col-sidebar {
-        flex: 0 0 30%;
-        max-width: 30%;
-        padding: 0 15px;
-    }
-
-    @media (max-width: 991.98px) {
-        .col-main, .col-sidebar {
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-        .col-sidebar {
-            margin-top: 30px;
-        }
     }
 
     /* Blog Card */
@@ -132,49 +116,6 @@
         align-items: center;
     }
 
-    /* Sidebar */
-    .sidebar-widget {
-        background: white;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 4px 15px var(--card-shadow);
-    }
-
-    .widget-title {
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .category-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        background: var(--accent-color);
-        color: var(--secondary-color);
-        cursor: pointer;
-        transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    .category-item:hover {
-        background: var(--primary-color);
-        color: white;
-    }
-
-    .badge-count {
-        background: #dee2e6;
-        color: var(--secondary-color);
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 0.8rem;
-    }
-
     /* Responsive */
     @media (max-width: 575.98px) {
         .blog-card img {
@@ -185,12 +126,6 @@
         }
         .card-title {
             font-size: 1.5rem;
-        }
-        .widget-title {
-            font-size: 1rem;
-        }
-        .category-item {
-            font-size: 0.95rem;
         }
     }
 </style>
@@ -217,8 +152,6 @@
                 </article>
             </div>
         </div>
-
- 
     </div>
 </div>
 
