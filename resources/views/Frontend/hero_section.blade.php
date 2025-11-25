@@ -266,7 +266,6 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
                     <div class="form-group" id="year-group">
                         <select class="dropdown" id="year" name="year_id">
-                            <option value="">Select Your Model Year</option>
                             @foreach ($years as $year)
                                 <option value="{{ $year->id }}">{{ $year->year }}</option>
                             @endforeach
