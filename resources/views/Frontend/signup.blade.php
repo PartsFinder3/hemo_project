@@ -13,11 +13,12 @@
             --primary-dark-light: #2a2f4a;
         }
 
-        .container-fluid {
-            width: 100%;
-            width: 1200px;
-            margin: 0 auto;
-        }
+.container-fluid {
+    width: 100%;        /* پورے اسپیس پر فٹ ہو جائے */
+    max-width: 1200px;  /* زیادہ چوڑائی نہیں بڑھے گی */
+    margin: 0 auto;     /* سینٹر میں آئے گا */
+    padding: 0 15px;    /* موبائل پر کنارے سے بچائے */
+}
 
         .signup-card {
             background: white;
