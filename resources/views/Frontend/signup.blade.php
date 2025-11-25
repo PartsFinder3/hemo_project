@@ -1,4 +1,4 @@
-@extends('Frontend.layout.main')
+{{-- @extends('Frontend.layout.main') --}}
 
 @section('main-section')
 <style>
