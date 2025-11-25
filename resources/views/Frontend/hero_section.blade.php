@@ -272,15 +272,16 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     </div>
 
                     <div class="form-group hidden" id="parts-group">
-                        <select id="parts-dropdown" class="dropdown" disabled>
-                            <option disabled selected value="">Select a part to add</option>
-                            @foreach ($parts as $part)
-                                <option value="{{ $part->id }}">{{ $part->name }}</option>
-                            @endforeach
-                        </select>
+<select id="parts-dropdown" class="dropdown" disabled multiple>
+
+    @foreach ($parts as $part)
+        <option value="{{ $part->id }}">{{ $part->name }}</option>
+    @endforeach
+</select>
+
                         <div id="parts-tags" class="parts-tags"></div>
                     </div>
-
+  
                     <div class="form-group hidden" id="condition-group">
                         <div class="condition-section">
                             <div class="condition-title">Condition Required ?</div>
@@ -377,7 +378,7 @@ $('#year').select2({
     }
 });
 $('#parts-dropdown').select2({
-    placeholder: "Select Part",
+    placeholder: "Select Parts",
     ajax: {
         url: '/search-parts',
         dataType: 'json',
@@ -450,12 +451,12 @@ function updateButton() {
     const makeVal = $('#make').val();
     const modelVal = $('#model').val();
     const yearVal = $('#year').val();
-    const partVal = $('#parts-dropdown').val();
-    
+    const partVal = $('#parts-dropdown').val(); // this will be an array if multiple
+
     const findBtn = $('#find-btn');
 
-    // Enable the button only if make, model, year, and part are selected
-    if (makeVal && modelVal && yearVal && partVal) {
+    // Enable the button only if make, model, year, and at least 1 part is selected
+    if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
         findBtn.prop('disabled', false);
     } else {
         findBtn.prop('disabled', true);
