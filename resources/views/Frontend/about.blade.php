@@ -8,25 +8,10 @@
         align-items: center;
         padding: 80px 20px;
         min-height: 70vh;
-        background: #1a1a1a; /* dark background */
-        color: #f1f1f1;
+        background: #ffffff; /* pure white background */
+        color: #333333; /* dark text for contrast */
         text-align: center;
         box-sizing: border-box;
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* Decorative accent line */
-    .domain-about-section::before {
-        content: "";
-        position: absolute;
-        width: 100px;
-        height: 4px;
-        background: #ff7700;
-        top: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 2px;
     }
 
     /* Content wrapper */
@@ -34,23 +19,24 @@
         max-width: 850px;
         width: 100%;
         font-size: 22px;
-        line-height: 1.9;
+        line-height: 1.8;
         padding: 40px 30px;
-        background-color: rgba(255, 255, 255, 0.05); /* subtle overlay */
-        border-left: 5px solid #ff7700; /* side accent line */
-        border-radius: 8px;
-        transition: transform 0.3s ease, background 0.3s ease;
+        background-color: #f9f9f9; /* subtle off-white card */
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* soft shadow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .domain-about-content p {
         margin: 0 0 20px 0;
+        font-size: 20px;
     }
 
-    /* Hover effect */
+    /* Hover effect on desktop */
     @media (min-width: 769px) {
         .domain-about-content:hover {
-            transform: translateY(-8px);
-            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
     }
 
@@ -61,12 +47,8 @@
         }
         .domain-about-content, .domain-about-content p {
             font-size: 18px;
-            line-height: 1.7;
+            line-height: 1.6;
             padding: 30px 20px;
-        }
-        .domain-about-section::before {
-            width: 60px;
-            top: 20px;
         }
     }
 
