@@ -261,12 +261,14 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
                     <div class="form-group" id="model-group">
                         <select class="dropdown" id="model" name="car_model_id">
-                            <option value="">Select Your Model</option>
+                            <option value="">Select a Model</option>
                         </select>
                     </div>
 
                     <div class="form-group" id="year-group">
                         <select class="dropdown" id="year" name="year_id">
+                            <option value="">Select a year</option>
+
                             @foreach ($years as $year)
                                 <option value="{{ $year->id }}">{{ $year->year }}</option>
                             @endforeach
