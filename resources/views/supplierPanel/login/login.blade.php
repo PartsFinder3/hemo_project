@@ -458,7 +458,7 @@
                             <div class="login-left w-100">
                                 <div class="logo" style="max-width: 200px; margin-bottom: 20px;">
                                     @if($domain && $domain->logo)
-                                        <img style="width: 100%" src="{{ asset('storage/' . $domain->logo) }}"
+                                        <img style="width: 100%" src="{{ asset($domain->logo) }}"
                                             alt="">
                                     @endif
                                 </div>
