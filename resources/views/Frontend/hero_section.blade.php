@@ -312,61 +312,26 @@ body, main, header, nav, .hero-section, .hero-section_p {
     </div>
 
 <script>
-$(document).ready(function () {
-
-    // ========== Select2 Initialize ==========
-    $('.mySelect').select2();
-    $('#model').select2();
-    $('#year').select2();
-
-    // ========== When Make Selected ==========
-    $("#make").on("change", function () {
-        let makeId = $(this).val();
-
-        $("#model").html('<option value="">Loading...</option>');
-        $("#year").html('<option value="">Select Your Model Year</option>');
-
-        $.ajax({
-            url: "/get-models/" + makeId,
-            type: "GET",
-            success: function (models) {
-                $("#model").empty();
-                $("#model").append('<option value="">Select Your Model</option>');
-
-                $.each(models, function (index, model) {
-                    $("#model").append(
-                        `<option value="${model.id}">${model.name}</option>`
-                    );
-                });
-
-                $("#model").prop("disabled", false);
-            }
-        });
-    });
-
-    // ========== When Model Selected ==========
-    $("#model").on("change", function () {
-        let modelId = $(this).val();
-
-        $("#year").html('<option value="">Loading...</option>');
-
-        $.ajax({
-            url: "/get-years/" + modelId,
-            type: "GET",
-            success: function (years) {
-                $("#year").empty();
-                $("#year").append('<option value="">Select Your Model Year</option>');
-
-                $.each(years, function (index, year) {
-                    $("#year").append(
-                        `<option value="${year.id}">${year.year}</option>`
-                    );
-                });
-
-                $("#year").prop("disabled", false);
-            }
-        });
-    });
-
+$('#make').select2({
+    placeholder: "Select Your Make",
+    ajax: {
+        url: '/search-makes',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return {
+                q: params.term
+            };
+        },
+        processResults: function(data) {
+            return {
+                results: $.map(data, function(item) {
+                    return { id: item.id, text: item.name };
+                })
+            };
+        },
+        cache: true
+    }
 });
+
 </script>

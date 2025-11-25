@@ -468,16 +468,15 @@ public function sendProductInquiry(Request $request)
     }
 
 
-    public function getModels($make_id)
+public function searchMakes(Request $request)
 {
-    $models = CarModels::where('make_id', $make_id)->get();
+    $search = $request->q;
 
-    return response()->json($models);
-}
-public function getYears($model_id)
-{
-    $years = CarYears::where('model_id', $model_id)->get();
+    $data = CarMakes::where('name', 'LIKE', "%$search%")
+        ->select('id', 'name')
+        ->limit(20)
+        ->get();
 
-    return response()->json($years);
+    return response()->json($data);
 }
 }

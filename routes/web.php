@@ -366,6 +366,6 @@ Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->nam
 // Make Part
 Route::get('/make-part/{id}',[FrontendController::class,'makePart'])->name('frontend.make.part');
 
-
-Route::get('/get-models/{make_id}', [FrontendController::class, 'getModels']);
-Route::get('/get-years/{model_id}', [FrontendController::class, 'getYears']);
+Route::get('/search-makes', [FrontendController::class, 'searchMakes']);
+Route::get('/search-models', [FrontendController::class, 'searchModels']);
+Route::get('/search-years', [FrontendController::class, 'searchYears']);
