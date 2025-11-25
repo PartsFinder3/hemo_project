@@ -505,4 +505,19 @@ public function searchYears(Request $request)
     
     return response()->json($data);
 }
+public function searchParts(Request $request)
+{
+    $year_id  = $request->year_id;
+    $model_id = $request->model_id;
+    $search   = $request->q;
+
+    $parts = Part::where('model_id', $model_id)
+                 ->where('year_id', $year_id)
+                 ->when($search, function($query) use ($search) {
+                        $query->where('name', 'like', "%$search%");
+                  })
+                 ->get();
+
+    return response()->json($parts);
+}
 }

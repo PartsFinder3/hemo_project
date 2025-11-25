@@ -369,3 +369,4 @@ Route::get('/make-part/{id}',[FrontendController::class,'makePart'])->name('fron
 Route::get('/search-makes', [FrontendController::class, 'searchMakes']);
 Route::get('/search-models', [FrontendController::class, 'searchModels']);
 Route::get('/search-years', [FrontendController::class, 'searchYears']);
+Route::get('/search-parts', [FrontendController::class, 'searchParts']);

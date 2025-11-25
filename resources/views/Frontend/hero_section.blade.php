@@ -376,7 +376,29 @@ $('#year').select2({
         }
     }
 });
-
+$('#parts-dropdown').select2({
+    placeholder: "Select Part",
+    ajax: {
+        url: '/search-parts',
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+            return {
+                q: params.term,
+                model_id: $('#model').val(),
+                year_id: $('#year').val()
+            };
+        },
+        processResults: function (data) {
+            return {
+                results: $.map(data, function (item) {
+                    return { id: item.id, text: item.name };
+                })
+            };
+        },
+        cache: true
+    }
+});
 </script>
 
 <script>
@@ -423,6 +445,12 @@ partsDropdown.addEventListener("change", function () {
     partSelected = true;
     conditionGroup.classList.remove("hidden");
 
+    updateButton();
+});
+$('#parts-dropdown').on('select2:select', function () {
+    console.log("Part Selected");
+    partSelected = true;
+    conditionGroup.classList.remove("hidden");
     updateButton();
 });
 </script>
