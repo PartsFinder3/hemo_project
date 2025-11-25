@@ -1,4 +1,4 @@
-@include('Frontend.layout.head')
+@extends('Frontend.blogs.layout.main')
 @section('main-section')
     <!-- Page Header -->
     <div class="page-header">
