@@ -45,11 +45,11 @@
         margin: 0 -15px;
     }
 
-    .col-main {
-        flex: 0 0 70%;
-        max-width: 70%;
-        padding: 0 15px;
-    }
+.col-main {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 15px;
+}
 
     .col-sidebar {
         flex: 0 0 30%;
