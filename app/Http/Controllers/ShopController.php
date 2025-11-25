@@ -294,7 +294,7 @@ class ShopController extends Controller
         $buyerInquiry->inquiryUsages()
             ->where('buyer_inquiry_id', $buyerInquiry->id)
             ->update(['is_open' => true]);
-
-        return view('supplierPanel.whatsAppQuote.show', compact('buyerInquiry'));
+    
+        return view('supplierPanel.whatsappQuote.show', compact('buyerInquiry'));
     }
 }
