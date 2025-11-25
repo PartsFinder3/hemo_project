@@ -1,6 +1,7 @@
   @extends('Frontend.layout.main')
 
 @section('main-section')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
   <style>
         body, main, header, nav, .hero-section, .hero-section_p {
