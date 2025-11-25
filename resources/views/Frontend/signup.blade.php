@@ -59,9 +59,12 @@
     .abdul-signup-title { color: var(--abdul-primary-dark); font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
     .abdul-signup-subtitle { color: #6c757d; font-size: 1rem; }
 
-    .abdul-form-label { font-weight: 600; color: var(--abdul-primary-dark); margin-bottom: 8px; font-size: 1rem; }
+    .abdul-form-label { font-weight: 600; color: var(--abdul-primary-dark); margin-bottom: 8px; font-size: 1rem; display: block; }
 
-    .abdul-form-control, .abdul-form-select {
+    /* تمام inputs اور selects کے لیے ایک جیسی height اور full-width */
+    .abdul-form-control,
+    .abdul-form-select {
+        width: 100%;
         height: 55px;
         border: 2px solid #e9ecef;
         border-radius: 12px;
@@ -69,6 +72,8 @@
         font-size: 1rem;
         background-color: #f8f9fa;
         transition: all 0.3s ease;
+        display: block;
+        margin-bottom: 15px; /* label اور input کے درمیان gap */
     }
 
     .abdul-form-control:focus, .abdul-form-select:focus {
@@ -76,9 +81,6 @@
         background-color: #fff;
         box-shadow: 0 0 0 3px rgba(233,84,38,0.15);
     }
-
-    .abdul-input-group .abdul-form-select { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: none; }
-    .abdul-input-group .abdul-form-control { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
 
     .abdul-btn-signup {
         background: linear-gradient(135deg, var(--abdul-primary-orange) 0%, var(--abdul-primary-orange-hover) 100%);
@@ -91,6 +93,7 @@
         letter-spacing: 0.5px;
         color: #fff;
         transition: all 0.3s ease;
+        margin-top: 10px;
     }
 
     .abdul-btn-signup:hover {
@@ -107,25 +110,6 @@
         .abdul-signup-left { display: none; }
         .abdul-signup-right { padding: 30px 20px; }
     }
-    .abdul-input-group {
-    display: flex;
-    gap: 0; /* no gap, so borders meet perfectly */
-}
-
-.abdul-input-group .abdul-form-select {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-right: none;
-    border-left: 2px solid #e9ecef; /* optional for separation */
-    flex-shrink: 0;
-}
-
-.abdul-input-group .abdul-form-control {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-    border-left: none;
-    flex-grow: 1;
-}
 </style>
 
 <div class="toast-container position-fixed top-0 start-0 p-3" style="z-index:1100;">
@@ -215,17 +199,19 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="abdul-form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
-                                    <div class="abdul-input-group">
-                                        <select class="abdul-form-select" style="max-width:120px;" name="country_code">
-                                            <option value="">Select Country</option>
-                                          @include('Frontend.contries')
-                                        </select>
-                                        <input type="tel" class="abdul-form-control" placeholder="Enter phone number" name="phone" required>
-                                    </div>
+                                    <label class="abdul-form-label"><i class="fas fa-phone me-2"></i>Country Code</label>
+                                    <select class="abdul-form-select" name="country_code">
+                                        <option value="">Select Country</option>
+                                        @include('Frontend.contries')
+                                    </select>
                                 </div>
 
-                                <button type="submit" class="abdul-btn-signup w-100 mt-3"><i class="fas fa-user-check me-2"></i> Sign Up</button>
+                                <div class="mb-3">
+                                    <label class="abdul-form-label"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                                    <input type="tel" class="abdul-form-control" placeholder="Enter phone number" name="phone" required>
+                                </div>
+
+                                <button type="submit" class="abdul-btn-signup w-100"><i class="fas fa-user-check me-2"></i> Sign Up</button>
                             </form>
 
                             <div class="abdul-login-link">
