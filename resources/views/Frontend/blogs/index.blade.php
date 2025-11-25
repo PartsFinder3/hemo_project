@@ -278,7 +278,7 @@
                             <div class="card-meta">
                                 <div class="author-info">
                                     <span class="author-name">{{ $b->author }}</span>
-                                    <span>Views:<b>{{ $b->is_view }}</b></span>
+                                    <span>Views:<b> {{ $b->is_view }}</b></span>
                                 </div>
                                 <span class="post-date">{{ $b->created_at->format('M d, Y') }}</span>
                                 <span>
