@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (Auth::guard('supplier')->attempt($credentials)) {
             $supplier = Auth::guard('supplier')->user();
-          
+           dd($supplier);
             // check expiry
             $today = now();
             if ($supplier->end_date && $today->gt($supplier->end_date)) {
