@@ -496,7 +496,7 @@ public function searchYears(Request $request)
     $search = $request->q;
 
     $data = Years::where('year', 'LIKE', "%$search%")
-        ->orderBy('year', 'DESC') 
+        ->orderBy('created_at', 'desc') 
         ->select('id', 'year as text')
         ->get();
 
