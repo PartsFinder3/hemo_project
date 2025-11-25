@@ -159,6 +159,7 @@ nav .logo img {
     transition: 0.3s ease;
     padding-left: 50px !important;
     padding-right: 50px !important;
+    padding-bottom: 10px !important; 
         font-size: 15px !important;
             border-radius: 50rem !important;
 height: 35px;
