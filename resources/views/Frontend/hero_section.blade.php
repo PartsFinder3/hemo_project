@@ -475,14 +475,14 @@ $('#year').select2({
             };
         },
         processResults: function(data) {
+            // Disable Select2 internal sorting
             return {
-                results: $.map(data, function(item) {
-                    return { id: item.id, text: item.text };
-                })
+                results: data
             };
         }
     }
 });
+
 $('#parts-dropdown').select2({
     placeholder: "Select Parts",
     ajax: {
