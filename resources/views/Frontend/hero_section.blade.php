@@ -251,6 +251,8 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     @csrf
                     <div class="form-group" id="make-group">
                         <select class="dropdown mySelect" id="make" name="car_make_id">
+             <option  selected value="">Select a part make</option>
+
                             @foreach ($makes as $make)
                                 <option value="{{ $make->id }}">{{ $make->name }}</option>
                             @endforeach
