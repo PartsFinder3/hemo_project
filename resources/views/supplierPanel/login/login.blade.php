@@ -1,4 +1,5 @@
-   <style>
+  @extends('Frontend.layout.main')
+  <style>
         :root {
             --primary-orange: #ff7700;
             --primary-dark: #2b2d2f;
