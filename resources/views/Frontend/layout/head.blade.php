@@ -114,10 +114,16 @@
                     <li><a href="{{ route('about.page') }}">About</a></li>
                     <li><a href="{{ route('frontend.blogs') }}">Blogs</a></li>
                 </ul>
-                <span class="hero-btns">
-                    <a href="{{ route('supplier.login') }}" class="login-btn">Login</a>
-                    <a href="{{ route('frontend.signup') }}" class="signup-btn">Sign Up</a>
-                </span>
+<span class="hero-btns">
+    <a href="{{ route('supplier.login') }}" 
+       style="display: inline-block; padding: 10px 20px; background-color: #ff7700; color: #fff; text-decoration: none; border-radius: 5px; pointer-events: auto;">
+       Login
+    </a>
+    <a href="{{ route('frontend.signup') }}" 
+       style="display: inline-block; padding: 10px 20px; background-color: #2b2d2f; color: #fff; text-decoration: none; border-radius: 5px; pointer-events: auto;">
+       Sign Up
+    </a>
+</span>
             </div>
             <div class="burger-menu" id="burger-menu">
                 <span></span>
