@@ -474,7 +474,6 @@ public function searchMakes(Request $request)
 
     $data = CarMakes::where('name', 'LIKE', "%$search%")
         ->select('id', 'name')
-        ->limit(20)
         ->get();
 
     return response()->json($data);
@@ -488,7 +487,6 @@ public function searchModels(Request $request)
     $data = CarModels::where('car_make_id', $make_id)
         ->where('name', 'LIKE', "%$search%")
         ->select('id', 'name')
-        ->limit(20)
         ->get();
 
     return response()->json($data);
@@ -500,7 +498,6 @@ public function searchYears(Request $request)
 
     $data =Years::where('year', 'LIKE', "%$search%")
         ->select('id', 'year as text')
-        ->limit(20)
         ->get();
     
     return response()->json($data);
