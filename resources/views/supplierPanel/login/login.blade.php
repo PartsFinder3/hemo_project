@@ -570,7 +570,7 @@
                                 </form>
 
                                 <div class="signup-link">
-                                    Don't have an account? <a href="{{route('supplier.login')}}">Create Account</a>
+                                    Don't have an account? <a href="{{route('supplier.signup')}}">Create Account</a>
                           
                                 </div>
                             </div>

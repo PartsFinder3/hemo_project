@@ -113,7 +113,7 @@
                             </form>
 
                             <div class="signup-link">
-                                Already have an account? <a href="{{ route('frontend.login') }}">Sign In</a>
+                                Already have an account? <a href="{{ route('supplier.login') }}">Sign In</a>
                             </div>
                         </div>
                     </div>
