@@ -380,76 +380,49 @@ $('#year').select2({
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+$('#make').on('select2:select', function () {
+    console.log("Make Selected");
 
-    // Elements
-    const make = document.getElementById("make");
-    const model = document.getElementById("model");
-    const year = document.getElementById("year");
-    const partsDropdown = document.getElementById("parts-dropdown");
-    const partsGroup = document.getElementById("parts-group");
-    const conditionGroup = document.getElementById("condition-group");
-    const findBtn = document.getElementById("find-btn");
+    $('#model').val(null).trigger('change');
+    $('#year').val(null).trigger('change');
 
-    let partSelected = false; // Track if user selected any part
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
 
-    // --- SHOW MODEL WHEN MAKE SELECTED ---
-   $('#make').on('select2:select', function () {
-        console.log("Make Selected");
-        $('#model').val(null).trigger('change');
-        $('#year').val(null).trigger('change');
-        partsGroup.classList.add("hidden");
-        conditionGroup.classList.add("hidden");
-        partSelected = false;
-        updateButton();
-    });
+    partSelected = false;
+    updateButton();
+});
 
-    // --- SHOW YEAR WHEN MODEL SELECTED ---
-   $('#model').on('select2:select', function () {
-        console.log("Model Selected");
-        $('#year').val(null).trigger('change');
-        partsGroup.classList.add("hidden");
-        conditionGroup.classList.add("hidden");
-        partSelected = false;
-        updateButton();
-    });
+// --- SHOW YEAR WHEN MODEL SELECTED ---
+$('#model').on('select2:select', function () {
+    console.log("Model Selected");
 
-    // --- SHOW PARTS WHEN YEAR SELECTED ---
-    $('#year').on('select2:select', function () {
-        console.log("Year Selected");
-        partsGroup.classList.remove("hidden");
-        partsDropdown.disabled = false;
-        updateButton();
-    });
+    $('#year').val(null).trigger('change');
 
-    // --- WHEN USER SELECTS A PART ---
-    partsDropdown.addEventListener("change", function () {
-        console.log("Part Selected");
-        partSelected = true;
-        conditionGroup.classList.remove("hidden");
-        updateButton();
-    });
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
 
-    // --- CONDITION SELECT ---
-    document.querySelectorAll("input[name='condition']").forEach(radio => {
-        radio.addEventListener("change", function () {
-            updateButton();
-        });
-    });
+    partSelected = false;
+    updateButton();
+});
 
-    // --- ENABLE BUTTON ONLY WHEN READY ---
-    function updateButton() {
-        const makeOk = make.value != "";
-        const modelOk = model.value != "";
-        const yearOk = year.value != "";
-        const partOk = partSelected;
+// --- SHOW PARTS WHEN YEAR SELECTED ---
+$('#year').on('select2:select', function () {
+    console.log("Year Selected");
 
-        if (makeOk && modelOk && yearOk && partOk) {
-            findBtn.disabled = false;
-        } else {
-            findBtn.disabled = true;
-        }
-    }
+    partsGroup.classList.remove("hidden");
+    partsDropdown.disabled = false;
 
+    updateButton();
+});
+
+// --- WHEN USER SELECTS A PART ---
+partsDropdown.addEventListener("change", function () {
+    console.log("Part Selected");
+
+    partSelected = true;
+    conditionGroup.classList.remove("hidden");
+
+    updateButton();
 });
 </script>
