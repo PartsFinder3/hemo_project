@@ -275,7 +275,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
              <option  selected value="">Select a part to add</option>
                         @foreach ($parts as $part)
-                            <option value="{{ $part->id }}">{{ $part->name }}</option>
+                            <option value="{{ $part->id }}"><strong> {{ $part->name }}</strong>   </option>
                         @endforeach
                     </select>
 
