@@ -187,11 +187,11 @@
                  <div class="d-flex gap-4 my-4 buttons_ct">
 
 <div class="text-center">
-    <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}"
-       target="_blank"
-       class="round-btn">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+<a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+   target="_blank"
+   class="round-btn">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
 </div>
     <div class="text-center">
         <a href="javascript:void(0)" class="round-btn call-btn"
