@@ -314,7 +314,6 @@
     height: 470px;
 }
 
-
 #productGrid1 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -374,10 +373,6 @@
     text-decoration: none;
     color: #fff;
     width: 215px;
-}
-
-#productGrid1 .buttons a.whatsapp {
-    background: #25D366;
 }
 
 #productGrid1 .buttons a.call {
