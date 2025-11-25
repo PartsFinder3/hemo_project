@@ -116,11 +116,11 @@
                 </ul>
 <span class="hero-btns">
     <a href="{{ route('supplier.login') }}" 
-       style="display: inline-block; padding: 10px 20px; background-color: #2b2d2f; color: #fff; text-decoration: none; border-radius: 5px; pointer-events: auto;">
+       style="display: inline-block; padding: 10px 20px; background-color: #a2a3a5; color: #fff; text-decoration: none; border-radius: 5px; pointer-events: auto;">
        Login
     </a>
     <a href="{{ route('frontend.signup') }}" 
-       style="display: inline-block; padding: 10px 20px; background-color: #ff7700; color: #fff; text-decoration: none; border-radius: 5px; pointer-events: auto;">
+       style="display: inline-block; padding: 10px 20px; background-color: #e57224; color: #fff; text-decoration: none; border-radius: 5px; pointer-events: auto;">
        Sign Up
     </a>
 </span>
