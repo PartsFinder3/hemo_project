@@ -485,7 +485,7 @@ public function searchModels(Request $request)
     $search = $request->q;
     $make_id = $request->make_id;
 
-    $data = CarModels::where('make_id', $make_id)
+    $data = CarModels::where('car_make_id', $make_id)
         ->where('name', 'LIKE', "%$search%")
         ->select('id', 'name')
         ->limit(20)
