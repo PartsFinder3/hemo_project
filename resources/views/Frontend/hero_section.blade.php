@@ -257,7 +257,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding: 10px; /* bigger click area */
     font-size: 16px;
 }
-
+.dropdown {
+  font-weight: bold;
+}
 </style>
 
    <div class="hero_section_text">
