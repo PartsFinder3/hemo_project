@@ -264,7 +264,12 @@ body, main, header, nav, .hero-section, .hero-section_p {
     color: white;
     font-weight: bold;
 }
-
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    cursor: default;
+    padding-left: 2px;
+    padding-right: 5px;
+    color: black;
+}
 </style>
 
    <div class="hero_section_text">
