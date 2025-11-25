@@ -498,12 +498,11 @@ public function searchYears(Request $request)
     $search = $request->q;
     $model_id = $request->model_id;
 
-    $data =Years::where('model_id', $model_id)
-        ->where('year', 'LIKE', "%$search%")
+    $data =Years::where('year', 'LIKE', "%$search%")
         ->select('id', 'year as text')
         ->limit(20)
         ->get();
-
+    
     return response()->json($data);
 }
 }
