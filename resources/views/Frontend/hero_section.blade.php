@@ -244,6 +244,8 @@ body, main, header, nav, .hero-section, .hero-section_p {
     position: relative;
     vertical-align: middle;
     width: 100%;
+        font-weight: bold;
+
 }
 
 /* === Single select === */
