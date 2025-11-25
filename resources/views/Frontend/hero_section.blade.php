@@ -272,8 +272,8 @@ body, main, header, nav, .hero-section, .hero-section_p {
                     </div>
 
                     <div class="form-group hidden" id="parts-group">
-                        <select id="parts-dropdown" class="dropdown" name="parts[]" multiple >
-                            <option  selected value="">Select a part to add</option>
+                        <select id="parts-dropdown" class="dropdown" disabled>
+                            <option disabled selected value="">Select a part to add</option>
                             @foreach ($parts as $part)
                                 <option value="{{ $part->id }}">{{ $part->name }}</option>
                             @endforeach
@@ -312,10 +312,6 @@ body, main, header, nav, .hero-section, .hero-section_p {
     </div>
 
 <script>
-    const partsGroup = document.getElementById("parts-group");
-const partsDropdown = document.getElementById("parts-dropdown");
-const conditionGroup = document.getElementById("condition-group");
-let partSelected = false;
 $('#make').select2({
     placeholder: "Select Your Make",
     ajax: {
@@ -401,8 +397,7 @@ $('#parts-dropdown').select2({
             };
         },
         cache: true
-    },
-    multiple: true
+    }
 });
 </script>
 
@@ -438,25 +433,24 @@ $('#year').on('select2:select', function () {
     console.log("Year Selected");
 
     partsGroup.classList.remove("hidden");
-    partsDropdown.disabled = false; // <-- yahi remove karo
-    $('#parts-dropdown').prop('disabled', false); // Select2 ke liye bhi
-    partSelected = false;
+    partsDropdown.disabled = false;
+
+    updateButton();
+});
+
+// --- WHEN USER SELECTS A PART ---
+partsDropdown.addEventListener("change", function () {
+    console.log("Part Selected");
+
+    partSelected = true;
+    conditionGroup.classList.remove("hidden");
+
     updateButton();
 });
 $('#parts-dropdown').on('select2:select', function () {
     console.log("Part Selected");
     partSelected = true;
-    $('#condition-group').removeClass("hidden");
+    conditionGroup.classList.remove("hidden");
     updateButton();
 });
-function updateButton() {
-    const makeOk = $('#make').val() != null;
-    const modelOk = $('#model').val() != null;
-    const yearOk = $('#year').val() != null;
- const partOk = partSelected && $('#parts-dropdown').val() && $('#parts-dropdown').val().length > 0;
-
-        const partOk = partSelected;
-
-    $('#find-btn').prop("disabled", !(makeOk && modelOk && yearOk && partOk));
-}
 </script>
