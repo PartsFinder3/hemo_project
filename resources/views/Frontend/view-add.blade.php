@@ -233,7 +233,7 @@
                     </tr>
                     <tr>
                         <td>Description</td>
-                        <td>{{$$ad->description}}</td>
+                       <td>{{ $ad->description }}</td>
                     </tr>
                     {{-- <tr>
                         <td>Part Category</td>
