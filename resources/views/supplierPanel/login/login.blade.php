@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AutoParts Hub</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
+   <style>
         :root {
             --primary-orange: #ff7700;
             --primary-dark: #2b2d2f;
@@ -446,9 +437,7 @@
             }
         }
     </style>
-</head>
 
-<body>
     <div class="container-fluid login-container">
         <div class="row g-0 justify-content-center">
             <div class="col-xl-10 col-lg-11 col-md-12">
@@ -597,6 +586,4 @@
 
     <!-- Bootstrap JS (for responsive behavior only, no custom JS) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
 
-</html>
