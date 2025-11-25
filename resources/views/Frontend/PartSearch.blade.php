@@ -372,7 +372,7 @@
     font-weight: bold;
     text-decoration: none;
     color: #fff;
-    width: 215px;
+    width: 100%;
 }
 
 #productGrid1 .buttons a.call {
