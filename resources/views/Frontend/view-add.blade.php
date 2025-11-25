@@ -131,6 +131,10 @@
                         <td>Year</td>
                         <td>{{$year}}</td>
                     </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{$$ad->description}}</td>
+                    </tr>
                     {{-- <tr>
                         <td>Part Category</td>
                         <td>Body Panel</td>
