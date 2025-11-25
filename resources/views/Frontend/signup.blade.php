@@ -1,6 +1,6 @@
 {{-- @extends('Frontend.layout.main') --}}
 
-@section('main-section')
+{{-- @section('main-section') --}}
 <style>
     :root {
         --primary-orange: #ff7700;
@@ -973,4 +973,4 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-@endsection
+{{-- @endsection --}}
