@@ -181,7 +181,7 @@ console.log("Model:", modelSelect.value);
 console.log("Year:", yearSelect.value);
 console.log("Parts:", selectedParts);
 
-updateFindButton();
+
 
 // document.addEventListener("DOMContentLoaded", function () {
 //     // DOM refs
