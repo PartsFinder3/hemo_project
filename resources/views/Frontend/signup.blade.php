@@ -13,6 +13,11 @@
             --primary-dark-light: #2a2f4a;
         }
 
+        .login-container {
+            width: 100%;
+            width: 1200px;
+            margin: 0 auto;
+        }
 
         .signup-card {
             background: white;
@@ -173,7 +178,7 @@
     </style>
 
     <!-- Toast Container -->
-    <div class="toast-container position-fixed top-0 start-0 p-3" style="z-index: 1100;">
+    <div class="toast-container position-fixed top-0 start-0 p-3 login-container"  style="z-index: 1100;">
         @if (session('success'))
             <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
                 aria-atomic="true">
