@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+  @extends('Frontend.layout.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - AutoParts Hub</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
+@section('main-section')
     <style>
+                body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
         :root {
             --primary-orange: #ff7700;
             --primary-dark: #2b2d2f;
@@ -16,15 +13,6 @@
             --primary-dark-light: #2a2f4a;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark-light) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-        }
 
         .signup-card {
             background: white;
@@ -183,9 +171,7 @@
             }
         }
     </style>
-</head>
 
-<body>
     <!-- Toast Container -->
     <div class="toast-container position-fixed top-0 start-0 p-3" style="z-index: 1100;">
         @if (session('success'))
@@ -509,6 +495,4 @@
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+@endsection
