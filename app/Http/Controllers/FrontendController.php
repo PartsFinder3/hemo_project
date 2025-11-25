@@ -494,12 +494,12 @@ public function searchModels(Request $request)
 public function searchYears(Request $request)
 {
     $search = $request->q;
-    $model_id = $request->model_id;
 
-    $data =Years::where('year', 'LIKE', "%$search%")
+    $data = Years::where('year', 'LIKE', "%$search%")
+        ->orderBy('year', 'DESC') 
         ->select('id', 'year as text')
         ->get();
-    
+
     return response()->json($data);
 }
 public function searchParts(Request $request)
