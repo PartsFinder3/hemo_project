@@ -218,23 +218,7 @@
             </div>
         </div>
 
-        <!-- Categories Sidebar -->
-        <div class="col-sidebar">
-            <div class="sidebar-widget">
-                <h3 class="widget-title">
-                    <i class="fas fa-tags"></i> Categories
-                </h3>
-                @foreach ($categories as $c)
-                    @php
-                        $categoryBlogs = $c->blogs()->count();
-                    @endphp
-                    <div class="category-item">
-                        <span>{{ $c->name }}</span>
-                        <span class="badge-count">{{ $categoryBlogs }}</span>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+ 
     </div>
 </div>
 
