@@ -467,4 +467,17 @@ public function sendProductInquiry(Request $request)
         return view('Frontend.make-part', compact('part', 'makes', 'randomParts', 'cities', 'randomMakes','years','parts','ads','carAds'));
     }
 
+
+    public function getModels($make_id)
+{
+    $models = CarModels::where('make_id', $make_id)->get();
+
+    return response()->json($models);
+}
+public function getYears($model_id)
+{
+    $years = CarYears::where('model_id', $model_id)->get();
+
+    return response()->json($years);
+}
 }

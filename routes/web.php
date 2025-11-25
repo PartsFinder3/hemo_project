@@ -365,3 +365,7 @@ Route::get('/terms-and-conditions', [FrontendController::class, 'termsAndConditi
 Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('frontend.privacy');
 // Make Part
 Route::get('/make-part/{id}',[FrontendController::class,'makePart'])->name('frontend.make.part');
+
+
+Route::get('/get-models/{make_id}', [FrontendController::class, 'getModels']);
+Route::get('/get-years/{model_id}', [FrontendController::class, 'getYears']);
