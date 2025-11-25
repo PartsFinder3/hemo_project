@@ -252,12 +252,6 @@
 </style>
 
 <!-- Page Header -->
-<div class="page-header">
-    <div class="container">
-        <h1>Latest Articles</h1>
-        <p>Discover the latest insights in Sedans, SUVs, and more.</p>
-    </div>
-</div>
 
 <!-- Main Content -->
 <div class="container">
@@ -300,24 +294,7 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="col-sidebar">
-            <div class="sidebar-widget">
-                <h3 class="widget-title">
-                    <i class="fas fa-tags"></i>Categories
-                </h3>
-                <a href="{{route('frontend.blogs')}}" class="category-item">
-                    <span>All</span>
-                    <span class="badge-count">{{ $blogs->count() }}</span>
-                </a>
-                @foreach ($categories as $c)
-                    @php $categoryBlogs = $c->blogs()->count(); @endphp
-                    <a href="{{route('frontend.blogs.category',$c->id)}}" class="category-item">
-                        <span>{{ $c->name }}</span>
-                        <span class="badge-count">{{ $categoryBlogs }}</span>
-                    </a>
-                @endforeach
-            </div>
-        </div>
+     
     </div>
 </div>
 @endsection
