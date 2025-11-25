@@ -233,6 +233,30 @@ body, main, header, nav, .hero-section, .hero-section_p {
         padding: 7px;
     }
 }
+/* Increase dropdown height and font size */
+.select2-container .select2-selection--single,
+.select2-container .select2-selection--multiple {
+    height: 50px;  /* adjust height */
+    font-size: 18px; /* adjust text size */
+}
+
+/* Adjust placeholder vertically */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 50px; /* same as height for vertical centering */
+}
+
+/* Adjust multiple select tags container */
+.select2-container--default.select2-container--focus .select2-selection--multiple .select2-selection__rendered {
+    min-height: 50px;  /* increase height */
+    line-height: 1.5;  
+    font-size: 18px;
+}
+
+/* Optional: make dropdown options bigger */
+.select2-container--default .select2-results__option {
+    padding: 10px; /* bigger click area */
+    font-size: 16px;
+}
 
 </style>
 
