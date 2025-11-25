@@ -3,6 +3,10 @@
 @section('main-section')
 
   <style>
+        body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
         :root {
             --primary-orange: #ff7700;
             --primary-dark: #2b2d2f;
