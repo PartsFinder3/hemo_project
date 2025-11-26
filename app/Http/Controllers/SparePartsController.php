@@ -16,13 +16,7 @@ public function index(Request $request)
     $spareParts = SpareParts::with('category')
         ->orderBy('name', 'ASC')
         ->paginate($perPage);
-      $sparePartD = SpareParts::all();
-      foreach ($sparePartD as $part) {
-        # code...
-        
-       echo  $part->name;
-       echo "<br>";
-      }
+
     $categories = PartCategory::orderBy('name')->get();
 
     return view('adminPanel.parts.show', compact('spareParts', 'categories', 'perPage'));

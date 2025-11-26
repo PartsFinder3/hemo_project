@@ -1,4 +1,4 @@
-{{-- @extends('adminPanel.layout.main') --}}
+@extends('adminPanel.layout.main')
 @section('main-section')
     <header class="mb-3">
         <a href="#" class="burger-btn d-block d-xl-none">
