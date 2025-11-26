@@ -126,60 +126,61 @@
                 </div>
 
                 <!-- Options -->
-                <!-- Options in single row -->
-                <div class="mb-3">
-                    <div class="row">
-                        <!-- VAT Included -->
-                        <div class="col-4">
-                            <label class="form-label fw-semibold">VAT Included?</label>
-                            <div class="d-flex gap-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="vat" id="vatYes">
-                                    <label class="form-check-label" for="vatYes">Yes</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="vat" id="vatNo">
-                                    <label class="form-check-label" for="vatNo">No</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Condition -->
-                        <div class="col-4">
-                            <label class="form-label fw-semibold">Condition</label>
-                            <div class="d-flex gap-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="condition" id="used">
-                                    <label class="form-check-label" for="used">Used</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="condition" id="recon">
-                                    <label class="form-check-label" for="recon">Recon</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="condition" id="new">
-                                    <label class="form-check-label" for="new">New</label>
+<!-- Options: VAT and Condition in same row -->
+                    <div class="mb-3">
+                        <div class="row">
+                            <!-- VAT Included -->
+                            <div class="col-6">
+                                <label class="form-label fw-semibold">VAT Included?</label>
+                                <div class="d-flex gap-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="vat" id="vatYes">
+                                        <label class="form-check-label" for="vatYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="vat" id="vatNo">
+                                        <label class="form-check-label" for="vatNo">No</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Offers Fitting -->
-                        <div class="col-4">
-                            <label class="form-label fw-semibold">Offers Fitting?</label>
-                            <div class="d-flex gap-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fitting" id="fitYes">
-                                    <label class="form-check-label" for="fitYes">Yes</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="fitting" id="fitNo">
-                                    <label class="form-check-label" for="fitNo">No</label>
+                            <!-- Condition -->
+                            <div class="col-6">
+                                <label class="form-label fw-semibold">Condition</label>
+                                <div class="d-flex gap-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="condition" id="used">
+                                        <label class="form-check-label" for="used">Used</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="condition" id="recon">
+                                        <label class="form-check-label" for="recon">Recon</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="condition" id="new">
+                                        <label class="form-check-label" for="new">New</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+<!-- Offers Fitting in new line -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Offers Fitting?</label>
+                <div class="d-flex gap-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fitting" id="fitYes">
+                        <label class="form-check-label" for="fitYes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="fitting" id="fitNo">
+                        <label class="form-check-label" for="fitNo">No</label>
+                    </div>
+                </div>
+            </div>
+
+            
 
                 <div class="d-grid mb-3">
                     <button type="button" class="btn btn-success btn-lg p-2 rounded-3" onclick="sendQuote()">

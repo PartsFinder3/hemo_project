@@ -74,6 +74,11 @@
     .container.py-4 {
         padding: 5px !important;
     }
+    @media (max-width: 767px) {
+    .condition-options .form-check {
+        margin-left: 20px;
+    }
+}
 </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
