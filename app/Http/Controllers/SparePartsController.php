@@ -12,7 +12,9 @@ class SparePartsController extends Controller
 {
     public function index()
     {
-        $spareParts = SpareParts::with('category')->get();
+       $spareParts = SpareParts::with('category')
+            ->orderBy('name', 'ASC')
+            ->get();
         $categories = PartCategory::all();
         return view('adminPanel.parts.show', compact('spareParts', 'categories'));
     }
