@@ -95,6 +95,16 @@
                         </div>
                     </div>
                 </div>
+                <form method="GET" class="mb-3">
+                    <label class="me-2 fw-bold">Show</label>
+                    <select name="per_page" class="form-select d-inline-block w-auto" onchange="this.form.submit()">
+                        <option value="50"  {{ $perPage == 50 ? 'selected' : '' }}>50</option>
+                        <option value="100" {{ $perPage == 100 ? 'selected' : '' }}>100</option>
+                        <option value="200" {{ $perPage == 200 ? 'selected' : '' }}>200</option>
+                        <option value="300" {{ $perPage == 300 ? 'selected' : '' }}>300</option>
+                    </select>
+                    <span class="ms-2">records</span>
+                </form>
                 <div class="card-body">
                     <table class="table table-striped" id="table1">
                         <thead>
