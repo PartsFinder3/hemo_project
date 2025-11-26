@@ -6,13 +6,13 @@
     <script>
         swal("Success!", "{{ session('success') }}", "success");
     </script>
-    @else
+@endif
+
+@if(session('error'))
     <script>
-
-        swal("error!", "{{ session('error') }}", "error");
+        swal("Error!", "{{ session('error') }}", "error");
     </script>
-
-        @endif
+@endif
     <div class="container mt-5">
         <div class="row">
             <div class="col-12">
