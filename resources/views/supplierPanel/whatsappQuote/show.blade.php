@@ -74,11 +74,27 @@
     .container.py-4 {
         padding: 5px !important;
     }
-    @media (max-width: 767px) {
-        .condition-options .form-check {
-        margin-left: 50px;
+@media (max-width: 420px) {
+    /* Make radio buttons stack vertically on small screens */
+    .col-6 .d-flex {
+        
+        gap: -5px !important;
+    }
+
+    /* Optional: align labels left */
+    .form-check-label {
+        text-align: left !important;
+    }
+    @media (max-width: 420px) {
+    /* Stack radio buttons vertically */
+    .col-6 .d-flex {
+        flex-direction: column !important;
+        align-items: flex-start !important; /* Left align */
+        gap: 4px !important;
     }
 }
+}
+
 </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
