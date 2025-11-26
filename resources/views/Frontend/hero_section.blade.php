@@ -215,28 +215,34 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
 /* ======= Responsive 480px (Small Mobile) ======= */
 @media (max-width: 480px) {
-
     .hero_section_text h1 {
-        font-size: 1.6rem !important;
+        font-size: 1.6rem;
+        line-height: 1.2;
     }
 
     .car {
         max-width: 330px;
+        padding: 12px;
     }
 
     .hero_image_section img {
         max-width: 260px;
+        margin-top: 15px;
     }
 
     .dropdown {
-        font-size: 14px;
-        padding: 7px;
+        font-size: 13px;
+        padding: 5px;
     }
-#doesnt-matter {
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 11px;
-}
+
+    #doesnt-matter {
+        font-size: 11px;
+    }
+
+    .find-btn {
+        font-size: 14px;
+        height: 40px;
+    }
 }
 /* === Select2 container for single and multiple === */
 .select2-container--default {
