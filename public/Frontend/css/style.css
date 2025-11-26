@@ -119,12 +119,12 @@ nav {
     color: var(--accent-color);
 }
 .hiliter {
-    display: inline;          /* inline text ke liye */
-   /* yellow background */
-    color: #000;              /* text color black */
-    font-weight: bold;        /* thoda bold kar diya */
-    padding: 2px 5px;         /* thoda space */
-    border-radius: 3px;       /* thoda rounded corner */
+    display: inline;
+  
+    color: #000;         
+    font-weight: bold;  
+    padding: 2px 5px;    
+    border-radius: 3px;     
 }
 
 .hero-btns {
