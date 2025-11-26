@@ -217,6 +217,7 @@ height: 35px;
         text-align: center;
         padding-left: 0 !important;
         padding-right: 0 !important;
+           padding-bottom: 1px !important; 
     }
 
     /* Burger show */
@@ -249,6 +250,7 @@ height: 35px;
     .hero-btns a {
         font-size: 13px !important;
         height: auto;
+           padding-bottom: 1px !important; 
     }
 
 }
