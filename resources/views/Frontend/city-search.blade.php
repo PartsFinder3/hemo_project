@@ -10,7 +10,7 @@
     background-color: #ffeb3b; /* yellow background */
     color: #000;              /* text color black */
     font-weight: bold;        /* thoda bold kar diya */
-    padding: 2px 5px;         /* thoda space */
+    padding: 7px 5px;         /* thoda space */
     border-radius: 3px;       /* thoda rounded corner */
 }
 
