@@ -24,9 +24,9 @@ class AuthController extends Controller
 
         if (Auth::guard('supplier')->attempt($credentials)) {
             $supplier = Auth::guard('supplier')->user();
-            dd($supplier);
+          
              if ((int)$supplier->is_active === 1) {
-                
+           
                     return redirect()->route('supplier.panel')
                         ->with('success', 'Login successful.');
                 } else {
