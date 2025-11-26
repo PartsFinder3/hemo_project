@@ -325,7 +325,7 @@
     }
 
     .radio-option label {
-        font-size: 12px;
+        font-size: 11px;
     }
 }
 .buttons a.whatsapp,
