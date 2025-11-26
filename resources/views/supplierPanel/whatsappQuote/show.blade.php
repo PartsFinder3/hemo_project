@@ -75,8 +75,8 @@
         padding: 5px !important;
     }
     @media (max-width: 767px) {
-    .condition-options .form-check {
-        margin-left: 40px;
+        .condition-options .form-check {
+        margin-left: 50px;
     }
 }
 </style>
