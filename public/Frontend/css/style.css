@@ -121,6 +121,7 @@ nav {
 .hiliter{
     height: 20px;
     width: 100px;
+    background-color: #1da1f2;
 }
 .hero-btns {
     display: flex;

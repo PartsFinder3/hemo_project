@@ -1,28 +1,10 @@
 <?php $__env->startSection('main-section'); ?>
 
-  <?php echo $__env->make('Frontend.hero_section', ['part' => "Showing Results for".$make->name], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+<?php echo $__env->make('Frontend.hero_section', [
+    'part' => 'Showing Results for <div class="hiliter">' . $make->name . '</div>'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </main>
-    <section class="carMakes">
-        <div class="section-text">
-            <h3>TOP MAKES</h3>
-            <h2>Browse By Brands</h2>
-        </div>
-
-        <div class="brands">
-            <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-               <a href="<?php echo e(route('make.ads', ['slug' => $m->slug, 'id' => $m->id])); ?>" class="make">
-                    <?php if($m->logo): ?>
-                        <img src="<?php echo e(asset('storage/' . $m->logo)); ?>" alt="<?php echo e($m->name); ?>">
-                  
-                    <?php endif; ?>
-                    <h4><?php echo e(strtoupper($m->name)); ?></h4>
-                </a>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </section>
-
-    <section class="ad-cards">
+     <section class="ad-cards">
         <div class="section-text">
             <h3><?php echo e($make->name); ?> ADS</h3>
             <h2>Find the Best Deals For You</h2>
@@ -46,7 +28,7 @@
                         <img src="<?php echo e(asset('' . $images[0])); ?>" alt="Product">
                     <?php endif; ?>
                     <div class="card-body">
-                        <a href="" class="card-title"><?php echo e($ad->title); ?></a>
+                        <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>" class="card-title"><?php echo e($ad->title); ?></a>
                         <div class="price">AED <?php echo e($ad->price); ?></div>
                         <div class="meta">
                             Availability: In Stock <br>
@@ -76,6 +58,26 @@
 
         <div class="pagination" id="pagination1"></div>
     </section>
+    <section class="carMakes">
+        <div class="section-text">
+            <h3>TOP MAKES</h3>
+            <h2>Browse By Brands</h2>
+        </div>
+
+        <div class="brands">
+            <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+               <a href="<?php echo e(route('make.ads', ['slug' => $m->slug, 'id' => $m->id])); ?>" class="make">
+                    <?php if($m->logo): ?>
+                        <img src="<?php echo e(asset('storage/' . $m->logo)); ?>" alt="<?php echo e($m->name); ?>">
+                  
+                    <?php endif; ?>
+                    <h4><?php echo e(strtoupper($m->name)); ?></h4>
+                </a>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </section>
+
+   
 
         <section class="ad-cards">
         <div class="section-text">
@@ -179,8 +181,8 @@
 
     <style>
         .card {
-    width: 300px;
-    height: 450px;
+   width: 100%;
+    padding: 0; /* remove all padding */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -188,8 +190,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    height: 470px;
 }
 
 .card:hover {
@@ -438,6 +439,45 @@
             }
         }
     </script>
+    <script>          
+const burgerMenu = document.getElementById("burger-menu");
+const navMenu = document.getElementById("nav-menu");
+
+if (burgerMenu && navMenu) {
+    burgerMenu.addEventListener("click", function () {
+        burgerMenu.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll(".nav-menu a");
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (
+            !burgerMenu.contains(event.target) &&
+            !navMenu.contains(event.target)
+        ) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+
+    // Close mobile menu on window resize
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+}
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('Frontend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/make-search.blade.php ENDPATH**/ ?>
