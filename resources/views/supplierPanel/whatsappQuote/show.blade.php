@@ -151,20 +151,20 @@
                             <!-- Condition -->
                             <div class="col-6">
                                 <label class="form-label fw-semibold">Condition</label>
-                            <div class="d-flex gap-2 condition-options">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="condition" id="used">
-                                    <label class="form-check-label" for="used">Used</label>
+                                <div class="d-flex gap-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="condition" id="used">
+                                        <label class="form-check-label" for="used">Used</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="condition" id="recon">
+                                        <label class="form-check-label" for="recon">Recon</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="condition" id="new">
+                                        <label class="form-check-label" for="new">New</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="condition" id="recon">
-                                    <label class="form-check-label" for="recon">Recon</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="condition" id="new">
-                                    <label class="form-check-label" for="new">New</label>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>
