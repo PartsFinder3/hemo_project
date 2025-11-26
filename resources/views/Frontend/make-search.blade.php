@@ -1,7 +1,7 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 
-  @include('Frontend.hero_section', ['part' => "Showing Results for". $make->name])
+  @include('Frontend.hero_section', ['part' => "Showing Results for ". $make->name])
 
     </main>
      <section class="ad-cards">
