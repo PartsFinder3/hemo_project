@@ -212,7 +212,12 @@ public function sendProductInquiry(Request $request)
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-        $domain_id=$currentDomain->id;
+                            if ($currentDomain) {
+                $domain_id = $currentDomain->id;
+            } else {
+                $domain_id = null; // یا کوئی default value
+            }
+
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(24)
@@ -256,7 +261,11 @@ public function sendProductInquiry(Request $request)
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-        $domain_id=$currentDomain->id;
+              if ($currentDomain) {
+                $domain_id = $currentDomain->id;
+            } else {
+                $domain_id = null; // یا کوئی default value
+            }
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(60)
@@ -306,7 +315,11 @@ public function sendProductInquiry(Request $request)
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-        $domain_id=$currentDomain->id;
+              if ($currentDomain) {
+                $domain_id = $currentDomain->id;
+            } else {
+                $domain_id = null; // یا کوئی default value
+            }
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carAds = CarAds::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
