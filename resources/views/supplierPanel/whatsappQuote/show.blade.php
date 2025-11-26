@@ -76,7 +76,7 @@
     }
     @media (max-width: 767px) {
     .condition-options .form-check {
-        margin-left: 20px;
+        margin-left: 40px;
     }
 }
 </style>
