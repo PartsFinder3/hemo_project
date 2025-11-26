@@ -2,7 +2,7 @@
 @section('main-section')
 
   @include('Frontend.hero_section', [
-    'part' => 'Find City For<div class="hiliter">' .  $city->name  . '</div>.'
+    'part' => 'Find City For<div class="hiliter"> ' .  $city->name  . '</div>.'
 ])
 <style>
     .hiliter {
