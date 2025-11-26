@@ -1,6 +1,9 @@
 @extends('Frontend.layout.main')
 @section('main-section')
-@include('Frontend.hero_section', ['part' => "Find City of " . $city->name])
+
+  @include('Frontend.hero_section', [
+    'part' => 'Find City For<div class="hiliter">' .  $city->name  . '</div>.'
+])
     </main>
     <section class="carMakes">
         <div class="section-text">

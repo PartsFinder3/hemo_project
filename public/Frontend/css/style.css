@@ -118,11 +118,15 @@ nav {
 .nav-menu ul li a:hover {
     color: var(--accent-color);
 }
-.hiliter{
-    height: 20px;
-    width: 100px;
-    background-color: #1da1f2;
+.hiliter {
+    display: inline;          /* inline text ke liye */
+    background-color: #ffeb3b; /* yellow background */
+    color: #000;              /* text color black */
+    font-weight: bold;        /* thoda bold kar diya */
+    padding: 2px 5px;         /* thoda space */
+    border-radius: 3px;       /* thoda rounded corner */
 }
+
 .hero-btns {
     display: flex;
   

@@ -339,7 +339,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 </style>
 
    <div class="hero_section_text">
-<h1>{{$part}}.</h1>
+<h1>{!! $part !!}</h1>
     </div>
 
     <div class="secound_hero_section">
