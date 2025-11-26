@@ -318,6 +318,15 @@
         font-size: 14px;
         padding: 7px;
     }
+        .radio-group {
+        width: 100% !important;
+        flex-direction: column; /* stack vertically on small screens */
+        gap: 10px;
+    }
+
+    .radio-option label {
+        font-size: 12px;
+    }
 }
 .buttons a.whatsapp,
 .buttons a.call {

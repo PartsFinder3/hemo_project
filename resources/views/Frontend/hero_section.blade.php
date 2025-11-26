@@ -215,33 +215,22 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
 /* ======= Responsive 480px (Small Mobile) ======= */
 @media (max-width: 480px) {
+
     .hero_section_text h1 {
-        font-size: 1.6rem;
-        line-height: 1.2;
+        font-size: 1.6rem !important;
     }
 
     .car {
         max-width: 330px;
-        padding: 12px;
     }
 
     .hero_image_section img {
         max-width: 260px;
-        margin-top: 15px;
     }
 
     .dropdown {
-        font-size: 13px;
-        padding: 5px;
-    }
-
-    #doesnt-matter {
-        font-size: 11px !important;
-    }
-
-    .find-btn {
         font-size: 14px;
-        height: 40px;
+        padding: 7px;
     }
 }
 /* === Select2 container for single and multiple === */
@@ -419,7 +408,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
                                     <label for="new">New</label>
                                 </div>
                                 <div class="radio-option">
-                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" style=" font-size: 11px !important;" />
+                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
                                     <label for="doesnt-matter">Doesn't matter</label>
                                 </div>
                             </div>
