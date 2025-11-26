@@ -5,14 +5,7 @@
     'part' => 'Find City For<div class="hiliter"> ' .  $city->name  . '</div>.'
 ])
 <style>
-    .hiliter {
-    display: inline;          /* inline text ke liye */
-    /* yellow background */
-    color: #000;              /* text color black */
-    font-weight: bold;        /* thoda bold kar diya */
-    padding: 7px 5px;         /* thoda space */
-    border-radius: 3px;       /* thoda rounded corner */
-}
+ 
 
 </style>
     </main>
