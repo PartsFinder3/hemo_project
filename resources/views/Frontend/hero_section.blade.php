@@ -242,7 +242,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
         font-size: 11px;
     }
 }
-}
+
 /* === Select2 container for single and multiple === */
 .select2-container--default {
     font-family: inherit;
