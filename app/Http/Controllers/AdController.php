@@ -264,9 +264,9 @@ public function delete($type, $id)
             if ((int)$supplier->is_active === 1) {
         return view('supplierPanel.ads.createAd', compact('makes', 'models', 'years', 'fuels', 'engineSize', 'parts'));
 
-      }else{
-        return back()->with('error','Please Resubcription now');
-      }
+        }else{
+            return back()->with('error', 'Please Resubscription now');
+        }
     }
 
     public function getModels($make_id)
