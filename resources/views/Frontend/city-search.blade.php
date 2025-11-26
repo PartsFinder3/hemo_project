@@ -7,7 +7,7 @@
 <style>
     .hiliter {
     display: inline;          /* inline text ke liye */
-    background-color: #ffeb3b; /* yellow background */
+    /* yellow background */
     color: #000;              /* text color black */
     font-weight: bold;        /* thoda bold kar diya */
     padding: 7px 5px;         /* thoda space */
