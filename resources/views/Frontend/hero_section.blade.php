@@ -232,6 +232,16 @@ body, main, header, nav, .hero-section, .hero-section_p {
         font-size: 14px;
         padding: 7px;
     }
+        .radio-group {
+        width: 100% !important;
+        flex-direction: column; /* stack vertically on small screens */
+        gap: 10px;
+    }
+
+    .radio-option label {
+        font-size: 11px;
+    }
+}
 }
 /* === Select2 container for single and multiple === */
 .select2-container--default {
