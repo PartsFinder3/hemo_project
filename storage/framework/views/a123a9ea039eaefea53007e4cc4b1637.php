@@ -1,5 +1,4 @@
-@extends('supplierPanel.layout.main')
-@section('main-section')
+<?php $__env->startSection('main-section'); ?>
 <style>
     /* Card very compact */
     .card {
@@ -83,7 +82,7 @@
             <div class="col-lg-5 col-sm-12 mb-4">
                 <div class="card shadow-lg border-0 rounded-4">
             <!-- Vehicle Detail -->
-            @php
+            <?php
                 $make = $buyerInquiry->carMake->name ?? 'Unknown';
                 $model = $buyerInquiry->carModel->name ?? 'Unknown';
                 $year = $buyerInquiry->year->year ?? 'Unknown';
@@ -96,19 +95,21 @@
 
                 $shopPartIds = Auth::guard('supplier')->user()->shop->parts->pluck('part_id')->toArray();
                 $matchingParts = $buyerInquiry->partsList->whereIn('id', $shopPartIds)->pluck('name')->toArray();
-            @endphp
+            ?>
 
             <div class="card-body">
-                {{-- <h2>{{ $buyerWhatsapp }}</h2> --}}
+                
                 <h6 class="text-muted mb-1">Vehicle Detail:</h6>
-                <h5 class="fw-bold">{{ $make }} {{ $model }} {{ $year }}
+                <h5 class="fw-bold"><?php echo e($make); ?> <?php echo e($model); ?> <?php echo e($year); ?>
+
                     <h5 class="fw-bold">
-                        {{ implode(', ', $matchingParts) }}
+                        <?php echo e(implode(', ', $matchingParts)); ?>
+
                     </h5>
                 </h5>
                 <p class="mb-3">
                     <i class="bi bi-geo-alt-fill text-primary"></i>
-                    <span class="fw-semibold">{{ $buyerCity }}, {{ $buyerCountry }}</span>
+                    <span class="fw-semibold"><?php echo e($buyerCity); ?>, <?php echo e($buyerCountry); ?></span>
                 </p>
 
                 <!-- Price Quote -->
@@ -176,20 +177,20 @@
                         <i class="bi bi-whatsapp"></i> Send Price Quote
                     </button>
                 </div>
-                @php
+                <?php
                     $shop = Auth::guard('supplier')->user()->shop->name;
-                @endphp
+                ?>
 
                 <script>
                     // Pass PHP value into JS
-                    let shop = @json($shop);
+                    let shop = <?php echo json_encode($shop, 15, 512) ?>;
 
                     function sendQuote() {
-                        let number = "{{ $buyerWhatsapp }}";
-                        let make = "{{ $make }}";
-                        let model = "{{ $model }}";
-                        let year = "{{ $year }}";
-                        let parts = "{{ implode(', ', $matchingParts) }}";
+                        let number = "<?php echo e($buyerWhatsapp); ?>";
+                        let make = "<?php echo e($make); ?>";
+                        let model = "<?php echo e($model); ?>";
+                        let year = "<?php echo e($year); ?>";
+                        let parts = "<?php echo e(implode(', ', $matchingParts)); ?>";
 
                         // Get form values
                         let price = document.querySelector('input[type=number]').value || 'N/A';
@@ -210,11 +211,11 @@ Offers Fitting: *${fitting}*`;
                     }
 
                     function askInfo(extraText) {
-                        let number = "{{ $buyerWhatsapp }}";
-                        let make = "{{ $make }}";
-                        let model = "{{ $model }}";
-                        let year = "{{ $year }}";
-                        let parts = "{{ implode(', ', $matchingParts) }}";
+                        let number = "<?php echo e($buyerWhatsapp); ?>";
+                        let make = "<?php echo e($make); ?>";
+                        let model = "<?php echo e($model); ?>";
+                        let year = "<?php echo e($year); ?>";
+                        let parts = "<?php echo e(implode(', ', $matchingParts)); ?>";
 
                         let message = `Hi, I'm from ${shop}. I'm contacting you regarding your enquiry on *Partsfinder UAE* for ${make} ${model} ${year} ${parts}.
 
@@ -267,11 +268,11 @@ ${extraText}`;
 
                 <script>
                     function askInfo(extraText) {
-                        let number = "{{ $buyerWhatsapp }}";
-                        let make = "{{ $make }}";
-                        let model = "{{ $model }}";
-                        let year = "{{ $year }}";
-                        let parts = "{{ implode(', ', $matchingParts) }}";
+                        let number = "<?php echo e($buyerWhatsapp); ?>";
+                        let make = "<?php echo e($make); ?>";
+                        let model = "<?php echo e($model); ?>";
+                        let year = "<?php echo e($year); ?>";
+                        let parts = "<?php echo e(implode(', ', $matchingParts)); ?>";
 
                         let message = `Hi, I'm from ${shop}. I'm contacting you regarding your enquiry on *Partsfinder UAE* for ${make} ${model} ${year} ${parts}.
 
@@ -310,4 +311,6 @@ ${extraText}`;
             window.open(url, "_blank");
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('supplierPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/supplierPanel/whatsappQuote/show.blade.php ENDPATH**/ ?>
