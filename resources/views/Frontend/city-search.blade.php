@@ -4,7 +4,19 @@
   @include('Frontend.hero_section', [
     'part' => 'Find City For<div class="hiliter">' .  $city->name  . '</div>.'
 ])
+<style>
+    .hiliter {
+    display: inline;          /* inline text ke liye */
+    background-color: #ffeb3b; /* yellow background */
+    color: #000;              /* text color black */
+    font-weight: bold;        /* thoda bold kar diya */
+    padding: 2px 5px;         /* thoda space */
+    border-radius: 3px;       /* thoda rounded corner */
+}
+
+</style>
     </main>
+
     <section class="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>

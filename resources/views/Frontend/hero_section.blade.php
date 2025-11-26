@@ -335,7 +335,14 @@ body, main, header, nav, .hero-section, .hero-section_p {
     max-height: 200px;
     overflow-y: auto;
 }
-
+ .hiliter {
+    display: inline;          /* inline text ke liye */
+    background-color: #ffeb3b; /* yellow background */
+    color: #000;              /* text color black */
+    font-weight: bold;        /* thoda bold kar diya */
+    padding: 2px 5px;         /* thoda space */
+    border-radius: 3px;       /* thoda rounded corner */
+}
 </style>
 
    <div class="hero_section_text">
