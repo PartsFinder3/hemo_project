@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+  
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AutoParts Hub</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
+<?php $__env->startSection('main-section'); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+        body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
         :root {
             --primary-orange: #ff7700;
             --primary-dark: #2b2d2f;
@@ -17,21 +17,8 @@
             --whatsapp-hover: #128C7E;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-dark-light) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0;
-        }
+
 
          .btn-whatsapp {
             background: linear-gradient(135deg, var(--whatsapp-btn), var(--whatsapp-hover));
@@ -54,11 +41,12 @@
             color: white;
         }
 
-        .login-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.login-container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 15px; /* ensures spacing on mobile */
+    margin: 0 auto;
+}
 
         .login-card {
             background: white;
@@ -376,7 +364,13 @@
                 padding: 40px 30px;
                 text-align: center;
             }
-
+    .login-card {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .login-left, .login-right {
+        flex: 1 1 100% !important;
+    }
             .brand-title {
                 font-size: 2rem;
             }
@@ -437,18 +431,108 @@
                 margin: 10px;
             }
 
-            .login-right {
-                padding: 25px 20px;
-            }
-
-            .login-left {
-                padding: 25px 15px;
-            }
+    .login-left, .login-right {
+        padding: 20px 10px;
+    }
         }
-    </style>
-</head>
+        @media (max-width: 991.98px) {
+    .login-card {
+        flex-direction: column;
+    }
 
-<body>
+    .login-left {
+        display: block;
+        text-align: center;
+        padding: 40px 30px;
+    }
+
+    .login-right {
+        padding: 40px 30px;
+    }
+
+    .brand-title {
+        font-size: 2rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1rem;
+    }
+
+    .feature-list li {
+        justify-content: center;
+        font-size: 1rem;
+    }
+}
+
+/* Small tablets / large mobiles: 576px - 767px */
+@media (max-width: 767.98px) {
+    body {
+        padding: 10px;
+    }
+
+    .login-right {
+        padding: 30px 25px;
+    }
+
+    .login-left {
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 1.8rem;
+    }
+
+    .brand-title {
+        font-size: 1.8rem;
+    }
+
+    .form-control {
+        height: 50px;
+        font-size: 0.95rem;
+    }
+
+    .btn-login {
+        height: 50px;
+        font-size: 1rem;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+}
+
+/* Extra small mobiles: <576px */
+@media (max-width: 575.98px) {
+    .login-card {
+        border-radius: 15px;
+        margin: 10px;
+    }
+
+    .login-right {
+        padding: 25px 20px;
+    }
+
+    .login-left {
+        padding: 25px 15px;
+    }
+
+    .brand-logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .feature-list li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    .login-title {
+        font-size: 1.6rem;
+    }
+}
+    </style>
+
     <div class="container-fluid login-container">
         <div class="row g-0 justify-content-center">
             <div class="col-xl-10 col-lg-11 col-md-12">
@@ -475,7 +559,7 @@
                             <div class="login-left w-100">
                                 <div class="logo" style="max-width: 200px; margin-bottom: 20px;">
                                     <?php if($domain && $domain->logo): ?>
-                                        <img style="width: 100%" src="<?php echo e(asset('storage/' . $domain->logo)); ?>"
+                                        <img style="width: 100%" src="https://partsfinder.ae/storage/logo/44444.png"
                                             alt="">
                                     <?php endif; ?>
                                 </div>
@@ -576,7 +660,8 @@
                                 </form>
 
                                 <div class="signup-link">
-                                    Don't have an account? <a href="<?php echo e(route('frontend.signup')); ?>">Create Account</a>
+                                    Don't have an account? <a href="<?php echo e(route('supplier.signup')); ?>">Create Account</a>
+                          
                                 </div>
                             </div>
                         </div>
@@ -588,7 +673,45 @@
 
     <!-- Bootstrap JS (for responsive behavior only, no custom JS) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
+<script>
+            // Mobile Menu Functionality
+const burgerMenu = document.getElementById("burger-menu");
+const navMenu = document.getElementById("nav-menu");
 
-</html>
-<?php /**PATH C:\laragon\www\partsfinder\resources\views/supplierPanel/login/login.blade.php ENDPATH**/ ?>
+if (burgerMenu && navMenu) {
+    burgerMenu.addEventListener("click", function () {
+        burgerMenu.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll(".nav-menu a");
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (
+            !burgerMenu.contains(event.target) &&
+            !navMenu.contains(event.target)
+        ) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+
+    // Close mobile menu on window resize
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+}
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Frontend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/supplierPanel/login/login.blade.php ENDPATH**/ ?>

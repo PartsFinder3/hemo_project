@@ -1,5 +1,48 @@
 @extends('supplierPanel.layout.main')
 @section('main-section')
+<style>
+    /* Card ko compact banaye */
+    .card {
+        padding: 10px !important;
+    }
+
+    .card-body {
+        padding: 15px !important;
+    }
+
+    /* Headings / text space reduce */
+    h5, h6, p, label {
+        margin-bottom: 4px !important;
+    }
+
+    /* Form spacing kam */
+    .mb-3 {
+        margin-bottom: 10px !important;
+    }
+
+    /* Radio options gap reduce */
+    .d-flex.gap-3 {
+        gap: 10px !important;
+    }
+
+    /* Button height choti */
+    .btn-lg {
+        padding: 6px 10px !important;
+        font-size: 14px !important;
+    }
+
+    /* Whole card height reduce + tighter layout */
+    .card.shadow-lg {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Top bottom padding of container kam */
+    .container.py-4 {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+</style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <div class="container py-4">
