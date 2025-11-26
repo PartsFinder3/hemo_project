@@ -106,43 +106,48 @@
                     <span class="ms-2">records</span>
                 </form>
                 <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>OEM Number</th>
-                                <th>Category</th>
-                                <th>Image</th>
-                                <th>SEO</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($spareParts as $part)
-                                <tr>
-                                    <td>{{ $part->name }}</td>
-                                    <td>{{ $part->oem_number }}</td>
-                                    <td>{{ $part->category->name ?? 'N/A' }}</td>
-                                    <td>
-                                        @if ($part->image)
-                                            <img src="{{ asset('storage/' . $part->image) }}" alt="Spare Part" width="80">
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{route('admin.parts.meta',$part->id)}}" class="btn btn-warning">SEO</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" href="{{route('spareparts.edit',$part->id)}}"><i
-                                                        class="fa-solid fa-pen-to-square"></i>
-                                                    Edit</a>
-                                                <a class="btn btn-danger" href="{{route('spareparts.destroy',$part->id)}}"><i class="fa-solid fa-trash"></i>
-                                                    Delete</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-
-                    </table>
+        <div class="mb-3">
+    {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
+</div>
+         <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>OEM Number</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>SEO</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($spareParts as $part)
+            <tr>
+                <td>{{ $part->name }}</td>
+                <td>{{ $part->oem_number }}</td>
+                <td>{{ $part->category->name ?? 'N/A' }}</td>
+                <td>
+                    @if ($part->image)
+                    <img src="{{ asset('storage/' . $part->image) }}" alt="Spare Part" width="80">
+                    @endif
+                </td>
+                <td>
+                    <a href="{{route('admin.parts.meta',$part->id)}}" class="btn btn-warning btn-sm">SEO</a>
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{route('spareparts.edit',$part->id)}}"><i
+                        class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-danger btn-sm" href="{{route('spareparts.destroy',$part->id)}}"><i class="fa-solid fa-trash"></i> Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+        <div class="mb-3">
+    {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
+</div>
                 </div>
             </div>
 

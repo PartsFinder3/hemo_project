@@ -10,18 +10,17 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class SparePartsController extends Controller
 {
-        public function index(Request $request)
-        {
-            $perPage = $request->input('per_page', 100); // default 100
+public function index(Request $request)
+{
+    $perPage = $request->input('per_page', 100); // default 100
+    $spareParts = SpareParts::with('category')
+        ->orderBy('name', 'ASC')
+        ->paginate($perPage);
 
-            $spareParts = SpareParts::with('category')
-                ->orderBy('name', 'ASC')
-                ->paginate($perPage);
+    $categories = PartCategory::orderBy('name')->get();
 
-            $categories = PartCategory::orderBy('name')->get();
-
-            return view('adminPanel.parts.show', compact('spareParts', 'categories', 'perPage'));
-        }
+    return view('adminPanel.parts.show', compact('spareParts', 'categories', 'perPage'));
+}
 
     public function store(Request $request)
     {

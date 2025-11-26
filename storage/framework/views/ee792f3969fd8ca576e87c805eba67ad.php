@@ -105,43 +105,50 @@
                     <span class="ms-2">records</span>
                 </form>
                 <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>OEM Number</th>
-                                <th>Category</th>
-                                <th>Image</th>
-                                <th>SEO</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $__currentLoopData = $spareParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
-                                    <td><?php echo e($part->name); ?></td>
-                                    <td><?php echo e($part->oem_number); ?></td>
-                                    <td><?php echo e($part->category->name ?? 'N/A'); ?></td>
-                                    <td>
-                                        <?php if($part->image): ?>
-                                            <img src="<?php echo e(asset('storage/' . $part->image)); ?>" alt="Spare Part" width="80">
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a href="<?php echo e(route('admin.parts.meta',$part->id)); ?>" class="btn btn-warning">SEO</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" href="<?php echo e(route('spareparts.edit',$part->id)); ?>"><i
-                                                        class="fa-solid fa-pen-to-square"></i>
-                                                    Edit</a>
-                                                <a class="btn btn-danger" href="<?php echo e(route('spareparts.destroy',$part->id)); ?>"><i class="fa-solid fa-trash"></i>
-                                                    Delete</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </tbody>
+        <div class="mb-3">
+    <?php echo e($spareParts->appends(request()->query())->links('pagination::bootstrap-5')); ?>
 
-                    </table>
+</div>
+         <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>OEM Number</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>SEO</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $__currentLoopData = $spareParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <tr>
+                <td><?php echo e($part->name); ?></td>
+                <td><?php echo e($part->oem_number); ?></td>
+                <td><?php echo e($part->category->name ?? 'N/A'); ?></td>
+                <td>
+                    <?php if($part->image): ?>
+                    <img src="<?php echo e(asset('storage/' . $part->image)); ?>" alt="Spare Part" width="80">
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <a href="<?php echo e(route('admin.parts.meta',$part->id)); ?>" class="btn btn-warning btn-sm">SEO</a>
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="<?php echo e(route('spareparts.edit',$part->id)); ?>"><i
+                        class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-danger btn-sm" href="<?php echo e(route('spareparts.destroy',$part->id)); ?>"><i class="fa-solid fa-trash"></i> Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </tbody>
+    </table>
+</div>
+        <div class="mb-3">
+    <?php echo e($spareParts->appends(request()->query())->links('pagination::bootstrap-5')); ?>
+
+</div>
                 </div>
             </div>
 
