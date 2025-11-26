@@ -260,7 +260,13 @@ public function delete($type, $id)
         $fuels = Fuel::all();
         $engineSize = EngineSize::all();
         $parts = SpareParts::all();
+         $supplier = Auth::guard('supplier')->user();
+            if ((int)$supplier->is_active === 1) {
         return view('supplierPanel.ads.createAd', compact('makes', 'models', 'years', 'fuels', 'engineSize', 'parts'));
+
+      }else{
+        return back()->with('error','Please Resubcription now');
+      }
     }
 
     public function getModels($make_id)
