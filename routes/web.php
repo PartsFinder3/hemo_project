@@ -312,7 +312,6 @@ Route::get('/supplier-login', [AuthController::class, 'supplierLogin'])->name('s
 Route::post('/supplier/login', [AuthController::class, 'supplierLoginPost'])->name('supplier.login.post');
 Route::get('/supplier/login/expire', [AuthController::class, 'expirePage'])->name('supplier.login.expire');
 
-Abdul93.ss
 
 // <------------------------------- Frontend ------------------------------------->
 Route::get('/',[FrontendController::class,'index'])->name('frontend.index');
