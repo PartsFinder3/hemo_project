@@ -236,7 +236,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     }
 
     #doesnt-matter {
-        font-size: 11px;
+        font-size: 11px !important;
     }
 
     .find-btn {
