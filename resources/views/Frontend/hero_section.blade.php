@@ -419,7 +419,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
                                     <label for="new">New</label>
                                 </div>
                                 <div class="radio-option">
-                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
+                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" style=" font-size: 11px !important;" />
                                     <label for="doesnt-matter">Doesn't matter</label>
                                 </div>
                             </div>
