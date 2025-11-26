@@ -47,7 +47,12 @@ class FrontendController extends Controller
         $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-        $domain_id=$currentDomain->id;
+                    if ($currentDomain) {
+                $domain_id = $currentDomain->id;
+            } else {
+                $domain_id = null; // یا کوئی default value
+            }
+
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
        
         $carMakes = CarMakes::whereNotNull('logo')
