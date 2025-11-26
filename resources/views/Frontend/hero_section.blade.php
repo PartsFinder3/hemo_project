@@ -220,9 +220,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
         font-size: 1.6rem !important;
     }
 
-    /* .car {
+    .car {
         max-width: 330px;
-    } */
+         padding: 5px;
+    }
 
     .hero_image_section img {
         max-width: 260px;
