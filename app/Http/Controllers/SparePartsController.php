@@ -20,6 +20,7 @@ public function index(Request $request)
       foreach ($sparePartD as $part) {
         # code...
        echo  $part->name;
+       echo "<br>";
       }
     $categories = PartCategory::orderBy('name')->get();
 
