@@ -239,7 +239,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     }
 
     .radio-option label {
-        font-size: 9px;
+        font-size: 12px;
     }
 }
 

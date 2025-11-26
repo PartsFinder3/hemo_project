@@ -53,7 +53,7 @@
 
 .car {
     width: 400px;
-    background: rgba(255, 255, 255, 0.95);
+    background: white;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -134,6 +134,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 470px;
 }
 
 
@@ -195,6 +196,7 @@
     font-weight: bold;
     text-decoration: none;
     color: #fff;
+
 }
 
 #productGrid1 .buttons a.whatsapp {
@@ -202,9 +204,16 @@
 }
 
 #productGrid1 .buttons a.call {
-    background: #0b5ed7;
+    background: var(--accent-color);
+    padding: 10px;       /* same as WhatsApp button */
+    height: auto;        /* remove fixed 30px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;  /* same as WhatsApp */
+    font-weight: bold;
+    color: #fff;
 }
-
 @media (max-width: 1024px) {
     #productGrid1 {
         grid-template-columns: repeat(2, 1fr);
@@ -290,104 +299,48 @@
 }
 
 /* ======= Responsive 480px (Small Mobile) ======= */
-@media (max-width: 480px) {
 
-    .hero_section_text h1 {
-        font-size: 1.6rem !important;
-    }
-
-    .car {
-        max-width: 330px;
-    }
-
-    .hero_image_section img {
-        max-width: 260px;
-    }
-
-    .dropdown {
-        font-size: 14px;
-        padding: 7px;
-    }
+.buttons a.whatsapp,
+.buttons a.call {
+    flex: 1;                    /* equal width */
+    text-align: center;
+    padding: 10px;              /* same padding */
+    height: 50px;               /* fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
 }
 
+/* Separate colors */
+.buttons a.whatsapp {
+    background: #25D366;
+}
+
+.buttons a.call {
+    background: var(--accent-color);
+}
+
+.step-icon {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto 20px auto;
+}
+
+.step-icon img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
 </style>
 <div class="hero-section_p">
-    <div class="hero_section_text">
-        <h1>Find Your Perfect Parts</h1>
-    </div>
+  <?php echo $__env->make('Frontend.hero_section', ['part' => "Find Your Perfect Parts"], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <div class="secound_hero_section">
-        <div class="part_finder_card">
-            <div class="car">
-                <div class="card-header">
-                    <div class="free-text">100% FREE</div>
-                    <div class="search-title">Search Your Part Here</div>
-                </div>
-                <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
-                    <?php echo csrf_field(); ?>
-                    <div class="form-group" id="make-group">
-                        <select class="dropdown" id="make" name="car_make_id">
-                            <option disabled selected value="">Select Your Make</option>
-                            <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="model-group">
-                        <select class="dropdown" id="model" name="car_model_id">
-                            <option value="">Select Your Model</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="year-group">
-                        <select class="dropdown" id="year" name="year_id">
-                            <option value="">Select Your Model Year</option>
-                            <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group hidden" id="parts-group">
-                        <select id="parts-dropdown" class="dropdown" disabled>
-                            <option disabled selected value="">Select a part to add</option>
-                            <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                        <div id="parts-tags" class="parts-tags"></div>
-                    </div>
-
-                    <div class="form-group hidden" id="condition-group">
-                        <div class="condition-section">
-                            <div class="condition-title">Condition Required ?</div>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="used" name="condition" value="used" />
-                                    <label for="used">Used</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="new" name="condition" value="new" checked />
-                                    <label for="new">New</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
-                                    <label for="doesnt-matter">Doesn't matter</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="find-btn" id="find-btn" disabled>Find My Part</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="hero_image_section">
-            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
-        </div>
-    </div>
+   
 </div>
 
 
@@ -462,26 +415,7 @@
         </div>
     </section>
 
-    <section class="carMakes">
-        <div class="section-text">
-            <h3>TOP MAKES</h3>
-            <h2>Browse By Brands</h2>
-        </div>
 
-        <div class="brands">
-            <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
-                    <?php if($make->logo): ?>
-               
-                      <img src="<?php echo e(asset('storage/' . $make->logo)); ?>" alt="<?php echo e($make->name); ?>">
-                      
-
-                    <?php endif; ?>
-                    <h4><?php echo e(strtoupper($make->name)); ?></h4>
-                </a>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </section>
 
     <section class="ad-cards">
         <div class="section-text">
@@ -512,7 +446,7 @@
                     <div class="card-body">
                         <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
                             class="card-title"><?php echo e($ad->title); ?></a>
-                        <div class="price">AED <?php echo e($ad->price); ?></div>
+                        <div class="price"><?php echo e($ad->currency); ?> <?php echo e($ad->price); ?></div>
                         <div class="meta">
                             Availability: In Stock <br>
                             Condition: <?php echo e($ad->condition); ?> <br>
@@ -520,14 +454,15 @@
                             Warranty: Ask Supplier
                         </div>
                         <?php
-                            $ad->shop->supplier->whatsapp;
+                             $ad->shop->supplier->whatsapp;
                         ?>
                         <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                            </a>
-
+                   
+<a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $ad->shop->supplier->whatsapp)); ?>?text=<?php echo e(urlencode('Hello, I am interested in your ad: ' . $ad->title)); ?>"
+   target="_blank"
+   class="btn btn-sm btn-success w-100 my-1">
+    <i class="fab fa-whatsapp me-1"></i> WhatsApp
+</a>
                             <a href="javascript:void(0)" class="btn call"
                                 onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
                                 <i class="fa-solid fa-phone"></i> Click to Call
@@ -544,6 +479,26 @@
         </div>
 
         <div class="pagination" id="pagination1"></div>
+    </section>
+        <section class="carMakes">
+        <div class="section-text">
+            <h3>TOP MAKES</h3>
+            <h2>Browse By Brands</h2>
+        </div>
+
+        <div class="brands">
+            <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e(route('make.ads', ['slug' => $make->slug, 'id' => $make->id])); ?>" class="make">
+                    <?php if($make->logo): ?>
+               
+                      <img src="<?php echo e(asset('storage/' . $make->logo)); ?>" alt="<?php echo e($make->name); ?>">
+                      
+
+                    <?php endif; ?>
+                    <h4><?php echo e(strtoupper($make->name)); ?></h4>
+                </a>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
     </section>
     <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
@@ -633,7 +588,7 @@
             <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
 
         </div>
-        <div class="locations-grid">
+        <div class="locations-grid" style="background-color: white">
             <?php if($domain && $domain->cities): ?>
                 <?php $__currentLoopData = $domain->cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <a href="<?php echo e(route('city.ads', ['slug' => $city->slug, 'id' => $city->id])); ?>" class="location-card"><i
@@ -960,21 +915,7 @@
 
 
      <script>
-        function contactSupplier(isActive, number, title) {
-            if (isActive == 1) {
-                let message = encodeURIComponent("Hello, I'm interested in your ad: " + title);
-                let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-                let url = isMobile ?
-                    `https://wa.me/${number}?text=${message}` :
-                    `https://web.whatsapp.com/send?phone=${number}&text=${message}`;
-
-                window.open(url, "_blank");
-            } else {
-                // Supplier inactive → stay on same page
-                window.location.reload();
-            }
-        }
+     
 
         function callSupplier(isActive, number) {
             if (isActive == 1) {
@@ -1022,7 +963,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setupPagination("productGrid1", "pagination1", 8);
     setupPagination("productGrid2", "pagination2", 8);
 });
-
+    function contactSupplier(isActive, whatsapp, title) {
+            if (isActive === '1') {
+                const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
+                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+                window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
+            } else {
+                alert('Supplier is currently inactive');
+            }
+        }
 </script>
 
 <?php $__env->stopSection(); ?>
