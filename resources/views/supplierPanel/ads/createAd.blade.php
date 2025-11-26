@@ -137,14 +137,9 @@
                                                 placeholder="Auto Generated" />
 
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Price</label>
-                                            <input type="text" class="form-control" name="price" id=""
-                                                aria-describedby="helpId" placeholder="" />
-                                        </div>
-                                           <div class="mb-3">
+                                             <div class="mb-3">
                                             <label for="" class="form-label">Currency type</label>
-                                        <select class="form-select form-select-lg" name="currency" id="currency">
+                                                    <select class="form-select form-select-lg" name="currency" id="currency">
                                                             <option selected disabled>Select Currency</option>
 
                                                             <option value="AED">AED — UAE Dirham</option>
@@ -162,6 +157,12 @@
                                                         </select>
 
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Price</label>
+                                            <input type="text" class="form-control" name="price" id=""
+                                                aria-describedby="helpId" placeholder="" />
+                                        </div>
+                                      
                                         <div class="mb-3">
                                             <label for="" class="form-label">Warranty</label>
                                             <select name="warranty" id="days" class="form-control">
