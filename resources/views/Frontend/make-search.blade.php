@@ -1,8 +1,9 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 
-  @include('Frontend.hero_section', ['part' => "Showing Results for ". $make->name])
-
+@include('Frontend.hero_section', [
+    'part' => 'Showing Results for <div class="hiliter">' . $make->name . '</div>'
+])
     </main>
      <section class="ad-cards">
         <div class="section-text">

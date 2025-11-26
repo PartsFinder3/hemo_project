@@ -118,7 +118,10 @@ nav {
 .nav-menu ul li a:hover {
     color: var(--accent-color);
 }
-
+.hiliter{
+    height: 20px;
+    width: 100px;
+}
 .hero-btns {
     display: flex;
   
