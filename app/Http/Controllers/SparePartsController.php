@@ -19,6 +19,7 @@ public function index(Request $request)
       $sparePartD = SpareParts::all();
       foreach ($sparePartD as $part) {
         # code...
+        
        echo  $part->name;
        echo "<br>";
       }
