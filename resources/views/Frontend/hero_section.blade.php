@@ -18,7 +18,7 @@
 
 .hero_section_text {
     width: 100%;
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
