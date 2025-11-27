@@ -479,5 +479,4 @@ if (burgerMenu && navMenu) {
     });
 }
 </script>
-
 @endsection
