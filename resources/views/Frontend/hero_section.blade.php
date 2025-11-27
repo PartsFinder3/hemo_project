@@ -19,7 +19,6 @@
     background-position: center;
     position: relative;
     padding: 20px 0;
-    margin-top: -50px;
 }
 .h1, h1 {
     font-size: 40px !important;
@@ -44,6 +43,8 @@
     padding: 0 50px;
     flex-wrap: wrap;
     position: relative;
+    margin-top: -50px;
+
 }
 
 .part_finder_card {
