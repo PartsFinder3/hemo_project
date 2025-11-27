@@ -9,7 +9,7 @@
     min-height: 630px;
     display: flex;
     flex-direction: column;
-    background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+    background-color: #ccc;
     background-size: cover;
     background-position: center;
     position: relative;
