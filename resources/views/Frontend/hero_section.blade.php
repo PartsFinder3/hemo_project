@@ -80,7 +80,7 @@
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end; /* کارڈ کو رائٹ پر بھیجیں */
     position: relative;
     z-index: 2;
 }
@@ -93,7 +93,8 @@
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-left: 40px;
+    float: none; /* float ہٹا دیا */
+    margin-left: 0; /* margin-left ہٹا دیا */
 }
 
 .hero_image_section {
