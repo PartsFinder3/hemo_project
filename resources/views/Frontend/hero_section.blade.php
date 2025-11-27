@@ -4,7 +4,6 @@
    
 <style>
 .hero-section_p {
-    margin-top: 0px !important;
     width: 100%;
     height: 630px;
     display: flex;
@@ -31,17 +30,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+    padding: 0 50px;
 }
 
 .part_finder_card {
     width: 50%;
     display: flex;
-    justify-content: flex-start;
-    margin-left: 10%;
-    margin-top: -10px !important;  /* Finder card upar aa jayega */
-    position: relative;
-    z-index: 10;
+    justify-content: flex-start; /* card left align */
+    margin-top: -70px;
+    margin-left: 10%;   
 }
 
 .car {
