@@ -16,7 +16,8 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 @if (isset($profile) && $profile->cover)
-                                    <img style="width: 100%" src="{{ asset('storage/' . $profile->cover) }}"
+                               
+                                    <img style="width: 100%" src="{{ asset( $profile->cover) }}"
                                         class="img-fluid rounded" alt="">
                                 @else
                                     <img src="{{ asset('assets/compiled/jpg/Head.png') }}" class="img-fluid rounded"
@@ -207,7 +208,7 @@
                                         @endphp
 
                                         @if (is_array($images) && isset($images[0]))
-                                            <img src="{{ asset('storage/' . $images[0]) }}"
+                                            <img src="{{ asset( $images[0]) }}"
                                                 class="card-img-top img-fluid" alt="Product">
                                         @endif
                                         <div class="card-body">

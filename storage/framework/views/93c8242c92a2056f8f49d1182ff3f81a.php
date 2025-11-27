@@ -15,7 +15,8 @@
                         <div class="col-12">
                             <div class="mb-3">
                                 <?php if(isset($profile) && $profile->cover): ?>
-                                    <img style="width: 100%" src="<?php echo e(asset('storage/' . $profile->cover)); ?>"
+                               
+                                    <img style="width: 100%" src="<?php echo e(asset( $profile->cover)); ?>"
                                         class="img-fluid rounded" alt="">
                                 <?php else: ?>
                                     <img src="<?php echo e(asset('assets/compiled/jpg/Head.png')); ?>" class="img-fluid rounded"

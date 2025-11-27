@@ -21,7 +21,7 @@
 // }
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Log;
 use Closure;
 use App\Models\Domain;
 
@@ -47,7 +47,7 @@ class DomainMiddleware
                 ->first();
 
         // Debug (temporary)
-        \Log::info('Detected Domain Host: ' . $host);
+        Log::info('Detected Domain Host: ' . $host);
 
         view()->share('domain', $domain);
 
