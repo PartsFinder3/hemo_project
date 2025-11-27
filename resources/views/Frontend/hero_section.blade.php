@@ -92,7 +92,9 @@
     cursor: pointer;
     height: 50px;
 }
-
+.hiliter{
+    padding-left: 5px;
+}
 /* ===== Dropdown ===== */
 .dropdown {
     width: 100%;
