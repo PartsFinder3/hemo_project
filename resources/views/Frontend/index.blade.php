@@ -229,6 +229,16 @@
     height: 200px;
     object-fit: contain;
 }
+.car_pf {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    /* backdrop-filter: blur(10px); */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+     margin-top: 100px;
+}
 </style>
 <div class="hero-section_p">
   @include('Frontend.hero_section', ['part' => "Find Your Perfect Parts"])
