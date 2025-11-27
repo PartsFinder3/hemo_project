@@ -18,7 +18,8 @@
     height: 630px;
     display: flex;
     flex-direction: column;
-        background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+       background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+
 }
 .hero_section_text {
     width: 100%;
@@ -53,12 +54,13 @@
 
 .car {
     width: 400px;
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    /* backdrop-filter: blur(10px); */
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 0px !important;
+        margin-top: 100px;
 }
 
 .hero_image_section {
@@ -87,256 +89,6 @@
     cursor: pointer;
     height: 50px;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .secound_hero_section {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .part_finder_card,
-    .hero_image_section {
-        width: 100%;
-    }
-
-    .hero_image_section {
-        height: 250px;
-    }
-}
-.dropdown {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    max-height: 150px; /* تقریباً 5-6 options */
-    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
-}
-.select2-results__options {
-    max-height: 180px !important;  /* 5–6 items */
-    overflow-y: auto !important;
-}
-#productGrid1 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; /* space between cards */
- 
-   
-}
-
-#productGrid1 .card {
-    width: 100%;
-    padding: 0; /* remove all padding */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    height: 470px;
-}
-
-
-#productGrid1 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    border-color: #aaa;
-}
-
-/* Card image */
-#productGrid1 .card img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    background-color: white;
-    padding: 5px;
-}
-
-
-#productGrid1 .card-body {
-    padding: 10px; /* optional, only inner spacing */
-}
-
-/* Card title */
-#productGrid1 .card-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    line-height: 1.2em;
-    height: 3.6em; /* limit to 2 lines */
-    overflow: hidden;
-}
-
-/* Price */
-#productGrid1 .price {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Meta info */
-#productGrid1 .meta {
-    font-size: 14px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-/* Buttons */
-#productGrid1 .buttons {
-    display: flex;
-    gap: 10px;
-}
-
-#productGrid1 .buttons a {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #fff;
-
-}
-
-#productGrid1 .buttons a.whatsapp {
-    background: #25D366;
-}
-
-#productGrid1 .buttons a.call {
-    background: var(--accent-color);
-    padding: 10px;       /* same as WhatsApp button */
-    height: auto;        /* remove fixed 30px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;  /* same as WhatsApp */
-    font-weight: bold;
-    color: #fff;
-}
-@media (max-width: 1024px) {
-    #productGrid1 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    #productGrid1 {
-        grid-template-columns: 1fr;
-    }
-}
-/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
-@media (max-width: 992px) {
-
-    .hero-section_p {
-        height: auto;
-        padding: 30px 20px;
-    }
-
-    .hero_section_text h1 {
-        font-size: 2.5rem !important;
-        padding: 0 20px;
-    }
-
-    .secound_hero_section {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-        padding: 0 20px;
-        height: auto;
-    }
-
-    .part_finder_card {
-        width: 100%;
-        margin-top: 0;
-        margin-left: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .car {
-        width: 100%;
-        max-width: 420px;
-    }
-
-    .hero_image_section {
-        width: 100%;
-        margin-top: 20px;
-        margin-right: 0;
-        text-align: center;
-    }
-
-    .hero_image_section img {
-        width: 90%;
-        height: auto;
-        max-width: 380px;
-    }
-}
-
-/* ======= Responsive 768px (Mobile) ======= */
-@media (max-width: 768px) {
-
-    .hero_section_text h1 {
-        font-size: 2rem !important;
-        line-height: 1.2;
-    }
-
-    .car {
-        padding: 15px;
-        border-radius: 15px;
-    }
-
-    .hero_image_section img {
-        max-width: 300px;
-        margin-top: 10px;
-    }
-
-    .find-btn {
-        font-size: 16px;
-        height: 45px;
-    }
-}
-
-/* ======= Responsive 480px (Small Mobile) ======= */
-
-.buttons a.whatsapp,
-.buttons a.call {
-    flex: 1;                    /* equal width */
-    text-align: center;
-    padding: 10px;              /* same padding */
-    height: 50px;               /* fixed height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-/* Separate colors */
-.buttons a.whatsapp {
-    background: #25D366;
-}
-
-.buttons a.call {
-    background: var(--accent-color);
-}
-
-.step-icon {
-    width: 200px !important;
-    height: 200px !important;
-    margin: 0 auto 20px auto;
-}
-
-.step-icon img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-}
 </style>
    <div class="hero_section_text">
         <h1>Find Your Perfect Parts</h1>
@@ -344,7 +96,7 @@
 
      <div class="secound_hero_section">
         <div class="part_finder_card">
-            <div class="car">
+            <div class="car" style="margin-top: 60px !important">
                 <div class="card-header">
                     <div class="free-text">100% FREE</div>
                     <div class="search-title">Search Your Part Here</div>
