@@ -1,8 +1,8 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 
-  @include('Frontend.hero_section', [
-    'part' => 'Used ' ' <div class="hiliter">  ' .  $city->name  . '</div>. Parts for Sale in UAE'
+@include('Frontend.hero_section', [
+    'part' => 'Used <div class="hiliter">' . $city->name . '</div> Parts for Sale in UAE'
 ])
 <style>
  
