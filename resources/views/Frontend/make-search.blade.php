@@ -1,8 +1,9 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 
+
 @include('Frontend.hero_section', [
-    'part' => 'Showing Results for <div class="hiliter">' . $make->name . '</div>.'
+    'part' => 'Used ' . '<div class="hiliter">' . $make->name . '</div> Parts for Sale in UAE'
 ])
     </main>
      <section class="ad-cards">

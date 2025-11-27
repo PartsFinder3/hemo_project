@@ -2,8 +2,9 @@
 
 @section('main-section')
 
-  @include('Frontend.hero_section', [
-    'part' => 'Find Your Part For<div class="hiliter">' . $part->name  . '</div>.'
+
+@include('Frontend.hero_section', [
+    'part' => 'Used ' . '<div class="hiliter">' . $part->name . '</div> Parts for Sale in UAE'
 ])
     </main>
     {{-- <section class="carMakes">
