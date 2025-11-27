@@ -258,7 +258,7 @@
 }
 </style>
 <div class="hero-section_p">
-  <?php echo $__env->make('Frontend.hero_section', ['part' => "Find Your Perfect Parts"], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  <?php echo $__env->make('Frontend.hero_section', ['part' => "Auto Spare Parts for Sale in UAE"], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
    
 </div>

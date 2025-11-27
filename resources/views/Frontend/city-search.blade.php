@@ -2,7 +2,7 @@
 @section('main-section')
 
 @include('Frontend.hero_section', [
-    'part' => 'Used <div class="hiliter">' . $city->name . '</div> Parts for Sale in UAE'
+    'part' => 'Used ' . '<div class="hiliter">' . $city->name . '</div> Parts for Sale in UAE'
 ])
 <style>
  
