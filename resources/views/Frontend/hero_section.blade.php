@@ -20,10 +20,14 @@
     position: relative;
     padding: 20px 0;
 }
-
+.h1, h1 {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
 .hero_section_text {
     width: 100%;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
