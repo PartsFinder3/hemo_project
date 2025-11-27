@@ -39,7 +39,7 @@
     justify-content: flex-start; /* card left align */
     margin-top: -70px;
     margin-left: 10%;
-   
+    
 }
 
 .car {
@@ -50,7 +50,6 @@
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 100px;
 }
 
 .hero_image_section {
@@ -355,7 +354,6 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding: 2px 5px;         /* thoda space */
     border-radius: 3px;       /* thoda rounded corner */
 }
-
 </style>
 
    <div class="hero_section_text">
