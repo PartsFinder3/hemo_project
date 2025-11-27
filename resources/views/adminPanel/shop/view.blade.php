@@ -10,7 +10,7 @@
         <section class="section">
 
             <!-- Profile Section -->
-            <div class="card shadow-sm border-0 rounded-3">
+            <div class="card shadow-sm border-0 rounded-3 mt-4">
                 <div class="card-body">
                     <div class="row align-items-start">
                         <div class="col-12">
