@@ -10,12 +10,120 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+.hero-section_p {
+    width: 100%;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+        background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+}
+.hero_section_text {
+    width: 100%;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    background: none;           /* gradient remove */
+    -webkit-background-clip: unset;  /* gradient clip remove */
+    -webkit-text-fill-color: black;  /* solid black text */
+    color: black;               /* fallback color */
+}
 
+.secound_hero_section {
+    width: 100%;
+    height: calc(100% - 80px); /* adjust hero text height */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
 
+.part_finder_card {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start; /* card left align */
+    margin-top: -70px;
+    margin-left: 10%;
+    
+}
 
+.car {
+    width: 400px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
+.hero_image_section {
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10%;
+    margin-top: 60px;
 
+}
+.hero_image_section img {
+    width: 500px;          
+    height: 400px;        
+    object-fit: cover;   
+}
+.find-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-color), #ff9500);
+    color: var(--primary-color);
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 50px;
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .part_finder_card,
+    .hero_image_section {
+        width: 100%;
+    }
+
+    .hero_image_section {
+        height: 250px;
+    }
+}
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    max-height: 150px; /* تقریباً 5-6 options */
+    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
+}
+.select2-results__options {
+    max-height: 180px !important;  /* 5–6 items */
+    overflow-y: auto !important;
+}
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+ 
+   
+}
 
 #productGrid1 .card {
     width: 100%;
@@ -228,16 +336,6 @@
     width: 200px;
     height: 200px;
     object-fit: contain;
-}
-.car_pf {
-    width: 400px;
-    background: rgba(255, 255, 255, 0.95);
-    /* backdrop-filter: blur(10px); */
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: -50px !important;
 }
 </style>
 <div class="hero-section_p">
@@ -534,8 +632,68 @@
 
     @include('Frontend.layout.company')
     <style>
+        .search-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -50px;
+}
+.form-group {
+    margin-bottom: 10px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
 
+.dropdown {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.part-tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideIn 0.3s ease;
+}
+ .condition-section {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    margin-top: -10px;
+}
+#condition-group {
+    display: block;
+}
 
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 5px; 
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
 .card {
     width: 300px;
     height: 450px;
@@ -847,155 +1005,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 </script>
-<script>
-$('#make').select2({
-    placeholder: "Select Your Make",
-    ajax: {
-        url: '/search-makes',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-            return {
-                q: params.term
-            };
-        },
-        processResults: function(data) {
-            return {
-                results: $.map(data, function(item) {
-                    return { id: item.id, text: item.name };
-                })
-            };
-        },
-        cache: true
-    }
-});
-$('#model').select2({
-    placeholder: "Select Your Model",
-    ajax: {
-        url: '/search-models',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-            return {
-                q: params.term,
-                make_id: $('#make').val()
-            };
-        },
-        processResults: function(data) {
-            return {
-                results: $.map(data, function(item) {
-                    return { id: item.id, text: item.name };
-                })
-            };
-        },
-        cache: true
-    }
-});
-$('#year').select2({
-    placeholder: "Select Year",
-    ajax: {
-        url: '/search-years',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-            return {
-                q: params.term,
-                model_id: $('#model').val()
-            };
-        },
-        processResults: function(data) {
-            // Disable Select2 internal sorting
-            return {
-                results: data
-            };
-        }
-    }
-});
 
-$('#parts-dropdown').select2({
-    placeholder: "Select Parts",
-    ajax: {
-        url: '/search-parts',
-        dataType: 'json',
-        delay: 250,
-        data: function (params) {
-            return {
-                q: params.term,
-                model_id: $('#model').val(),
-                year_id: $('#year').val()
-            };
-        },
-        processResults: function (data) {
-            return {
-                results: $.map(data, function (item) {
-                    return { id: item.id, text: item.name };
-                })
-            };
-        },
-        cache: true
-    }
-});
-</script>
-
-<script>
-$('#make').on('select2:select', function () {
-    console.log("Make Selected");
-
-    $('#model').val(null).trigger('change');
-    $('#year').val(null).trigger('change');
-
-const partsGroup = document.getElementById("parts-group");
-const partsDropdown = document.getElementById("parts-dropdown");
-const conditionGroup = document.getElementById("condition-group");
-
-let partSelected = false;
-    updateButton();
-});
-
-// --- SHOW YEAR WHEN MODEL SELECTED ---
-$('#model').on('select2:select', function () {
-    console.log("Model Selected");
-
-    $('#year').val(null).trigger('change');
-
-    partsGroup.classList.add("hidden");
-    conditionGroup.classList.add("hidden");
-
-    partSelected = false;
-    updateButton();
-});
-
-// --- SHOW PARTS WHEN YEAR SELECTED ---
-$('#year').on('select2:select', function () {
-    console.log("Year Selected");
-
-    partsGroup.classList.remove("hidden");
-    partsDropdown.disabled = false;
-
-    updateButton();
-});
-
-
-$('#parts-dropdown').on('select2:select', function () {
-    console.log("Part Selected");
-    partSelected = true;
-    conditionGroup.classList.remove("hidden");
-    updateButton();
-});
-function updateButton() {
-    const makeVal = $('#make').val();
-    const modelVal = $('#model').val();
-    const yearVal = $('#year').val();
-    const partVal = $('#parts-dropdown').val(); // this will be an array if multiple
-
-    const findBtn = $('#find-btn');
-
-    // Enable the button only if make, model, year, and at least 1 part is selected
-    if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
-        findBtn.prop('disabled', false);
-    } else {
-        findBtn.prop('disabled', true);
-    }
-}
-</script>
 @endsection
