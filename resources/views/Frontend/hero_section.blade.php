@@ -4,6 +4,7 @@
    
 <style>
 .hero-section_p {
+    margin-top: 0px !important;
     width: 100%;
     height: 630px;
     display: flex;
