@@ -41,7 +41,7 @@
     margin-left: 10%;   
 }
 
-.car {
+.car_pf {
     width: 400px;
     background: rgba(255, 255, 255, 0.95);
     /* backdrop-filter: blur(10px); */
@@ -362,7 +362,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
     <div class="secound_hero_section">
         <div class="part_finder_card">
-            <div class="car">
+            <div class="car_pf">
                 <div class="card-header">
                     <div class="free-text">100% FREE</div>
                     <div class="search-title">Search Your Part Here</div>
