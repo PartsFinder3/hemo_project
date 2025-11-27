@@ -17,7 +17,7 @@
                             <div class="mb-3">
                                 @if (isset($profile) && $profile->cover)
                                
-                                    <img style="width: 100%" src="{{ asset( $profile->cover) }}"
+                                    <img style="width: 100%" src="{{ asset( 'storage/'.$profile->cover) }}"
                                         class="img-fluid rounded" alt="">
                                 @else
                                     <img src="{{ asset('assets/compiled/jpg/Head.png') }}" class="img-fluid rounded"
