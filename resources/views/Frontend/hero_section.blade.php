@@ -39,7 +39,7 @@
     justify-content: flex-start; /* card left align */
     margin-top: -70px;
     margin-left: 10%;
-    
+    position: absolute;
 }
 
 .car {

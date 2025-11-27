@@ -1,7 +1,7 @@
 <?php $__env->startSection('main-section'); ?>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -13,163 +13,255 @@
     background-image: none !important;
     background: none !important;
 }
-.hero-section_p {
+
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .part_finder_card,
+    .hero_image_section {
+        width: 100%;
+    }
+
+    .hero_image_section {
+        height: 250px;
+    }
+}
+
+
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+ 
+   
+}
+
+#productGrid1 .card {
     width: 100%;
-    height: 630px;
+    padding: 0; /* remove all padding */
     display: flex;
     flex-direction: column;
-       background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
-
-}
-.hero_section_text {
-    width: 100%;
-    font-size: 4rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-    background: none;           /* gradient remove */
-    -webkit-background-clip: unset;  /* gradient clip remove */
-    -webkit-text-fill-color: black;  /* solid black text */
-    color: black;               /* fallback color */
-}
-
-.secound_hero_section {
-    width: 100%;
-    height: calc(100% - 80px); /* adjust hero text height */
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 470px;
 }
 
-.part_finder_card {
-    width: 50%;
-    display: flex;
-    justify-content: flex-start; /* card left align */
-    margin-top: -70px;
-    margin-left: 10%;
-    
+
+#productGrid1 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-color: #aaa;
 }
 
-.car {
-    width: 400px;
-    background: rgba(255, 255, 255, 0.95);
-    /* backdrop-filter: blur(10px); */
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-        margin-top: 100px;
-}
-
-.hero_image_section {
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    margin-right: 10%;
-    margin-top: 60px;
-
-}
-.hero_image_section img {
-    width: 500px;          
-    height: 400px;        
-    object-fit: cover;   
-}
-.find-btn {
+/* Card image */
+#productGrid1 .card img {
     width: 100%;
-    background: linear-gradient(135deg, var(--accent-color), #ff9500);
-    color: var(--primary-color);
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
+    height: 150px;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+}
+
+
+#productGrid1 .card-body {
+    padding: 10px; /* optional, only inner spacing */
+}
+
+/* Card title */
+#productGrid1 .card-title {
+    font-size: 16px;
     font-weight: 600;
-    cursor: pointer;
-    height: 50px;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em; /* limit to 2 lines */
+    overflow: hidden;
+}
+
+/* Price */
+#productGrid1 .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Meta info */
+#productGrid1 .meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+#productGrid1 .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#productGrid1 .buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+
+}
+
+#productGrid1 .buttons a.whatsapp {
+    background: #25D366;
+}
+
+#productGrid1 .buttons a.call {
+    background: var(--accent-color);
+    padding: 10px;       /* same as WhatsApp button */
+    height: auto;        /* remove fixed 30px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;  /* same as WhatsApp */
+    font-weight: bold;
+    color: #fff;
+}
+@media (max-width: 1024px) {
+    #productGrid1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #productGrid1 {
+        grid-template-columns: 1fr;
+    }
+}
+/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
+@media (max-width: 992px) {
+
+    .hero-section_p {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 2.5rem !important;
+        padding: 0 20px;
+    }
+
+    .secound_hero_section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+        height: auto;
+    }
+
+    .part_finder_card {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .hero_image_section {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero_image_section img {
+        width: 90%;
+        height: auto;
+        max-width: 380px;
+    }
+}
+
+/* ======= Responsive 768px (Mobile) ======= */
+@media (max-width: 768px) {
+
+    .hero_section_text h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    .car {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .hero_image_section img {
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    .find-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+}
+
+/* ======= Responsive 480px (Small Mobile) ======= */
+
+.buttons a.whatsapp,
+.buttons a.call {
+    flex: 1;                    /* equal width */
+    text-align: center;
+    padding: 10px;              /* same padding */
+    height: 50px;               /* fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* Separate colors */
+.buttons a.whatsapp {
+    background: #25D366;
+}
+
+.buttons a.call {
+    background: var(--accent-color);
+}
+
+.step-icon {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto 20px auto;
+}
+
+.step-icon img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
 }
 </style>
-   <div class="hero_section_text">
-        <h1>Find Your Perfect Parts</h1>
-        </div>
+<div class="hero-section_p">
+  <?php echo $__env->make('Frontend.hero_section', ['part' => "Find Your Perfect Parts"], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-     <div class="secound_hero_section">
-        <div class="part_finder_card">
-            <div class="car" style="margin-top: 60px !important">
-                <div class="card-header">
-                    <div class="free-text">100% FREE</div>
-                    <div class="search-title">Search Your Part Here</div>
-                </div>
-                <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
-                    <?php echo csrf_field(); ?>
-                    <div class="form-group" id="make-group">
-                        <select class="dropdown mySelect" id="make" name="car_make_id">
-             <option  selected value="">Select a part make</option>
-
-                            <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="model-group">
-                        <select class="dropdown" id="model" name="car_model_id">
-                            <option value="">Select a Model</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="year-group">
-                        <select class="dropdown" id="year" name="year_id">
-                            <option value="">Select a year</option>
-
-                            <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-
-                    <div class="form-group hidden" id="parts-group">
-                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
-          
-                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($part->id); ?>"><strong> <?php echo e($part->name); ?></strong>   </option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-
-                        <div id="parts-tags" class="parts-tags"></div>
-                    </div>
-  
-                    <div class="form-group hidden" id="condition-group">
-                        <div class="condition-section">
-                            <div class="condition-title">Condition Required ?</div>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="used" name="condition" value="used" />
-                                    <label for="used">Used</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="new" name="condition" value="new" checked />
-                                    <label for="new">New</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
-                                    <label for="doesnt-matter">Doesn't matter</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="find-btn" id="find-btn" disabled>Find My Part</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="hero_image_section">
-            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
-        </div>
-    </div>
-
+   
+</div>
 
 
 
