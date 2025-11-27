@@ -27,11 +27,41 @@
 }
 .hero_section_text {
     width: 100%;
-    font-size: 1rem;
-    font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    color: black;
+}
+
+.hero_section_text h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: inline;  /* flex نہیں، inline رکھیں */
+}
+
+.hero_section_text .hiliter {
+    display: inline;   /* inline رکھیں تاکہ text کے ساتھ flow ہو */
+    padding: 0 5px;
+    font-weight: bold;
+  
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .hero_section_text h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero_section_text h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero_section_text h1 {
+        font-size: 25px !important;
+    }
 }
 
 .secound_hero_section {
@@ -92,11 +122,6 @@
     cursor: pointer;
     height: 50px;
 }
-.hiliter{
-    padding-left: 7px;
-    padding-right: 7px;
-    font-weight: bold;
-}
 /* ===== Dropdown ===== */
 .dropdown {
     width: 100%;
@@ -131,7 +156,7 @@
 .select2-container--default {
     width: 100% !important;
     font-size: 16px;
-    font-weight: bold;
+
 }
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
