@@ -93,7 +93,8 @@
     height: 50px;
 }
 .hiliter{
-    padding-left: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
     background-color: antiquewhite;
 }
 /* ===== Dropdown ===== */
