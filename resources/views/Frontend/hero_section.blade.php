@@ -226,6 +226,9 @@
         font-size: 12px;
     }
 }
+.highlight-border {
+    border: 2px solid red !important;
+}
 </style>
 
 <div class="hero_section_text">
@@ -242,7 +245,7 @@
             <form action="{{ route('buyer.inquiry.send') }}" method="post">
                 @csrf
                 <div class="form-group" id="make-group">
-                    <select class="dropdown mySelect" id="make" name="car_make_id">
+                    <select class="dropdown mySelect highlight-border" id="make" name="car_make_id">
                         <option selected value="">Select a part make</option>
                         @foreach ($makes as $make)
                             <option value="{{ $make->id }}">{{ $make->name }}</option>
@@ -370,9 +373,10 @@ $('#parts-dropdown').select2({
 
 // Make select ہونے پر
 $('#make').on('select2:select', function() {
-    $('#model, #year').val(null).trigger('change'); // ماڈل اور سال reset
+    $('#model, #year').val(null).trigger('change'); 
     partsGroup.classList.add("hidden");
     conditionGroup.classList.add("hidden");
+    
     partSelected = false;
     updateButton();
 });
@@ -414,5 +418,28 @@ function updateButton() {
         findBtn.prop('disabled', true);
     }
 }
+$("#make").addClass("highlight-border");
 
+// Step 1: Make selected → highlight moves to model
+$('#make').on('select2:select', function () {
+    $("#make").removeClass("highlight-border");
+    $("#model").addClass("highlight-border");
+});
+
+// Step 2: Model selected → highlight moves to year
+$('#model').on('select2:select', function () {
+    $("#model").removeClass("highlight-border");
+    $("#year").addClass("highlight-border");
+});
+
+// Step 3: Year selected → highlight moves to parts
+$('#year').on('select2:select', function () {
+    $("#year").removeClass("highlight-border");
+    $("#parts-dropdown").addClass("highlight-border");
+});
+
+// Step 4: Parts selected → highlight remove → condition visible
+$('#parts-dropdown').on('select2:select', function () {
+    $("#parts-dropdown").removeClass("highlight-border");
+});
 </script>
