@@ -479,4 +479,66 @@ if (burgerMenu && navMenu) {
     });
 }
 </script>
+<script>
+$('#make').on('select2:select', function () {
+    console.log("Make Selected");
+
+    $('#model').val(null).trigger('change');
+    $('#year').val(null).trigger('change');
+
+const partsGroup = document.getElementById("parts-group");
+const partsDropdown = document.getElementById("parts-dropdown");
+const conditionGroup = document.getElementById("condition-group");
+
+let partSelected = false;
+    updateButton();
+});
+
+// --- SHOW YEAR WHEN MODEL SELECTED ---
+$('#model').on('select2:select', function () {
+    console.log("Model Selected");
+
+    $('#year').val(null).trigger('change');
+
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
+
+    partSelected = false;
+    updateButton();
+});
+
+// --- SHOW PARTS WHEN YEAR SELECTED ---
+$('#year').on('select2:select', function () {
+    console.log("Year Selected");
+
+    partsGroup.classList.remove("hidden");
+    partsDropdown.disabled = false;
+
+    updateButton();
+});
+
+
+$('#parts-dropdown').on('select2:select', function () {
+    console.log("Part Selected");
+    partSelected = true;
+    conditionGroup.classList.remove("hidden");
+    updateButton();
+});
+function updateButton() {
+    const makeVal = $('#make').val();
+    const modelVal = $('#model').val();
+    const yearVal = $('#year').val();
+    const partVal = $('#parts-dropdown').val(); // this will be an array if multiple
+
+    const findBtn = $('#find-btn');
+
+    // Enable the button only if make, model, year, and at least 1 part is selected
+    if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
+        findBtn.prop('disabled', false);
+    } else {
+        findBtn.prop('disabled', true);
+    }
+}
+</script>
+
 @endsection
