@@ -226,9 +226,11 @@
         font-size: 12px;
     }
 }
-.highlight-border {
+.select2-selection--single.highlight-border,
+.select2-selection--multiple.highlight-border {
     border: 2px solid red !important;
 }
+
 </style>
 
 <div class="hero_section_text">
@@ -418,28 +420,30 @@ function updateButton() {
         findBtn.prop('disabled', true);
     }
 }
-$("#make").addClass("highlight-border");
+// Make ko start me highlight
+$("#make").next('.select2-container').find('.select2-selection').addClass("highlight-border");
 
-// Step 1: Make selected → highlight moves to model
+// Step 1: Make → Model
 $('#make').on('select2:select', function () {
-    $("#make").removeClass("highlight-border");
-    $("#model").addClass("highlight-border");
+    $("#make").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#model").next('.select2-container').find('.select2-selection').addClass("highlight-border");
 });
 
-// Step 2: Model selected → highlight moves to year
+// Step 2: Model → Year
 $('#model').on('select2:select', function () {
-    $("#model").removeClass("highlight-border");
-    $("#year").addClass("highlight-border");
+    $("#model").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#year").next('.select2-container').find('.select2-selection').addClass("highlight-border");
 });
 
-// Step 3: Year selected → highlight moves to parts
+// Step 3: Year → Parts
 $('#year').on('select2:select', function () {
-    $("#year").removeClass("highlight-border");
-    $("#parts-dropdown").addClass("highlight-border");
+    $("#year").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#parts-dropdown").next('.select2-container').find('.select2-selection').addClass("highlight-border");
 });
 
-// Step 4: Parts selected → highlight remove → condition visible
+// Step 4: Parts selected → remove highlight
 $('#parts-dropdown').on('select2:select', function () {
-    $("#parts-dropdown").removeClass("highlight-border");
+    $("#parts-dropdown").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
 });
+
 </script>
