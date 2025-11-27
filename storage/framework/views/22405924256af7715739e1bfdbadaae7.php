@@ -228,6 +228,16 @@
     height: 200px;
     object-fit: contain;
 }
+.car_pf {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    /* backdrop-filter: blur(10px); */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -50px !important;
+}
 </style>
 <div class="hero-section_p">
   <?php echo $__env->make('Frontend.hero_section', ['part' => "Find Your Perfect Parts"], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -492,68 +502,8 @@
 
     <?php echo $__env->make('Frontend.layout.company', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <style>
-        .search-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    width: 450px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: -50px;
-}
-.form-group {
-    margin-bottom: 10px;
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.4s ease;
-}
 
-.dropdown {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 10px;
-    font-size: 13px;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Montserrat', sans-serif;
-}
-.part-tag {
-    background: var(--accent-color);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    animation: slideIn 0.3s ease;
-}
- .condition-section {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #e1e5e9;
-    margin-top: -10px;
-}
-#condition-group {
-    display: block;
-}
 
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
-}
-
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 5px; 
-}
 .card {
     width: 300px;
     height: 450px;
