@@ -215,7 +215,7 @@
         max-width: 330px;
         padding: 10px;
         margin-top: 40px;
-        margin-left: 30px;
+        margin-left: 0px;
     }
 
     .hero_image_section img {
