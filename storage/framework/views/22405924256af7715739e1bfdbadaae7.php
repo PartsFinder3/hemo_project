@@ -9,120 +9,12 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
-    body, main, header, nav, .hero-section, .hero-section_p {
-    background-image: none !important;
-    background: none !important;
-}
-.hero-section_p {
-    width: 100%;
-    height: 630px;
-    display: flex;
-    flex-direction: column;
-        background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
-}
-.hero_section_text {
-    width: 100%;
-    font-size: 4rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-    background: none;           /* gradient remove */
-    -webkit-background-clip: unset;  /* gradient clip remove */
-    -webkit-text-fill-color: black;  /* solid black text */
-    color: black;               /* fallback color */
-}
 
-.secound_hero_section {
-    width: 100%;
-    height: calc(100% - 80px); /* adjust hero text height */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-}
 
-.part_finder_card {
-    width: 50%;
-    display: flex;
-    justify-content: flex-start; /* card left align */
-    margin-top: -70px;
-    margin-left: 10%;
-    
-}
 
-.car {
-    width: 400px;
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
 
-.hero_image_section {
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    margin-right: 10%;
-    margin-top: 60px;
 
-}
-.hero_image_section img {
-    width: 500px;          
-    height: 400px;        
-    object-fit: cover;   
-}
-.find-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--accent-color), #ff9500);
-    color: var(--primary-color);
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    height: 50px;
-}
 
-/* Responsive */
-@media (max-width: 768px) {
-    .secound_hero_section {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .part_finder_card,
-    .hero_image_section {
-        width: 100%;
-    }
-
-    .hero_image_section {
-        height: 250px;
-    }
-}
-.dropdown {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    max-height: 150px; /* تقریباً 5-6 options */
-    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
-}
-.select2-results__options {
-    max-height: 180px !important;  /* 5–6 items */
-    overflow-y: auto !important;
-}
-#productGrid1 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; /* space between cards */
- 
-   
-}
 
 #productGrid1 .card {
     width: 100%;
