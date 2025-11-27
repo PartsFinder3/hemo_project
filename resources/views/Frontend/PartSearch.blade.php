@@ -3,8 +3,9 @@
 @section('main-section')
 
 
+
 @include('Frontend.hero_section', [
-    'part' => 'Used ' . '<div class="hiliter">' . $part->name . '</div> Parts for Sale in UAE'
+    'part' => '<span class="hiliter">' . $part->name  . '</span> Used Parts for Sale in UAE'
 ])
     </main>
     {{-- <section class="carMakes">

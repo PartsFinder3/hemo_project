@@ -2,9 +2,11 @@
 @section('main-section')
 
 
+
 @include('Frontend.hero_section', [
-    'part' => 'Used ' . '<div class="hiliter">' . $make->name . '</div> Parts for Sale in UAE'
+    'part' => '<span class="hiliter">' . $make->name . '</span> Used Parts for Sale in UAE'
 ])
+   
     </main>
      <section class="ad-cards">
         <div class="section-text">
