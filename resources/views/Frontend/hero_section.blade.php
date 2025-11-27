@@ -4,6 +4,11 @@
 
 <style>
 /* ===== Hero Section ===== */
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+
 .hero-section_p {
     width: 100%;
     min-height: 630px;
