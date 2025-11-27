@@ -8,7 +8,7 @@
 
                         <!-- Cover + Overlay -->
                         <div class="pc-cover-section position-relative">
-                            <img src="{{ $profile && $profile->cover ? asset('storage/' . $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
+                            <img src="{{ $profile && $profile->cover ? asset( $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
                                 class="pc-cover-image w-100" alt="Cover">
 
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
@@ -55,6 +55,67 @@
             </div>
         </div>
     </div>
+@if($shopMakes && $shopMakes->count())
+<div class="info-card">
+    <div class="section-title">Makes Available</div>
+    <div class="makes-grid">
+        @foreach($shopMakes as $shopMake)
+            @if($shopMake->make) <!-- ensure related CarMake exists -->
+                <div class="make-item">{{ $shopMake->make->name }}</div>
+            @endif
+        @endforeach
+    </div>
+</div>
+@endif
+@if($shopHours)
+<div class="info-card">
+    <div class="section-title">Opening Hours</div>
+    <div class="hours-grid">
+        @php
+            $hours = [
+                'Monday' => $shopHours->monday,
+                'Tuesday' => $shopHours->tuesday,
+                'Wednesday' => $shopHours->wednesday,
+                'Thursday' => $shopHours->thursday,
+                'Friday' => $shopHours->friday,
+                'Saturday' => $shopHours->saturday,
+                'Sunday' => $shopHours->sunday,
+            ];
+        @endphp
+
+        @foreach($hours as $day => $time)
+            <div class="day-row">
+                <span class="day">{{ $day }}</span>
+                <span class="time">{{ $time }}</span>
+            </div>
+        @endforeach
+    </div>
+</div>
+@endif
+@if($shopAds && $shopAds->count())
+    @foreach($shopAds as $ad)
+        @if(is_object($ad))
+            @php
+                $images = json_decode($ad->images, true);
+            @endphp
+            <div class="product-card">
+                <div class="product-image">
+                    @if(is_array($images) && isset($images[0]))
+                        <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
+                    @else
+                        <img src="{{ asset('assets/compiled/png/default-product.png') }}" alt="Product">
+                    @endif
+                </div>
+                <div class="product-body">
+                    <a href="#" class="product-title">{{ $ad->title ?? '' }}</a>
+                    <div class="product-price">${{ $ad->price ?? '' }}</div>
+                </div>
+            </div>
+        @endif
+    @endforeach
+@endif
+
+
 
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">

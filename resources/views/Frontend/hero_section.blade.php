@@ -189,6 +189,7 @@
     .car {
         max-width: 330px;
         padding: 10px;
+        margin-top: 30px;
     }
 
     .hero_image_section img {

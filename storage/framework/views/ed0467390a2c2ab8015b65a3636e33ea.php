@@ -3,262 +3,119 @@
         <div class="container-fluid py-0">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <div class="profile-card">
-                        <!-- Header -->
-                        <div class="header-section position-relative">
-                            <!-- Cover Image -->
-                            <?php if($profile && $profile->cover): ?>
-                                <img src="<?php echo e(asset('storage/' . $profile->cover)); ?>" class="w-100 header-image"
-                                    alt="Cover">
-                            <?php else: ?>
-                                <img src="<?php echo e(asset('assets/compiled/jpg/Head.png')); ?>" class="w-100 header-image"
-                                    alt="Cover">
-                            <?php endif; ?>
+                   <div class="pc-card">
 
-                            <!-- Overlay (optional dark fade) -->
-                            <div class="header-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                        <!-- Cover + Overlay -->
+                        <div class="pc-cover-section position-relative">
+                            <img src="<?php echo e($profile && $profile->cover ? asset( $profile->cover) : asset('assets/compiled/jpg/Head.png')); ?>"
+                                class="pc-cover-image w-100" alt="Cover">
 
-                            <!-- Profile Image -->
-                            <div class="profile-avatar position-absolute start-50 translate-middle-x">
-                                <?php if($profile && $profile->profile_image): ?>
-                                    <img src="<?php echo e(asset('storage/' . $profile->profile_image)); ?>"
-                                        class="img-fluid rounded-circle border border-3 border-white shadow"
-                                        alt="Shop Logo">
-                                <?php else: ?>
-                                    <img src="<?php echo e(asset('assets/compiled/jpg/2.jpg')); ?>"
-                                        class="img-fluid rounded-circle border border-3 border-white shadow"
-                                        alt="Shop Logo">
-                                <?php endif; ?>
-                            </div>
+                            <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+                            <!-- Profile Image + Social Icons -->
+<div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
+    <?php if($profile && $profile->profile_image): ?>
+        <img src="<?php echo e(asset('storage/' . $profile->profile_image)); ?>"
+            class="rounded-circle border border-3 border-white shadow"
+            alt="Shop Logo"
+            style="width: 150px; height: 150px; object-fit: cover;">
+    <?php endif; ?>
+</div>
+
+                        </div>
                         </div>
 
-                        <!-- Content -->
-                        <div class="profile-content">
-                            <h1 class="shop-name">
+                        <!-- Content Section -->
+                        <div class="pc-profile-content text-center mt-5 pt-4">
+                            <h1 class="pc-shop-name fw-bold">
                                 <?php echo e($shop->name ?? 'Shop Name Here'); ?>
 
-                                <?php if($shop->supplier->is_verified): ?>
-                                    <span class="badge">Verified</span>
+                                <?php if($shop->supplier?->is_verified): ?>
+                                    <span class="pc-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
                                 <?php endif; ?>
                             </h1>
 
-                            <div class="shop-stats">
-                                <div class="stat-item">📦 <?php echo e($totalAds); ?> Items Listed</div>
-                                <div class="stat-item">💬 <?php echo e($inquiryCount); ?> Enquiries</div>
+                            <div class="pc-shop-stats mt-2">
+                                <span class="pc-stat-item">📦 <?php echo e($totalAds); ?> Items Listed</span>
+                                <span class="pc-stat-item">💬 <?php echo e($inquiryCount); ?> Enquiries</span>
                             </div>
 
-                            <div class="about-section">
-                                <h3 class="about-title">About</h3>
-                                <?php if(isset($profile) && $profile->description): ?>
-                                    <p class="about-text">
-                                        <?php echo e($profile->description); ?>
-
-                                    </p>
-                                <?php endif; ?>
-                            </div>
-
-                            <div class="contact-buttons">
-                                <?php
-                                    $contact = $shop->supplier->whatsapp;
-                                ?>
-                                <a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $contact)); ?>" target="_blank"
-                                    class="btn btn-sm btn-success w-100 my-1 contact-btn whatsapp-btn">
+                            <div class="pc-contact-buttons mt-3 d-flex justify-content-center gap-2">
+                                <a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $shop->supplier->whatsapp)); ?>" target="_blank" class="pc-btn pc-btn-success btn-sm">
                                     <i class="fab fa-whatsapp me-1"></i> WhatsApp
                                 </a>
-                                <a href="tel:<?php echo e($contact); ?>" class="btn btn-sm btn-warning w-100 my-1 contact-btn call-btn">
+                                <a href="tel:<?php echo e($shop->supplier->whatsapp); ?>" class="pc-btn pc-btn-warning btn-sm">
                                     <i class="fas fa-phone me-1"></i> Call
                                 </a>
                             </div>
-
-                            <!-- Deals in Parts -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                    <h5 class="section-title_h5"> Deals in Parts</h5>
-                                    <?php if($shop->supplier->is_verified): ?>
-                                        <span class="verified-badge">
-                                            <i class="bi bi-check-circle"></i> Verified
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="parts-grid">
-                   
-                                </div>
-                            </div>
-
-                            <!-- Deals in Cars -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                   
-                                    <h5 class="section-title_h5" style="color: black !important;">Deals in Cars</h5>
-                                    <?php if($shop->supplier->is_verified): ?>
-                                        <span class="verified-badge">
-                                            <i class="bi bi-check-circle"></i> Verified
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="makes-grid">
-                                    <?php $__currentLoopData = $shopMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="make-item"><?php echo e($make->make->name); ?></div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </div>
-                            </div>
-
-                            <!-- Location & Hours -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                    <h5 class="section-title">📍 Location & Hours</h5>
-                                </div>
-                                <div class="location-content">
-                                    <div class="address-section">
-                                        <p class="address-text">
-                                            <?php echo e($profile?->address ? $profile->address . ' ' . $shop->supplier->city->name : $shop->supplier->city->name); ?>
-
-                                        </p>
-                                    </div>
-                                    <div class="hours-section">
-                                        <div class="hours-grid">
-                                            <div class="day-row">
-                                                <span class="day">Mon</span>
-                                                <span class="time"><?php echo e($shopHours->monday ?? 'OFF'); ?></span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Tue</span>
-                                                <span class="time"><?php echo e($shopHours->tuesday ?? 'OFF'); ?></span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Wed</span>
-                                                <span class="time"><?php echo e($shopHours->wednesday ?? 'OFF'); ?></span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Thu</span>
-                                                <span class="time"><?php echo e($shopHours->thursday ?? 'OFF'); ?></span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Fri</span>
-                                                <span class="time"><?php echo e($shopHours->friday ?? 'OFF'); ?></span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Sat</span>
-                                                <span class="time"><?php echo e($shopHours->saturday ?? 'OFF'); ?></span>
-                                            </div>
-                                            <div class="day-row">
-                                                <span class="day">Sun</span>
-                                                <span class="time"><?php echo e($shopHours->sunday ?? 'OFF'); ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gallery -->
-                            <div class="info-card">
-                                <div class="card-header-section">
-                                    <h5 class="section-title_h5">Our Gallery</h5>
-                                </div>
-                                <div class="gallery-grid">
-                                    <?php $__currentLoopData = $shopGallery; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="gallery-item">
-                                            <?php echo e($image->image_path); ?>
-
-                                            <img src="<?php echo e($image->image_path); ?>"
-                                                 class="gallery-image" alt="Gallery Image"
-                                                 onclick="openImageModal(this.src)">
-                                        </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- TOP ADS Section -->
-                        <section class="ad-cards">
-                            <div class="section-text">
-                                <h3>TOP ADS</h3>
-                            </div>
-                            <div class="products-grid" id="productGrid1">
-                                <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="product-card">
-                                        <?php
-                                            $images = json_decode($ad->images, true);
-                                        ?>
-
-                                        <?php if(is_array($images) && isset($images[0])): ?>
-                                            <div class="product-image">
-                                                <img src="<?php echo e(asset( $images[0])); ?>" alt="Product">
-                                            </div>
-                                        <?php endif; ?>
-                                        <div class="product-body">
-                                            <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
-                                                class="product-title"><?php echo e($ad->title); ?></a>
-                                            <div class="product-price">AED <?php echo e($ad->price); ?></div>
-                                            <div class="product-meta">
-                                                <div class="meta-item">Availability: In Stock</div>
-                                                <div class="meta-item">Condition: <?php echo e($ad->condition); ?></div>
-                                                <div class="meta-item">Delivery: Ask Supplier</div>
-                                                <div class="meta-item">Warranty: Ask Supplier</div>
-                                            </div>
-                                            <div class="product-buttons">
-                                                <a href="javascript:void(0)" class="btn-product whatsapp"
-                                                    onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
-                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn-product call"
-                                                    onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
-                                                    <i class="fa-solid fa-phone"></i> Call
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </div>
-                            <div class="pagination" id="pagination1"></div>
-                        </section>
-
-                        <!-- TOP CAR ADS Section -->
-                        <section class="ad-cards">
-                            <div class="section-text">
-                                <h3>TOP CAR ADS</h3>
-                            </div>
-                            <div class="products-grid" id="productGrid2">
-                                <?php $__currentLoopData = $shopCarAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="product-card">
-                                        <?php
-                                            $images = json_decode($ad->images, true);
-                                        ?>
-
-                                        <?php if(is_array($images) && isset($images[0])): ?>
-                                            <div class="product-image">
-                                                <img src="<?php echo e(asset('storage/' . $images[0])); ?>" alt="Product">
-                                            </div>
-                                        <?php endif; ?>
-                                        <div class="product-body">
-                                            <a href="<?php echo e(route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id])); ?>"
-                                                class="product-title"><?php echo e($ad->title); ?></a>
-                                            <div class="product-meta">
-                                                <div class="meta-item">Availability: In Stock</div>
-                                                <div class="meta-item">Delivery: Ask Supplier</div>
-                                                <div class="meta-item">Warranty: Ask Supplier</div>
-                                            </div>
-                                            <div class="product-buttons">
-                                                <a href="javascript:void(0)" class="btn-product whatsapp"
-                                                    onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
-                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                                </a>
-                                                <a href="javascript:void(0)" class="btn-product call"
-                                                    onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
-                                                    <i class="fa-solid fa-phone"></i> Call
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </div>
-                            <div class="pagination" id="pagination2"></div>
-                        </section>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+<?php if($shopMakes && $shopMakes->count()): ?>
+<div class="info-card">
+    <div class="section-title">Makes Available</div>
+    <div class="makes-grid">
+        <?php $__currentLoopData = $shopMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shopMake): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($shopMake->make): ?> <!-- ensure related CarMake exists -->
+                <div class="make-item"><?php echo e($shopMake->make->name); ?></div>
+            <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+</div>
+<?php endif; ?>
+<?php if($shopHours): ?>
+<div class="info-card">
+    <div class="section-title">Opening Hours</div>
+    <div class="hours-grid">
+        <?php
+            $hours = [
+                'Monday' => $shopHours->monday,
+                'Tuesday' => $shopHours->tuesday,
+                'Wednesday' => $shopHours->wednesday,
+                'Thursday' => $shopHours->thursday,
+                'Friday' => $shopHours->friday,
+                'Saturday' => $shopHours->saturday,
+                'Sunday' => $shopHours->sunday,
+            ];
+        ?>
+
+        <?php $__currentLoopData = $hours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day => $time): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="day-row">
+                <span class="day"><?php echo e($day); ?></span>
+                <span class="time"><?php echo e($time); ?></span>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
+</div>
+<?php endif; ?>
+<?php if($shopAds && $shopAds->count()): ?>
+    <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if(is_object($ad)): ?>
+            <?php
+                $images = json_decode($ad->images, true);
+            ?>
+            <div class="product-card">
+                <div class="product-image">
+                    <?php if(is_array($images) && isset($images[0])): ?>
+                        <img src="<?php echo e(asset('storage/' . $images[0])); ?>" alt="Product">
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('assets/compiled/png/default-product.png')); ?>" alt="Product">
+                    <?php endif; ?>
+                </div>
+                <div class="product-body">
+                    <a href="#" class="product-title"><?php echo e($ad->title ?? ''); ?></a>
+                    <div class="product-price">$<?php echo e($ad->price ?? ''); ?></div>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<?php endif; ?>
+
+
 
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">
@@ -927,6 +784,318 @@
             position: relative;
             overflow: hidden;
         }
+        .pc-card {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Cover Section */
+.pc-cover-section {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+.pc-cover-image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.pc-card:hover .pc-cover-image {
+    transform: scale(1.05);
+}
+
+.pc-cover-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+}
+
+/* Profile Top Section */
+.pc-profile-top {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.pc-profile-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.pc-card:hover .pc-profile-avatar {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* Social Icons */
+.pc-social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pc-social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.pc-facebook { background: linear-gradient(135deg, #3b5998, #8b9dc3); }
+.pc-tiktok { background: linear-gradient(135deg, #000000, #69c9d0); }
+.pc-twitter { background: linear-gradient(135deg, #1da1f2, #aab8c2); }
+
+.pc-social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* Profile Content */
+.pc-profile-content {
+    padding: 70px 30px 30px;
+    text-align: center;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.pc-shop-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pc-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #fff;
+    padding: 6px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.pc-verified-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(40, 167, 69, 0.4);
+}
+
+.pc-verified-badge i {
+    font-size: 0.9rem;
+}
+
+/* Shop Stats */
+.pc-shop-stats {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.pc-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: black;
+    font-weight: 500;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.pc-stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    background: #fff;
+}
+
+/* Contact Buttons */
+.pc-contact-buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.pc-btn-success {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+}
+
+.pc-btn-warning {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+.pc-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-decoration: none;
+    color: white;
+}
+
+.pc-btn-success:hover {
+    background: linear-gradient(135deg, #128c7e, #25d366);
+}
+
+.pc-btn-warning:hover {
+    background: linear-gradient(135deg, #fd7e14, #ffc107);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pc-card {
+        max-width: 95%;
+        margin: 0 auto 30px;
+        border-radius: 15px;
+    }
+    
+    .pc-cover-section {
+        height: 220px;
+    }
+    
+    .pc-profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .pc-profile-top {
+        bottom: -50px;
+    }
+    
+    .pc-profile-content {
+        padding: 60px 20px 25px;
+    }
+    
+    .pc-shop-name {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .pc-shop-stats {
+        gap: 15px;
+    }
+    
+    .pc-stat-item {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    .pc-contact-buttons {
+        gap: 10px;
+    }
+    
+    .pc-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pc-cover-section {
+        height: 180px;
+    }
+    
+    .pc-profile-avatar {
+        width: 80px;
+        height: 80px;
+        border-width: 3px;
+    }
+    
+    .pc-shop-name {
+        font-size: 1.5rem;
+    }
+    
+    .pc-social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .pc-contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pc-btn {
+        width: 200px;
+        justify-content: center;
+    }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pc-card {
+    animation: fadeInUp 0.6s ease-out;
+}
     </style>
 
     <!-- JS -->

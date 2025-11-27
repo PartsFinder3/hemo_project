@@ -400,14 +400,17 @@ public function sendProductInquiry(Request $request)
             abort(404, 'Shop not found.');
         }
         $profile = ShopProfile::where('shop_id', $shop->id)->first();
-        $shopParts = ShopParts::where('shop_id', $shop->id)->first();
+        $shopParts = ShopParts::where('shop_id', $shop->id)->get();
         $shopMakes = ShopMakes::where('shop_id', $shop->id)->get();
         $shopHours = ShopHours::where('shop_id', $shop->id)->first();
         $shopGallery = ShopGallery::where('shop_id', $shop->id)->get();
+        
         $shopAds = Ads::where('shop_id', $shop->id)
             ->where('is_approved', true)
-            ->get();
-        $shopCarAds = CarAds::where('shop_id', $shop->id)
+            ->first();
+        
+       
+            $shopCarAds = CarAds::where('shop_id', $shop->id)
             ->where('is_approved', true)
             ->get();
         $inquiryCount = Inquiries::where('supplier_id', $shop->supplier_id)->sum('used_inquiries');
