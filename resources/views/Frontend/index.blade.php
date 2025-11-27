@@ -259,7 +259,7 @@
 }
 </style>
 <div class="hero-section_p">
-  @include('Frontend.hero_section', ['part' => "Find Your Perfect Parts"])
+  @include('Frontend.hero_section', ['part' => "Auto Spare Parts for Sale in UAE"])
 
    
 </div>
