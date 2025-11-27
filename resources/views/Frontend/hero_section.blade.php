@@ -50,7 +50,7 @@
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 100px;
+        margin-top: 100px;
 }
 
 .hero_image_section {
@@ -362,10 +362,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
 </style>
 
    <div class="hero_section_text">
-<h1>{!! $part !!}</h1>
-    </div>
+        <h1>{!! $part !!}</h1>
+        </div>
 
-    <div class="secound_hero_section">
+     <div class="secound_hero_section">
         <div class="part_finder_card">
             <div class="car">
                 <div class="card-header">

@@ -2,7 +2,7 @@
 @section('main-section')
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -339,11 +339,86 @@
     object-fit: contain;
 }
 </style>
-<div class="hero-section_p">
-  @include('Frontend.hero_section', ['part' => "Find Your Perfect Parts"])
+   <div class="hero_section_text">
+        <h1>Find Your Perfect Parts</h1>
+        </div>
 
-   
-</div>
+     <div class="secound_hero_section">
+        <div class="part_finder_card">
+            <div class="car" style="margin-top: 60px !important">
+                <div class="card-header">
+                    <div class="free-text">100% FREE</div>
+                    <div class="search-title">Search Your Part Here</div>
+                </div>
+                <form action="{{ route('buyer.inquiry.send') }}" method="post">
+                    @csrf
+                    <div class="form-group" id="make-group">
+                        <select class="dropdown mySelect" id="make" name="car_make_id">
+             <option  selected value="">Select a part make</option>
+
+                            @foreach ($makes as $make)
+                                <option value="{{ $make->id }}">{{ $make->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="model-group">
+                        <select class="dropdown" id="model" name="car_model_id">
+                            <option value="">Select a Model</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="year-group">
+                        <select class="dropdown" id="year" name="year_id">
+                            <option value="">Select a year</option>
+
+                            @foreach ($years as $year)
+                                <option value="{{ $year->id }}">{{ $year->year }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group hidden" id="parts-group">
+                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
+          
+                        @foreach ($parts as $part)
+                            <option value="{{ $part->id }}"><strong> {{ $part->name }}</strong>   </option>
+                        @endforeach
+                    </select>
+
+                        <div id="parts-tags" class="parts-tags"></div>
+                    </div>
+  
+                    <div class="form-group hidden" id="condition-group">
+                        <div class="condition-section">
+                            <div class="condition-title">Condition Required ?</div>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="used" name="condition" value="used" />
+                                    <label for="used">Used</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="new" name="condition" value="new" checked />
+                                    <label for="new">New</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
+                                    <label for="doesnt-matter">Doesn't matter</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="find-btn" id="find-btn" disabled>Find My Part</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="hero_image_section">
+            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
+        </div>
+    </div>
+
 
 
 

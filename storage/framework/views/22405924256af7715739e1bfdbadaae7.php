@@ -1,7 +1,7 @@
 <?php $__env->startSection('main-section'); ?>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -9,12 +9,121 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+.hero-section_p {
+    width: 100%;
+    height: 630px;
+    display: flex;
+    flex-direction: column;
+        background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
+}
+.hero_section_text {
+    width: 100%;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    background: none;           /* gradient remove */
+    -webkit-background-clip: unset;  /* gradient clip remove */
+    -webkit-text-fill-color: black;  /* solid black text */
+    color: black;               /* fallback color */
+}
 
+.secound_hero_section {
+    width: 100%;
+    height: calc(100% - 80px); /* adjust hero text height */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
 
+.part_finder_card {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start; /* card left align */
+    margin-top: -70px;
+    margin-left: 10%;
+    
+}
 
+.car {
+    width: 400px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 0px !important;
+}
 
+.hero_image_section {
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10%;
+    margin-top: 60px;
 
+}
+.hero_image_section img {
+    width: 500px;          
+    height: 400px;        
+    object-fit: cover;   
+}
+.find-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-color), #ff9500);
+    color: var(--primary-color);
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 50px;
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .part_finder_card,
+    .hero_image_section {
+        width: 100%;
+    }
+
+    .hero_image_section {
+        height: 250px;
+    }
+}
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    max-height: 150px; /* تقریباً 5-6 options */
+    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
+}
+.select2-results__options {
+    max-height: 180px !important;  /* 5–6 items */
+    overflow-y: auto !important;
+}
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+ 
+   
+}
 
 #productGrid1 .card {
     width: 100%;
@@ -228,22 +337,87 @@
     height: 200px;
     object-fit: contain;
 }
-.car_pf {
-    width: 400px;
-    background: rgba(255, 255, 255, 0.95);
-    /* backdrop-filter: blur(10px); */
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: -50px !important;
-}
 </style>
-<div class="hero-section_p">
-  <?php echo $__env->make('Frontend.hero_section', ['part' => "Find Your Perfect Parts"], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+   <div class="hero_section_text">
+        <h1>Find Your Perfect Parts</h1>
+        </div>
 
-   
-</div>
+     <div class="secound_hero_section">
+        <div class="part_finder_card">
+            <div class="car">
+                <div class="card-header">
+                    <div class="free-text">100% FREE</div>
+                    <div class="search-title">Search Your Part Here</div>
+                </div>
+                <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
+                    <?php echo csrf_field(); ?>
+                    <div class="form-group" id="make-group">
+                        <select class="dropdown mySelect" id="make" name="car_make_id">
+             <option  selected value="">Select a part make</option>
+
+                            <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="model-group">
+                        <select class="dropdown" id="model" name="car_model_id">
+                            <option value="">Select a Model</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="year-group">
+                        <select class="dropdown" id="year" name="year_id">
+                            <option value="">Select a year</option>
+
+                            <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group hidden" id="parts-group">
+                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
+          
+                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($part->id); ?>"><strong> <?php echo e($part->name); ?></strong>   </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+
+                        <div id="parts-tags" class="parts-tags"></div>
+                    </div>
+  
+                    <div class="form-group hidden" id="condition-group">
+                        <div class="condition-section">
+                            <div class="condition-title">Condition Required ?</div>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="used" name="condition" value="used" />
+                                    <label for="used">Used</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="new" name="condition" value="new" checked />
+                                    <label for="new">New</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
+                                    <label for="doesnt-matter">Doesn't matter</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="find-btn" id="find-btn" disabled>Find My Part</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="hero_image_section">
+            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
+        </div>
+    </div>
+
 
 
 
@@ -502,8 +676,68 @@
 
     <?php echo $__env->make('Frontend.layout.company', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <style>
+        .search-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -50px;
+}
+.form-group {
+    margin-bottom: 10px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
 
+.dropdown {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.part-tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideIn 0.3s ease;
+}
+ .condition-section {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    margin-top: -10px;
+}
+#condition-group {
+    display: block;
+}
 
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 5px; 
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
 .card {
     width: 300px;
     height: 450px;
