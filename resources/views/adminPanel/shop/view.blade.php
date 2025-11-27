@@ -10,7 +10,7 @@
         <section class="section">
 
             <!-- Profile Section -->
-            <div class="card shadow-sm border-0 rounded-3 mt-4">
+            <div class="card shadow-sm border-0 rounded-3">
                 <div class="card-body">
                     <div class="row align-items-start">
                         <div class="col-12">
@@ -195,91 +195,35 @@
             </div>
 
             <!-- Car Ads -->
-            <div class="card shadow-sm border-0 rounded-3 mt-4">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                        <div class="col">
-                            @if ($shopAds->count() > 0)
-                                @foreach ($shopAds as $ad)
-                                    <div class="card h-90 shadow-sm border-0 rounded-3">
-                                        @php
-                                            $images = json_decode($ad->images, true);
-                                        @endphp
-
-                                        @if (is_array($images) && isset($images[0]))
-                                            <img src="{{ asset( $images[0]) }}"
-                                                class="card-img-top img-fluid" alt="Product">
-                                        @endif
-                                        <div class="card-body">
-                                            <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                            <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
-                                            <ul class="list-unstyled small">
-                                                <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                <li><b>Condition:</b> {{ $ad->condition }}</li>
-                                                <li><b>Delivery:</b> Ask Supplier</li>
-                                                <li><b>Warranty:</b> Ask Supplier</li>
-                                            </ul>
-                                            <div class="d-flex gap-2">
-                                                {{-- <a href="#" class="btn btn-outline-success w-80">
-                                                <i class="bi bi-whatsapp"></i> Whatsapp
-                                            </a>
-                                            <a href="#" class="btn btn-outline-primary w-80">
-                                                <i class="bi bi-telephone"></i> Call
-                                            </a> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                        <!-- More ads as needed -->
+<div class="card shadow-sm border-0 rounded-3 mt-4">
+    <div class="card-body">
+        <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
+        <div class="d-flex flex-wrap gap-3">
+            @foreach ($shopAds as $ad)
+                @php
+                    $images = json_decode($ad->images, true);
+                @endphp
+                <div class="card h-100 shadow-sm border-0 rounded-3" style="width: 250px; margin-left: 40px;">
+                    @if (is_array($images) && isset($images[0]))
+                        <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                    @endif
+                    <div class="card-body">
+                        <h6 class="fw-semibold">{{ $ad->title }}</h6>
+                        <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
+                        <ul class="list-unstyled small">
+                            <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
+                            <li><b>Condition:</b> {{ $ad->condition }}</li>
+                            <li><b>Delivery:</b> Ask Supplier</li>
+                            <li><b>Warranty:</b> Ask Supplier</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
             <!-- Car Ads -->
-            <div class="card shadow-sm border-0 rounded-3 mt-4" style="display: flex; flex-direction: row;">
-
-                <div class="card-body">
-                    <h5 class="fw-bold mb-4">Car Ads</h5>
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                        <div class="col">
-                            @if ($shopCarAds->count() > 0)
-                                @foreach ($shopCarAds as $ad)
-                                    <div class="card h-90 shadow-sm border-0 rounded-3">
-                                        @php
-                                            $images = json_decode($ad->images, true);
-                                        @endphp
-                                        @if (is_array($images) && isset($images[0]))
-                                            <img src="{{ asset('storage/' . $images[0]) }}"
-                                                class="card-img-top img-fluid" alt="Product">
-                                        @endif
-                                        <div class="card-body">
-                                            <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                            <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
-                                            <ul class="list-unstyled small">
-                                                <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                <li><b>Condition:</b> {{ $ad->condition }}</li>
-                                                <li><b>Delivery:</b> Ask Supplier</li>
-                                                <li><b>Warranty:</b> Ask Supplier</li>
-                                            </ul>
-                                            <div class="d-flex gap-2">
-                                                {{-- <a href="#" class="btn btn-outline-success w-80">
-                                                <i class="bi bi-whatsapp"></i> Whatsapp
-                                            </a>
-                                            <a href="#" class="btn btn-outline-primary w-80">
-                                                <i class="bi bi-telephone"></i> Call
-                                            </a> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                        <!-- More ads as needed -->
-                    </div>
-                </div>
-            </div>
+        
 
             <!-- Gallery -->
             <div class="card shadow-sm border-0 rounded-3 mt-4">
