@@ -355,6 +355,16 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding: 2px 5px;         /* thoda space */
     border-radius: 3px;       /* thoda rounded corner */
 }
+.car_pf {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.95);
+    /* backdrop-filter: blur(10px); */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -50px !important;
+}
 </style>
 
    <div class="hero_section_text">
