@@ -52,7 +52,7 @@
     
 }
 
-.ad_card {
+.car {
     width: 400px;
     background: white;
     border-radius: 20px;
@@ -126,7 +126,7 @@
    
 }
 
-#productGrid1 .ad_card {
+#productGrid1 .card {
     width: 100%;
     padding: 0; /* remove all padding */
     display: flex;
@@ -140,14 +140,14 @@
 }
 
 
-#productGrid1 .ad_card:hover {
+#productGrid1 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     border-color: #aaa;
 }
 
 /* Card image */
-#productGrid1 .ad_card img {
+#productGrid1 .card img {
     width: 100%;
     height: 150px;
     object-fit: contain;
@@ -257,7 +257,7 @@
         justify-content: center;
     }
 
-    .ad_card {
+    .car {
         width: 100%;
         max-width: 420px;
     }
@@ -284,7 +284,7 @@
         line-height: 1.2;
     }
 
-    .ad_card {
+    .car {
         padding: 15px;
         border-radius: 15px;
     }
@@ -436,7 +436,7 @@
         <div class="grid" id="productGrid1">
             <!-- Example Card -->
             @foreach ($ads as $ad)
-                <div class="ad_card">
+                <div class="card">
                     @php
                         $images = json_decode($ad->images, true);
                     @endphp
