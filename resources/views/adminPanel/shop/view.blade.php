@@ -203,7 +203,7 @@
                 @php
                     $images = json_decode($ad->images, true);
                 @endphp
-                <div class="card h-100 shadow-sm border-0 rounded-3" style="width: 250px; margin-left: 20px;">
+                <div class="card h-100 shadow-sm border-0 rounded-3" style="width: 250px; margin-left: 10px;">
                     @if (is_array($images) && isset($images[0]))
                         <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
                     @endif
