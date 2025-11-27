@@ -423,37 +423,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // باقی آپ کا موجودہ JavaScript کوڈ یہاں رہے گا
-    const makeSelect = document.getElementById("make");
-    const modelSelect = document.getElementById("model");
-    const yearSelect = document.getElementById("year");
-    const partsDropdown = document.getElementById("parts-dropdown");
-    const partsTagsContainer = document.getElementById("parts-tags");
-    const findBtn = document.getElementById("find-btn");
-
-    const modelGroup = document.getElementById("model-group");
-    const yearGroup = document.getElementById("year-group");
-    const partsGroup = document.getElementById("parts-group");
-    const conditionGroup = document.getElementById("condition-group");
-
-    let selectedParts = [];
-
-    // helpers (keep your original animations)
-    function showFormGroup(group) {
-        group.classList.remove("hidden");
-        setTimeout(() => group.classList.add("show"), 50);
-    }
-    function hideFormGroup(group) {
-        group.classList.remove("show");
-        setTimeout(() => group.classList.add("hidden"), 300);
-    }
-
-    function updateFindButton() {
-        const hasBasicInfo =
-            makeSelect.value && modelSelect.value && yearSelect.value;
-        const hasParts = selectedParts.length > 0;
-        findBtn.disabled = !(hasBasicInfo && hasParts);
-    }
-
     function createPartTag(partId) {
         const partOption = document.querySelector(
             `#parts-dropdown option[value="${partId}"]`
