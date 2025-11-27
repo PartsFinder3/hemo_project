@@ -95,7 +95,7 @@
 .hiliter{
     padding-left: 7px;
     padding-right: 7px;
-    background-color: antiquewhite;
+    font-weight: bold;
 }
 /* ===== Dropdown ===== */
 .dropdown {
