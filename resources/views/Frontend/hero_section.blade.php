@@ -56,7 +56,7 @@
 }
 
 .car {
-    width: 80%;
+    width: 400px;
     max-width: 450px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
