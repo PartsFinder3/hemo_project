@@ -164,7 +164,7 @@
     }
 
     .radio-group {
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
     }
 }
