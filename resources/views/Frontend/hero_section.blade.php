@@ -21,7 +21,7 @@
     padding: 20px 0;
 }
 .h1, h1 {
-    font-size: 40px;
+    font-size: 40px !important;
     display: flex;
     justify-content: center;
 }
