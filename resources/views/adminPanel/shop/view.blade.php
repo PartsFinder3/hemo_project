@@ -195,7 +195,8 @@
             </div>
 
             <!-- Car Ads -->
-            <div class="card shadow-sm border-0 rounded-3 mt-4">
+           <div class="card shadow-sm border-0 rounded-3 mt-4" style="display: flex; flex-direction: row;">
+
                 <div class="card-body">
                     <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
