@@ -109,10 +109,11 @@
                             $ad->shop->supplier->whatsapp;
                         @endphp
                         <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                            </a>
+<a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+   target="_blank"
+   class="btn btn-sm btn-success w-100 my-1">
+    <i class="fab fa-whatsapp me-1"></i> WhatsApp
+</a>
 
                             <a href="javascript:void(0)" class="btn call"
                                 onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
