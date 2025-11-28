@@ -24,7 +24,7 @@ use App\Models\Years;
 use App\Models\Faq;
 use App\Models\PartMeta;
 
-
+use Illuminate\Support\Facades\Cache;
 use App\Models\Shops;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -206,7 +206,11 @@ public function sendProductInquiry(Request $request)
     public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
-        $meta=PartMeta::where('part_id',$id)->first();
+           $meta = Cache::remember("part_meta_{$id}", 60*60, function() use ($id) {
+                    return PartMeta::select('title', 'description', 'structure_data','focus_keywords')
+                                ->where('part_id', $id)
+                                ->first();
+                });
         
         $ads = Ads::where('part_id', $part->id)->get();
           $host =$request->getHost();
