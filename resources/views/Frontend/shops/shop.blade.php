@@ -8,6 +8,7 @@
 
                         <!-- Cover + Overlay -->
                         <div class="pc-cover-section position-relative">
+                          
                             <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
                                 class="pc-cover-image w-100" alt="Cover">
 
@@ -55,18 +56,8 @@
             </div>
         </div>
     </div>
-@if($shopMakes && $shopMakes->count())
-<div class="info-card">
-    <div class="section-title">Makes Available</div>
-    <div class="makes-grid">
-        @foreach($shopMakes as $shopMake)
-            @if($shopMake->make) <!-- ensure related CarMake exists -->
-                <div class="make-item">{{ $shopMake->make->name }}</div>
-            @endif
-        @endforeach
-    </div>
-</div>
-@endif
+
+
 @if($shopHours)
 <div class="info-card">
     <div class="section-title">Opening Hours</div>
