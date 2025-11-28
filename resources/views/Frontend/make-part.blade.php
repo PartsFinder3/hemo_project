@@ -5,7 +5,7 @@
 
 
 @include('Frontend.hero_section', [
-    'part' => '<span class="hiliter">' . $part->name . '</span> Used Parts for Sale in UAE'
+    'part' => '<span class="hiliter">' . $part->name . '</span> Used and New Parts for Sale in UAE'
 ])
     </main>
 
