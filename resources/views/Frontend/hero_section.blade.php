@@ -42,7 +42,7 @@
     display: inline;   /* inline رکھیں تاکہ text کے ساتھ flow ہو */
     padding: 0 5px;
     font-weight: bold;
-    padding-right: 8px;
+    padding-right: 8px !important;
   
 }
 
