@@ -31,18 +31,11 @@
     margin-bottom: 20px;
 }
 
-/* .hero_section_text h1 {
-    font-size: 40px;
- 
-    line-height: 1.2;
-    display: inline;  /* flex نہیں، inline رکھیں */
-} */
-
 .hero_section_text .hiliter {
     display: inline;   /* inline رکھیں تاکہ text کے ساتھ flow ہو */
     padding: 0 5px;
     font-weight: bold;
-    margin-right: 13px !important;
+    margin-right: 7px !important;
   
 }
 
