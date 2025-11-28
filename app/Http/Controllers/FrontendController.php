@@ -207,7 +207,7 @@ public function sendProductInquiry(Request $request)
     {
         $part = SpareParts::findOrFail($id);
         $meta=PartMeta::where('part_id',$id)->first();
-         dd($meta);
+        
         $ads = Ads::where('part_id', $part->id)->get();
           $host =$request->getHost();
           $Domains=Domain::all();
