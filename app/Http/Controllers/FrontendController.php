@@ -22,6 +22,7 @@ use App\Models\SpareParts;
 use App\Models\Suppliers;
 use App\Models\Years;
 use App\Models\Faq;
+use App\Models\MetaTags;
 
 
 use App\Models\Shops;
@@ -205,7 +206,8 @@ public function sendProductInquiry(Request $request)
     public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
-
+        $meta=MetaTags::where('part_id',$id)->first();
+        
         $ads = Ads::where('part_id', $part->id)->get();
           $host =$request->getHost();
           $Domains=Domain::all();
@@ -233,6 +235,7 @@ public function sendProductInquiry(Request $request)
         $cities = City::all();
         return view('Frontend.PartSearch', compact(
             'part',
+            'meta',
             'carMakes',
             'makes',
             'models',
@@ -256,9 +259,9 @@ public function sendProductInquiry(Request $request)
         $carAds = CarAds::where('car_make_id', $make->id)
             ->where('is_approved', true)
             ->latest()->get();
-    $host =$request->getHost();
-          $Domains=Domain::all();
-        $currentDomain = $Domains->first(function($domain) use ($host) {
+            $host =$request->getHost();
+                $Domains=Domain::all();
+                $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
               if ($currentDomain) {
