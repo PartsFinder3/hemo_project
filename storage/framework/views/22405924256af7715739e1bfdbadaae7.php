@@ -378,11 +378,11 @@
                         ?>
                         <div class="buttons">
                    
-<a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $ad->shop->supplier->whatsapp)); ?>?text=<?php echo e(urlencode('Hello, I am interested in your ad: ' . $ad->title)); ?>"
-   target="_blank"
-   class="btn btn-sm btn-success w-100 my-1">
-    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-</a>
+                                <a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $ad->shop->supplier->whatsapp)); ?>?text=<?php echo e(urlencode('Hello, I am interested in your ad: ' . $ad->title)); ?>"
+                                target="_blank"
+                                class="btn btn-sm btn-success w-100 my-1">
+                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                                </a>
                             <a href="javascript:void(0)" class="btn call"
                                 onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
                                 <i class="fa-solid fa-phone"></i> Click to Call

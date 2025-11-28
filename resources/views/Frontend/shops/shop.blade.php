@@ -108,18 +108,21 @@
                         @php
                             $ad->shop->supplier->whatsapp;
                         @endphp
-                   <div class="buttons">
-                   
-                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-                                target="_blank"
-                                class="btn btn-sm btn-success w-100 my-1">
-                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                                </a>
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
-                        </div>
+<div class="buttons">
+
+    <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+       target="_blank"
+       class="ad-btn ad-btn-whatsapp">
+        <i class="fab fa-whatsapp me-1"></i> WhatsApp
+    </a>
+
+    <a href="javascript:void(0)"
+       class="ad-btn ad-btn-call"
+       onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+        <i class="fa-solid fa-phone me-1"></i> Click to Call
+    </a>
+
+</div>
                     </div>
                 </div>
             @endforeach
@@ -1197,17 +1200,7 @@
 
 
 
-#productGrid1 .buttons a.call {
-    background: var(--accent-color);
-    padding: 10px;       /* same as WhatsApp button */
-    height: auto;        /* remove fixed 30px */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;  /* same as WhatsApp */
-    font-weight: bold;
-    color: #fff;
-}
+
 @media (max-width: 1024px) {
     #productGrid1 {
         grid-template-columns: repeat(2, 1fr);
@@ -1315,9 +1308,7 @@
     background: #198754;
 }
 
-.buttons a.call {
-    background: var(--accent-color);
-}
+
 
 .step-icon {
     width: 200px !important;
@@ -1330,6 +1321,44 @@
     height: 200px;
     object-fit: contain;
 }
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Base button style */
+.ad-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* WhatsApp Button */
+.ad-btn-whatsapp {
+    background: #198754;
+}
+
+.ad-btn-whatsapp:hover {
+    background: #198754;
+}
+
+/* Call Button */
+.ad-btn-call {
+    background: #ff7700;
+}
+
+.ad-btn-call:hover {
+    background: #ff7700;
+}
+
     </style>
 
     <!-- JS -->
