@@ -11,6 +11,7 @@ class MetaTags extends Model
 
     protected $fillable = [
         'title',
+        'part_id',
         'description',
         'keywords',
         'domain_id'
