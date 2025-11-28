@@ -96,7 +96,7 @@
                         <img src="<?php echo e(asset($images[0])); ?>" alt="Product">
                     <?php endif; ?>
                     <div class="card-body">
-                        <a href="<?php echo e(route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id])); ?>"
+                       <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
                             class="card-title"><?php echo e($ad->title); ?></a>
                         
                         <div class="meta">

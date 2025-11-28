@@ -96,7 +96,7 @@
                         <img src="{{ asset($images[0]) }}" alt="Product">
                     @endif
                     <div class="card-body">
-                        <a href="{{ route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id]) }}"
+                       <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
                             class="card-title">{{ $ad->title }}</a>
                         {{-- <div class="price">AED {{ $ad->price }}</div> --}}
                         <div class="meta">
