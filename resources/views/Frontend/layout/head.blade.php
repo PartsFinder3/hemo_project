@@ -4,14 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @if ($meta)
-   
+@if(isset($meta) && $meta)
     <title>{{ $meta->title }}</title>
     <meta name="description" content="{{ $meta->description }}">
     <meta name="keywords" content="{{ $meta->focus_keywords }}">
     <meta name="author" content="{{ $meta->structure_data }}">
 
-    @endif
+@endif
     @if ($domain && $domain->partsMeta && $domain->partsMeta->isNotEmpty())
         @php $meta = $domain->partsMeta->first(); @endphp
 
