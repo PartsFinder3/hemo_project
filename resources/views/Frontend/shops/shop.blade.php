@@ -100,6 +100,7 @@
             @endphp
             <div class="product-card">
                 <div class="product-image">
+                    {{$images[0]}}
                     @if(is_array($images) && isset($images[0]))
                         <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
                     @else
