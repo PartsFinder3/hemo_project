@@ -7,7 +7,8 @@
 
                         <!-- Cover + Overlay -->
                         <div class="pc-cover-section position-relative">
-                            <img src="<?php echo e($profile && $profile->cover ? asset( $profile->cover) : asset('assets/compiled/jpg/Head.png')); ?>"
+                          
+                            <img src="<?php echo e($profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png')); ?>"
                                 class="pc-cover-image w-100" alt="Cover">
 
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
@@ -55,18 +56,8 @@
             </div>
         </div>
     </div>
-<?php if($shopMakes && $shopMakes->count()): ?>
-<div class="info-card">
-    <div class="section-title">Makes Available</div>
-    <div class="makes-grid">
-        <?php $__currentLoopData = $shopMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shopMake): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <?php if($shopMake->make): ?> <!-- ensure related CarMake exists -->
-                <div class="make-item"><?php echo e($shopMake->make->name); ?></div>
-            <?php endif; ?>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-</div>
-<?php endif; ?>
+
+
 <?php if($shopHours): ?>
 <div class="info-card">
     <div class="section-title">Opening Hours</div>
@@ -92,30 +83,49 @@
     </div>
 </div>
 <?php endif; ?>
+
+        <div class="grid" id="productGrid2">
 <?php if($shopAds && $shopAds->count()): ?>
     <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <?php if(is_object($ad)): ?>
-            <?php
-                $images = json_decode($ad->images, true);
-            ?>
-            <div class="product-card">
-                <div class="product-image">
+                <div class="card">
+                    <?php
+                        $images = json_decode($ad->images, true);
+                    ?>
+
                     <?php if(is_array($images) && isset($images[0])): ?>
-                        <img src="<?php echo e(asset('storage/' . $images[0])); ?>" alt="Product">
-                    <?php else: ?>
-                        <img src="<?php echo e(asset('assets/compiled/png/default-product.png')); ?>" alt="Product">
+                        <img src="<?php echo e(asset($images[0])); ?>" alt="Product">
                     <?php endif; ?>
-                </div>
-                <div class="product-body">
-                    <a href="#" class="product-title"><?php echo e($ad->title ?? ''); ?></a>
-                    <div class="product-price">$<?php echo e($ad->price ?? ''); ?></div>
-                </div>
-            </div>
-        <?php endif; ?>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-<?php endif; ?>
+                    <div class="card-body">
+                        <a href="<?php echo e(route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id])); ?>"
+                            class="card-title"><?php echo e($ad->title); ?></a>
+                        
+                        <div class="meta">
+                            Availability: In Stock <br>
+                            
+                            Delivery: Ask Supplier <br>
+                            Warranty: Ask Supplier
+                        </div>
+                        <?php
+                            $ad->shop->supplier->whatsapp;
+                        ?>
+                        <div class="buttons">
+                            <a href="javascript:void(0)" class="btn whatsapp"
+                                onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
 
+                            <a href="javascript:void(0)" class="btn call"
+                                onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
+                                <i class="fa-solid fa-phone"></i> Click to Call
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+     <?php endif; ?>
 
+            <!-- Repeat similar cards... -->
+        </div>
 
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">
@@ -1095,6 +1105,229 @@
 
 .pc-card {
     animation: fadeInUp 0.6s ease-out;
+}
+
+
+
+
+
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+ 
+   
+}
+
+#productGrid1 .card {
+    width: 100%;
+    padding: 0; /* remove all padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 470px;
+}
+
+
+#productGrid1 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-color: #aaa;
+}
+
+/* Card image */
+#productGrid1 .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+}
+
+
+#productGrid1 .card-body {
+    padding: 10px; /* optional, only inner spacing */
+}
+
+/* Card title */
+#productGrid1 .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em; /* limit to 2 lines */
+    overflow: hidden;
+}
+
+/* Price */
+#productGrid1 .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Meta info */
+#productGrid1 .meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+#productGrid1 .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#productGrid1 .buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+
+}
+
+
+
+#productGrid1 .buttons a.call {
+    background: var(--accent-color);
+    padding: 10px;       /* same as WhatsApp button */
+    height: auto;        /* remove fixed 30px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;  /* same as WhatsApp */
+    font-weight: bold;
+    color: #fff;
+}
+@media (max-width: 1024px) {
+    #productGrid1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #productGrid1 {
+        grid-template-columns: 1fr;
+    }
+}
+/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
+@media (max-width: 992px) {
+
+    .hero-section_p {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 2.5rem !important;
+        padding: 0 20px;
+    }
+
+    .secound_hero_section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+        height: auto;
+    }
+
+    .part_finder_card {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .hero_image_section {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero_image_section img {
+        width: 90%;
+        height: auto;
+        max-width: 380px;
+    }
+}
+
+/* ======= Responsive 768px (Mobile) ======= */
+@media (max-width: 768px) {
+
+    .hero_section_text h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    .car {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .hero_image_section img {
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    .find-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+}
+
+/* ======= Responsive 480px (Small Mobile) ======= */
+
+.buttons a.whatsapp,
+.buttons a.call {
+    flex: 1;                    /* equal width */
+    text-align: center;
+    padding: 10px;              /* same padding */
+    height: 50px;               /* fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* Separate colors */
+.buttons a.whatsapp {
+    background: #198754;
+}
+
+.buttons a.call {
+    background: var(--accent-color);
+}
+
+.step-icon {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto 20px auto;
+}
+
+.step-icon img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
 }
     </style>
 
