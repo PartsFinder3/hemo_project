@@ -8,7 +8,7 @@
 
                         <!-- Cover + Overlay -->
                         <div class="pc-cover-section position-relative">
-                            <img src="{{ $profile && $profile->cover ? asset( $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
+                            <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
                                 class="pc-cover-image w-100" alt="Cover">
 
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
@@ -100,7 +100,7 @@
             @endphp
             <div class="product-card">
                 <div class="product-image">
-                    {{$images[0]}}
+                    
                     @if(is_array($images) && isset($images[0]))
                         <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
                     @else
