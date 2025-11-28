@@ -22,7 +22,7 @@ use App\Models\SpareParts;
 use App\Models\Suppliers;
 use App\Models\Years;
 use App\Models\Faq;
-use App\Models\MetaTags;
+use App\Models\PartMeta;
 
 
 use App\Models\Shops;
@@ -206,8 +206,8 @@ public function sendProductInquiry(Request $request)
     public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
-        $meta=MetaTags::where('part_id',$id)->first();
-         dd($meta);
+        $meta=PartMeta::where('part_id',$id)->first();
+    
         $ads = Ads::where('part_id', $part->id)->get();
           $host =$request->getHost();
           $Domains=Domain::all();
