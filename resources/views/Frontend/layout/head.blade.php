@@ -11,6 +11,7 @@
     <meta name="author" content="{{ $meta->structure_data }}">
 
 @endif
+<link rel="canonical" href="{{ url()->current() }}">
     @if ($domain && $domain->partsMeta && $domain->partsMeta->isNotEmpty())
         @php $meta = $domain->partsMeta->first(); @endphp
 
