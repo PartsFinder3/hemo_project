@@ -206,7 +206,7 @@ public function sendProductInquiry(Request $request)
     public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
-        dd($part);
+   
            $meta = Cache::remember("part_meta_{$id}", 60*60, function() use ($id) {
                     return PartMeta::select('title', 'description', 'structure_data','focus_keywords')
                                 ->where('part_id', $id)
