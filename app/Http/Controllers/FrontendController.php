@@ -291,7 +291,7 @@ public function sendProductInquiry(Request $request)
 
         $cities = City::all();
         $randomMakes = CarMakes::limit(8)->get();
-         dd($make);
+        
         return view('Frontend.make-search', compact(
             'make',
             'carMakes',
