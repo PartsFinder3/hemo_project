@@ -15,7 +15,7 @@
     <section class="ad-cards">
         <div class="section-text">
             <h3>{{ $part->name }} ADS</h3>
-               {{$part->image}}
+         
             <h2>Find the Best Deals For You</h2>
         </div>
         <div class="filters">

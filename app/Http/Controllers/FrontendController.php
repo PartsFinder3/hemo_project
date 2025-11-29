@@ -206,6 +206,7 @@ public function sendProductInquiry(Request $request)
     public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
+
            $meta = Cache::remember("part_meta_{$id}", 60*60, function() use ($id) {
                     return PartMeta::select('title', 'description', 'structure_data','focus_keywords')
                                 ->where('part_id', $id)
@@ -290,7 +291,7 @@ public function sendProductInquiry(Request $request)
 
         $cities = City::all();
         $randomMakes = CarMakes::limit(8)->get();
-
+         dd($make);
         return view('Frontend.make-search', compact(
             'make',
             'carMakes',
