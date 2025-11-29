@@ -38,6 +38,7 @@
 </head>
 
 <body>
+
     <script src="<?php echo e(asset('assets/static/js/initTheme.js')); ?>"></script>
     <div id="app">
         <div id="main">

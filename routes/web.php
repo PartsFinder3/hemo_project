@@ -29,6 +29,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SupplierSettingController;
 use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\FAsController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\Artisan;
 // use Illuminate\Support\Facades\Request;
@@ -369,3 +370,13 @@ Route::get('/search-makes', [FrontendController::class, 'searchMakes']);
 Route::get('/search-models', [FrontendController::class, 'searchModels']);
 Route::get('/search-years', [FrontendController::class, 'searchYears']);
 Route::get('/search-parts', [FrontendController::class, 'searchParts']);
+
+
+// <------------------------------- Frontend ------------------------------------->
+
+
+Route::get('SeoDashboard', [SeoController::class, 'index'])->name('SEO.dashboard');
+Route::post('SeoTamplateAdd', [SeoController::class, 'store'])->name('tamplate.add');
+Route::get('SeoTamplateUpdate/{id}', [SeoController::class, 'update'])->name('tamplate.edit');
+Route::post('SeoTamplateUpdateTamp/{id}', [SeoController::class, 'updateTamp'])->name('seo.update');
+Route::delete('/tamplate/{id}', [SeoController::class, 'destroy'])->name('tamplate.destroy');

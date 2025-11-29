@@ -8,6 +8,7 @@ use App\Models\SciteScripts;
 use App\Models\MetaTags;
 use App\Models\Domain;
 use App\Models\SpareParts;
+use App\Models\SeoTamplate;
 use Illuminate\Http\Request;
 
 class ScriptController extends Controller

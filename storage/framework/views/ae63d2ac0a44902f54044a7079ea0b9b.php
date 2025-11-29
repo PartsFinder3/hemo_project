@@ -1,11 +1,10 @@
-@extends('adminPanel.layout.main')
-@section('main-section')
+<?php $__env->startSection('main-section'); ?>
 
 <div class="container mt-4">
     <h2>Assign SEO Template to Product</h2>
 
     <form action="#" method="POST">
-        @csrf
+        <?php echo csrf_field(); ?>
 
         <!-- Select SEO Template -->
         <div class="mb-3">
@@ -32,4 +31,6 @@
 </div>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('adminPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/partsMeta/index.blade.php ENDPATH**/ ?>
