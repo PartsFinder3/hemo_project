@@ -123,7 +123,7 @@
                                 <th>Starting Year</th>
                                 <th>Ending Year</th>
                                 <th>Varient</th>
-                                <th>Action</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,6 +146,9 @@
                                         <a class="btn btn-danger" href="{{ route('model.delete', $model->id) }}"><i
                                                 class="fa-solid fa-trash"></i>
                                             Delete</a>
+                            <a class="btn btn-warning" href="{{ route('model.seo', $model->id) }}">
+        <i class="fa-solid fa-chart-line"></i> SEO
+    </a>
                                     </td>
                                 </tr>
                             @endforeach

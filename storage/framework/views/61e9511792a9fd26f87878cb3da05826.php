@@ -9,7 +9,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Car Makes</h3>
+                    <h3>Car Models</h3>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                         <div class="me-1 mb-1 d-inline-block">
                             <!-- Button trigger for large size modal -->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#large">
-                                Add Car Make
+                                Add Model
                             </button>
                             <!--large size Modal -->
                             <div class="modal fade text-left" id="large" tabindex="-1" role="dialog"
@@ -48,31 +48,53 @@
                                     role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel17">Add Car Make</h4>
+                                            <h4 class="modal-title" id="myModalLabel17">Add Model</h4>
                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                 aria-label="Close">
                                                 <i data-feather="x"></i>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="<?php echo e(route('makes.create')); ?>" method="POST"
+                                            <form action="<?php echo e(route('model.create')); ?>" method="POST"
                                                 class="form form-vertical" enctype="multipart/form-data">
                                                 <?php echo csrf_field(); ?>
                                                 <div class="form-body">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <label for="first-name-vertical">Name</label>
-                                                                <input type="text" id="first-name-vertical"
-                                                                    class="form-control" name="name"
-                                                                    placeholder="Country Name">
+                                                                <label for="" class="form-label">Car Make</label>
+                                                                <select class="form-select form-select-lg"
+                                                                    name="car_make_id" id="">
+                                                                    <option selected>Select one</option>
+                                                                    <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($make->id); ?>">
+                                                                            <?php echo e($make->name); ?></option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <label for="password-vertical">Logo</label>
-                                                                <input type="file" id="password-vertical"
-                                                                    class="form-control" name="logo" placeholder="Logo">
+                                                                <label for="email-id-vertical">Model Name</label>
+                                                                <input type="text" id="email-id-vertical"
+                                                                    class="form-control" name="name"
+                                                                    placeholder="Model Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="mb-3">
+                                                                <label for="" class="form-label">Starting
+                                                                    Year</label>
+                                                                <input type="text" class="form-control" name="year_start"
+                                                                    placeholder="Starting Year">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="mb-3">
+                                                                <label for="" class="form-label">Ending Year (Empty
+                                                                    if model continues)</label>
+                                                                <input type="text" class="form-control" name="year_end"
+                                                                    placeholder="Ending Year">
                                                             </div>
                                                         </div>
                                                         <div class="col-12 d-flex justify-content-end">
@@ -95,29 +117,35 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Logo</th>
-                                <th>Action</th>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th>Starting Year</th>
+                                <th>Ending Year</th>
+                                <th>Varient</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__currentLoopData = $carMakes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $models; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $model): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($make->name); ?></td>
+                                    <td><?php echo e($model->makes->name); ?></td>
+                                    <td><?php echo e($model->name); ?></td>
+                                    <td><?php echo e($model->year_start); ?></td>
+                                    <td><?php echo e($model->year_end ? $model->year_end : 'Continue'); ?></td>
                                     <td>
-                                        <?php if($make->logo): ?>
-                                            <img style="width: 50px" src="<?php echo e(asset('storage/' . $make->logo)); ?>" alt="Domain Logo" />
-                                        <?php else: ?>
-                                            <span>No logo</span>
-                                        <?php endif; ?>
+                                        <a href="<?php echo e(route('varient.store', $model->id)); ?>" class="btn btn-sm btn-info">+
+                                            Add</a>
+                                        <a href="<?php echo e(route('varient.show', $model->id)); ?>" class="btn btn-sm btn-success">↗
+                                            Show</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" href="<?php echo e(route('makes.update',$make->id)); ?>"><i
-                                                        class="fa-solid fa-pen-to-square"></i>
-                                                    Edit</a>
-                                                <a class="btn btn-danger" href="<?php echo e(route('makes.delete',$make->id)); ?>"><i class="fa-solid fa-trash"></i>
-                                                    Delete</a>
-                              <a class="btn btn-warning" href="<?php echo e(route('makes.seo', $make->id)); ?>">
+                                        <a class="btn btn-info" href="<?php echo e(route('model.edit', $model->id)); ?>"><i
+                                                class="fa-solid fa-pen-to-square"></i>
+                                            Edit</a>
+                                        <a class="btn btn-danger" href="<?php echo e(route('model.delete', $model->id)); ?>"><i
+                                                class="fa-solid fa-trash"></i>
+                                            Delete</a>
+                            <a class="btn btn-warning" href="<?php echo e(route('model.seo', $model->id)); ?>">
         <i class="fa-solid fa-chart-line"></i> SEO
     </a>
                                     </td>
@@ -132,4 +160,4 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('adminPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/makes/show.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('adminPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/carModels/show.blade.php ENDPATH**/ ?>

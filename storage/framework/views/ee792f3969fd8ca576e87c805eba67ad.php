@@ -133,7 +133,14 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <a href="<?php echo e(route('admin.parts.meta',$part->id)); ?>" class="btn btn-warning btn-sm">SEO</a>
+
+
+    <a class="btn btn-warning btn-sm d-flex align-items-center justify-content-center" 
+       style="height: 30px; min-width: 60px;" 
+       href="<?php echo e(route('admin.parts.meta', $part->id)); ?>">
+       <i class="fa-solid fa-chart-line me-1"></i> SEO
+    </a>
+
                 </td>
                 <td>
                     <a class="btn btn-info btn-sm" href="<?php echo e(route('spareparts.edit',$part->id)); ?>"><i
@@ -154,6 +161,15 @@
 
         </section>
     </div>
+    <style>
+        .btn-seo {
+    height: 30px;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('adminPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/parts/show.blade.php ENDPATH**/ ?>

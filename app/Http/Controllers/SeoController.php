@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SeoTamplate;
+use App\Models\SpareParts;
+use App\Models\CarMakes;
+use App\Models\CarModels;
 class SeoController extends Controller
 {
     //
@@ -56,6 +59,47 @@ class SeoController extends Controller
             $seoTemplate->save();
 
         return redirect()->route('SEO.dashboard')->with('success', 'Template updated successfully!');
-    }
-    
+    }  
+        public function assign_tamp_parts(Request $request, $id)
+        {
+            $parts = SpareParts::findOrFail($id);
+            $parts->tamp_id = $request->seo_template_id;
+            $parts->save();
+
+            return back()->with('success', 'Template successfully assigned!');
+        }
+        function assign_tamp_make($id){
+           $parts = CarMakes::findOrFail($id);
+
+              $getTamp = $parts->tamp_id 
+        ? SeoTamplate::find($parts->tamp_id) 
+        : null;
+          $allTemplte = SeoTamplate::all();
+          return view('adminPanel.partsMeta.make', compact('getTamp', 'allTemplte','parts'));
+        }
+                public function assign_tamp_make_post(Request $request, $id)
+        {
+            $parts = CarMakes::findOrFail($id);
+            $parts->tamp_id = $request->seo_template_id;
+            $parts->save();
+
+            return back()->with('success', 'Template successfully assigned!');
+        }
+         function assign_tamp_model($id){
+           $parts = CarModels::findOrFail($id);
+
+              $getTamp = $parts->tamp_id 
+        ? SeoTamplate::find($parts->tamp_id) 
+        : null;
+          $allTemplte = SeoTamplate::all();
+          return view('adminPanel.partsMeta.model', compact('getTamp', 'allTemplte','parts'));
+        }
+           public function assign_tamp_model_post(Request $request, $id)
+        {
+            $parts = CarModels::findOrFail($id);
+            $parts->tamp_id = $request->seo_template_id;
+            $parts->save();
+
+            return back()->with('success', 'Template successfully assigned!');
+        }
 }

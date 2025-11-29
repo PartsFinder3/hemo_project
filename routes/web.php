@@ -380,3 +380,11 @@ Route::post('SeoTamplateAdd', [SeoController::class, 'store'])->name('tamplate.a
 Route::get('SeoTamplateUpdate/{id}', [SeoController::class, 'update'])->name('tamplate.edit');
 Route::post('SeoTamplateUpdateTamp/{id}', [SeoController::class, 'updateTamp'])->name('seo.update');
 Route::delete('/tamplate/{id}', [SeoController::class, 'destroy'])->name('tamplate.destroy');
+Route::post('/assign_tamp_parts/{id}', [SeoController::class, 'assign_tamp_parts'])->name('tamplate.assign_tamp_parts');
+Route::get('/assign_tamp_make/{id}', [SeoController::class, 'assign_tamp_make'])->name('makes.seo');
+Route::post('/assign_tamp_make_post/{id}', [SeoController::class, 'assign_tamp_make_post'])->name('makes.seo.post');
+
+
+Route::get('/assign_tamp_model/{id}', [SeoController::class, 'assign_tamp_model'])->name('model.seo');
+Route::post('/assign_tamp_model_post/{id}', [SeoController::class, 'assign_tamp_model_post'])->name('model.seo.post');
+

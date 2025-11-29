@@ -2,11 +2,11 @@
 @section('main-section')
 
 <div class="container mt-4">
-<a href="{{ route('spareparts.show') }}" class="btn btn-secondary mb-3">← Back</a>
+<a href="{{ route('makes.show') }}" class="btn btn-secondary mb-3">← Back</a>
 
     <h2>Assign SEO Template to Product</h2>
 
-    <form action="{{ route('tamplate.assign_tamp_parts', $parts->id) }}" method="POST">
+    <form action="{{ route('makes.seo.post', $parts->id) }}" method="POST">
         @csrf
         <!-- Select SEO Template -->
         <div class="mb-3">

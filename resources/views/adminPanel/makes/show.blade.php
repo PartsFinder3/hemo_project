@@ -118,6 +118,9 @@
                                                     Edit</a>
                                                 <a class="btn btn-danger" href="{{route('makes.delete',$make->id)}}"><i class="fa-solid fa-trash"></i>
                                                     Delete</a>
+                              <a class="btn btn-warning" href="{{ route('makes.seo', $make->id) }}">
+        <i class="fa-solid fa-chart-line"></i> SEO
+    </a>
                                     </td>
                                 </tr>
                             @endforeach
