@@ -5,8 +5,13 @@
 
 
 @include('Frontend.hero_section', [
-    'part' => '<span class="hiliter">' . $part->name  . '</span> Parts for Sale in UAE'
+    
 ])
+   @include('Frontend.hero_section', [
+   'part' => '<span class="hiliter">' . $part->name  . '</span> Parts for Sale in UAE'
+   'image' => $part->image
+])
+
     </main>
     {{-- <section class="carMakes">
         <div class="section-text">
