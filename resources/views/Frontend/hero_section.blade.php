@@ -220,6 +220,9 @@
     .radio-option label {
         font-size: 12px;
     }
+    .hero-section_p {
+        height: auto;
+    }
 }
 .select2-selection--single.highlight-border,
 .select2-selection--multiple.highlight-border {
