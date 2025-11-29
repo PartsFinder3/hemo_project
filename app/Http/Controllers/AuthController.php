@@ -36,11 +36,10 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
            
     
             if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
-                 $SinvoiceId = Invoices::where('supplier_id', $supplier->id)
-                     ->latest()->first();  
-                $SinvoiceId->inquiries_limit = 0;
+               
+                $supplier->inquiries_limit = 0;
                 /** @var \App\Models\Supplier $supplier */
-                $SinvoiceId->save();
+                $supplier->save();
 
                 Auth::guard('supplier')->logout();
                 return redirect()->route('supplier.login.expire')

@@ -139,7 +139,7 @@ class SupplierController extends Controller
       
        if(!$supplier->shop) {
     return back()->with('error','Your shop is not created');
-}
+        }
         $shopPartIds = ShopParts::where('shop_id', $supplier->shop->id)
             ->pluck('part_id')
              ->toArray();
