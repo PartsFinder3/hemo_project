@@ -34,7 +34,9 @@ class AuthController extends Controller
             $invoiceId = Invoices::where('supplier_id', $supplier->id)
                                 ->latest()
                                 ->value('id');
-                    
+            if(!$invoiceId){
+                back()->with('error','Please subcribe ');
+            }   
                 $getSubribtion=InvoiceSubscriptions::where('invoice_id',$invoiceId)->first();
             
                 $today = now();
