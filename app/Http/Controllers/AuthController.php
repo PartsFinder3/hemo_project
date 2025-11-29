@@ -43,10 +43,8 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
                 $invoiceId = Inquiries::where('supplier_id', $supplier->id)->first();
                 $invoiceId->inquiries_limit=0;
                 $supplier->save();
-
-                Auth::guard('supplier')->logout();
-                return redirect()->route('supplier.login.expire')
-                    ->with('error', 'Your subscription has expired. Please renew to continue.');
+                  return redirect()->route('supplier.panel')
+                    ->with('success', 'Login successful.');
             }
 
             if ($supplier->is_active) {
