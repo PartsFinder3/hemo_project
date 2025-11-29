@@ -28,7 +28,7 @@ class ShopController extends Controller
         // $countInquiries = InquiryUsage::where('shop_id', $id)->count();
         $shop = Shops::findOrFail($id);
         $profile = ShopProfile::where('shop_id', $shop->id)->first();
-       $shopParts = ShopParts::where('shop_id', $shop->id)->first();
+         $shopParts = ShopParts::where('shop_id', $shop->id)->get();
         $shopMakes = ShopMakes::where('shop_id', $shop->id)->get();
         $shopHours = ShopHours::where('shop_id', $shop->id)->first();
         $shopGallery = ShopGallery::where('shop_id', $shop->id)->get();
