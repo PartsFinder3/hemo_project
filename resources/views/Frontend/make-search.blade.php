@@ -3,7 +3,7 @@
 
 @include('Frontend.hero_section', [
     'part' => '<span class="hiliter">' . $make->name . '</span> Parts for Sale in UAE',
-    'image' => $make->logo
+    'image' => 'storage/'.$make->logo
 ])
     </main>
      <section class="ad-cards">
