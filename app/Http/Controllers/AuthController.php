@@ -36,8 +36,8 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
            
     
             if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
-                $supplier->is_active = 0;
-                $supplier->inquiries_limit = 0;
+               
+                $invoiceId->inquiries_limit = 0;
                 /** @var \App\Models\Supplier $supplier */
                 $supplier->save();
 
