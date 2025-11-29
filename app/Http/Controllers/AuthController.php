@@ -51,6 +51,8 @@ class AuthController extends Controller
                 $SinvoiceId->save();
                   return redirect()->route('supplier.panel')
                     ->with('success', 'Login successful.');
+            }else{
+                 back()->with('error','Please subcribe ');
             }
            
         }
