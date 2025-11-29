@@ -105,11 +105,15 @@
                     </div>
 
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
-                      @if($shopParts && $shopParts->part)
-                        <div class="col">
-                            <div class="p-2 border rounded text-center">{{ $shopParts->part->name }}</div>
-                        </div>
-                    @endif
+@foreach ($shopParts as $shopPart)
+    @if ($shopPart->part)
+        <div class="col">
+            <div class="p-2 border rounded text-center">
+                {{ $shopPart->part->name }}
+            </div>
+        </div>
+    @endif
+@endforeach
 
                     </div>
                 </div>
