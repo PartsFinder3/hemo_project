@@ -5,11 +5,8 @@
 
 
 @include('Frontend.hero_section', [
-    
-])
-   @include('Frontend.hero_section', [
-   'part' => '<span class="hiliter">' . $part->name  . '</span> Parts for Sale in UAE'
-   'image' => $part->image
+    'part' => '<span class="hiliter">' . $part->name . '</span> Parts for Sale in UAE',
+    'image' => $part->image,
 ])
 
     </main>
