@@ -28,7 +28,7 @@ class AuthController extends Controller
         if (Auth::guard('supplier')->attempt($credentials)) {
             $supplier = Auth::guard('supplier')->user();
              if (!$supplier->is_active) {
-          return redirect()->route('supplier.login.expire')
+                   return redirect()->route('supplier.login.expire')
                     ->with('error', 'Your subscription has expired. Please renew to continue.');
             } 
             $invoiceId = Invoices::where('supplier_id', $supplier->id)
