@@ -3,10 +3,11 @@
 
 
 
-
-@include('Frontend.hero_section', [
-  'part' => '<span class="hiliter">' . $part->name . '</span> Parts for Sale in UAE'
+   @include('Frontend.hero_section', [
+   'part' => '<span class="hiliter">' . $part->name . '</span> Parts for Sale in UAE',
+   'image' => 'storage/'.$part->image
 ])
+
     </main>
 
 
