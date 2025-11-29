@@ -31,9 +31,13 @@ class InvoiceController extends Controller
             'payment_method' => $request->payment_method,
         ]);
 
-        // save subscriptions
         foreach ($request->subscriptions as $sub) {
-            $invoice->subscriptions()->create($sub);
+            $invoice->subscriptions()->create([
+                'type'       => $sub['type'],
+                'amount'     => $sub['amount'],
+                'start_date' => $sub['start_date'],  // <-- required
+                'end_date'   => $sub['end_date'],    // <-- agar required ho
+            ]);
         }
 
         // Generate PDF

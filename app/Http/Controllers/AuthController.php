@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
+use App\Models\InvoiceSubscriptions;
+use App\Models\Invoices;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -24,12 +26,16 @@ class AuthController extends Controller
 
         if (Auth::guard('supplier')->attempt($credentials)) {
             $supplier = Auth::guard('supplier')->user();
+$invoiceId = Invoices::where('supplier_id', $supplier->id)
+                     ->latest()
+                     ->value('id');
+        $getSubribtion=InvoiceSubscriptions::where('invoice_id',$invoiceId)->first();
+         
 
-            // check expiry
-            $today = now();
+        $today = now();
            
     
-            if ($supplier->end_date && $today->gt($supplier->end_date)) {
+            if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
                 $supplier->is_active = 0;
                 $supplier->inquiries_limit = 0;
                 /** @var \App\Models\Supplier $supplier */

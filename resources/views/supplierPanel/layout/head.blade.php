@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> - Supplier Dashboard</title>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- Favicons --}}
     <link rel="shortcut icon" href="{{ asset('assets/compiled/svg/favicon.svg') }}" type="image/x-icon">
 
@@ -267,6 +267,18 @@
     </script>
 </head>
 <body>
+    
+@if(session('success'))
+    <script>
+        swal("Success!", "{{ session('success') }}", "success");
+    </script>
+@endif
+
+@if(session('error'))
+    <script>
+        swal("Error!", "{{ session('error') }}", "error");
+    </script>
+@endif
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-2 shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" style="max-width: 100px" href="#">

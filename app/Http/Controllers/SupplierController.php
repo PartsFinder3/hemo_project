@@ -125,7 +125,7 @@ class SupplierController extends Controller
     public function showSupplierPanel(Request $request)
     {
         $supplier = Auth::guard('supplier')->user();
-
+        
         // If supplier account is not active, block inquiries
         if (!$supplier->is_active) {
             return view('supplierPanel.index', [
@@ -136,11 +136,14 @@ class SupplierController extends Controller
                 'cities' => City::all(),
             ]);
         }
-
+      
+       if(!$supplier->shop) {
+    return back()->with('error','Your shop is not created');
+}
         $shopPartIds = ShopParts::where('shop_id', $supplier->shop->id)
             ->pluck('part_id')
-            ->toArray();
-
+             ->toArray();
+        
         $usages = InquiryUsage::with(['buyerInquiry.carMake', 'buyerInquiry.carModel', 'buyerInquiry.year', 'buyerInquiry.buyer'])
             ->where('supplier_id', $supplier->id) // ✅ Only inquiries linked to this supplier
             ->whereHas('buyerInquiry.partsList', function ($q) use ($shopPartIds) {
