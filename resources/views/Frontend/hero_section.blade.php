@@ -298,8 +298,8 @@
         </div>
     </div>
 
-   <div class="hero_image_section">
-    <img src="{{ $image ?? 'https://partsfinder.ae/storage/profile_images/hero_section_image_1.png' }}" alt="">
+<div class="hero_image_section">
+    <img src="{{ asset($image) }}" alt="">
 </div>
 </div>
 

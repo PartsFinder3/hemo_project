@@ -257,7 +257,7 @@ public function sendProductInquiry(Request $request)
     public function adByMakes(Request $request , $slug, $id)
     {
         $make = CarMakes::where('id', $id)->where('slug', $slug)->firstOrFail();
-
+     
         $ads = Ads::where('car_make_id', $make->id)
             ->where('is_approved', true)
             ->latest()->get();
