@@ -49,7 +49,7 @@
   "@context": "https://schema.org/",
   "@type": "Product",
   "name": "{{ $parts->name }}",
-  "image": "{{ asset($parts->image) }}",
+    "image": "{{ asset('storage/'. $parts->image) }}"
   "description": "{{ $getTamp->description ?? 'No Description' }}",
   "brand": {
     "@type": "Brand",
