@@ -153,13 +153,18 @@ class ScriptController extends Controller
 
         return redirect()->back()->with('success', 'Meta Tags deleted successfully.');
     }
+public function partsMeta($id){
+    $parts = SpareParts::findOrFail($id);
 
-    public function partsMeta($id){
-        $parts = SpareParts::findOrFail($id);
-        $domains = Domain::all();
-        $metaParts =  PartsMeta::all();
-        return view('adminPanel.partsMeta.index',compact('parts','domains','metaParts'));
-    }
+    // If tamp_id null or not found → set null
+    $getTamp = $parts->tamp_id 
+        ? SeoTamplate::find($parts->tamp_id) 
+        : null;
+
+    $allTemplte = SeoTamplate::all();
+
+    return view('adminPanel.partsMeta.index', compact('getTamp', 'allTemplte','parts'));
+}
 
     public function storePartsMeta(Request $request,$id){
        $part = SpareParts::findOrFail($id);
