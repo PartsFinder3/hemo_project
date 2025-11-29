@@ -1,12 +1,10 @@
 @extends('Frontend.layout.main')
 @section('main-section')
 
-
-
 @include('Frontend.hero_section', [
-    'part' => '<span class="hiliter">' . $make->name . '</span> Parts for Sale in UAE'
+    'part' => '<span class="hiliter">' . $make->name . '</span> Parts for Sale in UAE',
+    'image' => 'storage/' . $make->logo
 ])
-   
     </main>
      <section class="ad-cards">
         <div class="section-text">
