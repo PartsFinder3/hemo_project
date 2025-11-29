@@ -6,6 +6,7 @@ use App\Models\Suppliers;
 use Illuminate\Http\Request;
 use App\Models\InvoiceSubscriptions;
 use App\Models\Invoices;
+use App\Models\Inquiries;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -37,8 +38,10 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
     
             if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
                
-                $supplier->inquiries_limit = 0;
+             
                 /** @var \App\Models\Supplier $supplier */
+                $invoiceId = Inquiries::where('supplier_id', $supplier->id)->first();
+                $invoiceId->inquiries_limit=0;
                 $supplier->save();
 
                 Auth::guard('supplier')->logout();
