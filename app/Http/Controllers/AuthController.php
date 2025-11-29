@@ -27,12 +27,17 @@ class AuthController extends Controller
 
         if (Auth::guard('supplier')->attempt($credentials)) {
             $supplier = Auth::guard('supplier')->user();
-$invoiceId = Invoices::where('supplier_id', $supplier->id)
-                     ->latest()
-                     ->value('id');
-        $getSubribtion=InvoiceSubscriptions::where('invoice_id',$invoiceId)->first();
-     
-        $today = now();
+             if (!$supplier->is_active) {
+          return redirect()->route('supplier.login.expire')
+                    ->with('error', 'Your subscription has expired. Please renew to continue.');
+            } 
+            $invoiceId = Invoices::where('supplier_id', $supplier->id)
+                                ->latest()
+                                ->value('id');
+                    
+                $getSubribtion=InvoiceSubscriptions::where('invoice_id',$invoiceId)->first();
+            
+                $today = now();
            
             if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
               
@@ -45,15 +50,7 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
                   return redirect()->route('supplier.panel')
                     ->with('success', 'Login successful.');
             }
-
-            if ($supplier->is_active) {
-                return redirect()->route('supplier.panel')
-                    ->with('success', 'Login successful.');
-            } else {
-                Auth::guard('supplier')->logout();
-                return redirect()->route('supplier.login.expire')
-                    ->with('error', 'Your subscription has expired. Please renew to continue.');
-            }
+           
         }
 
         return back()->withErrors([
