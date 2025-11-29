@@ -21,46 +21,62 @@ class AuthController extends Controller
         return view('supplierPanel.login.expire');
     }
 
-    public function supplierLoginPost(Request $request)
-    {
-        $credentials = $request->only('whatsapp', 'password');
+public function supplierLoginPost(Request $request)
+{
+    $credentials = $request->only('whatsapp', 'password');
 
-        if (Auth::guard('supplier')->attempt($credentials)) {
-            $supplier = Auth::guard('supplier')->user();
-             if (!$supplier->is_active) {
-                   return redirect()->route('supplier.login.expire')
-                    ->with('error', 'Your subscription has expired. Please renew to continue.');
-            } 
-            $invoiceId = Invoices::where('supplier_id', $supplier->id)
-                                ->latest()
-                                ->value('id');
-            if(!$invoiceId){
-                back()->with('error','Please subcribe ');
-            }   
-                $getSubribtion=InvoiceSubscriptions::where('invoice_id',$invoiceId)->first();
-            
-                $today = now();
-           
-            if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
-              
-             
-             
-                $SinvoiceId = Inquiries::where('supplier_id', $supplier->id)->first();
-                
-                $SinvoiceId->inquiries_limit=0;
-                $SinvoiceId->save();
-                  return redirect()->route('supplier.panel')
-                    ->with('success', 'Login successful.');
-            }else{
-                 back()->with('error','Please subcribe ');
-            }
-           
+    if (Auth::guard('supplier')->attempt($credentials)) {
+        $supplier = Auth::guard('supplier')->user();
+
+        // Check if supplier account is active
+        if (!$supplier->is_active) {
+            return redirect()->route('supplier.login.expire')
+                ->with('error', 'Your subscription has expired. Please renew to continue.');
         }
 
-        return back()->withErrors([
-            'whatsapp' => 'The provided credentials do not match our records.',
-        ]);
+        // Get latest invoice
+        $invoiceId = Invoices::where('supplier_id', $supplier->id)
+                            ->latest()
+                            ->value('id');
+
+        if (!$invoiceId) {
+            return back()->with('error', 'Please subscribe.');
+        }
+
+        // Get subscription for that invoice
+        $subscription = InvoiceSubscriptions::where('invoice_id', $invoiceId)->first();
+
+        if (!$subscription) {
+            return back()->with('error', 'Subscription record not found.');
+        }
+
+        $today = now();
+
+        // Check subscription expiry
+        if ($subscription->end_date && $today->gt($subscription->end_date)) {
+
+            // Subscription expired — set inquiries limit to 0
+            $Sinvoice = Inquiries::where('supplier_id', $supplier->id)->first();
+
+            if ($Sinvoice) {
+                $Sinvoice->inquiries_limit = 0;
+                $Sinvoice->save();
+            }
+
+            return redirect()->route('supplier.login.expire')
+                ->with('error', 'Your subscription has expired.');
+        }
+
+        // If subscription is active → allow login
+        return redirect()->route('supplier.panel')
+            ->with('success', 'Login successful.');
     }
+
+    // Wrong credentials
+    return back()->withErrors([
+        'whatsapp' => 'The provided credentials do not match our records.',
+    ]);
+}
 
 
     public function supplierLogout(Request $request)
