@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
         use App\Models\Domain; 
+use App\Models\Inquiries;
+
 
 class SupplierController extends Controller
 {
@@ -122,86 +124,106 @@ class SupplierController extends Controller
         return redirect()->back()->with('success', 'Request rejected successfully.');
     }
 
-    public function showSupplierPanel(Request $request)
-    {
-        $supplier = Auth::guard('supplier')->user();
-        
-        // If supplier account is not active, block inquiries
-        if (!$supplier->is_active) {
-            return view('supplierPanel.index', [
-                'usages' => collect(),
-                'shopPartIds' => [],
-                'makes' => CarMakes::all(),
-                'years' => Years::all(),
-                'cities' => City::all(),
-            ]);
-        }
-      
-       if(!$supplier->shop) {
-    return back()->with('error','Your shop is not created');
-        }
-        $shopPartIds = ShopParts::where('shop_id', $supplier->shop->id)
-            ->pluck('part_id')
-             ->toArray();
-        
-        $usages = InquiryUsage::with(['buyerInquiry.carMake', 'buyerInquiry.carModel', 'buyerInquiry.year', 'buyerInquiry.buyer'])
-            ->where('supplier_id', $supplier->id) // ✅ Only inquiries linked to this supplier
-            ->whereHas('buyerInquiry.partsList', function ($q) use ($shopPartIds) {
-                $q->whereIn('spare_parts.id', $shopPartIds);
-            })
-            ->whereHas('buyerInquiry', function ($q) use ($request) {
-                if ($request->filled('make')) {
-                    $q->where('car_make_id', $request->make);
-                }
-                if ($request->filled('model')) {
-                    $q->where('car_model_id', $request->model);
-                }
-                if ($request->filled('min_year')) {
-                    $q->whereHas('year', function ($yearQuery) use ($request) {
-                        $yearQuery->where('year', '>=', $request->min_year);
-                    });
-                }
-                if ($request->filled('max_year')) {
-                    $q->whereHas('year', function ($yearQuery) use ($request) {
-                        $yearQuery->where('year', '<=', $request->max_year);
-                    });
-                }
-                if ($request->filled('city')) {
-                    $q->where('city_id', $request->city);
-                }
-                if ($request->filled('parts')) {
-                    $q->where(function ($partsQuery) use ($request) {
-                        $partsQuery->where('parts', 'like', '%' . $request->parts . '%')
-                            ->orWhereJsonContains('parts', $request->parts);
-                    });
-                }
-                if ($request->filled('time_range')) {
-                    if ($request->time_range === '24h') {
-                        $q->where('created_at', '>=', now()->subDay());
-                    } elseif ($request->time_range === '7d') {
-                        $q->where('created_at', '>=', now()->subDays(7));
-                    } elseif ($request->time_range === '30d') {
-                        $q->where('created_at', '>=', now()->subDays(30));
-                    } elseif ($request->time_range === '1y') {
-                        $q->where('created_at', '>=', now()->subYear());
-                    } elseif ($request->time_range === 'custom' && $request->filled(['from_date', 'to_date'])) {
-                        $q->whereBetween('created_at', [
-                            Carbon::parse($request->from_date)->startOfDay(),
-                            Carbon::parse($request->to_date)->endOfDay()
-                        ]);
-                    }
-                }
-            })
-            ->latest()
-            ->get();
-
-        $makes = CarMakes::all();
-        $years = Years::all();
-        $cities = City::all();
-
-        return view('supplierPanel.index', compact('usages', 'shopPartIds', 'makes', 'years', 'cities'));
+public function showSupplierPanel(Request $request)
+{
+    $supplier = Auth::guard('supplier')->user();
+    
+    // If supplier account is not active, block inquiries
+    if (!$supplier->is_active) {
+        return view('supplierPanel.index', [
+            'usages' => collect(),
+            'shopPartIds' => [],
+            'makes' => CarMakes::all(),
+            'years' => Years::all(),
+            'cities' => City::all(),
+            'message' => null,
+        ]);
     }
 
+    if (!$supplier->shop) {
+        return back()->with('error', 'Your shop is not created');
+    }
+
+    $shopPartIds = ShopParts::where('shop_id', $supplier->shop->id)
+        ->pluck('part_id')
+        ->toArray();
+
+    // ✅ Correct check for zero inquiries_limit
+    $hasInquiries = Inquiries::where('supplier_id', $supplier->id)
+        ->where('inquiries_limit', '>', 0)
+        ->exists();
+
+    if (!$hasInquiries) {
+        // If no inquiries left, show message and **do not fetch usages**
+        return view('supplierPanel.index', [
+            'usages' => collect(), // empty collection
+            'shopPartIds' => $shopPartIds,
+            'makes' => CarMakes::all(),
+            'years' => Years::all(),
+            'cities' => City::all(),
+            'message' => 'Please resubscribe',
+        ]);
+    }
+
+    // Only fetch usages if inquiries exist
+    $usages = InquiryUsage::with(['buyerInquiry.carMake', 'buyerInquiry.carModel', 'buyerInquiry.year', 'buyerInquiry.buyer'])
+        ->where('supplier_id', $supplier->id)
+        ->whereHas('buyerInquiry.partsList', function ($q) use ($shopPartIds) {
+            $q->whereIn('spare_parts.id', $shopPartIds);
+        })
+        ->whereHas('buyerInquiry', function ($q) use ($request) {
+            if ($request->filled('make')) {
+                $q->where('car_make_id', $request->make);
+            }
+            if ($request->filled('model')) {
+                $q->where('car_model_id', $request->model);
+            }
+            if ($request->filled('min_year')) {
+                $q->whereHas('year', function ($yearQuery) use ($request) {
+                    $yearQuery->where('year', '>=', $request->min_year);
+                });
+            }
+            if ($request->filled('max_year')) {
+                $q->whereHas('year', function ($yearQuery) use ($request) {
+                    $yearQuery->where('year', '<=', $request->max_year);
+                });
+            }
+            if ($request->filled('city')) {
+                $q->where('city_id', $request->city);
+            }
+            if ($request->filled('parts')) {
+                $q->where(function ($partsQuery) use ($request) {
+                    $partsQuery->where('parts', 'like', '%' . $request->parts . '%')
+                        ->orWhereJsonContains('parts', $request->parts);
+                });
+            }
+            if ($request->filled('time_range')) {
+                if ($request->time_range === '24h') {
+                    $q->where('created_at', '>=', now()->subDay());
+                } elseif ($request->time_range === '7d') {
+                    $q->where('created_at', '>=', now()->subDays(7));
+                } elseif ($request->time_range === '30d') {
+                    $q->where('created_at', '>=', now()->subDays(30));
+                } elseif ($request->time_range === '1y') {
+                    $q->where('created_at', '>=', now()->subYear());
+                } elseif ($request->time_range === 'custom' && $request->filled(['from_date', 'to_date'])) {
+                    $q->whereBetween('created_at', [
+                        Carbon::parse($request->from_date)->startOfDay(),
+                        Carbon::parse($request->to_date)->endOfDay()
+                    ]);
+                }
+            }
+        })
+        ->latest()
+        ->get();
+
+    $makes = CarMakes::all();
+    $years = Years::all();
+    $cities = City::all();
+
+    return view('supplierPanel.index', compact('usages', 'shopPartIds', 'makes', 'years', 'cities'))
+        ->with('message', null); // No message if everything is fine
+}
     public function markInquiryRead($id)
     {
         $inquiryUsage = InquiryUsage::findOrFail($id);

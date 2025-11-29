@@ -31,18 +31,17 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
                      ->latest()
                      ->value('id');
         $getSubribtion=InvoiceSubscriptions::where('invoice_id',$invoiceId)->first();
-         
-
+     
         $today = now();
            
-    
             if ($getSubribtion->end_date && $today->gt($getSubribtion->end_date)) {
-               
+              
              
-                /** @var \App\Models\Supplier $supplier */
-                $invoiceId = Inquiries::where('supplier_id', $supplier->id)->first();
-                $invoiceId->inquiries_limit=0;
-                $supplier->save();
+             
+                $SinvoiceId = Inquiries::where('supplier_id', $supplier->id)->first();
+                
+                $SinvoiceId->inquiries_limit=0;
+                $SinvoiceId->save();
                   return redirect()->route('supplier.panel')
                     ->with('success', 'Login successful.');
             }
