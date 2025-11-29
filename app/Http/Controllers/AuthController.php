@@ -40,7 +40,7 @@ $invoiceId = Invoices::where('supplier_id', $supplier->id)
                      ->latest()->first();  
                 $SinvoiceId->inquiries_limit = 0;
                 /** @var \App\Models\Supplier $supplier */
-                $invoiceId->save();
+                $SinvoiceId->save();
 
                 Auth::guard('supplier')->logout();
                 return redirect()->route('supplier.login.expire')
