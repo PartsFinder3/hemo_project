@@ -5,26 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @if(isset($meta) && $meta)
-    <title>{{ $meta->title }}</title>
-    <meta name="description" content="{{ $meta->description }}">
-    <meta name="keywords" content="{{ $meta->focus_keywords }}">
-    <meta name="author" content="{{ $meta->structure_data }}">
+    <title>{{ $meta['title'] }}</title>
+    <meta name="description" content="{{ $meta['description'] }}">
 
+    <script type="application/ld+json">
+        {!! $meta['structure_data'] !!}
+    </script>
 @endif
 <link rel="canonical" href="{{ url()->current() }}">
-    @if ($domain && $domain->partsMeta && $domain->partsMeta->isNotEmpty())
-        @php $meta = $domain->partsMeta->first(); @endphp
-
-        <title>{{ $meta->title }}</title>
-        <meta name="description" content="{{ $meta->description }}">
-        <meta name="keywords" content="{{ $meta->focus_keywords }}">
-        <meta name="author" content="{{ $meta->title }}">
-        <meta name="image" content="{{ asset('storage/' . $domain->partMeta) }}">
-
-        <script type="application/ld+json">
-        {!! $meta->structure_data !!}
-    </script>
-    @endif
+  
 
     @if($domain && $domain->metaTags)
         <meta name="description" content="{{ $domain->metaTags->description }}">

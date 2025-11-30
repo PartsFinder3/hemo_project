@@ -23,6 +23,8 @@ use App\Models\Suppliers;
 use App\Models\Years;
 use App\Models\Faq;
 use App\Models\PartMeta;
+use App\Models\SeoTitle;
+use App\Models\SeoTamplate;
 
 use Illuminate\Support\Facades\Cache;
 use App\Models\Shops;
@@ -206,13 +208,36 @@ public function sendProductInquiry(Request $request)
     public function adByPart( Request $request, $partName, $id)
     {
         $part = SpareParts::findOrFail($id);
-   
-           $meta = Cache::remember("part_meta_{$id}", 60*60, function() use ($id) {
-                    return PartMeta::select('title', 'description', 'structure_data','focus_keywords')
-                                ->where('part_id', $id)
-                                ->first();
-                });
-        
+         $seoTitle_t = SeoTitle::find($part->tamp_title_id);
+           $meta['title'] = $seoTitle_t 
+            ? str_replace('{brand}', $part->name, $seoTitle_t->tittle) 
+            : null;
+              
+            $seoTemplate_d = SeoTamplate::find($part->tamp_id);
+              $meta['description'] = $seoTemplate_d 
+              ? str_replace('{brand}', $part->name, $seoTemplate_d->description) 
+            : null;
+        $meta['structure_data'] = <<<JSON
+                {
+                    "@context": "https://schema.org",
+                    "@type": "Product",
+                    "name": "{$part->name}",
+                    "image": "https://partsfinder.ae/{$part->image}",
+                    "description": "{$meta['description']}",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "{$part->name}"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://partsfinder.ae/show/ads/{$part->name}/{$part->id}",
+                        "priceCurrency": "AED",
+                        "price": "120.00",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+                JSON;
+                dd($meta['structure_data']);
         $ads = Ads::where('part_id', $part->id)->get();
           $host =$request->getHost();
           $Domains=Domain::all();
@@ -249,15 +274,46 @@ public function sendProductInquiry(Request $request)
             'ads',
             'randomParts',
             'cities',
-            'getFAQS'
-                
+            'getFAQS',
+            'meta'
         ));
     }
 
     public function adByMakes(Request $request , $slug, $id)
     {
         $make = CarMakes::where('id', $id)->where('slug', $slug)->firstOrFail();
-     
+        $seoTitle_t = SeoTitle::find($make->tamp_title_id);
+        $meta['title'] = $seoTitle_t 
+            ? str_replace('{brand}', $make->name, $seoTitle_t->tittle) 
+            : null;
+
+        $seoTemplate_d = SeoTamplate::find($make->tamp_id);
+        $meta['description'] = $seoTemplate_d 
+            ? str_replace('{brand}', $make->name, $seoTemplate_d->description) 
+            : null;
+
+        // Structure data
+        $meta['structure_data'] = <<<JSON
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "{$make->name}",
+            "image": "https://partsfinder.ae/{$make->logo}",
+            "description": "{$meta['description']}",
+            "brand": {
+                "@type": "Brand",
+                "name": "{$make->name}"
+            },
+            "offers": {
+                "@type": "Offer",
+                "url": "https://partsfinder.ae/makes/show/ads/{$make->name}/{$make->id}",
+                "priceCurrency": "AED",
+                "price": "120.00",
+                "availability": "https://schema.org/InStock"
+            }
+        }
+        JSON;
+        
         $ads = Ads::where('car_make_id', $make->id)
             ->where('is_approved', true)
             ->latest()->get();
@@ -305,13 +361,15 @@ public function sendProductInquiry(Request $request)
             'cities',
             'randomMakes',
             'domain',
-            'getFAQS'
+            'getFAQS',
+            'meta'
         ));
     }
 
     public function adByCity(Request $request , $slug, $id)
     {
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
+
          $domain = Domain::with('cities')->first();
         $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
