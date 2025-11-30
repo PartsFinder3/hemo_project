@@ -237,7 +237,7 @@ public function sendProductInquiry(Request $request)
                     }
                 }
                 JSON;
-                dd($meta['structure_data']);
+                
         $ads = Ads::where('part_id', $part->id)->get();
           $host =$request->getHost();
           $Domains=Domain::all();
