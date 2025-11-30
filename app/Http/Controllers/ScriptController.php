@@ -9,6 +9,7 @@ use App\Models\MetaTags;
 use App\Models\Domain;
 use App\Models\SpareParts;
 use App\Models\SeoTamplate;
+use App\Models\SeoTitle;
 use Illuminate\Http\Request;
 
 class ScriptController extends Controller
@@ -153,18 +154,22 @@ class ScriptController extends Controller
 
         return redirect()->back()->with('success', 'Meta Tags deleted successfully.');
     }
-public function partsMeta($id){
-    $parts = SpareParts::findOrFail($id);
+        public function partsMeta($id)
+        {
+            $parts = SpareParts::findOrFail($id);
 
-    // If tamp_id null or not found → set null
-    $getTamp = $parts->tamp_id 
-        ? SeoTamplate::find($parts->tamp_id) 
-        : null;
+            $getTamp = $parts->tamp_id ? SeoTamplate::find($parts->tamp_id) : null;
+            $getTitle = $parts->tamp_title_id ? SeoTitle::find($parts->tamp_title_id) : null;
 
-    $allTemplte = SeoTamplate::all();
+            $allTemplte = SeoTamplate::where('type', 'parts')->get();
+            $allTitle = SeoTitle::where('type', 'parts')->get();
 
-    return view('adminPanel.partsMeta.index', compact('getTamp', 'allTemplte','parts'));
-}
+            return view(
+                'adminPanel.partsMeta.index',
+                compact('parts', 'getTamp', 'allTemplte', 'getTitle', 'allTitle')
+            );
+        }
+
 
     public function storePartsMeta(Request $request,$id){
        $part = SpareParts::findOrFail($id);

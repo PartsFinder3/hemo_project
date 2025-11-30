@@ -130,12 +130,22 @@
                         </li>
                     </ul>
                 </li>
-                    <li class="sidebar-item">
-                        <a href="<?php echo e(route('SEO.dashboard')); ?>" class="sidebar-link">
-                            <i class="fa-solid fa-chart-line"></i>
-                            <span>SEO Template</span>
-                        </a>
+                 <li class="sidebar-item has-sub">
+                <a href="#" class="sidebar-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>SEO Template</span>
+                </a>
+
+                <ul class="submenu">
+                    <li class="submenu-item">
+                        <a href="<?php echo e(route('SEO.dashboard')); ?>">Descriptions</a>
                     </li>
+                    <li class="submenu-item">
+                        <a href="<?php echo e(route('SEO.SeoTitles')); ?>">Titles</a>
+                    </li>
+                </ul>
+            </li>
+
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>

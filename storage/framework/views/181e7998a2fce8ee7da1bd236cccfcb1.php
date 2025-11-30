@@ -1,12 +1,12 @@
-@extends('adminPanel.layout.main')
-@section('main-section')
+
+<?php $__env->startSection('main-section'); ?>
 
 <div class="container mt-4">
-    <h2>SEO Templates Description</h2>
+    <h2>SEO Templates Title</h2>
 
     <!-- Add SEO Template Button -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addSEOModal">
-        Add SEO Description
+        Add SEO Title
     </button>
 
     <!-- Modal (Large) -->
@@ -14,8 +14,8 @@
 <div class="modal fade" id="addSEOModal" tabindex="-1" aria-labelledby="addSEOModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{route('tamplate.add')}}" method="POST">
-                @csrf
+            <form action="<?php echo e(route('tamplate.tittle.add')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
             <div class="modal-header">
                 <h5 class="modal-title" id="addSEOModalLabel">Add SEO Template</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -24,10 +24,10 @@
 
 
 
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea id="description" name="description" class="form-control" rows="7" placeholder="Enter description"></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Enter title">
+                    </div>
                  <div class="mb-3">
                         <label for="template_type" class="form-label">Template Type</label>
                         <select name="template_description_type" id="template_type" class="form-control" required>
@@ -53,32 +53,34 @@
             <tr>
                 <th>#</th>
              
-                <th>Description</th>
+                <th>title</th>
                    <th>type</th>
                 <th width="130px">Actions</th>
             </tr>
         </thead>
         <tbody>
             <!-- Example Row -->
-@foreach ($Tamplates as $index => $tamplate)
+<?php $__currentLoopData = $titls; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $titl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 <tr>
-    <td>{{ $index + 1 }}</td>
+    <td><?php echo e($index + 1); ?></td>
 
-    <td style="word-break: break-word; white-space: normal;">{{ $tamplate->description }}</td>
-    <td style="word-break: break-word; white-space: normal;">{{ $tamplate->type }}</td>
+    <td style="word-break: break-word; white-space: normal;"><?php echo e($titl->tittle); ?></td>
+    <td style="word-break: break-word; white-space: normal;"><?php echo e($titl->type); ?></td>
    
     <td>
-    <a href="{{ route('tamplate.edit', $tamplate->id) }}" class="btn btn-sm btn-warning">Edit</a>
-       <form action="{{ route('tamplate.destroy', $tamplate->id) }}" method="POST" class="d-inline">
-    @csrf
-    @method('DELETE')
+    <a href="<?php echo e(route('tamplate.title.edit', $titl->id)); ?>" class="btn btn-sm btn-warning">Edit</a>
+       <form action="<?php echo e(route('tamplate.tittle.destroy', $titl->id)); ?>" method="POST" class="d-inline">
+    <?php echo csrf_field(); ?>
+    <?php echo method_field('DELETE'); ?>
     <button type="submit" class="btn btn-sm btn-danger" >Delete</button>
     </form>
     </td>
 </tr>
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('adminPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/seo_tamplate/tittle.blade.php ENDPATH**/ ?>

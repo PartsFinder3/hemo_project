@@ -7,33 +7,46 @@
     <h2>Assign SEO Template to Product</h2>
 
     <form action="{{ route('model.seo.post', $parts->id) }}" method="POST">
-        @csrf
-        <!-- Select SEO Template -->
-        <div class="mb-3">
-            <label for="seo_template" class="form-label">Select SEO Template</label>
-            
-            <select id="seo_template" name="seo_template_id" class="form-select" required>
-                <option value="">-- Choose Template --</option>
 
-                @foreach($allTemplte as $temp)
-                    <option 
-                        value="{{ $temp->id }}"  {{ $getTamp && $getTamp->id == $temp->id ? 'selected' : '' }}
-                    >
-                        {{ $temp->title }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
+    @csrf
 
-        <button type="submit" class="btn btn-primary">Assign Template</button>
-    </form>
+    <!-- Select Title Template -->
+    <div class="mb-3">
+        <label for="title_template" class="form-label">Select Title Template</label>
+        <select id="title_template" name="title_template_id" class="form-select" required>
+            <option value="">-- Choose Title Template --</option>
+
+            @foreach($allTitle as $t)
+                <option value="{{ $t->id }}" {{ $getTitle && $getTitle->id == $t->id ? 'selected' : '' }}>
+                    {{ $t->tittle }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <!-- Select Description Template -->
+    <div class="mb-3">
+        <label for="seo_template" class="form-label">Select Description Template</label>
+        <select id="seo_template" name="seo_template_id" class="form-select" required>
+            <option value="">-- Choose Description Template --</option>
+
+            @foreach($allTemplte as $temp)
+                <option value="{{ $temp->id }}" {{ $getTamp && $getTamp->id == $temp->id ? 'selected' : '' }}>
+                    {{ $temp->description }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Assign Templates</button>
+</form>
     
     <!-- Preview Row -->
     <div class="mt-4">
         <h5>Selected Template Preview:</h5>
         <div class="card p-3" id="template_preview">
-          <strong>Template Name:</strong> 
-            <span id="preview_name">{{ $getTamp->title ?? 'No Template Selected' }}</span>
+          <strong>Template tittle:</strong> 
+            <span id="preview_name">{{ $getTitle->tittle ?? 'No Template Selected' }}</span>
             <br>
 
           <strong>Description:</strong> 
@@ -72,3 +85,5 @@ $dummySku = 'SKU-' . strtoupper(Str::random(8));
 </div>
 
 @endsection
+
+  <form action="{{ route('tamplate.assign_tamp_parts', $parts->id) }}" method="POST">
