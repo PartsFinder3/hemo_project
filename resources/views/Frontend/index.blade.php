@@ -400,58 +400,6 @@
     <div class="pagination" id="pagination1"></div>
 </section>
 
-<!-- SECOND ADS SECTION - Car Ads -->
-<section class="ad-cards">
-    <div class="section-text">
-        <h3>TOP CAR ADS</h3>
-        <h2>Our Sellers are Currently Breaking These Cars for Spare Parts</h2>
-    </div>
-    <div class="filters">
-        <a href="#" class="active">All</a>
-        @foreach ($randomMakes as $make)
-            <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}">{{ $make->name }}</a>
-        @endforeach
-    </div>
-
-    <div class="grid" id="productGrid2">
-        @foreach ($carAds as $ad)
-            <div class="card">
-                @php
-                    $images = json_decode($ad->images, true);
-                @endphp
-
-                @if (is_array($images) && isset($images[0]))
-                    <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
-                @endif
-                
-                <div class="card-body">
-                    <a href="{{ route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id]) }}"
-                        class="card-title">{{ $ad->title }}</a>
-                    
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    
-                    <div class="buttons">
-                        <a href="javascript:void(0)" class="btn whatsapp"
-                            onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                        </a>
-
-                        <a href="javascript:void(0)" class="btn call"
-                            onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                            <i class="fa-solid fa-phone"></i> Click to Call
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
-    <div class="pagination" id="pagination2"></div>
-</section>
         <section class="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
