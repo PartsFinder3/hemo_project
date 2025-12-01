@@ -253,9 +253,10 @@ function setupPagination(gridId, paginationId, perPage = 6) {
         products.forEach((product, i) => {
             product.style.display =
                 i >= (page - 1) * perPage && i < page * perPage
-                    ? ""
+                    ? "block"
                     : "none";
         });
+
         pagination.querySelectorAll("button").forEach((btn, i) => {
             btn.classList.toggle("active", i + 1 === page);
         });
@@ -278,8 +279,6 @@ function setupPagination(gridId, paginationId, perPage = 6) {
 document.addEventListener("DOMContentLoaded", function () {
     setupPagination("productGrid1", "pagination1");
 });
-
-
 // Mobile Menu Functionality
 const burgerMenu = document.getElementById("burger-menu");
 const navMenu = document.getElementById("nav-menu");
