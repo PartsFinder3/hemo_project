@@ -205,24 +205,26 @@
     }
 }
 @media (max-width: 550px) {
-    .car {
-        max-width: 330px;
-        padding: 10px;
-        margin-top: 40px;
-        margin-left: 0px;
+    .secound_hero_section .car {
+        max-width: 330px !important;
+        padding: 10px !important;
+        margin-top: 40px !important;
+        margin-left: 0px !important;
     }
 
-    .hero_image_section img {
-        max-width: 260px;
+    .secound_hero_section .hero_image_section img {
+        max-width: 260px !important;
     }
 
     .radio-option label {
-        font-size: 12px;
+        font-size: 12px !important;
     }
+
     .hero-section_p {
-        height: auto;
+        height: auto !important;
     }
 }
+
 @media (max-width: 480px) {
     .car {
         max-width: 330px;
