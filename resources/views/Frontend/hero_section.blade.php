@@ -252,6 +252,7 @@
 }
 @media (max-width: 380px) {
     .secound_hero_section {
+        margin-top: -15px;
         padding: 0 10px !important;
         gap: 15px;
     }
