@@ -240,7 +240,7 @@
 
 /* Separate colors */
 .buttons a.whatsapp {
-    background: #25D366;
+    background: #198754;
 }
 
 .buttons a.call {
