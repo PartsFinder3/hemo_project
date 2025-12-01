@@ -964,8 +964,8 @@
 // Call for both sections
 
 document.addEventListener("DOMContentLoaded", () => {
-    setupPagination("productGrid1", "pagination1", 8);
-    setupPagination("productGrid2", "pagination2", 8);
+    setupPagination("productGrid1", "pagination1", 20);
+    setupPagination("productGrid2", "pagination2", 20);
 });
     function contactSupplier(isActive, whatsapp, title) {
             if (isActive === '1') {
