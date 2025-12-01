@@ -498,7 +498,7 @@
             <!-- Repeat similar cards... -->
         </div>
 
-        <div class="pagination" id="pagination2"></div>
+       <div class="pagination" id="pagination1"></div>
     </section>
 
     <!-- Map -->
