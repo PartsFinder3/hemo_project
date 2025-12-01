@@ -204,7 +204,7 @@
         gap: 10px;
     }
 }
-@media (max-width: 520px) {
+@media (max-width: 550px) {
     .car {
         max-width: 330px;
         padding: 10px;
