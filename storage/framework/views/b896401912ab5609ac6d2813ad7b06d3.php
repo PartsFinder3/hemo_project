@@ -1,75 +1,114 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-   
+
 <style>
+/* ===== Hero Section ===== */
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+
 .hero-section_p {
     width: 100%;
-    height: 630px;
+    min-height: 630px;
     display: flex;
     flex-direction: column;
-       background-image: url('https://www.thepartfinder.ae/assets/theme/pf-main/images/banner-bg.jpg');
-
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 20px 0;
+}
+.h1, h1 {
+    font-size: 40px !important;
+    display: flex;
+    justify-content: center;
 }
 .hero_section_text {
     width: 100%;
-    font-size: 4rem;
-    font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
-    background: none;           /* gradient remove */
-    -webkit-background-clip: unset;  /* gradient clip remove */
-    -webkit-text-fill-color: black;  /* solid black text */
-    color: black;               /* fallback color */
+}
+
+.hero_section_text .hiliter {
+    display: inline;   /* inline رکھیں تاکہ text کے ساتھ flow ہو */
+    padding: 0 5px;
+    font-weight: bold;
+    margin-right: 7px !important;
+  
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .hero_section_text h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero_section_text h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero_section_text h1 {
+        font-size: 25px !important;
+    }
 }
 
 .secound_hero_section {
     width: 100%;
-    height: calc(100% - 80px); /* adjust hero text height */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
+    flex-wrap: wrap;
+    position: relative;
+    /* margin-top: -20px; */
+
 }
 
 .part_finder_card {
-    width: 50%;
+    flex: 1 1 45%;
     display: flex;
-    justify-content: flex-start; /* card left align */
-    margin-top: -70px;
-    margin-left: 10%;
-    
+    justify-content: flex-end; /* کارڈ کو رائٹ پر بھیجیں */
+    position: relative;
+    z-index: 2;
 }
 
 .car {
     width: 400px;
+    max-width: 450px;
     background: rgba(255, 255, 255, 0.95);
-    /* backdrop-filter: blur(10px); */
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    float: none; /* float ہٹا دیا */
+    margin-left: 0; /* margin-left ہٹا دیا */
 }
 
 .hero_image_section {
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    margin-right: 10%;
-    margin-top: 60px;
+    flex: 1 1 45%;
+    text-align: center;
+    margin-top: 20px;
+}
 
-}
 .hero_image_section img {
-    width: 500px;          
-    height: 400px;        
-    object-fit: cover;   
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
+
+/* ===== Button ===== */
 .find-btn {
     width: 100%;
-    background: linear-gradient(135deg, var(--accent-color), #ff9500);
-    color: var(--primary-color);
+    background: linear-gradient(135deg, #ff6a00, #ff9500);
+    color: white;
     padding: 10px;
     border: none;
     border-radius: 12px;
@@ -78,122 +117,71 @@
     cursor: pointer;
     height: 50px;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .secound_hero_section {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .part_finder_card,
-    .hero_image_section {
-        width: 100%;
-    }
-
-    .hero_image_section {
-        height: 250px;
-    }
-}
+/* ===== Dropdown ===== */
 .dropdown {
     width: 100%;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    max-height: 150px; /* تقریباً 5-6 options */
-    overflow-y: auto;  /* scroll show کرے گا جب زیادہ options ہوں */
 }
-.select2-results__options {
-    max-height: 180px !important;  /* 5–6 items */
-    overflow-y: auto !important;
-}
-body, main, header, nav, .hero-section, .hero-section_p {
-    background-image: none !important;
-    background: none !important;
-}
- .condition-section {
+
+/* ===== Condition Section ===== */
+.condition-section {
     background: #f8f9fa;
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-    margin-top: -10px;
-}
-#condition-group {
-    display: block;
+    margin-top: 10px;
 }
 
 .radio-group {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
+    gap: 20px;
+    margin-top: 5px;
 }
 
 .radio-option {
     display: flex;
     align-items: center;
-    gap: 5px; 
+    gap: 5px;
 }
-body, main, header, nav, .hero-section, .hero-section_p {
-    background-image: none !important;
-    background: none !important;
+
+/* ===== Select2 styling ===== */
+.select2-container--default {
+    width: 100% !important;
+    font-size: 16px;
+
 }
-/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    border-radius: 4px;
+    height: 40px;
+    padding: 5px 10px;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 992px) {
-
-    .hero-section_p {
-        height: auto;
-        padding: 30px 20px;
-    }
-
-    .hero_section_text h1 {
-        font-size: 2.5rem !important;
-        padding: 0 20px;
-    }
-
     .secound_hero_section {
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         gap: 30px;
         padding: 0 20px;
-        height: auto;
     }
 
-    .part_finder_card {
-        width: 100%;
-        margin-top: 0;
-        margin-left: 0;
-        display: flex;
-        justify-content: center;
+    .part_finder_card,
+    .hero_image_section {
+        flex: 1 1 100%;
     }
 
     .car {
-        width: 100%;
         max-width: 420px;
-    }
-
-    .hero_image_section {
-        width: 100%;
-        margin-top: 20px;
-        margin-right: 0;
-        text-align: center;
-    }
-
-    .hero_image_section img {
-        width: 90%;
-        height: auto;
-        max-width: 380px;
     }
 }
 
-/* ======= Responsive 768px (Mobile) ======= */
 @media (max-width: 768px) {
-
-    .hero_section_text h1 {
-        font-size: 2rem !important;
+    .hero_section_text {
+        font-size: 2rem;
         line-height: 1.2;
     }
 
@@ -204,113 +192,341 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
     .hero_image_section img {
         max-width: 300px;
-        margin-top: 10px;
     }
 
     .find-btn {
         font-size: 16px;
         height: 45px;
     }
+
+    .radio-group {
+        flex-direction: row;
+        gap: 10px;
+    }
 }
-
-/* ======= Responsive 480px (Small Mobile) ======= */
-@media (max-width: 480px) {
-
-    .hero_section_text h1 {
-        font-size: 1.6rem !important;
+@media (max-width: 550px) {
+    .secound_hero_section .car {
+        max-width: 330px !important;
+        padding: 10px !important;
+        margin-top: 40px !important;
+        margin-left: 0px !important;
     }
 
+    .secound_hero_section .hero_image_section img {
+        max-width: 260px !important;
+    }
+
+    .radio-option label {
+        font-size: 12px !important;
+    }
+
+    .hero-section_p {
+        height: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
     .car {
         max-width: 330px;
+        padding: 10px;
+        margin-top: 40px;
+        margin-left: 0px;
     }
 
     .hero_image_section img {
         max-width: 260px;
     }
 
-    .dropdown {
-        font-size: 14px;
-        padding: 7px;
+    .radio-option label {
+        font-size: 12px;
+    }
+    .hero-section_p {
+        height: auto;
     }
 }
+.select2-selection--single.highlight-border,
+.select2-selection--multiple.highlight-border {
+    border: 2px solid red !important;
+}
+@media (max-width: 380px) {
+    .secound_hero_section {
+        padding: 0 10px !important;
+        gap: 15px;
+    }
 
+    .car {
+        max-width: 280px !important;
+        padding: 8px !important;
+        margin-top: 30px !important;
+    }
+
+    .hero_image_section img {
+        max-width: 220px !important;
+    }
+
+    .hero_section_text h1 {
+        font-size: 20px !important;
+    }
+
+    .find-btn {
+        font-size: 14px !important;
+        height: 40px !important;
+    }
+
+    .radio-option label {
+        font-size: 11px !important;
+    }
+}
 </style>
 
-   <div class="hero_section_text">
-<h1><?php echo e($part); ?>.</h1>
-    </div>
+<div class="hero_section_text">
+    <h1><?php echo $part; ?></h1>
+</div>
 
-    <div class="secound_hero_section">
-        <div class="part_finder_card">
-            <div class="car">
-                <div class="card-header">
-                    <div class="free-text">100% FREE</div>
-                    <div class="search-title">Search Your Part Here</div>
+<div class="secound_hero_section">
+    <div class="part_finder_card">
+        <div class="car">
+            <div class="card-header">
+                <div class="free-text">100% FREE</div>
+                <div class="search-title">Search Your Part Here</div>
+            </div>
+            <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
+                <?php echo csrf_field(); ?>
+                <div class="form-group" id="make-group">
+                    <select class="dropdown mySelect highlight-border" id="make" name="car_make_id">
+                        <option selected value="">Select a part make</option>
+                        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
                 </div>
-                <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
-                    <?php echo csrf_field(); ?>
-                    <div class="form-group" id="make-group">
-                        <select class="dropdown mySelect" id="make" name="car_make_id">
-                            <option disabled selected value="">Select Your Make</option>
-                            <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
 
-                    <div class="form-group" id="model-group">
-                        <select class="dropdown" id="model" name="car_model_id">
-                            <option value="">Select Your Model</option>
-                        </select>
-                    </div>
+                <div class="form-group" id="model-group">
+                    <select class="dropdown" id="model" name="car_model_id">
+                        <option value="">Select a Model</option>
+                    </select>
+                </div>
 
-                    <div class="form-group" id="year-group">
-                        <select class="dropdown" id="year" name="year_id">
-                            <option value="">Select Your Model Year</option>
-                            <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
+                <div class="form-group" id="year-group">
+                    <select class="dropdown" id="year" name="year_id">
+                        <option value="">Select a year</option>
+                        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
 
-                    <div class="form-group hidden" id="parts-group">
-                        <select id="parts-dropdown" class="dropdown" disabled>
-                            <option disabled selected value="">Select a part to add</option>
-                            <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                        <div id="parts-tags" class="parts-tags"></div>
-                    </div>
+                <div class="form-group hidden" id="parts-group">
+                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
+                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
 
-                    <div class="form-group hidden" id="condition-group">
-                        <div class="condition-section">
-                            <div class="condition-title">Condition Required ?</div>
-                            <div class="radio-group">
-                                <div class="radio-option">
-                                    <input type="radio" id="used" name="condition" value="used" />
-                                    <label for="used">Used</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="new" name="condition" value="new" checked />
-                                    <label for="new">New</label>
-                                </div>
-                                <div class="radio-option">
-                                    <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
-                                    <label for="doesnt-matter">Doesn't matter</label>
-                                </div>
+                <div class="form-group hidden" id="condition-group">
+                    <div class="condition-section">
+                        <div class="condition-title">Condition Required ?</div>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="used" name="condition" value="used" />
+                                <label for="used">Used</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="new" name="condition" value="new" checked />
+                                <label for="new">New</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="doesnt-matter" name="condition" value="does_not_matter" />
+                                <label for="doesnt-matter">Doesn't matter</label>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <button class="find-btn" id="find-btn" disabled>Find My Part</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="hero_image_section">
-            <img src="https://partsfinder.ae/storage/profile_images/hero_section_image_1.png" alt="">
+                <button class="find-btn" id="find-btn" disabled>Find My Part</button>
+            </form>
         </div>
     </div>
 
+<div class="hero_image_section">
+    <img src="<?php echo e(asset($image)); ?>" alt="">
+</div>
+</div>
+
+<script>
+// ===== تمام handlers کے لیے global variables =====
+const partsGroup = document.getElementById("parts-group");
+const partsDropdown = document.getElementById("parts-dropdown");
+const conditionGroup = document.getElementById("condition-group");
+let partSelected = false;
+
+// ===== Select2 initialization =====
+$('#make').select2({
+    placeholder: "Select Your Make",
+    ajax: {
+        url: '/search-makes',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) { return { q: params.term }; },
+        processResults: function(data) {
+            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
+        },
+        cache: true
+    }
+});
+
+$('#model').select2({
+    placeholder: "Select Your Model",
+    ajax: {
+        url: '/search-models',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) { return { q: params.term, make_id: $('#make').val() }; },
+        processResults: function(data) {
+            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
+        },
+        cache: true
+    }
+});
+
+$('#year').select2({
+    placeholder: "Select Year",
+    ajax: {
+        url: '/search-years',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) { return { q: params.term, model_id: $('#model').val() }; },
+        processResults: function(data) { return { results: data }; }
+    }
+});
+
+$('#parts-dropdown').select2({
+    placeholder: "Select Parts",
+    ajax: {
+        url: '/search-parts',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return { q: params.term, model_id: $('#model').val(), year_id: $('#year').val() };
+        },
+        processResults: function(data) {
+            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
+        },
+        cache: true
+    }
+});
+
+// ===== Event handlers =====
+
+// Make select ہونے پر
+$('#make').on('select2:select', function() {
+    $('#model, #year').val(null).trigger('change'); 
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
+    
+    partSelected = false;
+    updateButton();
+});
+
+// Model select ہونے پر
+$('#model').on('select2:select', function() {
+    $('#year').val(null).trigger('change');
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
+    partSelected = false;
+    updateButton();
+});
+
+// Year select ہونے پر
+$('#year').on('select2:select', function() {
+    partsGroup.classList.remove("hidden");
+    partsDropdown.disabled = false;
+    updateButton();
+});
+
+// Part select ہونے پر
+$('#parts-dropdown').on('select2:select', function() {
+    partSelected = true;
+    conditionGroup.classList.remove("hidden");
+    updateButton();
+});
+
+// Button enable/disable logic
+function updateButton() {
+    const makeVal = $('#make').val();
+    const modelVal = $('#model').val();
+    const yearVal = $('#year').val();
+    const partVal = $('#parts-dropdown').val();
+    const findBtn = $('#find-btn');
+
+    if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
+        findBtn.prop('disabled', false);
+    } else {
+        findBtn.prop('disabled', true);
+    }
+}
+// Make ko start me highlight
+$("#make").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+
+// Step 1: Make → Model
+$('#make').on('select2:select', function () {
+    $("#make").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#model").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+});
+
+// Step 2: Model → Year
+$('#model').on('select2:select', function () {
+    $("#model").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#year").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+});
+
+// Step 3: Year → Parts
+$('#year').on('select2:select', function () {
+    $("#year").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#parts-dropdown").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+});
+
+// Step 4: Parts selected → remove highlight
+$('#parts-dropdown').on('select2:select', function () {
+    $("#parts-dropdown").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+});
+        const burgerMenu = document.getElementById("burger-menu");
+const navMenu = document.getElementById("nav-menu");
+
+if (burgerMenu && navMenu) {
+    burgerMenu.addEventListener("click", function () {
+        burgerMenu.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll(".nav-menu a");
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (
+            !burgerMenu.contains(event.target) &&
+            !navMenu.contains(event.target)
+        ) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+
+    // Close mobile menu on window resize
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+}
+</script>
 <?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>

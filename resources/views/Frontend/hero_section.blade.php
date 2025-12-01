@@ -248,7 +248,35 @@
 .select2-selection--multiple.highlight-border {
     border: 2px solid red !important;
 }
+@media (max-width: 380px) {
+    .secound_hero_section {
+        padding: 0 10px !important;
+        gap: 15px;
+    }
 
+    .car {
+        max-width: 280px !important;
+        padding: 8px !important;
+        margin-top: 30px !important;
+    }
+
+    .hero_image_section img {
+        max-width: 220px !important;
+    }
+
+    .hero_section_text h1 {
+        font-size: 20px !important;
+    }
+
+    .find-btn {
+        font-size: 14px !important;
+        height: 40px !important;
+    }
+
+    .radio-option label {
+        font-size: 11px !important;
+    }
+}
 </style>
 
 <div class="hero_section_text">
