@@ -357,7 +357,7 @@
         @endforeach
     </div>
 
-    <div class="grid" id="partAdsGrid">
+    <div class="grid" id="productGrid1">
         <!-- Example Card -->
         @foreach ($ads as $ad)
             <div class="card">
@@ -397,7 +397,7 @@
         @endforeach
     </div>
 
-    <div class="pagination" id="partAdsPagination"></div>
+    <div class="pagination" id="pagination1"></div>
 </section>
 
 <!-- SECOND ADS SECTION - Car Ads -->
@@ -413,7 +413,7 @@
         @endforeach
     </div>
 
-    <div class="grid" id="carAdsGrid">
+    <div class="grid" id="productGrid2">
         @foreach ($carAds as $ad)
             <div class="card">
                 @php
@@ -450,7 +450,7 @@
         @endforeach
     </div>
 
-    <div class="pagination" id="carAdsPagination"></div>
+    <div class="pagination" id="pagination2"></div>
 </section>
         <section class="carMakes">
         <div class="section-text">
@@ -1013,16 +1013,16 @@ if (burgerMenu && navMenu) {
         }
     });
 }
-
-
 </script>
 <script>
+    // باقی functions...
+
     function setupPagination(gridId, paginationId, perPage = 8) {
         const products = document.querySelectorAll(`#${gridId} .card`);
         const totalPages = Math.ceil(products.length / perPage);
         const pagination = document.getElementById(paginationId);
 
-        if (!pagination) return;
+        if (!pagination || products.length === 0) return;
 
         function showPage(page) {
             // Hide all products
@@ -1035,7 +1035,9 @@ if (burgerMenu && navMenu) {
             const endIndex = startIndex + perPage;
             
             for (let i = startIndex; i < endIndex && i < products.length; i++) {
-                products[i].style.display = "block";
+                if (products[i]) {
+                    products[i].style.display = "block";
+                }
             }
             
             // Update active button
@@ -1047,6 +1049,17 @@ if (burgerMenu && navMenu) {
         function createPaginationButtons() {
             pagination.innerHTML = "";
 
+            // Previous button
+            const prevBtn = document.createElement("button");
+            prevBtn.innerHTML = "&laquo;";
+            prevBtn.className = "prev";
+            prevBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active")?.innerText);
+                if (current > 1) showPage(current - 1);
+            });
+            pagination.appendChild(prevBtn);
+
+            // Number buttons
             for (let i = 1; i <= totalPages; i++) {
                 const btn = document.createElement("button");
                 btn.innerText = i;
@@ -1054,53 +1067,27 @@ if (burgerMenu && navMenu) {
                 pagination.appendChild(btn);
             }
 
-            // Add Previous and Next buttons
-            const prevBtn = document.createElement("button");
-            prevBtn.innerText = "←";
-            prevBtn.addEventListener("click", () => {
-                const current = parseInt(pagination.querySelector("button.active").innerText);
-                if (current > 1) showPage(current - 1);
-            });
-            pagination.prepend(prevBtn);
-
+            // Next button
             const nextBtn = document.createElement("button");
-            nextBtn.innerText = "→";
+            nextBtn.innerHTML = "&raquo;";
+            nextBtn.className = "next";
             nextBtn.addEventListener("click", () => {
-                const current = parseInt(pagination.querySelector("button.active").innerText);
+                const current = parseInt(pagination.querySelector("button.active")?.innerText);
                 if (current < totalPages) showPage(current + 1);
             });
             pagination.appendChild(nextBtn);
         }
 
-        if (totalPages > 0) {
-            createPaginationButtons();
-            showPage(1);
-        }
+        createPaginationButtons();
+        showPage(1);
     }
 
-    // Call for both sections when DOM is loaded
+    // DOM loaded pe dono sections ke liye pagination setup karo
     document.addEventListener("DOMContentLoaded", () => {
-        setupPagination("partAdsGrid", "partAdsPagination", 8);
-        setupPagination("carAdsGrid", "carAdsPagination", 8);
+        setupPagination("productGrid1", "pagination1", 8);
+        setupPagination("productGrid2", "pagination2", 8);
     });
 
-    // باقی functions
-    function callSupplier(isActive, number) {
-        if (isActive == 1) {
-            window.location.href = `tel:${number}`;
-        } else {
-            alert('Supplier is currently inactive');
-        }
-    }
-
-    function contactSupplier(isActive, whatsapp, title) {
-        if (isActive === '1') {
-            const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
-            const cleanWhatsapp = whatsapp.replace(/\D/g, '');
-            window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
-        } else {
-            alert('Supplier is currently inactive');
-        }
-    }
+    // باقی functions...
 </script>
 @endsection
