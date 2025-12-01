@@ -181,6 +181,7 @@
 
 @media (max-width: 768px) {
     .hero_section_text {
+           margin-top: 10px;
         font-size: 2rem;
         line-height: 1.2;
     }
@@ -266,6 +267,7 @@
 
     .hero_section_text h1 {
         font-size: 20px !important;
+        margin-top: 10px;
     }
 
     .find-btn {
