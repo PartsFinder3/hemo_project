@@ -28,7 +28,7 @@
 .hero_section_text {
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 3px;
 }
 
 .hero_section_text .hiliter {
