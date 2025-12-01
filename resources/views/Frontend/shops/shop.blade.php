@@ -15,14 +15,14 @@
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
                             <!-- Profile Image + Social Icons -->
-<div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
-    @if ($profile && $profile->profile_image)
-        <img src="{{ asset('storage/' . $profile->profile_image) }}"
-            class="rounded-circle border border-3 border-white shadow"
-            alt="Shop Logo"
-            style="width: 150px; height: 150px; object-fit: cover;">
-    @endif
-</div>
+                            <div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
+                                @if ($profile && $profile->profile_image)
+                                    <img src="{{ asset('storage/' . $profile->profile_image) }}"
+                                        class="rounded-circle border border-3 border-white shadow"
+                                        alt="Shop Logo"
+                                        style="width: 150px; height: 150px; object-fit: cover;">
+                                @endif
+                            </div>
 
                         </div>
                         </div>
@@ -84,8 +84,8 @@
 </div>
 @endif
 
-        <div class="grid" id="productGrid2">
-@if($shopAds && $shopAds->count())
+<div class="grid" id="productGrid2">
+   @if($shopAds && $shopAds->count())
     @foreach($shopAds as $ad)
                 <div class="card">
                     @php
