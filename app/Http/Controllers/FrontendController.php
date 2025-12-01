@@ -222,7 +222,7 @@ public function sendProductInquiry(Request $request)
                     "@context": "https://schema.org",
                     "@type": "Product",
                     "name": "{$part->name}",
-                    "image": "https://partsfinder.ae/{$part->image}",
+                    "image": "https://partsfinder.ae/storage/{$part->image}",
                     "description": "{$meta['description']}",
                     "brand": {
                         "@type": "Brand",
@@ -307,8 +307,8 @@ public function sendProductInquiry(Request $request)
             "offers": {
                 "@type": "Offer",
                 "url": "https://partsfinder.ae/makes/show/ads/{$make->name}/{$make->id}",
-                "priceCurrency": "AED",
-                "price": "120.00",
+                "priceCurrency": "All",
+                "price": "Not set",
                 "availability": "https://schema.org/InStock"
             }
         }
