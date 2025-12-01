@@ -10,10 +10,16 @@ use Str;
 
 class CarMakeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $carMakes = CarMakes::all();
-        return view('adminPanel.makes.show', compact('carMakes'));
+        
+        $perPage = $request->input('per_page', 100);
+
+        $carMakes = CarMakes::orderBy('name', 'ASC')->paginate($perPage);
+
+        $totalMakes = CarMakes::count();
+
+        return view('adminPanel.makes.show', compact('carMakes', 'perPage', 'totalMakes'));
     }
 
     public function create(Request $request)

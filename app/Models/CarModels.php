@@ -16,9 +16,10 @@ class CarModels extends Model
     ];
 
     protected $table = 'car_models';
-    public function makes(){
-        return $this->belongsTo(CarMakes::class,'car_make_id');
-    }
+public function make()
+{
+    return $this->belongsTo(CarMakes::class, 'car_make_id');
+}
 
     public function varients(){
         return $this->hasMany(CarVarients::class);

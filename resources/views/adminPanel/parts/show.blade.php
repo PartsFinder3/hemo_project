@@ -119,6 +119,7 @@
                 <th>Image</th>
                 <th>SEO</th>
                 <th>Actions</th>
+                <th>SEO Statuse</th>
             </tr>
         </thead>
         <tbody>
@@ -147,6 +148,19 @@
                         class="fa-solid fa-pen-to-square"></i> Edit</a>
                     <a class="btn btn-danger btn-sm" href="{{route('spareparts.destroy',$part->id)}}"><i class="fa-solid fa-trash"></i> Delete</a>
                 </td>
+<td>
+    @if ($part->tamp_id != null)
+        <span class="badge bg-success me-1">
+            <i class="fa-solid fa-file-lines"></i> Description
+        </span>
+    @endif
+
+    @if ($part->tamp_title_id != null)
+        <span class="badge bg-primary">
+            <i class="fa-solid fa-heading"></i> Title
+        </span>
+    @endif
+</td>
             </tr>
             @endforeach
         </tbody>

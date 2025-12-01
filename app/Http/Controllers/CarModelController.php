@@ -9,12 +9,20 @@ use Str;
 
 class CarModelController extends Controller
 {
-    public function index()
-    {
-        $models = CarModels::all();
-        $makes = CarMakes::all();
-        return view('adminPanel.carModels.show', compact('models', 'makes'));
-    }
+public function index(Request $request)
+{
+    // Get per page from request, default 100
+    $perPage = $request->input('per_page', 100);
+
+    // Get models with their makes, order by name, and paginate
+   $models = CarModels::with('make')->orderBy('name', 'ASC')->paginate($perPage);
+
+    // Get all makes for selection/dropdown
+    $makes = CarMakes::orderBy('name', 'ASC')->get();
+
+    return view('adminPanel.carModels.show', compact('models', 'makes', 'perPage'));
+}
+
 
     public function create(Request $request)
     {
