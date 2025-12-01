@@ -5,22 +5,24 @@
     <div class="pc-card">
 
         <!-- Cover Section -->
-        <div class="pc-cover-section">
+        <div class="pc-cover-section position-relative">
             <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
                  class="pc-cover-image" alt="Cover">
-            <div class="pc-cover-overlay"></div>
 
-            <!-- Profile Avatar -->
+            <!-- Profile Avatar (overlapping) -->
             <div class="pc-profile-top">
                 @if ($profile && $profile->profile_image)
                     <img src="{{ asset('storage/' . $profile->profile_image) }}"
                          class="pc-profile-avatar" alt="Shop Logo">
+                @else
+                    <img src="{{ asset('assets/compiled/jpg/default-avatar.png') }}"
+                         class="pc-profile-avatar" alt="Default Logo">
                 @endif
             </div>
         </div>
 
         <!-- Profile Content -->
-        <div class="pc-profile-content">
+        <div class="pc-profile-content text-center mt-5">
             <h1 class="pc-shop-name">
                 {{ $shop->name ?? 'Shop Name Here' }}
                 @if ($shop->supplier?->is_verified)
@@ -28,12 +30,12 @@
                 @endif
             </h1>
 
-            <div class="pc-shop-stats">
+            <div class="pc-shop-stats mt-2">
                 <span class="pc-stat-item">📦 {{$totalAds}} Items Listed</span>
                 <span class="pc-stat-item">💬 {{$inquiryCount}} Enquiries</span>
             </div>
 
-            <div class="pc-contact-buttons">
+            <div class="pc-contact-buttons mt-3">
                 <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}" target="_blank" class="pc-btn pc-btn-success">
                     <i class="fab fa-whatsapp me-1"></i> WhatsApp
                 </a>
@@ -44,6 +46,7 @@
         </div>
     </div>
 </div>
+
 
 @if($shopHours)
 <div class="info-card">
@@ -193,6 +196,43 @@
     .btn-product.whatsapp { background: #198754; }
     .btn-product.call { background: #ff7700; }
     .btn-product:hover { opacity: 0.9; }
+    .pc-cover-section {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.pc-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pc-profile-top {
+    position: absolute;
+    bottom: -50px; /* overlaps the cover */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    background: #fff;
+}
+
+.pc-profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pc-profile-content {
+    margin-top: 60px; /* leave space for overlapping avatar */
+}
+
 </style>
+
 
 @endsection
