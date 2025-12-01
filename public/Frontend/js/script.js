@@ -275,9 +275,12 @@ function setupPagination(gridId, paginationId, perPage = 6) {
     }
 }
 
-// Call for both sections
-setupPagination("productGrid1", "pagination1");
-setupPagination("productGrid2", "pagination2");
+
+document.addEventListener("DOMContentLoaded", function () {
+    setupPagination("productGrid1", "pagination1");
+});
+
+
 
 // Mobile Menu Functionality
 const burgerMenu = document.getElementById("burger-menu");
