@@ -296,7 +296,7 @@ public function sendProductInquiry(Request $request)
         $meta['structure_data'] = <<<JSON
         {
             "@context": "https://schema.org",
-            "@type": "Product",
+            "@type": "CollectionPage",
             "name": "{$make->name}",
             "image": "https://partsfinder.ae/storage/{$make->logo}",
             "description": "{$meta['description']}",
@@ -308,7 +308,7 @@ public function sendProductInquiry(Request $request)
                 "@type": "Offer",
                 "url": "https://partsfinder.ae/makes/show/ads/{$make->name}/{$make->id}",
                 "priceCurrency": "AED",
-                "price": "One demand",
+                "price": "One Demand",
                 "availability": "https://schema.org/InStock"
             }
         }
