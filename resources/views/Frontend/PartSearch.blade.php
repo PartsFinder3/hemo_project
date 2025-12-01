@@ -197,22 +197,7 @@
 
 
 /* Responsive */
-@media (max-width: 768px) {
-    .secound_hero_section {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
 
-    .part_finder_card,
-    .hero_image_section {
-        width: 100%;
-    }
-
-    .hero_image_section {
-        height: 250px;
-    }
-}
 
 #productGrid1 {
     display: grid;
