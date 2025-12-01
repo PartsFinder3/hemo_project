@@ -307,8 +307,8 @@ public function sendProductInquiry(Request $request)
             "offers": {
                 "@type": "Offer",
                 "url": "https://partsfinder.ae/makes/show/ads/{$make->name}/{$make->id}",
-                "priceCurrency": "All",
-                "price": "Not set",
+                "priceCurrency": "AED",
+                "price": "One demand",
                 "availability": "https://schema.org/InStock"
             }
         }
