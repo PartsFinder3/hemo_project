@@ -688,7 +688,7 @@
     </script>
 
     <script>
-function setupPagination(gridId, paginationId, perPage = 8) {
+function setupPagination(gridId, paginationId, perPage = 12){
     const grid = document.getElementById(gridId);
     const pagination = document.getElementById(paginationId);
 
