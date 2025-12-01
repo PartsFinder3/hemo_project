@@ -15,14 +15,14 @@
                             <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
                             <!-- Profile Image + Social Icons -->
-<div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
-    @if ($profile && $profile->profile_image)
-        <img src="{{ asset('storage/' . $profile->profile_image) }}"
-            class="rounded-circle border border-3 border-white shadow"
-            alt="Shop Logo"
-            style="width: 150px; height: 150px; object-fit: cover;">
-    @endif
-</div>
+                            <div class="profile-avatar position-absolute bottom-0 start-0" style="margin-left: 100px; margin-bottom: 20px;">
+                                @if ($profile && $profile->profile_image)
+                                    <img src="{{ asset('storage/' . $profile->profile_image) }}"
+                                        class="rounded-circle border border-3 border-white shadow"
+                                        alt="Shop Logo"
+                                        style="width: 150px; height: 150px; object-fit: cover;">
+                                @endif
+                            </div>
 
                         </div>
                         </div>
@@ -84,52 +84,49 @@
 </div>
 @endif
 
-        <div class="grid" id="productGrid2">
-@if($shopAds && $shopAds->count())
-    @foreach($shopAds as $ad)
-                <div class="card">
-                    @php
-                        $images = json_decode($ad->images, true);
-                    @endphp
+<div class="grid" id="productGrid2">
+    @if($shopAds && $shopAds->count())
+        @foreach($shopAds as $ad)
+            <div class="card">
+                @php
+                    $images = json_decode($ad->images, true);
+                @endphp
 
-                    @if (is_array($images) && isset($images[0]))
-                        <img src="{{ asset($images[0]) }}" alt="Product">
-                    @endif
-                    <div class="card-body">
-                       <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                            class="card-title">{{ $ad->title }}</a>
-                        {{-- <div class="price">AED {{ $ad->price }}</div> --}}
-                        <div class="meta">
-                            Availability: In Stock <br>
-                            {{-- Condition: {{ $ad->condition }} <br> --}}
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
-                        </div>
-                        @php
-                            $ad->shop->supplier->whatsapp;
-                        @endphp
-<div class="buttons">
+                @if(!empty($images[0]))
+                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                @endif
 
-    <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-       target="_blank"
-       class="ad-btn ad-btn-whatsapp">
-        <i class="fab fa-whatsapp me-1"></i> WhatsApp
-    </a>
+                <div class="card-body">
+                    <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
+                        class="card-title">{{ $ad->title }}</a>
 
-    <a href="javascript:void(0)"
-       class="ad-btn ad-btn-call"
-       onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-        <i class="fa-solid fa-phone me-1"></i> Click to Call
-    </a>
+                    <div class="price">{{ $ad->currency }} {{ $ad->price }}</div>
 
-</div>
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Condition: {{ $ad->condition ?? 'N/A' }} <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+
+                    <div class="buttons">
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+                            target="_blank"
+                            class="btn btn-sm btn-success w-100 my-1">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+
+                        <a href="javascript:void(0)" class="btn call"
+                            onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                            <i class="fa-solid fa-phone"></i> Click to Call
+                        </a>
                     </div>
                 </div>
-            @endforeach
-     @endif
+            </div>
+        @endforeach
+    @endif
+</div>
 
-            <!-- Repeat similar cards... -->
-        </div>
 
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">
