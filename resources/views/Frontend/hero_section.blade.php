@@ -204,7 +204,25 @@
         gap: 10px;
     }
 }
+@media (max-width: 520px) {
+    .car {
+        max-width: 330px;
+        padding: 10px;
+        margin-top: 40px;
+        margin-left: 0px;
+    }
 
+    .hero_image_section img {
+        max-width: 260px;
+    }
+
+    .radio-option label {
+        font-size: 12px;
+    }
+    .hero-section_p {
+        height: auto;
+    }
+}
 @media (max-width: 480px) {
     .car {
         max-width: 330px;
