@@ -67,8 +67,9 @@ class FrontendController extends Controller
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
         $ads = Ads::where('is_approved', true)
-            ->where('domain', $host)
-            ->latest();
+           ->where('domain', $host)
+           ->latest()
+           ->get();
         $carAds = CarAds::where('is_approved', true)->latest()->get();
         $randomParts = SpareParts::withCount('ads')
             ->orderBy('ads_count', 'desc')
