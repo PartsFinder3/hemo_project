@@ -33,10 +33,10 @@
 
 .hero_section_text .hiliter {
     display: inline;   /* inline رکھیں تاکہ text کے ساتھ flow ہو */
-    padding: 0 5px;
+    padding: 0 3px;
     font-weight: bold;
     width: auto;
-    margin-right: 7px !important;
+    margin-right: 5px !important;
   
 }
 
