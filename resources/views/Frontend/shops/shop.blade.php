@@ -115,6 +115,7 @@
                 @endforeach
             @endif
         </div>
+        <div id="pagination1" class="pagination d-flex justify-content-center mt-3"></div>
     </div>
 
     <!-- Image Modal -->
@@ -685,4 +686,58 @@
             });
         });
     </script>
+
+    <script>
+function setupPagination(gridId, paginationId, perPage = 8) {
+    const grid = document.getElementById(gridId);
+    const pagination = document.getElementById(paginationId);
+
+    if (!grid || !pagination) return;
+
+    const products = Array.from(grid.querySelectorAll(".product-card"));
+    const totalPages = Math.ceil(products.length / perPage);
+
+    function showPage(page) {
+        products.forEach((product, index) => {
+            product.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? "block" : "none";
+        });
+
+        pagination.querySelectorAll("button").forEach((btn, i) => {
+            btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
+        });
+    }
+
+    pagination.innerHTML = "";
+
+    // Previous button
+    const prevBtn = document.createElement("button");
+    prevBtn.innerHTML = "&laquo;";
+    prevBtn.addEventListener("click", () => {
+        const current = parseInt(pagination.querySelector("button.active")?.dataset.page) || 1;
+        if (current > 1) showPage(current - 1);
+    });
+    pagination.appendChild(prevBtn);
+
+    // Page buttons
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.innerText = i;
+        btn.dataset.page = i;
+        btn.addEventListener("click", () => showPage(i));
+        pagination.appendChild(btn);
+    }
+
+    // Next button
+    const nextBtn = document.createElement("button");
+    nextBtn.innerHTML = "&raquo;";
+    nextBtn.addEventListener("click", () => {
+        const current = parseInt(pagination.querySelector("button.active")?.dataset.page) || 1;
+        if (current < totalPages) showPage(current + 1);
+    });
+    pagination.appendChild(nextBtn);
+
+    showPage(1);
+}
+
+</script>
 @endsection
