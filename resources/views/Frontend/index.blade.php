@@ -455,7 +455,7 @@
             @endforeach
         </div>
 
-        <div class="grid" id="productGrid2">
+        <div class="grid" id="productGrid1">
             <!-- Example Card -->
             @foreach ($carAds as $ad)
                 <div class="card">
