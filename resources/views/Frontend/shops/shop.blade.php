@@ -48,9 +48,10 @@
 </div>
 
 
+<!-- Opening Hours Card -->
 @if($shopHours)
-<div class="info-card">
-    <div class="section-title">Opening Hours</div>
+<div class="info-card mt-n5">
+    <div class="section-title text-center">Opening Hours</div>
     <div class="hours-grid">
         @php
             $hours = [
@@ -73,6 +74,7 @@
     </div>
 </div>
 @endif
+
 
 <!-- Product Cards -->
 <div class="products-grid">
@@ -230,6 +232,34 @@
 
 .pc-profile-content {
     margin-top: 60px; /* leave space for overlapping avatar */
+}
+.info-card {
+    background: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: -40px; /* pull up under avatar */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.section-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.hours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+}
+
+.day-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: #555;
 }
 
 </style>
