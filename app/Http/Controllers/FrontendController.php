@@ -68,8 +68,7 @@ class FrontendController extends Controller
         $parts = SpareParts::all();
         $ads = Ads::where('is_approved', true)
             ->where('domain', $host)
-            ->latest()
-            ->paginate(20);
+            ->latest();
         $carAds = CarAds::where('is_approved', true)->latest()->get();
         $randomParts = SpareParts::withCount('ads')
             ->orderBy('ads_count', 'desc')

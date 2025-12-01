@@ -395,9 +395,6 @@
         </div>
 
 <!-- Pagination -->
-<div class="mt-4">
-    {{ $ads->links('pagination::bootstrap-5') }}
-</div>
 
         <div class="pagination" id="pagination1"></div>
     </section>
