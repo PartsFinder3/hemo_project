@@ -298,7 +298,7 @@ public function sendProductInquiry(Request $request)
             "@context": "https://schema.org",
             "@type": "Product",
             "name": "{$make->name}",
-            "image": "https://partsfinder.ae/{$make->logo}",
+            "image": "https://partsfinder.ae/storage/{$make->logo}",
             "description": "{$meta['description']}",
             "brand": {
                 "@type": "Brand",
