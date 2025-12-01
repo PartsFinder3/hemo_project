@@ -127,13 +127,13 @@
                                     </a>
                                 </td>
                                 <td>
-    @if ($part->tamp_id != null)
+    @if ($make->tamp_id != null)
         <span class="badge bg-success me-1">
             <i class="fa-solid fa-file-lines"></i> Description
         </span>
     @endif
 
-    @if ($part->tamp_title_id != null)
+    @if ($make->tamp_title_id != null)
         <span class="badge bg-primary">
             <i class="fa-solid fa-heading"></i> Title
         </span>
