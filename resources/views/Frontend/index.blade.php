@@ -342,66 +342,116 @@
 
 
 
-    <section class="ad-cards">
-        <div class="section-text">
-            <h3>TOP ADS</h3>
-            <h2>Find the Best Deals For You</h2>
-        </div>
-        <div class="filters">
-            <a href="#" class="active">All</a>
-            @foreach ($randomParts as $part)
-                <a href="{{ route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id]) }}">
-                    {{ $part->name }}
-                </a>
-            @endforeach
-        </div>
+  <!-- FIRST ADS SECTION - Part Ads -->
+<section class="ad-cards">
+    <div class="section-text">
+        <h3>TOP ADS</h3>
+        <h2>Find the Best Deals For You</h2>
+    </div>
+    <div class="filters">
+        <a href="#" class="active">All</a>
+        @foreach ($randomParts as $part)
+            <a href="{{ route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id]) }}">
+                {{ $part->name }}
+            </a>
+        @endforeach
+    </div>
 
-        <div class="grid" id="productGrid1">
-            <!-- Example Card -->
-            @foreach ($ads as $ad)
-                <div class="card">
-                    @php
-                        $images = json_decode($ad->images, true);
-                    @endphp
+    <div class="grid" id="partAdsGrid">
+        <!-- Example Card -->
+        @foreach ($ads as $ad)
+            <div class="card">
+                @php
+                    $images = json_decode($ad->images, true);
+                @endphp
 
-                         @if(!empty($images[0]))
-                                            <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-                    @endif
-                    <div class="card-body">
-                        <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                            class="card-title">{{ $ad->title }}</a>
-                        <div class="price">{{ $ad->currency }} {{ $ad->price }}</div>
-                        <div class="meta">
-                            Availability: In Stock <br>
-                            Condition: {{ $ad->condition }} <br>
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
-                        </div>
-                        @php
-                             $ad->shop->supplier->whatsapp;
-                        @endphp
-                        <div class="buttons">
-                   
-                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-                                target="_blank"
-                                class="btn btn-sm btn-success w-100 my-1">
-                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                                </a>
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
-                        </div>
-
+                @if(!empty($images[0]))
+                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                @endif
+                
+                <div class="card-body">
+                    <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
+                        class="card-title">{{ $ad->title }}</a>
+                    <div class="price">{{ $ad->currency }} {{ $ad->price }}</div>
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Condition: {{ $ad->condition }} <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+                    
+                    <div class="buttons">
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+                            target="_blank"
+                            class="btn btn-sm btn-success w-100 my-1">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="btn call"
+                            onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                            <i class="fa-solid fa-phone"></i> Click to Call
+                        </a>
                     </div>
                 </div>
-            @endforeach
+            </div>
+        @endforeach
+    </div>
 
-          
-        </div>
+    <div class="pagination" id="partAdsPagination"></div>
+</section>
 
-        <div class="pagination" id="pagination1"></div>
-    </section>
+<!-- SECOND ADS SECTION - Car Ads -->
+<section class="ad-cards">
+    <div class="section-text">
+        <h3>TOP CAR ADS</h3>
+        <h2>Our Sellers are Currently Breaking These Cars for Spare Parts</h2>
+    </div>
+    <div class="filters">
+        <a href="#" class="active">All</a>
+        @foreach ($randomMakes as $make)
+            <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}">{{ $make->name }}</a>
+        @endforeach
+    </div>
+
+    <div class="grid" id="carAdsGrid">
+        @foreach ($carAds as $ad)
+            <div class="card">
+                @php
+                    $images = json_decode($ad->images, true);
+                @endphp
+
+                @if (is_array($images) && isset($images[0]))
+                    <img src="{{ asset('storage/' . $images[0]) }}" alt="Product">
+                @endif
+                
+                <div class="card-body">
+                    <a href="{{ route('view.car.ad', ['slug' => $ad->slug, 'id' => $ad->id]) }}"
+                        class="card-title">{{ $ad->title }}</a>
+                    
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+                    
+                    <div class="buttons">
+                        <a href="javascript:void(0)" class="btn whatsapp"
+                            onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </a>
+
+                        <a href="javascript:void(0)" class="btn call"
+                            onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                            <i class="fa-solid fa-phone"></i> Click to Call
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    <div class="pagination" id="carAdsPagination"></div>
+</section>
         <section class="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
@@ -831,7 +881,40 @@
         padding: 8px 10px;
     }
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
+.pagination button {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pagination button:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
  </style>
 
 
@@ -930,6 +1013,94 @@ if (burgerMenu && navMenu) {
         }
     });
 }
-</script>
 
+
+</script>
+<script>
+    function setupPagination(gridId, paginationId, perPage = 8) {
+        const products = document.querySelectorAll(`#${gridId} .card`);
+        const totalPages = Math.ceil(products.length / perPage);
+        const pagination = document.getElementById(paginationId);
+
+        if (!pagination) return;
+
+        function showPage(page) {
+            // Hide all products
+            products.forEach(product => {
+                product.style.display = "none";
+            });
+            
+            // Show products for current page
+            const startIndex = (page - 1) * perPage;
+            const endIndex = startIndex + perPage;
+            
+            for (let i = startIndex; i < endIndex && i < products.length; i++) {
+                products[i].style.display = "block";
+            }
+            
+            // Update active button
+            pagination.querySelectorAll("button").forEach((btn, i) => {
+                btn.classList.toggle("active", i + 1 === page);
+            });
+        }
+
+        function createPaginationButtons() {
+            pagination.innerHTML = "";
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.innerText = i;
+                btn.addEventListener("click", () => showPage(i));
+                pagination.appendChild(btn);
+            }
+
+            // Add Previous and Next buttons
+            const prevBtn = document.createElement("button");
+            prevBtn.innerText = "←";
+            prevBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active").innerText);
+                if (current > 1) showPage(current - 1);
+            });
+            pagination.prepend(prevBtn);
+
+            const nextBtn = document.createElement("button");
+            nextBtn.innerText = "→";
+            nextBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active").innerText);
+                if (current < totalPages) showPage(current + 1);
+            });
+            pagination.appendChild(nextBtn);
+        }
+
+        if (totalPages > 0) {
+            createPaginationButtons();
+            showPage(1);
+        }
+    }
+
+    // Call for both sections when DOM is loaded
+    document.addEventListener("DOMContentLoaded", () => {
+        setupPagination("partAdsGrid", "partAdsPagination", 8);
+        setupPagination("carAdsGrid", "carAdsPagination", 8);
+    });
+
+    // باقی functions
+    function callSupplier(isActive, number) {
+        if (isActive == 1) {
+            window.location.href = `tel:${number}`;
+        } else {
+            alert('Supplier is currently inactive');
+        }
+    }
+
+    function contactSupplier(isActive, whatsapp, title) {
+        if (isActive === '1') {
+            const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
+            const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+            window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
+        } else {
+            alert('Supplier is currently inactive');
+        }
+    }
+</script>
 @endsection
