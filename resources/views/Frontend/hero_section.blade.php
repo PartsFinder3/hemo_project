@@ -267,7 +267,7 @@
 
     .hero_section_text h1 {
         font-size: 20px !important;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .find-btn {
