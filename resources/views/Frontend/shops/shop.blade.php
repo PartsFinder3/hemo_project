@@ -329,20 +329,18 @@
         }
 
         /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+}
         .product-card {
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            display: block;
         }
 
         .product-card:hover {
