@@ -3,18 +3,15 @@
     <div class="container-fluid py-4">
         <!-- Profile Card -->
 <div class="shop-profile-card">
-    <!-- Cover + Overlay -->
-    <div class="shop-cover-wrapper">
-        <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
-             class="shop-cover-image" alt="Cover Image">
-
+    <!-- Cover + Overlay as background -->
+    <div class="shop-cover-wrapper" 
+         style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
         <div class="shop-cover-overlay"></div>
 
         <!-- Profile Avatar -->
         <div class="shop-avatar">
             @if ($profile && $profile->profile_image)
-                <img src="{{ asset('storage/' . $profile->profile_image) }}"
-                     alt="Shop Logo">
+                <img src="{{ asset('storage/' . $profile->profile_image) }}" alt="Shop Logo">
             @endif
         </div>
     </div>
@@ -43,6 +40,7 @@
         </div>
     </div>
 </div>
+
 
         <!-- Opening Hours Card -->
         @if($shopHours)
@@ -894,6 +892,39 @@ h2 {
         width: 150px;
         justify-content: center;
     }
+}
+.shop-cover-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px; /* adjust as needed */
+    background-size: cover;       /* image div me fit ho jaye */
+    background-position: center;  /* center the image */
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.shop-cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2); /* optional overlay */
+}
+
+.shop-avatar {
+    position: absolute;
+    bottom: -75px;
+    left: 40px;
+}
+
+.shop-avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
     </style>
