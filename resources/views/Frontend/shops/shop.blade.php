@@ -132,7 +132,7 @@
             <div class="gallery-grid">
                 @foreach($shopGallery as $item)
                     <div class="gallery-item">
-                        <img src="{{ asset($item->image_path) }}" alt="Gallery Image" onclick="openImageModal('{{ asset($item->image_path) }}')">
+                        <img src="{{ asset('storage/'.$item->image_path) }}" alt="Gallery Image" onclick="openImageModal('{{ asset($item->image_path) }}')">
                     </div>
                 @endforeach
             </div>
