@@ -621,6 +621,15 @@
 .product-buttons a {
     text-decoration: none !important;
 }
+#productGrid1 .buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
     </style>
 
     <script>
