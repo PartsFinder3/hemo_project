@@ -634,6 +634,66 @@
     text-decoration: none;
     color: #fff;
 }
+/* Pagination Styles */
+.pagination {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    min-width: 40px;
+}
+
+.pagination button:hover {
+    background: #f8f9fa;
+    border-color: #fd7e14;
+    transform: translateY(-2px);
+}
+
+.pagination button.active {
+    background: #fd7e14;
+    color: white;
+    border-color: #fd7e14;
+    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Ensure products grid cards are block elements */
+#productGrid1 .product-card {
+    display: block !important;
+    width: 100%;
+}
+
+/* Fix for modal close button */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #fd7e14;
+}
     </style>
 
     <script>
@@ -833,5 +893,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+</script>
+<script>
+// Temporary debug
+console.log('Product cards count:', document.querySelectorAll('#productGrid1 .product-card').length);
+console.log('Pagination element:', document.getElementById('pagination1'));
 </script>
 @endsection
