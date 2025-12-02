@@ -4,7 +4,7 @@
         <!-- Profile Card -->
         <div class="pc-card">
             <!-- Cover + Overlay -->
-            <div class="pc-cover-section position-relative">
+            <div class="pc-cover-section position-relative cover_image">
                 <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
                     class="pc-cover-image w-100" alt="Cover">
                 <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
@@ -691,6 +691,10 @@ h2 {
 .mb-3{
     margin-bottom: 1rem !important;
     margin-left: 20px;
+}
+.cover_image{
+    width: 100%;
+    
 }
     </style>
 
