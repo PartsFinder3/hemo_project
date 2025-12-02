@@ -123,6 +123,130 @@
 .btn.whatsapp:hover{
   background-color: white !important;
 }
+/* Small screens: 370px */
+@media screen and (max-width: 370px) {
+    .image_box {
+        width: 100%;
+        height: 180px;
+        margin-top: 20px;
+    }
+
+    .cover_system {
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+    .profile_photo {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+    .information-contanier {
+        margin-left: 0;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .icons_media {
+        justify-content: center;
+    }
+
+    .button_sides {
+        width: 100%;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .btn {
+        width: 90%;
+        max-width: 200px;
+    }
+}
+
+/* Medium screens: 500px */
+@media screen and (max-width: 500px) {
+    .image_box {
+        width: 95%;
+        height: 200px;
+    }
+
+    .cover_system {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .profile_photo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
+    }
+
+    .information-contanier {
+        margin-left: 0;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .btn {
+        width: 80%;
+        max-width: 220px;
+    }
+}
+
+/* Large mobile / small tablet: 750px */
+@media screen and (max-width: 750px) {
+    .image_box {
+        width: 90%;
+        height: 220px;
+    }
+
+    .cover_system {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 90%;
+    }
+
+    .profile_photo {
+        width: 130px;
+        height: 130px;
+        margin-bottom: 0;
+    }
+
+    .information-contanier {
+        margin-left: 10px;
+        text-align: left;
+    }
+
+    .buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 45%;
+        max-width: 180px;
+    }
+}
+
 </style>
  <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
 
