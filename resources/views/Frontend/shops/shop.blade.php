@@ -617,6 +617,10 @@
         grid-template-columns: 1fr; /* 1 card on mobile */
     }
 }
+
+.product-buttons a {
+    text-decoration: none !important;
+}
     </style>
 
     <script>
