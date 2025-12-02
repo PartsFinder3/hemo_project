@@ -694,14 +694,14 @@ h2 {
 }
 .cover_image {
     width: 100%;
-    height: 400px; /* ya jitni height chahte hain */
-    overflow: hidden; /* image div se bahar na jaaye */
+    height: 200px; /* chhoti height, adjust kar sakte ho */
+    overflow: hidden;
 }
 
 .cover_image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* image div ko cover kare without stretching */
+    object-fit: cover;
     display: block;
 }
     </style>
