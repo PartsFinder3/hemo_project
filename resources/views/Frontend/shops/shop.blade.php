@@ -123,92 +123,552 @@
 .btn.whatsapp:hover{
   background-color: white !important;
 }
-/* Button wrapper responsive fix */
-.button_sides {
-    width: auto;
-    margin-left: 20px; /* Desktop me thoda left margin */
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
+/* Add these responsive styles to your existing CSS */
 
-.buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin-top: 0; /* Remove extra top margin */
-}
-
-/* Small screens */
-@media (max-width: 768px) {
+/* ============ TABLET (768px - 991px) ============ */
+@media (max-width: 991px) {
+    /* Cover system adjustments */
     .cover_system {
-        flex-direction: column; /* Avatar aur info vertical */
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    .profile_photo {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+    }
+    
+    .information-contanier {
+        margin-left: 0 !important;
+        margin-top: 15px;
         align-items: center;
     }
-
-    .information-contanier {
-        margin-left: 0;
-        text-align: center;
-    }
-
+    
     .button_sides {
-        width: 100%;
         margin-left: 0;
-        margin-top: 10px; /* thoda gap upar se */
-        justify-content: center;
-    }
-
-    .buttons {
-        flex-direction: column; /* buttons stacked */
-        gap: 10px;
-        width: 90%;
-        max-width: 250px;
-    }
-
-    .btn {
         width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    .buttons {
+        margin-top: 20px;
+    }
+    
+    /* Products grid for tablet */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    /* Gallery grid for tablet */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    /* Shop profile adjustments */
+    .shop-cover-wrapper {
+        height: 200px;
+    }
+    
+    .shop-avatar {
+        width: 120px;
+        height: 120px;
+        bottom: -60px;
+        left: 30px;
+    }
+    
+    .shop-profile-content {
+        padding: 70px 20px 25px;
+    }
+    
+    .shop-name {
+        font-size: 1.8rem;
+    }
+    
+    /* Info card adjustments */
+    .info-card {
+        margin: 20px 15px;
+        padding: 1.2rem;
+    }
+    
+    h2 {
+        margin-left: 30px;
+    }
+    
+    .mb-3 {
+        margin-left: 30px;
     }
 }
 
-/* Extra small screens (mobile) */
-@media (max-width: 500px) {
+/* ============ MOBILE (576px - 767px) ============ */
+@media (max-width: 767px) {
+    /* Image box adjustments */
+    .image_box {
+        width: 95%;
+        height: 180px;
+        margin: 20px auto;
+        margin-top: 30px !important;
+    }
+    
+    /* Cover system mobile layout */
+    .cover_system {
+        width: 95%;
+        padding: 15px 0;
+    }
+    
+    .profile_photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .information-contanier h3 {
+        font-size: 1.5rem;
+    }
+    
+    .inqueries {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    /* Button adjustments */
     .button_sides {
-        width: 100%;
         margin-top: 15px;
     }
+    
+    .buttons {
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .btn {
+        width: 110px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+    
+    /* Products grid for mobile */
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    /* Gallery grid for mobile */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .gallery-item {
+        height: 150px;
+    }
+    
+    /* Shop profile mobile adjustments */
+    .shop-profile-card {
+        margin-left: 0;
+        width: 95%;
+        margin: 0 auto 20px;
+    }
+    
+    .shop-cover-wrapper {
+        height: 180px;
+    }
+    
+    .shop-avatar {
+        width: 100px;
+        height: 100px;
+        bottom: -50px;
+        left: 20px;
+    }
+    
+    .shop-name {
+        font-size: 1.6rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .shop-stats {
+        gap: 10px;
+        margin: 15px 0;
+    }
+    
+    .stat-item {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .shop-contact-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .shop-contact-buttons a {
+        width: 200px;
+        justify-content: center;
+    }
+    
+    /* Info card mobile */
+    .info-card {
+        margin: 15px 10px;
+        padding: 1rem;
+    }
+    
+    h2 {
+        margin-left: 20px;
+        font-size: 1.5rem;
+    }
+    
+    .mb-3 {
+        margin-left: 20px;
+    }
+    
+    /* Opening hours adjustments */
+    .hours-grid {
+        font-size: 0.9rem;
+    }
+    
+    .day-row {
+        padding: 0.6rem;
+    }
+    
+    /* Product card mobile */
+    .product-card {
+        margin: 0 5px;
+    }
+    
+    .product-image {
+        height: 160px;
+    }
+    
+    .product-title {
+        font-size: 0.95rem;
+        min-height: 2.8em;
+    }
+    
+    .product-meta {
+        font-size: 0.8rem;
+    }
+    
+    .btn-product {
+        padding: 0.7rem 0;
+        font-size: 0.9rem;
+    }
+    
+    /* Pagination mobile */
+    .pagination {
+        gap: 5px;
+        margin: 15px 0;
+    }
+    
+    .pagination button {
+        padding: 6px 12px;
+        min-width: 35px;
+        font-size: 0.9rem;
+    }
+}
 
+/* ============ SMALL MOBILE (375px - 575px) ============ */
+@media (max-width: 575px) {
+    /* Image box for small mobile */
+    .image_box {
+        width: 98%;
+        height: 150px;
+        margin-top: 20px !important;
+    }
+    
+    /* Cover system for small mobile */
+    .cover_system {
+        width: 98%;
+        margin: 10px auto;
+    }
+    
+    .profile_photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .information-contanier h3 {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .inqueries {
+        font-size: 0.85rem;
+        padding: 5px;
+    }
+    
+    .inqueries .stat-item {
+        display: block;
+        margin: 3px 0;
+    }
+    
+    /* Icons adjustment */
+    .icons_media {
+        gap: 8px;
+        margin-top: 8px;
+    }
+    
+    .icons {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .icons img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* Buttons for small mobile */
     .buttons {
         flex-direction: column;
-        width: 100%;
+        align-items: center;
+        gap: 8px;
     }
-
+    
     .btn {
-        width: 100%;
-        max-width: none;
+        width: 180px;
+        height: 40px;
+    }
+    
+    /* Shop profile for small mobile */
+    .shop-cover-wrapper {
+        height: 150px;
+    }
+    
+    .shop-avatar {
+        width: 80px;
+        height: 80px;
+        bottom: -40px;
+        left: 15px;
+        border-width: 3px;
+    }
+    
+    .shop-profile-content {
+        padding: 60px 15px 20px;
+    }
+    
+    .shop-name {
+        font-size: 1.4rem;
+    }
+    
+    .shop-stats {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    .stat-item {
+        width: fit-content;
+        min-width: 150px;
+        text-align: center;
+    }
+    
+    /* Gallery for small mobile */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .gallery-item {
+        height: 180px;
+    }
+    
+    h2 {
+        margin-left: 15px;
+        font-size: 1.3rem;
+    }
+    
+    .mb-3 {
+        margin-left: 15px;
+    }
+    
+    /* Product card adjustments */
+    .product-image {
+        height: 140px;
+    }
+    
+    .product-body {
+        padding: 1rem;
+    }
+    
+    /* Opening hours for small mobile */
+    .day-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .day {
+        min-width: auto;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        height: 80%;
+    }
+    
+    .modal-close {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
     }
 }
-/* Extra small mobile: max-width 370px */
-@media (max-width: 370px) {
+
+/* ============ VERY SMALL MOBILE (below 375px) ============ */
+@media (max-width: 374px) {
+    /* Further adjustments for very small screens */
+    .image_box {
+        height: 130px;
+    }
+    
+    .profile_photo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .information-contanier h3 {
+        font-size: 1.2rem;
+    }
+    
+    .inqueries {
+        font-size: 0.8rem;
+    }
+    
+    .icons {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .icons img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .btn {
+        width: 160px;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
+    /* Shop profile */
+    .shop-cover-wrapper {
+        height: 120px;
+    }
+    
+    .shop-avatar {
+        width: 60px;
+        height: 60px;
+        bottom: -30px;
+        left: 10px;
+    }
+    
+    .shop-name {
+        font-size: 1.2rem;
+    }
+    
+    .shop-verified-badge {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+    
+    /* Products */
+    .products-grid {
+        padding: 0 5px;
+        gap: 10px;
+    }
+    
+    .product-card {
+        border-radius: 8px;
+    }
+    
+    .product-title {
+        font-size: 0.9rem;
+    }
+    
+    .btn-product {
+        font-size: 0.85rem;
+        padding: 0.6rem 0;
+    }
+    
+    /* Gallery */
+    .gallery-item {
+        height: 150px;
+    }
+    
+    /* Text adjustments */
+    h2 {
+        margin-left: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    /* Pagination */
+    .pagination button {
+        padding: 5px 10px;
+        min-width: 30px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============ LANDSCAPE MODE ADJUSTMENTS ============ */
+@media (max-height: 600px) and (orientation: landscape) {
+    .image_box {
+        height: 120px;
+    }
+    
+    .cover_system {
+        height: auto;
+        min-height: 120px;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .profile_photo {
+        width: 80px;
+        height: 80px;
+        margin: 0;
+    }
+    
+    .information-contanier {
+        margin-left: 15px !important;
+        margin-top: 0;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
     .button_sides {
-        width: 100%;           /* pura screen cover kare */
-        margin-left: 0;        /* left margin remove */
-        margin-right: 0;       /* right margin remove */
-        justify-content: center;
-        margin-top: 15px;
-        margin-bottom: 20px;
+        margin-top: 0;
     }
-
-    .buttons {
-        flex-direction: column; /* buttons stacked vertically */
-        gap: 8px;               /* thoda kam gap */
-        width: 100%;
+    
+    .shop-cover-wrapper {
+        height: 150px;
     }
-
-    .btn {
-        width: 100%;           /* button full width */
-        max-width: 100%;       /* screen se zyada na ho */
+    
+    .shop-avatar {
+        width: 80px;
+        height: 80px;
+        bottom: -40px;
     }
 }
+
+
+
+/* ============ TOUCH FRIENDLY ELEMENTS ============ */
 
 </style>
  <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
@@ -255,20 +715,20 @@
 
     </div>
     <div class="button_sides">
-<div class="buttons">
-    
-    <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}"  target="_blank" class="btn whatsapp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        Whatsapp
-    </a>
-    <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn call">
-        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call">
-        Call
-    </a>
-</div>
+        <div class="buttons">
+            
+            <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}"  target="_blank" class="btn whatsapp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                Whatsapp
+            </a>
+            <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn call">
+                <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call">
+                Call
+            </a>
+        </div>
 
-    </div>
- </div>
+            </div>
+        </div>
 
     
   
