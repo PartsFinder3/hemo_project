@@ -142,7 +142,18 @@
     <style>
         /* Reset backgrounds */
      
-
+.pc-cover-section.cover_image {
+    width: 100%;
+    height: 200px; /* final height */
+    overflow: hidden;
+    position: relative;
+}
+.pc-cover-section.cover_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
         /* Profile Card Styles */
         .pc-card {
             position: relative;
