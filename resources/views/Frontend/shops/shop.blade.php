@@ -71,7 +71,7 @@
     width: 300px;
     height: 100%;
 
-    margin-left: 200px;
+    margin-left: 300px;
 }
 .buttons {
     display: flex;
