@@ -686,6 +686,7 @@ h2 {
     color: #222;
     margin-bottom: 10px;
     font-weight: bold;
+    padding-left: 5px;
 }
     </style>
 
