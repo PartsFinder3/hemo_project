@@ -120,6 +120,9 @@
 .btn.call:hover{
   background-color: white !important;
 }
+.btn.whatsapp:hover{
+  background-color: white !important;
+}
 </style>
  <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
 
