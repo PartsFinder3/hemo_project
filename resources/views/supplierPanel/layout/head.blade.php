@@ -299,19 +299,18 @@
 
                     @php
                         use Carbon\Carbon;
+                        use App\Models\InvoiceSubscriptions;
+use App\Models\Invoices;
                         $daysLeft = 0;
                         $user = Auth::guard('supplier')->user();
                         if ($user) {
-                            $inquiry =
-                                $user
-                                    ->inquiries()
-                                    ->whereDate('start_date', '<=', today())
-                                    ->whereDate('end_date', '>=', today())
-                                    ->orderBy('end_date', 'asc')
-                                    ->first() ?? $user->inquiries()->orderBy('end_date', 'desc')->first();
-
-                            if ($inquiry && $inquiry->end_date) {
-                                $end = Carbon::parse($inquiry->end_date)->endOfDay();
+                                  // Get latest invoice
+        $invoiceId = Invoices::where('supplier_id', $user->id)
+                            ->latest()
+                            ->value('id');
+            $subscription = InvoiceSubscriptions::where('invoice_id', $invoiceId)->first();
+                            if ($subscription && $subscription->end_date) {
+                                $end = Carbon::parse($subscription->end_date)->endOfDay();
                                 $today = now()->startOfDay();
                                 $daysLeft = $today->diffInDays($end, false);
                                 if ($daysLeft < 0) {
