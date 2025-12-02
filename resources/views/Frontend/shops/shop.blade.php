@@ -125,12 +125,23 @@
             <img id="modalImage" class="modal-image" src="" alt="">
         </div>
     </div>
+        @if(isset($shopGallery) && count($shopGallery))
+        <div class="info-card mt-4">
+            <div class="section-title">Shop Gallery</div>
+
+            <div class="gallery-grid">
+                @foreach($shopGallery as $item)
+                    <div class="gallery-item">
+                        <img src="{{ asset($item->image_path) }}" alt="Gallery Image" onclick="openImageModal('{{ asset($item->image_path) }}')">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
 
     <style>
         /* Reset backgrounds */
-        body, main, header, nav, .hero-section, .hero-section_p {
-            background: none !important;
-        }
+     
 
         /* Profile Card Styles */
         .pc-card {
@@ -643,6 +654,34 @@
         .pc-card {
             animation: fadeInUp 0.6s ease-out;
         }
+        .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #f8f9fa;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    transition: transform .3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
     </style>
 
     <script>

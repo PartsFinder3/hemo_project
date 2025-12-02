@@ -470,7 +470,7 @@ public function sendProductInquiry(Request $request)
         $shopMakes = ShopMakes::where('shop_id', $shop->id)->get();
         $shopHours = ShopHours::where('shop_id', $shop->id)->first();
         $shopGallery = ShopGallery::where('shop_id', $shop->id)->get();
-         dd($shopGallery);
+       
         $shopAds = Ads::where('shop_id', $shop->id)
             ->where('is_approved', true)
             ->get();
