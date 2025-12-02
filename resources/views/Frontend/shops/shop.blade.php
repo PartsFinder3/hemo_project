@@ -179,9 +179,7 @@
             transform: scale(1.05);
         }
 
-        .pc-cover-overlay {
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
-        }
+   
 
         /* Profile Avatar */
         .profile-avatar {
