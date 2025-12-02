@@ -123,127 +123,90 @@
 .btn.whatsapp:hover{
   background-color: white !important;
 }
-/* Small screens: 370px */
-@media screen and (max-width: 370px) {
-    .image_box {
-        width: 100%;
-        height: 180px;
-        margin-top: 20px;
-    }
+/* Button wrapper responsive fix */
+.button_sides {
+    width: auto;
+    margin-left: 20px; /* Desktop me thoda left margin */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 0; /* Remove extra top margin */
+}
+
+/* Small screens */
+@media (max-width: 768px) {
     .cover_system {
-        flex-direction: column;
-        width: 100%;
-        margin: 0 auto;
+        flex-direction: column; /* Avatar aur info vertical */
         align-items: center;
-    }
-
-    .profile_photo {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 10px;
     }
 
     .information-contanier {
         margin-left: 0;
         text-align: center;
-        margin-top: 10px;
-    }
-
-    .icons_media {
-        justify-content: center;
     }
 
     .button_sides {
         width: 100%;
         margin-left: 0;
-        display: flex;
+        margin-top: 10px; /* thoda gap upar se */
         justify-content: center;
     }
 
     .buttons {
-        flex-direction: column;
+        flex-direction: column; /* buttons stacked */
         gap: 10px;
-        align-items: center;
+        width: 90%;
+        max-width: 250px;
     }
 
     .btn {
-        width: 90%;
-        max-width: 200px;
+        width: 100%;
     }
 }
 
-/* Medium screens: 500px */
-@media screen and (max-width: 500px) {
-    .image_box {
-        width: 95%;
-        height: 200px;
-    }
-
-    .cover_system {
-        flex-direction: column;
-        width: 95%;
-    }
-
-    .profile_photo {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 10px;
-    }
-
-    .information-contanier {
-        margin-left: 0;
-        text-align: center;
-        margin-top: 10px;
+/* Extra small screens (mobile) */
+@media (max-width: 500px) {
+    .button_sides {
+        width: 100%;
+        margin-top: 15px;
     }
 
     .buttons {
         flex-direction: column;
-        gap: 10px;
-        align-items: center;
+        width: 100%;
     }
 
     .btn {
-        width: 80%;
-        max-width: 220px;
+        width: 100%;
+        max-width: none;
     }
 }
-
-/* Large mobile / small tablet: 750px */
-@media screen and (max-width: 750px) {
-    .image_box {
-        width: 90%;
-        height: 220px;
-    }
-
-    .cover_system {
-        flex-direction: row;
-        flex-wrap: wrap;
+/* Extra small mobile: max-width 370px */
+@media (max-width: 370px) {
+    .button_sides {
+        width: 100%;           /* pura screen cover kare */
+        margin-left: 0;        /* left margin remove */
+        margin-right: 0;       /* right margin remove */
         justify-content: center;
-        width: 90%;
-    }
-
-    .profile_photo {
-        width: 130px;
-        height: 130px;
-        margin-bottom: 0;
-    }
-
-    .information-contanier {
-        margin-left: 10px;
-        text-align: left;
+        margin-top: 15px;
+        margin-bottom: 20px;
     }
 
     .buttons {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: column; /* buttons stacked vertically */
+        gap: 8px;               /* thoda kam gap */
+        width: 100%;
     }
 
     .btn {
-        width: 45%;
-        max-width: 180px;
+        width: 100%;           /* button full width */
+        max-width: 100%;       /* screen se zyada na ho */
     }
 }
 
