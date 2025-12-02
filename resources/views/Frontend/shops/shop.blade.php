@@ -2,48 +2,47 @@
 @section('main-section')
     <div class="container-fluid py-4">
         <!-- Profile Card -->
-        <div class="pc-card">
-            <!-- Cover + Overlay -->
-            <div class="pc-cover-section position-relative cover_image">
-                <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
-                    class="pc-cover-image w-100" alt="Cover">
-                <div class="pc-cover-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+<div class="shop-profile-card">
+    <!-- Cover + Overlay -->
+    <div class="shop-cover-wrapper">
+        <img src="{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}"
+             class="shop-cover-image" alt="Cover Image">
 
-                <!-- Profile Image -->
-                <div class="profile-avatar position-absolute bottom-0 start-0">
-                    @if ($profile && $profile->profile_image)
-                        <img src="{{ asset('storage/' . $profile->profile_image) }}"
-                            class="rounded-circle border border-3 border-white shadow"
-                            alt="Shop Logo"
-                            style="width: 150px; height: 150px; object-fit: cover;">
-                    @endif
-                </div>
-            </div>
+        <div class="shop-cover-overlay"></div>
 
-            <!-- Content Section -->
-            <div class="pc-profile-content text-center mt-5 pt-4">
-                <h1 class="pc-shop-name fw-bold">
-                    {{ $shop->name ?? 'Shop Name Here' }}
-                    @if ($shop->supplier?->is_verified)
-                        <span class="pc-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
-                    @endif
-                </h1>
-
-                <div class="pc-shop-stats mt-2">
-                    <span class="pc-stat-item">📦 {{$totalAds}} Items Listed</span>
-                    <span class="pc-stat-item">💬 {{$inquiryCount}} Enquiries</span>
-                </div>
-
-                <div class="pc-contact-buttons mt-3 d-flex justify-content-center gap-2">
-                    <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}" target="_blank" class="pc-btn pc-btn-success btn-sm">
-                        <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                    </a>
-                    <a href="tel:{{ $shop->supplier->whatsapp }}" class="pc-btn pc-btn-warning btn-sm">
-                        <i class="fas fa-phone me-1"></i> Call
-                    </a>
-                </div>
-            </div>
+        <!-- Profile Avatar -->
+        <div class="shop-avatar">
+            @if ($profile && $profile->profile_image)
+                <img src="{{ asset('storage/' . $profile->profile_image) }}"
+                     alt="Shop Logo">
+            @endif
         </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="shop-profile-content">
+        <h1 class="shop-name">
+            {{ $shop->name ?? 'Shop Name Here' }}
+            @if ($shop->supplier?->is_verified)
+                <span class="shop-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+            @endif
+        </h1>
+
+        <div class="shop-stats">
+            <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
+            <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
+        </div>
+
+        <div class="shop-contact-buttons">
+            <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn-call">
+                <i class="fas fa-phone"></i> Call
+            </a>
+        </div>
+    </div>
+</div>
 
         <!-- Opening Hours Card -->
         @if($shopHours)
@@ -718,6 +717,185 @@ h2 {
     object-fit: cover;
     display: block;
 }
+/* Shop Profile Card */
+.shop-profile-card {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+/* Cover Section */
+.shop-cover-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.shop-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.shop-cover-wrapper:hover .shop-cover-image {
+    transform: scale(1.05);
+}
+
+.shop-cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2); /* optional overlay */
+}
+
+/* Profile Avatar */
+.shop-avatar {
+    position: absolute;
+    bottom: -75px;
+    left: 40px;
+}
+
+.shop-avatar img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Content Section */
+.shop-profile-content {
+    padding: 90px 30px 30px;
+    text-align: center;
+}
+
+.shop-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.shop-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.shop-stats {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: rgba(255,255,255,0.8);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #555;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.shop-contact-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.shop-contact-buttons a {
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-whatsapp {
+    background: #25d366;
+}
+
+.btn-whatsapp:hover {
+    background: #128c7e;
+}
+
+.btn-call {
+    background: #fd7e14;
+}
+
+.btn-call:hover {
+    background: #e66a00;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .shop-cover-wrapper {
+        height: 200px;
+    }
+
+    .shop-avatar img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .shop-name {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .shop-cover-wrapper {
+        height: 150px;
+    }
+
+    .shop-avatar img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .shop-name {
+        font-size: 1.4rem;
+    }
+
+    .shop-contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .shop-contact-buttons a {
+        width: 150px;
+        justify-content: center;
+    }
+}
+
     </style>
 
     <script>
