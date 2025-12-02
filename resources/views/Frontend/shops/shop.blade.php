@@ -364,6 +364,7 @@
     height: 100%;
     object-fit: contain; /* Ensures full image fits without cropping */
     padding: 10px;
+    background-color: white;
 }
 .product-body {
     padding: 1.2rem;
