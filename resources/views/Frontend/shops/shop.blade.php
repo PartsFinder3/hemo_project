@@ -770,7 +770,7 @@
             console.log('DOM loaded, setting up pagination...');
             
             // Setup pagination
-            setupPagination('productGrid1', 'pagination1', 8);
+            setupPagination('productGrid1', 'pagination1', 12);
             
             // Add ripple effect to buttons
             document.querySelectorAll('.pc-btn, .btn-product').forEach(button => {
@@ -812,7 +812,7 @@
             const pagination = document.getElementById('pagination1');
             if (pagination && pagination.innerHTML.trim() === '') {
                 console.log('Pagination not initialized, setting up again...');
-                setupPagination('productGrid1', 'pagination1', 8);
+                setupPagination('productGrid1', 'pagination1', 12);
             }
         });
     </script>
