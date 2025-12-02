@@ -688,6 +688,10 @@ h2 {
     font-weight: bold;
     padding-left: 5px;
 }
+.mb-3{
+    margin-bottom: 1rem !important;
+    margin-left: 20px;
+}
     </style>
 
     <script>
