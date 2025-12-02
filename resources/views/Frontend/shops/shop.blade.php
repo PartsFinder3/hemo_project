@@ -169,11 +169,12 @@
     </div>
     <div class="button_sides">
 <div class="buttons">
-    <a href="https://wa.me/yourphonenumber" target="_blank" class="btn whatsapp">
+    
+    <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}"  target="_blank" class="btn whatsapp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
         Whatsapp
     </a>
-    <a href="tel:yourphonenumber" class="btn call">
+    <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn call">
         <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call">
         Call
     </a>
