@@ -124,7 +124,7 @@
             <img id="modalImage" class="modal-image" src="" alt="">
         </div>
     </div>
-    <h2 class="mt-4 mb-3">Gallery</h2>
+    <h2 class="mt-4 mb-3" style="margin-left: 50px;">Gallery</h2>
         @if(isset($shopGallery) && count($shopGallery))
         <div class="info-card mt-4">
             <div class="section-title">Shop Gallery</div>
