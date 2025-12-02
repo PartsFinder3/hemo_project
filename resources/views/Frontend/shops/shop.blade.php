@@ -413,6 +413,8 @@
         .btn-product.whatsapp {
             background: #198754;
             color: white;
+                font-weight: bold;
+    border-radius: 6px;
         }
 
         .btn-product.whatsapp:hover {
