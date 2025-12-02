@@ -692,11 +692,13 @@ h2 {
     margin-left: 20px;
 }
 .cover_image {
-    width: 80%;
-    height: 200px; /* chhoti height, adjust kar sakte ho */
+    width: 100%;
+    max-width: 1200px; /* optional, card ke size ke liye */
+    height: 200px;
     overflow: hidden;
-    background-color: white !important;
-    align-items: center;
+    background-color: white;
+    margin: 0 auto;
+    position: relative; /* zarurat hai overlay aur avatar ke liye */
 }
 
 .cover_image img {
