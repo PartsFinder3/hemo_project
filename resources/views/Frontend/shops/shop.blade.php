@@ -97,21 +97,19 @@
                                 Warranty: Ask Supplier
                             </div>
                             
-<div class="product-buttons">
+                            <div class="product-buttons">
+                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+                                   target="_blank"
+                                   class="btn-product whatsapp">
+                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                                </a>
 
-    <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-       target="_blank"
-       class="btn-product whatsapp">
-        <i class="fab fa-whatsapp me-1"></i> WhatsApp
-    </a>
-
-    <a href="javascript:void(0)"
-       class="btn-product call"
-       onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-        <i class="fa-solid fa-phone me-1"></i> Click to Call
-    </a>
-
-</div>
+                                <a href="javascript:void(0)"
+                                   class="btn-product call"
+                                   onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                                    <i class="fa-solid fa-phone me-1"></i> Click to Call
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -331,90 +329,94 @@
         }
 
         /* Products Grid */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.product-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    display: block !important;    /* ← Add this */
-}
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
 
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-.product-image {
-    width: 100%;
-    height: 180px; /* Fixed height */
-    overflow: hidden;
-    background: #f8f9fa;
-}
+        .product-image {
+            width: 100%;
+            height: 180px; /* Fixed height */
+            overflow: hidden;
+            background: #f8f9fa;
+        }
 
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures full image fits without cropping */
-    padding: 10px;
-    background-color: white;
-}
-.product-body {
-    padding: 1.2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures full image fits without cropping */
+            padding: 10px;
+            background-color: white;
+        }
+        
+        .product-body {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-.product-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.8rem;
-    line-height: 1.4;
-    min-height: 3em; /* Fixed height for title */
-    overflow: hidden;
-}
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            min-height: 3em; /* Fixed height for title */
+            overflow: hidden;
+        }
 
         .product-title:hover {
             color: #fd7e14;
         }
-.product-meta {
-    margin-bottom: 1.2rem;
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-.product-buttons {
-    display: flex;
-    flex-direction: column; /* stack buttons vertically */
-    gap: 0.7rem;
-    width: 100%;
-}
+        
+        .product-meta {
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .product-buttons {
+            display: flex;
+            flex-direction: column; /* stack buttons vertically */
+            gap: 0.7rem;
+            width: 100%;
+        }
 
-.btn-product {
-    width: 100%;            /* full width buttons */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8rem 0;
-}
+        .btn-product {
+            width: 100%;            /* full width buttons */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8rem 0;
+            text-decoration: none !important;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #fff;
+        }
 
         .btn-product.whatsapp {
             background: #198754;
-            color: white;
-                font-weight: bold;
-    border-radius: 6px;
         }
 
         .btn-product.whatsapp:hover {
@@ -423,9 +425,6 @@
 
         .btn-product.call {
             background: #fd7e14;
-            color: white;
-               font-weight: bold;
-    border-radius: 6px;
         }
 
         .btn-product.call:hover {
@@ -472,10 +471,47 @@
             cursor: pointer;
         }
 
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pagination button {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            min-width: 40px;
+        }
+
+        .pagination button:hover {
+            background: #f8f9fa;
+            border-color: #fd7e14;
+            transform: translateY(-2px);
+        }
+
+        .pagination button.active {
+            background: #fd7e14;
+            color: white;
+            border-color: #fd7e14;
+            box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .pc-card, .info-card, .products-grid {
                 max-width: 95%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -539,10 +575,6 @@
             .products-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .product-buttons {
-                flex-direction: column;
-            }
         }
 
         @media (max-width: 576px) {
@@ -586,6 +618,16 @@
             .info-card {
                 padding: 1rem;
             }
+            
+            .pagination {
+                gap: 5px;
+            }
+            
+            .pagination button {
+                padding: 6px 12px;
+                min-width: 35px;
+                font-size: 0.9rem;
+            }
         }
 
         /* Animation */
@@ -603,100 +645,96 @@
         .pc-card {
             animation: fadeInUp 0.6s ease-out;
         }
-        @media (max-width: 1200px) {
-    .products-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 cards on medium desktops */
-        max-width: 95%;
-    }
-}
-
-@media (max-width: 992px) {
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards on tablets */
-    }
-}
-
-@media (max-width: 576px) {
-    .products-grid {
-        grid-template-columns: 1fr; /* 1 card on mobile */
-    }
-}
-
-.product-buttons a {
-    text-decoration: none !important;
-}
-#productGrid1 .buttons a {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    border-radius: 6px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #fff;
-}
-/* Pagination Styles */
-.pagination {
-    display: flex;
-    gap: 8px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.pagination button {
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    min-width: 40px;
-}
-
-.pagination button:hover {
-    background: #f8f9fa;
-    border-color: #fd7e14;
-    transform: translateY(-2px);
-}
-
-.pagination button.active {
-    background: #fd7e14;
-    color: white;
-    border-color: #fd7e14;
-    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
-}
-
-.pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* Ensure products grid cards are block elements */
-#productGrid1 .product-card {
-    display: block !important;
-    width: 100%;
-}
-
-/* Fix for modal close button */
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1001;
-    transition: all 0.3s ease;
-}
-
-.modal-close:hover {
-    color: #fd7e14;
-}
     </style>
 
     <script>
+        // Initialize pagination
+        function setupPagination(gridId, paginationId, perPage = 8) {
+            const grid = document.getElementById(gridId);
+            const pagination = document.getElementById(paginationId);
+
+            // Check if elements exist
+            if (!grid || !pagination) {
+                console.error('Grid or pagination element not found:', {gridId, paginationId});
+                return;
+            }
+
+            const products = Array.from(grid.querySelectorAll(".product-card"));
+            console.log('Found', products.length, 'products');
+            
+            // If no products, hide pagination
+            if (products.length === 0) {
+                pagination.style.display = 'none';
+                return;
+            }
+
+            const totalPages = Math.ceil(products.length / perPage);
+            console.log('Total pages:', totalPages);
+
+            // If only one page, hide pagination
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                // Show all products
+                products.forEach(product => product.style.display = 'block');
+                return;
+            }
+
+            // Show pagination
+            pagination.style.display = 'flex';
+
+            function showPage(page) {
+                console.log('Showing page', page);
+                products.forEach((product, index) => {
+                    const shouldShow = (index >= (page - 1) * perPage && index < page * perPage);
+                    product.style.display = shouldShow ? 'block' : 'none';
+                });
+
+                // Update active button
+                pagination.querySelectorAll("button").forEach((btn) => {
+                    btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
+                });
+            }
+
+            function createPaginationButtons() {
+                pagination.innerHTML = "";
+
+                // Previous button
+                const prevBtn = document.createElement("button");
+                prevBtn.innerHTML = "&laquo;";
+                prevBtn.title = "Previous";
+                prevBtn.addEventListener("click", () => {
+                    const activeBtn = pagination.querySelector("button.active");
+                    const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+                    if (current > 1) showPage(current - 1);
+                });
+                pagination.appendChild(prevBtn);
+
+                // Page buttons
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement("button");
+                    btn.innerText = i;
+                    btn.dataset.page = i;
+                    btn.addEventListener("click", () => showPage(i));
+                    pagination.appendChild(btn);
+                }
+
+                // Next button
+                const nextBtn = document.createElement("button");
+                nextBtn.innerHTML = "&raquo;";
+                nextBtn.title = "Next";
+                nextBtn.addEventListener("click", () => {
+                    const activeBtn = pagination.querySelector("button.active");
+                    const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+                    if (current < totalPages) showPage(current + 1);
+                });
+                pagination.appendChild(nextBtn);
+            }
+
+            createPaginationButtons();
+            showPage(1); // Show first page initially
+        }
+
+        // Other functions
         function contactSupplier(isActive, whatsapp, title) {
             if (isActive === '1') {
                 const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
@@ -727,7 +765,13 @@
             modal.style.display = 'none';
         }
 
+        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up pagination...');
+            
+            // Setup pagination
+            setupPagination('productGrid1', 'pagination1', 8);
+            
             // Add ripple effect to buttons
             document.querySelectorAll('.pc-btn, .btn-product').forEach(button => {
                 button.addEventListener('click', function(e) {
@@ -753,150 +797,24 @@
                     closeImageModal();
                 }
             });
+            
+            // Close modal when clicking outside image
+            document.getElementById('imageModal')?.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeImageModal();
+                }
+            });
+        });
+
+        // Also try to setup pagination when window loads (as backup)
+        window.addEventListener('load', function() {
+            console.log('Window loaded, checking pagination...');
+            const pagination = document.getElementById('pagination1');
+            if (pagination && pagination.innerHTML.trim() === '') {
+                console.log('Pagination not initialized, setting up again...');
+                setupPagination('productGrid1', 'pagination1', 8);
+            }
         });
     </script>
 
-<script>
-function setupPagination(gridId, paginationId, perPage = 8) {
-    const grid = document.getElementById(gridId);
-    const pagination = document.getElementById(paginationId);
-
-    if (!grid || !pagination) {
-        console.error('Grid or pagination element not found');
-        return;
-    }
-
-    const products = Array.from(grid.querySelectorAll(".product-card"));
-    const totalPages = Math.ceil(products.length / perPage);
-
-    // If there's only 1 page or less, hide pagination
-    if (totalPages <= 1) {
-        pagination.style.display = 'none';
-        return;
-    }
-
-    function showPage(page) {
-        products.forEach((product, index) => {
-            product.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? "block" : "none";
-        });
-
-        pagination.querySelectorAll("button").forEach((btn) => {
-            btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
-        });
-    }
-
-    function createPaginationButtons() {
-        pagination.innerHTML = "";
-
-        // Previous button
-        const prevBtn = document.createElement("button");
-        prevBtn.innerHTML = "&laquo;";
-        prevBtn.classList.add("page-btn");
-        prevBtn.addEventListener("click", () => {
-            const activeBtn = pagination.querySelector("button.active");
-            const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
-            if (current > 1) showPage(current - 1);
-        });
-        pagination.appendChild(prevBtn);
-
-        // Page buttons
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.innerText = i;
-            btn.dataset.page = i;
-            btn.classList.add("page-btn");
-            btn.addEventListener("click", () => showPage(i));
-            pagination.appendChild(btn);
-        }
-
-        // Next button
-        const nextBtn = document.createElement("button");
-        nextBtn.innerHTML = "&raquo;";
-        nextBtn.classList.add("page-btn");
-        nextBtn.addEventListener("click", () => {
-            const activeBtn = pagination.querySelector("button.active");
-            const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
-            if (current < totalPages) showPage(current + 1);
-        });
-        pagination.appendChild(nextBtn);
-    }
-
-    createPaginationButtons();
-    showPage(1);
-}
-
-function contactSupplier(isActive, whatsapp, title) {
-    if (isActive === '1') {
-        const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
-        const cleanWhatsapp = whatsapp.replace(/\D/g, '');
-        window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
-    } else {
-        alert('Supplier is currently inactive');
-    }
-}
-
-function callSupplier(isActive, whatsapp) {
-    if (isActive === '1') {
-        window.location.href = `tel:${whatsapp}`;
-    } else {
-        alert('Supplier is currently inactive');
-    }
-}
-
-function openImageModal(src) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    modal.style.display = 'block';
-    modalImg.src = src;
-}
-
-function closeImageModal() {
-    const modal = document.getElementById('imageModal');
-    modal.style.display = 'none';
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Setup pagination
-    setupPagination('productGrid1', 'pagination1', 8);
-    
-    // Add ripple effect to buttons
-    document.querySelectorAll('.pc-btn, .btn-product').forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            ripple.classList.add('ripple');
-            this.appendChild(ripple);
-
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeImageModal();
-        }
-    });
-    
-    // Close modal when clicking outside image
-    document.getElementById('imageModal')?.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeImageModal();
-        }
-    });
-});
-</script>
-<script>
-// Temporary debug
-console.log('Product cards count:', document.querySelectorAll('#productGrid1 .product-card').length);
-console.log('Pagination element:', document.getElementById('pagination1'));
-</script>
 @endsection
