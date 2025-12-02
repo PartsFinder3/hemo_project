@@ -692,9 +692,17 @@ h2 {
     margin-bottom: 1rem !important;
     margin-left: 20px;
 }
-.cover_image{
+.cover_image {
     width: 100%;
-    
+    height: 400px; /* ya jitni height chahte hain */
+    overflow: hidden; /* image div se bahar na jaaye */
+}
+
+.cover_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* image div ko cover kare without stretching */
+    display: block;
 }
     </style>
 
