@@ -918,15 +918,54 @@ h2 {
 }
 
 
-.shop-avatar img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 4px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+@media (max-width: 992px) {
+    .shop-cover-wrapper {
+        height: 200px;
+    }
+    .shop-avatar {
+        width: 120px;
+        height: 120px;
+        bottom: -60px;
+        left: 30px;
+    }
 }
 
+@media (max-width: 768px) {
+    .shop-cover-wrapper {
+        height: 180px;
+    }
+    .shop-avatar {
+        width: 100px;
+        height: 100px;
+        bottom: -50px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .shop-cover-wrapper {
+        height: 150px;
+    }
+    .shop-avatar {
+        width: 80px;
+        height: 80px;
+        bottom: -40px;
+        left: 15px;
+    }
+}
+
+@media (max-width: 350px) {
+    .shop-cover-wrapper {
+        height: 120px;   /* chhoti screen ke liye */
+    }
+    .shop-avatar {
+        width: 60px;
+        height: 60px;
+        bottom: -30px;
+        left: 10px;
+    }
+}
     </style>
 
     <script>
