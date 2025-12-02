@@ -9,11 +9,9 @@
         <div class="shop-cover-overlay"></div>
 
         <!-- Profile Avatar -->
-        <div class="shop-avatar">
-            @if ($profile && $profile->profile_image)
-                <img src="{{ asset('storage/' . $profile->profile_image) }}" alt="Shop Logo">
-            @endif
-        </div>
+<div class="shop-avatar" 
+     style="background-image: url('{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/default-avatar.png') }}');">
+</div>
     </div>
 
     <!-- Content Section -->
@@ -758,20 +756,26 @@ h2 {
 
 /* Profile Avatar */
 .shop-avatar {
+    width: 150px;              /* size adjust karo */
+    height: 150px;
+    border-radius: 50%;        /* circle shape */
+    background-size: cover;    /* image div me fit ho jaye */
+    background-position: center; /* center the image */
+    border: 4px solid #fff;    /* optional white border */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* optional shadow */
     position: absolute;
     bottom: -75px;
     left: 40px;
 }
 
 .shop-avatar img {
-    width: 150px;             /* size adjust karo */
+    width: 150px;
     height: 150px;
-    object-fit: cover;        /* image div me perfectly fit ho */
-    border-radius: 50%;       /* circle shape */
-    border: 4px solid #fff;   /* optional white border */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* optional shadow */
+    object-fit: cover;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
-
 
 /* Content Section */
 .shop-profile-content {
@@ -913,11 +917,6 @@ h2 {
     background: rgba(0,0,0,0.2); /* optional overlay */
 }
 
-.shop-avatar {
-    position: absolute;
-    bottom: -75px;
-    left: 40px;
-}
 
 .shop-avatar img {
     width: 150px;
