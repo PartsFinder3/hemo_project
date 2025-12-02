@@ -154,6 +154,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             background: #fff;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-left: 4%;
         }
 
         .pc-card:hover {
