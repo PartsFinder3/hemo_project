@@ -696,57 +696,142 @@
         });
     </script>
 
-    <script>
-function setupPagination(gridId, paginationId, perPage = 12){
+<script>
+function setupPagination(gridId, paginationId, perPage = 8) {
     const grid = document.getElementById(gridId);
     const pagination = document.getElementById(paginationId);
 
-    if (!grid || !pagination) return;
+    if (!grid || !pagination) {
+        console.error('Grid or pagination element not found');
+        return;
+    }
 
     const products = Array.from(grid.querySelectorAll(".product-card"));
     const totalPages = Math.ceil(products.length / perPage);
+
+    // If there's only 1 page or less, hide pagination
+    if (totalPages <= 1) {
+        pagination.style.display = 'none';
+        return;
+    }
 
     function showPage(page) {
         products.forEach((product, index) => {
             product.style.display = (index >= (page - 1) * perPage && index < page * perPage) ? "block" : "none";
         });
 
-        pagination.querySelectorAll("button").forEach((btn, i) => {
+        pagination.querySelectorAll("button").forEach((btn) => {
             btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
         });
     }
 
-    pagination.innerHTML = "";
+    function createPaginationButtons() {
+        pagination.innerHTML = "";
 
-    // Previous button
-    const prevBtn = document.createElement("button");
-    prevBtn.innerHTML = "&laquo;";
-    prevBtn.addEventListener("click", () => {
-        const current = parseInt(pagination.querySelector("button.active")?.dataset.page) || 1;
-        if (current > 1) showPage(current - 1);
-    });
-    pagination.appendChild(prevBtn);
+        // Previous button
+        const prevBtn = document.createElement("button");
+        prevBtn.innerHTML = "&laquo;";
+        prevBtn.classList.add("page-btn");
+        prevBtn.addEventListener("click", () => {
+            const activeBtn = pagination.querySelector("button.active");
+            const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+            if (current > 1) showPage(current - 1);
+        });
+        pagination.appendChild(prevBtn);
 
-    // Page buttons
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.innerText = i;
-        btn.dataset.page = i;
-        btn.addEventListener("click", () => showPage(i));
-        pagination.appendChild(btn);
+        // Page buttons
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.innerText = i;
+            btn.dataset.page = i;
+            btn.classList.add("page-btn");
+            btn.addEventListener("click", () => showPage(i));
+            pagination.appendChild(btn);
+        }
+
+        // Next button
+        const nextBtn = document.createElement("button");
+        nextBtn.innerHTML = "&raquo;";
+        nextBtn.classList.add("page-btn");
+        nextBtn.addEventListener("click", () => {
+            const activeBtn = pagination.querySelector("button.active");
+            const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+            if (current < totalPages) showPage(current + 1);
+        });
+        pagination.appendChild(nextBtn);
     }
 
-    // Next button
-    const nextBtn = document.createElement("button");
-    nextBtn.innerHTML = "&raquo;";
-    nextBtn.addEventListener("click", () => {
-        const current = parseInt(pagination.querySelector("button.active")?.dataset.page) || 1;
-        if (current < totalPages) showPage(current + 1);
-    });
-    pagination.appendChild(nextBtn);
-
+    createPaginationButtons();
     showPage(1);
 }
 
+function contactSupplier(isActive, whatsapp, title) {
+    if (isActive === '1') {
+        const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
+        const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+        window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
+    } else {
+        alert('Supplier is currently inactive');
+    }
+}
+
+function callSupplier(isActive, whatsapp) {
+    if (isActive === '1') {
+        window.location.href = `tel:${whatsapp}`;
+    } else {
+        alert('Supplier is currently inactive');
+    }
+}
+
+function openImageModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'block';
+    modalImg.src = src;
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup pagination
+    setupPagination('productGrid1', 'pagination1', 8);
+    
+    // Add ripple effect to buttons
+    document.querySelectorAll('.pc-btn, .btn-product').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+    
+    // Close modal when clicking outside image
+    document.getElementById('imageModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeImageModal();
+        }
+    });
+});
 </script>
 @endsection
