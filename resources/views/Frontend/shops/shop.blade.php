@@ -97,19 +97,21 @@
                                 Warranty: Ask Supplier
                             </div>
                             
-                            <div class="product-buttons">
-                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-                                   target="_blank"
-                                   class="btn-product whatsapp">
-                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                                </a>
+<div class="product-buttons">
 
-                                <a href="javascript:void(0)"
-                                   class="btn-product call"
-                                   onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                    <i class="fa-solid fa-phone me-1"></i> Click to Call
-                                </a>
-                            </div>
+    <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+       target="_blank"
+       class="btn-product whatsapp">
+        <i class="fab fa-whatsapp me-1"></i> WhatsApp
+    </a>
+
+    <a href="javascript:void(0)"
+       class="btn-product call"
+       onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+        <i class="fa-solid fa-phone me-1"></i> Click to Call
+    </a>
+
+</div>
                         </div>
                     </div>
                 @endforeach
@@ -336,16 +338,13 @@
     max-width: 1200px;
     margin: 0 auto;
 }
-
-
 .product-card {
     background: #fff;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    display: block !important;    /* ← Add this */
 }
 
         .product-card:hover {
@@ -397,29 +396,21 @@
 }
 .product-buttons {
     display: flex;
-    gap: 0.5rem;
-    margin-top: auto; /* Pushes buttons to bottom */
+    flex-direction: column; /* stack buttons vertically */
+    gap: 0.7rem;
+    width: 100%;
 }
 
-        .btn-product {
-            flex: 1;
-            padding: 0.6rem 1rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+.btn-product {
+    width: 100%;            /* full width buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 0;
+}
 
         .btn-product.whatsapp {
-            background: #25d366;
+            background: #198754;
             color: white;
         }
 
