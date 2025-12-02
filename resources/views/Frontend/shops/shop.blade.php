@@ -695,6 +695,7 @@ h2 {
     height: 200px; /* chhoti height, adjust kar sakte ho */
     overflow: hidden;
     background-color: white !important;
+    align-items: center;
 }
 
 .cover_image img {
