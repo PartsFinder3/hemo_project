@@ -117,6 +117,9 @@
       background-color: white;
       color: black;
 }
+.btn.call :hover{
+      background-color: white;
+}
 </style>
  <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
 
