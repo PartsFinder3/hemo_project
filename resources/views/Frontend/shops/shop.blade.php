@@ -424,6 +424,8 @@
         .btn-product.call {
             background: #fd7e14;
             color: white;
+               font-weight: bold;
+    border-radius: 6px;
         }
 
         .btn-product.call:hover {
