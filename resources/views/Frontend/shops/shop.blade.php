@@ -1,42 +1,183 @@
 @extends('Frontend.layout.main')
 @section('main-section')
-    <div class="container-fluid py-4">
-        <!-- Profile Card -->
-<div class="shop-profile-card">
-    <!-- Cover + Overlay as background -->
-    <div class="shop-cover-wrapper" 
-         style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
-        <div class="shop-cover-overlay"></div>
+<style>
+.image_box {
+    width:83%;
+    height: 240px;
+    margin: 20px auto; 
+    margin-top: 50px !important;
+    background-size: cover;        /* image پورے box میں fit ہو جائے */
+    background-position: center;   /* image center سے show ہو */
+    background-repeat: no-repeat;  /* image repeat نہ ہو */
+}
+.cover_system{
+    width: 83%;
+    height: 150px;
+     margin: 20px auto; 
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+}
+.profile_photo{
+    width: 150px;
+    height: 150px;
+    
+    border-radius: 50%;
+        background-size: cover;        /* image پورے box میں fit ہو جائے */
+    background-position: center;   /* image center سے show ہو */
+    background-repeat: no-repeat; 
+}
+.information-contanier{
+   width: auto;
+   height: 100%;
 
-        <!-- Profile Avatar -->
-<div class="shop-avatar" 
-     style="background-image: url('{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/default-avatar.png') }}');">
-</div>
+   display: flex;
+   flex-direction: column;
+   margin-left: 20px !important;
+}
+.inqueries{
+    padding: 10px;
+
+}
+.information-contanier {
+    margin-top: 20px;
+}
+
+.icons_media {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.icons {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.icons img {
+    width: 24px;  /* icon size */
+    height: 24px;
+}
+
+.icons:hover {
+    transform: scale(1.1);
+}
+.button_sides{
+    width: 300px;
+    height: 100%;
+
+    margin-left: 200px;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; 
+    margin-top: 60px;
+    
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; 
+    width: 120px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #e0e0e0;
+}
+
+.btn img {
+    width: 20px;
+    height: 20px;
+}
+.btn.whatsapp {
+     border:1px solid #007bff;  /* WhatsApp green */
+    background-color: white;
+    color: black;
+}
+
+.btn.call {
+   border:1px solid #007bff; /* Blue color for call */
+      background-color: white;
+      color: black;
+}
+</style>
+ <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
+
+ </div>
+ <div class="cover_system">
+    <div class="profile_photo"   style="background-image: url('{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/default-avatar.png') }}');">
     </div>
-
-    <!-- Content Section -->
-    <div class="shop-profile-content">
-        <h1 class="shop-name">
-            {{ $shop->name ?? 'Shop Name Here' }}
-            @if ($shop->supplier?->is_verified)
-                <span class="shop-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
-            @endif
-        </h1>
-
-        <div class="shop-stats">
-            <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
+    <div class="information-contanier">
+          <div class="shop_name">
+            <h3>{{ $shop->name ?? 'Shop Name Here' }}</h3>
+          </div>
+          <div class="inqueries">
+           <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
             <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
+          </div>
+    <div class="icons_media">
+                    <!-- Facebook -->
+            <div class="icons"  style="background-color: #4267B2">
+                <a href="https://www.facebook.com/yourpage" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook">
+                </a>
+            </div>
+                        <!-- X / Twitter -->
+            <div class="icons" style="background-color: black">
+                <a href="https://twitter.com/yourprofile" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="X / Twitter">
+                </a>
+            </div>
+                    <!-- LinkedIn -->
+               <div class="icons"  style="background-color: #0077b5">
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn">
+                </a>
+               </div>
+                <!-- WhatsApp -->
+               <div class="icons" style="background-color:#25d366 ">
+                <a href="https://wa.me/yourphonenumber" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp">
+                </a> 
+            </div>
         </div>
 
-        <div class="shop-contact-buttons">
-            <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}" target="_blank" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn-call">
-                <i class="fas fa-phone"></i> Call
-            </a>
-        </div>
+
     </div>
+    <div class="button_sides">
+<div class="buttons">
+    <a href="https://wa.me/yourphonenumber" target="_blank" class="btn whatsapp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        Whatsapp
+    </a>
+    <a href="tel:yourphonenumber" class="btn call">
+        <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call">
+        Call
+    </a>
+</div>
+
+    </div>
+ </div>
+
+    
+  
 </div>
 
 
