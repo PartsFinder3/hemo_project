@@ -118,13 +118,13 @@
         <div id="pagination1" class="pagination d-flex justify-content-center mt-3"></div>
     </div>
 
-    <!-- Image Modal -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <img id="modalImage" class="modal-image" src="" alt="">
         </div>
     </div>
+    <h2 class="mt-4 mb-3">Gallery</h2>
         @if(isset($shopGallery) && count($shopGallery))
         <div class="info-card mt-4">
             <div class="section-title">Shop Gallery</div>
@@ -681,7 +681,12 @@
     height: 100%;
     object-fit: cover;
 }
-
+h2 {
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
     </style>
 
     <script>
