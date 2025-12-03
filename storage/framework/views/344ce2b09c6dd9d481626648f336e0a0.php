@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> - Supplier Dashboard</title>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     <link rel="shortcut icon" href="<?php echo e(asset('assets/compiled/svg/favicon.svg')); ?>" type="image/x-icon">
 
@@ -267,6 +267,18 @@
     </script>
 </head>
 <body>
+    
+<?php if(session('success')): ?>
+    <script>
+        swal("Success!", "<?php echo e(session('success')); ?>", "success");
+    </script>
+<?php endif; ?>
+
+<?php if(session('error')): ?>
+    <script>
+        swal("Error!", "<?php echo e(session('error')); ?>", "error");
+    </script>
+<?php endif; ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-2 shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" style="max-width: 100px" href="#">
@@ -287,19 +299,18 @@
 
                     <?php
                         use Carbon\Carbon;
+                        use App\Models\InvoiceSubscriptions;
+                      use App\Models\Invoices;
                         $daysLeft = 0;
                         $user = Auth::guard('supplier')->user();
                         if ($user) {
-                            $inquiry =
-                                $user
-                                    ->inquiries()
-                                    ->whereDate('start_date', '<=', today())
-                                    ->whereDate('end_date', '>=', today())
-                                    ->orderBy('end_date', 'asc')
-                                    ->first() ?? $user->inquiries()->orderBy('end_date', 'desc')->first();
-
-                            if ($inquiry && $inquiry->end_date) {
-                                $end = Carbon::parse($inquiry->end_date)->endOfDay();
+                                  // Get latest invoice
+        $invoiceId = Invoices::where('supplier_id', $user->id)
+                            ->latest()
+                            ->value('id');
+            $subscription = InvoiceSubscriptions::where('invoice_id', $invoiceId)->first();
+                            if ($subscription && $subscription->end_date) {
+                                $end = Carbon::parse($subscription->end_date)->endOfDay();
                                 $today = now()->startOfDay();
                                 $daysLeft = $today->diffInDays($end, false);
                                 if ($daysLeft < 0) {

@@ -216,7 +216,7 @@ public function showSupplierPanel(Request $request)
         })
         ->latest()
         ->get();
-
+      dd($usages);
     $makes = CarMakes::all();
     $years = Years::all();
     $cities = City::all();
