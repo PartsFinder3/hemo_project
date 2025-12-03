@@ -216,11 +216,10 @@ public function showSupplierPanel(Request $request)
         })
         ->latest()
         ->get();
-      dd($usages);
     $makes = CarMakes::all();
     $years = Years::all();
     $cities = City::all();
-
+     dd($makes);
     return view('supplierPanel.index', compact('usages', 'shopPartIds', 'makes', 'years', 'cities'))
         ->with('message', null); // No message if everything is fine
 }
