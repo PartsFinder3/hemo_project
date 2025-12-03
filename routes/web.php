@@ -191,7 +191,7 @@ Route::post('/inquiries/send/{id}', [InquiryController::class, 'sendInquiry'])->
 Route::post('/inquiries/{id}/send-all', [InquiryController::class, 'sendAll'])->name('inquiries.sendAll');
 
 //----------------------------- Shops ----------------------------->
-Route::post('/shops/create/{id}', [ShopController::class, 'create'])->name('shops.create');
+Route::any('/shops/create/{id}', [ShopController::class, 'create'])->name('shops.create');
 Route::get('/shops/view/{id}', [ShopController::class, 'view'])->name('shops.view');
 Route::get('/shops/profile/create/{id}', [ShopController::class, 'createProfile'])->name('shops.profile.create');
 Route::post('admin/shops/profile/store/{id}', [ShopController::class, 'storeProfile'])->name('admin.shops.profile.store');
