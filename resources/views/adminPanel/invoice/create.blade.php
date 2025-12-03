@@ -161,9 +161,15 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-save me-1"></i> Generate Invoice
                                 </button>
-                                 <a href="{{ route('shops.create') }}" class="btn btn-success me-md-2">
-        <i class="fas fa-plus me-1"></i> Create Shop
-    </a>
+                             @if (!$supplier->shop)
+                                <a href="{{ route('shops.create', $supplier->id) }}" class="btn btn-success me-md-2">
+                                    <i class="fas fa-plus me-1"></i> Create Shop
+                                </a>
+                            @else
+                                <a href="javascript:void(0)" class="btn btn-secondary me-md-2 disabled" aria-disabled="true">
+                                    <i class="fas fa-check me-1"></i> Already Shop
+                                </a>
+                            @endif
                             </div>
                         </form>
                     </div>
