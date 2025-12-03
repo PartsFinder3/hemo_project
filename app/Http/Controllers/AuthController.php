@@ -25,14 +25,13 @@ public function supplierLoginPost(Request $request)
 {
     $credentials = $request->only('whatsapp', 'password');
 
-    if (Auth::guard('supplier')->attempt($credentials)) {
-        $supplier = Auth::guard('supplier')->user();
-        
-        // Check if supplier account is active
-        // if (!$supplier->is_active) {
-        //     return redirect()->route('supplier.login.expire')
-        //         ->with('error', 'Your subscription has expired. Please renew to continue.');
-        // }
+    if (Auth::attempt($credentials)) {
+        $supplier = Auth::user();
+
+        if (!$supplier->is_active) {
+            return redirect()->route('supplier.login.expire')
+                ->with('error', 'Your subscription has expired. Please renew to continue.');
+        }
 
    
         $invoiceId = Invoices::where('supplier_id', $supplier->id)

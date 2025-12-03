@@ -117,8 +117,9 @@ class SupplierController extends Controller
     {
         $domain = Domain::first();
         $suppliers = Suppliers::with(['latestSubscription'])->latest()->get();
+        $user = Auth::user();
         
-        return view('adminPanel.suppliers.show', compact('suppliers','domain'));
+        return view('adminPanel.suppliers.show', compact('suppliers','domain','user'));
     }
 
 
