@@ -154,15 +154,16 @@ public function showSupplierPanel(Request $request)
         ->exists();
 
     if (!$hasInquiries) {
+       return "no";
         // If no inquiries left, show message and **do not fetch usages**
-        return view('supplierPanel.index', [
-            'usages' => collect(), // empty collection
-            'shopPartIds' => $shopPartIds,
-            'makes' => CarMakes::all(),
-            'years' => Years::all(),
-            'cities' => City::all(),
-            'message' => 'Please resubscribe',
-        ]);
+        // return view('supplierPanel.index', [
+        //     'usages' => collect(), // empty collection
+        //     'shopPartIds' => $shopPartIds,
+        //     'makes' => CarMakes::all(),
+        //     'years' => Years::all(),
+        //     'cities' => City::all(),
+        //     'message' => 'Please resubscribe',
+        // ]);
     }
 
     // Only fetch usages if inquiries exist
@@ -219,7 +220,7 @@ public function showSupplierPanel(Request $request)
     $makes = CarMakes::all();
     $years = Years::all();
     $cities = City::all();
-     dd($makes);
+     
     return view('supplierPanel.index', compact('usages', 'shopPartIds', 'makes', 'years', 'cities'))
         ->with('message', null); // No message if everything is fine
 }
