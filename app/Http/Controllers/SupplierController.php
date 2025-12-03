@@ -154,18 +154,18 @@ public function showSupplierPanel(Request $request)
         ->exists();
 
     if (!$hasInquiries) {
-       return "no";
+       
         // If no inquiries left, show message and **do not fetch usages**
-        // return view('supplierPanel.index', [
-        //     'usages' => collect(), // empty collection
-        //     'shopPartIds' => $shopPartIds,
-        //     'makes' => CarMakes::all(),
-        //     'years' => Years::all(),
-        //     'cities' => City::all(),
-        //     'message' => 'Please resubscribe',
-        // ]);
+        return view('supplierPanel.index', [
+            'usages' => collect(), // empty collection
+            'shopPartIds' => $shopPartIds,
+            'makes' => CarMakes::all(),
+            'years' => Years::all(),
+            'cities' => City::all(),
+            'message' => 'Please resubscribe',
+        ]);
     }
-
+    dd($hasInquiries);
     // Only fetch usages if inquiries exist
     $usages = InquiryUsage::with(['buyerInquiry.carMake', 'buyerInquiry.carModel', 'buyerInquiry.year', 'buyerInquiry.buyer'])
         ->where('supplier_id', $supplier->id)
