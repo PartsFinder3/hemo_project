@@ -108,13 +108,16 @@ class SupplierController extends Controller
         return redirect()->route('suppliers.show')->with('success', 'Supplier created successfully.');
     }
 
-    public function showSuppliers()
-    {
-        $domain = Domain::first();
-        $suppliers = Suppliers::with(['latestSubscription'])->latest()->get();
-        return view('adminPanel.suppliers.show', compact('suppliers','domain'));
-    }
+public function showSuppliers()
+{
+    $domain = Domain::first();
 
+    $suppliers = Suppliers::with('latestSubscription')
+        ->latest()
+        ->get();
+     dd($suppliers);
+    return view('adminPanel.suppliers.show', compact('suppliers', 'domain'));
+}
 
     public function rejectRequest($id)
     {

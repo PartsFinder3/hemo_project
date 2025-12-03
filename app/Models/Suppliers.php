@@ -12,11 +12,17 @@ class Suppliers extends Authenticatable
     use HasFactory;
     protected $table = 'suppliers';
 
-    public function latestSubscription()
-    {
-        return $this->hasOne(\App\Models\Inquiries::class, 'supplier_id')
-            ->latest('end_date');
-    }
+public function latestSubscription()
+{
+    return $this->hasOneThrough(
+        \App\Models\InvoiceSubscriptions::class, // Final table
+        \App\Models\Invoices::class,             // Through table
+        'supplier_id',   // invoices.supplier_id
+        'invoice_id',    // invoice_subscriptions.invoice_id
+        'id',            // suppliers.id
+        'id'             // invoices.id
+    )->latest('end_date'); // Subscription ka end_date
+}
 
     // public function getIsActiveAttribute()
     // {
@@ -67,5 +73,10 @@ class Suppliers extends Authenticatable
     public function invoices()
     {
         return $this->hasMany(Invoices::class, 'supplier_id');
+    }
+        public function latestInvoice()
+    {
+        return $this->hasOne(\App\Models\Invoices::class, 'supplier_id', 'id')
+                    ->latestOfMany();
     }
 }
