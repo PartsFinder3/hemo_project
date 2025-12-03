@@ -161,6 +161,9 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-save me-1"></i> Generate Invoice
                                 </button>
+                                 <a href="{{ route('shops.create') }}" class="btn btn-success me-md-2">
+        <i class="fas fa-plus me-1"></i> Create Shop
+    </a>
                             </div>
                         </form>
                     </div>
