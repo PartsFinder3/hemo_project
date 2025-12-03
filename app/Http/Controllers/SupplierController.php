@@ -58,7 +58,7 @@ class SupplierController extends Controller
         $newRequest->email         = $request->email;
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
-      
+        
         return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
 
@@ -104,13 +104,7 @@ class SupplierController extends Controller
         $supplier->password = Hash::make($lastSeven);
 
         $supplier->save();
-        $base=new User;
-        $base->name=$request->name;
-        $base->whatsapp= $request->whatsapp;
-        $base->email=$request->email;
-        $base->password= Hash::make($lastSeven);
-        $base->is_active=1;
-        $base->save();
+
         return redirect()->route('suppliers.show')->with('success', 'Supplier created successfully.');
     }
 
@@ -118,9 +112,7 @@ class SupplierController extends Controller
     {
         $domain = Domain::first();
         $suppliers = Suppliers::with(['latestSubscription'])->latest()->get();
-        $user = Auth::user();
-        
-        return view('adminPanel.suppliers.show', compact('suppliers','domain','user'));
+        return view('adminPanel.suppliers.show', compact('suppliers','domain'));
     }
 
 

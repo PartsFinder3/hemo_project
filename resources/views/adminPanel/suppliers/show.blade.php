@@ -79,7 +79,7 @@
                                     <td>{{ $supplier->whatsapp }}</td>
                                     @if (auth()->guard('admins')->user()->role == 'admin')
                                       <td>
-                                            @if ($user->is_active===1)
+                                            @if ($supplier->is_active)
                                                 <a href="{{ route('suppliers.active.toggle', $supplier->id) }}" class="btn btn-primary">
                                                     <i class="fa fa-check"></i> <!-- Active -->
                                                 </a>
