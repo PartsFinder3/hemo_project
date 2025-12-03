@@ -161,7 +161,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-save me-1"></i> Generate Invoice
                                 </button>
-                             @if ($supplier->shop)
+                             @if (!$supplier->shop)
                                 <a href="{{ route('shops.create', $supplier->id) }}" class="btn btn-success me-md-2">
                                     <i class="fas fa-plus me-1"></i> Create Shop
                                 </a>
