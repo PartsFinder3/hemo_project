@@ -108,7 +108,7 @@ class SupplierController extends Controller
         $base->name=$request->name;
         $base->email=$request->email;
         $base->password= Hash::make($lastSeven);
-        $base->id_active=1;
+        $base->is_active=1;
         $base->save();
         return redirect()->route('suppliers.show')->with('success', 'Supplier created successfully.');
     }
