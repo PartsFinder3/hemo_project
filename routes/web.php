@@ -31,6 +31,7 @@ use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\FAsController;
 use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\MSubscription;
 // use Illuminate\Support\Facades\Artisan;
 // use Illuminate\Support\Facades\Request;
 /*
@@ -262,7 +263,7 @@ Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.x
 });
 
 //Supplier-Panel
-// Route::middleware(['auth:supplier'])->group(function () {
+Route::middleware('subscription')->group(function () {
     Route::get('/supplier-panel', [SupplierController::class, 'showSupplierPanel'])->name('supplier.panel');
     Route::get('/supplier/get-models/{make_id}', [SupplierController::class, 'getModelsByMake'])->name('get.models');
     Route::get('/shop/ads/{id}/mark-inquiry-read', [SupplierController::class, 'markInquiryRead'])->name('supplier.ads.markInquiryRead');
@@ -318,7 +319,7 @@ Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.x
     Route::post('/shop/password/update/{id}', [SupplierSettingController::class, 'updatePasswordSupplier'])->name('supplier.password.edit');
     //Courier Services Page
     Route::get('/shop/courier-services', [CourierController::class, 'courierServices'])->name('supplier.courier.services');
-// });
+});
 
 // <--------------------------------- Supplier Login ------------------------------->
 Route::get('/supplier-login', [AuthController::class, 'supplierLogin'])->name('supplier.login');
