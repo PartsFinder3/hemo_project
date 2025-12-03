@@ -106,6 +106,7 @@ class SupplierController extends Controller
         $supplier->save();
         $base=new User;
         $base->name=$request->name;
+        $base->whatsapp= $request->whatsapp;
         $base->email=$request->email;
         $base->password= Hash::make($lastSeven);
         $base->is_active=1;
