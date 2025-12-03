@@ -300,7 +300,7 @@
                     @php
                         use Carbon\Carbon;
                         use App\Models\InvoiceSubscriptions;
-use App\Models\Invoices;
+                      use App\Models\Invoices;
                         $daysLeft = 0;
                         $user = Auth::guard('supplier')->user();
                         if ($user) {

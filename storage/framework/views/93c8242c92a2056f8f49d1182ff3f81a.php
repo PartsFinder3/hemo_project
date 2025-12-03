@@ -16,7 +16,7 @@
                             <div class="mb-3">
                                 <?php if(isset($profile) && $profile->cover): ?>
                                
-                                    <img style="width: 100%" src="<?php echo e(asset( $profile->cover)); ?>"
+                                    <img style="width: 100%" src="<?php echo e(asset( 'storage/'.$profile->cover)); ?>"
                                         class="img-fluid rounded" alt="">
                                 <?php else: ?>
                                     <img src="<?php echo e(asset('assets/compiled/jpg/Head.png')); ?>" class="img-fluid rounded"
@@ -99,11 +99,16 @@
                     </div>
 
                     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-2">
-                      <?php if($shopParts && $shopParts->part): ?>
-                        <div class="col">
-                            <div class="p-2 border rounded text-center"><?php echo e($shopParts->part->name); ?></div>
-                        </div>
-                    <?php endif; ?>
+<?php $__currentLoopData = $shopParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shopPart): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($shopPart->part): ?>
+        <div class="col">
+            <div class="p-2 border rounded text-center">
+                <?php echo e($shopPart->part->name); ?>
+
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </div>
                 </div>
@@ -190,80 +195,35 @@
             </div>
 
             <!-- Car Ads -->
-            <div class="card shadow-sm border-0 rounded-3 mt-4">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                        <div class="col">
-                            <?php if($shopAds->count() > 0): ?>
-                                <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="card h-90 shadow-sm border-0 rounded-3">
-                                        <?php
-                                            $images = json_decode($ad->images, true);
-                                        ?>
-
-                                        <?php if(is_array($images) && isset($images[0])): ?>
-                                            <img src="<?php echo e(asset('storage/' . $images[0])); ?>"
-                                                class="card-img-top img-fluid" alt="Product">
-                                        <?php endif; ?>
-                                        <div class="card-body">
-                                            <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
-                                            <h5 class="text-danger fw-bold">AED <?php echo e($ad->price); ?></h5>
-                                            <ul class="list-unstyled small">
-                                                <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
-                                                <li><b>Delivery:</b> Ask Supplier</li>
-                                                <li><b>Warranty:</b> Ask Supplier</li>
-                                            </ul>
-                                            <div class="d-flex gap-2">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endif; ?>
-                        </div>
-                        <!-- More ads as needed -->
+<div class="card shadow-sm border-0 rounded-3 mt-4">
+    <div class="card-body">
+        <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
+        <div class="d-flex flex-wrap gap-3">
+            <?php $__currentLoopData = $shopAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php
+                    $images = json_decode($ad->images, true);
+                ?>
+                <div class="card h-100 shadow-sm border-0 rounded-3" style="width: 250px; margin-left: 10px;">
+                    <?php if(is_array($images) && isset($images[0])): ?>
+                        <img src="<?php echo e(asset($images[0])); ?>" class="card-img-top img-fluid" alt="Product">
+                    <?php endif; ?>
+                    <div class="card-body">
+                        <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
+                        <h5 class="text-danger fw-bold">AED <?php echo e($ad->price); ?></h5>
+                        <ul class="list-unstyled small">
+                            <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
+                            <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
+                            <li><b>Delivery:</b> Ask Supplier</li>
+                            <li><b>Warranty:</b> Ask Supplier</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</div>
             <!-- Car Ads -->
-            <div class="card shadow-sm border-0 rounded-3 mt-4">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-4">Car Ads</h5>
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                        <div class="col">
-                            <?php if($shopCarAds->count() > 0): ?>
-                                <?php $__currentLoopData = $shopCarAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="card h-90 shadow-sm border-0 rounded-3">
-                                        <?php
-                                            $images = json_decode($ad->images, true);
-                                        ?>
-                                        <?php if(is_array($images) && isset($images[0])): ?>
-                                            <img src="<?php echo e(asset('storage/' . $images[0])); ?>"
-                                                class="card-img-top img-fluid" alt="Product">
-                                        <?php endif; ?>
-                                        <div class="card-body">
-                                            <h6 class="fw-semibold"><?php echo e($ad->title); ?></h6>
-                                            <h5 class="text-danger fw-bold">AED <?php echo e($ad->price); ?></h5>
-                                            <ul class="list-unstyled small">
-                                                <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                                <li><b>Condition:</b> <?php echo e($ad->condition); ?></li>
-                                                <li><b>Delivery:</b> Ask Supplier</li>
-                                                <li><b>Warranty:</b> Ask Supplier</li>
-                                            </ul>
-                                            <div class="d-flex gap-2">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endif; ?>
-                        </div>
-                        <!-- More ads as needed -->
-                    </div>
-                </div>
-            </div>
+        
 
             <!-- Gallery -->
             <div class="card shadow-sm border-0 rounded-3 mt-4">
