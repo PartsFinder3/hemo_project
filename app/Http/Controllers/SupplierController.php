@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
         use App\Models\Domain; 
 use App\Models\Inquiries;
-
+use Illuminate\Support\Facades\Redirect;
 
 class SupplierController extends Controller
 {
@@ -127,7 +127,9 @@ class SupplierController extends Controller
 public function showSupplierPanel(Request $request)
 {
     $supplier = Auth::guard('supplier')->user();
-    
+    if(!$supplier){
+        return redirect()->route('supplier.login')->with('error','please login');
+    }
     // If supplier account is not active, block inquiries
     if (!$supplier->is_active) {
         return view('supplierPanel.index', [
