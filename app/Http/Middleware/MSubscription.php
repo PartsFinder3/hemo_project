@@ -22,10 +22,10 @@ class MSubscription
         $supplier = Auth::guard('supplier')->user();
 
         // Supplier active check
-        if (!$supplier->is_active) {
-            return redirect()->route('supplier.login.expire')
-                ->with('error', 'Your subscription has expired.');
-        }
+        // if (!$supplier->is_active) {
+        //     return redirect()->route('supplier.login.expire')
+        //         ->with('error', 'Your subscription has expired.');
+        // }
 
         // Latest invoice
         $invoiceId = Invoices::where('supplier_id', $supplier->id)
