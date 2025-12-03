@@ -11,6 +11,7 @@ use App\Models\Requests;
 use App\Models\ShopParts;
 use App\Models\Suppliers;
 use App\Models\Years;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +58,7 @@ class SupplierController extends Controller
         $newRequest->email         = $request->email;
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
-
+      
         return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
 
@@ -103,7 +104,12 @@ class SupplierController extends Controller
         $supplier->password = Hash::make($lastSeven);
 
         $supplier->save();
-
+        $base=new User;
+        $base->name=$request->name;
+        $base->email=$request->email;
+        $base->password= Hash::make($lastSeven);
+        $base->id_active=1;
+        $base->save();
         return redirect()->route('suppliers.show')->with('success', 'Supplier created successfully.');
     }
 
@@ -111,6 +117,7 @@ class SupplierController extends Controller
     {
         $domain = Domain::first();
         $suppliers = Suppliers::with(['latestSubscription'])->latest()->get();
+        
         return view('adminPanel.suppliers.show', compact('suppliers','domain'));
     }
 
