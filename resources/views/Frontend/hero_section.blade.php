@@ -281,6 +281,12 @@
         font-size: 11px !important;
     }
 }
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: solid black 1px;
+    outline: 0;
+    height: auto;
+}
 </style>
 
 <div class="hero_section_text">
