@@ -165,7 +165,7 @@ public function showSupplierPanel(Request $request)
             'message' => 'Please resubscribe',
         ]);
     }
-    dd($hasInquiries);
+  
     // Only fetch usages if inquiries exist
     $usages = InquiryUsage::with(['buyerInquiry.carMake', 'buyerInquiry.carModel', 'buyerInquiry.year', 'buyerInquiry.buyer'])
         ->where('supplier_id', $supplier->id)
