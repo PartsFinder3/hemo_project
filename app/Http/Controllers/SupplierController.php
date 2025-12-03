@@ -111,11 +111,25 @@ class SupplierController extends Controller
 public function showSuppliers()
 {
     $domain = Domain::first();
-
+$today = now();
     $suppliers = Suppliers::with('latestSubscription')
         ->latest()
-        ->get();
-     dd($suppliers);
+        ->get()
+        ->map(function ($sup) use ($today) {
+
+            $sub = $sup->latestSubscription;
+
+            // Set status
+            if (!$sub) {
+                $sup->subscription_status = 'no_subscription';
+            } elseif ($today->gt($sub->end_date)) {
+                $sup->subscription_status = 'expired';
+            } else {
+                $sup->subscription_status = 'active';
+            }
+
+            return $sup;
+        });
     return view('adminPanel.suppliers.show', compact('suppliers', 'domain'));
 }
 
