@@ -150,6 +150,7 @@ public function showSupplierPanel(Request $request)
     }
     // If supplier account is not active, block inquiries
     if (!$supplier->is_active) {
+      return "no";
         return view('supplierPanel.index', [
             'usages' => collect(),
             'shopPartIds' => [],
