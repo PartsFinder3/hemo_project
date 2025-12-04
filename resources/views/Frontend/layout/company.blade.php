@@ -1,4 +1,4 @@
-<section class="about ">
+<section class="about">
     <div class="container py-5">
         <div class="row">
             <div class="col-12 col-sm-12">
@@ -11,7 +11,8 @@
         </div>
     </div>
 </section>
-</style>
+
+
     <!-- FAQs -->
 @if($getFAQS->count() > 0)
     <section class="faqs">
