@@ -1,5 +1,10 @@
 @extends('supplierPanel.layout.main')
 @section('main-section')
+<style>
+    .mb-3 label{
+        font-weight: bold;
+    }
+</style>
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
