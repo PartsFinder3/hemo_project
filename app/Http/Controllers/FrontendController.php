@@ -49,11 +49,9 @@ public function index(Request $request)
 
     // Cache key define karen, host ke hisaab se
     $cacheKey = 'frontend_index_' . $host;
-
-    // Cache duration in minutes
     $cacheMinutes = 60; // 1 hour
 
-    // Check if cached data exists
+    // Get cached data (queries / data)
     $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
         $Domains = Domain::all();
         $currentDomain = $Domains->first(function($domain) use ($host) {
@@ -82,8 +80,10 @@ public function index(Request $request)
         return compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes','sParts','cities','getFAQS');
     });
 
-    // Return view with cached data
-    return view('Frontend.index', $data);
+    // Return view with **cache-friendly headers**
+    return response()
+        ->view('Frontend.index', $data)
+        ->header('Cache-Control', 'public, max-age=3600'); // 1 hour browser + CDN cache
 }
 
  
