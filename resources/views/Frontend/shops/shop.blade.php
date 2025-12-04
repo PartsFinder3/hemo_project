@@ -11,7 +11,7 @@
     background-repeat: no-repeat;  /* image repeat نہ ہو */
 }
 .inqueries {
-    width:100px ;
+    width:auto ;
     padding: 10px;
     display: flex;
     flex-direction: row; /* horizontal alignment */
