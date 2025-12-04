@@ -685,35 +685,32 @@
            <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
             <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
           </div>
-<div class="icons_media">
-    <!-- Facebook -->
-    <div class="icons" style="background-color: #4267B2">
-        <a href="https://www.facebook.com/yourpage" target="_blank" aria-label="Visit our Facebook page">
-            <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook Icon">
-        </a>
-    </div>
-
-    <!-- X / Twitter -->
-    <div class="icons" style="background-color: black">
-        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Visit our Twitter profile">
-            <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="Twitter Icon">
-        </a>
-    </div>
-
-    <!-- LinkedIn -->
-    <div class="icons" style="background-color: #0077b5">
-        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="Visit our LinkedIn profile">
-            <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn Icon">
-        </a>
-    </div>
-
-    <!-- WhatsApp -->
-    <div class="icons" style="background-color:#25d366">
-        <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="Chat with us on WhatsApp">
-            <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp Icon">
-        </a>
-    </div>
-</div>
+    <div class="icons_media">
+                    <!-- Facebook -->
+            <div class="icons"  style="background-color: #4267B2">
+                <a href="https://www.facebook.com/yourpage" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook">
+                </a>
+            </div>
+                        <!-- X / Twitter -->
+            <div class="icons" style="background-color: black">
+                <a href="https://twitter.com/yourprofile" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="X / Twitter">
+                </a>
+            </div>
+                    <!-- LinkedIn -->
+               <div class="icons"  style="background-color: #0077b5">
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn">
+                </a>
+               </div>
+                <!-- WhatsApp -->
+               <div class="icons" style="background-color:#25d366 ">
+                <a href="https://wa.me/yourphonenumber" target="_blank">
+                    <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp">
+                </a> 
+            </div>
+        </div>
 
 
     </div>
