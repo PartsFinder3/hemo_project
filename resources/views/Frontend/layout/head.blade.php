@@ -22,13 +22,13 @@
     <meta name="author" content="{{ $domain->metaTags->title }}">
     <title>{{ $domain->metaTags->title }}</title>
 @endif
-<!-- Primary Open Graph Meta Tags -->
+@if(isset($domain))
 <meta property="og:title" content="{{ $domain->metaTags->title }}">
 <meta property="og:description" content="{{ $domain->metaTags->description }}">
 <meta property="og:image" content="https://partsfinder.ae/storage/logo/44444.png">
 <meta property="og:url" content="https://partsfinder.ae">
 <meta property="og:type" content="website">
-
+@endif
 
 
     <!-- Fonts -->
