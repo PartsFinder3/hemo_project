@@ -29,26 +29,7 @@
 <meta property="og:url" content="https://partsfinder.ae">
 <meta property="og:type" content="website">
 @endif
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "{{ $make->name }}",
-    "image": "https://partsfinder.ae/storage/{{ $make->logo }}",
-    "description": "{{ $meta['description'] ?? '' }}",
-    "brand": {
-        "@type": "Brand",
-        "name": "{{ $make->name }}"
-    },
-    "offers": {
-        "@type": "Offer",
-        "url": "https://partsfinder.ae/makes/show/ads/{{ $make->name }}/{{ $make->id }}",
-        "priceCurrency": "AED",
-        "price": "On Demand",
-        "availability": "https://schema.org/InStock"
-    }
-}
-</script>
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
