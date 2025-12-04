@@ -28,7 +28,7 @@
     background-repeat: no-repeat; 
 }
 .information-contanier{
-   width: auto;
+   width: 300px;
    height: 100%;
 
    display: flex;
