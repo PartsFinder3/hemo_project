@@ -28,8 +28,8 @@
 <meta property="og:image" content="https://partsfinder.ae/storage/logo/44444.png">
 <meta property="og:url" content="https://partsfinder.ae">
 <meta property="og:type" content="website">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1800"> <!-- Badi image -->
+<meta property="og:image:height" content="945">
 @endif
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fonts -->
