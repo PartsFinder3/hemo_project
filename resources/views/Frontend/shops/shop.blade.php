@@ -41,6 +41,7 @@
 }
 .information-contanier {
     margin-top: 20px;
+    margin-bottom: 20px !important;
 }
 
 .icons_media {
@@ -685,7 +686,7 @@
            <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
             <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
           </div>
-<div class="icons_media">
+       <div class="icons_media">
     <!-- Facebook -->
     <div class="icons" style="background-color: #4267B2">
         <a href="https://www.facebook.com/yourpage" target="_blank" aria-label="Visit our Facebook page">
