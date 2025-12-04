@@ -360,7 +360,7 @@
     </div>
 
 <div class="hero_image_section">
-    <img src="{{ asset($image) }}" alt="">
+    <img src="{{ asset($image) }}" alt="" loading="lazy">
 </div>
 </div>
 
