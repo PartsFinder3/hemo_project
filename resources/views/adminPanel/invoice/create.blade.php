@@ -174,7 +174,7 @@
                                      <a href="{{route('update.parts',$supplier->id)}}" class="btn btn-secondary me-md-2 disabled" aria-disabled="true">
                                     <i class="fas fa-check me-1"></i> Update Elements
                                 </a>
-                                  @else
+                                @endif
                             </div>
                         </form>
                     </div>
