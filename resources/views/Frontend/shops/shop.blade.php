@@ -10,6 +10,15 @@
     background-position: center;   /* image center سے show ہو */
     background-repeat: no-repeat;  /* image repeat نہ ہو */
 }
+.inqueries {
+    padding: 10px;
+    display: flex;
+    flex-direction: row; /* horizontal alignment */
+    flex-wrap: nowrap;   /* items same line me rahen */
+    align-items: center; /* vertical alignment */
+    gap: 10px;           /* items ke beech gap */
+}
+
 .cover_system{
     width: 83%;
     height: 150px;
@@ -35,10 +44,7 @@
    flex-direction: column;
    margin-left: 20px !important;
 }
-.inqueries{
-    padding: 10px;
 
-}
 .information-contanier {
     margin-top: 20px;
     margin-bottom: 20px !important;
@@ -667,7 +673,6 @@
         bottom: -40px;
     }
 }
-
 
 
 /* ============ TOUCH FRIENDLY ELEMENTS ============ */
