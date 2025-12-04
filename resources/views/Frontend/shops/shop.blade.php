@@ -42,6 +42,7 @@
 .information-contanier {
     margin-top: 20px;
     margin-bottom: 20px !important;
+    height: 240px;
 }
 
 .icons_media {
