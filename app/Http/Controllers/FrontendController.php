@@ -43,43 +43,49 @@ class FrontendController extends Controller
         $this->inquiryService = $inquiryService;
     }
 
-    public function index(Request $request)
-    {
-          $host =$request->getHost();
-          $Domains=Domain::all();
-        $currentDomain = $Domains->first(function($domain) use ($host) {
-                return $domain->domain_url == $host;
-            });
-                    if ($currentDomain) {
-                $domain_id = $currentDomain->id;
-            } else {
-                $domain_id = null; // یا کوئی default value
-            }
+public function index(Request $request)
+{
+    $host = $request->getHost();
 
-        $getFAQS=Faq::where('domain_id',$domain_id)->get();
-       
-        $carMakes = CarMakes::whereNotNull('logo')
-            ->take(60)
-            ->get();
+    // Cache key define karen, host ke hisaab se
+    $cacheKey = 'frontend_index_' . $host;
+
+    // Cache duration in minutes
+    $cacheMinutes = 60; // 1 hour
+
+    // Check if cached data exists
+    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
+        $Domains = Domain::all();
+        $currentDomain = $Domains->first(function($domain) use ($host) {
+            return $domain->domain_url == $host;
+        });
+
+        $domain_id = $currentDomain ? $currentDomain->id : null;
+
+        $getFAQS = Faq::where('domain_id', $domain_id)->get();
+        $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
         $domain = Domain::first();
         $models = CarModels::all();
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
         $ads = Ads::where('is_approved', true)
-           ->where('domain', $host)
-           ->latest()
-           ->get();
-        $carAds = CarAds::where('is_approved', true)->latest()->get();
-        $randomParts = SpareParts::withCount('ads')
-            ->orderBy('ads_count', 'desc')
-            ->take(5)
+            ->where('domain', $host)
+            ->latest()
             ->get();
+        $carAds = CarAds::where('is_approved', true)->latest()->get();
+        $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
-        return view('Frontend.index', compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes', 'cities','sParts','getFAQS'));
-    }
+
+        return compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes','sParts','cities','getFAQS');
+    });
+
+    // Return view with cached data
+    return view('Frontend.index', $data);
+}
+
  
     public function getModelsByMake($makeId)
     {
