@@ -1,4 +1,9 @@
 @extends('supplierPanel.layout.main')
+<style>
+    .mb-3 label{
+        font-weight: bold;
+    }
+</style>
 @section('main-section')
     <div class="container mt-5">
         <div class="row">
