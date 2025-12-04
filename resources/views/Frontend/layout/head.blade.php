@@ -2,26 +2,22 @@
 <html lang="en">
 
 <head>
-    
-  
-
-  
 @if(isset($meta) && $meta)
     <title>{{ $meta['title'] }}</title>
     <meta name="description" content="{{ $meta['description'] }}">
-
     <script type="application/ld+json">
         {!! $meta['structure_data'] !!}
     </script>
 @endif
 <link rel="canonical" href="{{ url()->current() }}">
-  
+
 @if(empty($meta) && isset($domain->metaTags))
     <meta name="description" content="{{ $domain->metaTags->description }}">
     <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
     <meta name="author" content="{{ $domain->metaTags->title }}">
     <title>{{ $domain->metaTags->title }}</title>
 @endif
+
 @if(isset($domain))
 <meta property="og:title" content="{{ $domain->metaTags->title }}">
 <meta property="og:description" content="{{ $domain->metaTags->description }}">
@@ -30,46 +26,55 @@
 <meta property="og:type" content="website">
 @endif
 
+<!-- Preconnect & DNS Prefetch for faster font/CDN loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<!-- Google Fonts preload for LCP -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap" rel="stylesheet">
+</noscript>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
 
-    <!-- AOS Animation Styles -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- AOS Animation Styles -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <!-- Include Select2 CSS & JS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
-    @if($domain && $domain->logo)
-        <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
-    @endif
-    {{-- <style>
-                                  @media (max-width:480px){
-                                #w-left{
-                                    display: none
-                                }
-             
-                                }
-    </style> --}}
-        <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    @php
-    $scripts = \App\Models\SciteScripts::where('status', true)->get();
-    @endphp
-    @if ($scripts->count() > 0)
-        @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
-    @endif
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+<!-- Choices.js CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" media="print" onload="this.media='all'">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+<!-- Custom Style -->
+<link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}" media="print" onload="this.media='all'">
+
+@if($domain && $domain->logo)
+    <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
+@endif
+
+@php
+$scripts = \App\Models\SciteScripts::where('status', true)->get();
+@endphp
+@if ($scripts->count() > 0)
+    @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
+@endif
+
+<!-- JS deferred to improve LCP -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>
+
 </head>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
