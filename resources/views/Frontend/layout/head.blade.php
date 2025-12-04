@@ -22,6 +22,16 @@
     <meta name="author" content="{{ $domain->metaTags->title }}">
     <title>{{ $domain->metaTags->title }}</title>
 @endif
+@if($domain && $domain->companyData && $domain->companyData->about_us)
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "About Us - {{ $domain->metaTags->title ?? 'Website' }}",
+  "description": {!! json_encode(strip_tags($domain->companyData->about_us)) !!}
+}
+</script>
+@endif
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
