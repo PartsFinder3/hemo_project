@@ -216,6 +216,7 @@ Route::get('/shops/toggle/{id}', [ShopController::class, 'toogleShop'])->name('s
 //<------------------------------ Invoice ------------------------------>
 Route::get('/invoices/create/{id}', [InvoiceController::class, 'create'])->name('invoices.create');
 Route::post('/invoices/store', [InvoiceController::class, 'storeInvoice'])->name('invoices.store');
+Route::get('/update/parts/{id}', [InvoiceController::class, 'update_parts'])->name('update.parts');
 Route::get('/invoices/{id}', [InvoiceController::class, 'show'])->name('invoices.pdf');
 
 //Company Data

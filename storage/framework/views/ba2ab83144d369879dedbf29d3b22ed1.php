@@ -1,23 +1,23 @@
-@extends('adminPanel.layout.main')
-@section('main-section')
+<?php $__env->startSection('main-section'); ?>
     <div class="container-fluid py-4">
-        @if (session('success'))
+        <?php if(session('success')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="fas fa-check-circle me-2"></i>
-                {{ session('success') }}
-                @if (session('pdf_path'))
+                <?php echo e(session('success')); ?>
+
+                <?php if(session('pdf_path')): ?>
                     <div class="mt-3 d-flex gap-2">
-                        <a href="{{ session('pdf_path') }}" target="_blank" class="btn btn-primary btn-sm">
+                        <a href="<?php echo e(session('pdf_path')); ?>" target="_blank" class="btn btn-primary btn-sm">
                             <i class="fas fa-eye me-1"></i> View PDF
                         </a>
-                        <a href="{{ session('pdf_path') }}" download class="btn btn-success btn-sm">
+                        <a href="<?php echo e(session('pdf_path')); ?>" download class="btn btn-success btn-sm">
                             <i class="fas fa-download me-1"></i> Download PDF
                         </a>
                     </div>
-                @endif
+                <?php endif; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
-        @endif
+        <?php endif; ?>
 
         <div class="row g-4">
             <!-- Invoice Form -->
@@ -30,9 +30,9 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('invoices.store') }}" id="invoiceForm" novalidate>
-                            @csrf
-                            <input type="hidden" name="supplier_id" value="{{ $supplier->id }}">
+                        <form method="POST" action="<?php echo e(route('invoices.store')); ?>" id="invoiceForm" novalidate>
+                            <?php echo csrf_field(); ?>
+                            <input type="hidden" name="supplier_id" value="<?php echo e($supplier->id); ?>">
                             <input type="hidden" name="total_amount" id="hiddenTotalAmount" value="0">
 
                             <!-- Supplier Information -->
@@ -45,12 +45,12 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-semibold">Supplier Name</label>
                                     <input type="text" class="form-control" id="supplierName"
-                                        value="{{ $supplier->name }}" disabled>
+                                        value="<?php echo e($supplier->name); ?>" disabled>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label fw-semibold">Contact Number</label>
                                     <input type="text" class="form-control" id="supplierContact"
-                                        value="{{ $supplier->whatsapp }}" disabled>
+                                        value="<?php echo e($supplier->whatsapp); ?>" disabled>
                                 </div>
                             </div>
 
@@ -119,7 +119,7 @@
                                                 <div class="col-md-6 mb-2">
                                                     <label class="form-label fw-semibold">Amount</label>
                                                     <div class="input-group">
-                                                        {{-- <span class="input-group-text"></span> --}}
+                                                        
                                                         <input type="number" class="form-control subscription-amount"
                                                             name="subscriptions[0][amount]" required placeholder="0.00"
                                                             step="0.01" min="0">
@@ -161,20 +161,20 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-save me-1"></i> Generate Invoice
                                 </button>
-                             @if (!$supplier->shop)
-                                <a href="{{ route('shops.create', $supplier->id) }}" class="btn btn-success me-md-2">
+                             <?php if(!$supplier->shop): ?>
+                                <a href="<?php echo e(route('shops.create', $supplier->id)); ?>" class="btn btn-success me-md-2">
                                     <i class="fas fa-plus me-1"></i> Create Shop
                                 </a>
-                            @else
+                            <?php else: ?>
                                 <a href="javascript:void(0)" class="btn btn-secondary me-md-2 disabled" aria-disabled="true">
                                     <i class="fas fa-check me-1"></i> Already Shop
                                 </a>
-                            @endif
-                                @if (!$supplier->shop)
-                                     <a href="{{route('update.parts',$supplier->id)}}" class="btn btn-secondary me-md-2 disabled" aria-disabled="true">
+                            <?php endif; ?>
+                                <?php if(!$supplier->shop): ?>
+                                     <a href="<?php echo e(route('update.parts',$supplier->id)); ?>" class="btn btn-secondary me-md-2 disabled" aria-disabled="true">
                                     <i class="fas fa-check me-1"></i> Update Elements
                                 </a>
-                                  @else
+                                  <?php else: ?>
                             </div>
                         </form>
                     </div>
@@ -196,7 +196,7 @@
                         <div class="text-center mb-4 pb-3 border-bottom"
                             style="font-family: 'Segoe UI', Arial, sans-serif;">
                             <!-- Logo -->
-                            <img src="{{ asset('assets/compiled/jpg/Logo.png') }}" alt="Company Logo"
+                            <img src="<?php echo e(asset('assets/compiled/jpg/Logo.png')); ?>" alt="Company Logo"
                                 style="max-width: 160px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));" class="mb-3">
 
                             <!-- Company Info -->
@@ -237,9 +237,9 @@
                                         <i class="fas fa-building me-2"></i>Supplier Details
                                     </h6>
                                     <p class="mb-1"><strong>Name:</strong> <span
-                                            id="previewSupplier">{{ $supplier->name }}</span></p>
+                                            id="previewSupplier"><?php echo e($supplier->name); ?></span></p>
                                     <p class="mb-0"><strong>Contact:</strong> <span
-                                            id="previewContact">{{ $supplier->whatsapp }}</span></p>
+                                            id="previewContact"><?php echo e($supplier->whatsapp); ?></span></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -934,4 +934,6 @@
 
     <!-- FontAwesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('adminPanel.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/adminPanel/invoice/create.blade.php ENDPATH**/ ?>

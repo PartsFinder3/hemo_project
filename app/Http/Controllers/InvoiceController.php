@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BuyerInvoices;
 use App\Models\Buyers;
 use App\Models\Invoices;
+use App\Models\Shops;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -97,5 +98,10 @@ public function storeBuyerInvoice(Request $request)
         ->with('success', 'Invoice created successfully!')
         ->with('pdf_path', asset('storage/' . $fileName));
 }
+  function update_parts($id){
 
+   $shop=Shops::find($id);
+       return redirect()->route('shops.view', $shop->id);
+
+  }
 }
