@@ -1,12 +1,11 @@
 <?php $__env->startSection('main-section'); ?>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<?php
+    // اگر $image موجود نہیں تو default image use کرو
+    $heroImage = $image ?? 'storage/profile_images/hero_section_image_1.png';
+?>
 
-<!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Preload hero image for better performance -->
+<link rel="preload" as="image" href="<?php echo e(asset($heroImage)); ?>">
 
 <style>
     body, main, header, nav, .hero-section, .hero-section_p {
@@ -55,6 +54,7 @@
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     height: 470px;
+    display: block;
 }
 
 
@@ -238,7 +238,7 @@
 
 /* Separate colors */
 .buttons a.whatsapp {
-    background: #25D366;
+    background: #198754;
 }
 
 .buttons a.call {
@@ -340,69 +340,65 @@
 
 
 
-    <section class="ad-cards">
-        <div class="section-text">
-            <h3>TOP ADS</h3>
-            <h2>Find the Best Deals For You</h2>
-        </div>
-        <div class="filters">
-            <a href="#" class="active">All</a>
-            <?php $__currentLoopData = $randomParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a href="<?php echo e(route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id])); ?>">
-                    <?php echo e($part->name); ?>
+  <!-- FIRST ADS SECTION - Part Ads -->
+<section class="ad-cards">
+    <div class="section-text">
+        <h3>TOP ADS</h3>
+        <h2>Find the Best Deals For You</h2>
+    </div>
+    <div class="filters">
+        <a href="#" class="active">All</a>
+        <?php $__currentLoopData = $randomParts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <a href="<?php echo e(route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id])); ?>">
+                <?php echo e($part->name); ?>
 
-                </a>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
+            </a>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
 
-        <div class="grid" id="productGrid1">
-            <!-- Example Card -->
-            <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="card">
-                    <?php
-                        $images = json_decode($ad->images, true);
-                    ?>
+    <div class="grid" id="productGrid1">
+        <!-- Example Card -->
+        <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="card">
+                <?php
+                    $images = json_decode($ad->images, true);
+                ?>
 
-                         <?php if(!empty($images[0])): ?>
-                                            <img src="<?php echo e(asset($images[0])); ?>" class="card-img-top img-fluid" alt="Product">
-               <?php endif; ?>
-                    <div class="card-body">
-                        <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
-                            class="card-title"><?php echo e($ad->title); ?></a>
-                        <div class="price"><?php echo e($ad->currency); ?> <?php echo e($ad->price); ?></div>
-                        <div class="meta">
-                            Availability: In Stock <br>
-                            Condition: <?php echo e($ad->condition); ?> <br>
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
-                        </div>
-                        <?php
-                             $ad->shop->supplier->whatsapp;
-                        ?>
-                        <div class="buttons">
-                   
-                                <a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $ad->shop->supplier->whatsapp)); ?>?text=<?php echo e(urlencode('Hello, I am interested in your ad: ' . $ad->title)); ?>"
-                                target="_blank"
-                                class="btn btn-sm btn-success w-100 my-1">
-                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                                </a>
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
-                        </div>
-
+                <?php if(!empty($images[0])): ?>
+                    <img src="<?php echo e(asset($images[0])); ?>" class="card-img-top img-fluid" alt="Product">
+                <?php endif; ?>
+                
+                <div class="card-body">
+                    <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
+                        class="card-title"><?php echo e($ad->title); ?></a>
+                    <div class="price"><?php echo e($ad->currency); ?> <?php echo e($ad->price); ?></div>
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Condition: <?php echo e($ad->condition); ?> <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+                    
+                    <div class="buttons">
+                        <a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $ad->shop->supplier->whatsapp)); ?>?text=<?php echo e(urlencode('Hello, I am interested in your ad: ' . $ad->title)); ?>"
+                            target="_blank"
+                            class="btn btn-sm btn-success w-100 my-1">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="btn call"
+                            onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
+                            <i class="fa-solid fa-phone"></i> Click to Call
+                        </a>
                     </div>
                 </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
 
-            
+    <div class="pagination" id="pagination1"></div>
+</section>
 
-            <!-- Repeat similar cards... -->
-        </div>
-
-        <div class="pagination" id="pagination1"></div>
-    </section>
         <section class="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
@@ -457,7 +453,7 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
 
-        <div class="grid" id="productGrid2">
+        <div class="grid" id="productGrid1">
             <!-- Example Card -->
             <?php $__currentLoopData = $carAds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card">
@@ -500,7 +496,7 @@
             <!-- Repeat similar cards... -->
         </div>
 
-        <div class="pagination" id="pagination2"></div>
+       <div class="pagination" id="pagination1"></div>
     </section>
 
     <!-- Map -->
@@ -833,7 +829,40 @@
         padding: 8px 10px;
     }
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
 
+.pagination button {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pagination button:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
  </style>
 
 
@@ -933,7 +962,82 @@ if (burgerMenu && navMenu) {
     });
 }
 </script>
+<script>
+    // باقی functions...
 
+    function setupPagination(gridId, paginationId, perPage = 8) {
+        const products = document.querySelectorAll(`#${gridId} .card`);
+        const totalPages = Math.ceil(products.length / perPage);
+        const pagination = document.getElementById(paginationId);
+
+        if (!pagination || products.length === 0) return;
+
+        function showPage(page) {
+            // Hide all products
+            products.forEach(product => {
+                product.style.display = "none";
+            });
+            
+            // Show products for current page
+            const startIndex = (page - 1) * perPage;
+            const endIndex = startIndex + perPage;
+            
+            for (let i = startIndex; i < endIndex && i < products.length; i++) {
+                if (products[i]) {
+                    products[i].style.display = "block";
+                }
+            }
+            
+            // Update active button
+            pagination.querySelectorAll("button").forEach((btn, i) => {
+                btn.classList.toggle("active", i + 1 === page);
+            });
+        }
+
+        function createPaginationButtons() {
+            pagination.innerHTML = "";
+
+            // Previous button
+            const prevBtn = document.createElement("button");
+            prevBtn.innerHTML = "&laquo;";
+            prevBtn.className = "prev";
+            prevBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active")?.innerText);
+                if (current > 1) showPage(current - 1);
+            });
+            pagination.appendChild(prevBtn);
+
+            // Number buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.innerText = i;
+                btn.addEventListener("click", () => showPage(i));
+                pagination.appendChild(btn);
+            }
+
+            // Next button
+            const nextBtn = document.createElement("button");
+            nextBtn.innerHTML = "&raquo;";
+            nextBtn.className = "next";
+            nextBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active")?.innerText);
+                if (current < totalPages) showPage(current + 1);
+            });
+            pagination.appendChild(nextBtn);
+        }
+
+        createPaginationButtons();
+        showPage(1);
+    }
+
+    // DOM loaded pe dono sections ke liye pagination setup karo
+    document.addEventListener("DOMContentLoaded", () => {
+        setupPagination("productGrid1", "pagination1", 8);
+        setupPagination("productGrid2", "pagination2", 8);
+    });
+
+    // باقی functions...
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('Frontend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/index.blade.php ENDPATH**/ ?>
