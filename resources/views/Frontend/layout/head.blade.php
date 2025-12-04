@@ -25,20 +25,37 @@
     <meta property="og:url" content="https://partsfinder.ae">
     <meta property="og:type" content="website">
 
-    <!-- Fonts -->
+    <!-- Preconnect for Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts async -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!-- Critical CSS inline -->
     <style>
-        /* Critical navigation & hero button CSS */
-        nav{background:white} nav .logo{z-index:1001;width:170px;position:absolute;margin-top:-30px;margin-left:0} nav .logo img{width:65%} .hero-btns a{display:inline-block;padding:7px 25px;font-weight:500;font-size:15px;border-radius:50rem;height:35px;transition:.3s} /* Media queries inline for header/nav */
-        @media (max-width:992px){#nav-menu{position:fixed;top:70px;right:-100%;width:230px;background:#fff;padding:25px 20px;flex-direction:column;gap:25px;transition:.3s;box-shadow:0 5px 20px rgba(0,0,0,.15);z-index:999} #nav-menu.active{right:0;width:100%} #nav-menu ul{flex-direction:column;gap:15px;padding:0} #nav-menu ul li a{font-size:16px} .hero-btns{flex-direction:column;gap:10px} .hero-btns a{width:100%;text-align:center;padding-left:0;padding-right:0;padding-bottom:10px} #burger-menu{display:flex;flex-direction:column;gap:5px;cursor:pointer;z-index:1001} #burger-menu span{width:25px;height:3px;background:black;border-radius:2px}}
-        @media (max-width:480px){nav .logo{width:130px;margin-top:-15px} nav .logo img{width:40%} .hero-btns a{font-size:13px;height:auto;padding-bottom:10px}}
+        nav{background:white} 
+        nav .logo{z-index:1001;width:170px;position:absolute;margin-top:-30px;margin-left:0} 
+        nav .logo img{width:65%} 
+        .hero-btns a{display:inline-block;padding:7px 25px;font-weight:500;font-size:15px;border-radius:50rem;height:35px;transition:.3s} 
+        @media (max-width:992px){
+            #nav-menu{position:fixed;top:70px;right:-100%;width:230px;background:#fff;padding:25px 20px;flex-direction:column;gap:25px;transition:.3s;box-shadow:0 5px 20px rgba(0,0,0,.15);z-index:999} 
+            #nav-menu.active{right:0;width:100%} 
+            #nav-menu ul{flex-direction:column;gap:15px;padding:0} 
+            #nav-menu ul li a{font-size:16px} 
+            .hero-btns{flex-direction:column;gap:10px} 
+            .hero-btns a{width:100%;text-align:center;padding-left:0;padding-right:0;padding-bottom:10px} 
+            #burger-menu{display:flex;flex-direction:column;gap:5px;cursor:pointer;z-index:1001} 
+            #burger-menu span{width:25px;height:3px;background:black;border-radius:2px}
+        }
+        @media (max-width:480px){
+            nav .logo{width:130px;margin-top:-15px} 
+            nav .logo img{width:40%} 
+            .hero-btns a{font-size:13px;height:auto;padding-bottom:10px}
+        }
     </style>
 
-    <!-- Non-critical CSS (load async) -->
+    <!-- Non-critical CSS async -->
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
@@ -46,7 +63,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" media="print" onload="this.media='all'">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <!-- Non-critical JS (defer) -->
+    <!-- JS defer -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js" defer></script>
 
@@ -61,6 +78,7 @@
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
 </head>
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
