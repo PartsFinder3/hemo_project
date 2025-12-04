@@ -100,7 +100,7 @@ public function storeBuyerInvoice(Request $request)
 }
   function update_parts($id){
 
-   $shop=Shops::find($id);
+   $shop=Shops::where('supplier_id',$id)->first();
        return redirect()->route('shops.view', $shop->id);
 
   }

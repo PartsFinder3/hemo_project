@@ -170,11 +170,11 @@
                                     <i class="fas fa-check me-1"></i> Already Shop
                                 </a>
                             <?php endif; ?>
-                                <?php if(!$supplier->shop): ?>
-                                     <a href="<?php echo e(route('update.parts',$supplier->id)); ?>" class="btn btn-secondary me-md-2 disabled" aria-disabled="true">
+                                <?php if($supplier->shop): ?>
+                                     <a href="<?php echo e(route('update.parts',$supplier->id)); ?>" class="btn btn-secondary me-md-2" aria-disabled="true">
                                     <i class="fas fa-check me-1"></i> Update Elements
                                 </a>
-                                  <?php else: ?>
+                                <?php endif; ?>
                             </div>
                         </form>
                     </div>
