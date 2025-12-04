@@ -23,14 +23,12 @@
     <title>{{ $domain->metaTags->title }}</title>
 @endif
 <!-- Primary Open Graph Meta Tags -->
-<meta property="og:title" content="{{ $domain->metaTags->title ?? 'Parts Finder' }}">
-<meta property="og:description" content="{{ $domain->metaTags->description ?? 'Find genuine car spare parts in UAE.' }}">
+<meta property="og:title" content="{{ $domain->metaTags->title }}">
+<meta property="og:description" content="{{ $domain->metaTags->description }}">
 <meta property="og:image" content="https://partsfinder.ae/storage/logo/44444.png">
-<meta property="og:image:secure_url" content="https://partsfinder.ae/storage/logo/44444.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="{{ $domain->metaTags->title ?? 'Parts Finder' }}">
-<meta property="og:url" content="{{ url()->current() }}">
+<meta property="og:url" content="https://partsfinder.ae">
 <meta property="og:type" content="website">
+
 
 
     <!-- Fonts -->
