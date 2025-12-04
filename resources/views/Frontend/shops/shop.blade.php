@@ -742,7 +742,7 @@
 
         <!-- Opening Hours Card -->
         @if($shopHours)
-        <div class="info-card mt-4">
+        <div class="info-card mt-4" style="margin-top: 30px;">
             <div class="section-title">Opening Hours</div>
             <div class="hours-grid">
                 @php
