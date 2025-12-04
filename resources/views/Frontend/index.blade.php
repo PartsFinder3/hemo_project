@@ -1,13 +1,20 @@
 @extends('Frontend.layout.main')
 @section('main-section')
-<!-- jQuery -->
+{{-- <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Select2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+@php
+    // اگر $image موجود نہیں تو default image use کرو
+    $heroImage = $image ?? 'storage/profile_images/hero_section_image_1.png';
+@endphp
+
+<!-- Preload hero image for better performance -->
+<link rel="preload" as="image" href="{{ asset($heroImage) }}">
 
 <style>
     body, main, header, nav, .hero-section, .hero-section_p {
