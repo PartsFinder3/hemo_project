@@ -190,6 +190,7 @@
                             @endphp
 
                             @if(!empty($images[0]))
+                            {{$images[0]}}
                                 <div class="product-image-wrapper">
                                     <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid product-image" alt="{{ $ad->title }}">
                                 </div>
