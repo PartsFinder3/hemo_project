@@ -404,22 +404,23 @@ document.addEventListener("DOMContentLoaded", function () {
 .product-image-wrapper {
     height: 200px; /* card image height */
     overflow: hidden;
-    background-color: #f8f9fa; /* fallback bg */
+    background-color: #f8f9fa;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* <-- important: poora image dikhe */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* poora image dikhaye, crop na ho */
     transition: transform 0.5s ease;
 }
 
 .product-card:hover .product-image {
-     transform: scale(1.05); 
+    transform: scale(1.05);
 }
+
 
 .product-title {
     color: #2c3e50;
