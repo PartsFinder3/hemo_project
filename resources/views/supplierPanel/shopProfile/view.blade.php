@@ -179,7 +179,7 @@
     <div class="card shadow-sm border-0 rounded-3 mt-4 card-wrapper">
     <div class="card-body">
         <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 scroll_posint">
           @if ($shopAds->count() > 0)
     @foreach ($shopAds as $ad)
         <div class="col">
@@ -293,12 +293,12 @@
     </div>
     @if (request()->scroll == 'ads')
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const element = document.getElementById("ads-section");
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-        }
-    });
+document.addEventListener("DOMContentLoaded", function () {
+    const element = document.getElementsByClassName("scroll_posint")[0];
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+    }
+});
 </script>
 @endif
 
