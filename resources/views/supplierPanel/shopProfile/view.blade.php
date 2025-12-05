@@ -203,10 +203,10 @@
                     </ul>
                 </div>
 
-                <a class="dropdown-item"
-                   href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
-                    <i class="bi bi-pencil-square me-2"></i>Edit
-                </a>
+                <a class="btn btn-primary mt-auto"
+           href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
+            <i class="bi bi-pencil-square me-1"></i> Edit
+        </a>
 
             </div>
         </div>
