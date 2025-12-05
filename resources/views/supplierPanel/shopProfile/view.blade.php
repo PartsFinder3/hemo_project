@@ -211,13 +211,14 @@
             </div>
         </div>
     @endforeach
-<div id="ads-section" class="mt-4 d-flex justify-content-center">
-    {{ $shopAds->appends(['scroll' => 'ads'])->links() }}
-</div>
+    <div id="ads-section" class="mt-4 d-flex justify-content-center">
+        {{ $shopAds->appends(['scroll' => 'ads'])->links() }}
+    </div>
+
 
 @else
-    <div class="col">
-        <p>No ads found.</p>
+    <div class="col-12 d-flex justify-content-center mt-4">
+        <p class="text-center">No ads found.</p>
     </div>
 @endif
 
