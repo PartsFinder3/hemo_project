@@ -212,10 +212,9 @@
         </div>
     @endforeach
 
-    <!-- Pagination here -->
-    <div class="mt-4">
-        {{ $shopAds->links() }}
-    </div>
+<div class="mt-4 d-flex justify-content-center">
+    {{ $shopAds->links() }}
+</div>
 
 @else
     <div class="col">
