@@ -179,31 +179,50 @@
 <div class="card shadow-sm border-0 rounded-3 mt-4 card-wrapper">
     <div class="card-body">
         <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 scroll_posint">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 scroll_posint">
 
             @if ($shopAds->count() > 0)
                 @foreach ($shopAds as $ad)
                     <div class="col">
-                        <div class="card h-100 shadow-sm border-0 rounded-3 d-flex flex-column">
+                        <div class="card h-100 shadow-sm border-0 rounded-3 d-flex flex-column product-card">
                             @php
                                 $images = json_decode($ad->images, true);
                             @endphp
 
                             @if(!empty($images[0]))
-                                <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                                <div class="product-image-wrapper">
+                                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid product-image" alt="{{ $ad->title }}">
+                                </div>
+                            @else
+                                <div class="product-image-wrapper bg-light d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                                </div>
                             @endif
 
                             <div class="card-body d-flex flex-column">
-                                <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
-                                <ul class="list-unstyled small">
-                                    <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                    <li><b>Condition:</b> {{ $ad->condition }}</li>
-                                    <li><b>Delivery:</b> Ask Supplier</li>
-                                    <li><b>Warranty:</b> Ask Supplier</li>
+                                <h6 class="fw-semibold product-title mb-2">{{ Str::limit($ad->title, 50) }}</h6>
+                                <h5 class="text-danger fw-bold mb-3">AED {{ number_format($ad->price, 2) }}</h5>
+                                
+                                <ul class="list-unstyled small mb-3 product-details">
+                                    <li class="mb-1">
+                                        <span class="fw-medium">Availability:</span> 
+                                        <span class="text-success ms-1">In Stock</span>
+                                    </li>
+                                    <li class="mb-1">
+                                        <span class="fw-medium">Condition:</span> 
+                                        <span class="text-muted ms-1">{{ ucfirst($ad->condition) }}</span>
+                                    </li>
+                                    <li class="mb-1">
+                                        <span class="fw-medium">Delivery:</span> 
+                                        <span class="text-muted ms-1">Ask Supplier</span>
+                                    </li>
+                                    <li class="mb-1">
+                                        <span class="fw-medium">Warranty:</span> 
+                                        <span class="text-muted ms-1">Ask Supplier</span>
+                                    </li>
                                 </ul>
 
-                                <a class="btn btn-primary mt-auto"
+                                <a class="btn btn-primary mt-auto edit-btn" 
                                    href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
                                     <i class="bi bi-pencil-square me-1"></i> Edit
                                 </a>
@@ -212,22 +231,36 @@
                     </div>
                 @endforeach
 
-                <!-- Pagination Centered -->
-                  <div class="col-12 d-flex justify-content-center mt-4">
-        {{ $shopAds->appends(['scroll' => 'ads'])->links('pagination::bootstrap-5') }}
-    </div>
-
             @else
                 <!-- No Ads Found Centered -->
-                <div class="col-12 d-flex justify-content-center mt-4">
-                    <p class="text-center">No ads found.</p>
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <div class="mb-3">
+                            <i class="bi bi-inbox display-4 text-muted"></i>
+                        </div>
+                        <h5 class="text-muted mb-3">No ads found</h5>
+                        <p class="text-muted">Start by creating your first spare parts ad.</p>
+                        <a href="{{ route('shop.ads.create') }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i> Create New Ad
+                        </a>
+                    </div>
                 </div>
             @endif
 
         </div>
+        
+        <!-- Pagination Centered - placed outside the row but inside card-body -->
+        @if ($shopAds->count() > 0)
+        <div class="d-flex justify-content-center mt-5">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {{ $shopAds->appends(['scroll' => 'ads'])->links('pagination::bootstrap-5') }}
+                </ul>
+            </nav>
+        </div>
+        @endif
     </div>
 </div>
-
 
                 <!-- Car Ads -->
                 <div class="card shadow-sm border-0 rounded-3 mt-4">
@@ -343,4 +376,114 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 
     </style>
+
+
+
+<style>
+.card-wrapper {
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-wrapper:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.product-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: #0d6efd;
+}
+
+.product-image-wrapper {
+    height: 200px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-title {
+    color: #2c3e50;
+    font-size: 1rem;
+    line-height: 1.4;
+    min-height: 40px;
+}
+
+.product-details li {
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 8px;
+}
+
+.product-details li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+/* Center pagination */
+.pagination {
+    justify-content: center;
+}
+
+.page-link {
+    margin: 0 3px;
+    border-radius: 5px !important;
+    border: 1px solid #dee2e6;
+    color: #0d6efd;
+}
+
+.page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-image-wrapper {
+        height: 180px;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+</style>
 @endsection
