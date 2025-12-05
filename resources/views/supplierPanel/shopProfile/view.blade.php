@@ -180,40 +180,49 @@
     <div class="card-body">
         <h5 class="fw-bold mb-4">Spare Parts Ads</h5>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            @if ($shopAds->count() > 0)
-                @foreach ($shopAds as $ad)
-                    <div class="col">
-                        <div class="card h-100 shadow-sm border-0 rounded-3">
-                            @php
-                                $images = json_decode($ad->images, true);
-                            @endphp
+          @if ($shopAds->count() > 0)
+    @foreach ($shopAds as $ad)
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 rounded-3">
+                @php
+                    $images = json_decode($ad->images, true);
+                @endphp
 
-                            @if(!empty($images[0]))
-                                <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-                            @endif
+                @if(!empty($images[0]))
+                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
+                @endif
 
-                            <div class="card-body">
-                                <h6 class="fw-semibold">{{ $ad->title }}</h6>
-                                <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
-                                <ul class="list-unstyled small">
-                                    <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
-                                    <li><b>Condition:</b> {{ $ad->condition }}</li>
-                                    <li><b>Delivery:</b> Ask Supplier</li>
-                                    <li><b>Warranty:</b> Ask Supplier</li>
-                                </ul>
-                            </div>
-                               <a class="dropdown-item"
-                                                    href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
-                                                    <i class="bi bi-pencil-square me-2"></i>Edit
-                                                </a>
-                        </div>
-                    </div>
-                @endforeach
-            @else
-                <div class="col">
-                    <p>No ads found.</p>
+                <div class="card-body">
+                    <h6 class="fw-semibold">{{ $ad->title }}</h6>
+                    <h5 class="text-danger fw-bold">AED {{ $ad->price }}</h5>
+                    <ul class="list-unstyled small">
+                        <li><b>Availability:</b> <span class="text-success">In Stock</span></li>
+                        <li><b>Condition:</b> {{ $ad->condition }}</li>
+                        <li><b>Delivery:</b> Ask Supplier</li>
+                        <li><b>Warranty:</b> Ask Supplier</li>
+                    </ul>
                 </div>
-            @endif
+
+                <a class="dropdown-item"
+                   href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
+                    <i class="bi bi-pencil-square me-2"></i>Edit
+                </a>
+
+            </div>
+        </div>
+    @endforeach
+
+    <!-- Pagination here -->
+    <div class="mt-4">
+        {{ $shopAds->links() }}
+    </div>
+
+@else
+    <div class="col">
+        <p>No ads found.</p>
+    </div>
+@endif
+
         </div>
     </div>
 </div>

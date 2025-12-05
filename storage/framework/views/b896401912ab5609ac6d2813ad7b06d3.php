@@ -302,41 +302,37 @@
             </div>
             <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
                 <?php echo csrf_field(); ?>
-               <div class="form-group" id="make-group">
-    <label for="make" class="visually-hidden">Select Car Make</label>
-    <select class="dropdown mySelect highlight-border" id="make" name="car_make_id">
-        <option selected value="">Select a part make</option>
-        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </select>
-</div>
+                <div class="form-group" id="make-group">
+                    <select class="dropdown mySelect highlight-border" id="make" name="car_make_id">
+                        <option selected value="">Select a part make</option>
+                        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
 
-<div class="form-group" id="model-group">
-    <label for="model" class="visually-hidden">Select Car Model</label>
-    <select class="dropdown" id="model" name="car_model_id">
-        <option value="">Select a Model</option>
-    </select>
-</div>
+                <div class="form-group" id="model-group">
+                    <select class="dropdown" id="model" name="car_model_id">
+                        <option value="">Select a Model</option>
+                    </select>
+                </div>
 
-<div class="form-group" id="year-group">
-    <label for="year" class="visually-hidden">Select Car Year</label>
-    <select class="dropdown" id="year" name="year_id">
-        <option value="">Select a year</option>
-        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </select>
-</div>
+                <div class="form-group" id="year-group">
+                    <select class="dropdown" id="year" name="year_id">
+                        <option value="">Select a year</option>
+                        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
 
-<div class="form-group hidden" id="parts-group">
-    <label for="parts-dropdown" class="visually-hidden">Select Parts</label>
-    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
-        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </select>
-</div>
+                <div class="form-group hidden" id="parts-group">
+                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
+                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
 
                 <div class="form-group hidden" id="condition-group">
                     <div class="condition-section">
@@ -364,7 +360,7 @@
     </div>
 
 <div class="hero_image_section">
-    <img src="<?php echo e(asset($image)); ?>" alt="">
+    <img src="<?php echo e(asset($image)); ?>" alt="" loading="lazy">
 </div>
 </div>
 

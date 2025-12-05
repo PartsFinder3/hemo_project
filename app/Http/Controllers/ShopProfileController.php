@@ -33,7 +33,7 @@ class ShopProfileController extends Controller
         $shopMakes = ShopMakes::where('shop_id', $shop->id)->get();
         $shopHours = ShopHours::where('shop_id', $shop->id)->first();
         $shopGallery = ShopGallery::where('shop_id', $shop->id)->get();
-        $shopAds = Ads::where('shop_id', $shop->id)->get();
+       $shopAds = Ads::where('shop_id', $shop->id)->paginate(30);
         $shopCarAds = CarAds::where('shop_id', $shop->id)->get();
         return view('supplierPanel.shopProfile.view', compact('shop', 'profile', 'shopParts', 'shopMakes', 'shopHours', 'shopGallery', 'shopAds', 'shopCarAds'));
     }
