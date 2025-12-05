@@ -402,9 +402,9 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 
 .product-image-wrapper {
-    height: 200px;
+    height: 200px; /* card image height */
     overflow: hidden;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* fallback bg */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -413,12 +413,12 @@ document.addEventListener("DOMContentLoaded", function () {
 .product-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* <-- important: poora image dikhe */
     transition: transform 0.5s ease;
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.05);
+     transform: scale(1.05); 
 }
 
 .product-title {
