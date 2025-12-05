@@ -9,8 +9,8 @@
 }
 
 .uploadedImages img {
-    width: 100px; /* image ka size */
-    height: 100px;
+    width: 200px; /* image ka size */
+    height: 200px;
     object-fit: contain; /* poora image dikhe, crop na ho */
     border: 1px solid #ddd; /* optional border */
     border-radius: 5px; /* rounded corners */
