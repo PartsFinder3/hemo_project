@@ -191,7 +191,9 @@
 
                             @if(!empty($images[0]))
                                 <div class="product-image-wrapper">
-                                    <img src="{{ asset('storage/',$images[0]) }}" class="card-img-top img-fluid product-image" alt="{{ $ad->title }}">
+                                   <img src="{{ asset('storage/' . $images[0]) }}" 
+                                    class="card-img-top img-fluid product-image" 
+                                    alt="{{ $ad->title }}">
                                 </div>
                             @else
                                 <div class="product-image-wrapper bg-light d-flex align-items-center justify-content-center">
