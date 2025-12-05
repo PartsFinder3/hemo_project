@@ -213,13 +213,9 @@
                 @endforeach
 
                 <!-- Pagination Centered -->
-                <div class="col-12">
-                    <nav aria-label="Page navigation" class="mt-4">
-                        <ul class="pagination justify-content-center">
-                            {{ $shopAds->appends(['scroll' => 'ads'])->links('pagination::bootstrap-5') }}
-                        </ul>
-                    </nav>
-                </div>
+                  <div class="col-12 d-flex justify-content-center mt-4">
+        {{ $shopAds->appends(['scroll' => 'ads'])->links('pagination::bootstrap-5') }}
+    </div>
 
             @else
                 <!-- No Ads Found Centered -->
