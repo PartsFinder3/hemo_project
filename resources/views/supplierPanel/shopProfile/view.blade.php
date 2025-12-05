@@ -211,9 +211,8 @@
             </div>
         </div>
     @endforeach
-
-<div class="mt-4 d-flex justify-content-center">
-    {{ $shopAds->links() }}
+<div id="ads-section" class="mt-4 d-flex justify-content-center">
+    {{ $shopAds->appends(['scroll' => 'ads'])->links() }}
 </div>
 
 @else
@@ -292,6 +291,17 @@
             </div>
         </div>
     </div>
+    @if (request()->scroll == 'ads')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const element = document.getElementById("ads-section");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    });
+</script>
+@endif
+
     <style>
         .card-wrapper .card {
     width: 100%; /* card takes full width of its column */
