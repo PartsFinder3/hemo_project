@@ -1,5 +1,29 @@
 @extends('supplierPanel.layout.main')
 @section('main-section')
+<style>
+    .uploadedImages {
+    display: flex; /* images ek line me */
+    flex-wrap: wrap; /* agar line me fit na ho to next line me chale jaye */
+    gap: 10px; /* images ke beech gap */
+    margin-top: 10px;
+}
+
+.uploadedImages img {
+    width: 100px; /* image ka size */
+    height: 100px;
+    object-fit: contain; /* poora image dikhe, crop na ho */
+    border: 1px solid #ddd; /* optional border */
+    border-radius: 5px; /* rounded corners */
+    padding: 5px; /* optional padding */
+    background-color: #f8f9fa; /* optional background */
+    transition: transform 0.3s ease;
+}
+
+.uploadedImages img:hover {
+    transform: scale(1.05); /* hover effect */
+}
+
+</style>
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
