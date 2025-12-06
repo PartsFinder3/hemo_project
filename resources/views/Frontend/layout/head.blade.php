@@ -48,6 +48,7 @@
 
     <!-- Include Select2 CSS & JS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     @if($domain && $domain->logo)
@@ -70,6 +71,7 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
    @yield('head-section')
