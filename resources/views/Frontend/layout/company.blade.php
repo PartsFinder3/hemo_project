@@ -95,7 +95,7 @@
 }
 
 .about-content blockquote {
-    border-left: 4px solid #4361ee;
+    border-left: 4px solid #e57224;
     padding-left: 2rem;
     margin: 2rem 0;
     font-style: italic;
