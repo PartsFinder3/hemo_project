@@ -396,7 +396,7 @@
         @endforeach
     </div>
 
-    <div class="pagination" id="pagination1"></div>
+ 
 </section>
 
         <section class="carMakes">
