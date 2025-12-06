@@ -902,8 +902,8 @@
                 alert('Supplier is currently inactive');
             }
         }
-        const burgerMenu = document.getElementById("burger-menu");
-const navMenu = document.getElementById("nav-menu");
+let burgerMenu = document.getElementById("burger-menu");
+let navMenu = document.getElementById("nav-menu");
 
 if (burgerMenu && navMenu) {
     burgerMenu.addEventListener("click", function () {
