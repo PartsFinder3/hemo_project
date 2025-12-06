@@ -64,7 +64,7 @@
     display: flex;
     flex-direction: row;
     /* justify-content: space-between; */
-    align-items: center;
+    /* align-items: center; */
       justify-content: center; 
     padding: 0 50px;
     flex-wrap: wrap;
