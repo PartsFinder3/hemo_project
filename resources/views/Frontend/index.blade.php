@@ -340,7 +340,7 @@
     </section>
 
 
-
+<div class="scroll_posint"></div>
   <!-- FIRST ADS SECTION - Part Ads -->
 <section class="ad-cards">
     <div class="section-text">
@@ -866,7 +866,16 @@
     cursor: not-allowed;
 }
  </style>
-
+    @if (request()->scroll == 'ads')
+   <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    const element = document.getElementsByClassName("scroll_posint")[0];
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+    }
+});
+   </script>
+@endif
 
      <script>
      
@@ -1040,4 +1049,5 @@ if (burgerMenu && navMenu) {
 
     // باقی functions...
 </script>
+
 @endsection
