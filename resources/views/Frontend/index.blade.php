@@ -261,9 +261,9 @@
 <div class="hero-section_p">
 
 
-   @include('Frontend.hero_section', [
+@include('Frontend.hero_section', [
    'part' => 'Auto Spare Parts for Sale in UAE',
-   'image' => 'https://partsfinder.ae/storage/profile_images/hero_section_image_1.png'
+   'image' => 'storage/profile_images/hero_section_image_1.png'
 ])
 </div>
 
