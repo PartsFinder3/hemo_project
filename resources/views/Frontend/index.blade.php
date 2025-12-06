@@ -386,7 +386,7 @@
                             <i class="fab fa-whatsapp me-1"></i> WhatsApp
                         </a>
                         
-                        <a href="" class="btn call"
+                        <a  class="btn call"
                             onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
                             <i class="fa-solid fa-phone"></i> Click to Call
                         </a>
@@ -486,7 +486,7 @@
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
-                            <a href="" class="btn call"
+                            <a  class="btn call"
                                 onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
                                 <i class="fa-solid fa-phone"></i> Click to Call
                             </a>
