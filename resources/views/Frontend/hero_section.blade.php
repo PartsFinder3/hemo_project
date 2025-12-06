@@ -63,8 +63,9 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
+      justify-content: center; 
     padding: 0 50px;
     flex-wrap: wrap;
     position: relative;
@@ -75,7 +76,8 @@
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    justify-content: flex-end; 
+    /* justify-content: flex-end;  */
+      justify-content: flex-start; 
     position: relative;
     z-index: 2;
 }
