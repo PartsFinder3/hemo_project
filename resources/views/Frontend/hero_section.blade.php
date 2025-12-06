@@ -75,7 +75,7 @@
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    justify-content: flex-end; /* کارڈ کو رائٹ پر بھیجیں */
+    justify-content: flex-end; 
     position: relative;
     z-index: 2;
 }
