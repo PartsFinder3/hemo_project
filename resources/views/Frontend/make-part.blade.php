@@ -177,42 +177,6 @@
         }
     </script>
     <script>          
-const burgerMenu = document.getElementById("burger-menu");
-const navMenu = document.getElementById("nav-menu");
 
-if (burgerMenu && navMenu) {
-    burgerMenu.addEventListener("click", function () {
-        burgerMenu.classList.toggle("active");
-        navMenu.classList.toggle("active");
-    });
-
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll(".nav-menu a");
-    navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            burgerMenu.classList.remove("active");
-            navMenu.classList.remove("active");
-        });
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", function (event) {
-        if (
-            !burgerMenu.contains(event.target) &&
-            !navMenu.contains(event.target)
-        ) {
-            burgerMenu.classList.remove("active");
-            navMenu.classList.remove("active");
-        }
-    });
-
-    // Close mobile menu on window resize
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 768) {
-            burgerMenu.classList.remove("active");
-            navMenu.classList.remove("active");
-        }
-    });
-}
 </script>
 @endsection
