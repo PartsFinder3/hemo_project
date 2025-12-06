@@ -47,11 +47,10 @@ public function index(Request $request)
 {
     $host = $request->getHost();
 
-    // Cache key define karen, host ke hisaab se
     $cacheKey = 'frontend_index_' . $host;
     $cacheMinutes = 60; // 1 hour
 
-    // Get cached data (queries / data)
+    // Cache only static data
     $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
         $Domains = Domain::all();
         $currentDomain = $Domains->first(function($domain) use ($host) {
@@ -67,24 +66,30 @@ public function index(Request $request)
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
-        $ads = Ads::where('is_approved', true)
-            ->where('domain', $host)
-            ->latest()
-            ->paginate(8);
         $carAds = CarAds::where('is_approved', true)->latest()->get();
         $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
 
-        return compact('carMakes', 'domain', 'makes', 'models', 'years', 'parts', 'ads', 'carAds', 'randomParts', 'randomMakes','sParts','cities','getFAQS');
+        return compact(
+            'carMakes', 'domain', 'makes', 'models', 'years', 'parts',
+            'carAds', 'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS'
+        );
     });
 
-    // Return view with **cache-friendly headers**
+    // Pagination OUTSIDE cache → fresh per page
+    $data['ads'] = Ads::where('is_approved', true)
+        ->where('domain', $host)
+        ->latest()
+        ->paginate(8);
+
+    // Return view with cache-friendly headers
     return response()
         ->view('Frontend.index', $data)
-        ->header('Cache-Control', 'public, max-age=3600'); // 1 hour browser + CDN cache
+        ->header('Cache-Control', 'public, max-age=3600');
 }
+
 
  
     public function getModelsByMake($makeId)
