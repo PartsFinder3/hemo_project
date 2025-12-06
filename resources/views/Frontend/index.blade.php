@@ -890,43 +890,9 @@
             }
         }
 
-        function setupPagination(gridId, paginationId, perPage = 6) {
-    const products = document.querySelectorAll(`#${gridId} .card`);
-    const totalPages = Math.ceil(products.length / perPage);
-    const pagination = document.getElementById(paginationId);
+    
 
-    function showPage(page) {
-        products.forEach((product, i) => {
-            product.style.display =
-                i >= (page - 1) * perPage && i < page * perPage
-                    ? "block"
-                    : "none";
-        });
-        pagination.querySelectorAll("button").forEach((btn, i) => {
-            btn.classList.toggle("active", i + 1 === page);
-        });
-    }
 
-    pagination.innerHTML = ""; // clear old buttons
-
-    for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.innerText = i;
-        btn.addEventListener("click", () => showPage(i));
-        pagination.appendChild(btn);
-    }
-
-    if (totalPages > 0) {
-        showPage(1);
-    }
-}
-
-// Call for both sections
-
-document.addEventListener("DOMContentLoaded", () => {
-    setupPagination("productGrid1", "pagination1", 8);
-    setupPagination("productGrid2", "pagination2", 8);
-});
     function contactSupplier(isActive, whatsapp, title) {
             if (isActive === '1') {
                 const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
@@ -975,80 +941,7 @@ if (burgerMenu && navMenu) {
 }
 </script>
 <script>
-    // باقی functions...
 
-    function setupPagination(gridId, paginationId, perPage = 8) {
-        const products = document.querySelectorAll(`#${gridId} .card`);
-        const totalPages = Math.ceil(products.length / perPage);
-        const pagination = document.getElementById(paginationId);
-
-        if (!pagination || products.length === 0) return;
-
-        function showPage(page) {
-            // Hide all products
-            products.forEach(product => {
-                product.style.display = "none";
-            });
-            
-            // Show products for current page
-            const startIndex = (page - 1) * perPage;
-            const endIndex = startIndex + perPage;
-            
-            for (let i = startIndex; i < endIndex && i < products.length; i++) {
-                if (products[i]) {
-                    products[i].style.display = "block";
-                }
-            }
-            
-            // Update active button
-            pagination.querySelectorAll("button").forEach((btn, i) => {
-                btn.classList.toggle("active", i + 1 === page);
-            });
-        }
-
-        function createPaginationButtons() {
-            pagination.innerHTML = "";
-
-            // Previous button
-            const prevBtn = document.createElement("button");
-            prevBtn.innerHTML = "&laquo;";
-            prevBtn.className = "prev";
-            prevBtn.addEventListener("click", () => {
-                const current = parseInt(pagination.querySelector("button.active")?.innerText);
-                if (current > 1) showPage(current - 1);
-            });
-            pagination.appendChild(prevBtn);
-
-            // Number buttons
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement("button");
-                btn.innerText = i;
-                btn.addEventListener("click", () => showPage(i));
-                pagination.appendChild(btn);
-            }
-
-            // Next button
-            const nextBtn = document.createElement("button");
-            nextBtn.innerHTML = "&raquo;";
-            nextBtn.className = "next";
-            nextBtn.addEventListener("click", () => {
-                const current = parseInt(pagination.querySelector("button.active")?.innerText);
-                if (current < totalPages) showPage(current + 1);
-            });
-            pagination.appendChild(nextBtn);
-        }
-
-        createPaginationButtons();
-        showPage(1);
-    }
-
-    // DOM loaded pe dono sections ke liye pagination setup karo
-    document.addEventListener("DOMContentLoaded", () => {
-        setupPagination("productGrid1", "pagination1", 8);
-        setupPagination("productGrid2", "pagination2", 8);
-    });
-
-    // باقی functions...
 </script>
 
 @endsection
