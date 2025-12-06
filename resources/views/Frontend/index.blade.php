@@ -386,7 +386,7 @@
                             <i class="fab fa-whatsapp me-1"></i> WhatsApp
                         </a>
                         
-                       <a class="btn call" href="/supplier/1" onclick="callSupplier('1', '+971508046134')">Click to Call</a>
+                      <a class="btn call" href="tel:+971508046134" onclick="callSupplier('1', '+971508046134')">Click to Call</a>
 
                     </div>
                 </div>
@@ -484,7 +484,7 @@
                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                             </a>
 
-                          <a class="btn call" href="/supplier/1" onclick="callSupplier('1', '+971508046134')">Click to Call</a>
+                         <a class="btn call" href="tel:+971508046134" onclick="callSupplier('1', '+971508046134')">Click to Call</a>
 
                         </div>
                     </div>
