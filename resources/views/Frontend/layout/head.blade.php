@@ -146,7 +146,7 @@
     .hero-btns a.signup-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #e57224;
+   background: var(--accent-color);
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
