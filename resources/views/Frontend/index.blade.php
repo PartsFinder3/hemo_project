@@ -395,8 +395,9 @@
             </div>
         @endforeach
     </div>
-    <div class="mt-4 d-flex justify-content-center">
-        {{ $ads->links('pagination::bootstrap-5') }}
+                <!-- Pagination Centered -->
+                  <div class="col-12 d-flex justify-content-center mt-4">
+        {{ $ads->appends(['scroll' => 'ads'])->links('pagination::bootstrap-5') }}
     </div>
     
 </section>
