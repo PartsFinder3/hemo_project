@@ -340,7 +340,7 @@
     </section>
 
 
-<div class="scroll_posint"></div>
+<div id="ads"></div>
   <!-- FIRST ADS SECTION - Part Ads -->
 <section class="ad-cards">
     <div class="section-text">
@@ -396,9 +396,10 @@
         @endforeach
     </div>
                 <!-- Pagination Centered -->
-                  <div class="col-12 d-flex justify-content-center mt-4">
-        {{ $ads->appends(['scroll' => 'ads'])->links('pagination::bootstrap-5') }}
-    </div>
+             <div class="col-12 d-flex justify-content-center mt-4">
+    {{ $ads->appends(['scroll' => 'ads'])->fragment('ads')->links('pagination::bootstrap-5') }}
+</div>
+
     
 </section>
 
