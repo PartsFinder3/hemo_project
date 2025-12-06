@@ -39,7 +39,7 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, #4361ee, #3a0ca3);
+    background: linear-gradient(to bottom, #e57224, #e57224);
     border-radius: 4px 0 0 4px;
 }
 
@@ -95,7 +95,7 @@
 }
 
 .about-content blockquote {
-    border-left: 4px solid #e6762c !important;
+    border-left: 4px solid #4361ee;
     padding-left: 2rem;
     margin: 2rem 0;
     font-style: italic;
