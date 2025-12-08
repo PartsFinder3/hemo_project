@@ -1,82 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    
-  
+    @if(isset($meta) && $meta)
+        <title>{{ $meta['title'] }}</title>
+        <meta name="description" content="{{ $meta['description'] }}">
+        <script type="application/ld+json">
+            {!! $meta['structure_data'] !!}
+        </script>
+    @endif
+    <link rel="canonical" href="{{ url()->current() }}">
 
-  
-@if(isset($meta) && $meta)
-    <title>{{ $meta['title'] }}</title>
-    <meta name="description" content="{{ $meta['description'] }}">
+    @if(empty($meta) && isset($domain->metaTags))
+        <meta name="description" content="{{ $domain->metaTags->description }}">
+        <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
+        <meta name="author" content="{{ $domain->metaTags->title }}">
+        <title>{{ $domain->metaTags->title }}</title>
+    @endif
 
-    <script type="application/ld+json">
-        {!! $meta['structure_data'] !!}
-    </script>
-@endif
-<link rel="canonical" href="{{ url()->current() }}">
-  
-@if(empty($meta) && isset($domain->metaTags))
-    <meta name="description" content="{{ $domain->metaTags->description }}">
-    <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
-    <meta name="author" content="{{ $domain->metaTags->title }}">
-    <title>{{ $domain->metaTags->title }}</title>
-@endif
-@if(isset($domain))
-<meta property="og:title" content="{{ $domain->metaTags->title }}">
-<meta property="og:description" content="{{ $domain->metaTags->description }}">
-<meta property="og:image" content="https://partsfinder.ae/storage/logo/44444.png">
-<meta property="og:url" content="https://partsfinder.ae">
-<meta property="og:type" content="website">
-<meta property="og:image:width" content="1800"> <!-- Badi image -->
-<meta property="og:image:height" content="945">
-@endif
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if(isset($domain))
+        <meta property="og:title" content="{{ $domain->metaTags->title }}">
+        <meta property="og:description" content="{{ $domain->metaTags->description }}">
+        <meta property="og:image" content="https://partsfinder.ae/storage/logo/44444.png">
+        <meta property="og:url" content="https://partsfinder.ae">
+        <meta property="og:type" content="website">
+        <meta property="og:image:width" content="1800">
+        <meta property="og:image:height" content="945">
+    @endif
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     <!-- AOS Animation Styles -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Include Select2 CSS & JS -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Choices.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
+
+    <!-- Favicon -->
     @if($domain && $domain->logo)
         <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
     @endif
-    {{-- <style>
-                                  @media (max-width:480px){
-                                #w-left{
-                                    display: none
-                                }
-             
-                                }
-    </style> --}}
-        <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    @php
-    $scripts = \App\Models\SciteScripts::where('status', true)->get();
-    @endphp
-    @if ($scripts->count() > 0)
-        @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
-    @endif
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-   @yield('head-section')
+
+    <!-- Custom Head Section -->
+    @yield('head-section')
 </head>
 
 <body>
+    <!-- jQuery (FIRST) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Choices.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script -->
+    <script src="{{ asset('Frontend/js/script.js') }}"></script>
+
+    <!-- Initialize Select2 -->
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2(); // ensure your <select> has class="select2"
+        });
+    </script>
+</body>
+
     <!-- Toast Container -->
 <div class="toast-container
         position-fixed top-0 start-0 p-3" style="z-index: 1100;">
@@ -276,3 +284,6 @@ height: 35px;
 }
 
 </style>
+<script>
+    
+</script>
