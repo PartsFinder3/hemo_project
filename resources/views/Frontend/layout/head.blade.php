@@ -2,10 +2,7 @@
 <html lang="en">
 
 <head>
-    
-  
 
-  
 @if(isset($meta) && $meta)
     <title>{{ $meta['title'] }}</title>
     <meta name="description" content="{{ $meta['description'] }}">
@@ -46,8 +43,9 @@
     <!-- AOS Animation Styles -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Include Select2 CSS & JS -->
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
     @if($domain && $domain->logo)
@@ -277,5 +275,17 @@ height: 35px;
 
 </style>
 <script>
-    
+$(document).ready(function() {
+    $('#make').select2({
+        placeholder: "Select Car Make",
+        allowClear: true,
+        width: '100%'
+    });
+
+    $('#parts-dropdown').select2({
+        placeholder: "Select Part",
+        allowClear: true,
+        width: '100%'
+    });
+});
 </script>
