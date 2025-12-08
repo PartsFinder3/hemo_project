@@ -862,6 +862,9 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+img, video, canvas {
+  overflow: hidden; /* یا remove کریں */
+}
  </style>
     @if (request()->scroll == 'ads')
    <script>
