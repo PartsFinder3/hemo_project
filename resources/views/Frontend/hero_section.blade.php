@@ -287,6 +287,17 @@
     outline: 0;
     height: auto;
 }
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
 </style>
 
 <div class="hero_section_text">
@@ -303,6 +314,7 @@
             <form action="{{ route('buyer.inquiry.send') }}" method="post">
                 @csrf
                 <div class="form-group" id="make-group">
+                    <label id="make-label" class="sr-only">Select Car Make</label>
                     <select class="dropdown mySelect highlight-border" id="make" name="car_make_id">
                         <option selected value="">Select a part make</option>
                         @foreach ($makes as $make)
@@ -312,12 +324,15 @@
                 </div>
 
                 <div class="form-group" id="model-group">
+                     <label id="make-label" class="sr-only">Select Model</label>
                     <select class="dropdown" id="model" name="car_model_id">
                         <option value="">Select a Model</option>
                     </select>
                 </div>
 
                 <div class="form-group" id="year-group">
+                     <label id="make-label" class="sr-only">Select year</label>
+
                     <select class="dropdown" id="year" name="year_id">
                         <option value="">Select a year</option>
                         @foreach ($years as $year)
@@ -327,6 +342,8 @@
                 </div>
 
                 <div class="form-group hidden" id="parts-group">
+                     <label id="make-label" class="sr-only">Select part</label>
+
                     <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
                         @foreach ($parts as $part)
                             <option value="{{ $part->id }}">{{ $part->name }}</option>
