@@ -52,15 +52,16 @@
                     </a>
 
                  <div class="social-icons">
-                    <a href="https://www.facebook.com/partsfinderuae/" class="social-icon facebook" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://medium.com/@partsfinder" class="social-icon medium" target="_blank">
-                        <i class="fab fa-medium"></i>
-                    </a>
-                    <a href="https://www.pinterest.com/partsfinderae/" class="social-icon pinterest" target="_blank">
-                        <i class="fab fa-pinterest"></i>
-                    </a>
+                   <a href="https://www.facebook.com/partsfinderuae/" class="social-icon facebook" target="_blank" aria-label="Visit PartsFinder on Facebook">
+    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+</a>
+<a href="https://medium.com/@partsfinder" class="social-icon medium" target="_blank" aria-label="Visit PartsFinder on Medium">
+    <i class="fab fa-medium-m" aria-hidden="true"></i>
+</a>
+<a href="https://www.pinterest.com/partsfinderae/" class="social-icon pinterest" target="_blank" aria-label="Visit PartsFinder on Pinterest">
+    <i class="fab fa-pinterest-p" aria-hidden="true"></i>
+</a>
+
                 </div>
 
                 </div>
