@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let selectedParts = [];
 
+    
     // Initialize Choices.js for searchable dropdowns
     const makeChoices = new Choices('#make', {
         searchEnabled: true,
