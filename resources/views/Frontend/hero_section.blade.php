@@ -96,7 +96,6 @@
     flex: 1 1 45%;
     text-align: center;
     margin-top: 20px;
-    overflow: hidden;
 }
 
 .hero_image_section img {
@@ -288,23 +287,7 @@
     outline: 0;
     height: auto;
 }
-@media (max-width: 768px) {
-    .secound_hero_section {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 0 15px;
-    }
 
-    .part_finder_card, .hero_image_section {
-        flex: 1 1 100%;
-        overflow: visible; /* Mobile pe overflow bhi visible rakho */
-    }
-
-    .hero_image_section img {
-        max-width: 260px; /* mobile-friendly size */
-    }
-}
 </style>
 
 <div class="hero_section_text">
