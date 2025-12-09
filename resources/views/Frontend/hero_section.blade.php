@@ -287,6 +287,14 @@
     outline: 0;
     height: auto;
 }
+.hidden {
+    display: none !important;
+}
+
+.hidden .select2-container,
+.hidden .select2-container--default {
+    display: none !important;
+}
 </style>
 
 <div class="hero_section_text">
