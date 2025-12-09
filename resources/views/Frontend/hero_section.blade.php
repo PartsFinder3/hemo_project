@@ -290,10 +290,10 @@
 @media (max-width: 568px) {
  
 
-    .part_finder_card, .hero_image_section {
+    /* .part_finder_card, .hero_image_section {
       
-        overflow: visible; /* Mobile pe overflow bhi visible rakho */
-    }
+        overflow: visible;
+    } */
 
   
 }
