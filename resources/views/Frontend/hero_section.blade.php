@@ -96,6 +96,7 @@
     flex: 1 1 45%;
     text-align: center;
     margin-top: 20px;
+     overflow: hidden;
 }
 
 .hero_image_section img {
