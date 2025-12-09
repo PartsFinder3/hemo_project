@@ -364,134 +364,178 @@
 </div>
 </div>
 
-
 <script>
-    $(document).ready(function () {
+// ===== تمام handlers کے لیے global variables =====
+const partsGroup = document.getElementById("parts-group");
+const partsDropdown = document.getElementById("parts-dropdown");
+const conditionGroup = document.getElementById("condition-group");
+let partSelected = false;
 
-    const partsGroup = document.getElementById("parts-group");
-    const partsDropdown = document.getElementById("parts-dropdown");
-    const conditionGroup = document.getElementById("condition-group");
-    let partSelected = false;
-
-    // ===== Select2 Initialization =====
-    $('#make').select2({
-        placeholder: "Select Your Make",
-        ajax: {
-            url: '/search-makes',
-            dataType: 'json',
-            delay: 250,
-            data: params => ({ q: params.term }),
-            processResults: data => ({
-                results: $.map(data, item => ({ id: item.id, text: item.name }))
-            })
-        }
-    });
-
-    $('#model').select2({
-        placeholder: "Select Your Model",
-        ajax: {
-            url: '/search-models',
-            dataType: 'json',
-            delay: 250,
-            data: params => ({ q: params.term, make_id: $('#make').val() }),
-            processResults: data => ({
-                results: $.map(data, item => ({ id: item.id, text: item.name }))
-            })
-        }
-    });
-
-    $('#year').select2({
-        placeholder: "Select Year",
-        ajax: {
-            url: '/search-years',
-            dataType: 'json',
-            delay: 250,
-            data: params => ({ q: params.term, model_id: $('#model').val() }),
-            processResults: data => ({ results: data })
-        }
-    });
-
-    $('#parts-dropdown').select2({
-        placeholder: "Select Parts",
-        ajax: {
-            url: '/search-parts',
-            dataType: 'json',
-            delay: 250,
-            data: params => ({
-                q: params.term,
-                model_id: $('#model').val(),
-                year_id: $('#year').val()
-            }),
-            processResults: data => ({
-                results: $.map(data, item => ({ id: item.id, text: item.name }))
-            })
-        }
-    });
-
-    // ===== Logic =====
-
-    $('#make').on('select2:select', function () {
-        resetModelYearParts();
-        highlight('#model');
-    });
-
-    $('#model').on('select2:select', function () {
-        resetYearParts();
-        highlight('#year');
-    });
-
-    $('#year').on('select2:select', function () {
-        partsGroup.classList.remove("hidden");
-        partsDropdown.disabled = false;
-        highlight('#parts-dropdown');
-    });
-
-    $('#parts-dropdown').on('select2:select', function () {
-        partSelected = true;
-        conditionGroup.classList.remove("hidden");
-        removeHighlight('#parts-dropdown');
-        updateButton();
-    });
-
-    function resetModelYearParts() {
-        $('#model, #year').val(null).trigger('change');
-        partsGroup.classList.add("hidden");
-        conditionGroup.classList.add("hidden");
-        partSelected = false;
-        updateButton();
+// ===== Select2 initialization =====
+$('#make').select2({
+    placeholder: "Select Your Make",
+    ajax: {
+        url: '/search-makes',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) { return { q: params.term }; },
+        processResults: function(data) {
+            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
+        },
+        cache: true
     }
-
-    function resetYearParts() {
-        $('#year').val(null).trigger('change');
-        partsGroup.classList.add("hidden");
-        conditionGroup.classList.add("hidden");
-        partSelected = false;
-        updateButton();
-    }
-
-    function updateButton() {
-        const makeVal = $('#make').val();
-        const modelVal = $('#model').val();
-        const yearVal = $('#year').val();
-        const partVal = $('#parts-dropdown').val();
-        const findBtn = $('#find-btn');
-
-        if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
-            findBtn.prop('disabled', false);
-        } else {
-            findBtn.prop('disabled', true);
-        }
-    }
-
-    function highlight(id) {
-        $(id).next('.select2-container').find('.select2-selection').addClass("highlight-border");
-    }
-
-    function removeHighlight(id) {
-        $(id).next('.select2-container').find('.select2-selection').removeClass("highlight-border");
-    }
-
-    highlight('#make');
 });
 
+$('#model').select2({
+    placeholder: "Select Your Model",
+    ajax: {
+        url: '/search-models',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) { return { q: params.term, make_id: $('#make').val() }; },
+        processResults: function(data) {
+            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
+        },
+        cache: true
+    }
+});
+
+$('#year').select2({
+    placeholder: "Select Year",
+    ajax: {
+        url: '/search-years',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) { return { q: params.term, model_id: $('#model').val() }; },
+        processResults: function(data) { return { results: data }; }
+    }
+});
+
+$('#parts-dropdown').select2({
+    placeholder: "Select Parts",
+    ajax: {
+        url: '/search-parts',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return { q: params.term, model_id: $('#model').val(), year_id: $('#year').val() };
+        },
+        processResults: function(data) {
+            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
+        },
+        cache: true
+    }
+});
+
+// ===== Event handlers =====
+
+// Make select ہونے پر
+$('#make').on('select2:select', function() {
+    $('#model, #year').val(null).trigger('change'); 
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
+    
+    partSelected = false;
+    updateButton();
+});
+
+// Model select ہونے پر
+$('#model').on('select2:select', function() {
+    $('#year').val(null).trigger('change');
+    partsGroup.classList.add("hidden");
+    conditionGroup.classList.add("hidden");
+    partSelected = false;
+    updateButton();
+});
+
+// Year select ہونے پر
+$('#year').on('select2:select', function() {
+    partsGroup.classList.remove("hidden");
+    partsDropdown.disabled = false;
+    updateButton();
+});
+
+// Part select ہونے پر
+$('#parts-dropdown').on('select2:select', function() {
+    partSelected = true;
+    conditionGroup.classList.remove("hidden");
+    updateButton();
+});
+
+// Button enable/disable logic
+function updateButton() {
+    const makeVal = $('#make').val();
+    const modelVal = $('#model').val();
+    const yearVal = $('#year').val();
+    const partVal = $('#parts-dropdown').val();
+    const findBtn = $('#find-btn');
+
+    if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
+        findBtn.prop('disabled', false);
+    } else {
+        findBtn.prop('disabled', true);
+    }
+}
+// Make ko start me highlight
+$("#make").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+
+// Step 1: Make → Model
+$('#make').on('select2:select', function () {
+    $("#make").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#model").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+});
+
+// Step 2: Model → Year
+$('#model').on('select2:select', function () {
+    $("#model").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#year").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+});
+
+// Step 3: Year → Parts
+$('#year').on('select2:select', function () {
+    $("#year").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+    $("#parts-dropdown").next('.select2-container').find('.select2-selection').addClass("highlight-border");
+});
+
+// Step 4: Parts selected → remove highlight
+$('#parts-dropdown').on('select2:select', function () {
+    $("#parts-dropdown").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
+});
+  const burgerMenu = document.getElementById("burger-menu");
+const navMenu = document.getElementById("nav-menu");
+
+if (burgerMenu && navMenu) {
+    burgerMenu.addEventListener("click", function () {
+        burgerMenu.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll(".nav-menu a");
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (
+            !burgerMenu.contains(event.target) &&
+            !navMenu.contains(event.target)
+        ) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+
+    // Close mobile menu on window resize
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            burgerMenu.classList.remove("active");
+            navMenu.classList.remove("active");
+        }
+    });
+}
 </script>
