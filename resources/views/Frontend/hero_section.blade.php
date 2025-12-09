@@ -1,6 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
 /* ===== Hero Section ===== */
@@ -287,14 +284,7 @@
     outline: 0;
     height: auto;
 }
-.hidden {
-    display: none !important;
-}
 
-.hidden .select2-container,
-.hidden .select2-container--default {
-    display: none !important;
-}
 </style>
 
 <div class="hero_section_text">
