@@ -96,7 +96,6 @@
     flex: 1 1 45%;
     text-align: center;
     margin-top: 20px;
-    
 }
 
 .hero_image_section img {
@@ -251,12 +250,6 @@
 .select2-selection--multiple.highlight-border {
     border: 2px solid red !important;
 }
-@media (min-width: 769px) {
-    .hero_image_section {
-        overflow: hidden; /* PC me overflow hide */
-    }
-}
-
 @media (max-width: 380px) {
     .secound_hero_section {
         margin-top: -15px;
