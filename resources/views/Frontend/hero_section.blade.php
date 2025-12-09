@@ -287,16 +287,7 @@
     outline: 0;
     height: auto;
 }
-@media (max-width: 568px) {
- 
 
-    /* .part_finder_card, .hero_image_section {
-      
-        overflow: visible;
-    } */
-
-  
-}
 </style>
 
 <div class="hero_section_text">
