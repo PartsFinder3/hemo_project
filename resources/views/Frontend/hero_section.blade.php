@@ -501,7 +501,9 @@ $('#year').on('select2:select', function () {
 $('#parts-dropdown').on('select2:select', function () {
     $("#parts-dropdown").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
 });
-  const burgerMenu = document.getElementById("burger-menu");
+// Sirf ek baar declare karo
+// Sirf ek baar declare karo
+const burgerMenu = document.getElementById("burger-menu");
 const navMenu = document.getElementById("nav-menu");
 
 if (burgerMenu && navMenu) {
@@ -510,7 +512,6 @@ if (burgerMenu && navMenu) {
         navMenu.classList.toggle("active");
     });
 
-    // Close mobile menu when clicking on a link
     const navLinks = document.querySelectorAll(".nav-menu a");
     navLinks.forEach((link) => {
         link.addEventListener("click", () => {
@@ -519,18 +520,13 @@ if (burgerMenu && navMenu) {
         });
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener("click", function (event) {
-        if (
-            !burgerMenu.contains(event.target) &&
-            !navMenu.contains(event.target)
-        ) {
+        if (!burgerMenu.contains(event.target) && !navMenu.contains(event.target)) {
             burgerMenu.classList.remove("active");
             navMenu.classList.remove("active");
         }
     });
 
-    // Close mobile menu on window resize
     window.addEventListener("resize", function () {
         if (window.innerWidth > 768) {
             burgerMenu.classList.remove("active");
@@ -538,4 +534,6 @@ if (burgerMenu && navMenu) {
         }
     });
 }
+
+
 </script>
