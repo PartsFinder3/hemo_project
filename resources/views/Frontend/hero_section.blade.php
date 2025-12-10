@@ -294,8 +294,7 @@
 .select2-container--default .select2-selection--single {
     height: 45px !important;
     padding: 8px !important;
-    display: flex;
-    align-items: center;
+ 
 }
 
 .select2-selection__rendered {
