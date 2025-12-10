@@ -124,6 +124,7 @@
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    font-weight: bold !important;
 }
 
 /* ===== Condition Section ===== */
@@ -132,7 +133,8 @@
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-    margin-top: 10px;
+margin-top:10px;
+
 }
 
 .radio-group {
@@ -329,27 +331,30 @@
     </select>
 </div>
 <div class="form-group" id="model-group">
-    <select class="dropdown" id="car-model" name="car_model_id">
+    <select class="dropdown" id="car-model" name="car_model_id" style="font-weight: bold">
         @foreach ($models as $model)
             <option value="{{ $model->id }}">{{ $model->name }}</option>
         @endforeach
     </select>
 </div>
 <div class="form-group" id="year-group">
-    <select class="dropdown" id="car-year" name="year_id">
+    <select class="dropdown" id="car-year" name="year_id" >
         <option value="">Select a year</option>
         @foreach ($years as $year)
             <option value="{{ $year->id }}">{{ $year->year }}</option>
         @endforeach
     </select>
 </div>
-<div class="form-group" id="parts-group">
-    <select id="parts-dropdown" name="parts[]" class="dropdown" multiple>
-        @foreach ($parts as $part)
+<div class="form-group" id="year-group">
+    <select class="dropdown" id="car-year" name="parts[]" multiple>
+        <option value="">Select a year</option>
+               @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
     </select>
 </div>
+
+
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
                         <div class="condition-title">Condition Required ?</div>

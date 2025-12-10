@@ -536,52 +536,10 @@
     transition: all 0.4s ease;
 }
 
-.dropdown {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 10px;
-    font-size: 13px;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.3s;
-    font-family: 'Montserrat', sans-serif;
-}
-.part-tag {
-    background: var(--accent-color);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    animation: slideIn 0.3s ease;
-}
- .condition-section {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #e1e5e9;
-    margin-top: -10px;
-}
-#condition-group {
-    display: block;
-}
 
-.radio-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px; 
-    margin-top: 5px; 
-}
 
-.radio-option {
-    display: flex;
-    align-items: center;
-    gap: 5px; 
-}
+
+
 .card {
     width: 300px;
     height: 450px;
