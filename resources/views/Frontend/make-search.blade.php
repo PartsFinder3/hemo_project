@@ -426,7 +426,7 @@
         gap: 10px;
         width: 200px;
         height: 60px;
-        background-color: white;
+       color: #ff6a00;
         padding: 10px;
         border-radius: 10px;
         color: #333;
@@ -434,10 +434,11 @@
         text-decoration: none;
         transition: all 0.3s ease;
         border: 1px solid #e0e0e0;
+        background-color: #f4f4f4;
     }
     
     .abd-location-card:hover {
-        background-color: #ff6a00;
+        
         color: white;
         transform: translateY(-3px);
         border-color: #ff6a00;
