@@ -500,7 +500,6 @@
 
     <!-- Map -->
    
-    <!-- Locations -->
 <section class="abd-locations-section">
     <div class="abd-locations-header">
         <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
@@ -516,6 +515,7 @@
         @endif
     </div>
 </section>
+
 
 
     @include('Frontend.layout.company')
@@ -866,7 +866,7 @@
 }
 
  </style>
- <style>
+<style>
 /* ===== Locations Section ===== */
 .abd-locations-section {
     padding: 40px 20px;
@@ -881,11 +881,12 @@
     font-weight: 600;
 }
 
+/* Fixed Grid and Card Size */
 .abd-locations-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px)); /* fixed width */
     gap: 20px;
-    justify-items: center;
+    justify-content: center;
     background-color: #fff;
     padding: 20px;
     border-radius: 15px;
@@ -895,9 +896,12 @@
 .abd-location-card {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    width: 200px;  /* fixed width */
+    height: 60px;  /* fixed height */
     background-color: #f4f4f4;
-    padding: 10px 15px;
+    padding: 10px;
     border-radius: 10px;
     color: #ff6a00;
     font-weight: 500;
@@ -925,9 +929,13 @@
     .abd-locations-header h2 {
         font-size: 24px;
     }
+    .abd-locations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+    }
     .abd-location-card {
+        width: 150px;
+        height: 50px;
         font-size: 14px;
-        padding: 8px 12px;
     }
     .abd-location-icon {
         font-size: 16px;
@@ -941,8 +949,14 @@
         font-size: 20px;
     }
     .abd-locations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
         gap: 15px;
         padding: 15px;
+    }
+    .abd-location-card {
+        width: 120px;
+        height: 45px;
+        font-size: 13px;
     }
 }
 </style>
