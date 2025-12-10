@@ -501,15 +501,16 @@
     <!-- Map -->
    
     <!-- Locations -->
-    <section class="locations-section">
-    <div class="section-text">
+<section class="abd-locations-section">
+    <div class="abd-locations-header">
         <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
     </div>
-    <div class="locations-grid" style="background-color: white">
+    <div class="abd-locations-grid">
         @if(optional($domain)->cities)
             @foreach ($domain->cities as $city)
-                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="location-card">
-                    <i class="fa-solid fa-location-dot"></i> {{ $city->name }}
+                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="abd-location-card">
+                    <i class="fa-solid fa-location-dot abd-location-icon"></i>
+                    <span class="abd-location-name">{{ $city->name }}</span>
                 </a>
             @endforeach
         @endif
@@ -865,6 +866,86 @@
 }
 
  </style>
+ <style>
+/* ===== Locations Section ===== */
+.abd-locations-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.abd-locations-header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.abd-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.abd-location-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f4f4f4;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: #ff6a00;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.abd-location-card:hover {
+    background-color: #ff6a00;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.abd-location-icon {
+    font-size: 18px;
+}
+
+.abd-location-name {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .abd-locations-header h2 {
+        font-size: 24px;
+    }
+    .abd-location-card {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    .abd-location-icon {
+        font-size: 16px;
+    }
+}
+@media (max-width: 480px) {
+    .abd-locations-section {
+        padding: 20px 10px;
+    }
+    .abd-locations-header h2 {
+        font-size: 20px;
+    }
+    .abd-locations-grid {
+        gap: 15px;
+        padding: 15px;
+    }
+}
+</style>
     @if (request()->scroll == 'ads')
    <script>
        document.addEventListener("DOMContentLoaded", function () {

@@ -1,6 +1,271 @@
 <?php $__env->startSection('main-section'); ?>
-<?php echo $__env->make('Frontend.hero_section', ['part' => "Find City of " . $city->name], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<style>
+    body, main, header, nav, .hero-section, .hero-section_p {
+    background-image: none !important;
+    background: none !important;
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .part_finder_card,
+    .hero_image_section {
+        width: 100%;
+    }
+
+    .hero_image_section {
+        height: 250px;
+    }
+}
+
+
+#productGrid1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; /* space between cards */
+ 
+   
+}
+
+#productGrid1 .card {
+    width: 100%;
+    padding: 0; /* remove all padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 470px;
+    display: block;
+}
+
+
+#productGrid1 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-color: #aaa;
+}
+
+/* Card image */
+#productGrid1 .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background-color: white;
+    padding: 5px;
+}
+
+
+#productGrid1 .card-body {
+    padding: 10px; /* optional, only inner spacing */
+}
+
+/* Card title */
+#productGrid1 .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em; /* limit to 2 lines */
+    overflow: hidden;
+}
+
+/* Price */
+#productGrid1 .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Meta info */
+#productGrid1 .meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+#productGrid1 .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#productGrid1 .buttons a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+
+}
+
+#productGrid1 .buttons a.whatsapp {
+    background: #25D366;
+}
+
+#productGrid1 .buttons a.call {
+    background: var(--accent-color);
+    padding: 10px;       /* same as WhatsApp button */
+    height: auto;        /* remove fixed 30px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;  /* same as WhatsApp */
+    font-weight: bold;
+    color: #fff;
+}
+@media (max-width: 1024px) {
+    #productGrid1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #productGrid1 {
+        grid-template-columns: 1fr;
+    }
+}
+/* ======= Responsive 992px (Tablet + Mobile Large) ======= */
+@media (max-width: 992px) {
+
+    .hero-section_p {
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 2.5rem !important;
+        padding: 0 20px;
+    }
+
+    .secound_hero_section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+        height: auto;
+    }
+
+    .part_finder_card {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .hero_image_section {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero_image_section img {
+        width: 90%;
+        height: auto;
+        max-width: 380px;
+    }
+}
+
+/* ======= Responsive 768px (Mobile) ======= */
+@media (max-width: 768px) {
+
+    .hero_section_text h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    .car {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .hero_image_section img {
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    .find-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+}
+
+/* ======= Responsive 480px (Small Mobile) ======= */
+
+.buttons a.whatsapp,
+.buttons a.call {
+    flex: 1;                    /* equal width */
+    text-align: center;
+    padding: 10px;              /* same padding */
+    height: 50px;               /* fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* Separate colors */
+.buttons a.whatsapp {
+    background: #198754;
+}
+
+.buttons a.call {
+    background: var(--accent-color);
+}
+
+.step-icon {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto 20px auto;
+}
+
+.step-icon img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+</style>
+<?php echo $__env->make('Frontend.hero_section', [
+   'part' => '<span class="hiliter">' . $city->name . '</span> Parts for Sale in UAE',
+   'image' => 'https://partsfinder.ae/storage/profile_images/hero_section_image_1.png'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
     </main>
+
     <section class="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
@@ -31,45 +296,45 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
 
-        <div class="grid" id="productGrid1">
-            <!-- Example Card -->
-            <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="card">
-                    <?php
-                        $images = json_decode($ad->images, true);
-                    ?>
+    <div class="grid" id="productGrid1">
+        <!-- Example Card -->
+        <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="card">
+                <?php
+                    $images = json_decode($ad->images, true);
+                ?>
 
-                    <?php if(is_array($images) && isset($images[0])): ?>
-                        <img src="<?php echo e(asset('' . $images[0])); ?>" alt="Product">
-                    <?php endif; ?>
-                    <div class="card-body">
-                        <a href="" class="card-title"><?php echo e($ad->title); ?></a>
-                        <div class="price">AED <?php echo e($ad->price); ?></div>
-                        <div class="meta">
-                            Availability: In Stock <br>
-                            Condition: <?php echo e($ad->condition); ?> <br>
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
-                        </div>
-                        <?php
-                            $ad->shop->supplier->whatsapp;
-                        ?>
-                        <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>', '<?php echo e($ad->title); ?>')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                            </a>
-
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
-                        </div>
-
+                <?php if(!empty($images[0])): ?>
+                    <img src="<?php echo e(asset($images[0])); ?>" class="card-img-top img-fluid" alt="Product">
+                <?php endif; ?>
+                
+                <div class="card-body">
+                    <a href="<?php echo e(route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id])); ?>"
+                        class="card-title"><?php echo e($ad->title); ?></a>
+                    <div class="price"><?php echo e($ad->currency); ?> <?php echo e($ad->price); ?></div>
+                    <div class="meta">
+                        Availability: In Stock <br>
+                        Condition: <?php echo e($ad->condition); ?> <br>
+                        Delivery: Ask Supplier <br>
+                        Warranty: Ask Supplier
+                    </div>
+                    
+                    <div class="buttons">
+                        <a href="https://wa.me/<?php echo e(preg_replace('/\D/', '', $ad->shop->supplier->whatsapp)); ?>?text=<?php echo e(urlencode('Hello, I am interested in your ad: ' . $ad->title)); ?>"
+                            target="_blank"
+                            class="btn btn-sm btn-success w-100 my-1">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
+                        </a>
+                        
+                        <a href="javascript:void(0)" class="btn call"
+                            onclick="callSupplier('<?php echo e($ad->shop->supplier->is_active); ?>', '<?php echo e($ad->shop->supplier->whatsapp); ?>')">
+                            <i class="fa-solid fa-phone"></i> Click to Call
+                        </a>
                     </div>
                 </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div>
 
         <div class="pagination" id="pagination1"></div>
     </section>
@@ -172,7 +437,468 @@
                 window.location.reload();
             }
         }
+        
     </script>
+<script>
+    // باقی functions...
+
+    function setupPagination(gridId, paginationId, perPage = 8) {
+        const products = document.querySelectorAll(`#${gridId} .card`);
+        const totalPages = Math.ceil(products.length / perPage);
+        const pagination = document.getElementById(paginationId);
+
+        if (!pagination || products.length === 0) return;
+
+        function showPage(page) {
+            // Hide all products
+            products.forEach(product => {
+                product.style.display = "none";
+            });
+            
+            // Show products for current page
+            const startIndex = (page - 1) * perPage;
+            const endIndex = startIndex + perPage;
+            
+            for (let i = startIndex; i < endIndex && i < products.length; i++) {
+                if (products[i]) {
+                    products[i].style.display = "block";
+                }
+            }
+            
+            // Update active button
+            pagination.querySelectorAll("button").forEach((btn, i) => {
+                btn.classList.toggle("active", i + 1 === page);
+            });
+        }
+
+        function createPaginationButtons() {
+            pagination.innerHTML = "";
+
+            // Previous button
+            const prevBtn = document.createElement("button");
+            prevBtn.innerHTML = "&laquo;";
+            prevBtn.className = "prev";
+            prevBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active")?.innerText);
+                if (current > 1) showPage(current - 1);
+            });
+            pagination.appendChild(prevBtn);
+
+            // Number buttons
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement("button");
+                btn.innerText = i;
+                btn.addEventListener("click", () => showPage(i));
+                pagination.appendChild(btn);
+            }
+
+            // Next button
+            const nextBtn = document.createElement("button");
+            nextBtn.innerHTML = "&raquo;";
+            nextBtn.className = "next";
+            nextBtn.addEventListener("click", () => {
+                const current = parseInt(pagination.querySelector("button.active")?.innerText);
+                if (current < totalPages) showPage(current + 1);
+            });
+            pagination.appendChild(nextBtn);
+        }
+
+        createPaginationButtons();
+        showPage(1);
+    }
+
+    // DOM loaded pe dono sections ke liye pagination setup karo
+    document.addEventListener("DOMContentLoaded", () => {
+        setupPagination("productGrid1", "pagination1", 8);
+        setupPagination("productGrid2", "pagination2", 8);
+    });
+
+    // باقی functions...
+</script>
+
+
+<style>
+    .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pagination button:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+</style>
+    <style>
+        .search-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -50px;
+}
+.form-group {
+    margin-bottom: 10px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
+
+.dropdown {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.part-tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideIn 0.3s ease;
+}
+ .condition-section {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    margin-top: -10px;
+}
+#condition-group {
+    display: block;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 5px; 
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+.card {
+    width: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+     padding: 10px !important;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* slight lift on hover */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* stronger shadow */
+    border-color: #aaa; /* subtle border change on hover */
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain !important; /* full image dikhayega */
+    background-color: #f7f7f7; /* optional clean background */
+    padding: 5px; /* thoda gap for clean look */
+}
+
+.card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+    height: 3.6em;
+    overflow: hidden;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.meta {
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.btn.whatsapp {
+    background: var(--whatsapp-btn);
+}
+.part-card {
+    width: 250px;            /* fix width */
+    height: 180px;           /* fix height */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.3s ease;
+}
+
+/* Hover effect */
+.part-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #ccc;
+}
+
+/* Fix image size */
+.part-card img {
+    width: 80px; 
+    height: 80px;
+    object-fit: contain;     /* Image stays inside nicely */
+}
+
+/* Text styling */
+.part-card-text {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    margin-top: 5px;
+}
+.make {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 150px;           /* fixed width */
+    height: 115px;          /* fixed height */
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    background: #fff;
+}
+
+.make:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #ccc;
+}
+
+.make img {
+    width: 90%;            /* fixed image width */
+    height: 60px;           /* fixed image height */
+    object-fit: contain;     /* keep logo proportions */
+    margin-bottom: 8px;
+}
+
+.make h4 {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2em;
+    height: 2.4em;          /* max 2 lines */
+    overflow: hidden;
+}
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center hero text horizontally */
+    padding: 50px 10%;
+    gap: 50px;
+}
+
+.hero-text {
+    text-align: center;
+}
+
+.search-card {
+    align-self: flex-start; /* align form to left */
+    width: 100%;
+    max-width: 500px; /* limit form width */
+}
+
+ #make {
+        font-weight: bold;      /* makes selected value bold */
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    #make option {
+        font-weight: bold;      /* makes dropdown options bold */
+    }
+
+    /* Optional: make the select box look nicer */
+    #make {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+
+    .dropdown {
+    font-weight: bold;       /* selected value bold */
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Make all options bold */
+.dropdown option {
+    font-weight: bold;
+}
+
+/* Focus state for dropdowns */
+.dropdown:focus {
+    outline: none;
+    border-color: #6a11cb;  /* matches gradient theme */
+    box-shadow: 0 0 6px rgba(106,17,203,0.3);
+}
+
+/* Ensure parts dropdown shows when enabled */
+#parts-dropdown:enabled {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Radio buttons bold text */
+.radio-option label {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Hero section adjustments */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 10%;
+    gap: 50px;
+}
+
+/* Align search card to left under hero text */
+.search-card {
+    align-self: flex-start;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Buttons bold */
+.find-btn, .btn {
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 30px 5%;
+        gap: 30px;
+    }
+
+    .dropdown {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.pagination button:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+ </style>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('Frontend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/city-search.blade.php ENDPATH**/ ?>
