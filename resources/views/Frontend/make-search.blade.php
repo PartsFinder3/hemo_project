@@ -99,7 +99,6 @@
         @endif
     </div>
 </section>
-
 <script>
     function contactSupplier(isActive, number, title) {
         if (isActive == 1) {
@@ -600,6 +599,97 @@ ease;
             padding: 12px;
         }
     }
+    .abd-locations-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.abd-locations-header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Fixed Grid and Card Size */
+.abd-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px)); /* fixed width */
+    gap: 20px;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.abd-location-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 200px;  /* fixed width */
+    height: 60px;  /* fixed height */
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ff6a00;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.abd-location-card:hover {
+    background-color: #ff6a00;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.abd-location-icon {
+    font-size: 18px;
+}
+
+.abd-location-name {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .abd-locations-header h2 {
+        font-size: 24px;
+    }
+    .abd-locations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+    }
+    .abd-location-card {
+        width: 150px;
+        height: 50px;
+        font-size: 14px;
+    }
+    .abd-location-icon {
+        font-size: 16px;
+    }
+}
+@media (max-width: 480px) {
+    .abd-locations-section {
+        padding: 20px 10px;
+    }
+    .abd-locations-header h2 {
+        font-size: 20px;
+    }
+    .abd-locations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
+        gap: 15px;
+        padding: 15px;
+    }
+    .abd-location-card {
+        width: 120px;
+        height: 45px;
+        font-size: 13px;
+    }
+}
 </style>
 
 @endsection
