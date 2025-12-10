@@ -361,7 +361,7 @@ margin-top:10px;
     </select>
 </div>
 <div class="form-group" id="year-group" style="display: none">
-    <select class="dropdown" id="parts-dropdown" name="parts[]" multiple required>
+    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple required>
          <option value="">Select Part</option>
         
         <option value="">Select a year</option>
@@ -408,7 +408,7 @@ $(document).ready(function() {
         width: '100%'
     });
 
-  $('#parts-dropdown').select2({
+  $('#parts-dropdown-parts').select2({
     placeholder: 'Select parts',
     width: '100%'
 });
