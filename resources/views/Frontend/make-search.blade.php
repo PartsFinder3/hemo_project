@@ -420,21 +420,22 @@
     }
     
     .abd-location-card {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        width: 200px;
-        height: 60px;
-       color: #ff6a00;
-        padding: 10px;
-        border-radius: 10px;
-        color: #333;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: 1px solid #e0e0e0;
-        background-color: #f4f4f4;
+display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 200px;
+    height: 60px;
+    color: #ff6a00;
+    padding: 10px;
+    border-radius: 10px;
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s 
+ease;
+    border: 1px solid #e0e0e0;
+    background-color: #f4f4f4;
     }
     
     .abd-location-card:hover {
