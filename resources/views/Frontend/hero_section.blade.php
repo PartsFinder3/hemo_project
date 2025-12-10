@@ -307,7 +307,15 @@ margin-top:10px;
 .select2-selection__arrow {
     height: 45px !important;
 }
+/* Select2 options bold */
+.select2-container--default .select2-results__option {
+    font-weight: bold !important;
+}
 
+/* Select2 selected item بھی bold */
+.select2-container--default .select2-selection__rendered {
+    font-weight: bold !important;
+}
 </style>
 
 <div class="hero_section_text">
