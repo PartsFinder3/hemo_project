@@ -205,17 +205,17 @@
 }
 
 .card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+    width: 100%;         /* full card width */
+    height: 200px;       /* fixed height */
+    object-fit: cover;   /* image crop kar ke fit kare, aspect ratio maintain */
+    border-bottom: 1px solid #ddd; /* optional: image and body separate */
 }
-
 .card-body {
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
+    flex-grow: 1;      /* ensures buttons stay at bottom */
 }
 
 .card-title {
@@ -508,6 +508,18 @@
         font-size: 13px;
     }
 }
+@media (max-width: 768px) {
+    .card img {
+        height: 150px; /* smaller screens ke liye */
+    }
+}
+
+@media (max-width: 480px) {
+    .card img {
+        height: 120px; /* mobile ke liye */
+    }
+}
+
     </style>
        <script>
         function contactSupplier(isActive, number, title) {
