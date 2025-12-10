@@ -418,7 +418,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // Initialize Select2 for all dropdowns
     $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
-        placeholder: 'Select an option',
+    
         width: '100%'
     });
 
