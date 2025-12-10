@@ -26,6 +26,7 @@
     justify-content: center;
     padding: 50px 0;
     background-color: #f8f8f8;
+    flex-direction: row;
 }
 
 .abdul-part_finder_card {
