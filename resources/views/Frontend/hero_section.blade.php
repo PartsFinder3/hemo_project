@@ -16,151 +16,216 @@
     height: auto;
     object-fit: cover;
 }
-.abdul-secound_hero_section {
+
+/* ===== Button ===== */
+.find-btn {
     width: 100%;
-    padding: 50px 0;
-    background-color: #f8f8f8;
-}
-
-.abdul-part_finder_card {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding: 30px;
-}
-
-.abdul-card-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.abdul-free-text {
-    font-size: 14px;
-    font-weight: bold;
-    color: #ff0000;
-}
-
-.abdul-search-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.abdul-form-group {
-    margin-bottom: 15px;
-}
-
-.abdul-dropdown {
-    width: 100%;
+    background: linear-gradient(135deg, #ff6a00, #ff9500);
+    color: white;
     padding: 10px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 50px;
+}
+/* ===== Dropdown ===== */
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
     border: 1px solid #ccc;
 }
 
-.abdul-condition-section {
-    margin-top: 20px;
+/* ===== Condition Section ===== */
+.condition-section {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+    margin-top: 10px;
 }
 
-.abdul-condition-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.abdul-radio-group {
+.radio-group {
     display: flex;
-    gap: 15px;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 5px;
 }
 
-.abdul-radio-option input {
-    margin-right: 5px;
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.abdul-find-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+/* ===== Select2 styling ===== */
+.select2-container--default {
+    width: 100% !important;
     font-size: 16px;
-    cursor: pointer;
+
+}
+.select2-selection--multiple {
+    min-height: 45px !important; /* کم از کم height */
+    height: auto !important;     /* auto height تاکہ multiple items دکھیں */
 }
 
-.abdul-find-btn:hover {
-    background-color: #0056b3;
+/* Selected items rendering */
+.select2-selection__rendered {
+    line-height: normal !important; /* auto line height for multi-select */
 }
 
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 0 20px;
+    }
 
+    .part_finder_card,
+    .hero_image_section {
+        flex: 1 1 100%;
+    }
 
+    .car {
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero_section_text {
+           margin-top: 10px;
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .car {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .hero_image_section img {
+        max-width: 300px;
+    }
+
+    .find-btn {
+        font-size: 16px;
+        height: 45px;
+    }
+
+    .radio-group {
+        flex-direction: row;
+        gap: 10px;
+    }
+}
+@media (max-width: 550px) {
+    .secound_hero_section .car {
+        max-width: 330px !important;
+        padding: 10px !important;
+        margin-top: 40px !important;
+        margin-left: 0px !important;
+    }
+
+    .secound_hero_section .hero_image_section img {
+        max-width: 260px !important;
+    }
+
+    .radio-option label {
+        font-size: 12px !important;
+    }
+
+    .hero-section_p {
+        height: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .car {
+        max-width: 330px;
+        padding: 10px;
+        margin-top: 40px;
+        margin-left: 0px;
+    }
+
+    .hero_image_section img {
+        max-width: 260px;
+    }
+
+    .radio-option label {
+        font-size: 12px;
+    }
+    .hero-section_p {
+        height: auto;
+    }
+}
+.select2-selection--single.highlight-border,
+.select2-selection--multiple.highlight-border {
+    border: 2px solid red !important;
+}
+@media (max-width: 380px) {
+    .secound_hero_section {
+        margin-top: -15px;
+        padding: 0 10px !important;
+        gap: 15px;
+    }
+
+    .car {
+        max-width: 280px !important;
+        padding: 8px !important;
+        margin-top: 30px !important;
+    }
+
+    .hero_image_section img {
+        max-width: 220px !important;
+    }
+
+    .hero_section_text h1 {
+        font-size: 20px !important;
+        margin-top: 20px;
+    }
+
+    .find-btn {
+        font-size: 14px !important;
+        height: 40px !important;
+    }
+
+    .radio-option label {
+        font-size: 11px !important;
+    }
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: solid black 1px;
+    outline: 0;
+    height: auto;
+}
+.form-group {
+    width: 100%;
+    margin-bottom: 12px;
+}
+.select2-container--default .select2-selection--single {
+    height: 45px !important;
+    padding: 8px !important;
+    display: flex;
+    align-items: center;
+}
+
+.select2-selection__rendered {
+    line-height: 45px !important;
+}
+.select2-selection__arrow {
+    height: 45px !important;
+}
+.select2-container {
+    z-index: 9999 !important;
+}
 </style>
 
 <div class="hero_section_text">
     <h1>{!! $part !!}</h1>
-</div>
-<div class="abdul-secound_hero_section">
-    <div class="abdul-part_finder_card">
-        <div class="abdul-car">
-            <div class="abdul-card-header">
-                <div class="abdul-free-text">100% FREE</div>
-                <div class="abdul-search-title">Search Your Part Here</div>
-            </div>
-            <form action="{{ route('buyer.inquiry.send') }}" method="post">
-                @csrf
-                <div class="abdul-form-group" id="abdul-make-group">
-                    <select class="abdul-dropdown" id="abdul-car-make" name="car_make_id">
-                        @foreach ($makes as $make)
-                            <option value="{{ $make->id }}">{{ $make->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="abdul-form-group" id="abdul-model-group">
-                    <select class="abdul-dropdown" id="abdul-car-model" name="car_model_id">
-                        @foreach ($models as $model)
-                            <option value="{{ $model->id }}">{{ $model->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="abdul-form-group" id="abdul-year-group">
-                    <select class="abdul-dropdown" id="abdul-car-year" name="year_id">
-                        <option value="">Select a year</option>
-                        @foreach ($years as $year)
-                            <option value="{{ $year->id }}">{{ $year->year }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="abdul-form-group" id="abdul-parts-group">
-                    <select id="abdul-parts-dropdown" name="parts[]">
-                        @foreach ($parts as $part)
-                            <option value="{{ $part->id }}">{{ $part->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="abdul-form-group" id="abdul-condition-group">
-                    <div class="abdul-condition-section">
-                        <div class="abdul-condition-title">Condition Required ?</div>
-                        <div class="abdul-radio-group">
-                            <div class="abdul-radio-option">
-                                <input type="radio" id="abdul-used" name="condition" value="used" />
-                                <label for="abdul-used">Used</label>
-                            </div>
-                            <div class="abdul-radio-option">
-                                <input type="radio" id="abdul-new" name="condition" value="new" checked />
-                                <label for="abdul-new">New</label>
-                            </div>
-                            <div class="abdul-radio-option">
-                                <input type="radio" id="abdul-doesnt-matter" name="condition" value="does_not_matter" />
-                                <label for="abdul-doesnt-matter">Doesn't matter</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="abdul-find-btn" id="abdul-find-btn">Find My Part</button>
-            </form>
-        </div>
-    </div>
 </div>
 
  
@@ -169,3 +234,25 @@
     <img src="{{ asset($image) }}" alt="" loading="lazy">
 </div>
 </div>
+<script>
+$(document).ready(function() {
+    // Single selects
+    $('#car-make, #car-model, #car-year').select2({
+        placeholder: 'Select an option',
+        width: '100%'
+    });
+
+    // Multi-select
+    $('#parts-dropdown').select2({
+        placeholder: 'Select parts',
+        width: '100%'
+    });
+
+    // Change event
+    $('#parts-dropdown').on('change', function() {
+        var selectedParts = $(this).val(); // array of selected IDs
+        console.log(selectedParts);
+    });
+});
+
+</script>
