@@ -404,12 +404,12 @@ margin-top:10px;
 <script>
 $(document).ready(function() {
     $('#car-make, #car-model, #car-year').select2({
-        placeholder: 'Select an option',
+       
         width: '100%'
     });
 
     $('#parts-dropdown').select2({
-        placeholder: 'Select parts',
+   
         width: '100%'
     });
 });
