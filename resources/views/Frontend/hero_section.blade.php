@@ -155,12 +155,13 @@
 
 }
 .select2-selection--multiple {
-    min-height: 45px !important;
-    height: auto !important;
+    min-height: 45px !important; /* کم از کم height */
+    height: auto !important;     /* auto height تاکہ multiple items دکھیں */
 }
 
+/* Selected items rendering */
 .select2-selection__rendered {
-    line-height: normal !important;
+    line-height: normal !important; /* auto line height for multi-select */
 }
 
 /* ===== Responsive ===== */
