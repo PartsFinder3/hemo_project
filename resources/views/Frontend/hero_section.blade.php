@@ -356,9 +356,10 @@ margin-top:10px;
         @endforeach
     </select>
 </div>
-<div class="form-group" id="parts-group" style="display:none;">
-    <select class="dropdown" id="parts-dropdown" name="parts[]" multiple required>
-        @foreach ($parts as $part)
+<div class="form-group" id="year-group">
+    <select class="dropdown" id="car-year" name="parts[]" multiple required>
+        <option value="">Select a year</option>
+               @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
     </select>
@@ -409,14 +410,14 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
+    // Initially hide parts
+    $('#parts-dropdown').closest('.form-group').hide();
+
     // Initialize Select2
     $('#car-make, #car-model, #car-year, #parts-dropdown').select2({
         placeholder: 'Select an option',
         width: '100%'
     });
-
-    // Initially hide parts
-    $('#parts-group').hide();
 
     // Step 1: Make select
     $('#car-make').on('change', function() {
@@ -432,14 +433,15 @@ $(document).ready(function() {
     // Step 3: Year select
     $('#car-year').on('change', function() {
         // Show parts dropdown
-        $('#parts-group').slideDown();
+        $('#parts-dropdown').closest('.form-group').slideDown();
         $('#parts-dropdown').next('.select2').find('.select2-selection').addClass('highlight-border');
     });
 
     // Step 4: Parts select
     $('#parts-dropdown').on('change', function() {
-        // final step - border remains red
+        // All steps done, border stays red (or remove if you want)
+        // Example: remove highlight after selection
+        // $('#parts-dropdown').next('.select2').find('.select2-selection').removeClass('highlight-border');
     });
 });
-
 </script>
