@@ -42,39 +42,49 @@ class FrontendController extends Controller
     {
         $this->inquiryService = $inquiryService;
     }
+
 public function index(Request $request)
 {
     $host = $request->getHost();
+
     $cacheKey = 'frontend_index_' . $host;
     $cacheMinutes = 60; // 1 hour
 
-    $data = Cache::remember($cacheKey, now()->addMinutes($cacheMinutes), function () use ($host) {
-        $currentDomain = Domain::where('domain_url', $host)->first();
+    // Cache only static data
+    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
+        $Domains = Domain::all();
+        $currentDomain = $Domains->first(function($domain) use ($host) {
+            return $domain->domain_url == $host;
+        });
+
         $domain_id = $currentDomain ? $currentDomain->id : null;
 
         $getFAQS = Faq::where('domain_id', $domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
+        $domain = Domain::first();
         $models = CarModels::all();
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
         $parts = SpareParts::all();
+        $carAds = CarAds::where('is_approved', true)->latest()->get();
         $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
 
         return compact(
-            'carMakes', 'currentDomain', 'makes', 'models', 'years', 'parts',
-            'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS'
+            'carMakes', 'domain', 'makes', 'models', 'years', 'parts',
+            'carAds', 'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS'
         );
     });
 
-    // Pagination outside cache
+    // Pagination OUTSIDE cache → fresh per page
     $data['ads'] = Ads::where('is_approved', true)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
 
+    // Return view with cache-friendly headers
     return response()
         ->view('Frontend.index', $data)
         ->header('Cache-Control', 'public, max-age=3600');

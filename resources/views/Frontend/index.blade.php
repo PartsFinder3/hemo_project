@@ -502,19 +502,20 @@
    
     <!-- Locations -->
     <section class="locations-section">
-        <div class="section-text">
-            <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
+    <div class="section-text">
+        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
+    </div>
+    <div class="locations-grid" style="background-color: white">
+        @if(optional($domain)->cities)
+            @foreach ($domain->cities as $city)
+                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="location-card">
+                    <i class="fa-solid fa-location-dot"></i> {{ $city->name }}
+                </a>
+            @endforeach
+        @endif
+    </div>
+</section>
 
-        </div>
-        <div class="locations-grid" style="background-color: white">
-            @if($domain && $domain->cities)
-                @foreach ($domain->cities as $city)
-                    <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="location-card"><i
-                            class="fa-solid fa-location-dot"></i> {{ $city->name }}</a>
-                @endforeach
-            @endif
-        </div>
-    </section>
 
     @include('Frontend.layout.company')
     <style>
