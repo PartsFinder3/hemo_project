@@ -356,7 +356,7 @@ public function delete($type, $id)
                 $path = $directory . '/' . $image_name;
                 $image->save($path);
 
-                $imagePaths[] = 'ad_images/' . $image_name;
+                $imagePaths[] = 'storage/ad_images/' . $image_name;
             }
         }
 
