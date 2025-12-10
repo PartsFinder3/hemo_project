@@ -247,24 +247,24 @@
     }
     
     .btn.whatsapp {
-        background: #25D366;
+        background: #198754;
         color: white;
         border: none;
     }
     
     .btn.whatsapp:hover {
-        background: #1da851;
+       
         transform: translateY(-2px);
     }
     
     .btn.call {
-        background: #007bff;
+        background: #ff7700;
         color: white;
         border: none;
     }
     
     .btn.call:hover {
-        background: #0056b3;
+     
         transform: translateY(-2px);
     }
 
