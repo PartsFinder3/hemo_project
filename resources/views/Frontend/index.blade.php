@@ -736,18 +736,6 @@
     font-weight: bold;
 }
 
-/* Focus state for dropdowns */
-.dropdown:focus {
-    outline: none;
-    border-color: #6a11cb;  /* matches gradient theme */
-    box-shadow: 0 0 6px rgba(106,17,203,0.3);
-}
-
-/* Ensure parts dropdown shows when enabled */
-#parts-dropdown:enabled {
-    background-color: #fff;
-    cursor: pointer;
-}
 
 /* Radio buttons bold text */
 .radio-option label {
