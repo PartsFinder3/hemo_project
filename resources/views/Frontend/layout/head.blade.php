@@ -29,7 +29,6 @@
 <meta property="og:image:height" content="945">
 @endif
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,7 +68,9 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+ 
     <script src="{{ asset('Frontend/js/script.js') }}?v={{ time() }}"></script>
   @yield('head-section')
 </head>
