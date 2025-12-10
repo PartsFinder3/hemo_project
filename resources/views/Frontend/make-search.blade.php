@@ -81,52 +81,33 @@
 
    
 
- <section class="ad-cards">
-        <div class="section-text">
-            <h3>{{$make->name}} CAR ADS</h3>
-            <h2>Our Sellers are Currently Breaking These Cars for Spare Parts</h2>
+<div class="abdul-card">
+    @php $images = json_decode($ad->images, true); @endphp
+
+    @if(is_array($images) && isset($images[0]))
+        <img src="{{ asset($images[0]) }}" alt="Product" class="abdul-card-img">
+    @endif
+
+    <div class="abdul-card-body">
+        <a href="" class="abdul-card-title">{{ $ad->title }}</a>
+        <div class="meta">
+            Availability: In Stock <br>
+            Delivery: Ask Supplier <br>
+            Warranty: Ask Supplier
         </div>
-        <div class="filters">
-            <a href="#" class="active">All</a>
-            @foreach ($randomMakes as $m)
-                <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}">{{ $m->name }}</a>
-            @endforeach
+        <div class="buttons">
+            <a href="javascript:void(0)" class="abdul-btn whatsapp"
+               onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+               WhatsApp
+            </a>
+            <a href="javascript:void(0)" class="abdul-btn call"
+               onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+               Call
+            </a>
         </div>
-
-       <div class="ab2-grid" id="ab2-productGrid">
-    @foreach ($carAds as $ad)
-        <div class="ab2-card">
-            @php
-                $images = json_decode($ad->images, true);
-            @endphp
-
-            @if (is_array($images) && isset($images[0]))
-                <img src="{{ asset($images[0]) }}" alt="Product" class="ab2-card-img">
-            @endif
-
-            <div class="ab2-card-body">
-                <a href="" class="ab2-card-title">{{ $ad->title }}</a>
-                <div class="ab2-meta">
-                    Availability: In Stock <br>
-                    Delivery: Ask Supplier <br>
-                    Warranty: Ask Supplier
-                </div>
-
-                <div class="ab2-buttons">
-                    <a href="javascript:void(0)" class="ab2-btn ab2-whatsapp"
-                        onclick="ab2_contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                    </a>
-
-                    <a href="javascript:void(0)" class="ab2-btn ab2-call"
-                        onclick="ab2_callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                        <i class="fa-solid fa-phone"></i> Click to Call
-                    </a>
-                </div>
-            </div>
-        </div>
-    @endforeach
+    </div>
 </div>
+
 
 
         <div class="pagination" id="pagination2"></div>
@@ -500,33 +481,36 @@
         font-size: 13px;
     }
 }
-.ab2-card {
+.abdul-card {
     width: 100%;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    max-width: 300px;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    height: 470px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 470px; /* total card height */
 }
 
-.ab2-card:hover {
+.abdul-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     border-color: #aaa;
 }
 
-.ab2-card-img {
+/* Fixed square image */
+.abdul-card-img {
     width: 100%;
-    height: 200px;       /* fixed height */
-    object-fit: cover;   /* cover the container, crop if needed */
-    display: block;      /* remove inline spacing */
+    height: 200px;       /* square height */
+    object-fit: contain;  /* image fully visible, proportionally */
+    background-color: #f9f9f9; /* optional: grey background for empty space */
+    display: block;
 }
 
-.ab2-card-body {
+/* Card body */
+.abdul-card-body {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -534,44 +518,20 @@
     flex-grow: 1;
 }
 
-.ab2-card-title {
+/* Fixed height for title */
+.abdul-card-title {
     font-size: 16px;
     font-weight: 600;
-    margin-bottom: 5px;
     line-height: 1.2em;
-    height: 3.6em;
+    height: 3.6em;      /* max 2 lines */
     overflow: hidden;
 }
 
-.ab2-meta {
-    font-size: 14px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.ab2-btn {
+/* Buttons */
+.abdul-btn {
     font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
 }
 
-.ab2-whatsapp {
-    background: var(--whatsapp-btn);
-}
-
-.ab2-call {
-    background: #4CAF50;
-    color: #fff;
-}
-
-.ab2-buttons {
-    display: flex;
-    gap: 10px;
-}
 
     </style>
        <script>
