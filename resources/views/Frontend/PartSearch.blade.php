@@ -77,61 +77,28 @@
                 </div>
             @endforeach
 
-            {{-- <div class="card">
-                <img src="assets/ad (2).jpg" alt="Product">
-                <div class="card-body">
-                    <a href="" class="card-title">Mercedes Cla200 2019 Window Switch Panel</a>
-                    <div class="price">AED 100</div>
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: Used <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    <div class="buttons">
-                        <a href="#" class="btn whatsapp">WhatsApp</a>
-                        <a href="#" class="btn call">Click to Call</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/ad (2).jpg" alt="Product">
-                <div class="card-body">
-                    <a href="" class="card-title">Mercedes Cla200 2019 Window Switch Panel</a>
-                    <div class="price">AED 100</div>
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: Used <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    <div class="buttons">
-                        <a href="#" class="btn whatsapp">WhatsApp</a>
-                        <a href="#" class="btn call">Click to Call</a>
-                    </div>
-                </div>
-            </div> --}}
-
-            <!-- Repeat similar cards... -->
         </div>
 
         <div class="pagination" id="pagination1"></div>
     </section>
 
     <!-- Locations -->
-    <section class="locations-section">
-        <div class="section-text">
-            <h2>{{ $part->name }} for Cars, Vans, SUVs Anywhere in the UAE</h2>
-
-        </div>
-        <div class="locations-grid">
-
+<section class="abd-locations-section">
+    <div class="abd-locations-header">
+        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
+    </div>
+    <div class="abd-locations-grid">
+        @if(optional($domain)->cities)
             @foreach ($domain->cities as $city)
-                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="location-card"><i
-                        class="fa-solid fa-location-dot"></i> {{ $city->name }}</a>
+                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="abd-location-card">
+                    <i class="fa-solid fa-location-dot abd-location-icon"></i>
+                    <span class="abd-location-name">{{ $city->name }}</span>
+                </a>
             @endforeach
-        </div>
-    </section>
+        @endif
+    </div>
+</section>
+
 
     @include('Frontend.layout.company')
 
@@ -305,7 +272,98 @@
         grid-template-columns: 1fr;
     }
 }
+/* ===== Locations Section ===== */
+.abd-locations-section {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
 
+.abd-locations-header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Fixed Grid and Card Size */
+.abd-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px)); /* fixed width */
+    gap: 20px;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.abd-location-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 200px;  /* fixed width */
+    height: 60px;  /* fixed height */
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ff6a00;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.abd-location-card:hover {
+    background-color: #ff6a00;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.abd-location-icon {
+    font-size: 18px;
+}
+
+.abd-location-name {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .abd-locations-header h2 {
+        font-size: 24px;
+    }
+    .abd-locations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+    }
+    .abd-location-card {
+        width: 150px;
+        height: 50px;
+        font-size: 14px;
+    }
+    .abd-location-icon {
+        font-size: 16px;
+    }
+}
+@media (max-width: 480px) {
+    .abd-locations-section {
+        padding: 20px 10px;
+    }
+    .abd-locations-header h2 {
+        font-size: 20px;
+    }
+    .abd-locations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
+        gap: 15px;
+        padding: 15px;
+    }
+    .abd-location-card {
+        width: 120px;
+        height: 45px;
+        font-size: 13px;
+    }
+}
 
 
 </style>
