@@ -51,68 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Add CSS for Choices.js z-index fix
-const style = document.createElement('style');
-style.textContent = `
-    /* Fix any parent with overflow */
-    * {
-        overflow: visible !important;
-    }
 
-    body, html {
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-    }
-
-    /* Ensure choices dropdowns appear on top */
-    .choices {
-        position: relative !important;
-        margin-bottom: 1rem;
-    }
-
-    .choices__inner {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        min-height: 44px;
-        padding: 7.5px 10px;
-    }
-
-    .choices__input {
-        background-color: #fff;
-    }
-
-    /* Make dropdown list appear above everything */
-    .choices__list--dropdown {
-        position: absolute !important;
-        z-index: 999999 !important;
-        top: 100% !important;
-        margin-top: 0 !important;
-        background: white !important;
-        border: 1px solid #ddd !important;
-        border-radius: 4px !important;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
-        max-height: 300px !important;
-        overflow-y: auto !important;
-        width: 100% !important;
-    }
-
-    .choices[data-type*="select-one"] .choices__list--dropdown,
-    .choices[data-type*="select-multiple"] .choices__list--dropdown {
-        display: none;
-    }
-
-    .choices[data-type*="select-one"].is-open .choices__list--dropdown,
-    .choices[data-type*="select-multiple"].is-open .choices__list--dropdown {
-        display: block !important;
-        position: absolute !important;
-        z-index: 999999 !important;
-    }
-
-    .choices.is-open {
-        z-index: 999999 !important;
-    }
-`;
 document.head.appendChild(style);
 function sendProductInquiryWhatsapp(whatsapp, title) {
     let formData = new FormData(document.getElementById('productInquiryForm'));
