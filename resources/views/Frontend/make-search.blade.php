@@ -521,8 +521,9 @@
 
 .ab2-card-img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: 200px;       /* fixed height */
+    object-fit: cover;   /* cover the container, crop if needed */
+    display: block;      /* remove inline spacing */
 }
 
 .ab2-card-body {
