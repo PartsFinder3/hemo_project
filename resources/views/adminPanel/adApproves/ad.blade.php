@@ -28,7 +28,7 @@
                                                 @endphp
 
                                                 @if (is_array($images) && isset($images[0]))
-                                                  <img src="{{ asset('storage/' . $images[0]) }}" >
+                                                    <img src="{{ asset( $images[0]) }}"
                                                          class="card-img-top img-fluid"
                                                          alt="Product"
                                                          style="height: 220px; object-fit: cover;">
