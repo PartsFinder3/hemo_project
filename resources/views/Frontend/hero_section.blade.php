@@ -316,6 +316,9 @@ margin-top:10px;
 .select2-container--default .select2-selection__rendered {
     font-weight: bold !important;
 }
+.highlight-border {
+    border: 2px solid red !important;
+}
 </style>
 
 <div class="hero_section_text">
@@ -402,6 +405,43 @@ $(document).ready(function() {
     $('#parts-dropdown').select2({
         placeholder: 'Select parts',
         width: '100%'
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    // Initially hide parts
+    $('#parts-dropdown').closest('.form-group').hide();
+
+    // Initialize Select2
+    $('#car-make, #car-model, #car-year, #parts-dropdown').select2({
+        placeholder: 'Select an option',
+        width: '100%'
+    });
+
+    // Step 1: Make select
+    $('#car-make').on('change', function() {
+        $(this).next('.select2').find('.select2-selection').addClass('highlight-border');
+        $('#car-model').next('.select2').find('.select2-selection').addClass('highlight-border');
+    });
+
+    // Step 2: Model select
+    $('#car-model').on('change', function() {
+        $('#car-year').next('.select2').find('.select2-selection').addClass('highlight-border');
+    });
+
+    // Step 3: Year select
+    $('#car-year').on('change', function() {
+        // Show parts dropdown
+        $('#parts-dropdown').closest('.form-group').slideDown();
+        $('#parts-dropdown').next('.select2').find('.select2-selection').addClass('highlight-border');
+    });
+
+    // Step 4: Parts select
+    $('#parts-dropdown').on('change', function() {
+        // All steps done, border stays red (or remove if you want)
+        // Example: remove highlight after selection
+        // $('#parts-dropdown').next('.select2').find('.select2-selection').removeClass('highlight-border');
     });
 });
 </script>
