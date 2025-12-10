@@ -292,9 +292,10 @@
     margin-bottom: 12px;
 }
 .select2-container--default .select2-selection--single {
-    height: auto !important;
+    height: 45px !important;
     padding: 8px !important;
- 
+  
+    align-items: center;
 }
 
 .select2-selection__rendered {
