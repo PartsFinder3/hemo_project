@@ -347,7 +347,7 @@
                 </div>
 
                 <div class="form-group " id="parts-group">
-                    <select id="parts-dropdown" name="parts[]" class="dropdown" multiple >
+                    <select id="parts-dropdown" name="parts[]" class="dropdown"  >
                         @foreach ($parts as $part)
                             <option value="{{ $part->id }}">{{ $part->name }}</option>
                         @endforeach
@@ -383,3 +383,18 @@
     <img src="{{ asset($image) }}" alt="" loading="lazy">
 </div>
 </div>
+<script>
+$(document).ready(function() {
+    // Single selects
+    $('#model, #make, #year').select2({
+        placeholder: 'Select an option',
+        width: '100%'
+    });
+
+    // Multiple select for parts
+    $('#parts-dropdown').select2({
+        placeholder: 'Select parts',
+        width: '100%'
+    });
+});
+</script>
