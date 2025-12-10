@@ -340,17 +340,13 @@
     </select>
 </div>
 <div class="form-group" id="year-group">
+
+</div>
+<div class="form-group" id="parts-group">
     <select class="dropdown" id="car-year" name="year_id">
         <option value="">Select a year</option>
         @foreach ($years as $year)
             <option value="{{ $year->id }}">{{ $year->year }}</option>
-        @endforeach
-    </select>
-</div>
-<div class="form-group" id="parts-group">
-    <select id="parts-dropdown" name="parts[]" class="dropdown" multiple="multiple">
-        @foreach ($parts as $part)
-            <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
     </select>
 </div>
