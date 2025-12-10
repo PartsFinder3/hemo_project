@@ -1,14 +1,5 @@
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const makeElement = document.querySelector('#car-make'); // correct ID
-
-    if (makeElement) {
-        new Choices(makeElement);
-    } else {
-        console.warn("Element #car-make not found");
-    }
-});
 
 // Pagination
 function setupPagination(gridId, paginationId, perPage = 6) {
