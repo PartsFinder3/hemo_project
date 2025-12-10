@@ -287,6 +287,11 @@
     outline: 0;
     height: auto;
 }
+.form-group {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
 </style>
 
 <div class="hero_section_text">
