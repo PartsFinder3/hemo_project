@@ -154,10 +154,13 @@
     font-size: 16px;
 
 }
-.select2-selection--single,
 .select2-selection--multiple {
-    height: 40px;
-    padding: 5px 10px;
+    height: auto !important;
+    min-height: 45px; /* optional */
+}
+
+.select2-selection__rendered {
+    line-height: normal !important; /* auto adjust */
 }
 
 /* ===== Responsive ===== */
