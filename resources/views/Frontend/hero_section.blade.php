@@ -321,39 +321,35 @@
             </div>
             <form action="{{ route('buyer.inquiry.send') }}" method="post">
                 @csrf
-               <div class="form-group" id="model-group">
-                    <select class="dropdown" id="model" name="car_make_id">
-                          @foreach ($makes as $make)
-                            <option value="{{ $make->id }}">{{ $make->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group" id="model-group">
-                    <select class="dropdown" id="model" name="car_model_id">
-                          @foreach ($models as $make)
-                            <option value="{{ $make->id }}">{{ $make->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group" id="year-group">
-                    <select class="dropdown" id="year" name="year_id">
-                        <option value="">Select a year</option>
-                        @foreach ($years as $year)
-                            <option value="{{ $year->id }}">{{ $year->year }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group " id="parts-group">
-                    <select id="parts-dropdown" name="parts[]" class="dropdown"  >
-                        @foreach ($parts as $part)
-                            <option value="{{ $part->id }}">{{ $part->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
+            <div class="form-group" id="make-group">
+    <select class="dropdown" id="car-make" name="car_make_id">
+        @foreach ($makes as $make)
+            <option value="{{ $make->id }}">{{ $make->name }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group" id="model-group">
+    <select class="dropdown" id="car-model" name="car_model_id">
+        @foreach ($models as $model)
+            <option value="{{ $model->id }}">{{ $model->name }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group" id="year-group">
+    <select class="dropdown" id="car-year" name="year_id">
+        <option value="">Select a year</option>
+        @foreach ($years as $year)
+            <option value="{{ $year->id }}">{{ $year->year }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="form-group" id="parts-group">
+    <select id="parts-dropdown" name="parts[]" class="dropdown" multiple="multiple">
+        @foreach ($parts as $part)
+            <option value="{{ $part->id }}">{{ $part->name }}</option>
+        @endforeach
+    </select>
+</div>
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
                         <div class="condition-title">Condition Required ?</div>
@@ -385,13 +381,11 @@
 </div>
 <script>
 $(document).ready(function() {
-    // Single selects
-    $('#model, #make, #year').select2({
+    $('#car-make, #car-model, #car-year').select2({
         placeholder: 'Select an option',
         width: '100%'
     });
 
-    // Multiple select for parts
     $('#parts-dropdown').select2({
         placeholder: 'Select parts',
         width: '100%'
