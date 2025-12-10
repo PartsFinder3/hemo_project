@@ -383,14 +383,23 @@
 </div>
 <script>
 $(document).ready(function() {
+    // Single selects
     $('#car-make, #car-model, #car-year').select2({
         placeholder: 'Select an option',
         width: '100%'
     });
 
-$('#parts-dropdown').on('change', function() {
-    var selectedParts = $(this).val(); // یہ array دے گا selected values
-    console.log(selectedParts);
+    // Multi-select for parts
+    $('#parts-dropdown').select2({
+        placeholder: 'Select parts',
+        width: '100%'
+    });
+
+    // Change event
+    $('#parts-dropdown').on('change', function() {
+        var selectedParts = $(this).val(); // array of selected IDs
+        console.log(selectedParts);
+    });
 });
-});
+
 </script>
