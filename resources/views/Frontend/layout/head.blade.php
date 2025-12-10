@@ -12,7 +12,9 @@
     </script>
 @endif
 <link rel="canonical" href="{{ url()->current() }}">
-  
+@if($domain && $domain->logo)
+    <link rel="icon" href="{{ asset('storage/logo/'.$domain->logo) }}">
+@endif 
 @if(empty($meta) && isset($domain->metaTags))
     <meta name="description" content="{{ $domain->metaTags->description }}">
     <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
