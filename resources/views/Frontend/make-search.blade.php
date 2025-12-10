@@ -26,18 +26,22 @@
                     $images = json_decode($ad->images, true);
                 @endphp
 
-                @if (is_array($images) && isset($images[0]))
-                    <img src="{{ asset('' . $images[0]) }}" alt="Product">
-                @endif
+                <div class="image-container">
+                    @if (is_array($images) && isset($images[0]))
+                        <img src="{{ asset('' . $images[0]) }}" alt="{{ $ad->title }}" onerror="this.src='{{ asset('images/placeholder.jpg') }}'">
+                    @else
+                        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image">
+                    @endif
+                </div>
                 
                 <div class="card-body">
                     <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}" class="card-title">{{ $ad->title }}</a>
-                    <div class="price">AED {{ $ad->price }}</div>
+                    <div class="price">AED {{ number_format($ad->price) }}</div>
                     <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: {{ $ad->condition }} <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
+                        <div class="meta-item"><strong>Condition:</strong> {{ $ad->condition }}</div>
+                        <div class="meta-item"><strong>Availability:</strong> In Stock</div>
+                        <div class="meta-item"><strong>Delivery:</strong> Ask Supplier</div>
+                        <div class="meta-item"><strong>Warranty:</strong> Ask Supplier</div>
                     </div>
                     
                     <div class="buttons">
@@ -48,7 +52,7 @@
 
                         <a href="javascript:void(0)" class="btn call"
                             onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                            <i class="fa-solid fa-phone"></i> Click to Call
+                            <i class="fa-solid fa-phone"></i> Call
                         </a>
                     </div>
                 </div>
@@ -69,7 +73,9 @@
         @foreach ($carMakes as $m)
             <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}" class="make">
                 @if($m->logo)
-                    <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}">
+                    <div class="make-image-container">
+                        <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}" onerror="this.src='{{ asset('images/brand-placeholder.png') }}'">
+                    </div>
                 @endif
                 <h4>{{ strtoupper($m->name) }}</h4>
             </a>
@@ -120,49 +126,69 @@
 </script>
 
 <style>
-    /* Card Styles */
+    /* Fixed Image Container for Ads */
+    .image-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Yahan contain use karein takay poori image show ho */
+        transition: transform 0.3s ease;
+    }
+    
+    .card:hover .image-container img {
+        transform: scale(1.05);
+    }
+    
+    /* Fixed Height Card for Uniformity */
     .card {
         width: 100%;
         display: flex;
         flex-direction: column;
-        border: 1px solid #ddd;
+        border: 1px solid #e0e0e0;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        height: 470px;
+        height: 480px; /* Fixed height for all cards */
+        background: white;
         transition: all 0.3s ease;
     }
 
     .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        border-color: #aaa;
-    }
-
-    .card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        flex-shrink: 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        border-color: #ff6a00;
     }
 
     .card-body {
-        padding: 10px;
+        padding: 15px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         flex-grow: 1;
     }
     
+    /* Fixed Title Height - Sab cards ka title same height par */
     .card-title {
         font-size: 16px;
         font-weight: 600;
-        margin-bottom: 5px;
-        line-height: 1.2em;
-        height: 3.6em;
+        margin-bottom: 10px;
+        line-height: 1.4em;
+        height: 2.8em; /* Exactly 2 lines ki height */
         overflow: hidden;
         color: #333;
         text-decoration: none;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Maximum 2 lines */
+        -webkit-box-orient: vertical;
     }
     
     .card-title:hover {
@@ -170,29 +196,42 @@
     }
 
     .price {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
-        margin-bottom: 5px;
-        color: #333;
+        margin-bottom: 12px;
+        color: #ff6a00;
     }
 
+    /* Fixed Meta Information */
     .meta {
-        font-size: 14px;
-        line-height: 1.4;
+        margin-bottom: 15px;
         flex-grow: 1;
+    }
+    
+    .meta-item {
+        font-size: 13px;
+        line-height: 1.4;
         color: #666;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .meta-item strong {
+        color: #333;
+        font-weight: 600;
     }
 
-    /* Button Styles */
+    /* Fixed Button Height */
     .buttons {
         display: flex;
         gap: 10px;
-        margin-top: 10px;
+        margin-top: auto;
     }
     
     .btn {
         flex: 1;
-        padding: 8px 12px;
+        padding: 10px;
         border-radius: 4px;
         text-align: center;
         text-decoration: none;
@@ -203,6 +242,7 @@
         align-items: center;
         justify-content: center;
         gap: 5px;
+        height: 40px; /* Fixed button height */
     }
     
     .btn.whatsapp {
@@ -213,6 +253,7 @@
     
     .btn.whatsapp:hover {
         background: #1da851;
+        transform: translateY(-2px);
     }
     
     .btn.call {
@@ -223,6 +264,7 @@
     
     .btn.call:hover {
         background: #0056b3;
+        transform: translateY(-2px);
     }
 
     /* Filters */
@@ -230,8 +272,10 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        margin-bottom: 20px;
+        margin: 20px 0 30px;
         padding: 15px 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
     }
     
     .filters a {
@@ -241,6 +285,8 @@
         text-decoration: none;
         color: #666;
         transition: all 0.3s ease;
+        font-size: 14px;
+        font-weight: 500;
     }
     
     .filters a.active,
@@ -250,43 +296,46 @@
         border-color: #ff6a00;
     }
 
-    /* Grid Layout */
+    /* Grid Layout - Fixed columns */
     .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
     }
 
-    /* Makes/Brands Section */
+    /* Makes/Brands Section with Fixed Images */
     .carMakes {
-        padding: 40px 20px;
+        padding: 50px 20px;
         background: #f9f9f9;
-        margin: 40px 0;
+        margin: 50px 0;
     }
     
     .section-text {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
     
     .section-text h3 {
         color: #666;
         font-size: 16px;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
     
     .section-text h2 {
         color: #333;
-        font-size: 28px;
-        margin-top: 0;
+        font-size: 32px;
+        margin: 0;
+        font-weight: 700;
     }
     
     .brands {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
         max-width: 1200px;
         margin: 0 auto;
     }
@@ -295,30 +344,38 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        width: 150px;
-        height: 115px;
+        justify-content: space-between;
+        width: 160px;
+        height: 130px; /* Fixed height for brand cards */
         text-decoration: none;
-        color: black;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px;
+        color: #333;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
         overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        background: #fff;
+        transition: all 0.3s ease;
+        background: white;
     }
     
     .make:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border-color: #ccc;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        border-color: #ff6a00;
+    }
+    
+    .make-image-container {
+        width: 100%;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
     }
     
     .make img {
-        width: 90%;
-        height: 60px;
+        max-width: 90%;
+        max-height: 90%;
         object-fit: contain;
-        margin-bottom: 8px;
     }
     
     .make h4 {
@@ -326,23 +383,28 @@
         font-weight: 600;
         text-align: center;
         margin: 0;
-        line-height: 1.2em;
-        height: 2.4em;
+        line-height: 1.3em;
+        height: 2.6em; /* Fixed height for brand names */
         overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        color: #333;
     }
 
     /* Locations Section */
     .abd-locations-section {
-        padding: 40px 20px;
-        background-color: #f9f9f9;
+        padding: 50px 20px;
+        background-color: #fff;
         text-align: center;
     }
     
     .abd-locations-header h2 {
         font-size: 28px;
         color: #333;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         font-weight: 600;
+        line-height: 1.3;
     }
     
     .abd-locations-grid {
@@ -350,8 +412,8 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
         gap: 20px;
         justify-content: center;
-        background-color: #fff;
-        padding: 20px;
+        background-color: #f9f9f9;
+        padding: 30px;
         border-radius: 15px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
@@ -360,22 +422,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 10px;
         width: 200px;
         height: 60px;
-        background-color: #f4f4f4;
+        background-color: white;
         padding: 10px;
         border-radius: 10px;
-        color: #ff6a00;
+        color: #333;
         font-weight: 500;
         text-decoration: none;
         transition: all 0.3s ease;
+        border: 1px solid #e0e0e0;
     }
     
     .abd-location-card:hover {
         background-color: #ff6a00;
-        color: #fff;
+        color: white;
         transform: translateY(-3px);
+        border-color: #ff6a00;
     }
     
     .abd-location-icon {
@@ -393,17 +457,18 @@
         justify-content: center;
         align-items: center;
         gap: 10px;
-        margin-top: 30px;
+        margin-top: 40px;
         padding: 20px 0;
     }
     
     .pagination a {
-        padding: 8px 16px;
+        padding: 10px 18px;
         border: 1px solid #ddd;
         border-radius: 4px;
         text-decoration: none;
         color: #333;
         transition: all 0.3s ease;
+        font-weight: 500;
     }
     
     .pagination a:hover,
@@ -414,18 +479,32 @@
     }
 
     /* Responsive Styles */
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         .grid {
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .grid {
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         }
         
         .card {
-            height: auto;
-            min-height: 450px;
+            height: 460px;
+        }
+        
+        .image-container {
+            height: 180px;
         }
         
         .buttons {
             flex-direction: column;
+        }
+        
+        .btn {
+            width: 100%;
         }
         
         .abd-locations-header h2 {
@@ -447,27 +526,29 @@
         }
         
         .make {
-            width: 120px;
-            height: 100px;
+            width: 140px;
+            height: 120px;
         }
         
-        .make img {
-            height: 50px;
+        .make-image-container {
+            height: 60px;
         }
         
         .make h4 {
-            font-size: 12px;
+            font-size: 13px;
         }
     }
     
     @media (max-width: 480px) {
         .grid {
             grid-template-columns: 1fr;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .card {
-            height: auto;
-            min-height: 400px;
+            height: 450px;
         }
         
         .section-text h2 {
@@ -475,7 +556,7 @@
         }
         
         .abd-locations-section {
-            padding: 20px 10px;
+            padding: 30px 15px;
         }
         
         .abd-locations-header h2 {
@@ -485,7 +566,7 @@
         .abd-locations-grid {
             grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
             gap: 15px;
-            padding: 15px;
+            padding: 20px;
         }
         
         .abd-location-card {
@@ -496,11 +577,24 @@
         
         .filters {
             justify-content: center;
+            overflow-x: auto;
+            padding: 10px 0;
         }
         
         .filters a {
-            font-size: 14px;
+            font-size: 13px;
             padding: 6px 12px;
+            white-space: nowrap;
+        }
+        
+        .brands {
+            gap: 15px;
+        }
+        
+        .make {
+            width: 130px;
+            height: 110px;
+            padding: 12px;
         }
     }
 </style>
