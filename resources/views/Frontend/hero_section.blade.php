@@ -332,21 +332,21 @@ margin-top:10px;
             <form action="{{ route('buyer.inquiry.send') }}" method="post">
                 @csrf
             <div class="form-group" id="make-group">
-    <select class="dropdown" id="car-make" name="car_make_id">
+    <select class="dropdown" id="car-make" name="car_make_id" required>
         @foreach ($makes as $make)
             <option value="{{ $make->id }}">{{ $make->name }}</option>
         @endforeach
     </select>
 </div>
 <div class="form-group" id="model-group">
-    <select class="dropdown" id="car-model" name="car_model_id" style="font-weight: bold">
+    <select class="dropdown" id="car-model" name="car_model_id" style="font-weight: bold" required>
         @foreach ($models as $model)
             <option value="{{ $model->id }}">{{ $model->name }}</option>
         @endforeach
     </select>
 </div>
 <div class="form-group" id="year-group">
-    <select class="dropdown" id="car-year" name="year_id" >
+    <select class="dropdown" id="car-year" name="year_id"  required>
         <option value="">Select a year</option>
         @foreach ($years as $year)
             <option value="{{ $year->id }}">{{ $year->year }}</option>
@@ -354,7 +354,7 @@ margin-top:10px;
     </select>
 </div>
 <div class="form-group" id="year-group">
-    <select class="dropdown" id="car-year" name="parts[]" multiple>
+    <select class="dropdown" id="car-year" name="parts[]" multiple required>
         <option value="">Select a year</option>
                @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
@@ -368,7 +368,7 @@ margin-top:10px;
                         <div class="condition-title">Condition Required ?</div>
                         <div class="radio-group">
                             <div class="radio-option">
-                                <input type="radio" id="used" name="condition" value="used" />
+                                <input type="radio" id="used" name="condition" value="used" required />
                                 <label for="used">Used</label>
                             </div>
                             <div class="radio-option">
