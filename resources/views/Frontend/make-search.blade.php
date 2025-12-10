@@ -550,7 +550,7 @@ ease;
         }
         
         .card {
-            height: 480px;
+            height: 500px;
         }
         
         .section-text h2 {
