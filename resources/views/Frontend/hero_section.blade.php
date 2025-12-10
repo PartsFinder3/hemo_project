@@ -293,7 +293,7 @@
 }
 .select2-container--default .select2-selection--single {
     height: auto !important;
-   
+    padding: 8px !important;
  
 }
 
