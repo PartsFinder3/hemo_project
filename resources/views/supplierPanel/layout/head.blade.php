@@ -7,7 +7,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- Favicons --}}
     <link rel="shortcut icon" href="{{ asset('assets/compiled/svg/favicon.svg') }}" type="image/x-icon">
-
+@if($domain && $domain->logo)
+    <link rel="icon" href="{{ asset('storage/logo/'.$domain->logo) }}">
+@endif 
     {{-- Fonts / Icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Summernote CSS -->
