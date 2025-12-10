@@ -344,7 +344,7 @@
     </select>
 </div>
 <div class="form-group" id="parts-group">
-    <select id="parts-dropdown" name="parts[]" class="dropdown" multiple="multiple">
+    <select id="parts-dropdown" name="parts[]" class="dropdown">
         @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
