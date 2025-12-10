@@ -305,7 +305,27 @@
 .select2-selection__arrow {
     height: 45px !important;
 }
+/* Make selected items more visible in dropdown */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background: #4CAF50 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 4px 8px !important;
+    margin: 4px !important;
+}
 
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: white !important;
+    margin-right: 5px !important;
+}
+
+/* Better styling for select2 boxes */
+.select2-container--default .select2-selection--multiple {
+    min-height: 45px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+}
 </style>
 
 <div class="hero_section_text">
@@ -390,5 +410,117 @@ $(document).ready(function() {
         placeholder: 'Select parts',
         width: '100%'
     });
+});
+$(document).ready(function() {
+    // Single selects
+    $('#car-make, #car-model, #car-year').select2({
+        placeholder: 'Select an option',
+        width: '100%'
+    });
+
+    // Multi-select for parts with BETTER VISIBILITY
+    $('#parts-dropdown').select2({
+        placeholder: 'Select parts (click to choose)',
+        width: '100%',
+        closeOnSelect: false // Dropdown close na ho selection pe
+    });
+
+    // Add a container to show selected parts clearly
+    $('.form-group#parts-group').after(`
+        <div class="selected-parts-box" id="selectedPartsBox" style="
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        ">
+            <div style="font-weight: bold; color: #333; margin-bottom: 8px;">
+                Selected Parts:
+            </div>
+            <div id="selectedPartsList" style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            ">
+                <!-- Selected parts will appear here -->
+            </div>
+        </div>
+    `);
+
+    // Function to update selected parts display
+    function updateSelectedParts() {
+        var selectedParts = $('#parts-dropdown').val();
+        var selectedPartsList = $('#selectedPartsList');
+        var selectedPartsBox = $('#selectedPartsBox');
+        
+        // Clear current list
+        selectedPartsList.empty();
+        
+        if (selectedParts && selectedParts.length > 0) {
+            // Show the box
+            selectedPartsBox.show();
+            
+            // Get selected option texts
+            selectedParts.forEach(function(partId) {
+                var partName = $('#parts-dropdown option[value="' + partId + '"]').text();
+                
+                selectedPartsList.append(`
+                    <div style="
+                        background: #4CAF50;
+                        color: white;
+                        padding: 6px 12px;
+                        border-radius: 20px;
+                        font-size: 14px;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    ">
+                        ${partName}
+                        <button type="button" class="remove-part-btn" data-part-id="${partId}" 
+                            style="
+                                background: none;
+                                border: none;
+                                color: white;
+                                cursor: pointer;
+                                font-size: 16px;
+                                padding: 0;
+                                margin-left: 5px;
+                            ">
+                            ×
+                        </button>
+                    </div>
+                `);
+            });
+            
+            // Update button text with count
+            $('#find-btn').text('Find My Parts (' + selectedParts.length + ')');
+        } else {
+            // Hide box if no parts selected
+            selectedPartsBox.hide();
+            $('#find-btn').text('Find My Part');
+        }
+    }
+    
+    // When parts selection changes
+    $('#parts-dropdown').on('change', function() {
+        updateSelectedParts();
+    });
+    
+    // Handle remove button clicks
+    $(document).on('click', '.remove-part-btn', function() {
+        var partId = $(this).data('part-id');
+        var currentSelection = $('#parts-dropdown').val();
+        
+        // Remove this part from selection
+        var newSelection = currentSelection.filter(function(id) {
+            return id != partId;
+        });
+        
+        // Update select2
+        $('#parts-dropdown').val(newSelection).trigger('change');
+    });
+    
+    // Initialize on page load
+    updateSelectedParts();
 });
 </script>
