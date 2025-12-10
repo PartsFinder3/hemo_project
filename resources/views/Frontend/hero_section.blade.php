@@ -305,7 +305,9 @@
 .select2-selection__arrow {
     height: 45px !important;
 }
-
+.select2-container {
+    z-index: 9999 !important;
+}
 </style>
 
 <div class="hero_section_text">
