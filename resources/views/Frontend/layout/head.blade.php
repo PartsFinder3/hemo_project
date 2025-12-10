@@ -68,7 +68,7 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-    
+    <script src="{{ asset('Frontend/js/script.js') }}?v={{ time() }}"></script>
   @yield('head-section')
 </head>
 
