@@ -161,6 +161,7 @@
         height: 480px; /* Fixed height for all cards */
         background: white;
         transition: all 0.3s ease;
+        height: 520px;
     }
 
     .card:hover {
