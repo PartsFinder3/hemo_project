@@ -336,6 +336,7 @@ margin-top:10px;
                 @csrf
             <div class="form-group" id="make-group">
     <select class="dropdown" id="car-make" name="car_make_id" required>
+         <option value="">Select make</option>
         @foreach ($makes as $make)
             <option value="{{ $make->id }}">{{ $make->name }}</option>
         @endforeach
@@ -343,6 +344,7 @@ margin-top:10px;
 </div>
 <div class="form-group" id="model-group">
     <select class="dropdown" id="car-model" name="car_model_id" style="font-weight: bold" required>
+         <option value="">Select Model</option>
         @foreach ($models as $model)
             <option value="{{ $model->id }}">{{ $model->name }}</option>
         @endforeach
@@ -350,6 +352,8 @@ margin-top:10px;
 </div>
 <div class="form-group" id="year-group">
     <select class="dropdown" id="car-year" name="year_id"  required>
+         <option value="">Select year</option>
+
         <option value="">Select a year</option>
         @foreach ($years as $year)
             <option value="{{ $year->id }}">{{ $year->year }}</option>
@@ -358,6 +362,8 @@ margin-top:10px;
 </div>
 <div class="form-group" id="year-group" style="display: none">
     <select class="dropdown" id="car-year" name="parts[]" multiple required>
+         <option value="">Select Part</option>
+        
         <option value="">Select a year</option>
                @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
