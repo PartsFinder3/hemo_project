@@ -360,17 +360,14 @@ margin-top:10px;
         @endforeach
     </select>
 </div>
-<div class="form-group" id="year-group" style="display: none">
-    <select class="dropdown" id="car-year" name="parts[]" multiple required>
-         <option value="">Select Part</option>
-        
-        <option value="">Select a year</option>
-               @foreach ($parts as $part)
+<div class="form-group" id="parts-group" style="display: none">
+    <select class="dropdown" id="parts-dropdown" name="parts[]" multiple required>
+        <option value="">Select Part</option>
+        @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
     </select>
 </div>
-
 
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
@@ -408,10 +405,10 @@ $(document).ready(function() {
         width: '100%'
     });
 
-    $('#parts-dropdown').select2({
-   
-        width: '100%'
-    });
+$('#parts-dropdown').select2({
+    placeholder: 'Select parts',
+    width: '100%'
+});
 });
 </script>
 <script>
