@@ -185,17 +185,15 @@
     </script>
 
     <style>
-        .card {
-   width: 100%;
-    padding: 0; /* remove all padding */
+.card {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    height: 470px;
+    height: 470px; /* fixed card height */
 }
 
 .card:hover {
@@ -206,8 +204,9 @@
 
 .card img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: 200px; /* fixed image height */
+    object-fit: cover; /* image crop kar ke fit kare */
+    flex-shrink: 0;   /* image shrink na ho */
 }
 
 .card-body {
@@ -217,13 +216,12 @@
     justify-content: space-between;
     flex-grow: 1;
 }
-
 .card-title {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 5px;
     line-height: 1.2em;
-    height: 3.6em;
+    height: 3.6em;  /* 2 lines fix height */
     overflow: hidden;
 }
 
@@ -235,8 +233,8 @@
 
 .meta {
     font-size: 14px;
-    margin-bottom: 10px;
     line-height: 1.4;
+    flex-grow: 1; /* push buttons down */
 }
 
 .btn.whatsapp {
