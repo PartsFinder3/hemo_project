@@ -120,7 +120,7 @@
         </div>
     </section>
 
-    @include('Frontend.layout.company')
+   
 
     <script>
         function contactSupplier(isActive, number, title) {
