@@ -399,7 +399,7 @@
 
 <section class="abd-locations-section">
     <div class="abd-locations-header">
-        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
+        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the {{$city->name}}</h2>
     </div>
     <div class="abd-locations-grid">
         @if(optional($domain)->cities)
