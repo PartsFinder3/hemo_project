@@ -409,49 +409,5 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function() {
-    // Initially hide parts dropdown
-    $('select[name="parts[]"]').closest('.form-group').hide();
-
-    // Initialize Select2
-    $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
-        placeholder: 'Select an option',
-        width: '100%'
-    });
-
-    function removeHighlights() {
-        $('#car-make, #car-model, #car-year, select[name="parts[]"]').next('.select2')
-            .find('.select2-selection').removeClass('highlight-border');
-    }
-
-    // Step 1: Make select
-    $('#car-make').on('change', function() {
-        removeHighlights();
-        $(this).next('.select2').find('.select2-selection').addClass('highlight-border');
-        $('#car-model').next('.select2').find('.select2-selection').addClass('highlight-border'); // optional if you want next highlighted too
-    });
-
-    // Step 2: Model select
-    $('#car-model').on('change', function() {
-        removeHighlights();
-        $(this).next('.select2').find('.select2-selection').addClass('highlight-border');
-        $('#car-year').next('.select2').find('.select2-selection').addClass('highlight-border'); // optional
-    });
-
-    // Step 3: Year select
-    $('#car-year').on('change', function() {
-        // Show parts dropdown
-        $('select[name="parts[]"]').closest('.form-group').slideDown();
-        removeHighlights();
-        $(this).next('.select2').find('.select2-selection').addClass('highlight-border');
-        $('select[name="parts[]"]').next('.select2').find('.select2-selection').addClass('highlight-border'); // optional
-    });
-
-    // Step 4: Parts select
-    $('select[name="parts[]"]').on('change', function() {
-        removeHighlights();
-        $(this).next('.select2').find('.select2-selection').addClass('highlight-border');
-    });
-});
 
 </script>
