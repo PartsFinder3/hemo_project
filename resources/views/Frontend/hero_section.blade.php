@@ -148,21 +148,37 @@
     gap: 5px;
 }
 
-/* ===== Select2 styling ===== */
-.select2-container--default {
-    width: 100% !important;
-    font-size: 16px;
-
+/* Multi-select adjustments */
+.select2-container--default .select2-selection--multiple {
+    min-height: 45px;
+    height: auto;
+    padding: 4px 8px;
+    line-height: 1.4; /* allow wrapping */
+    display: flex;
+    flex-wrap: wrap; /* important to show multiple items */
+    align-items: center;
 }
-.select2-selection--multiple {
-    min-height: 45px !important; /* کم از کم height */
-    height: auto !important;     /* auto height تاکہ multiple items دکھیں */
-}
 
-/* Selected items rendering */
 .select2-selection__rendered {
-    line-height: normal !important; /* auto line height for multi-select */
+    display: flex;
+    flex-wrap: wrap; /* wrap multiple selections */
+    gap: 4px; /* space between selected items */
+    line-height: 1.4;
 }
+
+.select2-selection__choice {
+    background-color: #007bff; /* optional styling */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 2px 0; /* small vertical margin */
+}
+
+.select2-selection__arrow {
+    height: 45px !important; /* adjust arrow height */
+}
+
 
 /* ===== Responsive ===== */
 @media (max-width: 992px) {
