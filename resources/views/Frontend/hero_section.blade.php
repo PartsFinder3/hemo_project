@@ -409,5 +409,27 @@ $(document).ready(function() {
 });
 </script>
 <script>
+$(document).ready(function() {
+    // Initialize Select2 for all dropdowns
+    $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
+        placeholder: 'Select an option',
+        width: '100%'
+    });
+
+    // Hide parts dropdown initially (already hidden via style, just in case)
+    $('select[name="parts[]"]').closest('.form-group').hide();
+
+    // When Year is selected
+    $('#car-year').on('change', function() {
+        // Show the parts dropdown
+        $('select[name="parts[]"]').closest('.form-group').slideDown();
+
+        // Optional: focus/select2 refresh
+        $('select[name="parts[]"]').select2({
+            placeholder: 'Select parts',
+            width: '100%'
+        });
+    });
+});
 
 </script>
