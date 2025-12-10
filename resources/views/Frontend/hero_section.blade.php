@@ -388,9 +388,9 @@ $(document).ready(function() {
         width: '100%'
     });
 
-    $('#parts-dropdown').select2({
-        placeholder: 'Select parts',
-        width: '100%'
-    });
+$('#parts-dropdown').on('change', function() {
+    var selectedParts = $(this).val(); // یہ array دے گا selected values
+    console.log(selectedParts);
+});
 });
 </script>
