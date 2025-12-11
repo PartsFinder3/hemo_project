@@ -180,3 +180,21 @@
 </div>
 
 @endsection
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const burger = document.getElementById('burger-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    burger.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
+
+    // Optional: Close menu when a link is clicked
+    const navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+});
+</script>
