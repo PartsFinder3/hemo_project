@@ -39,45 +39,56 @@
     }
 
     /* Blog Card */
-    .blog-card {
-        background: var(--card-bg);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 6px 20px var(--card-shadow);
-        margin-bottom: 30px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.blog-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px var(--card-shadow);
-    }
+.blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
 
-    .blog-card img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover; /* یہ تصویر کو cover کرے گا */
-        object-position: center; /* تصویر center میں رہے */
-        display: block;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
+.blog-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 
-    .card-body {
-        padding: 25px 20px;
-    }
+.card-body {
+    padding: 25px 20px;
+}
 
-    .badge {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: 6px 12px;
-        border-radius: 10px;
-        font-size: 0.8rem;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+.card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
 
     .card-title {
         font-size: 2rem;
