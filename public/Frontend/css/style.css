@@ -1387,7 +1387,11 @@ h2.section-title {
     overflow: hidden;
     transition: box-shadow 0.3s ease;
 }
-
+        @media (min-width: 400px) { 
+            .choices {
+                overflow: visible !important;
+            }
+        }
 .accordion-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
