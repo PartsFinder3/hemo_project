@@ -152,7 +152,7 @@
  
 </style>
 
-<div class="container my-5">
+<div class="container my-5" style="margin-top: 100px">
     <div class="abdul-blog-grid head_page">
         <article class="abdul-blog-card">
             @if($blog->image)
