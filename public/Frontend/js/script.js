@@ -54,9 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
 // Add CSS for Choices.js z-index fix
 const customStyle = document.createElement('style');
 customStyle.textContent = `
-    /* Fix any parent with overflow */
+    
 
-
+        .choices {
+            overflow: visible !important; /* صرف dropdown container */
+        }
     body, html {
         overflow-x: hidden !important;
         overflow-y: auto !important;
