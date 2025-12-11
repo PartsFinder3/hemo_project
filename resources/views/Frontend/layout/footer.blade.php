@@ -26,7 +26,7 @@
                         <li><a href="{{route('about.page')}}">About Us</a></li>
                         <li><a href="{{route('frontend.terms')}}">Terms & Condition</a></li>
                         <li><a href="{{route('frontend.privacy')}}">Privacy Policy</a></li>
-                        <li><a href="{{route('frontend.privacy')}}">Found Pages</a></li>
+                        <li><a href="{{route('found_pages.index')}}">Found Pages</a></li>
                     </ul>
                 </div>
 

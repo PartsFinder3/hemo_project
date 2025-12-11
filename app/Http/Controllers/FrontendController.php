@@ -611,4 +611,8 @@ public function searchParts(Request $request)
 
     return response()->json($parts);
 }
+
+   function found_pages(){
+    ret
+   }
 }
