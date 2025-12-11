@@ -68,11 +68,7 @@ customStyle.textContent = `
         margin-bottom: 1rem;
          overflow: visible
     }
-@media (max-width:600px) {
-    .choices {
-        overflow: hidden !important; /* یا auto، جو بہتر ہو */
-    }
-}
+
     .choices__inner {
         background-color: #fff;
         border: 1px solid #ddd;
