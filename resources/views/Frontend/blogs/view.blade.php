@@ -33,27 +33,22 @@
     }
 
     /* Blog Card */
-    .abdul-blog-card {
-        background: var(--abdul-card-bg);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px var(--abdul-card-shadow);
-        margin-bottom: 30px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        position: relative;
-    }
-
+.abdul-blog-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--abdul-card-shadow);
+    margin-bottom: 30px;
+}
   
+
 
 .abdul-blog-card img {
     width: 100%;
-    height: 250px !important; /* smaller height */
-    object-fit: cover; /* keeps image proportions and covers area */
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    aspect-ratio: 16/9; /* maintains a consistent height based on width */
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
-
 
 
 
@@ -153,9 +148,7 @@
             font-size: 0.95rem;
         }
     }
-    .container{
-        margin-top: 200px !important;
-    }
+ 
 </style>
 
 <div class="container my-5">
