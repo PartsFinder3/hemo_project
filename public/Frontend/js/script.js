@@ -66,7 +66,7 @@ customStyle.textContent = `
     .choices {
         position: relative !important;
         margin-bottom: 1rem;
-         overflow: visible
+      
     }
 
     .choices__inner {
