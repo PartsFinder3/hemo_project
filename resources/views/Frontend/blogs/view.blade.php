@@ -130,6 +130,8 @@
 
         .abdul-card-body {
             padding: 20px 15px;
+        margin-top: 200px !important;
+
         }
     }
 
@@ -140,6 +142,11 @@
 
         .abdul-card-title {
             font-size: 1.4rem;
+        }
+                .abdul-card-body {
+            padding: 20px 15px;
+        margin-top: 0px !important;
+
         }
 
         .abdul-card-text {
