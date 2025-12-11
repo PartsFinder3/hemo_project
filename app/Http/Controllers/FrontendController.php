@@ -612,8 +612,8 @@ public function searchParts(Request $request)
     return response()->json($parts);
 }
 
-   function found_pages(){
-    $parts=SpareParts::all();
-    return view('Frontend.pages_finder' , compact($parts));
-   }
+function found_pages(){
+    $parts = SpareParts::all();
+    return view('Frontend.pages_finder', compact('parts'));
+}
 }
