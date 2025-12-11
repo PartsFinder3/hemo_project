@@ -62,11 +62,11 @@ customStyle.textContent = `
         overflow-y: auto !important;
     }
 
-    @media (min-width: 500px) { 
-        .choices {
-            overflow: visible !important;
+        @media (min-width: 600px) { 
+            .choices {
+                overflow: visible !important;
+            }
         }
-    }
     .choices {
         position: relative !important;
         margin-bottom: 1rem;
