@@ -43,10 +43,7 @@
         position: relative;
     }
 
-    .abdul-blog-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    }
+  
 
 .abdul-blog-card img {
     width: 100%;
@@ -58,9 +55,7 @@
 }
 
 
-    .abdul-blog-card:hover img {
-        transform: scale(1.05);
-    }
+
 
     .abdul-card-body {
         padding: 25px 20px;
@@ -78,10 +73,7 @@
         transition: background-color 0.3s;
     }
 
-    .abdul-badge:hover {
-        background-color: #d44822;
-    }
-
+ 
     .abdul-card-title {
         font-size: 2rem;
         font-weight: 700;
