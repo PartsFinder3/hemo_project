@@ -68,7 +68,17 @@ customStyle.textContent = `
         margin-bottom: 1rem;
         
     }
+        @media (min-width: 992px) { /* 992px سے بڑی screen = desktop */
+            .choices {
+                overflow: visible !important;
+            }
+        }
 
+        @media (max-width: 991px) {
+            .choices {
+                overflow: hidden !important;
+            }
+        }
     .choices__inner {
         background-color: #fff;
         border: 1px solid #ddd;
