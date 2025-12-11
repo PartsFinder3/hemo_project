@@ -64,7 +64,7 @@ customStyle.textContent = `
 
        
             .choices {
-                overflow: hidden !important;
+                overflow: visible !important;
             }
        
     .choices {
