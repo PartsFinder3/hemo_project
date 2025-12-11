@@ -613,6 +613,7 @@ public function searchParts(Request $request)
 }
 
    function found_pages(){
-    return view('Frontend.pages_finder');
+    $parts=SpareParts::all();
+    return view('Frontend.pages_finder' , compact($parts));
    }
 }

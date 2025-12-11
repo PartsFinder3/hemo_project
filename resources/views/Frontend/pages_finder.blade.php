@@ -21,6 +21,17 @@
                 <li><a href="{{ url('/blog/post1') }}">Post 1</a></li>
                 <li><a href="{{ url('/blog/post2') }}">Post 2</a></li>
             </ul>
+            Models
+             <ul>
+                @foreach ($parts as $part)
+               <li>
+                <a href="{{ route('part.ads', ['partName' => $part->name, 'id' => $part->id]) }}">
+                    {{$part->name}}
+                </a>
+            </li>
+
+                @endforeach
+            </ul>   
         </li>
     </ul>
 </div>
