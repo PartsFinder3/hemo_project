@@ -113,7 +113,7 @@ style.textContent = `
         z-index: 999999 !important;
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(customStyle);
 function sendProductInquiryWhatsapp(whatsapp, title) {
     let formData = new FormData(document.getElementById('productInquiryForm'));
 
