@@ -60,29 +60,34 @@
         font-weight: normal;
     }
 
+    .sitemap-container h2.card-title {
+        font-size: 1rem;
+        margin: 0;
+        display: inline;
+    }
+
 </style>
 
 <div class="sitemap-container">
     <h1>Site Map</h1>
     <ul>
-      
+        <li><a href="{{ url('/') }}">Home</a></li>
+        <li><a href="{{ url('/about') }}">About Us</a></li>
+        <li><a href="{{ url('/contact') }}">Contact</a></li>
         
         <li>
             Blog
             <ul>
-              @foreach ($blogs as $b)
-                     <li>
-                
-             <a href="{{ route('frontend.blog.view', ['slug' => $b->slug, 'id' => $b->id]) }}">
-                                <h2 class="card-title">{{ $b->title }}</h2>
-                            </a>
-                
-                </li>
-              @endforeach
-             
-               
+                @foreach ($blogs as $b)
+                    <li>
+                        <a href="{{ route('frontend.blog.view', ['slug' => $b->slug, 'id' => $b->id]) }}">
+                            <h2 class="card-title">{{ $b->title }}</h2>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </li>
+
         <li>
             Parts
             <ul>
@@ -95,6 +100,7 @@
                 @endforeach
             </ul>
         </li>
+
         <li>
             Makes
             <ul>
@@ -107,6 +113,7 @@
                 @endforeach
             </ul>
         </li>
+
     </ul>
 </div>
 @endsection
