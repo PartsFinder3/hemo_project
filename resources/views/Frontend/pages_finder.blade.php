@@ -24,14 +24,25 @@
             Models
              <ul>
                 @foreach ($parts as $part)
-               <li>
-                <a href="{{ route('part.ads', ['partName' => $part->name, 'id' => $part->id]) }}">
-                    {{$part->name}}
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('part.ads', ['partName' => $part->name, 'id' => $part->id]) }}">
+                        {{$part->name}}
+                    </a>
+                </li>
 
                 @endforeach
             </ul>   
+              Models
+             <ul>
+                @foreach ($makes as $make)
+                <li>
+                    <a href="{{ route('make.ads', ['partName' => $make->name, 'id' => $make->id]) }}">
+                        {{$make->name}}
+                    </a>
+                </li>
+
+                @endforeach
+            </ul>
         </li>
     </ul>
 </div>
