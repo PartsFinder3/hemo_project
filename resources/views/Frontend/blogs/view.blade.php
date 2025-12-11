@@ -54,7 +54,7 @@
 
     .abdul-card-body {
         padding: 25px 20px;
-        margin-top: 300px !important;
+    
     }
 
     .abdul-badge {
@@ -125,7 +125,7 @@
 
         .abdul-card-body {
             padding: 20px 15px;
-        margin-top: 200px !important;
+     
 
         }
     }
