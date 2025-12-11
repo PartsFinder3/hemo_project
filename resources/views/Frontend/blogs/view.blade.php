@@ -63,6 +63,7 @@
 
     .card-body {
         padding: 25px 20px;
+       margin-top: 240x;
     }
 
     .badge {
@@ -136,6 +137,8 @@
 
         .card-body {
             padding: 20px 15px;
+       margin-top: 150x;
+
         }
     }
 
