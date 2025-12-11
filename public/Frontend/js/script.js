@@ -66,19 +66,13 @@ customStyle.textContent = `
     .choices {
         position: relative !important;
         margin-bottom: 1rem;
-        
+         overflow: visible
     }
-        @media (min-width: 992px) { /* 992px سے بڑی screen = desktop */
-            .choices {
-                overflow: visible !important;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .choices {
-                overflow: hidden !important;
-            }
-        }
+@media (max-width:600px) {
+    .choices {
+        overflow: hidden !important; /* یا auto، جو بہتر ہو */
+    }
+}
     .choices__inner {
         background-color: #fff;
         border: 1px solid #ddd;
