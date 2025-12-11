@@ -613,9 +613,11 @@ public function searchParts(Request $request)
 }
 
 function found_pages(){
+    $domain = Domain::first();
     $parts = SpareParts::all();
     $makes=CarMakes::all();
-    $blogs=BlogCategory::all();
+    $blogs = $domain->blogs()->latest()->get();
+    dd($blogs);
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
 }

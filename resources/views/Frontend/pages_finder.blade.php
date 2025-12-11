@@ -78,9 +78,13 @@
         <li>
             Blog
             <ul>
-@foreach ($blogs as $b)
-    {{ $b->id }} - {{ $b->slug }} - {{ $b->title }} <br>
-@endforeach
+                @foreach ($blogs as $b)
+                    <li>
+                        <a href="{{ route('frontend.blog.view', ['slug' => $b->slug, 'id' => $b->id]) }}">
+                            <h2 class="card-title">{{ $b->title }}</h2>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </li>
 
