@@ -3,15 +3,15 @@
 
 <style>
     :root {
-        --primary-color: #ff7700;
-        --secondary-color: #2b2d2f;
-        --accent-color: #f8f9fa;
-        --card-bg: #ffffff;
-        --card-shadow: rgba(0, 0, 0, 0.1);
+        --abdul-primary-color: #ff7700;
+        --abdul-secondary-color: #2b2d2f;
+        --abdul-accent-color: #f8f9fa;
+        --abdul-card-bg: #ffffff;
+        --abdul-card-shadow: rgba(0, 0, 0, 0.1);
     }
 
     /* Page Header */
-    .page-header {
+    .abdul-page-header {
         background: linear-gradient(135deg, #ff7700 0%, #d44822 100%);
         color: white;
         padding: 60px 20px;
@@ -21,34 +21,34 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    .page-header h1 {
+    .abdul-page-header h1 {
         font-size: 3rem;
         margin-bottom: 15px;
         font-weight: 700;
     }
 
-    .page-header p {
+    .abdul-page-header p {
         font-size: 1.2rem;
         opacity: 0.85;
     }
 
     /* Blog Card */
-    .blog-card {
-        background: var(--card-bg);
+    .abdul-blog-card {
+        background: var(--abdul-card-bg);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 4px 15px var(--card-shadow);
+        box-shadow: 0 4px 15px var(--abdul-card-shadow);
         margin-bottom: 30px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         position: relative;
     }
 
-    .blog-card:hover {
+    .abdul-blog-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     }
 
-    .blog-card img {
+    .abdul-blog-card img {
         width: 100%;
         height: 400px;
         object-fit: cover;
@@ -57,18 +57,17 @@
         transition: transform 0.3s ease;
     }
 
-    .blog-card:hover img {
+    .abdul-blog-card:hover img {
         transform: scale(1.05);
     }
 
-    .card-body {
+    .abdul-card-body {
         padding: 25px 20px;
-       margin-top: 240x;
     }
 
-    .badge {
+    .abdul-badge {
         display: inline-block;
-        background-color: var(--primary-color);
+        background-color: var(--abdul-primary-color);
         color: #fff;
         padding: 5px 12px;
         border-radius: 12px;
@@ -77,25 +76,25 @@
         transition: background-color 0.3s;
     }
 
-    .badge:hover {
+    .abdul-badge:hover {
         background-color: #d44822;
     }
 
-    .card-title {
+    .abdul-card-title {
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 15px;
-        color: var(--secondary-color);
+        color: var(--abdul-secondary-color);
     }
 
-    .card-text {
+    .abdul-card-text {
         font-size: 1rem;
         color: #555;
         line-height: 1.8;
         margin-bottom: 20px;
     }
 
-    .card-meta {
+    .abdul-card-meta {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -107,19 +106,19 @@
         padding-top: 15px;
     }
 
-    .author-info {
+    .abdul-author-info {
         display: flex;
         gap: 15px;
         align-items: center;
     }
 
-    .author-info span {
+    .abdul-author-info span {
         display: flex;
         align-items: center;
         gap: 5px;
     }
 
-    .post-date {
+    .abdul-post-date {
         display: flex;
         align-items: center;
         gap: 5px;
@@ -127,56 +126,52 @@
 
     /* Responsive */
     @media (max-width: 767px) {
-        .blog-card img {
+        .abdul-blog-card img {
             height: 250px;
         }
 
-        .card-title {
+        .abdul-card-title {
             font-size: 1.6rem;
         }
 
-        .card-body {
+        .abdul-card-body {
             padding: 20px 15px;
-       margin-top: 150x;
-
         }
     }
 
     @media (max-width: 480px) {
-        .blog-card img {
+        .abdul-blog-card img {
             height: 200px;
         }
 
-        .card-title {
+        .abdul-card-title {
             font-size: 1.4rem;
         }
 
-        .card-text {
+        .abdul-card-text {
             font-size: 0.95rem;
         }
     }
 </style>
 
-
-
 <div class="container my-5">
-    <div class="blog-grid">
-        <article class="blog-card">
+    <div class="abdul-blog-grid">
+        <article class="abdul-blog-card">
             @if($blog->image)
                 <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}">
             @endif
-            <div class="card-body">
+            <div class="abdul-card-body">
                 @if($blog->category)
-                    <span class="badge">{{ $blog->category->name }}</span>
+                    <span class="abdul-badge">{{ $blog->category->name }}</span>
                 @endif
-                <h2 class="card-title">{{ $blog->title }}</h2>
-                <p class="card-text">{!! $blog->content !!}</p>
-                <div class="card-meta">
-                    <div class="author-info">
-                        <span class="author-name">{{ $blog->author }}</span>
+                <h2 class="abdul-card-title">{{ $blog->title }}</h2>
+                <p class="abdul-card-text">{!! $blog->content !!}</p>
+                <div class="abdul-card-meta">
+                    <div class="abdul-author-info">
+                        <span class="abdul-author-name">{{ $blog->author }}</span>
                         <span>Views: <b>{{ $blog->is_view }}</b></span>
                     </div>
-                    <span class="post-date">{{ $blog->created_at->format('M d, Y') }}</span>
+                    <span class="abdul-post-date">{{ $blog->created_at->format('M d, Y') }}</span>
                 </div>
             </div>
         </article>
