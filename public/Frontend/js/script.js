@@ -62,7 +62,11 @@ customStyle.textContent = `
         overflow-y: auto !important;
     }
 
-    /* Ensure choices dropdowns appear on top */
+    @media (min-width: 500px) { 
+        .choices {
+            overflow: visible !important;
+        }
+    }
     .choices {
         position: relative !important;
         margin-bottom: 1rem;
