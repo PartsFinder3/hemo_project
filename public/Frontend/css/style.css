@@ -1387,6 +1387,9 @@ h2.section-title {
     overflow: hidden;
     transition: box-shadow 0.3s ease;
 }
+ .choices {
+                overflow: hidden !important;
+}
         @media (min-width: 470px) { 
             .choices {
                 overflow: visible !important;
