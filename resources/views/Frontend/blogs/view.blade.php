@@ -45,12 +45,12 @@
 
 .abdul-blog-card img {
     width: 100%;
-    aspect-ratio: 16/9; /* maintains a consistent height based on width */
-    object-fit: cover;
+    height: 250px; /* fixed height */
+    object-fit: cover; /* crop image nicely without stretching */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     transition: transform 0.3s ease;
 }
-
-
 
     .abdul-card-body {
         padding: 25px 20px;
