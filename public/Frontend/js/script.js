@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Add CSS for Choices.js z-index fix
-const style = document.createElement('style');
+const customStyle = document.createElement('style');
 style.textContent = `
     /* Fix any parent with overflow */
     * {
