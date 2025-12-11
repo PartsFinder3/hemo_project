@@ -56,9 +56,7 @@ const customStyle = document.createElement('style');
 customStyle.textContent = `
     
 
-        .choices {
-            overflow: visible !important; /* صرف dropdown container */
-        }
+
     body, html {
         overflow-x: hidden !important;
         overflow-y: auto !important;
