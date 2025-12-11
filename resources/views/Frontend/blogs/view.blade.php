@@ -50,7 +50,7 @@
 
 .abdul-blog-card img {
     width: 100%;
-    height: 250px; /* smaller height */
+    height: 250px !important; /* smaller height */
     object-fit: cover; /* keeps image proportions and covers area */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -64,6 +64,7 @@
 
     .abdul-card-body {
         padding: 25px 20px;
+        margin-top: 300px !important;
     }
 
     .abdul-badge {
