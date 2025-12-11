@@ -54,6 +54,7 @@
 
     .abdul-card-body {
         padding: 25px 20px;
+        margin-top: 250px;
     
     }
 
