@@ -153,10 +153,13 @@
             font-size: 0.95rem;
         }
     }
+    .head_page{
+        margin-top: 200px !important;
+    }
 </style>
 
 <div class="container my-5">
-    <div class="abdul-blog-grid">
+    <div class="abdul-blog-grid head_page">
         <article class="abdul-blog-card">
             @if($blog->image)
                 <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}">
