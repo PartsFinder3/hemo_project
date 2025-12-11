@@ -21,7 +21,7 @@
                 <li><a href="{{ url('/blog/post1') }}">Post 1</a></li>
                 <li><a href="{{ url('/blog/post2') }}">Post 2</a></li>
             </ul>
-            Models
+            Parts
              <ul>
                 @foreach ($parts as $part)
                 <li>
@@ -32,16 +32,16 @@
 
                 @endforeach
             </ul>   
-              Models
+              Makes
              <ul>
                 @foreach ($makes as $make)
-                <li>
-                    <a href="{{ route('make.ads', ['partName' => $make->name, 'id' => $make->id]) }}">
-                        {{$make->name}}
-                    </a>
-                </li>
-
+                    <li>
+                        <a href="{{ route('make.ads', ['slug' => $make->name, 'id' => $make->id]) }}">
+                            {{$make->name}}
+                        </a>
+                    </li>
                 @endforeach
+
             </ul>
         </li>
     </ul>
