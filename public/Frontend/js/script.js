@@ -55,10 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const customStyle = document.createElement('style');
 customStyle.textContent = `
     /* Fix any parent with overflow */
- .choices,
-.choices__list--dropdown {
-    overflow: visible !important;
-}
+
 
     body, html {
         overflow-x: hidden !important;
