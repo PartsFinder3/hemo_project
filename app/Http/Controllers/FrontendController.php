@@ -613,6 +613,6 @@ public function searchParts(Request $request)
 }
 
    function found_pages(){
-    ret
+    return view('Frontend.pages_finder');
    }
 }
