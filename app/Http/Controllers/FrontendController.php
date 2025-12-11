@@ -510,7 +510,7 @@ public function sendProductInquiry(Request $request)
         $blog = $domain->blogs()->where('id', $id)->where('slug', $slug)->firstOrFail();
         $blog->increment('is_view');
         $categories = BlogCategory::all();
-        return view('Frontend.blogs.view', compact('blog', 'domain', 'categories'));
+        return view('Frontend.blogs.blog_view', compact('blog', 'domain', 'categories'));
     }
 
     public function viewBlogByCategory($id)
