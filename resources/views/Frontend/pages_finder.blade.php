@@ -72,8 +72,8 @@
     <h1>Site Map</h1>
     <ul>
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="{{ url('/about') }}">About Us</a></li>
-        <li><a href="{{ url('/contact') }}">Contact</a></li>
+        <li><a href="{{ route('about.page') }}">About Us</a></li>
+       
         
         <li>
             Blog
