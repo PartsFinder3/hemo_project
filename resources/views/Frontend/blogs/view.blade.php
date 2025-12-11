@@ -10,13 +10,6 @@
         --card-shadow: rgba(0, 0, 0, 0.15);
     }
 
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f5f7;
-        color: var(--secondary-color);
-        margin: 0;
-        padding: 0;
-    }
 
     /* Page Header */
     .page-header {
