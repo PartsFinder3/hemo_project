@@ -153,7 +153,7 @@
             font-size: 0.95rem;
         }
     }
-    .head_page{
+    .container{
         margin-top: 200px !important;
     }
 </style>
