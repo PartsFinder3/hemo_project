@@ -1,2 +1,15 @@
 User-agent: *
-Disallow:
+Disallow: /admin/login
+Disallow: /admin
+Disallow: /suppliers
+Disallow: /admin/admins
+Disallow: /domain
+Disallow: /makes
+Disallow: /car-models
+Disallow: /fuel
+Disallow: /spare-parts
+Disallow: /parts-category
+Disallow: /company/about
+Disallow: /supplier-panel
+Disallow: /shop/ads/create
+Disallow: /shop/profile
