@@ -615,6 +615,7 @@ public function searchParts(Request $request)
 function found_pages(){
     $parts = SpareParts::all();
     $makes=CarMakes::all();
-    return view('Frontend.pages_finder', compact('parts','makes'));
+    $blogs=BlogCategory::all();
+    return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
 }
