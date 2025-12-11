@@ -62,7 +62,7 @@ customStyle.textContent = `
         overflow-y: auto !important;
     }
 
-        @media (min-width: 450px) { 
+        @media (min-width: 470px) { 
             .choices {
                 overflow: visible !important;
             }
