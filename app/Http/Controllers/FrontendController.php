@@ -617,7 +617,7 @@ function found_pages(){
     $parts = SpareParts::all();
     $makes=CarMakes::all();
     $blogs = $domain->blogs()->latest()->get();
-    dd($blogs);
+   
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
 }
