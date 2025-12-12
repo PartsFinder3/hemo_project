@@ -30,7 +30,8 @@
     <!-- Parts -->
     @foreach ($parts as $part)
     <url>
-        <loc>{{ route('part.ads', ['partName' => urlencode($part->name), 'id' => $part->id]) }}</loc>
+      <loc>{{ route('part.ads', ['partName' => str_replace(' ', '-', $part->name), 'id' => $part->id]) }}</loc>
+
         <changefreq>weekly</changefreq>
     </url>
     @endforeach
