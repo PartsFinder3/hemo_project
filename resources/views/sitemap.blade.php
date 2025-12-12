@@ -3,20 +3,20 @@
 
     <!-- Static Pages -->
     <url>
-        <loc>https://partsfinder.ae/</loc>
+        <loc>{{ url('/') }}</loc>
         <changefreq>daily</changefreq>
     </url>
 
     <url>
-        <loc>https://partsfinder.ae/about-us</loc>
+        <loc>{{ url('/about-us') }}</loc>
     </url>
 
     <url>
-        <loc>https://partsfinder.ae/blogs</loc>
+        <loc>{{ url('/blogs') }}</loc>
     </url>
 
     <url>
-        <loc>https://partsfinder.ae/signup</loc>
+        <loc>{{ url('/signup') }}</loc>
     </url>
 
     <!-- Blogs -->
