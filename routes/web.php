@@ -262,7 +262,7 @@ Route::post('/admin/parts/meta/delete/{id}',[ScriptController::class,'destroyPar
 // Site Map
 
 });
-
+Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.xml');
 //Supplier-Panel
 Route::middleware('subscription')->group(function () {
     Route::get('/supplier-panel', [SupplierController::class, 'showSupplierPanel'])->name('supplier.panel');
