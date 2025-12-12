@@ -69,11 +69,13 @@
    
     <td>
     <a href="{{ route('tamplate.edit', $tamplate->id) }}" class="btn btn-sm btn-warning">Edit</a>
+     @if (auth()->guard('admins')->user()->role == 'admin')
        <form action="{{ route('tamplate.destroy', $tamplate->id) }}" method="POST" class="d-inline">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-sm btn-danger" >Delete</button>
     </form>
+    @endif
     </td>
 </tr>
 @endforeach

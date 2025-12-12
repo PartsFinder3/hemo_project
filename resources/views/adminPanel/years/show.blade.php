@@ -99,8 +99,10 @@
                                     <td>{{ $data->year }}</td>
                                     @if (auth()->guard('admins')->user()->role == 'admin')
                                         <td>
+                                             @if (auth()->guard('admins')->user()->role == 'admin')
                                         <a class="dropdown-item" href="{{route('years.delete',$data->id)}}"><i class="fa-solid fa-trash"></i>
                                                     Delete</a>
+                                                    @endif
                                     </td>
                                     @endif
 

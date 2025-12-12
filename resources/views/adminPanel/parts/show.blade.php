@@ -146,7 +146,9 @@
                 <td>
                     <a class="btn btn-info btn-sm" href="{{route('spareparts.edit',$part->id)}}"><i
                         class="fa-solid fa-pen-to-square"></i> Edit</a>
+                         @if (auth()->guard('admins')->user()->role == 'admin')
                     <a class="btn btn-danger btn-sm" href="{{route('spareparts.destroy',$part->id)}}"><i class="fa-solid fa-trash"></i> Delete</a>
+                         @endif
                 </td>
 <td>
     @if ($part->tamp_id != null)

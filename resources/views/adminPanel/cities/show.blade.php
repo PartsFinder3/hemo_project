@@ -124,9 +124,11 @@
                                         <a class="btn btn-info" href="{{ route('city.active', $city->id) }}"><i
                                                 class="fa-solid fa-pen-to-square"></i>
                                             Active</a>
+                                             @if (auth()->guard('admins')->user()->role == 'admin')
                                         <a class="btn btn-danger" href="{{ route('city.delete', $city->id) }}"><i
                                                 class="fa-solid fa-trash"></i>
                                             Delete</a>
+                                            @endif
                                     </td>
                                 </tr>
                             @endforeach

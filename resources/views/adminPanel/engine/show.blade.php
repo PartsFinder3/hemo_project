@@ -1,3 +1,4 @@
+
 @extends('adminPanel.layout.main')
 @section('main-section')
     <header class="mb-3">
@@ -98,8 +99,10 @@
                                 <tr>
                                     <td>{{ $data->size }}</td>
                                     <td>
+                                         @if (auth()->guard('admins')->user()->role == 'admin')
                                         <a class="dropdown-item" href="{{route('engine.delete',$data->id)}}"><i class="fa-solid fa-trash"></i>
                                                     Delete</a>
+                                                    @endif
                                     </td>
                                 </tr>
                             @endforeach
