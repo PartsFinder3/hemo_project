@@ -260,9 +260,9 @@ Route::post('/admin/parts/meta/edit/{id}',[ScriptController::class,'updatePartsM
 Route::post('/admin/parts/meta/delete/{id}',[ScriptController::class,'destroyPartsMeta'])->name('admin.parts.meta.delete');
 
 // Site Map
-Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.xml');
-});
 
+});
+Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.xml');
 //Supplier-Panel
 Route::middleware('subscription')->group(function () {
     Route::get('/supplier-panel', [SupplierController::class, 'showSupplierPanel'])->name('supplier.panel');
