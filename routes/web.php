@@ -395,3 +395,4 @@ Route::get('/assign_tamp_model/{id}', [SeoController::class, 'assign_tamp_model'
 Route::post('/assign_tamp_model_post/{id}', [SeoController::class, 'assign_tamp_model_post'])->name('model.seo.post');
 
 Route::get('/Found/pages/',[FrontendController::class,'found_pages'])->name('found_pages.index');
+Route::get('/sitemap.xml',[FrontendController::class,'sitemapxml'])->name('about.page');

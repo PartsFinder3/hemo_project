@@ -620,4 +620,13 @@ function found_pages(){
    
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
+function sitemapxml(){
+     
+        $parts = SpareParts::all();
+        $makes=CarMakes::all();
+         $shops = Shops::where('is_active', 1)->get();
+             return response()->view('sitemap', compact('parts', 'shops', 'makes'))
+        ->header('Content-Type', 'text/xml');
+
+}
 }
