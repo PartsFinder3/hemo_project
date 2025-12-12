@@ -52,4 +52,11 @@
     </url>
     @endforeach
 
+    <!-- Cities -->
+    @foreach ($city as $c)
+    <url>
+        <loc>{!! route('city.ads', ['slug' => str_replace(' ', '-', $c->slug), 'id' => $c->id]) !!}</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    @endforeach
 </urlset>

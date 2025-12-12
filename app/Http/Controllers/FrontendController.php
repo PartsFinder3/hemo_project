@@ -620,17 +620,5 @@ function found_pages(){
    
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
-public function sitemapxml()
-{
-     $domain = Domain::first();
-    $blogs = $domain->blogs()->latest()->get();
-    $parts = SpareParts::all();
-    $makes = CarMakes::all();
-    $shops = Shops::where('is_active', 1)->get();
 
-    return response()
-        ->view('sitemap', compact('parts', 'makes', 'shops', 'blogs'))
-        ->header('Content-Type', 'text/xml');
-
-}
 }
