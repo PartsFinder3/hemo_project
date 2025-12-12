@@ -12,9 +12,9 @@
     </script>
 @endif
 <link rel="canonical" href="{{ url()->current() }}">
-@if($domain && $domain->logo)
-    <link rel="icon" href="{{ asset('storage/logo/'.$domain->logo) }}">
-@endif 
+
+ 
+
 @if(empty($meta) && isset($domain->metaTags))
     <meta name="description" content="{{ $domain->metaTags->description }}">
     <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
@@ -50,9 +50,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
-    @if($domain && $domain->logo)
-        <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
-    @endif
+
     {{-- <style>
                                   @media (max-width:480px){
                                 #w-left{
@@ -70,7 +68,7 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-    
+       <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
   @yield('head-section')
 </head>
 
