@@ -1,43 +1,54 @@
-{{-- resources/views/sitemap.blade.php --}}
-<?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    {{-- Homepage --}}
+    <!-- Static Pages -->
     <url>
-        <loc>{{ url('/') }}</loc>
-        <lastmod>{{ now()->toAtomString() }}</lastmod>
+        <loc>https://partsfinder.ae/</loc>
         <changefreq>daily</changefreq>
-        <priority>1.0</priority>
     </url>
 
-    {{-- Spare Parts --}}
+    <url>
+        <loc>https://partsfinder.ae/about-us</loc>
+    </url>
+
+    <url>
+        <loc>https://partsfinder.ae/blogs</loc>
+    </url>
+
+    <url>
+        <loc>https://partsfinder.ae/signup</loc>
+    </url>
+
+    <!-- Blogs -->
+    @foreach ($blogs as $b)
+    <url>
+        <loc>{{ route('frontend.blog.view', ['slug' => $b->slug, 'id' => $b->id]) }}</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    @endforeach
+
+    <!-- Parts -->
     @foreach ($parts as $part)
-        <url>
-            <loc>{{ url('/part/' . $part->slug) }}</loc>
-            <lastmod>{{ $part->updated_at ? $part->updated_at->toAtomString() : now()->toAtomString() }}</lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-        </url>
+    <url>
+        <loc>{{ route('part.ads', ['partName' => $part->name, 'id' => $part->id]) }}</loc>
+        <changefreq>weekly</changefreq>
+    </url>
     @endforeach
 
-    {{-- Blogs --}}
-    @foreach ($blogs as $blog)
-        <url>
-            <loc>{{ url('/blog/' . $blog->slug) }}</loc>
-            <lastmod>{{ $blog->updated_at ? $blog->updated_at->toAtomString() : now()->toAtomString() }}</lastmod>
-            <changefreq>monthly</changefreq>
-            <priority>0.7</priority>
-        </url>
-    @endforeach
-
-    {{-- Car Makes --}}
+    <!-- Makes -->
     @foreach ($makes as $make)
-        <url>
-            <loc>{{ url('/make/' . $make->slug) }}</loc>
-            <lastmod>{{ $make->updated_at ? $make->updated_at->toAtomString() : now()->toAtomString() }}</lastmod>
-            <changefreq>monthly</changefreq>
-            <priority>0.6</priority>
-        </url>
+    <url>
+        <loc>{{ route('make.ads', ['slug' => $make->name, 'id' => $make->id]) }}</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+    @endforeach
+
+    <!-- Shops -->
+    @foreach ($shops as $shop)
+    <url>
+        <loc>{{ route('view.shop', ['id' => $shop->id]) }}</loc>
+        <changefreq>weekly</changefreq>
+    </url>
     @endforeach
 
 </urlset>

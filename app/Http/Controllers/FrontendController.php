@@ -628,8 +628,9 @@ public function sitemapxml()
     $makes = CarMakes::all();
     $shops = Shops::where('is_active', 1)->get();
 
-    return response()->view('sitemap', compact('blogs','parts','makes','shops'))
+    return response()
+        ->view('sitemap', compact('parts', 'makes', 'shops', 'blogs'))
         ->header('Content-Type', 'text/xml');
-}
 
+}
 }
