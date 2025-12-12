@@ -6,24 +6,21 @@ use App\Models\SpareParts;
 use App\Models\Blogs;
 use App\Models\CarMakes;
 use Illuminate\Http\Request;
+use App\Models\Domain;
+use App\Models\Shops;
 
 class SiteMapController extends Controller
 {
     public function index()
     {
-        $host = request()->getHost(); // current domain
-
-        // Common data
-        $parts = SpareParts::all();
-        $makes = CarMakes::all();
-
-        // Domain-specific blogs
-        $blogs = Blogs::whereHas('domain', function ($q) use ($host) {
-            $q->where('domain_url', $host);
-        })->get();
+            $domain = Domain::first();
+                $blogs = $domain->blogs()->latest()->get();
+                $parts = SpareParts::all();
+                $makes = CarMakes::all();
+                $shops = Shops::where('is_active', 1)->get();
 
         return response()
-            ->view('sitemap', compact('parts', 'makes', 'blogs'))
+            ->view('sitemap', compact('parts', 'makes', 'blogs','shops'))
             ->header('Content-Type', 'application/xml');
     }
 }
