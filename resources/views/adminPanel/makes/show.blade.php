@@ -119,9 +119,11 @@
                                     <a class="btn btn-info btn-sm" href="{{ route('makes.update', $make->id) }}">
                                         <i class="fa-solid fa-pen-to-square"></i> Edit
                                     </a>
+                                     @if (auth()->guard('admins')->user()->role == 'admin')
                                     <a class="btn btn-danger btn-sm" href="{{ route('makes.delete', $make->id) }}">
                                         <i class="fa-solid fa-trash"></i> Delete
                                     </a>
+                                    @endif
                                     <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $make->id) }}">
                                         <i class="fa-solid fa-chart-line"></i> SEO
                                     </a>
