@@ -98,8 +98,10 @@
                                 <tr>
                                     <td>{{ $data->type }}</td>
                                     <td>
+                                         @if (auth()->guard('admins')->user()->role == 'admin')
                                         <a class="dropdown-item" href="{{route('fuel.delete',$data->id)}}"><i class="fa-solid fa-trash"></i>
                                                     Delete</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
