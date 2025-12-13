@@ -648,8 +648,12 @@ public function generateSeo()
 
         // 4. Response text
         $seoContent = $response->choices[0]->message->content;
-
-       dd($seoContent);
+if (isset($response->choices[0]->message->content)) {
+    $seoContent = $response->choices[0]->message->content;
+} else {
+    dd($response); // debug karo
+}
+    
 
        
         return redirect()->back()
