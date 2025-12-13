@@ -625,29 +625,17 @@ public function generateSeo()
     $brand = "toyota";
 
     $client = OpenAI::client(config('services.openai.key'));
-  dd($client);
-    try {
-        $response = $client->chat()->create([
-            'model' => 'gpt-4o-mini',
-            'messages' => [
-                [
-                    'role' => 'user',
-                    'content' => "Write SEO content for {$brand}"
-                ],
-            ],
-        ]);
 
-        $seoContent = $response->choices[0]->message->content ?? null;
-
-        if (!$seoContent) {
-            return response()->json(['error' => 'GPT response invalid'], 500);
-        }
-
-        return view('Frontend.seo_result', compact('seoContent'));
-
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
-    }
+    $response = $client->chat()->create([
+    'model' => 'gpt-4o-mini',
+    'messages' => [
+        [
+            'role' => 'user',
+            'content' => "Write SEO content for Toyota"
+        ]
+    ]
+]);              
+dd($response);
 }
 
 }
