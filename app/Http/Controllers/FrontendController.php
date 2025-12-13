@@ -621,42 +621,46 @@ function found_pages(){
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
 public function generateSeo()
-    {
+{
+    $brand = "toyota";
 
-        $brand = "toyota";
+    $client = OpenAI::client(config('services.openai.key'));
 
- 
-        $client = OpenAI::client(config('services.openai.key'));
-
-        // 3. GPT call
-        $response = $client->chat()->create([
-            'model' => 'gpt-4o-mini',
-            'messages' => [
-                [
-                    'role' => 'user',
-                    'content' =>
-                        "Write SEO optimized content for an auto parts website.
-                         Brand: {$brand}
-                         Sections:
-                         - About the Brand
-                         - Common Parts Available
-                         - Why Buy From Us
-                         250-300 words."
-                ],
+    $response = $client->chat()->create([
+        'model' => 'gpt-4o-mini',
+        'messages' => [
+            [
+                'role' => 'user',
+                'content' => "Write SEO optimized content for an auto parts website.
+                             Brand: {$brand}
+                             Sections:
+                             - About the Brand
+                             - Common Parts Available
+                             - Why Buy From Us
+                             250-300 words."
             ],
-        ]);
+        ],
+    ]);
 
-        // 4. Response text
+    // Debug - check full response first
+    // dd($response);
+
+    // Safe access
+    if (isset($response->choices[0]->message->content)) {
         $seoContent = $response->choices[0]->message->content;
-if (isset($response->choices[0]->message->content)) {
-    $seoContent = $response->choices[0]->message->content;
-} else {
-    dd($response); // debug karo
-}
-    
-
-       
-        return redirect()->back()
-            ->with('success', 'SEO content generated successfully');
+    } else {
+        dd('GPT response invalid', $response);
     }
+
+    dd($seoContent); // content check
+
+    // save in DB example (optional)
+    // $brandModel = Brand::firstOrFail(); 
+    // $brandModel->seo_content = $seoContent;
+    // $brandModel->save();
+
+    return redirect()->back()
+        ->with('success', 'SEO content generated successfully');
+}
+
 }
