@@ -642,7 +642,7 @@ public function generateSeo()
                          - Common Parts Available
                          - Why Buy From Us
                          250-300 words.
-                         write a cute image this related
+                         write a cute image in nissan
                          "
                         
                 ],
