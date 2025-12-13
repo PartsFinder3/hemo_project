@@ -635,7 +635,11 @@ public function generateSeo()
         ]
     ]
 ]);              
-dd($response);
+$seoContent = $response->choices[0]->message->content ?? null;
+
+if (!$seoContent) {
+    dd('GPT response invalid', $response);
+}
 }
 
 }
