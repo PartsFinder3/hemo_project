@@ -622,24 +622,40 @@ function found_pages(){
 }
 public function generateSeo()
 {
-    $brand = "toyota";
+    // 1️⃣ Brand aur parts define karo
+    $brand = "Toyota";
+    $parts = "brakes, filters, tires";
 
-    $client = OpenAI::client(config('services.openai.key'));
+    // 2️⃣ Template define karo
+    $template = "
+About the Brand: {brand} is a reliable auto parts supplier. 
+Common Parts Available: {parts_list}. 
+Why Buy From Us: {brand} offers quality, price, and service.
+";
 
-    $response = $client->chat()->create([
-    'model' => 'gpt-4o-mini',
-    'messages' => [
-        [
-            'role' => 'user',
-            'content' => "Write SEO content for Toyota"
-        ]
-    ]
-]);              
-$seoContent = $response->choices[0]->message->content ?? null;
+    // 3️⃣ Dynamic replacement
+    $seoContent = str_replace(
+        ['{brand}', '{parts_list}'],
+        [$brand, $parts],
+        $template
+    );
 
-if (!$seoContent) {
-    dd('GPT response invalid', $response);
+    // 4️⃣ Check content
+    if (!$seoContent) {
+        dd('SEO content generation failed');
+    }
+
+    // 5️⃣ Show content (ya DB me save)
+    dd($seoContent);
+
+    // Optional: Save in DB
+    // $brandModel = Brand::where('name', $brand)->first();
+    // $brandModel->seo_content = $seoContent;
+    // $brandModel->save();
+
+    // Optional: Redirect back with success
+    // return redirect()->back()->with('success', 'SEO content generated successfully');
 }
-}
+
 
 }
