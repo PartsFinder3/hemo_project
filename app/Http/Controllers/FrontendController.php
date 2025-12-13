@@ -626,41 +626,28 @@ public function generateSeo()
 
     $client = OpenAI::client(config('services.openai.key'));
 
-    $response = $client->chat()->create([
-        'model' => 'gpt-4o-mini',
-        'messages' => [
-            [
-                'role' => 'user',
-                'content' => "Write SEO optimized content for an auto parts website.
-                             Brand: {$brand}
-                             Sections:
-                             - About the Brand
-                             - Common Parts Available
-                             - Why Buy From Us
-                             250-300 words."
+    try {
+        $response = $client->chat()->create([
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => "Write SEO content for {$brand}"
+                ],
             ],
-        ],
-    ]);
+        ]);
 
-    // Debug - check full response first
-    // dd($response);
+        $seoContent = $response->choices[0]->message->content ?? null;
 
-    // Safe access
-    if (isset($response->choices[0]->message->content)) {
-        $seoContent = $response->choices[0]->message->content;
-    } else {
-        dd('GPT response invalid', $response);
+        if (!$seoContent) {
+            return response()->json(['error' => 'GPT response invalid'], 500);
+        }
+
+        return view('Frontend.seo_result', compact('seoContent'));
+
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
-
-    dd($seoContent); // content check
-
-    // save in DB example (optional)
-    // $brandModel = Brand::firstOrFail(); 
-    // $brandModel->seo_content = $seoContent;
-    // $brandModel->save();
-
-    return redirect()->back()
-        ->with('success', 'SEO content generated successfully');
 }
 
 }
