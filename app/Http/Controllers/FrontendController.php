@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use OpenAI;
 use App\Models\Ads;
 use App\Models\BlogCategory;
 use App\Models\BuyerInquiry;
@@ -620,5 +620,39 @@ function found_pages(){
    
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
+public function generateSeo($id)
+    {
 
+        $brand = "toyota";
+
+ 
+        $client = OpenAI::client(config('services.openai.key'));
+
+        // 3. GPT call
+        $response = $client->chat()->create([
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' =>
+                        "Write SEO optimized content for an auto parts website.
+                         Brand: {$brand}
+                         Sections:
+                         - About the Brand
+                         - Common Parts Available
+                         - Why Buy From Us
+                         250-300 words."
+                ],
+            ],
+        ]);
+
+        // 4. Response text
+        $seoContent = $response->choices[0]->message->content;
+
+       dd($seoContent);
+
+       
+        return redirect()->back()
+            ->with('success', 'SEO content generated successfully');
+    }
 }
