@@ -641,7 +641,10 @@ public function generateSeo()
                          - About the Brand
                          - Common Parts Available
                          - Why Buy From Us
-                         250-300 words."
+                         250-300 words.
+                         write a cute image this related
+                         "
+                        
                 ],
             ],
         ]);
