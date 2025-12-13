@@ -620,42 +620,39 @@ function found_pages(){
    
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
-public function generateSeo()
-{
-    // 1️⃣ Brand aur parts define karo
-    $brand = "Toyota";
-    $parts = "brakes, filters, tires";
+public function generateSeo($id)
+    {
 
-    // 2️⃣ Template define karo
-    $template = "
-About the Brand: {brand} is a reliable auto parts supplier. 
-Common Parts Available: {parts_list}. 
-Why Buy From Us: {brand} offers quality, price, and service.
-";
+        $brand = "toyota";
 
-    // 3️⃣ Dynamic replacement
-    $seoContent = str_replace(
-        ['{brand}', '{parts_list}'],
-        [$brand, $parts],
-        $template
-    );
+ 
+        $client = OpenAI::client(config('services.openai.key'));
 
-    // 4️⃣ Check content
-    if (!$seoContent) {
-        dd('SEO content generation failed');
+        // 3. GPT call
+        $response = $client->chat()->create([
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' =>
+                        "Write SEO optimized content for an auto parts website.
+                         Brand: {$brand}
+                         Sections:
+                         - About the Brand
+                         - Common Parts Available
+                         - Why Buy From Us
+                         250-300 words."
+                ],
+            ],
+        ]);
+
+        // 4. Response text
+        $seoContent = $response->choices[0]->message->content;
+
+       dd($seoContent);
+
+       
+        return redirect()->back()
+            ->with('success', 'SEO content generated successfully');
     }
-
-    // 5️⃣ Show content (ya DB me save)
-    dd($seoContent);
-
-    // Optional: Save in DB
-    // $brandModel = Brand::where('name', $brand)->first();
-    // $brandModel->seo_content = $seoContent;
-    // $brandModel->save();
-
-    // Optional: Redirect back with success
-    // return redirect()->back()->with('success', 'SEO content generated successfully');
-}
-
-
 }
