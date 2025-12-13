@@ -620,7 +620,7 @@ function found_pages(){
    
     return view('Frontend.pages_finder', compact('parts','makes','blogs'));
 }
-public function generateSeo($id)
+public function generateSeo()
     {
 
         $brand = "toyota";
