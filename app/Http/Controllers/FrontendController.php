@@ -625,7 +625,7 @@ public function generateSeo()
     $brand = "toyota";
 
     $client = OpenAI::client(config('services.openai.key'));
-
+  dd($client);
     try {
         $response = $client->chat()->create([
             'model' => 'gpt-4o-mini',
