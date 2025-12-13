@@ -623,7 +623,7 @@ function found_pages(){
 public function generateSeo()
     {
 
-        $brand = "toyota";
+        $brand = "nissan";
 
  
         $client = OpenAI::client(config('services.openai.key'));
