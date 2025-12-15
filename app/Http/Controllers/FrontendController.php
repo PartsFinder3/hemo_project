@@ -641,7 +641,7 @@ public function generateSeo()
                          - About the Brand
                          - Common Parts Available
                          - Why Buy From Us
-                         250-300 words.
+                         1050-1200 words.
                          write a cute image in nissan
                          "
                         
