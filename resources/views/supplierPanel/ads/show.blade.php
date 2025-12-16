@@ -101,7 +101,7 @@
                             <!-- Image -->
                             <div class="col-md-2 ad-image">
                                 @if($firstImage)
-                                    <img src="{{ asset('storage/' . $firstImage) }}" alt="{{ $ad->title }}">
+                                    <img src="{{ asset($firstImage) }}" alt="{{ $ad->title }}">
                                 @else
                                     <span class="text-muted">No Image</span>
                                 @endif
