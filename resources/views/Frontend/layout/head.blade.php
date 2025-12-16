@@ -21,7 +21,7 @@
     <meta name="author" content="{{ $domain->metaTags->title }}">
     <title>{{ $domain->metaTags->title }}</title>
 @endif
-@if(isset($domain))
+@if(!empty($domain))
 <meta property="og:title" content="{{ $domain->metaTags->title }}">
 <meta property="og:description" content="{{ $domain->metaTags->description }}">
 <meta property="og:image" content="https://partsfinder.ae/storage/logo/44444.png">
