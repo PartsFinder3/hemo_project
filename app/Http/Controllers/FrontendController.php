@@ -536,7 +536,18 @@ public function sendProductInquiry(Request $request)
     public function signupPage()
     {
         $cities = City::all();
-        return view('Frontend.signup', compact('cities'));
+                $meta = [
+    'title' => "Become a Supplier | Sell Used & New Auto Spare Parts in UAE",
+    'description' => "Join PartsFinder UAE as a supplier. List used, new, and aftermarket auto spare parts and reach customers across Dubai, Abu Dhabi, and UAE",
+     'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder Become a Supplier",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
+
+        return view('Frontend.signup', compact('cities','meta'));
     }
 
     public function termsAndConditions()
