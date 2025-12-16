@@ -65,7 +65,7 @@ class ShopProfileController extends Controller
     public function createHours($id)
     {
         $shop = Shops::findOrFail($id);
-        dd($shop);
+        dd($id);
         $hours = ShopHours::where('shop_id', $shop->id)->first();
         return view('supplierPanel.shopProfile.createHours', compact('shop', 'hours'));
     }
