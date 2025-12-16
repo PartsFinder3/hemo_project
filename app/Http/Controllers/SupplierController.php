@@ -138,6 +138,7 @@ $today = now();
        
         $request = Requests::findOrFail($id);
         $request->delete();
+        
         return redirect()->back()->with('success', 'Request rejected successfully.');
     }
 
