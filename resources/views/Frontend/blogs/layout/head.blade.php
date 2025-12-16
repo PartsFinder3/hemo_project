@@ -2,22 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @if ($domain && $domain->partsMeta && $domain->partsMeta->isNotEmpty())
-        @php $meta = $domain->partsMeta->first(); @endphp
-
-        <title>{{ $meta->title }}</title>
-        <meta name="description" content="{{ $meta->description }}">
-        <meta name="keywords" content="{{ $meta->focus_keywords }}">
-        <meta name="author" content="{{ $meta->title }}">
-        <meta name="image" content="{{ asset('storage/' . $domain->partMeta) }}">
-
-        <script type="application/ld+json">
-        {!! $meta->structure_data !!}
-    </script>
-    @endif
-        @if(isset($meta) && $meta)
+            @if(isset($meta) && $meta)
             <title>{{ $meta['title'] }}</title>
             <meta name="description" content="{{ $meta['description'] }}">
 
@@ -25,12 +10,10 @@
                 {!! $meta['structure_data'] !!}
             </script>
         @endif
-    @if($domain && $domain->metaTags)
-        <meta name="description" content="{{ $domain->metaTags->description }}">
-        <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
-        <meta name="author" content="{{ $domain->metaTags->title }}">
-        <title>{{ $domain->metaTags->title }}</title>
-    @endif
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,9 +32,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('Frontend/css/style.css') }}">
-    @if($domain && $domain->logo)
-        <link rel="icon" href="{{ asset($domain->logo) }}">
-    @endif
+    <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">  
     {{-- <style>
                                   @media (max-width:480px){
                                 #w-left{
