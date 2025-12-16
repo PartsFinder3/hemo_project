@@ -649,8 +649,17 @@ function found_pages(){
     $parts = SpareParts::all();
     $makes=CarMakes::all();
     $blogs = $domain->blogs()->latest()->get();
-   
-    return view('Frontend.pages_finder', compact('parts','makes','blogs'));
+              $meta = [
+    'title' => "Search Results | Auto Spare Parts in UAE – PartsFinder",
+    'description' => " Browse available used and new auto spare parts in UAE. Compare prices, sellers, and availability easily on PartsFinder search results pages",
+    'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder Search Results",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
+    return view('Frontend.pages_finder', compact('parts','makes','blogs','meta'));
 }
 public function generateSeo()
     {
