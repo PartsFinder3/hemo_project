@@ -71,8 +71,16 @@ public function index(Request $request)
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
-        $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
-        $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
+$meta = [
+    'title' => "Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder",
+    'description' => "Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder",
+    'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
 
         return compact(
             'carMakes', 'domain', 'makes', 'models', 'years', 'parts',
