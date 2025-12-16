@@ -131,7 +131,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
                             <h5 class="fw-bold mb-4">📍 Location & Hours</h5>
                             <span>
-                                <a href="" class="btn btn-orange">Add Hours</a>
+                                <a href="{{ route('supplier.shops.hours.update', $shop->id) }}" class="btn btn-orange">Add Hours</a>
                             </span>
                         </div>
                         <div class="row">
