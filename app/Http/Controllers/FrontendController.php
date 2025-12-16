@@ -552,7 +552,7 @@ public function sendProductInquiry(Request $request)
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
 ];
 
-        return view('Frontend.blogs.terms');
+        return view('Frontend.blogs.terms' , compact('meta'));
     }
     public function privacyPolicy()
     {
