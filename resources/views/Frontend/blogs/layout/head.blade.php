@@ -17,7 +17,14 @@
         {!! $meta->structure_data !!}
     </script>
     @endif
+        @if(isset($meta) && $meta)
+            <title>{{ $meta['title'] }}</title>
+            <meta name="description" content="{{ $meta['description'] }}">
 
+            <script type="application/ld+json">
+                {!! $meta['structure_data'] !!}
+            </script>
+        @endif
     @if($domain && $domain->metaTags)
         <meta name="description" content="{{ $domain->metaTags->description }}">
         <meta name="keywords" content="{{ $domain->metaTags->keywords }}">
