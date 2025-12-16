@@ -196,7 +196,8 @@
                                                 multiple aria-describedby="helpId" placeholder="" />
                                             <span class="uploadedImages">
                                                 @foreach (json_decode($ad->images) as $image)
-                                                  <img src="{{ asset('storage/' . $image) }}"  alt="" />
+                                                
+                                                  <img src="{{ asset( $image) }}"  alt="" />
                                                 @endforeach
                                             </span>
                                         </div>
