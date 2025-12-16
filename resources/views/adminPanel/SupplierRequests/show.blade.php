@@ -85,6 +85,9 @@
                         </tbody>
 
                     </table>
+                    <div class="d-flex justify-content-center mt-3">
+    {{ $requests->links() }}
+</div>
                 </div>
             </div>
 
