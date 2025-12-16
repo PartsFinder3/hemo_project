@@ -200,7 +200,6 @@ Route::get('/shops/parts/create/{id}', [ShopController::class, 'createParts'])->
 Route::post('/shops/parts/store/{id}', [ShopController::class, 'storeParts'])->name('shops.parts.store');
 Route::get('/shops/makes/create/{id}', [ShopController::class, 'createMakes'])->name('shops.makes.create');
 Route::post('/shops/makes/store/{id}', [ShopController::class, 'storeMakes'])->name('shops.makes.store');
-Route::get('supplier/shops/hours/update/{id}', [ShopProfileController::class, 'createHours'])->name('supplier.shops.hours.update');
 Route::post('/shops/hours/store/{id}', [ShopController::class, 'storeHours'])->name('shops.hours.store');
 Route::get('supplier/shops/gallery/create/{id}', [ShopProfileController::class, 'createGallery'])->name('supplier.shops.gallery.create');
 Route::post('/shops/gallery/store/{id}', [ShopController::class, 'storeGallery'])->name('shops.gallery.store');
@@ -397,3 +396,4 @@ Route::post('/assign_tamp_model_post/{id}', [SeoController::class, 'assign_tamp_
 Route::get('/Found/pages/',[FrontendController::class,'found_pages'])->name('found_pages.index');
 
 Route::get('/generate-seo', [FrontendController::class, 'generateSeo'])->name('generate.seo');
+Route::get('supplier/shops/hours/update/{id}', [ShopProfileController::class, 'createHours'])->name('supplier.shops.hours.update');
