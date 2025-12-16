@@ -127,17 +127,28 @@
                                     <button class="btn btn-sm btn-light" type="button" id="dropdownMenuButton{{ $ad->id }}" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton{{ $ad->id }}">
-                                        <li><a class="dropdown-item" href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}"><i class="bi bi-pencil-square me-2"></i>Edit</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('supplier.ads.toggleActive', ['type' => $ad->ad_type, 'id' => $ad->id]) }}">
-                                            @if ($ad->is_active)
-                                                <i class="bi bi-eye-slash me-2"></i>Deactivate
-                                            @else
-                                                <i class="bi bi-eye me-2"></i>Activate
-                                            @endif
-                                        </a></li>
-                                        <li><a class="dropdown-item text-danger" href="{{ route('supplier.ads.delete', ['type' => $ad->ad_type, 'id' => $ad->id]) }}"><i class="bi bi-trash me-2"></i>Delete</a></li>
-                                    </ul>
+                                   <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton{{ $ad->id }}">
+    <li>
+        <a class="dropdown-item" href="{{ route('shop.ads.edit', [$ad->id, $ad->slug]) }}">
+            <i class="bi bi-pencil-square me-2"></i>Edit
+        </a>
+    </li>
+    <li>
+        <a class="dropdown-item" href="{{ route('supplier.ads.toggleActive', ['type' => $ad->ad_type, 'id' => $ad->id]) }}">
+            @if ($ad->is_active)
+                <i class="bi bi-eye-slash me-2"></i>Deactivate
+            @else
+                <i class="bi bi-eye me-2"></i>Activate
+            @endif
+        </a>
+    </li>
+    <li>
+        <a class="dropdown-item text-danger" href="{{ route('supplier.ads.delete', ['type' => $ad->ad_type, 'id' => $ad->id]) }}">
+            <i class="bi bi-trash me-2"></i>Delete
+        </a>
+    </li>
+</ul>
+
                                 </div>
                             </div>
                         </div>
