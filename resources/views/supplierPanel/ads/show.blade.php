@@ -23,16 +23,14 @@
     gap: 15px;
     transition: background 0.2s;
 }
-.ad-item:hover {
-    background: #f9f9f9;
-}
+
 .ad-image {
     width: 150px;
     height: 100px;
     flex-shrink: 0;
     border-radius: 5px;
     overflow: hidden;
-    background: #f0f0f0;
+ 
     display: flex;
     align-items: center;
     justify-content: center;
