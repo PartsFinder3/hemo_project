@@ -556,7 +556,17 @@ public function sendProductInquiry(Request $request)
     }
     public function privacyPolicy()
     {
-        return view('Frontend.blogs.privacy');
+           $meta = [
+    'title' => " Privacy Policy | PartsFinder UAE",
+    'description' => " View PartsFinder UAE’s privacy policy to understand how we collect, use, and protect your personal data while using our auto spare parts platform.",
+    'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder Privacy Policy",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
+        return view('Frontend.blogs.privacy', compact('meta'));
     }
 
 
