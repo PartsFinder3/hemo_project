@@ -455,7 +455,13 @@ public function sendProductInquiry(Request $request)
     public function aboutPage()
     {
         // $domain = Domain::first();
-        return view('Frontend.about');
+        $meta = [
+    'title' => " About PartsFinder UAE | Auto Spare Parts Price Comparison Platform",
+    'description' => " Learn about PartsFinder UAE, a car spare parts price comparison platform helping buyers find used and new auto spare parts from verified local sellers.",
+    
+];
+
+        return view('Frontend.about',compact('meta'));
     }
 
     public function viewAd($slug, $id)
