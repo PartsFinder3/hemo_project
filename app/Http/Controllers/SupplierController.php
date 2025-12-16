@@ -67,7 +67,7 @@ class SupplierController extends Controller
     public function showRequests()
     {
         $domain = Domain::first();
-        $requests = Requests::all();
+         $requests = Requests::paginate(10); 
         return view('adminPanel.SupplierRequests.show', compact('requests','domain'));
     }
 
@@ -135,10 +135,8 @@ $today = now();
 
     public function rejectRequest($id)
     {
-       
         $request = Requests::findOrFail($id);
         $request->delete();
-        
         return redirect()->back()->with('success', 'Request rejected successfully.');
     }
 
