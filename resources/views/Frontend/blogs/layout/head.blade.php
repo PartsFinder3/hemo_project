@@ -10,6 +10,7 @@
                 {!! $meta['structure_data'] !!}
             </script>
         @endif
+        <link rel="canonical" href="{{ url()->current() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
