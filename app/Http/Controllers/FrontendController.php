@@ -541,6 +541,17 @@ public function sendProductInquiry(Request $request)
 
     public function termsAndConditions()
     {
+        $meta = [
+    'title' => "Terms & Conditions | PartsFinder UAE",
+    'description' => "Read the terms and conditions of using PartsFinder UAE. Learn about user responsibilities, platform usage, supplier rules, and service limitations.",
+    'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder Terms & Condition",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
+
         return view('Frontend.blogs.terms');
     }
     public function privacyPolicy()
