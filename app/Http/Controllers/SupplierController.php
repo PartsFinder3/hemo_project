@@ -135,11 +135,9 @@ $today = now();
 
     public function rejectRequest($id)
     {
-        dd($id);
+       
         $request = Requests::findOrFail($id);
-        $request->status = 'rejected';
-        $request->save();
-
+        $request->delete();
         return redirect()->back()->with('success', 'Request rejected successfully.');
     }
 
