@@ -60,18 +60,34 @@
                             <div class="row py-3 border-bottom align-items-center">
 
                                 <!-- Ad Info -->
-                                <div class="col-md-10">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <h5 class="mb-1 fw-semibold">{{ $ad->title }}</h5>
-                                        @if ($ad->is_approved == '1')
-                                            <span class="badge bg-success">Approved</span>
+                                    <div class="col-md-10 d-flex align-items-start gap-3">
+                                        <!-- Image -->
+                                        @if($ad->image)
+                                            <div style="width: 120px; height: 90px; flex-shrink: 0;">
+                                                <img src="{{ asset('storage/ads/' . $ad->image) }}" alt="{{ $ad->title }}"
+                                                    class="img-fluid rounded" style="width:100%; height:100%; object-fit:cover;">
+                                            </div>
                                         @else
-                                            <span class="badge bg-warning text-dark">Pending</span>
+                                            <div style="width: 120px; height: 90px; flex-shrink: 0; background:#f0f0f0;"
+                                                class="d-flex justify-content-center align-items-center text-muted">
+                                                No Image
+                                            </div>
                                         @endif
+
+                                        <!-- Text Info -->
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <h5 class="mb-1 fw-semibold">{{ $ad->title }}</h5>
+                                                @if ($ad->is_approved == '1')
+                                                    <span class="badge bg-success">Approved</span>
+                                                @else
+                                                    <span class="badge bg-warning text-dark">Pending</span>
+                                                @endif
+                                            </div>
+                                            <h6 class="text-danger fw-bold mb-2">AED {{ number_format($ad->price, 2) }}</h6>
+                                            <p class="text-muted small mb-0">{{ $ad->description }}</p>
+                                        </div>
                                     </div>
-                                    <h6 class="text-danger fw-bold mb-2">AED {{ number_format($ad->price, 2) }}</h6>
-                                    <p class="text-muted small mb-0">{{ $ad->description }}</p>
-                                </div>
 
                                 <!-- Dropdown Menu -->
                                 <div class="col-md-2 text-end">
