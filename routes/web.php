@@ -200,7 +200,7 @@ Route::get('/shops/parts/create/{id}', [ShopController::class, 'createParts'])->
 Route::post('/shops/parts/store/{id}', [ShopController::class, 'storeParts'])->name('shops.parts.store');
 Route::get('/shops/makes/create/{id}', [ShopController::class, 'createMakes'])->name('shops.makes.create');
 Route::post('/shops/makes/store/{id}', [ShopController::class, 'storeMakes'])->name('shops.makes.store');
-Route::get('supplier/shops/hours/create/{id}', [ShopProfileController::class, 'createHours'])->name('supplier.shops.hours.update');
+Route::get('supplier/shops/hours/update/{id}', [ShopProfileController::class, 'createHours'])->name('supplier.shops.hours.update');
 Route::post('/shops/hours/store/{id}', [ShopController::class, 'storeHours'])->name('shops.hours.store');
 Route::get('supplier/shops/gallery/create/{id}', [ShopProfileController::class, 'createGallery'])->name('supplier.shops.gallery.create');
 Route::post('/shops/gallery/store/{id}', [ShopController::class, 'storeGallery'])->name('shops.gallery.store');
@@ -264,6 +264,7 @@ Route::post('/admin/parts/meta/delete/{id}',[ScriptController::class,'destroyPar
 });
 Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.xml');
 //Supplier-Panel
+Route::middleware('subscription')->group(function () {
     Route::get('/supplier-panel', [SupplierController::class, 'showSupplierPanel'])->name('supplier.panel');
     Route::get('/supplier/get-models/{make_id}', [SupplierController::class, 'getModelsByMake'])->name('get.models');
     Route::get('/shop/ads/{id}/mark-inquiry-read', [SupplierController::class, 'markInquiryRead'])->name('supplier.ads.markInquiryRead');
@@ -319,6 +320,7 @@ Route::get('/sitemap.xml', [SiteMapController::class, 'index'])->name('sitemap.x
     Route::post('/shop/password/update/{id}', [SupplierSettingController::class, 'updatePasswordSupplier'])->name('supplier.password.edit');
     //Courier Services Page
     Route::get('/shop/courier-services', [CourierController::class, 'courierServices'])->name('supplier.courier.services');
+});
 
 // <--------------------------------- Supplier Login ------------------------------->
 Route::get('/supplier-login', [AuthController::class, 'supplierLogin'])->name('supplier.login');
