@@ -5,7 +5,7 @@
                 <div class="logo">
                     <a class="d-flex justify-content-center align-items-center" style="max-width: 100px"
                         href="{{{route('admin.index')}}}">
-                        <img style="width: 100%; height: 100%" src="{{ asset('assets/compiled/jpg/Logo.png') }}" alt="">
+                        <img style="width: 100%; height: 100%" src="https://partsfinder.ae/storage/logo/44444.png" alt="">
                     </a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
