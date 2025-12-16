@@ -13,7 +13,17 @@ class AuthController extends Controller
 {
     public function supplierLogin()
     {
-        return view('supplierPanel.login.login');
+                      $meta = [
+    'title' => " Supplier Login | Sell Auto Spare Parts on PartsFinder UAE",
+    'description' => " Login to your supplier account on PartsFinder UAE to manage listings, receive inquiries, and sell used or new auto spare parts across UAE",
+    'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder Supplier Login",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
+        return view('supplierPanel.login.login',compact('meta'));
     }
 
     public function expirePage()
