@@ -268,6 +268,7 @@ Route::middleware('subscription')->group(function () {
     Route::get('/supplier/get-models/{make_id}', [SupplierController::class, 'getModelsByMake'])->name('get.models');
     Route::get('/shop/ads/{id}/mark-inquiry-read', [SupplierController::class, 'markInquiryRead'])->name('supplier.ads.markInquiryRead');
     Route::post('/supplier/logout', [AuthController::class, 'supplierLogout'])->name('supplier.logout');
+Route::get('supplier/shops/hours/update/{id}', [ShopProfileController::class, 'createHours'])->name('supplier.shops.hours.update');
 
     // Ads
     Route::get('/ads/get-models/{make_id}', [AdController::class, 'getModels']);
@@ -396,4 +397,3 @@ Route::post('/assign_tamp_model_post/{id}', [SeoController::class, 'assign_tamp_
 Route::get('/Found/pages/',[FrontendController::class,'found_pages'])->name('found_pages.index');
 
 Route::get('/generate-seo', [FrontendController::class, 'generateSeo'])->name('generate.seo');
-Route::get('supplier/shops/hours/update/{id}', [ShopProfileController::class, 'createHours'])->name('supplier.shops.hours.update');
