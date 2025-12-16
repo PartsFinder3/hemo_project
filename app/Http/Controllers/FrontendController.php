@@ -458,7 +458,12 @@ public function sendProductInquiry(Request $request)
         $meta = [
     'title' => " About PartsFinder UAE | Auto Spare Parts Price Comparison Platform",
     'description' => " Learn about PartsFinder UAE, a car spare parts price comparison platform helping buyers find used and new auto spare parts from verified local sellers.",
-    
+     'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder About",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
 ];
 
         return view('Frontend.about',compact('meta'));
