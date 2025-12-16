@@ -463,7 +463,7 @@ public function storeCar(Request $request)
                         $path = $directory . '/' . $image_name;
                         $image->save($path);
 
-                        $imagePaths[] = 'ad_images/' . $image_name;
+                        $imagePaths[] = 'storage/ad_images/' . $image_name;
                     } catch (\Exception $e) {
                         \Log::error('Image processing failed: ' . $e->getMessage());
                         return redirect()->back()
