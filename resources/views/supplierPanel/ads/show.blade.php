@@ -64,7 +64,7 @@
                                         <!-- Image -->
                                         @if($ad->image)
                                             <div style="width: 120px; height: 90px; flex-shrink: 0;">
-                                                <img src="{{ asset('storage/ads/' . $ad->image) }}" alt="{{ $ad->title }}"
+                                                <img src="{{ asset('storage/ad_images/' . $ad->image) }}" alt="{{ $ad->title }}"
                                                     class="img-fluid rounded" style="width:100%; height:100%; object-fit:cover;">
                                             </div>
                                         @else
