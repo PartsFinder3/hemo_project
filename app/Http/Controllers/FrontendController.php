@@ -512,7 +512,18 @@ public function sendProductInquiry(Request $request)
         $domain = Domain::first();
         $blogs = $domain->blogs()->latest()->get();
         $categories = BlogCategory::all();
-        return view('Frontend.blogs.index', compact('blogs', 'domain', 'categories'));
+                $meta = [
+    'title' => "Auto Spare Parts Blog UAE | Guides, Tips & Updates – PartsFinder",
+    'description' => " Read the PartsFinder blog for auto spare parts guides, buying tips, market updates, and helpful information for car owners in UAE.",
+     'structure_data' => json_encode([
+        "@context" => "https://schema.org",
+        "@type" => "WebSite",
+        "name" => "PartsFinder About",
+        "url" => url()->current()
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+];
+
+        return view('Frontend.blogs.index', compact('blogs', 'domain', 'categories','meta'));
     }
 
     public function blogView($slug, $id)
