@@ -36,7 +36,7 @@
                                 </div>
                             @endif
                         @endif
-                         <form action="{{ route('category.show') }}" method="GET" class="d-flex">
+                         <form action="{{ route('category.search') }}" method="GET" class="d-flex">
             <input type="text" name="q" class="form-control me-2" placeholder="Search category..." value="{{ request('q') }}">
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
