@@ -146,15 +146,17 @@
 @endsection
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // wait for auto-init to finish
-    setTimeout(function() {
-        const table = document.querySelector("#table1").simpleDatatable;
+    // destroy any auto-initialized table first
+    if (window.simpleDatatables && window.simpleDatatables.DataTable.instances.length) {
+        window.simpleDatatables.DataTable.instances.forEach(dt => dt.destroy());
+    }
 
-        if (table) {
-            table.options.perPage = 100;                // default 100 entries
-            table.options.perPageSelect = [10,25,50,100,200]; // dropdown options
-            table.update();                             // apply changes
-        }
-    }, 500); // 500ms wait ensures template init is done
+    // initialize table with 100 entries
+    new simpleDatatables.DataTable("#table1", {
+        perPage: 100,                 // default entries
+        perPageSelect: [10,25,50,100,200], // dropdown options
+        searchable: true,
+        sortable: true
+    });
 });
 </script>
