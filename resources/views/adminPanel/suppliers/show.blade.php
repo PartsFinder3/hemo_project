@@ -120,9 +120,8 @@
 </div>
 @endsection
 
-@section('scripts')
+
 <script>
-// Initialize Simple-DataTables manually
 window.addEventListener('load', function () {
     // destroy auto-initialized tables first
     if (window.simpleDatatables && window.simpleDatatables.DataTable.instances.length) {
@@ -137,19 +136,13 @@ window.addEventListener('load', function () {
         sortable: true
     });
 
-    // Live search using input box
+    // Live search using input box (Simple-DataTables method)
     const searchInput = document.getElementById('tableSearch');
     searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        dataTable.rows().forEach(row => {
-            const rowText = row.cells.map(cell => cell.innerText.toLowerCase()).join(' ');
-            if(rowText.includes(query)){
-                row.show();
-            } else {
-                row.hide();
-            }
-        });
+        dataTable.search(this.value); // ✅ built-in search method
     });
 });
 </script>
+
+
 @endsection
