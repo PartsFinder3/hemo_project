@@ -81,8 +81,8 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-<link rel="icon" href="{{ asset($logo) }}" type="image/png">
-<link rel="shortcut icon" href="{{ asset($logo) }}" type="image/png">
+<link rel="icon" href="{{ asset('storage/'.$logo) }}" type="image/png">
+<link rel="shortcut icon" href="{{ asset('storage/'.$logo) }}" type="image/png">
   @yield('head-section')
 </head>
 
@@ -121,7 +121,7 @@
         <nav>
 <a href="https://partsfinder.ae">
     <div class="logo">
-        <img src="{{ asset($logo) }}" alt="Go to PartsFinder Home">
+        <img src="{{ asset('storage/'.$logo) }}" alt="Go to PartsFinder Home">
     </div>
 </a>
             <div class="nav-menu" id="nav-menu">
