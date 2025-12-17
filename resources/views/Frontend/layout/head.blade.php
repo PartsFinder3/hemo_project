@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+@php
+use Illuminate\Support\Facades\Request;
+use App\Models\Domain;
+
+$host = Request::getHost();
+$currentDomain = Domain::where('domain_url', $host)->first();
+
+$logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'https://partsfinder.ae/storage/logo/44444.png';
+
+@endphp
 
 @if(isset($meta) && $meta)
     <title>{{ $meta['title'] }}</title>
@@ -68,8 +78,8 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-   <link rel="icon" href="{{ asset(getDomainLogo()) }}" type="image/png">
-<link rel="shortcut icon" href="{{ asset(getDomainLogo()) }}" type="image/png">
+<link rel="icon" href="{{ asset($logo) }}" type="image/png">
+<link rel="shortcut icon" href="{{ asset($logo) }}" type="image/png">
   @yield('head-section')
 </head>
 
@@ -273,6 +283,7 @@ height: 35px;
 }
 
 </style>
+
 <script>
 $(document).ready(function() {
     $('#make').select2({
