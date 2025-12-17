@@ -110,6 +110,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                      <div class="mt-3">
+        {{ $years->links('pagination::bootstrap-5') }}
+    </div>
                 </div>
             </div>
 

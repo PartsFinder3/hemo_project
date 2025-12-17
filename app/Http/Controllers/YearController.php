@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class YearController extends Controller
 {
     public function index(){
-        $years = Years::all();
+        $years = Years::paginate(100);
         return view('adminPanel.years.show',compact('years'));
     }
 
