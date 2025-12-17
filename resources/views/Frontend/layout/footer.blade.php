@@ -9,7 +9,7 @@
                   <div class="footer-logo">
                    
               
-                            <img src="https://partsfinder.ae/storage/logo/44444.png" alt="">
+                            <img src="{{ asset('storage/'.$logo) }}" alt="">
                        
                     </div>
             </a>
