@@ -144,3 +144,11 @@
         </section>
     </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#table1').DataTable({
+            pageLength: 100,      // 👈 default 100
+            lengthMenu: [10, 25, 50, 100, 200] // 👈 options
+        });
+    });
+</script>
