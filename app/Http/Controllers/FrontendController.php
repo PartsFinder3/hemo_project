@@ -58,10 +58,11 @@ public function index(Request $request)
         });
 
         $domain_id = $currentDomain ? $currentDomain->id : null;
+          dd($domain_id);
         if($domain_id){
             $domainget=Domain::find($domain_id);
             $domain_map=$domainget->map_img;
-            dd($domain_map);
+          
         }else{
             $domain_map="logo/1759938974_map.webp";
         }
