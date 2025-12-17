@@ -36,6 +36,11 @@
                                 </div>
                             @endif
                         @endif
+                         <form action="{{ route('category.show') }}" method="GET" class="d-flex">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search category..." value="{{ request('q') }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
                         <!--Modal lg size -->
                         <div class="me-1 mb-1 d-inline-block">
                             <!-- Button trigger for large size modal -->
