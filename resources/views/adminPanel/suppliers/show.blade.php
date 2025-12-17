@@ -145,7 +145,7 @@
     </div>
 @endsection
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
     // destroy any auto-initialized table first
     if (window.simpleDatatables && window.simpleDatatables.DataTable.instances.length) {
         window.simpleDatatables.DataTable.instances.forEach(dt => dt.destroy());
