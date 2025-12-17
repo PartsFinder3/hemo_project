@@ -86,11 +86,11 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first text-end">
-    <form action="{{ route('years.show') }}" method="GET" class="d-flex">
-        <input type="text" name="q" class="form-control me-2" placeholder="Search years..." value="{{ request('q') }}">
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
-</div>
+                        <form action="{{ route('years.show') }}" method="GET" class="d-flex">
+                            <input type="text" name="q" class="form-control me-2" placeholder="Search years..." value="{{ request('q') }}">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                    </div>
                 <div class="card-body">
                     <table class="table table-striped" >
                         <thead>
