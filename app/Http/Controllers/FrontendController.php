@@ -57,7 +57,7 @@ public function index(Request $request)
 
       $domainget=Domain::find($domain_id);
             $domain_map=$domainget->map_img;
-          dd($domain_map);
+      
         $domain_id = $currentDomain ? $currentDomain->id : null;
     $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
         $Domains = Domain::all();
