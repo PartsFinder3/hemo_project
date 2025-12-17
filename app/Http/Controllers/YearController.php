@@ -26,4 +26,10 @@ class YearController extends Controller
         Years::find($id)->delete();
         return redirect()->back()->with('success','Year Deleted Successfully');
     }
+
+    public function search(Request $request){
+    $search = $request->q;
+    $years = Years::where('year', 'like', "%{$search}%")->paginate(100);
+    return view('adminPanel.years.show', compact('years'));
+}
 }

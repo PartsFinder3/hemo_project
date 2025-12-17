@@ -108,7 +108,7 @@ Route::post('makes/edit/{id}', [CarMakeController::class, 'edit'])->name('makes.
 Route::get('/years', [YearController::class, 'index'])->name('years.show');
 Route::post('years/create', [YearController::class, 'create'])->name('years.create');
 Route::get('years/delete/{id}', [YearController::class, 'delete'])->name('years.delete');
-
+Route::get('/years/search', [YearController::class, 'search'])->name('years.search');
 //<---------------------------- Fuel ---------------------------------->
 Route::get('/fuel', [FuelController::class, 'index'])->name('fuel.show');
 Route::post('fuel/create', [FuelController::class, 'create'])->name('fuel.create');
