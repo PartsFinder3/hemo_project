@@ -110,7 +110,7 @@ class SupplierController extends Controller
 
 public function showSuppliers()
 {
-    $domain = Domain::first();
+
     $today = now();
 
     $suppliers = Suppliers::with(['latestSubscription', 'city', 'shop'])
@@ -131,13 +131,13 @@ public function showSuppliers()
             return $sup;
         });
 
-    return view('adminPanel.suppliers.show', compact('suppliers', 'domain'));
+    return view('adminPanel.suppliers.show', compact('suppliers'));
 }
 public function showSuppliersSearch(Request $request)
 {
-    $domain = Domain::first();
+    
     $today = now();
-    $query = $request->input('q'); // search query
+    $query = $request->input('q');
 
     $suppliers = Suppliers::with(['latestSubscription', 'city', 'shop'])
         ->when($query, function($q) use ($query) {
@@ -160,7 +160,7 @@ public function showSuppliersSearch(Request $request)
             return $sup;
         });
 
-    return view('adminPanel.suppliers.show', compact('suppliers', 'domain'));
+    return view('adminPanel.suppliers.show', compact('suppliers'));
 }
 
 
