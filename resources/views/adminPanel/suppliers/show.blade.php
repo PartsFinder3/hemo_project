@@ -15,7 +15,12 @@
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first text-end">
                 <!-- Search box -->
-                <input type="text" id="tableSearch" class="form-control" placeholder="Search suppliers...">
+                <div class="input-group">
+                    <input type="text" id="tableSearch" class="form-control" placeholder="Search suppliers...">
+                    <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +44,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table table-striped" >
+                <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -68,46 +73,64 @@
                             @if(auth()->guard('admins')->user()->role == 'admin')
                             <td>
                                 @if($supplier->subscription_status === 'active')
-                                    <button class="btn btn-primary"><i class="fa fa-check"></i></button>
+                                    <span class="badge bg-success"><i class="bi bi-check-circle"></i> Active</span>
                                 @else
-                                    <button class="btn btn-secondary"><i class="fa fa-times"></i></button>
+                                    <span class="badge bg-secondary"><i class="bi bi-x-circle"></i> Inactive</span>
                                 @endif
                             </td>
                             <td>
                                 @if($supplier->is_verified)
-                                    <a href="{{ route('suppliers.verified.toggle', $supplier->id) }}" class="btn btn-warning">Unverify</a>
+                                    <a href="{{ route('suppliers.verified.toggle', $supplier->id) }}" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-shield-slash"></i> Unverify
+                                    </a>
                                 @else
-                                    <a href="{{ route('suppliers.verified.toggle', $supplier->id) }}" class="btn btn-success">Verify</a>
+                                    <a href="{{ route('suppliers.verified.toggle', $supplier->id) }}" class="btn btn-sm btn-success">
+                                        <i class="bi bi-shield-check"></i> Verify
+                                    </a>
                                 @endif
                             </td>
                             @endif
                             <td>
                                 @if($supplier->shop)
                                     @if($supplier->shop->is_active)
-                                        <a href="{{ route('shops.toggle', $supplier->id) }}" class="btn btn-danger">Ban</a>
+                                        <a href="{{ route('shops.toggle', $supplier->id) }}" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-ban"></i> Ban
+                                        </a>
                                     @else
-                                        <a href="{{ route('shops.toggle', $supplier->id) }}" class="btn btn-success">Unban</a>
+                                        <a href="{{ route('shops.toggle', $supplier->id) }}" class="btn btn-sm btn-success">
+                                            <i class="bi bi-check-circle"></i> Unban
+                                        </a>
                                     @endif
                                 @else
                                     <form action="{{ route('shops.create', $supplier->id) }}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-success">Create</button>
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <i class="bi bi-shop"></i> Create
+                                        </button>
                                     </form>
                                 @endif
                             </td>
                             @if(auth()->guard('admins')->user()->role == 'admin')
                             <td>
-                                <a href="{{ route('invoices.create', $supplier->id) }}" class="btn btn-sm btn-light">Generate</a>
+                                <a href="{{ route('invoices.create', $supplier->id) }}" class="btn btn-sm btn-light">
+                                    <i class="bi bi-receipt"></i> Generate
+                                </a>
                             </td>
                             @endif
                             <td>
                                 @if($supplier->shop)
-                                    <a href="{{ route('shops.view', $supplier->shop->id) }}" class="btn btn-sm btn-primary">View</a>
+                                    <a href="{{ route('shops.view', $supplier->shop->id) }}" class="btn btn-sm btn-primary">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                @else
+                                    <span class="badge bg-warning">No Shop</span>
                                 @endif
                             </td>
                             @if(auth()->guard('admins')->user()->role == 'admin')
                             <td>
-                                <a href="{{ route('payment.create.show', $supplier->id) }}" class="btn btn-sm btn-info">Payment</a>
+                                <a href="{{ route('payment.create.show', $supplier->id) }}" class="btn btn-sm btn-info">
+                                    <i class="bi bi-credit-card"></i> Payment
+                                </a>
                             </td>
                             @endif
                         </tr>
@@ -119,29 +142,108 @@
     </section>
 </div>
 
+<style>
+    .datatable-container {
+        overflow-x: auto;
+    }
+    .datatable-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    .datatable-search {
+        flex-grow: 1;
+        margin-left: 1rem;
+    }
+    .datatable-selector {
+        min-width: 120px;
+    }
+    .datatable-pagination {
+        margin-top: 1rem;
+    }
+</style>
 
 <script>
-window.addEventListener('load', function () {
-    // destroy auto-initialized tables first
-    if (window.simpleDatatables && window.simpleDatatables.DataTable.instances.length) {
-        window.simpleDatatables.DataTable.instances.forEach(dt => dt.destroy());
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if simpleDatatables is loaded
+    if (typeof simpleDatatables === 'undefined') {
+        console.error('Simple-DataTables library not loaded!');
+        return;
     }
 
-    // Initialize table with perPage 100
-    const dataTable = new simpleDatatables.DataTable("#table1", {
-        perPage: 100,
-        perPageSelect: [10, 25, 50, 100, 200],
+    // Destroy existing instances if any
+    if (window.dataTableInstance) {
+        window.dataTableInstance.destroy();
+    }
+
+    // Initialize Simple-DataTables
+    window.dataTableInstance = new simpleDatatables.DataTable("#table1", {
+        perPage: 10,
+        perPageSelect: [5, 10, 25, 50, 100],
         searchable: true,
-        sortable: true
+        sortable: true,
+        fixedHeight: false,
+        labels: {
+            placeholder: "Search suppliers...",
+            perPage: "{select} records per page",
+            noRows: "No suppliers found",
+            info: "Showing {start} to {end} of {rows} entries",
+        }
     });
 
-    // Live search using input box (Simple-DataTables method)
-    const searchInput = document.getElementById('tableSearch');
-    searchInput.addEventListener('input', function() {
-        dataTable.search(this.value); // ✅ built-in search method
+    // Get the table wrapper element
+    const tableWrapper = document.querySelector('.datatable-wrapper');
+    
+    // Create a custom search input
+    const customSearch = document.getElementById('tableSearch');
+    const clearSearchBtn = document.getElementById('clearSearch');
+
+    // Search function
+    customSearch.addEventListener('input', function() {
+        window.dataTableInstance.search(this.value);
+        if (this.value) {
+            clearSearchBtn.style.display = 'block';
+        } else {
+            clearSearchBtn.style.display = 'none';
+        }
     });
+
+    // Clear search function
+    clearSearchBtn.addEventListener('click', function() {
+        customSearch.value = '';
+        window.dataTableInstance.search('');
+        this.style.display = 'none';
+    });
+
+    // Hide clear button initially
+    clearSearchBtn.style.display = 'none';
+
+    // Move the built-in search box to our custom location if needed
+    setTimeout(() => {
+        const builtInSearch = document.querySelector('.datatable-search input');
+        if (builtInSearch) {
+            builtInSearch.style.display = 'none'; // Hide the default search
+        }
+    }, 100);
+
+    // Add responsive breakpoints
+    function handleResize() {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 768) {
+            window.dataTableInstance.options.perPage = 5;
+        } else {
+            window.dataTableInstance.options.perPage = 10;
+        }
+        window.dataTableInstance.refresh();
+    }
+
+    // Initial resize
+    handleResize();
+    
+    // Listen for window resize
+    window.addEventListener('resize', handleResize);
 });
 </script>
-
 
 @endsection
