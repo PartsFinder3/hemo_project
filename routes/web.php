@@ -141,7 +141,7 @@ Route::get('/varient/{id}', [CarVariantController::class, 'delete'])->name('vari
 Route::get('/parts-category', [PartCategoryController::class, 'index'])->name('category.show');
 Route::post('/part-category/create', [PartCategoryController::class, 'create'])->name('category.create');
 Route::get('/part-category/{id}', [PartCategoryController::class, 'delete'])->name('category.delete');
-
+Route::get('/categories/search', [PartCategoryController::class, 'search'])->name('category.search');
 //<-------------------------------- Spare-Parts----------------------------->
 Route::prefix('spare-parts')->group(function () {
     Route::get('/', [SparePartsController::class, 'index'])->name('spareparts.show');

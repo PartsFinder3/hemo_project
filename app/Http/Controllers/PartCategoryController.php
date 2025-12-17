@@ -27,4 +27,14 @@ class PartCategoryController extends Controller
         $category->delete();
         return redirect()->back()->with('success','Category Deleted Successfully');
     }
+      public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $category = PartCategory::where('name', 'like', "%{$query}%")
+                    ->paginate(100)
+                    ->appends(['q' => $query]); // pagination میں search term بھی رکھیں
+
+        return view('adminPanel.partsCategory.show', compact('category'));
+    }
 }
