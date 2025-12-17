@@ -153,6 +153,7 @@ Route::prefix('spare-parts')->group(function () {
 
 //<------------------------------ Blogs ------------------------------------->
 Route::get('/admin/blogs', [BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/search', [BlogController::class, 'search'])->name('blogs.search');
 Route::get('/admin/blogs/category', [BlogController::class, 'showCategory'])->name('blogs.category');
 Route::post('/admin/blogs/category/create', [BlogController::class, 'createCategory'])->name('blog.category.create');
 Route::get('/admin/blogs/category/delete/{id}', [BlogController::class, 'deleteCategory'])->name('blog.category.delete');

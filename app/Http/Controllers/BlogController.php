@@ -175,4 +175,15 @@ class BlogController extends Controller
         $blog->increment('is_view');
         return view('adminPanel.blogs.show', compact('blog'));
     }
+    public function search(Request $request)
+{
+    $query = $request->input('q');
+
+    $blogs = Blogs::when($query, function($q) use ($query) {
+        $q->where('title', 'like', "%{$query}%")
+          ->orWhere('author', 'like', "%{$query}%");
+    })->paginate(50)->appends(['q' => $query]); // pagination کے ساتھ query بھی پاس کریں
+
+    return view('adminPanel.blogs.index', compact('blogs'));
+}
 }

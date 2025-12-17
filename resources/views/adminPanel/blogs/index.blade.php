@@ -7,13 +7,21 @@
     </header>
 
     <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Blog Posts</h3>
-                </div>
+          <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Blog Posts</h3>
+            </div>
+
+            <div class="col-12 col-md-6 order-md-2 order-first text-end">
+                <!-- Search form -->
+                <form action="{{ route('blogs.search') }}" method="GET" class="d-flex">
+                    <input type="text" name="q" class="form-control me-2" placeholder="Search blogs..." value="{{ request('q') }}">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </div>
         </div>
+    </div>
         <section class="section">
             <div class="card">
                 <div class="card-header d-flex align-left">
@@ -43,7 +51,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped" id="table1">
+                    <table class="table table-striped" >
                         <thead>
                             <tr>
                                 <th>Title</th>
