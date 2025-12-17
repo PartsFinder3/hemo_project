@@ -168,7 +168,7 @@ Route::get('/supplier-signup', [SupplierController::class, 'requestPage'])->name
 Route::get('/supplier-requests', [SupplierController::class, 'showRequests'])->name('supplier.requests');
 Route::post('/supplier-requests/approve/{id}', [SupplierController::class, 'acceptRequest'])->name('supplier.approve');
 Route::get('/supplier-requests/reject/{id}', [SupplierController::class, 'rejectRequest'])->name('supplier.reject');
-Route::get('/suppliers', [SupplierController::class, 'showSuppliers'])->name('suppliers.show');
+Route::post('/suppliers', [SupplierController::class, 'showSuppliers'])->name('suppliers.show');
 Route::get('/suppliers/search', [SupplierController::class, 'showSupplierssearch'])->name('suppliers.search');
 Route::get('/suppliers/active-toggle/{id}', [SupplierController::class, 'activeSupplierToggle'])->name('suppliers.active.toggle');
 Route::get('/suppliers/verified-toggle/{id}', [SupplierController::class, 'verifiedSupplier'])->name('suppliers.verified.toggle');

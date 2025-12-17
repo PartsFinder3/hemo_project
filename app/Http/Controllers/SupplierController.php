@@ -133,7 +133,35 @@ public function showSuppliers()
 
     return view('adminPanel.suppliers.show', compact('suppliers', 'domain'));
 }
+public function showSuppliersSearch(Request $request)
+{
+    $domain = Domain::first();
+    $today = now();
+    $query = $request->input('q'); // search query
 
+    $suppliers = Suppliers::with(['latestSubscription', 'city', 'shop'])
+        ->when($query, function($q) use ($query) {
+            $q->where('name', 'like', "%{$query}%")
+              ->orWhereHas('city', function($c) use ($query) {
+                  $c->where('name', 'like', "%{$query}%");
+              });
+        })
+        ->latest()
+        ->get()
+        ->map(function ($sup) use ($today) {
+            $sub = $sup->latestSubscription;
+            if (!$sub) {
+                $sup->subscription_status = 'no_subscription';
+            } elseif ($today->gt($sub->end_date)) {
+                $sup->subscription_status = 'expired';
+            } else {
+                $sup->subscription_status = 'active';
+            }
+            return $sup;
+        });
+
+    return view('adminPanel.suppliers.show', compact('suppliers', 'domain'));
+}
 
 
     public function rejectRequest($id)
