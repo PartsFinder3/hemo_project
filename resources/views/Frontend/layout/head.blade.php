@@ -69,6 +69,7 @@
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
        <link rel="icon" href="https://partsfinder.ae/storage/logo/44444.png">
+       <link rel="shortcut icon" href="{{ asset('storage/logo/44444.png') }}" type="image/png">
   @yield('head-section')
 </head>
 
