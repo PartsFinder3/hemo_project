@@ -61,9 +61,11 @@ public function index(Request $request)
         if($domain_id){
             $domainget=Domain::find($domain_id);
             $domain_map=$domainget->map_img;
+            dd($domain_map);
         }else{
-            $domain_map="storage/logo/1759938974_map.webp";
+            $domain_map="logo/1759938974_map.webp";
         }
+        
         $getFAQS = Faq::where('domain_id', $domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
         $domain = Domain::first();
@@ -76,7 +78,7 @@ public function index(Request $request)
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
-
+        
         return compact(
             'carMakes', 'domain', 'makes', 'models', 'years', 'parts',
             'carAds', 'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS','domain_map'
