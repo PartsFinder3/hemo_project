@@ -247,7 +247,6 @@
     <div class="domain-about-container">
         <div class="domain-about-header">
             <h1 class="domain-about-title">About Us</h1>
-            <p class="domain-about-subtitle">Discover our story, mission, and commitment to revolutionizing the auto parts industry in the UAE</p>
         </div>
         
         <div class="domain-about-content-wrapper">
