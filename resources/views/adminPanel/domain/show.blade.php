@@ -134,7 +134,7 @@
                                     <td>{{ $domain->domain_url }}</td>
                                     <td>
                                         @if ($domain->logo)
-                                            <img style="width: 50px" src="{{ asset('' . $domain->logo) }}"
+                                            <img style="width: 50px" src="{{ asset('storage/' . $domain->logo) }}"
                                                 alt="Domain Logo" />
                                         @else
                                             <span>No logo</span>
