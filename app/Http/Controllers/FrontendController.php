@@ -46,11 +46,13 @@ class FrontendController extends Controller
 public function index(Request $request)
 {
     $host = $request->getHost();
+Cache::forget('frontend_index_' . $host);
+    $host = $request->getHost();
 
     $cacheKey = 'frontend_index_' . $host;
-    $cacheMinutes = 60; // 1 hour
+    $cacheMinutes = 60;
      $Domains = Domain::all();
-  $currentDomain = $Domains->first(function($domain) use ($host) {
+      $currentDomain = $Domains->first(function($domain) use ($host) {
             return $domain->domain_url == $host;
         });
         $domain_id = $currentDomain ? $currentDomain->id : null;
