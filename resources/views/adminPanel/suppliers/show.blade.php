@@ -146,9 +146,9 @@
 @endsection
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        $('#table1').DataTable({
-            pageLength: 100,      // 👈 default 100
-            lengthMenu: [10, 25, 50, 100, 200] // 👈 options
+        const dataTable = new simpleDatatables.DataTable("#table1", {
+            perPage: 100,              // default entries
+            perPageSelect: [10, 25, 50, 100, 200] // dropdown options
         });
     });
 </script>
