@@ -1,5 +1,18 @@
     <!-- Footer Section -->
     <footer class="footer-section">
+           @php
+        use Illuminate\Support\Facades\Request;
+        use App\Models\Domain;
+
+        $host = Request::getHost();
+
+        // Current domain fetch karen
+        $currentDomain = Domain::where('domain_url', $host)->first();
+
+        // Logo aur favicon set karein, default logo agar na mile
+        $logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'https://partsfinder.ae/storage/logo/44444.png';
+        $favicon = $currentDomain && $currentDomain->map_img ? $currentDomain->map_img : 'https://partsfinder.ae/storage/logo/44444.png';
+    @endphp
         <div class="container">
             <div class="row">
                 <!-- Company Info -->
