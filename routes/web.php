@@ -116,6 +116,7 @@ Route::get('fuel/delete/{id}', [FuelController::class, 'delete'])->name('fuel.de
 
 //<---------------------------- EngineSize ------------------------->
 Route::get('/engine', [EngineController::class, 'index'])->name('engine.show');
+Route::get('/engine-sizes/search', [EngineController::class, 'search'])->name('engine.search');
 Route::post('/engine/create', [EngineController::class, 'create'])->name('engine.create');
 Route::get('engine/delete/{id}', [EngineController::class, 'delete'])->name('engine.delete');
 

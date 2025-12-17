@@ -8,12 +8,22 @@
     </header>
 
     <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Engine Size</h3>
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Engine Size</h3>
+                    </div>
+            <div class="col-12 col-md-6 order-md-2 order-first text-end">
+                            <!-- Search form -->
+                            <form action="{{ route('suppliers.show') }}" method="GET" class="d-flex">
+                                <input type="text" name="q" class="form-control me-2" placeholder="Search suppliers..."
+                                    value="{{ request('q') }}">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </form>
+                        </div>
                 </div>
             </div>
+
         </div>
         <section class="section">
             <div class="card">

@@ -27,4 +27,13 @@ class EngineController extends Controller
         $engine->delete();
         return redirect()->back()->with('success','Engine Size Added Successfully');
     }
+
+        public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $engineSize = EngineSize::where('size', 'like', "%{$query}%")->get();
+
+        return view('adminPanel.engine.show', compact('engineSize'));
+    }
 }
