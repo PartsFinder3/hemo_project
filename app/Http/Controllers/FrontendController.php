@@ -50,7 +50,7 @@ public function index(Request $request)
     $cacheKey = 'frontend_index_' . $host;
     $cacheMinutes = 60; // 1 hour
 
-    // Cache only static data
+    
     $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
         $Domains = Domain::all();
         $currentDomain = $Domains->first(function($domain) use ($host) {
@@ -58,7 +58,12 @@ public function index(Request $request)
         });
 
         $domain_id = $currentDomain ? $currentDomain->id : null;
-
+        if($domain_id){
+            $domainget=Domain::find($domain_id);
+            $domain_map=$domainget->map_img;
+        }else{
+            $domain_map="storage/logo/1759938974_map.webp";
+        }
         $getFAQS = Faq::where('domain_id', $domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
         $domain = Domain::first();
@@ -74,7 +79,7 @@ public function index(Request $request)
 
         return compact(
             'carMakes', 'domain', 'makes', 'models', 'years', 'parts',
-            'carAds', 'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS'
+            'carAds', 'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS','domain_map'
         );
     });
 

@@ -283,7 +283,7 @@
         <div class="map-img">
             @if($domain && $domain->map_img)
           
-                <img src="{{ asset( $domain->map_img) }}" alt="Map" />
+                <img src="{{ asset( $domain_map) }}" alt="Map" />
             @endif
         </div>
     </section>
