@@ -49,16 +49,24 @@ public function index(Request $request)
 
     $cacheKey = 'frontend_index_' . $host;
     $cacheMinutes = 60; // 1 hour
+     $Domains = Domain::all();
+  $currentDomain = $Domains->first(function($domain) use ($host) {
+            return $domain->domain_url == $host;
+        });
+        $domain_id = $currentDomain ? $currentDomain->id : null;
 
-    
+      $domainget=Domain::find($domain_id);
+            $domain_map=$domainget->map_img;
+          dd($domain_map);
+        $domain_id = $currentDomain ? $currentDomain->id : null;
     $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
         $Domains = Domain::all();
         $currentDomain = $Domains->first(function($domain) use ($host) {
             return $domain->domain_url == $host;
         });
-
+       
         $domain_id = $currentDomain ? $currentDomain->id : null;
-          dd($domain_id);
+        
         if($domain_id){
             $domainget=Domain::find($domain_id);
             $domain_map=$domainget->map_img;
