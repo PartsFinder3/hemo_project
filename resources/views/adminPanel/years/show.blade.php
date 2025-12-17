@@ -37,7 +37,8 @@
                             @endif
                         @endif
                             <div>
-        <form action="{{ route('years.show') }}" method="GET" class="d-flex">
+        <form action="{{ route('years.search') }}" method="GET" class="d-flex">
+
             <input type="text" name="q" class="form-control me-2" placeholder="Search years..." value="{{ request('q') }}">
             <button type="submit" class="btn btn-primary">Search</button>
         </form>
