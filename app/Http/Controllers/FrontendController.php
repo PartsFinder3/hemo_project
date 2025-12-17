@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use OpenAI;
 use App\Models\Ads;
 use App\Models\BlogCategory;
+use App\Models\Blogs;
 use App\Models\BuyerInquiry;
 use App\Models\Buyers;
 use App\Models\CarAds;
@@ -526,10 +527,16 @@ public function sendProductInquiry(Request $request)
         return view('Frontend.shops.shop', compact('shop', 'profile', 'shopParts', 'shopMakes', 'shopHours', 'shopGallery', 'shopAds', 'shopCarAds', 'inquiryCount', 'totalAds'));
     }
 
-    public function blogs()
+    public function blogs(Request $request)
     {
-        $domain = Domain::first();
-        $blogs = $domain->blogs()->latest()->get();
+        $host = $request->getHost();
+        $Domains = Domain::all();
+              $currentDomain = $Domains->first(function($domain) use ($host) {
+            return $domain->domain_url == $host;
+        });
+        $domain_id = $currentDomain ? $currentDomain->id : null;
+
+        $blogs =Blogs::where('domain_id ',$domain_id)->latest()->get();
         $categories = BlogCategory::all();
                 $meta = [
     'title' => "Auto Spare Parts Blog UAE | Guides, Tips & Updates – PartsFinder",
