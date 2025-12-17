@@ -83,7 +83,7 @@
 
             <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p class="copyright mb-0">© Copyrights Partfinder UAE All Rights Reserved</p>
+                <p class="copyright mb-0">© Copyrights Partsfinder UAE All Rights Reserved</p>
             </div>
         </div>
     </footer>
