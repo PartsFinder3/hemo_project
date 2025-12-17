@@ -16,7 +16,7 @@
    
     $currentDomainUrl = Request::getSchemeAndHttpHost();
 @endphp
- @endphp
+
         <div class="container">
             <div class="row">
                 <!-- Company Info -->
