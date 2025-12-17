@@ -47,8 +47,7 @@ public function index(Request $request)
 {
 
     
-$host = $request->getHost();
-Cache::forget('frontend_index_' . $host);
+
     $host = $request->getHost();
 
     $cacheKey = 'frontend_index_' . $host;
