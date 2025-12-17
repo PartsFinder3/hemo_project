@@ -145,10 +145,18 @@
     </div>
 @endsection
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dataTable = new simpleDatatables.DataTable("#table1", {
-            perPage: 100,              // default entries
-            perPageSelect: [10, 25, 50, 100, 200] // dropdown options
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    // Destroy existing instance if any
+    if (window.simpleDatatables && window.simpleDatatables.DataTable.instances.length) {
+        window.simpleDatatables.DataTable.instances.forEach(dt => dt.destroy());
+    }
+
+    // Initialize with 100 entries
+    const dataTable = new simpleDatatables.DataTable("#table1", {
+        perPage: 100,
+        perPageSelect: [10, 25, 50, 100, 200],
+        searchable: true,
+        sortable: true
     });
+});
 </script>
