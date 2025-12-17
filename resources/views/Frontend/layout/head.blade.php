@@ -2,16 +2,19 @@
 <html lang="en">
 
 <head>
-@php
-use Illuminate\Support\Facades\Request;
-use App\Models\Domain;
+   @php
+        use Illuminate\Support\Facades\Request;
+        use App\Models\Domain;
 
-$host = Request::getHost();
-$currentDomain = Domain::where('domain_url', $host)->first();
+        $host = Request::getHost();
 
-$logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'https://partsfinder.ae/storage/logo/44444.png';
+        // Current domain fetch karen
+        $currentDomain = Domain::where('domain_url', $host)->first();
 
-@endphp
+        // Logo aur favicon set karein, default logo agar na mile
+        $logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'https://partsfinder.ae/storage/logo/44444.png';
+        $favicon = $currentDomain && $currentDomain->map_img ? $currentDomain->map_img : 'https://partsfinder.ae/storage/logo/44444.png';
+    @endphp
 
 @if(isset($meta) && $meta)
     <title>{{ $meta['title'] }}</title>
