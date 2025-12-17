@@ -263,7 +263,7 @@
             <div class="cta-section">
                 <h3 style="color: #25396f; margin-bottom: 20px;">Ready to Find Your Perfect Auto Part?</h3>
                 <p style="color: #4a5568; margin-bottom: 30px; font-size: 1.1rem;">Join thousands of satisfied customers who found exactly what they needed through our platform.</p>
-                <a href="{{ url('/find-parts') }}" class="cta-button">Start Your Search Now</a>
+                <a href="{{ url('/') }}" class="cta-button">Start Your Search Now</a>
             </div>
         </div>
     </div>
