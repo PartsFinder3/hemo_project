@@ -15,7 +15,7 @@
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first text-end">
             <!-- Search form -->
-            <form action="{{ route('suppliers.search') }}" method="GET" class="d-flex">
+            <form action="{{ route('suppliers.search') }}" method="post" class="d-flex">
                 <input type="text" name="q" class="form-control me-2" placeholder="Search suppliers..." value="{{ request('q') }}">
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
