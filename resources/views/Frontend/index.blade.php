@@ -305,16 +305,16 @@
     max-width: 520px;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+   
     object-fit: contain;
-    background: #fff;
+   
     padding: 15px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .map-img img:hover {
     transform: scale(1.04);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+   
 }
 @media (max-width: 768px) {
     .map {
