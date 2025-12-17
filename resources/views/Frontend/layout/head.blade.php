@@ -14,7 +14,8 @@
         // Logo aur favicon set karein, default logo agar na mile
         $logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'https://partsfinder.ae/storage/logo/44444.png';
         $favicon = $currentDomain && $currentDomain->map_img ? $currentDomain->map_img : 'https://partsfinder.ae/storage/logo/44444.png';
-    @endphp
+      $currentDomainUrl = Request::getSchemeAndHttpHost();
+   @endphp
 
 @if(isset($meta) && $meta)
     <title>{{ $meta['title'] }}</title>
@@ -119,7 +120,8 @@
 
     <main>
         <nav>
-<a href="https://partsfinder.ae">
+    <a href="{{ $currentDomainUrl }}">
+
     <div class="logo">
         <img src="{{ asset('storage/'.$logo) }}" alt="Go to PartsFinder Home">
     </div>
