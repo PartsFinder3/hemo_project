@@ -257,6 +257,82 @@
     height: 200px;
     object-fit: contain;
 }
+
+/* ===== Map Section ===== */
+.map {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 60px 10%;
+    background: #f9f9f9;
+}
+
+.map-text {
+    flex: 1;
+}
+
+.map-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.map-text li {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    position: relative;
+    padding-left: 22px;
+}
+
+.map-text li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* ===== Map Image ===== */
+.map-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.map-img img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    object-fit: contain;
+    background: #fff;
+    padding: 15px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.map-img img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+@media (max-width: 768px) {
+    .map {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .map-text li {
+        font-size: 16px;
+    }
+
+    .map-img img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
 </style>
 <div class="hero-section_p">
 
