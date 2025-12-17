@@ -118,7 +118,7 @@ $logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'https:/
         <nav>
 <a href="https://partsfinder.ae">
     <div class="logo">
-        <img src="https://partsfinder.ae/storage/logo/44444.png" alt="Go to PartsFinder Home">
+        <img src="{{ asset($logo) }}" alt="Go to PartsFinder Home">
     </div>
 </a>
             <div class="nav-menu" id="nav-menu">
