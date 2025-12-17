@@ -472,9 +472,16 @@ public function sendProductInquiry(Request $request)
         return view('Frontend.shops.view', compact('shops'));
     }
 
-    public function aboutPage()
+    public function aboutPage(Request $request)
     {
-        // $domain = Domain::first();
+          $host = $request->getHost();
+           $Domains = Domain::all();
+           $currentDomain = $Domains->first(function ($domain) use ($host) {
+        return $domain->domain_url == $host;
+    });
+
+      $domain_id = $currentDomain ? $currentDomain->id : null;
+       $domain = Domain::find($domain_id);
         $meta = [
     'title' => " About PartsFinder UAE | Auto Spare Parts Price Comparison Platform",
     'description' => " Learn about PartsFinder UAE, a car spare parts price comparison platform helping buyers find used and new auto spare parts from verified local sellers.",
@@ -486,7 +493,7 @@ public function sendProductInquiry(Request $request)
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
 ];
 
-        return view('Frontend.about',compact('meta'));
+        return view('Frontend.about',compact('meta' , 'domain'));
     }
 
     public function viewAd($slug, $id)
