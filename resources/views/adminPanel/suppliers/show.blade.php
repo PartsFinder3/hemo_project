@@ -13,6 +13,10 @@
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Suppliers</h3>
             </div>
+            <div class="col-12 col-md-6 order-md-2 order-first text-end">
+                <!-- Search box -->
+                <input type="text" id="tableSearch" class="form-control" placeholder="Search suppliers...">
+            </div>
         </div>
     </div>
 
@@ -58,18 +62,9 @@
                     <tbody>
                         @foreach($suppliers as $supplier)
                         <tr>
-                            <td>
-                                @if(auth()->guard('admins')->user()->role == 'admin')
-                                    <a href="{{ route('payment.index', $supplier->id) }}" class="text-decoration-none fw-semibold">
-                                        {{ $supplier->name }}
-                                    </a>
-                                @else
-                                    <span class="text-decoration-none fw-semibold">{{ $supplier->name }}</span>
-                                @endif
-                            </td>
+                            <td>{{ $supplier->name }}</td>
                             <td>{{ $supplier->city->name }}</td>
                             <td>{{ $supplier->whatsapp }}</td>
-
                             @if(auth()->guard('admins')->user()->role == 'admin')
                             <td>
                                 @if($supplier->subscription_status === 'active')
@@ -86,7 +81,6 @@
                                 @endif
                             </td>
                             @endif
-
                             <td>
                                 @if($supplier->shop)
                                     @if($supplier->shop->is_active)
@@ -101,19 +95,16 @@
                                     </form>
                                 @endif
                             </td>
-
                             @if(auth()->guard('admins')->user()->role == 'admin')
                             <td>
                                 <a href="{{ route('invoices.create', $supplier->id) }}" class="btn btn-sm btn-light">Generate</a>
                             </td>
                             @endif
-
                             <td>
                                 @if($supplier->shop)
                                     <a href="{{ route('shops.view', $supplier->shop->id) }}" class="btn btn-sm btn-primary">View</a>
                                 @endif
                             </td>
-
                             @if(auth()->guard('admins')->user()->role == 'admin')
                             <td>
                                 <a href="{{ route('payment.create.show', $supplier->id) }}" class="btn btn-sm btn-info">Payment</a>
@@ -131,18 +122,33 @@
 
 @section('scripts')
 <script>
+// Initialize Simple-DataTables manually
 window.addEventListener('load', function () {
-    // destroy auto-initialized tables by template
+    // destroy auto-initialized tables first
     if (window.simpleDatatables && window.simpleDatatables.DataTable.instances.length) {
         window.simpleDatatables.DataTable.instances.forEach(dt => dt.destroy());
     }
 
-    // Initialize table manually with 100 entries
-    new simpleDatatables.DataTable("#table1", {
-        perPage: 100,                      // default 100 entries
+    // Initialize table with perPage 100
+    const dataTable = new simpleDatatables.DataTable("#table1", {
+        perPage: 100,
         perPageSelect: [10, 25, 50, 100, 200],
         searchable: true,
         sortable: true
+    });
+
+    // Live search using input box
+    const searchInput = document.getElementById('tableSearch');
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        dataTable.rows().forEach(row => {
+            const rowText = row.cells.map(cell => cell.innerText.toLowerCase()).join(' ');
+            if(rowText.includes(query)){
+                row.show();
+            } else {
+                row.hide();
+            }
+        });
     });
 });
 </script>
