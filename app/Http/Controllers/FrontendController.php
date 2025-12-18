@@ -75,7 +75,7 @@ public function index(Request $request)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
-    dd($host);
+    dd($currentDomain);
     return view('Frontend.index', compact(
         'carMakes',
         'domain',
