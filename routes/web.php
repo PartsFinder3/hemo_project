@@ -399,4 +399,4 @@ Route::post('/assign_tamp_model_post/{id}', [SeoController::class, 'assign_tamp_
 
 Route::get('/Found/pages/',[FrontendController::class,'found_pages'])->name('found_pages.index');
 
-Route::get('/generate-seo', [FrontendController::class, 'generateSeo'])->name('generate.seo');
+Route::get('/generate-seo/make', [FrontendController::class, 'generateSeoMake'])->name('generate.seo.make');

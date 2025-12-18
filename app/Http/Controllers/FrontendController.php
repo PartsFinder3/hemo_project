@@ -26,6 +26,7 @@ use App\Models\Faq;
 use App\Models\PartMeta;
 use App\Models\SeoTitle;
 use App\Models\SeoTamplate;
+use App\Models\SeoContentMake;
 
 use Illuminate\Support\Facades\Cache;
 use App\Models\Shops;
@@ -704,7 +705,7 @@ function found_pages(){
 ];
     return view('Frontend.pages_finder', compact('parts','makes','blogs','meta'));
 }
-public function generateSeo()
+public function generateSeoMake()
     {
 
         $brand = "nissan";
@@ -712,7 +713,7 @@ public function generateSeo()
  
         $client = OpenAI::client(config('services.openai.key'));
 
-        // 3. GPT call
+        $base=new SeoContentMake();
         $response = $client->chat()->create([
             'model' => 'gpt-4o-mini',
             'messages' => [
@@ -771,8 +772,10 @@ public function generateSeo()
         // 4. Response text
         $seoContent = $response->choices[0]->message->content;
 
-       dd($seoContent);
-
+        SeoContentMake::create([
+        'make_id' => 1,
+        'seo_content_make' => $seoContent,
+    ]);
        
         return redirect()->back()
             ->with('success', 'SEO content generated successfully');
