@@ -46,19 +46,48 @@ class FrontendController extends Controller
 
 public function index(Request $request)
 {
-    
+    $request->session()->flush();
+
     $host = $request->getHost();
 
     $cacheKey = 'frontend_index_' . $host;
     $cacheMinutes = 60;
 
-    // ✅ Direct query (fast + clean)
-    $currentDomain = Domain::where('domain_url', $host)->first();
+    $Domains = Domain::all();
+    $currentDomain = $Domains->first(function ($domain) use ($host) {
+        return $domain->domain_url == $host;
+    });
 
-    $domain_id  = $currentDomain?->id;
-    $domain_map = $currentDomain?->map_img ?? 'logo/1759938974_map.webp';
+    $domain_id = $currentDomain ? $currentDomain->id : null;
 
-    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host, $domain_id, $domain_map) {
+    // ===== SAFE map_img (outside cache) =====
+    $domainget = Domain::find($domain_id);
+    if ($domainget) {
+        $domain_map = $domainget->map_img;
+    } else {
+        $domain_map = "logo/1759938974_map.webp";
+    }
+
+    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
+
+        $Domains = Domain::all();
+        $currentDomain = $Domains->first(function ($domain) use ($host) {
+            return $domain->domain_url == $host;
+        });
+
+        $domain_id = $currentDomain ? $currentDomain->id : null;
+
+        // ===== SAFE map_img (inside cache) =====
+        if ($domain_id) {
+            $domainget = Domain::find($domain_id);
+            if ($domainget) {
+                $domain_map = $domainget->map_img;
+            } else {
+                $domain_map = "logo/1759938974_map.webp";
+            }
+        } else {
+            $domain_map = "logo/1759938974_map.webp";
+        }
 
         $getFAQS = Faq::where('domain_id', $domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
@@ -90,7 +119,7 @@ public function index(Request $request)
         );
     });
 
-    // ✅ Pagination cache se bahar (correct)
+    // ===== Pagination OUTSIDE cache =====
     $data['ads'] = Ads::where('is_approved', true)
         ->where('domain', $host)
         ->latest()
