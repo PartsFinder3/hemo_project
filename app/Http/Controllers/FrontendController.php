@@ -50,84 +50,48 @@ public function index(Request $request)
 
     $host = $request->getHost();
 
-    $cacheKey = 'frontend_index_' . $host;
-    $cacheMinutes = 60;
+    // ===== DOMAIN RESOLVE =====
+    $currentDomain = Domain::where('domain_url', $host)->first();
 
-    $Domains = Domain::all();
-    $currentDomain = $Domains->first(function ($domain) use ($host) {
-        return $domain->domain_url == $host;
-    });
+    $domain_id  = $currentDomain?->id;
+    $domain_map = $currentDomain?->map_img ?? 'logo/1759938974_map.webp';
 
-    $domain_id = $currentDomain ? $currentDomain->id : null;
+    // ===== NORMAL DATA (NO CACHE) =====
+    $getFAQS = Faq::where('domain_id', $domain_id)->get();
+    $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
+    $domain = Domain::first();
+    $models = CarModels::all();
+    $makes = CarMakes::all();
+    $years = Years::orderBy('year', 'desc')->get();
+    $parts = SpareParts::all();
+    $carAds = CarAds::where('is_approved', true)->latest()->get();
+    $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
+    $randomMakes = CarMakes::limit(8)->get();
+    $sParts = SpareParts::take(60)->get();
+    $cities = City::all();
 
-    // ===== SAFE map_img (outside cache) =====
-    $domainget = Domain::find($domain_id);
-    if ($domainget) {
-        $domain_map = $domainget->map_img;
-    } else {
-        $domain_map = "logo/1759938974_map.webp";
-    }
-
-    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
-
-        $Domains = Domain::all();
-        $currentDomain = $Domains->first(function ($domain) use ($host) {
-            return $domain->domain_url == $host;
-        });
-
-        $domain_id = $currentDomain ? $currentDomain->id : null;
-
-        // ===== SAFE map_img (inside cache) =====
-        if ($domain_id) {
-            $domainget = Domain::find($domain_id);
-            if ($domainget) {
-                $domain_map = $domainget->map_img;
-            } else {
-                $domain_map = "logo/1759938974_map.webp";
-            }
-        } else {
-            $domain_map = "logo/1759938974_map.webp";
-        }
-
-        $getFAQS = Faq::where('domain_id', $domain_id)->get();
-        $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
-        $domain = Domain::first();
-        $models = CarModels::all();
-        $makes = CarMakes::all();
-        $years = Years::orderBy('year', 'desc')->get();
-        $parts = SpareParts::all();
-        $carAds = CarAds::where('is_approved', true)->latest()->get();
-        $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
-        $randomMakes = CarMakes::limit(8)->get();
-        $sParts = SpareParts::take(60)->get();
-        $cities = City::all();
-
-        return compact(
-            'carMakes',
-            'domain',
-            'makes',
-            'models',
-            'years',
-            'parts',
-            'carAds',
-            'randomParts',
-            'randomMakes',
-            'sParts',
-            'cities',
-            'getFAQS',
-            'domain_map'
-        );
-    });
-
-    // ===== Pagination OUTSIDE cache =====
-    $data['ads'] = Ads::where('is_approved', true)
+    // ===== PAGINATION =====
+    $ads = Ads::where('is_approved', true)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
 
-    return response()
-        ->view('Frontend.index', $data)
-        ->header('Cache-Control', 'public, max-age=3600');
+    return view('Frontend.index', compact(
+        'carMakes',
+        'domain',
+        'makes',
+        'models',
+        'years',
+        'parts',
+        'carAds',
+        'randomParts',
+        'randomMakes',
+        'sParts',
+        'cities',
+        'getFAQS',
+        'domain_map',
+        'ads'
+    ));
 }
 
 
