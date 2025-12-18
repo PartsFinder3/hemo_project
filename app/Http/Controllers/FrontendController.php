@@ -46,39 +46,20 @@ class FrontendController extends Controller
 
 public function index(Request $request)
 {
-
     
- $request->session()->flush();
     $host = $request->getHost();
 
     $cacheKey = 'frontend_index_' . $host;
     $cacheMinutes = 60;
-     $Domains = Domain::all();
-      $currentDomain = $Domains->first(function($domain) use ($host) {
-            return $domain->domain_url == $host;
-        });
-        $domain_id = $currentDomain ? $currentDomain->id : null;
 
-      $domainget=Domain::find($domain_id);
-            $domain_map=$domainget->map_img;
-      
-        $domain_id = $currentDomain ? $currentDomain->id : null;
-    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host) {
-        $Domains = Domain::all();
-        $currentDomain = $Domains->first(function($domain) use ($host) {
-            return $domain->domain_url == $host;
-        });
-       
-        $domain_id = $currentDomain ? $currentDomain->id : null;
-        
-        if($domain_id){
-            $domainget=Domain::find($domain_id);
-            $domain_map=$domainget->map_img;
-          
-        }else{
-            $domain_map="logo/1759938974_map.webp";
-        }
-        
+    // ✅ Direct query (fast + clean)
+    $currentDomain = Domain::where('domain_url', $host)->first();
+
+    $domain_id  = $currentDomain?->id;
+    $domain_map = $currentDomain?->map_img ?? 'logo/1759938974_map.webp';
+
+    $data = Cache::remember($cacheKey, $cacheMinutes * 60, function () use ($host, $domain_id, $domain_map) {
+
         $getFAQS = Faq::where('domain_id', $domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
         $domain = Domain::first();
@@ -91,20 +72,30 @@ public function index(Request $request)
         $randomMakes = CarMakes::limit(8)->get();
         $sParts = SpareParts::take(60)->get();
         $cities = City::all();
-        
+
         return compact(
-            'carMakes', 'domain', 'makes', 'models', 'years', 'parts',
-            'carAds', 'randomParts', 'randomMakes', 'sParts', 'cities', 'getFAQS','domain_map'
+            'carMakes',
+            'domain',
+            'makes',
+            'models',
+            'years',
+            'parts',
+            'carAds',
+            'randomParts',
+            'randomMakes',
+            'sParts',
+            'cities',
+            'getFAQS',
+            'domain_map'
         );
     });
 
-    // Pagination OUTSIDE cache → fresh per page
+    // ✅ Pagination cache se bahar (correct)
     $data['ads'] = Ads::where('is_approved', true)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
 
-    // Return view with cache-friendly headers
     return response()
         ->view('Frontend.index', $data)
         ->header('Cache-Control', 'public, max-age=3600');
