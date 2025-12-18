@@ -318,7 +318,7 @@ public function delete($type, $id)
         $base_slug = Str::slug($ad->title);
         $unique_slug = $base_slug;
         $slug_counter = 1;
-
+$host = preg_replace('/^www\./', '', Request::getHost());
         while (Ads::where('slug', $unique_slug)->exists()) {
             $unique_slug = $base_slug . '-' . $slug_counter;
             $slug_counter++;
@@ -337,7 +337,7 @@ public function delete($type, $id)
         $ad->condition = $request->input('condition');
         $ad->shop_id = $shop_id;
         $ad->currency = $request->input('currency');
-        $ad->domain = $request->input('domain');
+        $ad->domain = $host;
 
         $imagePaths = [];
 
