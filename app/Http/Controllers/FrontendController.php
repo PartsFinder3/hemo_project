@@ -720,7 +720,11 @@ public function generateSeo()
                     'role' => 'user',
                     'content' =>
                         "Write SEO-optimized content for an auto parts website.
-
+                            Use:
+                            - <h1> for main headings
+                            - <h2> for subheadings
+                            - <p> for paragraphs
+                            - <ul><li> for lists
                             Brand: {$brand}
 
                             Purpose:
