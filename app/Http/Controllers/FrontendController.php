@@ -48,7 +48,7 @@ public function index(Request $request)
 {
     $request->session()->flush();
 
-    $host = $request->getHost();
+    $host = preg_replace('/^www\./', '', $request->getHost());
 
     // ===== DOMAIN RESOLVE =====
     $currentDomain = Domain::where('domain_url', $host)->first();
