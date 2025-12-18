@@ -52,6 +52,6 @@ class GenerateSeoContentJob implements ShouldQueue
         ]);
 
         // Optional delay to avoid hitting rate limit
-        sleep(5);
+        sleep(3);
     }
 }
