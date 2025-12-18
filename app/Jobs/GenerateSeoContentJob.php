@@ -2,9 +2,8 @@
 
 namespace App\Jobs;
 use OpenAI;
-
-use App\Models\CarMakes;
 use App\Models\SeoContentMake;
+use App\Models\CarMakes;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -16,7 +15,7 @@ class GenerateSeoContentJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $make;
+    public $make;
 
     /**
      * Create a new job instance.
@@ -39,51 +38,8 @@ class GenerateSeoContentJob implements ShouldQueue
             'messages' => [
                 [
                     'role' => 'user',
-                    'content' => "
-Write SEO-optimized content for an auto parts website.
-Use:
-- <h1> for main headings
-- <h2> for subheadings
-- <p> for paragraphs
-- <ul><li> for lists
-Brand: {$brand}
-
-Purpose:
-This content will be placed at the bottom of a category or brand page to improve SEO and topical relevance.
-
-Target Audience:
-Users searching to buy or research auto parts related to this brand.
-
-Content Structure:
-1. About the {$brand}
-- Brief, factual overview
-- Focus on reliability, compatibility, and brand relevance in the auto parts industry
-
-2. Common Parts Available
-- Mention commonly searched and purchased parts
-- Keep it generic and adaptable (no model-specific claims unless obvious)
-- Use bullet points where appropriate
-
-3. Why Buy From Us
-- Emphasize product quality, fitment accuracy, availability, and customer trust
-- No exaggerated marketing or promotional language
-
-SEO Requirements:
-- 350–400 words total
-- Clear, professional, and informative tone
-- Naturally optimized for search engines
-- Avoid keyword stuffing
-- No competitor mentions
-- No storytelling or fluff
-- No calls to action like “Buy Now” or “Order Today”
-
-Formatting:
-- Plain text
-- Short paragraphs
-- No emojis
-- No markdown
-                    "
-                ],
+                    'content' => "Write SEO-optimized content for auto parts brand: {$brand}… (your prompt here)"
+                ]
             ],
         ]);
 
@@ -94,5 +50,8 @@ Formatting:
             'make_id' => $this->make->id,
             'seo_content_make' => $seoContent,
         ]);
+
+        // Optional delay to avoid hitting rate limit
+        sleep(5);
     }
 }
