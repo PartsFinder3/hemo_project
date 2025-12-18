@@ -709,10 +709,14 @@ public function generateSeoMake()
 {
     $client = OpenAI::client(config('services.openai.key'));
 
-    $makes = CarMakes::all();
+    // پہلے سے generate ہو چکے make_ids نکالو
+    $existingMakeIds = SeoContentMake::pluck('make_id')->toArray();
+
+    // صرف وہ makes لو جو ابھی generate نہیں ہوئے
+    $makes = CarMakes::whereNotIn('id', $existingMakeIds)->get();
 
     foreach ($makes as $make) {
-        $brand = $make->name; // یا جو field آپ کے CarMakes میں brand رکھتی ہے
+        $brand = $make->name; // CarMakes table کا brand field
 
         $response = $client->chat()->create([
             'model' => 'gpt-4o-mini',
@@ -769,11 +773,14 @@ public function generateSeoMake()
 
         $seoContent = $response->choices[0]->message->content;
 
-        // Save to database for this make
+        // Save to database
         SeoContentMake::create([
             'make_id' => $make->id,
             'seo_content_make' => $seoContent,
         ]);
+
+        // تھوڑی دیر انتظار کرو تاکہ rate limit نہ ہو
+        sleep(8);
     }
 
     return redirect()->route('generate.seo.success');
