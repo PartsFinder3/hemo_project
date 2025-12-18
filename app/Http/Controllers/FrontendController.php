@@ -72,7 +72,7 @@ public function index(Request $request)
 
     // ===== PAGINATION =====
     $ads = Ads::where('is_approved', true)
-        ->where('domain', $host)
+        ->where('domain', $domain_id)
         ->latest()
         ->paginate(8);
     dd($ads);
