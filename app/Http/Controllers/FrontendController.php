@@ -33,7 +33,7 @@ use App\Models\Shops;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Services\InquiryService;
-
+use App\Jobs\GenerateSeoContentJob;
 use function Ramsey\Uuid\v1;
 
 class FrontendController extends Controller
@@ -707,84 +707,17 @@ function found_pages(){
 }
 public function generateSeoMake()
 {
-    $client = OpenAI::client(config('services.openai.key'));
-
-    // پہلے سے generate ہو چکے make_ids نکالو
     $existingMakeIds = SeoContentMake::pluck('make_id')->toArray();
-
-    // صرف وہ makes لو جو ابھی generate نہیں ہوئے
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)->get();
 
     foreach ($makes as $make) {
-        $brand = $make->name; // CarMakes table کا brand field
-
-        $response = $client->chat()->create([
-            'model' => 'gpt-4o-mini',
-            'messages' => [
-                [
-                    'role' => 'user',
-                    'content' =>
-                        "Write SEO-optimized content for an auto parts website.
-                        Use:
-                        - <h1> for main headings
-                        - <h2> for subheadings
-                        - <p> for paragraphs
-                        - <ul><li> for lists
-                        Brand: {$brand}
-
-                        Purpose:
-                        This content will be placed at the bottom of a category or brand page to improve SEO and topical relevance.
-
-                        Target Audience:
-                        Users searching to buy or research auto parts related to this brand.
-
-                        Content Structure:
-                        1. About the {$brand}
-                        - Brief, factual overview
-                        - Focus on reliability, compatibility, and brand relevance in the auto parts industry
-
-                        2. Common Parts Available
-                        - Mention commonly searched and purchased parts
-                        - Keep it generic and adaptable (no model-specific claims unless obvious)
-                        - Use bullet points where appropriate
-
-                        3. Why Buy From Us
-                        - Emphasize product quality, fitment accuracy, availability, and customer trust
-                        - No exaggerated marketing or promotional language
-
-                        SEO Requirements:
-                        - 350–400 words total
-                        - Clear, professional, and informative tone
-                        - Naturally optimized for search engines
-                        - Avoid keyword stuffing
-                        - No competitor mentions
-                        - No storytelling or fluff
-                        - No calls to action like “Buy Now” or “Order Today”
-
-                        Formatting:
-                        - Plain text
-                        - Short paragraphs
-                        - No emojis
-                        - No markdown
-                     "
-                ],
-            ],
-        ]);
-
-        $seoContent = $response->choices[0]->message->content;
-
-        // Save to database
-        SeoContentMake::create([
-            'make_id' => $make->id,
-            'seo_content_make' => $seoContent,
-        ]);
-
-        // تھوڑی دیر انتظار کرو تاکہ rate limit نہ ہو
-        sleep(8);
+        GenerateSeoContentJob::dispatch($make);
     }
 
-    return redirect()->route('generate.seo.success');
+    return redirect()->route('generate.seo.success')
+        ->with('success', 'SEO generation jobs have been dispatched!');
 }
+
 
 
  function generateSeoSuccess(){
