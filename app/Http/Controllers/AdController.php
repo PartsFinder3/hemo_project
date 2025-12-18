@@ -337,7 +337,7 @@ $host = preg_replace('/^www\./', '', Request::getHost());
         $ad->condition = $request->input('condition');
         $ad->shop_id = $shop_id;
         $ad->currency = $request->input('currency');
-        $ad->domain = $host;
+        $ad->domain = $request->input('domain');
 
         $imagePaths = [];
 
