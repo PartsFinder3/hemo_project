@@ -6,7 +6,7 @@
         use Illuminate\Support\Facades\Request;
         use App\Models\Domain;
 
-        $host = preg_replace('/^www\./', '', $request->getHost());
+        $host = Request::getHost();
 
         // Current domain fetch karen
         $currentDomain = Domain::where('domain_url', $host)->first();
