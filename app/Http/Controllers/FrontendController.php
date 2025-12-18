@@ -72,10 +72,10 @@ public function index(Request $request)
 
     // ===== PAGINATION =====
     $ads = Ads::where('is_approved', true)
-        ->where('domain', $domain_id)
+        ->where('domain', $host)
         ->latest()
         ->paginate(8);
-    
+    dd($host);
     return view('Frontend.index', compact(
         'carMakes',
         'domain',
