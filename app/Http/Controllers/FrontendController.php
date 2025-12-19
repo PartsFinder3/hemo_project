@@ -708,6 +708,9 @@ function found_pages(){
 public function generateSeoMake()
 {
     $existingMakeIds = SeoContentMake::pluck('make_id')->toArray();
+    if(!$existingMakeIds){
+        return "no";
+    }
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)->get();
 
     foreach ($makes as $make) {
