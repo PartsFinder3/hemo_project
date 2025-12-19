@@ -709,7 +709,11 @@ public function generateSeoMake()
 {
     $existingMakeIds = SeoContentMake::pluck('make_id')->toArray();
 
-    $makes = CarMakes::whereNotIn('id', $existingMakeIds)->get();
+    // 👇 sirf 3 makes uthao
+    $makes = CarMakes::whereNotIn('id', $existingMakeIds)
+        ->orderBy('id')
+        ->take(3)
+        ->get();
 
     if ($makes->isEmpty()) {
         return "All makes already have SEO content";
@@ -734,10 +738,10 @@ public function generateSeoMake()
             ['seo_content_make' => $response->choices[0]->message->content]
         );
 
-       
+        sleep(7); // rate limit safety
     }
 
-    return "SEO content generated successfully";
+    return "3 SEO contents generated successfully";
 }
 
 
