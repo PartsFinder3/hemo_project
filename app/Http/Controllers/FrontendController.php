@@ -734,7 +734,7 @@ public function generateSeoMake()
             ['seo_content_make' => $response->choices[0]->message->content]
         );
 
-        sleep(7);
+       
     }
 
     return "SEO content generated successfully";
