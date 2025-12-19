@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
+
 
 class GenerateSeoContentJob implements ShouldQueue
 {
@@ -28,37 +28,30 @@ class GenerateSeoContentJob implements ShouldQueue
     /**
      * Execute the job.
      */
-   public function handle(): void
-{
-    $client = OpenAI::client(config('services.openai.key'));
-    $brand = $this->make->name;
+    public function handle(): void
+    {
+        $client = OpenAI::client(config('services.openai.key'));
+        $brand = $this->make->name;
 
-    $response = $client->chat()->create([
-        'model' => 'gpt-4o-mini',
-        'messages' => [
-            [
-                'role' => 'user',
-                'content' => "Write SEO-optimized content for auto parts brand: {$brand}"
-            ]
-        ],
-    ]);
+        $response = $client->chat()->create([
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => "Write SEO-optimized content for auto parts brand: {$brand}… (your prompt here)"
+                ]
+            ],
+        ]);
 
-    $seoContent = $response->choices[0]->message->content ?? null;
+        $seoContent = $response->choices[0]->message->content;
 
-    // Debug log
-    Log::info("SEO Job for Make: {$brand}");
-    Log::info("SEO Content: " . $seoContent);
-
-    if($seoContent) {
+        // Save to database
         SeoContentMake::create([
             'make_id' => $this->make->id,
             'seo_content_make' => $seoContent,
         ]);
-    } else {
-        Log::warning("SEO content was empty for Make: {$brand}");
+
+        // Optional delay to avoid hitting rate limit
+        sleep(7);
     }
-
-    sleep(7);
-}
-
 }
