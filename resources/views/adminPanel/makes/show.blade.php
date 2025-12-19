@@ -13,6 +13,7 @@
                 <h3>Car Makes</h3>
             </div>
         </div>
+        
     </div>
 
     <section class="section">
@@ -36,7 +37,9 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#large">
                             Add Car Make
                         </button>
-
+    <a href="{{route('generate.seo.make')}}"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generateAI">
+        Generate AI Content
+    </button></a>
                         <div class="modal fade text-left" id="large" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel17" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
