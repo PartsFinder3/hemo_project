@@ -712,7 +712,7 @@ public function generateSeoMake()
     // 👇 sirf 3 makes uthao
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)
         ->orderBy('id')
-        ->take(3)
+        ->take(1)
         ->get();
    if ($makes->count() === 0) {
         return "No new makes available for SEO content generation";
