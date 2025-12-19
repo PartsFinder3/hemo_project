@@ -712,7 +712,7 @@ public function generateSeoMake()
     // 👇 sirf 3 makes uthao
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)
         ->orderBy('id')
-        ->take(3)
+        ->take(5)
         ->get();
 
     if ($makes->isEmpty()) {
