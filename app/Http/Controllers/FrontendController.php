@@ -712,7 +712,7 @@ public function generateSeoMake()
     // 👇 sirf 3 makes uthao
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)
         ->orderBy('id')
-        ->take(1)
+        ->take(10)
         ->get();
    if ($makes->count() === 0) {
         return "No new makes available for SEO content generation";
@@ -780,10 +780,10 @@ Formatting:
             ['seo_content_make' => $response->choices[0]->message->content]
         );
 
-        sleep(7); // rate limit safety
+        sleep(5); // rate limit safety
     }
 
-    return "3 SEO contents generated successfully";
+    return "10 SEO contents generated successfully";
 }
 
 
