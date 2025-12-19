@@ -32,7 +32,7 @@ use App\Http\Controllers\FAsController;
 use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\MSubscription;
-use App\Models\SeoContentMake;
+
 // use Illuminate\Support\Facades\Artisan;
 // use Illuminate\Support\Facades\Request;
 /*
@@ -406,6 +406,3 @@ Route::get('/generate-seo/make', [FrontendController::class, 'generateSeoMake'])
 Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSuccess'])->name('generate.seo.success');
 
 
-Route::get('checktable', function () {
-    return SeoContentMake::all();
-});

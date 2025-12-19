@@ -708,39 +708,36 @@ function found_pages(){
 public function generateSeoMake()
 {
     $existingMakeIds = SeoContentMake::pluck('make_id')->toArray();
-    if(!$existingMakeIds){
-        return "no";
-    }
+
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)->get();
 
+    if ($makes->isEmpty()) {
+        return "All makes already have SEO content";
+    }
+
+    $client = OpenAI::client(config('services.openai.key'));
+
     foreach ($makes as $make) {
-        $client = OpenAI::client(config('services.openai.key'));
-        $brand = $make->name;
 
         $response = $client->chat()->create([
             'model' => 'gpt-4o-mini',
             'messages' => [
                 [
                     'role' => 'user',
-                    'content' => "Write SEO-optimized content for auto parts brand: {$brand}… (your prompt here)"
+                    'content' => "Write SEO-optimized content for auto parts brand: {$make->name}"
                 ]
             ],
         ]);
 
-        $seoContent = $response->choices[0]->message->content;
+        SeoContentMake::updateOrCreate(
+            ['make_id' => $make->id],
+            ['seo_content_make' => $response->choices[0]->message->content]
+        );
 
-        // Save to database
-        SeoContentMake::create([
-            'make_id' => $make->id,
-            'seo_content_make' => $seoContent,
-        ]);
-
-      
         sleep(7);
     }
 
-    return redirect()->route('generate.seo.success')
-        ->with('success', 'SEO generation jobs have been dispatched!');
+    return "SEO content generated successfully";
 }
 
 
