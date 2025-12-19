@@ -711,7 +711,29 @@ public function generateSeoMake()
     $makes = CarMakes::whereNotIn('id', $existingMakeIds)->get();
 
     foreach ($makes as $make) {
-        GenerateSeoContentJob::dispatch($make);
+        $client = OpenAI::client(config('services.openai.key'));
+        $brand = $make->name;
+
+        $response = $client->chat()->create([
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                [
+                    'role' => 'user',
+                    'content' => "Write SEO-optimized content for auto parts brand: {$brand}… (your prompt here)"
+                ]
+            ],
+        ]);
+
+        $seoContent = $response->choices[0]->message->content;
+
+        // Save to database
+        SeoContentMake::create([
+            'make_id' => $make->id,
+            'seo_content_make' => $seoContent,
+        ]);
+
+      
+        sleep(7);
     }
 
     return redirect()->route('generate.seo.success')
