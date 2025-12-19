@@ -781,7 +781,7 @@ Formatting:
         sleep(7); // rate limit safety
     }
 
-    return "3 SEO contents generated successfully";
+    return "5 SEO contents generated successfully";
 }
 
 
