@@ -778,7 +778,7 @@ Formatting:
             ['seo_content_make' => $response->choices[0]->message->content]
         );
 
-        sleep(7); // rate limit safety
+        sleep(4); // rate limit safety
     }
 
     return "5 SEO contents generated successfully";
