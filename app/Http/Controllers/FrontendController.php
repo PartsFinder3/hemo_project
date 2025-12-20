@@ -47,7 +47,7 @@ class FrontendController extends Controller
 
 public function index(Request $request)
 {
-    $request->session()->flush();
+
 
     $host = preg_replace('/^www\./', '', $request->getHost());
 
