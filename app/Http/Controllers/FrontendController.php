@@ -506,7 +506,7 @@ public function sendProductInquiry(Request $request)
        
         $shopAds = Ads::where('shop_id', $shop->id)
             ->where('is_approved', true)
-            ->paginate(8);
+            ->get();
         
        
             $shopCarAds = CarAds::where('shop_id', $shop->id)
