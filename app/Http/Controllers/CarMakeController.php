@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CarMakes;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
+use App\Models\SeoContentMake;
+
 use Str;
 
 
