@@ -13,33 +13,19 @@
                 <h3>Car Makes</h3>
             </div>
         </div>
-        
     </div>
 
     <section class="section">
         <div class="card">
             <div class="card-header d-flex align-left">
                 <div class="col-12 col-md-6 order-md-2 order-first">
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @elseif (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-
+                  
                     <!-- Add Car Make Modal -->
                     <div class="me-1 mb-1 d-inline-block">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#large">
                             Add Car Make
                         </button>
-    <a href="{{route('generate.seo.make')}}"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#generateAI">
-        Generate AI Content
-    </button></a>
+
                         <div class="modal fade text-left" id="large" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel17" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
@@ -130,6 +116,23 @@
                                     <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $make->id) }}">
                                         <i class="fa-solid fa-chart-line"></i> SEO
                                     </a>
+                                    
+        {{-- Existing badges --}}
+     
+        {{-- New: show if SEO content exists --}}
+        @php
+            $seoExists = \App\Models\SeoContentMake::where('make_id', $make->id)->exists();
+        @endphp
+
+        @if ($seoExists)
+            <span class="badge bg-warning">
+                <i class="fa-solid fa-check"></i>Generated
+            </span>
+        @else
+        <a class="btn btn-warning btn-sm" href="{{ route('generate.seo.make', $make->id) }}">
+            <i class="fa-solid fa-chart-line"></i> Content Generate
+        </a>
+        @endif
                                 </td>
                                 <td>
     @if ($make->tamp_id != null)
