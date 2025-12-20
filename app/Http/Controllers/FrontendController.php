@@ -265,7 +265,7 @@ public function sendProductInquiry(Request $request)
             } else {
                 $domain_id = null; // یا کوئی default value
             }
-
+          $content=SparePartSeo::where('part_id',$id)->first();
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carMakes = CarMakes::whereNotNull('logo')
             ->take(24)
@@ -291,7 +291,8 @@ public function sendProductInquiry(Request $request)
             'randomParts',
             'cities',
             'getFAQS',
-            'meta'
+            'meta',
+            'content'
         ));
     }
 
