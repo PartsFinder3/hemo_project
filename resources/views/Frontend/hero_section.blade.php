@@ -1,7 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
- <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <style>
 /* ===== Hero Section ===== */
@@ -333,7 +332,7 @@ margin-top:10px;
                 <div class="free-text">100% FREE</div>
                 <div class="search-title">Search Your Part Here</div>
             </div>
-            <form action="{{ route('buyer.inquiry.send') }}" method="post">
+            <form action="{{ route('buyer.inquiry.send.unique') }}" method="post">
                 @csrf
             <div class="form-group" id="make-group">
     <select class="dropdown" id="car-make" name="car_make_id" required>
@@ -361,14 +360,17 @@ margin-top:10px;
         @endforeach
     </select>
 </div>
-<div class="form-group" id="parts-group" style="display: none">
-    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple>
-        <option value="">Select Part</option>
-        @foreach ($parts as $part)
+<div class="form-group" id="year-group" style="display: none">
+    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple required>
+         <option value="">Select Part</option>
+        
+        <option value="">Select a year</option>
+               @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
     </select>
 </div>
+
 
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
@@ -390,9 +392,7 @@ margin-top:10px;
                     </div>
                 </div>
 
-                <button type="submit" class="find-btn">
-                    Find Parts
-                </button>
+                <button class="find-btn" id="find-btn" >Find My Part</button>
             </form>
         </div>
     </div>
@@ -402,35 +402,39 @@ margin-top:10px;
 </div>
 </div>
 <script>
-    $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
 $(document).ready(function() {
-    // Initialize Select2 for all dropdowns
-    $('#car-make, #car-model, #car-year').select2({ width: '100%' });
-
-    $('#parts-dropdown-parts').select2({
-        placeholder: 'Select parts',
+    $('#car-make, #car-model, #car-year').select2({
+       
         width: '100%'
     });
 
-    // Hide parts dropdown initially
-    $('#parts-group').hide();
+  $('#parts-dropdown-parts').select2({
+    placeholder: 'Select parts',
+    width: '100%'
+});
+});
+</script>
+<script>
+$(document).ready(function() {
+    // Initialize Select2 for all dropdowns
+    $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
+    
+        width: '100%'
+    });
+
+    // Hide parts dropdown initially (already hidden via style, just in case)
+    $('select[name="parts[]"]').closest('.form-group').hide();
 
     // When Year is selected
     $('#car-year').on('change', function() {
-        $('#parts-group').slideDown();
+        // Show the parts dropdown
+        $('select[name="parts[]"]').closest('.form-group').slideDown();
 
-        // Make Select2 visible and refresh
-        $('#parts-dropdown-parts').select2({
+        // Optional: focus/select2 refresh
+        $('select[name="parts[]"]').select2({
             placeholder: 'Select parts',
             width: '100%'
         });
-
-        // Optional: Make it required now
-        $('#parts-dropdown-parts').attr('required', true);
     });
 });
 
