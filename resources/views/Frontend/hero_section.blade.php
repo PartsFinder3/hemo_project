@@ -369,7 +369,7 @@ margin-top:10px;
         @endforeach
     </select>
 </div>
-<input type="hidden" name="_token" value="SOME_LONG_STRING">
+
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
                         <div class="condition-title">Condition Required ?</div>
