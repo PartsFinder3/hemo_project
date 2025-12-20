@@ -710,7 +710,7 @@ public function generateSeoMake($id)
     $make = CarMakes::find($id);
 
     if (!$make) {
-        return "Make not found";
+        return back()->with('success','Make not found');
     }
 
     // Check if SEO content already exists for this make
@@ -773,7 +773,7 @@ Formatting:
         ['seo_content_make' => $response->choices[0]->message->content]
     );
 
-    return "SEO content generated successfully for {$make->name}";
+    return back()->with('success','SEO content generated successfully for {$make->name}');
 }
 
 
@@ -790,7 +790,7 @@ public function generateSeoPart($id)
     // Check if SEO content already exists for this make
     $existing = SeoContentMake::where('make_id', $id)->first();
     if ($existing) {
-        return "SEO content already exists for this make";
+        return   back()->with('error','SEO content already exists for this make');
     }
 
     $client = OpenAI::client(config('services.openai.key'));
@@ -847,7 +847,7 @@ Formatting:
         ['seo_content_make' => $response->choices[0]->message->content]
     );
 
-    return "SEO content generated successfully for {$part->name}";
+    return   back()->with('success',"SEO content generated successfully for {$part->name}");         
 }
 
 
