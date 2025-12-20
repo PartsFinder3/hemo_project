@@ -485,7 +485,7 @@ public function sendProductInquiry(Request $request)
 
     public function viewAd($slug, $id)
     {
-        $ad = Ads::where('id', $id)->where('slug', $slug)->firstOrFail();
+        $ad = Ads::where('slug', $slug)->firstOrFail();
         return view('Frontend.view-add', compact('ad'));
     }
 
