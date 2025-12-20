@@ -114,7 +114,7 @@ public function index(Request $request)
             'condition' => 'nullable',
             'is_send' => 'boolean'
         ]);
-
+          return "ok";
         $buyerInquiry = BuyerInquiry::create([
             'car_make_id' => $request->car_make_id,
             'car_model_id' => $request->car_model_id,
