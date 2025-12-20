@@ -82,8 +82,9 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-<link rel="icon" href="{{ asset('storage/'.$logo) }}" type="image/png">
-<link rel="shortcut icon" href="{{ asset('storage/'.$logo) }}" type="image/png">
+<link rel="icon"  href="{{ asset('storage/'.$logo) }}" type="image/png">
+
+
   @yield('head-section')
 </head>
 
