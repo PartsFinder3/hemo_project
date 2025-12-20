@@ -21,21 +21,7 @@
                         Total Domains
                     </h5> --}}
                     <div class="col-12 col-md-6 order-md-2 order-first">
-                        @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @else
-                            @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('error') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-                        @endif
+                     
                         <!--Modal lg size -->
                         <div class="me-1 mb-1 d-inline-block">
                             <!-- Button trigger for large size modal -->
@@ -149,8 +135,21 @@
                          @if (auth()->guard('admins')->user()->role == 'admin')
                     <a class="btn btn-danger btn-sm" href="{{route('spareparts.destroy',$part->id)}}"><i class="fa-solid fa-trash"></i> Delete</a>
                          @endif
-                </td>
+            @php
+            $seoExists = \App\Models\SparePartSeo::where('part_id', $part->id)->exists();
+        @endphp
+                        @if ($seoExists)
+                            <span class="badge bg-warning">
+                                <i class="fa-solid fa-check"></i>Generated
+                            </span>
+                        @else
+                <a class="btn btn-warning btn-sm" href="{{ route('generate.seo.part', $part->id) }}">
+                    <i class="fa-solid fa-chart-line"></i> Content Generate
+                </a>
+                        @endif
+                        </td>
 <td>
+
     @if ($part->tamp_id != null)
         <span class="badge bg-success me-1">
             <i class="fa-solid fa-file-lines"></i> Description
