@@ -163,7 +163,7 @@
 
             <!-- Right: Details -->
             <div class="col-md-6">
-                <h3 class="product-title">{{ $ad->title }}</h3>
+                <h1 class="product-title">{{ $ad->title }}</h1>
                 <p class="text-muted">Condition: <strong>
                         @if ($ad->condition == 'new')
                             New
