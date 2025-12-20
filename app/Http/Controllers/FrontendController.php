@@ -754,7 +754,7 @@ Content Structure:
    - No exaggerated marketing or promotional language
 
 SEO Requirements:
-- 250–350 words total
+- 450–500 words total
 - Clear, professional, and informative tone
 - Naturally optimized for search engines
 - Avoid keyword stuffing
@@ -828,7 +828,7 @@ Content Structure:
    - No exaggerated marketing or promotional language
 
 SEO Requirements:
-- 250–350 words total
+- 450–500 words total
 - Clear, professional, and informative tone
 - Naturally optimized for search engines
 - Avoid keyword stuffing
