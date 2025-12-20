@@ -84,7 +84,7 @@
     @endif
 <link rel="icon"  href="{{ asset('storage/'.$logo) }}" type="image/png">
 
-
+<meta property="og:image" content="{{ asset('storage/'.$logo) }}">
   @yield('head-section')
 </head>
 
