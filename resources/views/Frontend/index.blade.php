@@ -14,7 +14,15 @@
     background: none !important;
 }
 
+.hero-section,
+.hero-section * {
+    pointer-events: auto !important;
+}
 
+.hero-section {
+    position: relative !important;
+    z-index: 99999 !important;
+}
 
 
 /* Responsive */
@@ -332,7 +340,12 @@
         margin-top: 20px;
     }
 }
-
+section,
+.map,
+.ad-cards {
+    position: relative;
+    z-index: 1;
+}
 </style>
 <div class="hero-section_p">
 
@@ -432,7 +445,7 @@
         @endforeach
     </div>
 
-    <div class="grid" id="productGrid1">
+    <div class="grid productGrid">
         <!-- Example Card -->
         @foreach ($ads as $ad)
             <div class="card">

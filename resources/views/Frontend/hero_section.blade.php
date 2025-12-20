@@ -390,7 +390,9 @@ margin-top:10px;
                     </div>
                 </div>
 
-                <button class="find-btn" id="find-btn" >Find My Part</button>
+                <button type="submit" class="find-btn">
+                    Find Parts
+                </button>
             </form>
         </div>
     </div>
