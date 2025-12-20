@@ -27,6 +27,7 @@ use App\Models\PartMeta;
 use App\Models\SeoTitle;
 use App\Models\SeoTamplate;
 use App\Models\SeoContentMake;
+use App\Models\SparePartSeo;
 
 use Illuminate\Support\Facades\Cache;
 use App\Models\Shops;
@@ -704,32 +705,28 @@ function found_pages(){
 ];
     return view('Frontend.pages_finder', compact('parts','makes','blogs','meta'));
 }
-public function generateSeoMake()
+public function generateSeoMake($id)
 {
-    $existingMakeIds = SeoContentMake::pluck('make_id')->toArray();
+    $make = CarMakes::find($id);
 
-    // 👇 sirf 3 makes uthao
-    $makes = CarMakes::whereNotIn('id', $existingMakeIds)
-        ->orderBy('id')
-        ->take(3)
-        ->get();
-   if ($makes->count() === 0) {
-        return "No new makes available for SEO content generation";
+    if (!$make) {
+        return "Make not found";
     }
-    if ($makes->isEmpty()) {
-        return "All makes already have SEO content";
+
+    // Check if SEO content already exists for this make
+    $existing = SeoContentMake::where('make_id', $id)->first();
+    if ($existing) {
+        return "SEO content already exists for this make";
     }
 
     $client = OpenAI::client(config('services.openai.key'));
 
-    foreach ($makes as $make) {
-
-        $response = $client->chat()->create([
-            'model' => 'gpt-4o-mini',
-            'messages' => [
-                [
-                    'role' => 'user',
-                    'content' => "Write SEO-optimized content for an auto parts website.
+    $response = $client->chat()->create([
+        'model' => 'gpt-4o-mini',
+        'messages' => [
+            [
+                'role' => 'user',
+                'content' => "Write SEO-optimized content for an auto parts website.
 
 Brand: {$make->name}
 
@@ -766,24 +763,99 @@ Formatting:
 - Plain text
 - Short paragraphs
 - No emojis
-- No markdown
+- No markdown"
+            ]
+        ],
+    ]);
+
+    SeoContentMake::updateOrCreate(
+        ['make_id' => $make->id],
+        ['seo_content_make' => $response->choices[0]->message->content]
+    );
+
+    return "SEO content generated successfully for {$make->name}";
+}
 
 
-"
-                ]
-            ],
-        ]);
 
-        SeoContentMake::updateOrCreate(
-            ['make_id' => $make->id],
-            ['seo_content_make' => $response->choices[0]->message->content]
-        );
 
-        sleep(5); // rate limit safety
+public function generateSeoPart($id)
+{
+    $part = SpareParts::find($id);
+
+    if (!$part) {
+        return back()->with('error','make not found');
     }
 
-    return "3 SEO contents generated successfully";
+    // Check if SEO content already exists for this make
+    $existing = SeoContentMake::where('make_id', $id)->first();
+    if ($existing) {
+        return "SEO content already exists for this make";
+    }
+
+    $client = OpenAI::client(config('services.openai.key'));
+
+    $response = $client->chat()->create([
+        'model' => 'gpt-4o-mini',
+        'messages' => [
+            [
+                'role' => 'user',
+                'content' => "Write SEO-optimized content for an auto parts website.
+
+Brand: {$part->name}
+
+Purpose:
+This content will be placed at the bottom of a category or {$part->name} page to improve SEO and topical relevance.
+
+Target Audience:
+Users searching to buy or research auto parts related to this {$part->name}.
+
+Content Structure:
+1. About the {$part->name}
+   - Brief, factual overview
+   - Focus on reliability, compatibility, and {$part->name} relevance in the auto parts industry
+
+2. Common Parts Available
+   - Mention commonly searched and purchased parts
+   - Keep it generic and adaptable (no model-specific claims unless obvious)
+   - Use bullet points where appropriate
+
+3. Why Buy From Us
+   - Emphasize product quality, fitment accuracy, availability, and customer trust
+   - No exaggerated marketing or promotional language
+
+SEO Requirements:
+- 250–350 words total
+- Clear, professional, and informative tone
+- Naturally optimized for search engines
+- Avoid keyword stuffing
+- No competitor mentions
+- No storytelling or fluff
+- No calls to action like “Buy Now” or “Order Today”
+- please give me the data in <h1> and <p> form ok 
+Formatting:
+- Plain text
+- Short paragraphs
+- No emojis
+- No markdown"
+            ]
+        ],
+    ]);
+
+    SparePartSeo::updateOrCreate(
+        ['make_id' => $part->id],
+        ['seo_content_make' => $response->choices[0]->message->content]
+    );
+
+    return "SEO content generated successfully for {$part->name}";
 }
+
+
+
+
+
+
+
 
 
 
