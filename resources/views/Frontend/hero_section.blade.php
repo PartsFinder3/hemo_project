@@ -333,7 +333,7 @@ margin-top:10px;
                 <div class="free-text">100% FREE</div>
                 <div class="search-title">Search Your Part Here</div>
             </div>
-            <form action="{{ route('buyer.inquiry.send.unique') }}" method="post">
+            <form action="{{ route('buyer.inquiry.send') }}" method="post">
                 @csrf
             <div class="form-group" id="make-group">
     <select class="dropdown" id="car-make" name="car_make_id" required>
