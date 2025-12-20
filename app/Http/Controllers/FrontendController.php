@@ -105,16 +105,7 @@ public function index(Request $request)
 
     public function sendInquiry(Request $request)
     {
-        $request->validate([
-            'car_make_id' => 'nullable',
-            'car_model_id' => 'nullable',
-            'year_id' => 'nullable',
-            'parts' => 'required|array',
-            'parts.*' => 'exists:spare_parts,id',
-            'condition' => 'nullable',
-            'is_send' => 'boolean'
-        ]);
-          return "ok";
+
         $buyerInquiry = BuyerInquiry::create([
             'car_make_id' => $request->car_make_id,
             'car_model_id' => $request->car_model_id,
