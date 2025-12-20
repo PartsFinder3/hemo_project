@@ -1,6 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
 <style>
 /* ===== Hero Section ===== */
@@ -75,7 +76,7 @@
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    justify-content: flex-end; /* کارڈ کو رائٹ پر بھیجیں */
+    justify-content: flex-end; 
     position: relative;
     z-index: 2;
 }
@@ -124,6 +125,7 @@
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    font-weight: bold !important;
 }
 
 /* ===== Condition Section ===== */
@@ -132,7 +134,8 @@
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-    margin-top: 10px;
+margin-top:10px;
+
 }
 
 .radio-group {
@@ -287,6 +290,36 @@
     outline: 0;
     height: auto;
 }
+.form-group {
+    width: 100%;
+    margin-bottom: 12px;
+}
+.select2-container--default .select2-selection--single {
+    height: 45px !important;
+    padding: 8px !important;
+    display: flex;
+    align-items: center;
+}
+
+.select2-selection__rendered {
+    line-height: 45px !important;
+}
+
+.select2-selection__arrow {
+    height: 45px !important;
+}
+/* Select2 options bold */
+.select2-container--default .select2-results__option {
+    font-weight: bold !important;
+}
+
+/* Select2 selected item بھی bold */
+.select2-container--default .select2-selection__rendered {
+    font-weight: bold !important;
+}
+.highlight-border {
+    border: 2px solid red !important;
+}
 </style>
 
 <div class="hero_section_text">
@@ -302,44 +335,47 @@
             </div>
             <form action="<?php echo e(route('buyer.inquiry.send')); ?>" method="post">
                 <?php echo csrf_field(); ?>
-                <div class="form-group" id="make-group">
-                    <select class="dropdown mySelect highlight-border" id="make" name="car_make_id">
-                        <option selected value="">Select a part make</option>
-                        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                </div>
+            <div class="form-group" id="make-group">
+    <select class="dropdown" id="car-make" name="car_make_id" required>
+         <option value="">Select make</option>
+        <?php $__currentLoopData = $makes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $make): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($make->id); ?>"><?php echo e($make->name); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+<div class="form-group" id="model-group">
+    <select class="dropdown" id="car-model" name="car_model_id" style="font-weight: bold" required>
+         <option value="">Select Model</option>
+        <?php $__currentLoopData = $models; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $model): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($model->id); ?>"><?php echo e($model->name); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+<div class="form-group" id="year-group">
+    <select class="dropdown" id="car-year" name="year_id"  required>
+         <option value="">Select year</option>
 
-                <div class="form-group" id="model-group">
-                    <select class="dropdown" id="model" name="car_model_id">
-                        <option value="">Select a Model</option>
-                    </select>
-                </div>
+        <option value="">Select a year</option>
+        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
+<div class="form-group" id="parts-group" style="display: none">
+    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple>
+        <option value="">Select Part</option>
+        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </select>
+</div>
 
-                <div class="form-group" id="year-group">
-                    <select class="dropdown" id="year" name="year_id">
-                        <option value="">Select a year</option>
-                        <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($year->id); ?>"><?php echo e($year->year); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                </div>
-
-                <div class="form-group hidden" id="parts-group">
-                    <select id="parts-dropdown" name="parts[]" class="dropdown" disabled multiple>
-                        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                </div>
-
-                <div class="form-group hidden" id="condition-group">
+                <div class="form-group " id="condition-group">
                     <div class="condition-section">
                         <div class="condition-title">Condition Required ?</div>
                         <div class="radio-group">
                             <div class="radio-option">
-                                <input type="radio" id="used" name="condition" value="used" />
+                                <input type="radio" id="used" name="condition" value="used" required />
                                 <label for="used">Used</label>
                             </div>
                             <div class="radio-option">
@@ -354,7 +390,7 @@
                     </div>
                 </div>
 
-                <button class="find-btn" id="find-btn" disabled>Find My Part</button>
+                <button class="find-btn" id="find-btn" >Find My Part</button>
             </form>
         </div>
     </div>
@@ -363,180 +399,32 @@
     <img src="<?php echo e(asset($image)); ?>" alt="" loading="lazy">
 </div>
 </div>
-
 <script>
-// ===== تمام handlers کے لیے global variables =====
-const partsGroup = document.getElementById("parts-group");
-const partsDropdown = document.getElementById("parts-dropdown");
-const conditionGroup = document.getElementById("condition-group");
-let partSelected = false;
+$(document).ready(function() {
+    // Initialize Select2 for all dropdowns
+    $('#car-make, #car-model, #car-year').select2({ width: '100%' });
 
-// ===== Select2 initialization =====
-$('#make').select2({
-    placeholder: "Select Your Make",
-    ajax: {
-        url: '/search-makes',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) { return { q: params.term }; },
-        processResults: function(data) {
-            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
-        },
-        cache: true
-    }
-});
-
-$('#model').select2({
-    placeholder: "Select Your Model",
-    ajax: {
-        url: '/search-models',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) { return { q: params.term, make_id: $('#make').val() }; },
-        processResults: function(data) {
-            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
-        },
-        cache: true
-    }
-});
-
-$('#year').select2({
-    placeholder: "Select Year",
-    ajax: {
-        url: '/search-years',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) { return { q: params.term, model_id: $('#model').val() }; },
-        processResults: function(data) { return { results: data }; }
-    }
-});
-
-$('#parts-dropdown').select2({
-    placeholder: "Select Parts",
-    ajax: {
-        url: '/search-parts',
-        dataType: 'json',
-        delay: 250,
-        data: function(params) {
-            return { q: params.term, model_id: $('#model').val(), year_id: $('#year').val() };
-        },
-        processResults: function(data) {
-            return { results: $.map(data, item => ({ id: item.id, text: item.name })) };
-        },
-        cache: true
-    }
-});
-
-// ===== Event handlers =====
-
-// Make select ہونے پر
-$('#make').on('select2:select', function() {
-    $('#model, #year').val(null).trigger('change'); 
-    partsGroup.classList.add("hidden");
-    conditionGroup.classList.add("hidden");
-    
-    partSelected = false;
-    updateButton();
-});
-
-// Model select ہونے پر
-$('#model').on('select2:select', function() {
-    $('#year').val(null).trigger('change');
-    partsGroup.classList.add("hidden");
-    conditionGroup.classList.add("hidden");
-    partSelected = false;
-    updateButton();
-});
-
-// Year select ہونے پر
-$('#year').on('select2:select', function() {
-    partsGroup.classList.remove("hidden");
-    partsDropdown.disabled = false;
-    updateButton();
-});
-
-// Part select ہونے پر
-$('#parts-dropdown').on('select2:select', function() {
-    partSelected = true;
-    conditionGroup.classList.remove("hidden");
-    updateButton();
-});
-
-// Button enable/disable logic
-function updateButton() {
-    const makeVal = $('#make').val();
-    const modelVal = $('#model').val();
-    const yearVal = $('#year').val();
-    const partVal = $('#parts-dropdown').val();
-    const findBtn = $('#find-btn');
-
-    if (makeVal && modelVal && yearVal && partVal && partVal.length > 0) {
-        findBtn.prop('disabled', false);
-    } else {
-        findBtn.prop('disabled', true);
-    }
-}
-// Make ko start me highlight
-$("#make").next('.select2-container').find('.select2-selection').addClass("highlight-border");
-
-// Step 1: Make → Model
-$('#make').on('select2:select', function () {
-    $("#make").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
-    $("#model").next('.select2-container').find('.select2-selection').addClass("highlight-border");
-});
-
-// Step 2: Model → Year
-$('#model').on('select2:select', function () {
-    $("#model").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
-    $("#year").next('.select2-container').find('.select2-selection').addClass("highlight-border");
-});
-
-// Step 3: Year → Parts
-$('#year').on('select2:select', function () {
-    $("#year").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
-    $("#parts-dropdown").next('.select2-container').find('.select2-selection').addClass("highlight-border");
-});
-
-// Step 4: Parts selected → remove highlight
-$('#parts-dropdown').on('select2:select', function () {
-    $("#parts-dropdown").next('.select2-container').find('.select2-selection').removeClass("highlight-border");
-});
-        const burgerMenu = document.getElementById("burger-menu");
-const navMenu = document.getElementById("nav-menu");
-
-if (burgerMenu && navMenu) {
-    burgerMenu.addEventListener("click", function () {
-        burgerMenu.classList.toggle("active");
-        navMenu.classList.toggle("active");
+    $('#parts-dropdown-parts').select2({
+        placeholder: 'Select parts',
+        width: '100%'
     });
 
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll(".nav-menu a");
-    navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            burgerMenu.classList.remove("active");
-            navMenu.classList.remove("active");
+    // Hide parts dropdown initially
+    $('#parts-group').hide();
+
+    // When Year is selected
+    $('#car-year').on('change', function() {
+        $('#parts-group').slideDown();
+
+        // Make Select2 visible and refresh
+        $('#parts-dropdown-parts').select2({
+            placeholder: 'Select parts',
+            width: '100%'
         });
-    });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", function (event) {
-        if (
-            !burgerMenu.contains(event.target) &&
-            !navMenu.contains(event.target)
-        ) {
-            burgerMenu.classList.remove("active");
-            navMenu.classList.remove("active");
-        }
+        // Optional: Make it required now
+        $('#parts-dropdown-parts').attr('required', true);
     });
+});
 
-    // Close mobile menu on window resize
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 768) {
-            burgerMenu.classList.remove("active");
-            navMenu.classList.remove("active");
-        }
-    });
-}
-</script>
-<?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>
+</script><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>

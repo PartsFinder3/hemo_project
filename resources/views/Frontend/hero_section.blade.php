@@ -361,17 +361,14 @@ margin-top:10px;
         @endforeach
     </select>
 </div>
-<div class="form-group" id="year-group" style="display: none">
-    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple required>
-         <option value="">Select Part</option>
-        
-        <option value="">Select a year</option>
-               @foreach ($parts as $part)
+<div class="form-group" id="parts-group" style="display: none">
+    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple>
+        <option value="">Select Part</option>
+        @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
     </select>
 </div>
-
 
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
@@ -404,38 +401,29 @@ margin-top:10px;
 </div>
 <script>
 $(document).ready(function() {
-    $('#car-make, #car-model, #car-year').select2({
-       
-        width: '100%'
-    });
-
-  $('#parts-dropdown-parts').select2({
-    placeholder: 'Select parts',
-    width: '100%'
-});
-});
-</script>
-<script>
-$(document).ready(function() {
     // Initialize Select2 for all dropdowns
-    $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
-    
+    $('#car-make, #car-model, #car-year').select2({ width: '100%' });
+
+    $('#parts-dropdown-parts').select2({
+        placeholder: 'Select parts',
         width: '100%'
     });
 
-    // Hide parts dropdown initially (already hidden via style, just in case)
-    $('select[name="parts[]"]').closest('.form-group').hide();
+    // Hide parts dropdown initially
+    $('#parts-group').hide();
 
     // When Year is selected
     $('#car-year').on('change', function() {
-        // Show the parts dropdown
-        $('select[name="parts[]"]').closest('.form-group').slideDown();
+        $('#parts-group').slideDown();
 
-        // Optional: focus/select2 refresh
-        $('select[name="parts[]"]').select2({
+        // Make Select2 visible and refresh
+        $('#parts-dropdown-parts').select2({
             placeholder: 'Select parts',
             width: '100%'
         });
+
+        // Optional: Make it required now
+        $('#parts-dropdown-parts').attr('required', true);
     });
 });
 
