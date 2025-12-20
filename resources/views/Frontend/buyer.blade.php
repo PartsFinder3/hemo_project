@@ -1,4 +1,5 @@
 @extends('Frontend.layout.main')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('main-section')
     <div class="container my-5">
         <div class="row justify-content-center">
