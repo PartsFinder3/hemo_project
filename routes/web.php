@@ -210,11 +210,6 @@ Route::post('/shops/gallery/store/{id}', [ShopController::class, 'storeGallery']
 Route::get('/shops/toggle/{id}', [ShopController::class, 'toogleShop'])->name('shops.toggle');
 
 
-//<---------------------- Buyers ----------------------------->
-// Route::get('/buyers', [BuyerController::class, 'index'])->name('buyers.index');
-// // Route::post('/buyers/inquiry/send', [BuyerController::class, 'sendInquiry'])->name('buyer.inquiry.send');
-// // Route::get('/buyers/whatsapp/{buyerInquiry}', [BuyerController::class, 'buyerWhatsappPage'])->name('buyer.whatsapp.page');
-// // Route::post('/buyers/whatsapp/{buyerInquiry}', [BuyerController::class, 'getBuyerWhatsApp'])->name('buyer.whatsapp.get');
 
 //<------------------------------ Invoice ------------------------------>
 Route::get('/invoices/create/{id}', [InvoiceController::class, 'create'])->name('invoices.create');
@@ -400,8 +395,9 @@ Route::post('/assign_tamp_model_post/{id}', [SeoController::class, 'assign_tamp_
 
 Route::get('/Found/pages/',[FrontendController::class,'found_pages'])->name('found_pages.index');
 
-Route::get('/generate-seo/make', [FrontendController::class, 'generateSeoMake'])->name('generate.seo.make');
+Route::get('/generate-seo/make/{id}', [FrontendController::class, 'generateSeoMake'])->name('generate.seo.make');
 
+Route::get('/generate-seo/parts/{id}', [FrontendController::class, 'generateSeoPart'])->name('generate.seo.part');
 
 Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSuccess'])->name('generate.seo.success');
 
