@@ -360,7 +360,7 @@ public function sendProductInquiry(Request $request)
             ->orderBy('ads_count', 'desc')
             ->take(5)
             ->get();
-
+        $Content=SeoContentMake::where('make_id',$id)->first();
         $cities = City::all();
         $randomMakes = CarMakes::limit(8)->get();
         
@@ -378,7 +378,8 @@ public function sendProductInquiry(Request $request)
             'randomMakes',
             'domain',
             'getFAQS',
-            'meta'
+            'meta',
+            'Content'
         ));
     }
 
