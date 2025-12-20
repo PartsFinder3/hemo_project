@@ -486,6 +486,7 @@ public function sendProductInquiry(Request $request)
     public function viewAd($slug, $id)
     {
         $ad = Ads::where('slug', $slug)->firstOrFail();
+        dd($ad);
         return view('Frontend.view-add', compact('ad'));
     }
 
