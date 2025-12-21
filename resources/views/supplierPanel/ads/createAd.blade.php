@@ -86,16 +86,15 @@
                                                 @endforeach --}}
                                             </select>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Year</label>
-                                            <select class="form-select form-select-lg" name="year_id" id="">
-                                                <option selected>Select one</option>
-                                                @foreach ($years as $year)
-                                                    <option value="{{ $year->id }}">{{ $year->year }}</option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Year</label>
+                                                    <select class="form-select form-select-lg" name="year_id" id="yearSelect">
+                                                        <option value="">Select one</option>
+                                                        @foreach ($years as $year)
+                                                            <option value="{{ $year->id }}">{{ $year->year }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                         <div class="mb-3">
                                             <label class="form-label">Fuel</label>
                                             <select class="form-select form-select-lg" name="fuel_id" id="fuelSelect">
@@ -285,10 +284,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+
 <script>
 $(document).ready(function() {
     // Initialize Select2 on all relevant selects
-    $('#carMake, #carModel, #fuelSelect, #engineSelect').select2({
+    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect').select2({
         placeholder: 'Select an option',
         allowClear: true,
         width: '100%'
