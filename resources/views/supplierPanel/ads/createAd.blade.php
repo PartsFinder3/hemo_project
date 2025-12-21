@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Fuel</label>
-                                            <select class="form-select form-select-lg" name="fuel_id" id="">
+                                            <select class="form-select form-select-lg" name="fuel_id" id="fuelSelect">
                                                 <option value="">Select one</option>
                                                 <option value="N/A">N/A</option>
                                                 @foreach ($fuels as $fuel)
@@ -109,7 +109,7 @@
                                            <input type="hidden" name="domain" value="{{ request()->getHost() }}">
                                         <div class="mb-3">
                                             <label class="form-label">Engine Size</label>
-                                            <select class="form-select form-select-lg" name="engine_size_id" id="">
+                                            <select class="form-select form-select-lg" name="engine_size_id" id="engineSelect">
                                                 <option value="">Select one</option>
                                                 {{-- <option value="999">N/A</option> --}}
                                                 @foreach ($engineSize as $size)
@@ -283,6 +283,12 @@
         });
 
 
+$(document).ready(function() {
+    $('#carMake, #carModel, #fuelSelect, #engineSelect').select2({
+        placeholder: 'Select an option',
+        width: '100%'
+    });
+});
 
 
     </script>

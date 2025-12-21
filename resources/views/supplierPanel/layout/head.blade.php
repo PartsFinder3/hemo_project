@@ -476,11 +476,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-<script>
-$(document).ready(function() {
-    $('#carMake').select2({
-        placeholder: 'Select Make',
-        width: '100%'
-    });
-});
-</script>
