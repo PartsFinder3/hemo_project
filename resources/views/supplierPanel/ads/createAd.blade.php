@@ -213,33 +213,6 @@
     </div>
     <script>
 
-            function updateTitle() {
-                let make = $('#carMake option:selected').text();
-                let model = $('#carModel option:selected').text();
-                let year = $('select[name="year_id"] option:selected').text();
-                let part = $('select[name="part_id"] option:selected').text();
-                let fuel = $('#fuelSelect option:selected').text();
-                let engine = $('#engineSelect option:selected').text();
-
-                // Only add if value is not "Select one"
-                let titleParts = [];
-                if (make && make !== "Select one") titleParts.push(make);
-                if (model && model !== "Select one") titleParts.push(model);
-                if (year && year !== "Select one") titleParts.push(year);
-                if (part && part !== "Select one") titleParts.push(part);
-                if (fuel && fuel !== "Select one") titleParts.push(fuel);
-                if (engine && engine !== "Select one") titleParts.push(engine);
-
-                $('#titleField').val(titleParts.join(' - '));
-            }
-
-            // Trigger update on change
-$('#carMake, #carModel, #yearSelect, #partSelect, #fuelSelect, #engineSelect').on('select2:select', function() {
-    updateTitle();
-});
-
-
-        });
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
