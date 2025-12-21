@@ -288,7 +288,7 @@
 <script>
 $(document).ready(function() {
     // Initialize Select2 on all relevant selects
-    $('#carMake, #carModel, #fuelSelect, #engineSelect','yesselect').select2({
+    $('#carMake, #carModel, #fuelSelect, #engineSelect','#yesselect').select2({
         placeholder: 'Select an option',
         allowClear: true,
         width: '100%'
