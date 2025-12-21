@@ -252,22 +252,24 @@ public function delete($type, $id)
 }
 
 
-    public function create()
-    {
-        $makes = CarMakes::all();
-        $models = CarModels::all();
-        $years = Years::orderBy('year', 'desc')->get();
-        $fuels = Fuel::all();
-        $engineSize = EngineSize::all();
-        $parts = SpareParts::all();
-         $supplier = Auth::guard('supplier')->user();
-            if ((int)$supplier->is_active === 1) {
-        return view('supplierPanel.ads.createAd', compact('makes', 'models', 'years', 'fuels', 'engineSize', 'parts'));
+public function create()
+{
+    $makes = CarMakes::orderBy('name', 'asc')->get(); // Alphabetical
+    $models = CarModels::orderBy('name', 'asc')->get(); // Alphabetical
+    $years = Years::orderBy('year', 'desc')->get(); // Year descending
+    $fuels = Fuel::orderBy('type', 'asc')->get(); // Alphabetical
+    $engineSize = EngineSize::orderBy('size', 'asc')->get(); // Alphabetical
+    $parts = SpareParts::orderBy('name', 'asc')->get(); // Alphabetical
 
-        }else{
-            return back()->with('error', 'Please Resubscription now');
-        }
+    $supplier = Auth::guard('supplier')->user();
+    if ((int)$supplier->is_active === 1) {
+        return view('supplierPanel.ads.createAd', compact('makes', 'models', 'years', 'fuels', 'engineSize', 'parts'));
+    } else {
+        return back()->with('error', 'Please Resubscription now');
     }
+}
+
+    
 
     public function getModels($make_id)
     {
