@@ -215,41 +215,41 @@
         $(document).ready(function() {
 
             // When Make is selected → fetch Models
-            $('#carMake').change(function() {
-                let makeId = $(this).val();
-                $('#carModel').empty().append('<option value="">Select one</option>');
-                $('#fuelSelect').empty().append('<option value="">Select one</option>');
-                $('#engineSelect').empty().append('<option value="">Select one</option>');
+         // When Make is selected → fetch Models
+$('#carMake').on('select2:select', function(e) {
+    let makeId = $(this).val();
+    $('#carModel').empty().append('<option value="">Select one</option>').trigger('change');
+    $('#fuelSelect').empty().append('<option value="">Select one</option>').trigger('change');
+    $('#engineSelect').empty().append('<option value="">Select one</option>').trigger('change');
 
-                if (makeId) {
-                    $.get('/get-models/' + makeId, function(data) {
-                        $.each(data, function(index, model) {
-                            $('#carModel').append('<option value="' + model.id + '">' +
-                                model.name + '</option>');
-                        });
-                    });
-                }
+    if (makeId) {
+        $.get('/get-models/' + makeId, function(data) {
+            $.each(data, function(index, model) {
+                $('#carModel').append('<option value="' + model.id + '">' + model.name + '</option>');
             });
+            $('#carModel').trigger('change'); // update select2
+        });
+    }
+});
 
-            // When Model is selected → fetch Variants
-            $('#carModel').change(function() {
-                let modelId = $(this).val();
-                $('#fuelSelect').empty().append('<option value="">Select one</option>');
-                $('#engineSelect').empty().append('<option value="">Select one</option>');
+// When Model is selected → fetch Variants
+$('#carModel').on('select2:select', function(e) {
+    let modelId = $(this).val();
+    $('#fuelSelect').empty().append('<option value="">Select one</option>').trigger('change');
+    $('#engineSelect').empty().append('<option value="">Select one</option>').trigger('change');
 
-                if (modelId) {
-                    $.get('/get-variants/' + modelId, function(data) {
-                        $.each(data.fuels, function(index, fuel) {
-                            $('#fuelSelect').append('<option value="' + fuel.id + '">' +
-                                fuel.type + '</option>');
-                        });
-                        $.each(data.engineSizes, function(index, size) {
-                            $('#engineSelect').append('<option value="' + size.id + '">' +
-                                size.size + '</option>');
-                        });
-                    });
-                }
+    if (modelId) {
+        $.get('/get-variants/' + modelId, function(data) {
+            $.each(data.fuels, function(index, fuel) {
+                $('#fuelSelect').append('<option value="' + fuel.id + '">' + fuel.type + '</option>');
             });
+            $.each(data.engineSizes, function(index, size) {
+                $('#engineSelect').append('<option value="' + size.id + '">' + size.size + '</option>');
+            });
+            $('#fuelSelect, #engineSelect').trigger('change'); // update select2
+        });
+    }
+});
 
             function updateTitle() {
                 let make = $('#carMake option:selected').text();
@@ -272,8 +272,9 @@
             }
 
             // Trigger update on change
-            $('#carMake, #carModel, select[name="year_id"], select[name="part_id"], #fuelSelect, #engineSelect')
-                .change(updateTitle);
+$('#carMake, #carModel, #yearSelect, #partSelect, #fuelSelect, #engineSelect').on('select2:select', function() {
+    updateTitle();
+});
 
 
         });
