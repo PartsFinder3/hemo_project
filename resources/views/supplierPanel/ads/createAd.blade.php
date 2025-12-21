@@ -167,17 +167,17 @@
                                                 aria-describedby="helpId" placeholder="" />
                                         </div>
                                       
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Warranty</label>
-                                            <select name="warranty" id="days" class="form-control">
-                                                <option value="" selected disabled>Select Warranty</option>
-                                                @for ($i = 0; $i <= 30; $i++)
-                                                    <option value="{{ $i }} Day{{ $i > 1 ? 's' : '' }}">
-                                                        {{ $i }} Day{{ $i > 1 ? 's' : '' }}</option>
-                                                @endfor
-                                            </select>
-
-                                        </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Warranty</label>
+                                                    <select name="warranty" id="warrantySelect" class="form-control">
+                                                        <option value="" selected disabled>Select Warranty</option>
+                                                        @for ($i = 0; $i <= 30; $i++)
+                                                            <option value="{{ $i }} Day{{ $i > 1 ? 's' : '' }}">
+                                                                {{ $i }} Day{{ $i > 1 ? 's' : '' }}
+                                                            </option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
 
                                         <div class="mb-3">
                                             <label for="" class="form-label">Delivery</label>
@@ -285,8 +285,7 @@
 
 <script>
 $(document).ready(function() {
-    // Initialize Select2 on all relevant selects
-    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect, #partSelect, #currencySelect').select2({
+    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect, #partSelect, #currencySelect, #warrantySelect').select2({
         placeholder: 'Select an option',
         allowClear: true,
         width: '100%'
