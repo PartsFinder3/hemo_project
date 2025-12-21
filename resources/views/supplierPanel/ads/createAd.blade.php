@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Year</label>
-                                            <select class="form-select form-select-lg" name="year_id" id="">
+                                            <select class="form-select form-select-lg" name="year_id" id="yesselect">
                                                 <option selected>Select one</option>
                                                 @foreach ($years as $year)
                                                     <option value="{{ $year->id }}">{{ $year->year }}</option>
@@ -288,7 +288,7 @@
 <script>
 $(document).ready(function() {
     // Initialize Select2 on all relevant selects
-    $('#carMake, #carModel, #fuelSelect, #engineSelect').select2({
+    $('#carMake, #carModel, #fuelSelect, #engineSelect','yesselect').select2({
         placeholder: 'Select an option',
         allowClear: true,
         width: '100%'
