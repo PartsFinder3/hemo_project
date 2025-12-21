@@ -339,6 +339,7 @@ $host = preg_replace('/^www\./', '', $request->getHost());
         $ad->condition = $request->input('condition');
         $ad->shop_id = $shop_id;
         $ad->currency = $request->input('currency');
+        $ad->part_number = $request->input('part_number');
         $ad->domain = $host;
 
         $imagePaths = [];

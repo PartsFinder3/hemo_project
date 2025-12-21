@@ -127,7 +127,7 @@
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="" class="form-label">Part Number</label>
+                                            <label for="" class="form-label">Part Number (Optional)</label>
                                             <input type="text" class="form-control" name="part_number" id=""
                                                 placeholder="Enter Part Number"  />
                                         </div>
