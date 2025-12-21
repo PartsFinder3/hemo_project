@@ -126,7 +126,11 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Part Number</label>
+                                            <input type="text" class="form-control" name="part_number" id=""
+                                                placeholder="Enter Part Number"  />
+                                        </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Condition</label>
                                             <select class="form-select form-select-lg" name="condition" id="">
