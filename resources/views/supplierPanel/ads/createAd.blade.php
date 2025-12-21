@@ -64,12 +64,12 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label">Make</label>
-                                            <select class="form-select form-select-lg" name="car_make_id" id="carMake">
-                                                <option value="">Select one</option>
-                                                @foreach ($makes as $make)
-                                                    <option value="{{ $make->id }}">{{ $make->name }}</option>
-                                                @endforeach
-                                            </select>
+                                                <select class="form-select form-select-lg" name="car_make_id" id="carMake">
+                                                    <option value="">Select one</option>
+                                                    @foreach ($makes as $make)
+                                                        <option value="{{ $make->id }}">{{ $make->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             {{-- @error()
 
                                             @enderror --}}
@@ -277,6 +277,17 @@
             $('#carMake, #carModel, select[name="year_id"], select[name="part_id"], #fuelSelect, #engineSelect')
                 .change(updateTitle);
 
+
         });
+
+
+
+        $(document).ready(function() {
+    $('#carMake').select2({
+        placeholder: 'Select make',
+        width: '100%'
+    });
+});
+
     </script>
 @endsection
