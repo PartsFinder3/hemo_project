@@ -143,26 +143,24 @@
                                                 placeholder="Auto Generated" />
 
                                         </div>
-                                             <div class="mb-3">
-                                            <label for="" class="form-label">Currency type</label>
-                                                    <select class="form-select form-select-lg" name="currency" id="currency">
-                                                            <option selected disabled>Select Currency</option>
-
-                                                            <option value="AED">AED — UAE Dirham</option>
-                                                            <option value="USD">USD — US Dollar</option>
-                                                            <option value="SAR">SAR — Saudi Riyal</option>
-                                                            <option value="PKR">PKR — Pakistani Rupee</option>
-                                                            <option value="INR">INR — Indian Rupee</option>
-                                                            <option value="EUR">EUR — Euro</option>
-                                                            <option value="GBP">GBP — British Pound</option>
-                                                            <option value="CNY">CNY — Chinese Yuan</option>
-                                                            <option value="JPY">JPY — Japanese Yen</option>
-                                                            <option value="CAD">CAD — Canadian Dollar</option>
-                                                            <option value="AUD">AUD — Australian Dollar</option>
-                                                            <option value="CHF">CHF — Swiss Franc</option>
-                                                        </select>
-
-                                        </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Currency type</label>
+                                                    <select class="form-select form-select-lg" name="currency" id="currencySelect">
+                                                        <option selected disabled>Select Currency</option>
+                                                        <option value="AED">AED — UAE Dirham</option>
+                                                        <option value="USD">USD — US Dollar</option>
+                                                        <option value="SAR">SAR — Saudi Riyal</option>
+                                                        <option value="PKR">PKR — Pakistani Rupee</option>
+                                                        <option value="INR">INR — Indian Rupee</option>
+                                                        <option value="EUR">EUR — Euro</option>
+                                                        <option value="GBP">GBP — British Pound</option>
+                                                        <option value="CNY">CNY — Chinese Yuan</option>
+                                                        <option value="JPY">JPY — Japanese Yen</option>
+                                                        <option value="CAD">CAD — Canadian Dollar</option>
+                                                        <option value="AUD">AUD — Australian Dollar</option>
+                                                        <option value="CHF">CHF — Swiss Franc</option>
+                                                    </select>
+                                                </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Price</label>
                                             <input type="text" class="form-control" name="price" id=""
@@ -288,12 +286,12 @@
 <script>
 $(document).ready(function() {
     // Initialize Select2 on all relevant selects
-    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect, #partSelect').select2({
+    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect, #partSelect, #currencySelect').select2({
         placeholder: 'Select an option',
         allowClear: true,
         width: '100%'
     });
 });
 </script>
-    </script>
+   
 @endsection
