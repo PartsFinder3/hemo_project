@@ -81,9 +81,9 @@
                                             <label class="form-label">Model</label>
                                             <select class="form-select form-select-lg" name="car_model_id" id="carModel">
                                                 <option value="">Select one</option>
-                                                {{-- @foreach ($models as $model)
+                                                @foreach ($models as $model)
                                                     <option value="{{ $model->id }}">{{ $model->name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
                                                 <div class="mb-3">
@@ -212,7 +212,71 @@
         </div>
     </div>
     <script>
+        $(document).ready(function() {
 
+            // When Make is selected → fetch Models
+            $('#carMake').change(function() {
+                let makeId = $(this).val();
+                $('#carModel').empty().append('<option value="">Select one</option>');
+                $('#fuelSelect').empty().append('<option value="">Select one</option>');
+                $('#engineSelect').empty().append('<option value="">Select one</option>');
+
+                if (makeId) {
+                    $.get('/get-models/' + makeId, function(data) {
+                        $.each(data, function(index, model) {
+                            $('#carModel').append('<option value="' + model.id + '">' +
+                                model.name + '</option>');
+                        });
+                    });
+                }
+            });
+
+            // When Model is selected → fetch Variants
+            $('#carModel').change(function() {
+                let modelId = $(this).val();
+                $('#fuelSelect').empty().append('<option value="">Select one</option>');
+                $('#engineSelect').empty().append('<option value="">Select one</option>');
+
+                if (modelId) {
+                    $.get('/get-variants/' + modelId, function(data) {
+                        $.each(data.fuels, function(index, fuel) {
+                            $('#fuelSelect').append('<option value="' + fuel.id + '">' +
+                                fuel.type + '</option>');
+                        });
+                        $.each(data.engineSizes, function(index, size) {
+                            $('#engineSelect').append('<option value="' + size.id + '">' +
+                                size.size + '</option>');
+                        });
+                    });
+                }
+            });
+
+            function updateTitle() {
+                let make = $('#carMake option:selected').text();
+                let model = $('#carModel option:selected').text();
+                let year = $('select[name="year_id"] option:selected').text();
+                let part = $('select[name="part_id"] option:selected').text();
+                let fuel = $('#fuelSelect option:selected').text();
+                let engine = $('#engineSelect option:selected').text();
+
+                // Only add if value is not "Select one"
+                let titleParts = [];
+                if (make && make !== "Select one") titleParts.push(make);
+                if (model && model !== "Select one") titleParts.push(model);
+                if (year && year !== "Select one") titleParts.push(year);
+                if (part && part !== "Select one") titleParts.push(part);
+                if (fuel && fuel !== "Select one") titleParts.push(fuel);
+                if (engine && engine !== "Select one") titleParts.push(engine);
+
+                $('#titleField').val(titleParts.join(' - '));
+            }
+
+            // Trigger update on change
+            $('#carMake, #carModel, select[name="year_id"], select[name="part_id"], #fuelSelect, #engineSelect')
+                .change(updateTitle);
+
+
+        });
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
