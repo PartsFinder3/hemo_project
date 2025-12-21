@@ -1,13 +1,14 @@
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 @extends('supplierPanel.layout.main')
 <style>
     .mb-3 label{
         font-weight: bold;
     }
 </style>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 @section('main-section')
     <div class="container mt-5">
         <div class="row">
@@ -286,12 +287,13 @@
 
 
 
-        $(document).ready(function() {
+  $(document).ready(function() {
     $('#carMake').select2({
         placeholder: 'Select make',
         width: '100%'
     });
 });
+
 
     </script>
 @endsection
