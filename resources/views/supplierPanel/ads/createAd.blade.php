@@ -117,10 +117,10 @@
                                             </select>
                                         </div>
 
-                                        <div class="mb-3">
+                                      <div class="mb-3">
                                             <label for="" class="form-label">Spare Part</label>
-                                            <select class="form-select form-select-lg" name="part_id" id="">
-                                                <option selected>Select one</option>
+                                            <select class="form-select form-select-lg" name="part_id" id="partSelect">
+                                                <option value="">Select one</option>
                                                 @foreach ($parts as $part)
                                                     <option value="{{ $part->id }}">{{ $part->name }}</option>
                                                 @endforeach
@@ -288,13 +288,12 @@
 <script>
 $(document).ready(function() {
     // Initialize Select2 on all relevant selects
-    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect').select2({
+    $('#carMake, #carModel, #fuelSelect, #engineSelect, #yearSelect, #partSelect').select2({
         placeholder: 'Select an option',
         allowClear: true,
         width: '100%'
     });
 });
 </script>
-
     </script>
 @endsection
