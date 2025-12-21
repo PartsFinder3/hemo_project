@@ -287,15 +287,14 @@
 
 <script>
 $(document).ready(function() {
-    $('#carMake').select2({
-        placeholder: 'Select make',
-        allowClear: true,  // optional, shows 'x' to clear selection
+    // Initialize Select2 on all relevant selects
+    $('#carMake, #carModel, #fuelSelect, #engineSelect').select2({
+        placeholder: 'Select an option',
+        allowClear: true,
         width: '100%'
     });
 });
 </script>
-
-
 
     </script>
 @endsection
