@@ -284,13 +284,6 @@
 
 
 
-  $(document).ready(function() {
-    $('#carMake').select2({
-        placeholder: 'Select make',
-        width: '100%'
-    });
-});
-
 
     </script>
 @endsection
