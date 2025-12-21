@@ -109,8 +109,9 @@
                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Part Number (Optional)</label>
-                                            <input type="text" class="form-control" name="part_number" id="" value="{{$part->part_number}}"
-                                                placeholder="Enter Part Number"  />
+                                           <input type="text" class="form-control" name="part_number" 
+    value="{{ $ad->part->part_number ?? '' }}" 
+    placeholder="Enter Part Number" />
                                         </div>
                         <div class="mb-3">
                             <label class="form-label">Condition</label>
