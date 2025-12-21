@@ -160,6 +160,7 @@ public function update(Request $request, $id, $slug)
     $ad->part_id = $request->input('part_id');
     $ad->condition = $request->input('condition');
     $ad->currency = $request->input('currency');
+    $ad->part_number = $request->input('part_number');
 
     // Keep old images
     $imagePaths = json_decode($ad->images, true) ?? [];
