@@ -403,6 +403,6 @@ Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSucc
 
 
 Route::fallback(function () {
-    // 404 ہونے پر یہ URL پر redirect کرے گا
-    return redirect('/'); // یا کوئی custom page, مثلا '/found/pages/'
+    
+    return redirect('/'); 
 });
