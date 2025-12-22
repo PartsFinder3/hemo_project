@@ -402,3 +402,7 @@ Route::get('/generate-seo/parts/{id}', [FrontendController::class, 'generateSeoP
 Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSuccess'])->name('generate.seo.success');
 
 
+Route::fallback(function () {
+    // 404 ہونے پر یہ URL پر redirect کرے گا
+    return redirect('/'); // یا کوئی custom page, مثلا '/found/pages/'
+});
