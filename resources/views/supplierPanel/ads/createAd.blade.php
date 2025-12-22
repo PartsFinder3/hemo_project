@@ -1,14 +1,13 @@
 
 @extends('supplierPanel.layout.main')
-
 <style>
     .mb-3 label{
         font-weight: bold;
     }
     .card{
-       width: 100% !important;
-       height: auto !important;
-    }
+        width: 100% !important;
+        height: auto !important;
+        }
 </style>
 
 @section('main-section')
@@ -287,6 +286,9 @@
 
         });
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
 <script>
