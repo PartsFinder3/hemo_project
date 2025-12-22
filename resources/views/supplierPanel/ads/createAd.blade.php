@@ -14,8 +14,8 @@
         font-weight: bold;
     }
     .card{
-       width: 100%;
-       height: auto;
+       width: 100% !important;
+       height: auto !important;
     }
 </style>
 
