@@ -4,6 +4,10 @@
     .mb-3 label{
         font-weight: bold;
     }
+    .card{
+       width: 100%;
+       height: auto;
+    }
 </style>
 
 @section('main-section')

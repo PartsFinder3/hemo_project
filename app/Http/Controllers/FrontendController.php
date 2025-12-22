@@ -711,7 +711,7 @@ function found_pages(){
 public function generateSeoMake($id)
 {
     $make = CarMakes::find($id);
-
+    $brand=$make->name;
     if (!$make) {
         return back()->with('success','Make not found');
     }
@@ -729,44 +729,87 @@ public function generateSeoMake($id)
         'messages' => [
             [
                 'role' => 'user',
-                'content' => "Write SEO-optimized content for an auto parts website.
+                'content' => "Write SEO-optimized content for an auto spare parts website.
 
-Brand: {$make->name}
+                        Brand: {$brand}
+                        Target Country: UAE
+                        Content Placement: Bottom of brand/category page
+                        Search Intent: Commercial + Informational
 
-Purpose:
-This content will be placed at the bottom of a category or {$make->name} page to improve SEO and topical relevance.
+                        Content Requirements:
+                        - Total length around 500 words
+                        - Clear, professional, SEO-focused tone
+                        - No hype, no storytelling fluff
+                        - No competitor mentions
+                        - No call-to-action buttons
+                        - Plain text only
 
-Target Audience:
-Users searching to buy or research auto parts related to this {$make->name}.
+                        CONTENT STRUCTURE:
 
-Content Structure:
-1. About the {$make->name}
-   - Brief, factual overview
-   - Focus on reliability, compatibility, and {$make->name} relevance in the auto parts industry
+                        1. Buy Quality Used Spare Parts for {$brand}
+                        Write an engaging but factual introduction focused on:
+                        - Buying second-hand / used spare parts
+                        - Affordability and availability in UAE
+                        - Compatibility and reliability
+                        Naturally include keywords like:
+                        used {$brand} spare parts, {$brand} parts for sale in UAE, second hand auto parts UAE
 
-2. Common Parts Available
-   - Mention commonly searched and purchased parts
-   - Keep it generic and adaptable (no model-specific claims unless obvious)
-   - Use bullet points where appropriate
+                        2. Overview of {$brand}
+                        Provide a short brand background:
+                        - Brand origin and history
+                        - Reputation for reliability and performance
+                        - Why {$brand} vehicles are popular in the UAE
+                        Keep it factual and concise.
 
-3. Why Buy From Us
-   - Emphasize product quality, fitment accuracy, availability, and customer trust
-   - No exaggerated marketing or promotional language
+                        3. Common {$brand} Spare Parts Available
+                        Explain commonly replaced auto parts such as:
+                        - Engine parts
+                        - Gearbox / transmission
+                        - Suspension components
+                        - Electrical and body parts
+                        Use bullet points if helpful.
+                        Keep it generic and scalable.
 
-SEO Requirements:
-- 450–500 words total
-- Clear, professional, and informative tone
-- Naturally optimized for search engines
-- Avoid keyword stuffing
-- No competitor mentions
-- No storytelling or fluff
-- No calls to action like “Buy Now” or “Order Today”
-- please give me the data in <h1> and <p> form ok 
-Formatting:
-- Plain text
-- Short paragraphs
-- No emojis
-- No markdown"
+                        4. What to Do If {$brand} Parts Fail
+                        Explain:
+                        - Why parts fail over time
+                        - Importance of replacing faulty parts promptly
+                        - Why used spare parts are a cost-effective option
+
+                        5. How to Identify a Faulty {$brand} Part
+                        Describe:
+                        - Dashboard warning signs
+                        - Performance issues
+                        - Basic diagnosis awareness (no technical depth)
+
+                        6. How Replacement Works
+                        Explain the replacement process in a simple way:
+                        - Finding the correct part
+                        - Ensuring fitment
+                        - Installation through garages or workshops
+                        Avoid promotional language.
+
+                        SEO ADD-ON SECTIONS:
+
+                        7. Targeted Keywords
+                        Provide a short list of 8–12 SEO keywords relevant to this brand and UAE market.
+
+                        8. Common Buyer Questions
+                        List 5–6 common user questions such as:
+                        - Are used {$brand} spare parts reliable?
+                        - How long do second-hand auto parts last?
+                        - Can I find genuine used {$brand} parts in UAE?
+                        - Are used spare parts compatible with all {$brand} models?
+
+                        SEO RULES:
+                        - Naturally include primary keyword in first 100 words and conclusion
+                        - No keyword stuffing
+                        - Short paragraphs
+                        - Skimmable layout
+                        - Written for SEO and user clarity
+
+                        Output only the content. Do not explain the steps.
+"
             ]
         ],
     ]);
