@@ -135,21 +135,9 @@
         <div class="row g-4">
             <!-- Left: Carousel -->
             <div class="col-md-6">
-@php
-    // Ensure $ad exists and has images
-    $images = [];
-
-    if (!empty($ad) && !empty($ad->images)) {
-        // If $ad->images is a JSON string, decode it
-        $images = is_string($ad->images) ? json_decode($ad->images, true) : $ad->images;
-
-        // Safety: make sure decoded value is array
-        if (!is_array($images)) {
-            $images = [];
-        }
-    }
-@endphp
-
+                @php
+                    $images = is_string($ad->images) ? json_decode($ad->images, true) : $ad->images;
+                @endphp
 
                 <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -175,10 +163,7 @@
 
             <!-- Right: Details -->
             <div class="col-md-6">
-               <h1 class="product-title">
-    {{ $ad->title ?? 'Default Product Title' }} 
-    {{ $ad->part_number ?? '' }}
-</h1>
+                <h1 class="product-title">{{ $ad->title }} {{$ad->part_number}}</h1>
                 <p class="text-muted">Condition: <strong>
                         @if ($ad->condition == 'new')
                             New
