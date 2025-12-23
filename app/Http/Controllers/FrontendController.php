@@ -172,6 +172,22 @@ public function sendProductInquiry(Request $request)
             'city' => $request->city,
         ]);
 
+if ($buyer && $buyer->id) {
+    // Successfully created, $buyer->id available
+    // یہاں آپ اپنا action کریں
+    // مثال کے طور پر:
+    return response()->json([
+        'success' => true,
+        'buyer_id' => $buyer->id,
+        'message' => 'Buyer created successfully!'
+    ]);
+} else {
+    // Creation failed
+    return response()->json([
+        'success' => false,
+        'message' => 'Failed to create buyer.'
+    ]);
+}
         // Update the buyer_inquiry with the buyer_id
         $buyerInquiry->update(['buyer_id' => $buyer->id]);
 
