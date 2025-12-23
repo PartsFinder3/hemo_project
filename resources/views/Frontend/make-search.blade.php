@@ -722,15 +722,13 @@ ease;
 }
 
 .seo_content h1 {
-    font-size: 2.25rem;
-    border-bottom: 3px solid #4299e1;
-    padding-bottom: 10px;
+    border-bottom: none; /* پہلے لائن تھی، اب ختم */
+    padding-bottom: 0; /* padding optional */
 }
 
 .seo_content h2 {
-    font-size: 1.875rem;
-    border-left: 4px solid #4299e1;
-    padding-left: 15px;
+    border-left: none; /* پہلے لائن تھی، اب ختم */
+    padding-left: 0; /* padding optional */
 }
 
 .seo_content h3 {
