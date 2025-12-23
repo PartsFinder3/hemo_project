@@ -752,7 +752,7 @@ ease;
 
 /* Paragraphs */
 .seo_content p {
-    margin-bottom: 1.5rem;
+    
     text-align: justify;
 }
 
