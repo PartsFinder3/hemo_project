@@ -721,8 +721,15 @@ public function generateSeoMake($id)
     if ($existing) {
         return "SEO content already exists for this make";
     }
-
-    $client = OpenAI::client(config('services.openai.key'));
+   $keys = [
+        env('OPENAI_KEY1'),
+        env('OPENAI_KEY2'),
+        env('OPENAI_KEY3'),
+        env('OPENAI_KEY4'),
+        env('OPENAI_KEY5')
+    ];
+      $key = $keys[array_rand($keys)];
+     $client = OpenAI::client($key);
 
     $response = $client->chat()->create([
         'model' => 'gpt-4o-mini',
@@ -838,8 +845,15 @@ public function generateSeoPart($id)
     if ($existing) {
         return   back()->with('error','SEO content already exists for this make');
     }
-
-    $client = OpenAI::client(config('services.openai.key'));
+   $keys = [
+        env('OPENAI_KEY1'),
+        env('OPENAI_KEY2'),
+        env('OPENAI_KEY3'),
+        env('OPENAI_KEY4'),
+        env('OPENAI_KEY5')
+    ];
+      $key = $keys[array_rand($keys)];
+     $client = OpenAI::client($key);
     $brand=$part->name;
     $response = $client->chat()->create([
         'model' => 'gpt-4o-mini',
