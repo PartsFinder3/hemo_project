@@ -851,7 +851,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const state = data.address.state || '';
             const country = data.address.country || '';
 
-            cityInput.value = `${city || state}, ${country}`;
+            cityInput.value = `${city || state} ${country}`;
 
             // If you want country phone code automatically, you can maintain a small mapping or skip it
             countrySelect.value = ''; // optional, can be handled later
