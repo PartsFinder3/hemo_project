@@ -127,7 +127,7 @@
                 <h6 class="text-muted mb-1">Vehicle Detail:</h6>
                 <h5 class="fw-bold">{{ $make }} {{ $model }} {{ $year }}
                     <h5 class="fw-bold">
-                        {{ implode('_', $matchingParts) }}
+                        {{ implode('|', $matchingParts) }}
                     </h5>
                 </h5>
                 <p class="mb-3">
