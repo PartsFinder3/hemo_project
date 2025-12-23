@@ -717,7 +717,7 @@ ease;
     font-weight: 700;
     line-height: 1.3;
     margin-top: 2em;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.10em;
     color: #1a202c;
 }
 
