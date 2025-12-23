@@ -840,46 +840,37 @@ document.addEventListener('DOMContentLoaded', function() {
         cityInput.value = cityName;
     }
 
-    // Try browser geolocation first
+    // براؤزر geolocation چیک کریں
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function(position) {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
 
-                // Reverse geocoding using OpenStreetMap Nominatim
-                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
-                    .then(res => res.json())
+                // OpenStreetMap Nominatim API سے reverse geocoding
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`)
+                    .then(response => response.json())
                     .then(data => {
-                        const city = data.address.city || data.address.town || data.address.village || data.address.state;
-                        setCity(city || '');
+                        if (data.address) {
+                            const city = data.address.city || data.address.town || data.address.village || data.address.state;
+                            setCity(city || '');
+                        }
                     })
                     .catch(err => {
-                        console.warn('Reverse geocode failed, using fallback');
-                        setCity('Lahore'); // fallback
+                        console.error('Reverse geocoding failed:', err);
+                        cityInput.placeholder = 'شہر معلوم نہیں ہو سکا';
                     });
             },
-            function(err) {
-                console.warn('Geolocation denied, using IP API fallback', err);
-
-                // IP-based fallback
-                fetch('https://ipapi.co/json/')
-                    .then(res => res.json())
-                    .then(data => {
-                        setCity(data.city || 'Lahore'); // fallback
-                    })
-                    .catch(() => {
-                        setCity('Lahore'); // ultimate fallback
-                    });
-            }
+            function(error) {
+                console.error('Geolocation failed:', error);
+                cityInput.placeholder = 'لوکیشن تک رسائی نہیں دی گئی';
+            },
+            { timeout: 10000 }
         );
     } else {
-        // If geolocation not supported, use IP API
-        fetch('https://ipapi.co/json/')
-            .then(res => res.json())
-            .then(data => setCity(data.city || 'Lahore'))
-            .catch(() => setCity('Lahore'));
+        cityInput.placeholder = 'آپ کے براؤزر میں geolocation سپورٹ نہیں ہے';
     }
 });
+
 </script>
 @endsection
