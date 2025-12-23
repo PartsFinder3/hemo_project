@@ -826,7 +826,8 @@ public function generateSeoMake($id)
         ['seo_content_make' => $response->choices[0]->message->content]
     );
 
-    return back()->with('success','SEO content generated successfully for {$make->name}');
+    return back()->with('success', "SEO content generated successfully for {$make->name}");
+
 }
 
 
@@ -950,7 +951,8 @@ public function generateSeoPart($id)
         ['seo_content_make' => $response->choices[0]->message->content]
     );
 
-    return   back()->with('success',"SEO content generated successfully for {$part->name}");         
+    return back()->with('success', "SEO content generated successfully for {$part->name}");
+      
 }
 
 
