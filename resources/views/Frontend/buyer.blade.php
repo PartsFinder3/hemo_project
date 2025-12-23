@@ -831,21 +831,25 @@ const countryPhoneLengths = {
 
         document.addEventListener('DOMContentLoaded', function() {
     const cityInput = document.getElementById('city');
+    const countrySelect = document.getElementById('country_code');
 
+    // Fetch location using ipapi
     fetch('https://ipapi.co/json/')
         .then(response => response.json())
         .then(data => {
-            if (data.city && data.region) {
-                cityInput.value = `${data.city}, ${data.region}`;
-            } else if (data.city) {
-                cityInput.value = data.city;
-            } else {
-                cityInput.value = ''; // fallback
+            if(data) {
+                // Set city
+                if(cityInput) cityInput.value = data.city || '';
+
+                // Set country code in select dropdown
+                if(countrySelect && data.country_calling_code) {
+                    countrySelect.value = data.country_calling_code;
+                }
             }
         })
         .catch(err => {
-            console.error('Could not fetch location:', err);
-            cityInput.value = '';
+            console.error('Could not fetch location', err);
+            if(cityInput) cityInput.placeholder = 'Unable to fetch location';
         });
 });
     </script>
