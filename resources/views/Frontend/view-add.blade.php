@@ -135,9 +135,14 @@
         <div class="row g-4">
             <!-- Left: Carousel -->
             <div class="col-md-6">
-                @php
-                    $images = is_string($ad->images) ? json_decode($ad->images, true) : $ad->images;
-                @endphp
+                                @php
+                            // Check if $ad exists and has images
+                            $images = null;
+                            if(!empty($ad) && !empty($ad->images)){
+                                $images = is_string($ad->images) ? json_decode($ad->images, true) : $ad->images;
+                            }
+                        @endphp
+
 
                 <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
