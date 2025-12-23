@@ -133,7 +133,7 @@
                     </h5>
                 <p class="mb-3">
                     <i class="bi bi-geo-alt-fill text-primary"></i>
-                    <span class="fw-semibold">{{ $buyerCity }} {{$buyerCountry}}</span>
+                  <span class="fw-semibold">{{ ucfirst($buyerCity) }}</span>
                 </p>
 
                 <!-- Price Quote -->
