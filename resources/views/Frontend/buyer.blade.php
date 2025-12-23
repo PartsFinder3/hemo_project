@@ -715,57 +715,48 @@
             }
 
             // Phone number validation function
-            function validatePhoneNumber() {
-                const phoneValue = phoneInput.value.trim();
-                const countryCodeValue = countrySelect.value;
+ function validatePhoneNumber() {
+    const phoneValue = phoneInput.value.trim();
+    const countryCodeValue = countrySelect.value;
 
-                // Remove invalid class first
-                phoneInput.parentElement.classList.remove('is-invalid', 'is-valid');
+    phoneInput.parentElement.classList.remove('is-invalid', 'is-valid');
 
-                // Check if country code is selected
-                if (!countryCodeValue) {
-                    phoneError.textContent = 'Please select a country code first';
-                    phoneInput.parentElement.classList.add('is-invalid');
-                    return false;
-                }
+    if (!countryCodeValue) {
+        phoneError.textContent = 'Please select a country code';
+        phoneInput.parentElement.classList.add('is-invalid');
+        return false;
+    }
 
-                // Check if phone starts with 0 when country code is selected
-                if (countryCodeValue && phoneValue.startsWith('0')) {
-                    phoneError.textContent =
-                        'Do not include the leading 0. Country code already selected. (e.g., for +971, enter 3123456789 not 03123456789)';
-                    phoneInput.parentElement.classList.add('is-invalid');
-                    return false;
-                }
+    if (!phoneValue) {
+        phoneError.textContent = 'Phone number is required';
+        phoneInput.parentElement.classList.add('is-invalid');
+        return false;
+    }
 
-                // Check if phone has only digits
-                if (phoneValue && !/^\d+$/.test(phoneValue)) {
-                    phoneError.textContent = 'Phone number should contain only digits';
-                    phoneInput.parentElement.classList.add('is-invalid');
-                    return false;
-                }
+    if (!/^\d+$/.test(phoneValue)) {
+        phoneError.textContent = 'Only digits are allowed';
+        phoneInput.parentElement.classList.add('is-invalid');
+        return false;
+    }
 
-                // Check minimum length
-                if (phoneValue && phoneValue.length < 7) {
-                    phoneError.textContent = 'Phone number is too short';
-                    phoneInput.parentElement.classList.add('is-invalid');
-                    return false;
-                }
+    if (phoneValue.startsWith('0')) {
+        phoneError.textContent = 'Do not start number with 0';
+        phoneInput.parentElement.classList.add('is-invalid');
+        return false;
+    }
 
-                // Check maximum length
-                if (phoneValue.length > 15) {
-                    phoneError.textContent = 'Phone number is too long';
-                    phoneInput.parentElement.classList.add('is-invalid');
-                    return false;
-                }
+    const requiredLength = countryPhoneLengths[countryCodeValue];
 
-                // If all validations pass
-                if (phoneValue.length >= 7) {
-                    phoneInput.parentElement.classList.add('is-valid');
-                    return true;
-                }
+    if (requiredLength && phoneValue.length !== requiredLength) {
+        phoneError.textContent =
+            `Invalid number length. ${countryCodeValue} requires exactly ${requiredLength} digits`;
+        phoneInput.parentElement.classList.add('is-invalid');
+        return false;
+    }
 
-                return true;
-            }
+    phoneInput.parentElement.classList.add('is-valid');
+    return true;
+}
 
             // Real-time validation on input
             phoneInput.addEventListener('input', function(e) {
