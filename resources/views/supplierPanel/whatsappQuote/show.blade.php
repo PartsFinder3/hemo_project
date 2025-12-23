@@ -115,7 +115,7 @@
                 $buyercontact = $buyerInquiry->buyer->whatsapp ?? 'N/A';
                 $buyerCountryCode = $buyerInquiry->buyer->country_code ?? '';
                 $buyerWhatsapp = $buyerCountryCode . ltrim($buyercontact, '0');
-                $buyerCity = $buyerInquiry->buyer->city->name ?? 'n/n';
+                $buyerCity =$buyerInquiry->buyer->city 'n/n';
                 $buyerCountry = $buyerInquiry->buyer->country->name ?? 'n/n';
 
                 $shopPartIds = Auth::guard('supplier')->user()->shop->parts->pluck('part_id')->toArray();
@@ -132,7 +132,7 @@
                 </h5>
                 <p class="mb-3">
                     <i class="bi bi-geo-alt-fill text-primary"></i>
-                    <span class="fw-semibold">{{ $buyerCity }}, {{ $buyerCountry }}</span>
+                    <span class="fw-semibold">{{ $buyerCity }}</span>
                 </p>
 
                 <!-- Price Quote -->
