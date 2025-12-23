@@ -835,42 +835,41 @@ const countryPhoneLengths = {
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     const cityInput = document.getElementById('city');
+    const countrySelect = document.getElementById('country_code');
 
-    function setCity(cityName) {
-        cityInput.value = cityName;
-    }
+    // Approximation country code from browser locale
+    const locale = navigator.language || navigator.userLanguage; // e.g., "en-PK"
+    const countryFromLocale = locale.split('-')[1] || 'PK';
 
-    // براؤزر geolocation چیک کریں
+    const countryCodes = {
+        'PK': '+92',
+        'US': '+1',
+        'AE': '+971',
+        'IN': '+91',
+        'SA': '+966',
+        'QA': '+974',
+        'OM': '+968'
+    };
+
+    countrySelect.value = countryCodes[countryFromLocale] || '+92';
+
+    // Try to get lat/lon from geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function(position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
+                const lat = position.coords.latitude.toFixed(2);
+                const lon = position.coords.longitude.toFixed(2);
 
-                // OpenStreetMap Nominatim API سے reverse geocoding
-                fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.address) {
-                            const city = data.address.city || data.address.town || data.address.village || data.address.state;
-                            setCity(city || '');
-                        }
-                    })
-                    .catch(err => {
-                        console.error('Reverse geocoding failed:', err);
-                        cityInput.placeholder = 'شہر معلوم نہیں ہو سکا';
-                    });
+                // Since we can't use API, show approx coordinates in city input
+                cityInput.value = `Lat: ${lat}, Lon: ${lon}`;
             },
             function(error) {
-                console.error('Geolocation failed:', error);
-                cityInput.placeholder = 'لوکیشن تک رسائی نہیں دی گئی';
-            },
-            { timeout: 10000 }
+                cityInput.placeholder = 'Location access denied';
+            }
         );
     } else {
-        cityInput.placeholder = 'آپ کے براؤزر میں geolocation سپورٹ نہیں ہے';
+        cityInput.placeholder = 'Geolocation not supported';
     }
 });
-
 </script>
 @endsection
