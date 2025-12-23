@@ -164,7 +164,9 @@
 
             <!-- Right: Details -->
             <div class="col-md-6">
-                <h1 class="product-title">{{ $ad->title }} {{$ad->part_number}}</h1>
+           <h1 class="product-title">
+    {{ $ad?->title ?? 'Unknown Title' }} {{ $ad?->part_number ?? '' }}
+</h1>
                 <p class="text-muted">Condition: <strong>
                         @if ($ad->condition == 'new')
                             New
