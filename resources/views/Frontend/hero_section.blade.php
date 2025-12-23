@@ -415,16 +415,29 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(function () {
-
+$(document).ready(function() {
+    // Initialize Select2 for all dropdowns
     $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
+    
         width: '100%'
     });
 
-    // Jab dropdown open ho
+    // Hide parts dropdown initially (already hidden via style, just in case)
+    $('select[name="parts[]"]').closest('.form-group').hide();
     $(document).on('select2:open', function () {
         $('.select2-search__field').attr('placeholder', 'Search here');
     });
+    // When Year is selected
+    $('#car-year').on('change', function() {
+        // Show the parts dropdown
+        $('select[name="parts[]"]').closest('.form-group').slideDown();
 
+        // Optional: focus/select2 refresh
+        $('select[name="parts[]"]').select2({
+            placeholder: 'Select parts',
+            width: '100%'
+        });
+    });
 });
+
 </script>
