@@ -129,11 +129,11 @@
                    
                 </h5>
                  <h5 class="fw-bold">
-                        {{ implode(' | ', $matchingParts) }}
+                        {{ implode('| ', $matchingParts) }}
                     </h5>
                 <p class="mb-3">
                     <i class="bi bi-geo-alt-fill text-primary"></i>
-                    <span class="fw-semibold">{{ $buyerCity }}</span>
+                    <span class="fw-semibold">{{ $buyerCity }} {{$buyerCountry}}</span>
                 </p>
 
                 <!-- Price Quote -->
