@@ -115,8 +115,8 @@
                 $buyercontact = $buyerInquiry->buyer->whatsapp ?? 'N/A';
                 $buyerCountryCode = $buyerInquiry->buyer->country_code ?? '';
                 $buyerWhatsapp = $buyerCountryCode . ltrim($buyercontact, '0');
-                $buyerCity = $buyerInquiry->buyer->city->name ?? 'City';
-                $buyerCountry = $buyerInquiry->buyer->country->name ?? 'Country';
+                $buyerCity = $buyerInquiry->buyer->city->name ?? 'n/n';
+                $buyerCountry = $buyerInquiry->buyer->country->name ?? 'n/n';
 
                 $shopPartIds = Auth::guard('supplier')->user()->shop->parts->pluck('part_id')->toArray();
                 $matchingParts = $buyerInquiry->partsList->whereIn('id', $shopPartIds)->pluck('name')->toArray();
