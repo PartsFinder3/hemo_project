@@ -837,57 +837,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const cityInput = document.getElementById('city');
     const countrySelect = document.getElementById('country_code');
 
-    // Approximation country code from browser locale
-    const locale = navigator.language || navigator.userLanguage; // e.g., "en-PK"
-    const countryFromLocale = locale.split('-')[1] || 'PK';
-
-    const countryCodes = {
-        'PK': '+92',
-        'US': '+1',
-        'AE': '+971',
-        'IN': '+91',
-        'SA': '+966',
-        'QA': '+974',
-        'OM': '+968'
-    };
-
-    countrySelect.value = countryCodes[countryFromLocale] || '+92';
-
-    // Approximate function to get state/country from lat/lon
-    function getLocationName(lat, lon) {
-        if (lat >= 23.7 && lat <= 37.1 && lon >= 60.9 && lon <= 77.8) {
-            // Pakistan provinces approximation
-            if (lat >= 29.0 && lat <= 32.0 && lon >= 73.0 && lon <= 75.5) {
-                return {state: 'Punjab', country: 'Pakistan'};
-            }
-            if (lat >= 24.0 && lat <= 28.0 && lon >= 67.0 && lon <= 71.5) {
-                return {state: 'Sindh', country: 'Pakistan'};
-            }
-            if (lat >= 33.0 && lat <= 37.0 && lon >= 70.0 && lon <= 75.0) {
-                return {state: 'Khyber Pakhtunkhwa', country: 'Pakistan'};
-            }
-            if (lat >= 30.0 && lat <= 37.0 && lon >= 74.0 && lon <= 77.0) {
-                return {state: 'Islamabad Capital Territory', country: 'Pakistan'};
-            }
-            return {state: 'Unknown', country: 'Pakistan'};
-        }
-        return {state: 'Unknown', country: 'Unknown'};
-    }
-
     // Try to get lat/lon from geolocation
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
+        navigator.geolocation.getCurrentPosition(async function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
 
-                const location = getLocationName(lat, lon);
-                cityInput.value = `${location.state}, ${location.country}`;
-            },
-            function(error) {
-                cityInput.placeholder = 'Location access denied';
-            }
-        );
+            // Nominatim reverse geocoding
+            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);
+            const data = await response.json();
+
+            const city = data.address.city || data.address.town || data.address.village || '';
+            const state = data.address.state || '';
+            const country = data.address.country || '';
+
+            cityInput.value = `${city || state}, ${country}`;
+
+            // If you want country phone code automatically, you can maintain a small mapping or skip it
+            countrySelect.value = ''; // optional, can be handled later
+
+        }, function(error) {
+            cityInput.placeholder = 'Location access denied';
+        });
     } else {
         cityInput.placeholder = 'Geolocation not supported';
     }
