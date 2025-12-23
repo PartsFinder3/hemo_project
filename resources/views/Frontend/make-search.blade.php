@@ -862,13 +862,7 @@ ease;
     padding: 0;
 }
 
-/* Horizontal Rule */
-.seo_content hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #cbd5e0, transparent);
-    margin: 3rem 0;
-}
+
 
 /* Strong and Emphasis */
 .seo_content strong {
