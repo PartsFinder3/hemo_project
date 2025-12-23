@@ -333,6 +333,27 @@ margin-top:10px;
 .highlight-border {
     border: 2px solid red !important;
 }
+/* Select2 search box wrapper */
+.select2-search--dropdown {
+    position: relative;
+}
+
+/* Search icon */
+.select2-search--dropdown::after {
+    content: "\1F50D"; /* 🔍 unicode icon */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none; /* click block na ho */
+}
+
+/* Search input padding right increase */
+.select2-search__field {
+    padding-right: 30px !important;
+}
 </style>
 
 <div class="hero_section_text">
