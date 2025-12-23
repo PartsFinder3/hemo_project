@@ -158,11 +158,25 @@ margin-top:10px;
 }
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
-    border-radius: 4px;
-    height: 40px;
-    padding: 5px 10px;
+    min-height: 45px !important;
+    height: auto !important;
+    padding: 6px 10px !important;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+}
+
+/* Each selected item */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 /* ===== Responsive ===== */
 @media (max-width: 992px) {
     .secound_hero_section {
