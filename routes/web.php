@@ -406,3 +406,150 @@ Route::fallback(function () {
     
     return redirect('/'); 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/{any}', function ($any) {
+
+    // List of 100 old URLs
+    $oldUrls = [
+        'show/ads/Heater/ A/C Controller/882',
+        'show/ads/A/C Condenser/1560',
+        'makes/show/ads/Dongfeng xiaokang/292',
+        'show/ads/Spare Tyre/Carrier/1102',
+        'show/ads/Shock/Strut (Rear/Left)/1089',
+        'show/ads/Shock/Strut (Rear/Right)/1090',
+        'show/ads/Suspension Complete (Rear/Right)/1152',
+        'makes/show/ads/Red Star/274',
+        'makes/show/ads/Kawei Auto/307',
+        'makes/show/ads/King long/246',
+        'makes/show/ads/Joyfun Auto/305',
+        'show/ads/Wheel Arch/Spat/1545',
+        'show/ads/Door Window Motor (Rear/Left)/1386',
+        'show/ads/Roof Glass/Sunroof/T/1502',
+        'show/ads/A/C Heater Controller/1563',
+        'show/ads/Rotating Arm/Distributor/Rotar/1048',
+        'show/ads/Shock/Strut (Front/Right)/1088',
+        'show/ads/Hub Axle Assembly (Front/Right)/891',
+        'show/ads/Shock/Strut (Front/Left)/1087',
+        'show/ads/Window Regulator (Front/Right)/1229',
+        'show/ads/Seat (Front/Left)/1508',
+        'show/ads/Window Regulator (Rear/Left)/1230',
+        'show/ads/Strut (Front/Right)/1140',
+        'show/ads/Hub Axle Assembly (Front/Left)/890',
+        'show/ads/Door Window Motor (Front/Left)/1384',
+        'show/ads/Door (Front/Left)/1348',
+        'show/ads/Transfer Box/Case/1182',
+        'show/ads/A/C Radiator/1567',
+        'show/ads/Window Regulator (Front/Left)/1228',
+        'show/ads/Lower Wishbone O/S Rear/952',
+        'show/ads/A/C Radiator Fan/1568',
+        'show/ads/Ignition W/ Key/902',
+        'show/ads/Brake Disc/Drum (Rear)/611',
+        'show/ads/A/C Unit/1571',
+        'show/ads/Lower Control Arm (Front/Right)/949',
+        'show/ads/Door (Rear/Left)/1350',
+        'show/ads/A/C Clutch/1559',
+        'show/ads/Seat Belt (Front/Right)/1055',
+        'show/ads/Wing (Front/Right)/1551',
+        'show/ads/Wing (Front/Left)/1550',
+        'show/ads/Airbag Squib/Slip Ring/1274',
+        'show/ads/A/C Evaporator/1562',
+        'show/ads/Wheel Cover/Hub Cap/1218',
+        'show/ads/Speedo Sensor/Sender/1109',
+        'show/ads/Door Window (Rear/Right)/1383',
+        'show/ads/Suspension Complete (Front/Right)/1149',
+        'show/ads/Seat (Front/Right)/1509',
+        'show/ads/Air Suspension/Shock Spring/1261',
+        'show/ads/Seat Belt (Rear/Right)/1057',
+        'show/ads/Door Window (Rear/Left)/1382',
+        'show/ads/Quarter Light (Rear/Left)/1475',
+        'show/ads/A/C Pressure Switch/1566',
+        'show/ads/Propshaft (Front/Comp)/1002',
+        'show/ads/Door (Rear/Right)/1351',
+        'show/ads/Lower Control Arm (Front/Left)/948',
+        'show/ads/Half Cut/Nose Cut/854',
+        'show/ads/Door Window (Front/Right)/1381',
+        'show/ads/Door Window Motor (Rear/Right)/1387',
+        'show/ads/A/C Cooling Module/1561',
+        'show/ads/Touch Screen/CarPlay/1176',
+        'show/ads/Air Cleaner/Box/1588',
+        'show/ads/Door Mirror/Wing Mirror/1371',
+        'show/ads/Roof Rack/Bars/1505',
+        'show/ads/A/C Hose Assembly/1564',
+        'show/ads/Brake Disc/Drum (Front)/610',
+        'show/ads/Seat Belt (Front/Left)/1054',
+        'show/ads/A/C and Heating Control Panel/1572',
+        'show/ads/Hub Axle Assembly (Rear/Left)/892',
+        'show/ads/Door Window Motor (Front/Right)/1385',
+        'show/ads/Door (Front/Right)/1349',
+        'show/ads/Window Regulator (Rear/Right)/1231',
+        'show/ads/Side Light/Drl (Right)/1516',
+        'show/ads/Door Trim Exterior (Front/Left)/1375',
+        'show/ads/Suspension Complete (Front/Left)/1148',
+        'show/ads/Egr Valve/Cooler/736',
+        'show/ads/Door Trim Exterior (Rear/Right)/1376',
+        'show/ads/Gearbox Rear Wheel Drive /4Wd/848',
+        'show/ads/Seat Belt (Rear/Left)/1056',
+        'show/ads/Side Step/Rail/1523',
+        'show/ads/Exhaust Covers/Sheilds/765',
+        'show/ads/Hub Axle Assembly (Rear/Right)/893',
+        'show/ads/A/C Pipe/1565',
+        'show/ads/Wing Liner/Inner/1552',
+        'show/ads/A/C Actuator/1557',
+        'show/ads/Handbrake Lever/Assembly/856',
+        'show/ads/A/C Relay/1569',
+        'show/ads/Touch Screen/CarPlay/1538',
+        'show/ads/Door Window (Front/Left)/1380',
+        'show/ads/Gear Stick/Shifter/836',
+        'view-ad/cadillac-xt5-2017-2018-2019-2020-2021-2022-2023-2024-2025-gmc-acadia-2017-2025-cadillac-xt6-2020-2025-cv-blazer2019-2025-condenser/144',
+        'show/ads/A/C Switch/1570',
+        'show/ads/Bootlid Struts/Rams/1306',
+        'show/ads/Strut (Front/Left)/1139',
+        'show/ads/A/C Assembly/1558',
+        'show/ads/Oil Pan/Sump/972',
+        'show/ads/Suspension Complete (Rear/Left)/1151',
+        'show/ads/ac-cooling-module/509',
+        'make/changfeng',
+    ];
+
+    // The 3 target pages for redirect
+    $targetPages = [
+        '/show/ads/4x4-transfer-boxes/551',
+        '/makes/show/ads/toyota/160',
+        '/view-ad/nissan-rogue-2023-2024-2025-grille-show/152',
+    ];
+
+    // Remove query string if exists
+    $anyPath = explode('?', $any)[0];
+
+    if(in_array($anyPath, $oldUrls)) {
+        // Pick one of the 3 pages randomly
+        $redirectTo = $targetPages[array_rand($targetPages)];
+        return redirect($redirectTo, 301);
+    }
+
+    // All other URLs → 404
+    abort(404);
+})->where('any', '.*');
