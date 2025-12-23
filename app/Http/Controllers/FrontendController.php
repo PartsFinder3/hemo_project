@@ -164,8 +164,7 @@ public function sendProductInquiry(Request $request)
             'country_code.required' => 'Please select a country code.',
             'country.required' => 'Please select a country.'
         ]);
-          dd( $request->city);
-        // Create new buyer
+        
         $buyer = Buyers::create([
             'country_code' => $request->country_code,
             'whatsapp' => $request->whatsapp,
