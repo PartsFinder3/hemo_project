@@ -256,8 +256,8 @@
                                 <div class="row g-2 mb-4" style="opacity: 0.7">
                                     <div class="col-md-12">
                                         <label for="city" class="form-label">City / State</label>
-                                        <input type="text" class="form-control" name="city" id="city"
-                                            placeholder="Enter Your City/State">
+                                       <input type="text" class="form-control" name="city" id="city" placeholder="Fetching location..." readonly>
+
                                     </div>
                                     {{-- <div class="col-md-6">
                                         <label for="country" class="form-label">Country</label>
@@ -826,5 +826,27 @@ const countryPhoneLengths = {
                 });
             }
         });
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const cityInput = document.getElementById('city');
+
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.city && data.region) {
+                cityInput.value = `${data.city}, ${data.region}`;
+            } else if (data.city) {
+                cityInput.value = data.city;
+            } else {
+                cityInput.value = ''; // fallback
+            }
+        })
+        .catch(err => {
+            console.error('Could not fetch location:', err);
+            cityInput.value = '';
+        });
+});
     </script>
 @endsection
