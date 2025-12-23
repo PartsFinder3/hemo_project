@@ -333,44 +333,30 @@ margin-top:10px;
 .highlight-border {
     border: 2px solid red !important;
 }
+/* Common wrapper */
 .select2-search--dropdown {
     position: relative;
 }
 
-/* 🔍 icon for BOTH single & multiple */
+/* Search icon – always RIGHT */
 .select2-search--dropdown::after {
-    content: "🔍";
+    content: "\1F50D"; /* 🔍 */
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 14px;
     color: #999;
     pointer-events: none;
+    z-index: 10;
 }
 
-/* Multiple select search input */
-.select2-container--default 
-.select2-search--inline .select2-search__field {
-    padding-left: 22px !important;
-}
-
-/* 🔍 icon inside multiple select input */
-.select2-container--default 
-.select2-search--inline {
-    position: relative;
-}
-
-.select2-container--default 
-.select2-search--inline::before {
-    content: "🔍";
-    position: absolute;
-    left: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #999;
-    pointer-events: none;
+/* Input padding fix – single + multiple */
+.select2-search__field {
+    padding-right: 32px !important;
+    padding-left: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box;
 }
 </style>
 
