@@ -716,7 +716,7 @@ ease;
 .seo_content h6 {
     font-weight: 700;
     line-height: 1.3;
-    margin-top: 2em;
+    margin-top: 0,5em;
     margin-bottom: 0.10em;
     color: #1a202c;
 }
