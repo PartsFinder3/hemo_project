@@ -289,7 +289,7 @@ class ShopController extends Controller
     public function whatsAppQuote($id)
     {
         $buyerInquiry = BuyerInquiry::findOrFail($id);
-
+       dd($buyerInquiry);
         // Sirf wohi inquiryUsage update karo jo is buyerInquiry se linked hai
         $buyerInquiry->inquiryUsages()
             ->where('buyer_inquiry_id', $buyerInquiry->id)
