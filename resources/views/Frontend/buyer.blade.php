@@ -853,15 +853,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     countrySelect.value = countryCodes[countryFromLocale] || '+92';
 
+    // Approximate function to get state/country from lat/lon
+    function getLocationName(lat, lon) {
+        if (lat >= 23.7 && lat <= 37.1 && lon >= 60.9 && lon <= 77.8) {
+            // Pakistan provinces approximation
+            if (lat >= 29.0 && lat <= 32.0 && lon >= 73.0 && lon <= 75.5) {
+                return {state: 'Punjab', country: 'Pakistan'};
+            }
+            if (lat >= 24.0 && lat <= 28.0 && lon >= 67.0 && lon <= 71.5) {
+                return {state: 'Sindh', country: 'Pakistan'};
+            }
+            if (lat >= 33.0 && lat <= 37.0 && lon >= 70.0 && lon <= 75.0) {
+                return {state: 'Khyber Pakhtunkhwa', country: 'Pakistan'};
+            }
+            if (lat >= 30.0 && lat <= 37.0 && lon >= 74.0 && lon <= 77.0) {
+                return {state: 'Islamabad Capital Territory', country: 'Pakistan'};
+            }
+            return {state: 'Unknown', country: 'Pakistan'};
+        }
+        return {state: 'Unknown', country: 'Unknown'};
+    }
+
     // Try to get lat/lon from geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function(position) {
-                const lat = position.coords.latitude.toFixed(2);
-                const lon = position.coords.longitude.toFixed(2);
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
 
-                // Since we can't use API, show approx coordinates in city input
-                cityInput.value = `Lat: ${lat}, Lon: ${lon}`;
+                const location = getLocationName(lat, lon);
+                cityInput.value = `${location.state}, ${location.country}`;
             },
             function(error) {
                 cityInput.placeholder = 'Location access denied';
@@ -871,5 +892,6 @@ document.addEventListener('DOMContentLoaded', function() {
         cityInput.placeholder = 'Geolocation not supported';
     }
 });
+
 </script>
 @endsection
