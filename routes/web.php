@@ -408,28 +408,6 @@ Route::fallback(function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/{any}', function ($any) {
 
     // List of 100 old URLs
