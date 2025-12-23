@@ -829,28 +829,57 @@ const countryPhoneLengths = {
 
 
 
-        document.addEventListener('DOMContentLoaded', function() {
-    const cityInput = document.getElementById('city');
-    const countrySelect = document.getElementById('country_code');
-
-    // Fetch location using ipapi
-    fetch('https://ipapi.co/json/')
-        .then(response => response.json())
-        .then(data => {
-            if(data) {
-                // Set city
-                if(cityInput) cityInput.value = data.city || '';
-
-                // Set country code in select dropdown
-                if(countrySelect && data.country_calling_code) {
-                    countrySelect.value = data.country_calling_code;
-                }
-            }
-        })
-        .catch(err => {
-            console.error('Could not fetch location', err);
-            if(cityInput) cityInput.placeholder = 'Unable to fetch location';
-        });
-});
+        
     </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cityInput = document.getElementById('city');
+
+    function setCity(cityName) {
+        cityInput.value = cityName;
+    }
+
+    // Try browser geolocation first
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                // Reverse geocoding using OpenStreetMap Nominatim
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const city = data.address.city || data.address.town || data.address.village || data.address.state;
+                        setCity(city || '');
+                    })
+                    .catch(err => {
+                        console.warn('Reverse geocode failed, using fallback');
+                        setCity('Lahore'); // fallback
+                    });
+            },
+            function(err) {
+                console.warn('Geolocation denied, using IP API fallback', err);
+
+                // IP-based fallback
+                fetch('https://ipapi.co/json/')
+                    .then(res => res.json())
+                    .then(data => {
+                        setCity(data.city || 'Lahore'); // fallback
+                    })
+                    .catch(() => {
+                        setCity('Lahore'); // ultimate fallback
+                    });
+            }
+        );
+    } else {
+        // If geolocation not supported, use IP API
+        fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(data => setCity(data.city || 'Lahore'))
+            .catch(() => setCity('Lahore'));
+    }
+});
+</script>
 @endsection
