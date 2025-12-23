@@ -333,7 +333,31 @@ margin-top:10px;
 .highlight-border {
     border: 2px solid red !important;
 }
+/* Common wrapper */
+.select2-search--dropdown {
+    position: relative;
+}
 
+/* Search icon – always RIGHT */
+.select2-search--dropdown::after {
+    content: "\1F50D"; /* 🔍 */
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Input padding fix – single + multiple */
+.select2-search__field {
+    padding-right: 32px !important;
+    padding-left: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
 </style>
 
 <div class="hero_section_text">
