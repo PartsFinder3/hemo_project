@@ -333,26 +333,49 @@ margin-top:10px;
 .highlight-border {
     border: 2px solid red !important;
 }
-/* Select2 search box wrapper */
 .select2-search--dropdown {
     position: relative;
 }
 
-/* Search icon */
 .select2-search--dropdown::after {
-    content: "\1F50D"; /* 🔍 unicode icon */
+    content: "\1F50D"; /* 🔍 */
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.select2-search--dropdown .select2-search__field {
+    padding-right: 32px !important;
+}
+
+/* ===============================
+   MULTIPLE (PARTS) SEARCH ICON
+================================ */
+.select2-search--inline {
+    position: relative;
+    width: 100%;
+}
+
+.select2-search--inline::after {
+    content: "\1F50D"; /* 🔍 */
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 14px;
     color: #999;
-    pointer-events: none; /* click block na ho */
+    pointer-events: none;
 }
 
-/* Search input padding right increase */
-.select2-search__field {
+.select2-search--inline .select2-search__field {
     padding-right: 30px !important;
+    width: 100% !important;
+    box-sizing: border-box;
 }
 </style>
 
