@@ -242,7 +242,7 @@
                                             Ref: PF-{{ str_pad($inquiry->id, 7, '0', STR_PAD_LEFT) }} |
                                             {{ $inquiry->created_at->format('d-M-Y h:i A') }}
                                         </p>
-                                        <p class="mb-1"><strong>Parts:</strong> {{ implode(', ', $matchingParts) }}</p>
+                                        <p class="mb-1"><strong>Parts:</strong> {{ implode('|', $matchingParts) }}</p>
                                         <p class="mb-0"><strong>Condition:</strong>
                                             {{ $inquiry->condition ?? 'Unknown' }}</p>
                                     </div>
