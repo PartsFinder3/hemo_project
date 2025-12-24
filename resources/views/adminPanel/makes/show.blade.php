@@ -68,7 +68,25 @@
                     <!-- End Modal -->
                 </div>
             </div>
+                <form method="GET" action="{{ route('makes.index') }}" class="mb-3 d-flex gap-2">
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control w-25"
+                        placeholder="Search Car Make..."
+                        value="{{ request('search') }}"
+                    >
 
+                    <button class="btn btn-primary">
+                        Search
+                    </button>
+
+                    <a href="{{ route('makes.index') }}" class="btn btn-secondary">
+                        Reset
+                    </a>
+
+                    <input type="hidden" name="per_page" value="{{ request('per_page', $perPage) }}">
+                </form>
             <!-- Per Page Selection -->
             <form method="GET" class="mb-3">
                 <label class="me-2 fw-bold">Show</label>

@@ -93,4 +93,27 @@ class CarMakeController extends Controller
         $carMake->save();
         return redirect()->route('makes.show')->with('success', 'Car Make Updated Successfully');
     }
+
+            public function search(Request $request)
+        {
+            $perPage = $request->input('per_page', 100);
+            $search  = $request->input('search');
+
+            $carMakes = CarMakes::where(function ($query) use ($search) {
+                    if ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%');
+                    }
+                })
+                ->orderBy('name', 'ASC')
+                ->paginate($perPage)
+                ->appends($request->query());
+
+            $totalMakes = CarMakes::count();
+
+            return view('adminPanel.makes.show', compact(
+                'carMakes',
+                'perPage',
+                'totalMakes'
+            ));
+        }
 }
