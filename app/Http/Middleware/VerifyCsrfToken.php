@@ -14,8 +14,6 @@ class VerifyCsrfToken extends Middleware
    protected $except = [
           
         '/buyers/inquiry/send',
-        'partsfinderoman.ae',
-        'https://partsfinder.ge',
-        '/partsfinder/public/buyers/inquiry/send'
+       
     ];
 }
