@@ -107,12 +107,13 @@
     </a>
 </form>
 
-            <!-- Per Page Selection -->
-              <div class="mb-3 d-flex justify-content-end">
-            {{ $models->appends(request()->query())->links('pagination::bootstrap-5') }}
-        </div>
+           
        
-
+   <div class="mb-3">
+    @if($models->hasPages())
+        {{ $models->appends(request()->query())->links('pagination::bootstrap-5') }}
+    @endif
+</div>
 
             <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-striped">
