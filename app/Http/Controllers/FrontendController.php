@@ -77,8 +77,8 @@ public function index(Request $request)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
-    $meta['title']="Partsfinder UAE";
-    $meta['description']="desc";
+    $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
+    $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
     $meta['structure_data'] = <<<JSON
 <script type="application/ld+json">
 {
