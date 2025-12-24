@@ -86,21 +86,27 @@
                     <!-- End Modal -->
                 </div>
             </div>
-<form method="GET" 
-      action="{{ route('model.search') }}" 
+
+<form method="POST"
+      action="{{ route('model.search') }}"
       class="mb-3 d-flex justify-content-end gap-2">
 
-    <input type="text" 
-           name="search" 
-           class="form-control w-25" 
-           placeholder="Search Model or Make..." 
-           value="{{ request('search') }}">
+    @csrf
+
+    <input
+        type="text"
+        name="search"
+        class="form-control w-25"
+        placeholder="Search Car Make..."
+    >
 
     <button class="btn btn-primary">Search</button>
 
-    <a href="{{ route('model.show') }}" class="btn btn-secondary">Reset</a>
-
+    <a href="{{ route('model.show') }}" class="btn btn-secondary">
+        Reset
+    </a>
 </form>
+
             <!-- Per Page Selection -->
               <div class="mb-3 d-flex justify-content-end">
             {{ $models->appends(request()->query())->links('pagination::bootstrap-5') }}
