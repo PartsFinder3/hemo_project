@@ -531,5 +531,5 @@ Route::get('/{any}', function ($any) {
     // All other URLs → 404
     abort(404);
 })->where('any', '.*');
-Route::get('/admin/makes', [CarMakeController::class, 'search'])
+Route::post('/admin/makes/search', [CarMakeController::class, 'search'])
     ->name('makes.search');

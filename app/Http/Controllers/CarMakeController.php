@@ -95,14 +95,13 @@ class CarMakeController extends Controller
 
 public function search(Request $request)
 {
-    $search = $request->input('search');
+    $search = $request->search;
 
-    $carMakes = CarMakes::when($search, function ($query, $search) {
+    $carMakes = CarMakes::when($search, function ($query) use ($search) {
             $query->where('name', 'LIKE', '%' . $search . '%');
         })
         ->orderBy('name', 'ASC')
-        ->paginate(100)
-        ->appends($request->query());
+        ->paginate(100);
 
     $totalMakes = CarMakes::count();
 
