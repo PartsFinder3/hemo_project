@@ -746,7 +746,7 @@ public function generateSeoMake($id)
             [
                 'role' => 'user',
                 'content' => "
-             Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
+ Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
 
 Brand: {$brand}
 Target Country: UAE
@@ -763,7 +763,7 @@ Guidelines:
 - Use clear headings and short paragraphs
 - Headings should vary naturally based on the brand
 - Do not follow a fixed outline or repeated structure
-- Assign proper Headings 1 <h1> and <p> tags accordingly.
+- Assign proper Headings 2 <h2> and <p> tags accordingly.
 
 Content Focus:
 - Used and second-hand auto spare parts
