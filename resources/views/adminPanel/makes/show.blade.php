@@ -68,7 +68,7 @@
                     <!-- End Modal -->
                 </div>
             </div>
-                <form method="GET" action="{{ route('makes.index') }}" class="mb-3 d-flex gap-2">
+                <form method="GET" action="{{ route('makes.search') }}" class="mb-3 d-flex gap-2">
                     <input
                         type="text"
                         name="search"
