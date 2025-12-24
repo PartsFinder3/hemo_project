@@ -102,8 +102,10 @@
 </form>
 
                 <div class="card-body">
-        <div class="mb-3">
-    {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
+     <div class="mb-3">
+    @if($spareParts->hasPages())
+        {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
+    @endif
 </div>
          <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
     <table class="table table-striped">

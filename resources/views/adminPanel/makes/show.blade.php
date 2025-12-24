@@ -89,10 +89,12 @@
 </form>
 
             <!-- Per Page Selection -->
-           
-                    <div class="mb-3 d-flex justify-content-end">
-            {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
-        </div>
+              <div class="mb-3">
+    @if($carMakes->hasPages())
+        {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
+    @endif
+</div>
+               
             <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-striped">
                     <thead>
