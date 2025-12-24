@@ -539,3 +539,7 @@ Route::post('/admin/makes/search', [CarMakeController::class, 'search'])
 
 Route::post('/admin/parts/search', [SparePartsController::class, 'search'])
     ->name('parts.search');
+
+
+
+    Route::get('/get-models/{make_id}', [FrontendController::class, 'getModels']);

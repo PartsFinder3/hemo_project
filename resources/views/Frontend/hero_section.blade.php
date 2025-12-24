@@ -497,5 +497,28 @@ $(document).ready(function() {
         });
     });
 });
+$('#car-make').on('change', function() {
+    var makeId = $(this).val();
+
+    if(makeId) {
+        $.ajax({
+            url: "{{ url('get-models') }}/" + makeId, // Laravel url() helper
+            type: 'GET',
+            success: function(data) {
+                var $model = $('#car-model');
+                $model.empty();
+                $model.append('<option value="">Select Model</option>');
+
+                $.each(data, function(key, model) {
+                    $model.append('<option value="'+model.id+'">'+model.name+'</option>');
+                });
+
+                $model.trigger('change');
+            }
+        });
+    } else {
+        $('#car-model').empty().append('<option value="">Select Model</option>').trigger('change');
+    }
+});
 
 </script>

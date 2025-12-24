@@ -898,4 +898,16 @@ Do not explain the process.
  function generateSeoSuccess(){
     return view('adminPanel.seo_success');
  }
+
+
+
+
+
+
+
+ public function getModels($make_id)
+{
+    $models=CarModels::where('car_make_id', $make_id)->get();
+    return response()->json($models);
+}
 }

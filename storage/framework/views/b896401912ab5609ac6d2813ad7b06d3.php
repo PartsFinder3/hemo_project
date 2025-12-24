@@ -1,7 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
 <style>
 /* ===== Hero Section ===== */
@@ -159,11 +158,25 @@ margin-top:10px;
 }
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
-    border-radius: 4px;
-    height: 40px;
-    padding: 5px 10px;
+    min-height: 45px !important;
+    height: auto !important;
+    padding: 6px 10px !important;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center;
+}
+
+/* Each selected item */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
 /* ===== Responsive ===== */
 @media (max-width: 992px) {
     .secound_hero_section {
@@ -320,6 +333,50 @@ margin-top:10px;
 .highlight-border {
     border: 2px solid red !important;
 }
+.select2-search--dropdown {
+    position: relative;
+}
+
+.select2-search--dropdown::after {
+    content: "\1F50D"; /* 🔍 */
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.select2-search--dropdown .select2-search__field {
+    padding-right: 32px !important;
+}
+
+/* ===============================
+   MULTIPLE (PARTS) SEARCH ICON
+================================ */
+.select2-search--inline {
+    position: relative;
+    width: 100%;
+}
+
+.select2-search--inline::after {
+    content: "\1F50D"; /* 🔍 */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+}
+
+.select2-search--inline .select2-search__field {
+    padding-right: 30px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
 </style>
 
 <div class="hero_section_text">
@@ -361,14 +418,17 @@ margin-top:10px;
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </select>
 </div>
-<div class="form-group" id="parts-group" style="display: none">
-    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple>
-        <option value="">Select Part</option>
-        <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<div class="form-group" id="year-group" style="display: none">
+    <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple required>
+         <option value="">Select Part</option>
+        
+        <option value="">Select a year</option>
+               <?php $__currentLoopData = $parts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $part): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <option value="<?php echo e($part->id); ?>"><?php echo e($part->name); ?></option>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </select>
 </div>
+
 
                 <div class="form-group " id="condition-group">
                     <div class="condition-section">
@@ -401,30 +461,64 @@ margin-top:10px;
 </div>
 <script>
 $(document).ready(function() {
-    // Initialize Select2 for all dropdowns
-    $('#car-make, #car-model, #car-year').select2({ width: '100%' });
-
-    $('#parts-dropdown-parts').select2({
-        placeholder: 'Select parts',
+    $('#car-make, #car-model, #car-year').select2({
+       
         width: '100%'
     });
 
-    // Hide parts dropdown initially
-    $('#parts-group').hide();
+  $('#parts-dropdown-parts').select2({
+    placeholder: 'Select parts',
+    width: '100%'
+});
+});
+</script>
+<script>
+$(document).ready(function() {
+    // Initialize Select2 for all dropdowns
+    $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
+    
+        width: '100%'
+    });
 
+    // Hide parts dropdown initially (already hidden via style, just in case)
+    $('select[name="parts[]"]').closest('.form-group').hide();
+    $(document).on('select2:open', function () {
+        $('.select2-search__field').attr('placeholder', 'Search here');
+    });
     // When Year is selected
     $('#car-year').on('change', function() {
-        $('#parts-group').slideDown();
+        // Show the parts dropdown
+        $('select[name="parts[]"]').closest('.form-group').slideDown();
 
-        // Make Select2 visible and refresh
-        $('#parts-dropdown-parts').select2({
+        // Optional: focus/select2 refresh
+        $('select[name="parts[]"]').select2({
             placeholder: 'Select parts',
             width: '100%'
         });
-
-        // Optional: Make it required now
-        $('#parts-dropdown-parts').attr('required', true);
     });
+});
+$('#car-make').on('change', function() {
+    var makeId = $(this).val();
+
+    if(makeId) {
+        $.ajax({
+            url: "<?php echo e(url('get-models')); ?>/" + makeId, // Laravel url() helper
+            type: 'GET',
+            success: function(data) {
+                var $model = $('#car-model');
+                $model.empty();
+                $model.append('<option value="">Select Model</option>');
+
+                $.each(data, function(key, model) {
+                    $model.append('<option value="'+model.id+'">'+model.name+'</option>');
+                });
+
+                $model.trigger('change');
+            }
+        });
+    } else {
+        $('#car-model').empty().append('<option value="">Select Model</option>').trigger('change');
+    }
 });
 
 </script><?php /**PATH C:\laragon\www\partsfinder\resources\views/Frontend/hero_section.blade.php ENDPATH**/ ?>
