@@ -126,7 +126,7 @@ public function search(Request $request)
                   });
         })
         ->orderBy('name', 'ASC')
-        ->get(); // ✅ get() returns all results without pagination
+        ->get(); // ✅ get() returns all results
 
     $makes = CarMakes::orderBy('name', 'ASC')->get();
 
