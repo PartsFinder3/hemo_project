@@ -878,7 +878,7 @@ Do not explain the process.
     ]);
 
     SparePartSeo::updateOrCreate(
-        ['make_id' => $part->id],
+        ['part_id' => $part->id],
         ['seo_content_make' => $response->choices[0]->message->content]
     );
 
