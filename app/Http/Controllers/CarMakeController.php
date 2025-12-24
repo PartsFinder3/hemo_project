@@ -15,13 +15,12 @@ class CarMakeController extends Controller
     public function index(Request $request)
     {
         
-        $perPage = $request->input('per_page', 100);
-
-        $carMakes = CarMakes::orderBy('name', 'ASC')->paginate($perPage);
+       
+        $carMakes = CarMakes::orderBy('name', 'ASC')->paginate(100);
 
         $totalMakes = CarMakes::count();
 
-        return view('adminPanel.makes.show', compact('carMakes', 'perPage', 'totalMakes'));
+        return view('adminPanel.makes.show', compact('carMakes', 'totalMakes'));
     }
 
     public function create(Request $request)

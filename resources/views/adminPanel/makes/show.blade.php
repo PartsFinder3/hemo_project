@@ -91,19 +91,10 @@
     <input type="hidden" name="per_page" value="{{ request('per_page', $perPage) }}">
 </form>
             <!-- Per Page Selection -->
-            <form method="GET" class="mb-3">
-                <label class="me-2 fw-bold">Show</label>
-                <select name="per_page" class="form-select d-inline-block w-auto" onchange="this.form.submit()">
-                    <option value="50"  {{ $perPage == 50 ? 'selected' : '' }}>50</option>
-                    <option value="100" {{ $perPage == 100 ? 'selected' : '' }}>100</option>
-                    <option value="200" {{ $perPage == 200 ? 'selected' : '' }}>200</option>
-                    <option value="300" {{ $perPage == 300 ? 'selected' : '' }}>300</option>
-                </select>
-                <span class="ms-2">records</span>
-            </form>
-            <div class="mt-3">
-                {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
-            </div>
+           
+                    <div class="mb-3 d-flex justify-content-end">
+            {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
+        </div>
             <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-striped">
                     <thead>
