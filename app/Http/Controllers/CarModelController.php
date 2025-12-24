@@ -116,7 +116,7 @@ protected function makeSlugUnique($slug, $ignoreId = null)
 }
 public function search(Request $request)
 {
-    $perPage = $request->input('per_page', 100);
+   
     $search  = $request->input('search');
 
     $models = CarModels::with('make')
@@ -127,7 +127,7 @@ public function search(Request $request)
                   });
         })
         ->orderBy('name', 'ASC')
-        ->paginate($perPage)
+    
         ->appends($request->query());
 
     $makes = CarMakes::orderBy('name', 'ASC')->get();
