@@ -536,3 +536,6 @@ Route::post('/admin/makes/search', [CarMakeController::class, 'search'])
 
 
     Route::post('/car-models/search', [CarModelController::class, 'search'])->name('model.search');
+
+Route::get('/admin/parts/search', [SparePartsController::class, 'search'])
+    ->name('parts.search');

@@ -104,4 +104,24 @@ public function index(Request $request)
         $sparePart->delete();
         return redirect()->back()->with('success', 'Spare part deleted successfully!');
     }
+    public function search(Request $request)
+{
+    $search = $request->input('search');
+
+    $spareParts = SpareParts::with('category')
+        ->when($search, function($query, $search){
+            $query->where('name', 'LIKE', '%' . $search . '%')
+                  ->orWhere('oem_number', 'LIKE', '%' . $search . '%')
+                  ->orWhereHas('category', function($q) use ($search) {
+                      $q->where('name', 'LIKE', '%' . $search . '%');
+                  });
+        })
+        ->orderBy('name', 'ASC')
+        ->paginate(100)  // pagination 100 per page
+        ->appends($request->query());
+
+    $categories = PartCategory::orderBy('name')->get();
+
+    return view('adminPanel.parts.show', compact('spareParts', 'categories'));
+}
 }

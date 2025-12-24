@@ -81,7 +81,17 @@
                         </div>
                     </div>
                 </div>
-              
+              <form method="GET" action="{{ route('parts.search') }}" class="mb-3 d-flex justify-content-end gap-2">
+    <input
+        type="text"
+        name="search"
+        class="form-control w-25"
+        placeholder="Search Spare Part..."
+        value="{{ request('search') }}"
+    >
+    <button class="btn btn-primary">Search</button>
+    <a href="{{ route('spareparts.index') }}" class="btn btn-secondary">Reset</a>
+</form>
                 <div class="card-body">
         <div class="mb-3">
     {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
