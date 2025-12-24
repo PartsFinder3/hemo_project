@@ -81,7 +81,7 @@
                         Search
                     </button>
 
-                    <a href="{{ route('makes.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('makes.show') }}" class="btn btn-secondary">
                         Reset
                     </a>
 
