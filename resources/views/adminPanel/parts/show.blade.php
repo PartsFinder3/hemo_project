@@ -81,17 +81,26 @@
                         </div>
                     </div>
                 </div>
-              <form method="post" action="{{ route('parts.search') }}" class="mb-3 d-flex justify-content-end gap-2">
+ <form method="POST"
+      action="{{ route('parts.search') }}"
+      class="mb-3 d-flex justify-content-end gap-2">
+
+    @csrf
+
     <input
         type="text"
         name="search"
         class="form-control w-25"
-        placeholder="Search Spare Part..."
-        value="{{ request('search') }}"
+        placeholder="Search Car Make..."
     >
+
     <button class="btn btn-primary">Search</button>
-    <a href="{{ route('spareparts.show') }}" class="btn btn-secondary">Reset</a>
+
+    <a href="{{ route('spareparts.show') }}" class="btn btn-secondary">
+        Reset
+    </a>
 </form>
+
                 <div class="card-body">
         <div class="mb-3">
     {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
