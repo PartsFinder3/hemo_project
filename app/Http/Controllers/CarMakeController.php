@@ -95,21 +95,21 @@ class CarMakeController extends Controller
 
   public function search(Request $request)
 {
-    $perPage = $request->input('per_page', 100);
+   
     $search  = $request->input('search');
 
     $carMakes = CarMakes::when($search, function ($query, $search) {
             $query->where('name', 'LIKE', '%' . $search . '%');
         })
         ->orderBy('name', 'ASC')
-        ->paginate($perPage)
+       
         ->appends($request->query());
 
     $totalMakes = CarMakes::count();
 
     return view('adminPanel.makes.show', compact(
         'carMakes',
-        'perPage',
+       
         'totalMakes'
     ));
 }
