@@ -524,30 +524,20 @@ public function sendProductInquiry(Request $request)
 
 public function blogs(Request $request)
 {
-    $host = $request->getHost();
+    $host = str_replace('www.', '', $request->getHost());
 
-    $Domains = Domain::all();
-    $currentDomain = $Domains->first(function ($domain) use ($host) {
-        return $domain->domain_url == $host;
-    });
+    $currentDomain = Domain::where('domain_url', $host)->first();
 
-    $domain_id = $currentDomain ? $currentDomain->id : null;
+    $domain_id = $currentDomain?->id;
 
     $blogs = Blogs::where('domain_id', $domain_id)->latest()->get();
     $categories = BlogCategory::all();
 
-    $meta = [
-        'title' => "Auto Spare Parts Blog UAE | Guides, Tips & Updates – PartsFinder",
-        'description' => "Read the PartsFinder blog for auto spare parts guides, buying tips, market updates, and helpful information for car owners in UAE.",
-        'structure_data' => json_encode([
-            "@context" => "https://schema.org",
-            "@type" => "WebSite",
-            "name" => "PartsFinder Blog",
-            "url" => url()->current()
-        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
-    ];
-
-    return view('Frontend.blogs.index', compact('blogs', 'currentDomain', 'categories', 'meta'));
+    return view('Frontend.blogs.index', compact(
+        'blogs',
+        'currentDomain',
+        'categories'
+    ));
 }
 
 
