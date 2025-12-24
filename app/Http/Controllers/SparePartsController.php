@@ -117,7 +117,7 @@ public function index(Request $request)
                   });
         })
         ->orderBy('name', 'ASC')
-        ->paginate(100)  // pagination 100 per page
+      
         ->appends($request->query());
 
     $categories = PartCategory::orderBy('name')->get();
