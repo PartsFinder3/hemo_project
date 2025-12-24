@@ -12,15 +12,14 @@ class CarModelController extends Controller
 public function index(Request $request)
 {
     // Get per page from request, default 100
-    $perPage = $request->input('per_page', 100);
-
+    
     // Get models with their makes, order by name, and paginate
-   $models = CarModels::with('make')->orderBy('name', 'ASC')->paginate($perPage);
+   $models = CarModels::with('make')->orderBy('name', 'ASC')->paginate(100);
 
     // Get all makes for selection/dropdown
     $makes = CarMakes::orderBy('name', 'ASC')->get();
 
-    return view('adminPanel.carModels.show', compact('models', 'makes', 'perPage'));
+    return view('adminPanel.carModels.show', compact('models', 'makes'));
 }
 
 
@@ -114,5 +113,25 @@ protected function makeSlugUnique($slug, $ignoreId = null)
     }
 
     return $slug;
+}
+public function search(Request $request)
+{
+    $perPage = $request->input('per_page', 100);
+    $search  = $request->input('search');
+
+    $models = CarModels::with('make')
+        ->when($search, function($query, $search){
+            $query->where('name', 'LIKE', '%' . $search . '%')
+                  ->orWhereHas('make', function($q) use ($search) {
+                      $q->where('name', 'LIKE', '%' . $search . '%');
+                  });
+        })
+        ->orderBy('name', 'ASC')
+        ->paginate($perPage)
+        ->appends($request->query());
+
+    $makes = CarMakes::orderBy('name', 'ASC')->get();
+
+    return view('adminPanel.carModels.show', compact('models', 'makes', 'perPage'));
 }
 }

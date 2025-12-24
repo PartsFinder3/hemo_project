@@ -533,3 +533,6 @@ Route::get('/{any}', function ($any) {
 })->where('any', '.*');
 Route::post('/admin/makes/search', [CarMakeController::class, 'search'])
     ->name('makes.search');
+
+
+    Route::get('/car-models/search', [CarModelController::class, 'search'])->name('model.search');
