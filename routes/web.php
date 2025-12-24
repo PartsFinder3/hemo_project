@@ -532,5 +532,5 @@ Route::get('/{any}', function ($any) {
     abort(404);
 })->where('any', '.*');
 
-Route::get('/admin/seach', [CarMakeController::class, 'search'])
+Route::get('/admin/search', [CarMakeController::class, 'search'])
     ->name('makes.search');

@@ -71,14 +71,14 @@
              <form method="GET"
       action="{{ route('makes.search') }}"
       class="mb-3 d-flex justify-content-end gap-2">
-       @csrf
-    <input
-        type="text"
-        name="search"
-        class="form-control w-25"
-        placeholder="Search Car Make..."
-        value="{{ request('search') }}"
-    >
+   
+            <input
+                type="text"
+                name="search"
+                class="form-control w-25"
+                placeholder="Search Car Make..."
+                value="{{ request('search') }}"
+            >
 
     <button class="btn btn-primary">
         Search
