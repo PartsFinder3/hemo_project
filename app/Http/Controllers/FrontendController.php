@@ -746,70 +746,41 @@ public function generateSeoMake($id)
             [
                 'role' => 'user',
                 'content' => "
-                Write SEO-optimized content for an auto spare parts website.
+               Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
 
 Brand: {$brand}
 Target Country: UAE
 Content Placement: Bottom of brand/category page
 Search Intent: Commercial + Informational
 
-OUTPUT FORMAT RULES (MANDATORY):
-- Use <h1>, <h2>, and <p> HTML tags only
-- Every paragraph MUST be wrapped inside <p></p>
-- Do NOT use markdown symbols (#, *, -, **)
-- Do NOT use <ul>, <ol>, or <li>
-- Lists must be written as separate <p> lines
-- Plain HTML output only
-- No explanations or extra text
-
-CONTENT REQUIREMENTS:
-- Around 500 words total
-- Professional, clear, SEO-focused tone
-- No hype or storytelling
+Guidelines:
+- Around 450–550 words
+- Professional, informative tone
+- No hype or sales language
 - No competitor mentions
 - No call-to-action buttons
+- Plain text output
+- Use clear headings and short paragraphs
+- Headings should vary naturally based on the brand
+- Do not follow a fixed outline or repeated structure
 
-STRUCTURE (EXACT ORDER):
+Content Focus:
+- Used and second-hand auto spare parts
+- Availability and affordability in UAE
+- Brand reliability and market presence
+- Common replacement parts and ownership considerations
+- Practical guidance for buyers and vehicle owners
 
-<h1>Buy Quality Used {$brand} Spare Parts in UAE</h1>
-
-<h2>Buy Quality Used Spare Parts for {$brand}</h2>
-<p>Intro paragraph focusing on used and second-hand spare parts, affordability, availability across UAE, compatibility, and reliability. Naturally include keywords: used {$brand} spare parts, {$brand} parts for sale in UAE, second hand auto parts UAE.</p>
-
-<h2>Overview of {$brand}</h2>
-<p>Brief factual background covering brand origin, history, reputation for reliability and performance, and popularity in the UAE market.</p>
-
-<h2>Common {$brand} Spare Parts Available</h2>
-<p>Short introductory paragraph.</p>
-<p>Engine components</p>
-<p>Gearbox and transmission parts</p>
-<p>Suspension and steering components</p>
-<p>Electrical systems and sensors</p>
-<p>Body and interior parts</p>
-
-<h2>What to Do If {$brand} Parts Fail</h2>
-<p>Explain why parts wear out over time, why timely replacement matters, and why used spare parts are a cost-effective option in the UAE.</p>
-
-<h2>How to Identify a Faulty {$brand} Part</h2>
-<p>Describe dashboard warning lights, reduced performance, unusual sounds, and basic fault awareness without technical depth.</p>
-
-<h2>How Replacement Works</h2>
-<p>Explain identifying the correct part, matching by model and engine type, and installation through professional garages or workshops.</p>
-
-<h2>Targeted Keywords</h2>
-<p>Provide 8–12 SEO keywords, each written on a separate line inside its own <p> tag.</p>
-
-<h2>Common Buyer Questions</h2>
-<p>Provide 5–6 buyer questions, each written on a separate line inside its own <p> tag.</p>
-
-SEO RULES:
-- Include the primary keyword naturally in the first 100 words and in the conclusion
+SEO Rules:
+- Naturally include “used {$brand} spare parts” within the first 100 words
+- Use related keywords organically (UAE, auto parts, second hand car parts)
 - No keyword stuffing
-- Short paragraphs
-- Skimmable structure
+- Keep content helpful and readable
 
-Output only the HTML content above.
-Do not repeat or explain the instructions.
+Output only the final content.
+Do not explain the process.
+
+
 
 "
             ]
