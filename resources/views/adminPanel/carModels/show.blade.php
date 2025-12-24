@@ -100,7 +100,6 @@
 
     <a href="{{ route('model.show') }}" class="btn btn-secondary">Reset</a>
 
-    <input type="hidden" name="per_page" value="{{ request('per_page', $perPage) }}">
 </form>
             <!-- Per Page Selection -->
               <div class="mb-3 d-flex justify-content-end">
