@@ -118,7 +118,7 @@ public function index(Request $request)
         })
         ->orderBy('name', 'ASC')
        
-        ->appends($request->query());
+        ->get();
 
     $categories = PartCategory::orderBy('name')->get();
 
