@@ -88,7 +88,7 @@
         Reset
     </a>
 
-    <input type="hidden" name="per_page" value="{{ request('per_page', $perPage) }}">
+    
 </form>
             <!-- Per Page Selection -->
            
