@@ -71,7 +71,7 @@
              <form method="GET"
       action="{{ route('makes.search') }}"
       class="mb-3 d-flex justify-content-end gap-2">
-
+       @csrf
     <input
         type="text"
         name="search"
