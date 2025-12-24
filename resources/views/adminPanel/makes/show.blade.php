@@ -89,12 +89,13 @@
 </form>
 
             <!-- Per Page Selection -->
-              <div class="mb-3">
-    @if($carMakes->hasPages())
+    
+               
+<div class="mb-3">
+    @if($carMakes instanceof \Illuminate\Pagination\LengthAwarePaginator && $spareParts->hasPages())
         {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
     @endif
 </div>
-               
             <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
                 <table class="table table-striped">
                     <thead>
