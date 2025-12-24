@@ -126,8 +126,7 @@ public function search(Request $request)
                   });
         })
         ->orderBy('name', 'ASC')
-        ->paginate(100) // fixed 100 per page
-        ->appends($request->query());
+        ->get();
 
     $makes = CarMakes::orderBy('name', 'ASC')->get();
 
