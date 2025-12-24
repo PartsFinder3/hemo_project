@@ -79,8 +79,7 @@ public function index(Request $request)
         ->paginate(8);
     $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
     $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
-    $meta['structure_data'] = <<<JSON
-<script type="application/ld+json">
+   $meta['structure_data'] = <<<JSON
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -91,62 +90,11 @@ public function index(Request $request)
       "url": "https://{$host}/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://{$host}/storage/logo/1766031053.webp"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+971502566002",
-        "contactType": "customer service",
-        "areaServed": "AE",
-        "availableLanguage": ["English", "Arabic"]
-      },
-      "sameAs": [
-        "https://www.facebook.com/partsfinderuae/",
-        "https://medium.com/@partsfinder",
-        "https://www.pinterest.com/partsfinderae/"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://{$host}/#website",
-      "url": "https://{$host}/",
-      "name": "PartsFinder UAE",
-      "publisher": {
-        "@id": "https://{$host}/#organization"
-      },
-      "inLanguage": "en"
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://{$host}/#webpage",
-      "url": "https://{$host}/",
-      "name": "PartsFinder UAE – Auto Spare Parts Sourcing Platform",
-      "description": "PartsFinder UAE helps drivers and workshops source auto spare parts from verified sellers across all UAE emirates.",
-      "publisher": {
-        "@id": "https://{$host}/#organization"
-      },
-      "isPartOf": {
-        "@id": "https://{$host}/#website"
-      },
-      "inLanguage": "en"
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://{$host}/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How does PartsFinder help me locate car spare parts?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "PartsFinder connects you with multiple UAE-based spare parts suppliers through a single request, allowing you to compare availability, pricing, and delivery options."
-          }
-        }
-      ]
+        "url": "https://partsfinder.ae/storage/logo/1766031053.webp"
+      }
     }
   ]
 }
-</script>
 JSON;
     return view('Frontend.index', compact(
         'carMakes',
