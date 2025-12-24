@@ -167,9 +167,11 @@
             </div>
 
             <!-- Pagination -->
-            <div class="mt-3">
-                {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
-            </div>
+        <div class="mb-3">
+    @if($carMakes instanceof \Illuminate\Pagination\LengthAwarePaginator && $carMakes->hasPages())
+        {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
+    @endif
+</div>
 
         </div>
     </section>
