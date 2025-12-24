@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-              <form method="GET" action="{{ route('parts.search') }}" class="mb-3 d-flex justify-content-end gap-2">
+              <form method="post" action="{{ route('parts.search') }}" class="mb-3 d-flex justify-content-end gap-2">
     <input
         type="text"
         name="search"
