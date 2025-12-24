@@ -19,7 +19,7 @@ public function index(Request $request)
 
     $categories = PartCategory::orderBy('name')->get();
 
-    return view('adminPanel.parts.show', compact('spareParts', 'categories', 'perPage'));
+    return view('adminPanel.parts.show', compact('spareParts', 'categories'));
 }
 
     public function store(Request $request)
