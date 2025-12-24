@@ -90,7 +90,7 @@
         value="{{ request('search') }}"
     >
     <button class="btn btn-primary">Search</button>
-    <a href="{{ route('spareparts.index') }}" class="btn btn-secondary">Reset</a>
+    <a href="{{ route('spareparts.show') }}" class="btn btn-secondary">Reset</a>
 </form>
                 <div class="card-body">
         <div class="mb-3">
