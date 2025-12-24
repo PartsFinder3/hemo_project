@@ -116,7 +116,6 @@ protected function makeSlugUnique($slug, $ignoreId = null)
 }
 public function search(Request $request)
 {
-   
     $search  = $request->input('search');
 
     $models = CarModels::with('make')
@@ -127,11 +126,11 @@ public function search(Request $request)
                   });
         })
         ->orderBy('name', 'ASC')
-    
-        ->appends($request->query());
+        ->get(); // ✅ get() returns all results without pagination
 
     $makes = CarMakes::orderBy('name', 'ASC')->get();
 
-    return view('adminPanel.carModels.show', compact('models', 'makes', 'perPage'));
+    return view('adminPanel.carModels.show', compact('models', 'makes'));
 }
+
 }
