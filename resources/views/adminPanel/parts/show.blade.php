@@ -102,10 +102,11 @@
 </form>
 
                 <div class="card-body">
-     <div class="mb-3">
-    @if($spareParts->hasPages())
+          <div class="mb-3">
+    @if($spareParts instanceof \Illuminate\Pagination\LengthAwarePaginator && $spareParts->hasPages())
         {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
     @endif
+</div>
 </div>
          <div class="card-body table-responsive" style="max-height: 500px; overflow-y: auto;">
     <table class="table table-striped">
@@ -179,8 +180,10 @@
         </tbody>
     </table>
 </div>
-        <div class="mb-3">
-    {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
+     <div class="mb-3">
+    @if($spareParts instanceof \Illuminate\Pagination\LengthAwarePaginator && $spareParts->hasPages())
+        {{ $spareParts->appends(request()->query())->links('pagination::bootstrap-5') }}
+    @endif
 </div>
                 </div>
             </div>
