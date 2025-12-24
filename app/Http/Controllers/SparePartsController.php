@@ -12,10 +12,10 @@ class SparePartsController extends Controller
 {
 public function index(Request $request)
 {
-    $perPage = $request->input('per_page', 100); // default 100
+  
     $spareParts = SpareParts::with('category')
         ->orderBy('name', 'ASC')
-        ->paginate($perPage);
+        ->paginate(100);
 
     $categories = PartCategory::orderBy('name')->get();
 
