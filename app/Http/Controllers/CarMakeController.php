@@ -101,7 +101,7 @@ public function search(Request $request)
             $query->where('name', 'LIKE', '%' . $search . '%');
         })
         ->orderBy('name', 'ASC')
-        ->paginate(100);
+        ->get();
 
     $totalMakes = CarMakes::count();
 
