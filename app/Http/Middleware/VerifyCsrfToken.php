@@ -12,7 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
    protected $except = [
-        'buyers/inquiry/send',
+          
+        '/buyers/inquiry/send',
         'partsfinderoman.ae',
         'https://partsfinder.ge',
         '/partsfinder/public/buyers/inquiry/send'
