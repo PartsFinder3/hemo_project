@@ -77,7 +77,75 @@ public function index(Request $request)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
-    
+    $meta['structure_data'] = <<<JSON
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://{$host}/#organization",
+      "name": "PartsFinder UAE",
+      "url": "https://{$host}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://{$host}/storage/logo/1766031053.webp"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+971502566002",
+        "contactType": "customer service",
+        "areaServed": "AE",
+        "availableLanguage": ["English", "Arabic"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/partsfinderuae/",
+        "https://medium.com/@partsfinder",
+        "https://www.pinterest.com/partsfinderae/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://{$host}/#website",
+      "url": "https://{$host}/",
+      "name": "PartsFinder UAE",
+      "publisher": {
+        "@id": "https://{$host}/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://{$host}/#webpage",
+      "url": "https://{$host}/",
+      "name": "PartsFinder UAE – Auto Spare Parts Sourcing Platform",
+      "description": "PartsFinder UAE helps drivers and workshops source auto spare parts from verified sellers across all UAE emirates.",
+      "publisher": {
+        "@id": "https://{$host}/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://{$host}/#website"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://{$host}/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does PartsFinder help me locate car spare parts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PartsFinder connects you with multiple UAE-based spare parts suppliers through a single request, allowing you to compare availability, pricing, and delivery options."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+JSON;
     return view('Frontend.index', compact(
         'carMakes',
         'domain',
@@ -92,7 +160,8 @@ public function index(Request $request)
         'cities',
         'getFAQS',
         'domain_map',
-        'ads'
+        'ads',
+        'meta'
     ));
 }
 
