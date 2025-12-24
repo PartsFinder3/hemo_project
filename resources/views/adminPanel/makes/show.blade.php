@@ -92,7 +92,7 @@
     
                
 <div class="mb-3">
-    @if($carMakes instanceof \Illuminate\Pagination\LengthAwarePaginator && $spareParts->hasPages())
+    @if($carMakes instanceof \Illuminate\Pagination\LengthAwarePaginator && $carMakes->hasPages())
         {{ $carMakes->appends(request()->query())->links('pagination::bootstrap-5') }}
     @endif
 </div>
