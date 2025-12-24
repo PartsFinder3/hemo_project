@@ -77,6 +77,7 @@ public function index(Request $request)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
+    $meta['title']="Partsfinder UAE";
     $meta['structure_data'] = <<<JSON
 <script type="application/ld+json">
 {
