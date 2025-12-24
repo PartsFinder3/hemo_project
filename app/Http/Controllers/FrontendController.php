@@ -879,7 +879,7 @@ Do not explain the process.
 
     SparePartSeo::updateOrCreate(
         ['part_id' => $part->id],
-        ['seo_content_make' => $response->choices[0]->message->content]
+        ['content' => $response->choices[0]->message->content]
     );
 
     return back()->with('success', "SEO content generated successfully for {$part->name}");
