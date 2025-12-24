@@ -108,9 +108,9 @@
 </form>
 
            
-       
-   <div class="mb-3">
-    @if($models->hasPages())
+
+       <div class="mb-3">
+    @if($models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages())
         {{ $models->appends(request()->query())->links('pagination::bootstrap-5') }}
     @endif
 </div>
@@ -173,9 +173,12 @@
             </div>
 
             <!-- Pagination -->
-            <div class="mt-3">
-                {{ $models->appends(request()->query())->links('pagination::bootstrap-5') }}
-            </div>
+      <div class="mb-3">
+    @if($models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages())
+        {{ $models->appends(request()->query())->links('pagination::bootstrap-5') }}
+    @endif
+</div>
+
 
         </div>
     </section>
