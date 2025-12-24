@@ -126,11 +126,11 @@ public function search(Request $request)
                   });
         })
         ->orderBy('name', 'ASC')
-        ->get(); // ✅ get() returns all results
+        ->paginate(100) // fixed 100 per page
+        ->appends($request->query());
 
     $makes = CarMakes::orderBy('name', 'ASC')->get();
 
     return view('adminPanel.carModels.show', compact('models', 'makes'));
 }
-
 }
