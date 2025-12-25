@@ -263,7 +263,7 @@
                 <div class="mt-2">
                     <div class="flex justify-between mb-1">
                         <span class="text-gray-600 text-sm" style="color: black">Percentage </span>
-                        <span class="text-yellow-700 text-sm font-bold" style="color: black; paddind-left:10px;">{{$percentDifferencetoday}}</span>
+                        <span class="text-yellow-700 text-sm font-bold" style="color: black; margin-left: 10px;">{{$percentDifferencetoday}}</span>
                     </div>
                     <div class="h-2 w-full bg-yellow-200 rounded">
                         <div class="h-2 bg-yellow-400 rounded" style="width: 71.7%;"></div>
