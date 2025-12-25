@@ -496,6 +496,9 @@
                 </a>
             @endforeach
         </div>
+        <div class="view-all mt-4 text-center">
+        <a href="" class="btn btn-primary px-4 py-2">View All</a>
+    </div>
     </section>
     <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
