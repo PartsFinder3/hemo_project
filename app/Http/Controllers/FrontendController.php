@@ -914,8 +914,8 @@ Do not explain the process.
     return response()->json($models);
 }
 
-      function United_analytic(){
-        $domain = 'partsfinder.ae';
+      function United_analytic($domain){
+       
 
         $todayData = Buyers::where('domain', $domain)
                 ->whereDate('created_at', Carbon::today())
