@@ -121,13 +121,7 @@
             @endforeach
         </div>
     </section>
-<section class="seo_content">
-    @if(!empty($content))
-        {!! $content->content !!}
-    @endif
-</section>
-    <!-- Locations -->
-<section class="abd-locations-section">
+    <section class="abd-locations-section">
     <div class="abd-locations-header">
         <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the UAE</h2>
     </div>
@@ -142,6 +136,13 @@
         @endif
     </div>
 </section>
+
+<section class="seo_content">
+    @if(!empty($content))
+        {!! $content->content !!}
+    @endif
+</section>
+    <!-- Locations -->
 
 
 
