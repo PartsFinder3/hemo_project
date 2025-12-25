@@ -189,7 +189,7 @@
                             <a href="{{ route('usnited.analyticks','partsfinderoman.com') }}" class="submenu-link">Oman</a>
                         </li>
                          <li class="submenu-item ">
-                            <a href="{{ route('usnited.analyticks','https://partsfinder.ge') }}" class="submenu-link">Gorgeia</a>
+                            <a href="{{ route('usnited.analyticks','partsfinder.ge') }}" class="submenu-link">Gorgeia</a>
                         </li>
                     </ul>
                 </li>
