@@ -384,13 +384,13 @@
 .seo_content h1 {
     font-size: 2.25rem;
   
-    padding-bottom: 10px;
+ 
 }
 
 .seo_content h2 {
     font-size: 1.875rem;
   
-    padding-left: 7px;
+   
 }
 
 .seo_content h3 {
