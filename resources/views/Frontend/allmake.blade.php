@@ -8,6 +8,7 @@
 
         <div class="brands">
             @foreach ($carMakes as $make)
+             @if($make->logo)
                 <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
                     @if($make->logo)
                
@@ -17,6 +18,7 @@
                     @endif
                     <h4>{{ strtoupper($make->name) }}</h4>
                 </a>
+                @endif
             @endforeach
         </div>
         
