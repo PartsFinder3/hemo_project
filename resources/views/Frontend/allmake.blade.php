@@ -8,9 +8,14 @@
 
         <div class="brands">
             @foreach ($carMakes as $make)
-             @if($make->logo)
+            @php
+                 use App\Models\SeoContentMake;
+                 $Content=SeoContentMake::where('make_id',$make->id)->first();
+             @endphp
+             @if($make->logo && $Content)
+             
                 <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
-                    @if($make->logo)
+                    @if($make->logo )
                
                       <img src="{{ asset('storage/' . $make->logo) }}" alt="{{ $make->name }}">
                       
