@@ -402,7 +402,7 @@ Route::get('/generate-seo/parts/{id}', [FrontendController::class, 'generateSeoP
 Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSuccess'])->name('generate.seo.success');
 Route::get('/United/data/analytic/{domain}', [FrontendController::class, 'United_analytic'])
     ->name('usnited.analyticks');
-Route::get('/analytics/queries-data', [FrontendController::class, 'getQueriesData']);
+Route::get('/analytics/queries-data/{domain}', [FrontendController::class, 'getQueriesData']);
 
 Route::fallback(function () {
     

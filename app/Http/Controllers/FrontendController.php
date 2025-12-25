@@ -915,7 +915,7 @@ Do not explain the process.
 }
 
       function United_analytic($domain){
-       
+          
 
         $todayData = Buyers::where('domain', $domain)
                 ->whereDate('created_at', Carbon::today())
@@ -951,21 +951,18 @@ if ($yesterdayData == 0) {
 } else {
     $percentDifferencetoday = round((($todayData - $yesterdayData) / $yesterdayData) * 100, 1);
 }
-        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek'));
+        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek','domain'));
       }
 
 
-
-public function getQueriesData(Request $request)
+public function getQueriesData(Request $request, $domain)
 {
-    $domain = 'partsfinder.ae';
     $range = $request->input('range', '3m');
 
     $labels = [];
     $data = [];
 
     if ($range == '7d') {
-        // Last 7 days (day-wise)
         for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::today()->subDays($i);
             $labels[] = $date->format('d M');
@@ -974,7 +971,6 @@ public function getQueriesData(Request $request)
                             ->count();
         }
     } elseif ($range == '30d') {
-        // Last 30 days (weekly aggregate)
         for ($i = 4; $i >= 0; $i--) {
             $start = Carbon::today()->subWeeks($i)->startOfWeek();
             $end = Carbon::today()->subWeeks($i)->endOfWeek();
@@ -984,8 +980,7 @@ public function getQueriesData(Request $request)
                             ->count();
         }
     } else {
-        // Month-wise for 3m, 6m, 1y
-        $monthsCount = 3; // default 3 months
+        $monthsCount = 3;
         if ($range == '6m') $monthsCount = 6;
         if ($range == '1y') $monthsCount = 12;
 
@@ -1004,7 +999,6 @@ public function getQueriesData(Request $request)
         'data' => $data,
     ]);
 }
-
 
 
 

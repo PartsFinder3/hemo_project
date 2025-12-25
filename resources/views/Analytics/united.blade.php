@@ -340,14 +340,16 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('queriesChart').getContext('2d');
     const timeRange = document.getElementById('timeRange');
-    let queriesChart; // global chart instance
+    let queriesChart; // Global chart instance
 
-    // Function to render chart
+    // Dynamic domain from Blade
+    const domain = "{{ $domain ?? 'partsfinder.ae' }}";
+
+    // Function to render Chart.js chart
     function renderChart(labels, data) {
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, 'rgba(67, 97, 238, 0.3)');
@@ -418,15 +420,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Function to fetch data
+    // Function to fetch data via AJAX
     function fetchChartData(range) {
         const canvasContainer = document.querySelector('.chart-container');
         const canvas = canvasContainer.querySelector('canvas');
 
-        // Optional loading effect
+        // Optional: fade chart while loading
         canvas.style.opacity = 0.3;
 
-        fetch(`/analytics/queries-data?range=${range}`)
+        fetch(`/analytics/queries-data/${domain}?range=${range}`)
             .then(res => res.json())
             .then(res => {
                 canvas.style.opacity = 1;
@@ -438,16 +440,15 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Initial load: 3 months
+    // Initial chart load: 3 months
     fetchChartData('3m');
 
-    // Time range change
+    // Time range selector change
     if (timeRange) {
         timeRange.addEventListener('change', function() {
             fetchChartData(this.value);
         });
     }
 });
-
 </script>
 @endsection
