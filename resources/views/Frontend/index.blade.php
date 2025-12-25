@@ -485,7 +485,12 @@
 
         <div class="brands">
             @foreach ($carMakes as $make)
-                <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
+             @php
+              
+                 $Content=SeoContentMake::where('make_id',$make->id)->first();
+                 @endphp
+                 @if($make->logo && $Content)
+                 <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
                     @if($make->logo)
                
                       <img src="{{ asset('storage/' . $make->logo) }}" alt="{{ $make->name }}">
@@ -494,6 +499,7 @@
                     @endif
                     <h4>{{ strtoupper($make->name) }}</h4>
                 </a>
+                 @endif
             @endforeach
         </div>
         <div class="view-all mt-4 text-center">
