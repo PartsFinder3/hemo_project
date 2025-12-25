@@ -915,6 +915,8 @@ Do not explain the process.
 }
 
       function United_analytic(){
+        $data=Buyers::where('domain','partsfinderoman.com')->get();
+        dd($data);
         return view('Analytics.united');
       }
 
