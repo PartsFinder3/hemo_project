@@ -243,6 +243,7 @@
                 <div class="country-badge">
                     <i class="bi bi-geo-alt"></i>
                     @php
+                    use App\Models\Domain;
                          $currentDomain = Domain::where('domain_url', $thisdomain)->first();
                     @endphp
                     {{$currentDomain->name}}
