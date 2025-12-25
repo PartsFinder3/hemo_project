@@ -2,7 +2,7 @@
 @section('main-section')
 <section class="carMakes">
         <div class="section-text">
-            <h3>TOP MAKES</h3>
+           
             <h2>Browse By Brands</h2>
         </div>
 
