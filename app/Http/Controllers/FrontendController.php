@@ -936,7 +936,7 @@ Do not explain the process.
         $last3MonthsData = Buyers::where('domain', $domain)
             ->whereDate('created_at', '>=', Carbon::today()->subMonths(3))
             ->get();
-        dd($last3MonthsData);
+        dd($todayData);
         return view('Analytics.united');
       }
 
