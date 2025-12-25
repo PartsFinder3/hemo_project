@@ -951,7 +951,7 @@ if ($yesterdayData == 0) {
 } else {
     $percentDifferencetoday = round((($todayData - $yesterdayData) / $yesterdayData) * 100, 1);
 }
-        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek'));
+        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek','domain'));
       }
 
 
