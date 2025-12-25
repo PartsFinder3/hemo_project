@@ -60,11 +60,10 @@ public function index(Request $request)
 
     // ===== NORMAL DATA (NO CACHE) =====
     $getFAQS = Faq::where('domain_id', $domain_id)->get();
-    $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
+     $carMakes = CarMakes::paginate(48); 
     $domain = Domain::first();
     $models = CarModels::all();
-   
-    $makes = CarMakes::paginate(48);
+    $makes = CarMakes::all();
     $years = Years::orderBy('year', 'desc')->get();
     $parts = SpareParts::all();
     $carAds = CarAds::where('is_approved', true)->latest()->get();
