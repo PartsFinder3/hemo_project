@@ -242,7 +242,7 @@
             <div class="d-flex align-items-center gap-3">
                 <div class="country-badge">
                     <i class="bi bi-geo-alt"></i>
-                    UAE Region
+                    {{$domain->name}}
                 </div>
                 <span class="text-muted small">
                     <i class="bi bi-calendar3 me-1"></i>
