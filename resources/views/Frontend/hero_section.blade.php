@@ -394,7 +394,7 @@ margin-top:10px;
                 @csrf
             <div class="form-group" id="make-group">
     <select class="dropdown" id="car-make" name="car_make_id" required>
-         <option value="">Select make</option>
+         <option value="">Select Make</option>
         @foreach ($makes as $make)
             <option value="{{ $make->id }}">{{ $make->name }}</option>
         @endforeach
@@ -410,9 +410,9 @@ margin-top:10px;
 </div>
 <div class="form-group" id="year-group">
     <select class="dropdown" id="car-year" name="year_id"  required>
-         <option value="">Select year</option>
+         <option value="">Select Year</option>
 
-        <option value="">Select a year</option>
+        <option value="">Select a Year</option>
         @foreach ($years as $year)
             <option value="{{ $year->id }}">{{ $year->year }}</option>
         @endforeach
@@ -492,7 +492,7 @@ $(document).ready(function() {
 
         // Optional: focus/select2 refresh
         $('select[name="parts[]"]').select2({
-            placeholder: 'Select parts',
+            placeholder: 'Select Parts',
             width: '100%'
         });
     });
