@@ -4,6 +4,7 @@
     // اگر $image موجود نہیں تو default image use کرو
     $heroImage = $image ?? 'storage/profile_images/hero_section_image_1.png';
     use App\Models\SeoContentMake;
+    use App\Models\SparePartSeo;
 @endphp
 
 <!-- Preload hero image for better performance -->
@@ -451,10 +452,14 @@
 </div>
 
     </section>
-    <section class="spareParts">
+    <section class="spareParts" id="sParts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
+            @php
+                 $Content=SparePartSeo::where('part_id',$p->id)->first();
+                 @endphp
+                  @if($p->image && $Content)
              <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
                         href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
                 <div class="part-card">
@@ -469,8 +474,12 @@
                    
                 </div>
                  </a>
+                 @endif
             @endforeach
         </div>
+         <div class="col-12 d-flex justify-content-center mt-4">
+    {{ $sParts->fragment('sParts')->links('pagination::bootstrap-5') }}
+</div>
     </section>
    
 
