@@ -28,7 +28,7 @@ use App\Models\SeoTitle;
 use App\Models\SeoTamplate;
 use App\Models\SeoContentMake;
 use App\Models\SparePartSeo;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Shops;
 use Illuminate\Support\Facades\DB;
@@ -915,8 +915,28 @@ Do not explain the process.
 }
 
       function United_analytic(){
-        $data=Buyers::where('domain','partsfinderoman.com')->get();
-        dd($data);
+        $domain = 'partsfinder.ae';
+
+        // ===== Today =====
+        $todayData = Buyers::where('domain', $domain)
+            ->whereDate('created_at', Carbon::today())
+            ->get();
+
+        // ===== Yesterday =====
+        $yesterdayData = Buyers::where('domain', $domain)
+            ->whereDate('created_at', Carbon::yesterday())
+            ->get();
+
+        // ===== Last 7 Days =====
+        $lastWeekData = Buyers::where('domain', $domain)
+            ->whereDate('created_at', '>=', Carbon::today()->subDays(6))
+            ->get();
+
+        // ===== Last 3 Months =====
+        $last3MonthsData = Buyers::where('domain', $domain)
+            ->whereDate('created_at', '>=', Carbon::today()->subMonths(3))
+            ->get();
+        dd($last3MonthsData);
         return view('Analytics.united');
       }
 
