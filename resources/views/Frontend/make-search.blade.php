@@ -122,9 +122,19 @@
 
 @if(isset($Content->seo_content_make) && $Content->seo_content_make)
 <section class="seo_content">
-     <hr style="border-top: 4px solid #FF7100; margin: 30px 0;">
+     <hr style="
+    border: none;
+    border-top: 4px solid #FF7100;
+    opacity: 1;
+    margin: 30px 0;
+">
     {!! $Content->seo_content_make !!}
-    <hr style="border-top: 8px solid #FF7100; margin: 30px 0;">
+    <hr style="
+    border: none;
+    border-top: 4px solid #FF7100;
+    opacity: 1;
+    margin: 30px 0;
+">
 </section>
 
 @endif
