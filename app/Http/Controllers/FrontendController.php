@@ -63,7 +63,7 @@ public function index(Request $request)
     $carMakes = CarMakes::whereNotNull('logo')->take(60)->get();
     $domain = Domain::first();
     $models = CarModels::all();
-    $makes = CarMakes::take(48)->get();
+    $makes = CarMakes::pagination(48);
     $years = Years::orderBy('year', 'desc')->get();
     $parts = SpareParts::all();
     $carAds = CarAds::where('is_approved', true)->latest()->get();
