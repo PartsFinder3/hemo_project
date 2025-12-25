@@ -244,6 +244,7 @@ public function sendProductInquiry(Request $request)
 
     public function adByPart( Request $request, $partName, $id)
     {
+         $sParts = SpareParts::take(60)->get();
         $part = SpareParts::findOrFail($id);
          $seoTitle_t = SeoTitle::find($part->tamp_title_id);
            $meta['title'] = $seoTitle_t 
@@ -313,7 +314,8 @@ public function sendProductInquiry(Request $request)
             'cities',
             'getFAQS',
             'meta',
-            'content'
+            'content',
+            'sParts'
         ));
     }
 

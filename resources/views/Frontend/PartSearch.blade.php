@@ -66,7 +66,27 @@
 
         <div class="pagination" id="pagination1"></div>
     </section>
-
+ <section class="spareParts">
+        <h2>Popular Car Spare Parts in UAE</h2>
+        <div class="popular-part-container">
+            @foreach ($sParts as $p)
+             <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
+                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+                <div class="part-card">
+                    @if ($p->image)
+                        
+                      <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
+                    @else
+                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
+                    @endif
+                   
+                        {{ $p->name }}
+                   
+                </div>
+                 </a>
+            @endforeach
+        </div>
+    </section>
 <section class="seo_content">
     @if(!empty($content))
         {!! $content->content !!}
