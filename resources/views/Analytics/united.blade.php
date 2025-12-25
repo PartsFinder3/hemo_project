@@ -261,9 +261,9 @@
                 <p class="text-gray-700 mb-1 font-medium">Today</p>
                 <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $todayData }}</h2>
                 <div class="mt-2">
-                    <div class="flex justify-between mb-1"  style="color: black">
-                        <span class="text-gray-600 text-sm">Percentage</span>
-                        <span class="text-yellow-700 text-sm font-bold">{{$percentDifferencetoday}}</span>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-600 text-sm" style="color: black">Percentage</span>
+                        <span class="text-yellow-700 text-sm font-bold" style="color: black">{{$percentDifferencetoday}}</span>
                     </div>
                     <div class="h-2 w-full bg-yellow-200 rounded">
                         <div class="h-2 bg-yellow-400 rounded" style="width: 71.7%;"></div>
