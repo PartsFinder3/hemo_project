@@ -1001,7 +1001,7 @@ public function getQueriesData(Request $request, $domain)
 }
    function all_makes(){
     $carMakes=CarMakes::all();
-    return view('Frontend.allmake',compact('carMakes'))
+    return view('Frontend.allmake',compact('carMakes'));
    }
 
 
