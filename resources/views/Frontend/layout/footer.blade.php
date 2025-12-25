@@ -1,4 +1,9 @@
     <!-- Footer Section -->
+    <style>
+        .footer-section{
+            margin-top: 10px;
+        }
+    </style>
     <footer class="footer-section">
            @php
         use Illuminate\Support\Facades\Request;
