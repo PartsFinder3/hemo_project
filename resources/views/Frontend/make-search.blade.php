@@ -82,7 +82,27 @@
         @endforeach
     </div>
 </section>
-
+ <section class="spareParts">
+        <h2>Popular Car Spare Parts in UAE</h2>
+        <div class="popular-part-container">
+            @foreach ($sParts as $p)
+             <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
+                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+                <div class="part-card">
+                    @if ($p->image)
+                        
+                      <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
+                    @else
+                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
+                    @endif
+                   
+                        {{ $p->name }}
+                   
+                </div>
+                 </a>
+            @endforeach
+        </div>
+    </section>
 <!-- Locations Section -->
 <section class="abd-locations-section">
     <div class="abd-locations-header">
@@ -99,6 +119,7 @@
         @endif
     </div>
 </section>
+
 @if(isset($Content->seo_content_make) && $Content->seo_content_make)
 <section class="seo_content">
      <hr style="border-top: 4px solid #ff6a00; margin: 30px 0;">
@@ -146,7 +167,22 @@
         background-color: #f8f9fa;
         border-bottom: 1px solid #eee;
     }
-    
+    .part-card {
+    width: 250px;
+    height: 180px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.3s ease;
+}
     .image-container img {
         width: 100%;
         height: 100%;

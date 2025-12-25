@@ -331,6 +331,7 @@ public function sendProductInquiry(Request $request)
         $meta['description'] = $seoTemplate_d 
             ? str_replace('{brand}', $make->name, $seoTemplate_d->description) 
             : null;
+         $sParts = SpareParts::take(60)->get();
 
         // Structure data
         $meta['structure_data'] = <<<JSON
@@ -403,7 +404,8 @@ public function sendProductInquiry(Request $request)
             'domain',
             'getFAQS',
             'meta',
-            'Content'
+            'Content',
+            'sParts'
         ));
     }
 
