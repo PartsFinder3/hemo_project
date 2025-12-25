@@ -1,5 +1,9 @@
 @extends('Frontend.layout.main')
 @section('main-section')
+@php
+                 use App\Models\SeoContentMake;
+               
+             @endphp
 <section class="carMakes">
         <div class="section-text">
            
@@ -9,7 +13,7 @@
         <div class="brands">
             @foreach ($carMakes as $make)
             @php
-                 use App\Models\SeoContentMake;
+              
                  $Content=SeoContentMake::where('make_id',$make->id)->first();
              @endphp
              @if($make->logo && $Content)
