@@ -210,7 +210,9 @@
 
 /* Responsive */
 
-
+.footer-section{
+            margin-top: 20px !important;
+        }
 #productGrid1 {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
