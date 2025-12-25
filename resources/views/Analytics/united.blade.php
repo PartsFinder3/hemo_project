@@ -281,9 +281,7 @@
                 <h2 class="text-gray-900 font-bold text-2xl mb-2">{{$yesterdayData}}</h2>
                 <div class="mt-2">
                   
-                    <div class="h-2 w-full bg-green-200 rounded">
-                        <div class="h-2 bg-green-500 rounded" style="width: 71.7%;"></div>
-                    </div>
+                  
                 </div>
             </div>
             <div class="w-12 h-12 bg-green-200 rounded-lg flex items-center justify-center">
