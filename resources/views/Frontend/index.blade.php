@@ -4,7 +4,6 @@
     // اگر $image موجود نہیں تو default image use کرو
     $heroImage = $image ?? 'storage/profile_images/hero_section_image_1.png';
     use App\Models\SeoContentMake;
-    use App\Models\SparePartSeo;
 @endphp
 
 <!-- Preload hero image for better performance -->
@@ -456,9 +455,7 @@
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
-            @php
-                 $Content=SparePartSeo::where('part_id',$p->id)->first();
-                 @endphp
+            
              <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
                         href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
                 <div class="part-card">
