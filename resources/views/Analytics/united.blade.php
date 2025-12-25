@@ -257,7 +257,7 @@
         <!-- Prices Day -->
         <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
-                <p class="text-gray-700 mb-2 font-medium">Yesterday Day</p>
+                <p class="text-gray-700 mb-2 font-medium">last 3 month</p>
                 <h2 class="text-gray-900 font-bold mb-3">{{ $last3MonthsData }}</h2>
                 <div class="flex items-center gap-2">
                     <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
@@ -274,7 +274,7 @@
         <!-- Approved Queries -->
         <div class="bg-green-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
-                <p class="text-gray-700 mb-1 font-medium">Approved Queries</p>
+                <p class="text-gray-700 mb-1 font-medium">Last week</p>
                 <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $lastWeekData }}</h2>
                 <div class="mt-2">
                     <div class="flex justify-between mb-1">
