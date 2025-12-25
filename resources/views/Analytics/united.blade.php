@@ -280,10 +280,7 @@
                 <p class="text-gray-700 mb-1 font-medium">Yersterday</p>
                 <h2 class="text-gray-900 font-bold text-2xl mb-2">{{$yesterdayData}}</h2>
                 <div class="mt-2">
-                    <div class="flex justify-between mb-1">
-                        <span class="text-gray-600 text-sm">Approval Rate</span>
-                        <span class="text-green-700 text-sm font-bold">71.7%</span>
-                    </div>
+                  
                     <div class="h-2 w-full bg-green-200 rounded">
                         <div class="h-2 bg-green-500 rounded" style="width: 71.7%;"></div>
                     </div>
