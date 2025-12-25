@@ -23,4 +23,24 @@
         {{ $carMakes->links() }}
     </div>
     </section>
+
+    <style>
+    .make {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 150px;
+    height: 115px;
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    background: #fff;
+}
+</style>
 @endsection
