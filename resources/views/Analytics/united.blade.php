@@ -345,19 +345,18 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    const chartCard = document.querySelector('.card');
-    let queriesChart; // global variable for chart instance
+    const ctx = document.getElementById('queriesChart').getContext('2d');
+    const timeRange = document.getElementById('timeRange');
+    let queriesChart; // global chart instance
 
     // Function to render chart
     function renderChart(labels, data) {
-        const ctx = document.getElementById('queriesChart').getContext('2d');
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, 'rgba(67, 97, 238, 0.3)');
         gradient.addColorStop(1, 'rgba(67, 97, 238, 0.05)');
 
-        if (queriesChart) {
-            queriesChart.destroy(); // destroy previous chart if exists
-        }
+        // Destroy previous chart if exists
+        if (queriesChart) queriesChart.destroy();
 
         queriesChart = new Chart(ctx, {
             type: 'line',
@@ -382,146 +381,75 @@ document.addEventListener("DOMContentLoaded", function () {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'top' },
-                    tooltip: { mode: 'index', intersect: false }
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            font: { size: 12 }
+                        }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                        titleFont: { size: 13 },
+                        bodyFont: { size: 13 },
+                        padding: 12,
+                        cornerRadius: 8
+                    }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { callback: function(value) { return value.toLocaleString(); } }
+                        ticks: {
+                            font: { size: 11 },
+                            padding: 10,
+                            callback: function(value) { return value.toLocaleString(); }
+                        },
+                        grid: { color: 'rgba(0,0,0,0.04)', drawBorder: false }
+                    },
+                    x: {
+                        ticks: { font: { size: 11 }, padding: 10 },
+                        grid: { display: false }
                     }
-                }
-            }
-        });
-    }
-
-    // Initial chart load (default range: 3 months)
-    fetch(`/analytics/queries-data?range=3m`)
-        .then(res => res.json())
-        .then(res => {
-            renderChart(res.labels, res.data);
-        });
-
-    // ===== Time Range Selector =====
-    const timeRange = document.getElementById('timeRange');
-    if (timeRange) {
-        timeRange.addEventListener('change', function() {
-            const range = this.value;
-
-            // Show loading spinner
-            chartCard.innerHTML = `
-                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
-                    <div class="spinner-border text-primary mb-3" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="text-muted">Loading data for ${this.options[this.selectedIndex].text}...</p>
-                </div>
-            `;
-
-            // Fetch data via AJAX
-            fetch(`/analytics/queries-data?range=${range}`)
-                .then(res => res.json())
-                .then(res => {
-                    chartCard.innerHTML = `
-                        <div class="card-body p-4">
-                            <div class="chart-container">
-                                <canvas id="queriesChart"></canvas>
-                            </div>
-                        </div>
-                    `;
-                    renderChart(res.labels, res.data);
-                });
-        });
-    }
-});document.addEventListener("DOMContentLoaded", function () {
-    const chartCard = document.querySelector('.card');
-    let queriesChart; // global variable for chart instance
-
-    // Function to render chart
-    function renderChart(labels, data) {
-        const ctx = document.getElementById('queriesChart').getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(67, 97, 238, 0.3)');
-        gradient.addColorStop(1, 'rgba(67, 97, 238, 0.05)');
-
-        if (queriesChart) {
-            queriesChart.destroy(); // destroy previous chart if exists
-        }
-
-        queriesChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Queries',
-                    data: data,
-                    borderColor: '#4361ee',
-                    backgroundColor: gradient,
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: '#4361ee',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 3,
-                    pointRadius: 6,
-                    pointHoverRadius: 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'top' },
-                    tooltip: { mode: 'index', intersect: false }
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: { callback: function(value) { return value.toLocaleString(); } }
-                    }
-                }
+                interaction: { intersect: false, mode: 'nearest' }
             }
         });
     }
 
-    // Initial chart load (default range: 3 months)
-    fetch(`/analytics/queries-data?range=3m`)
-        .then(res => res.json())
-        .then(res => {
-            renderChart(res.labels, res.data);
-        });
+    // Function to fetch data
+    function fetchChartData(range) {
+        const canvasContainer = document.querySelector('.chart-container');
+        const canvas = canvasContainer.querySelector('canvas');
 
-    // ===== Time Range Selector =====
-    const timeRange = document.getElementById('timeRange');
+        // Optional loading effect
+        canvas.style.opacity = 0.3;
+
+        fetch(`/analytics/queries-data?range=${range}`)
+            .then(res => res.json())
+            .then(res => {
+                canvas.style.opacity = 1;
+                renderChart(res.labels, res.data);
+            })
+            .catch(err => {
+                console.error('Error fetching chart data:', err);
+                canvas.style.opacity = 1;
+            });
+    }
+
+    // Initial load: 3 months
+    fetchChartData('3m');
+
+    // Time range change
     if (timeRange) {
         timeRange.addEventListener('change', function() {
-            const range = this.value;
-
-            // Show loading spinner
-            chartCard.innerHTML = `
-                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
-                    <div class="spinner-border text-primary mb-3" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="text-muted">Loading data for ${this.options[this.selectedIndex].text}...</p>
-                </div>
-            `;
-
-            // Fetch data via AJAX
-            fetch(`/analytics/queries-data?range=${range}`)
-                .then(res => res.json())
-                .then(res => {
-                    chartCard.innerHTML = `
-                        <div class="card-body p-4">
-                            <div class="chart-container">
-                                <canvas id="queriesChart"></canvas>
-                            </div>
-                        </div>
-                    `;
-                    renderChart(res.labels, res.data);
-                });
+            fetchChartData(this.value);
         });
     }
 });
+
 </script>
 @endsection
