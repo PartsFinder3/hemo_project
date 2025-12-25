@@ -445,8 +445,8 @@
 .seo_content h6 {
     font-weight: 700;
     line-height: 1.3;
-    margin-top: 2em;
-    margin-bottom: 0.75em;
+    
+  
     color: #1a202c;
 }
 
