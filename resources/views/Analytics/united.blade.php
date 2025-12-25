@@ -188,7 +188,7 @@
     
     .country-badge {
         background: var(--gradient-primary);
-        height: 30px;
+        height: 40px;
         color: white;
         padding: 8px 20px;
         border-radius: 30px;
@@ -241,7 +241,7 @@
             <h3 class="header-title fw-bold mb-2">Domain : {{$thisdomain}}</h3>
             <div class="d-flex align-items-center gap-3">
                 <div class="country-badge">
-                    <i class="bi bi-geo-alt" style="paddind-top=-10px;"></i>
+                    <i class="bi bi-geo-alt"></i>
                     @php
                     use App\Models\Domain;
                          $currentDomain = Domain::where('domain_url', $thisdomain)->first();
