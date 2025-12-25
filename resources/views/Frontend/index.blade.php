@@ -478,7 +478,7 @@
     
 </section>
 
-        <section class="carMakes">
+        <section class="carMakes" id="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
             <h2>Browse By Brands</h2>
@@ -503,7 +503,10 @@
                  @endif
             @endforeach
         </div>
-        
+        <div class="col-12 d-flex justify-content-center mt-4">
+    {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
+</div>
+
     </section>
     <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
