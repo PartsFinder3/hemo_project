@@ -1,10 +1,14 @@
+
 @extends('Frontend.layout.main')
 @section('main-section')
 @php
     // اگر $image موجود نہیں تو default image use کرو
     $heroImage = $image ?? 'storage/profile_images/hero_section_image_1.png';
 @endphp
-
+ @php
+              
+                 $Content=SeoContentMake::where('make_id',$make->id)->first();
+                 @endphp
 <!-- Preload hero image for better performance -->
 <link rel="preload" as="image" href="{{ asset($heroImage) }}">
 
@@ -485,10 +489,7 @@
 
         <div class="brands">
             @foreach ($carMakes as $make)
-             @php
-              
-                 $Content=SeoContentMake::where('make_id',$make->id)->first();
-                 @endphp
+            
                  @if($make->logo && $Content)
                  <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
                     @if($make->logo)
