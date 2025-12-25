@@ -183,7 +183,22 @@
  
    
 }
-
+.part-card {
+    width: 250px;
+    height: 180px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: 0.3s ease;
+}
 #productGrid1 .card {
     width: 100%;
     padding: 0; /* remove all padding */
