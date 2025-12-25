@@ -19,8 +19,6 @@
                 </a>
             @endforeach
         </div>
-        <div class="view-all mt-4 text-center">
-        <a href="{{ route('all.makes') }}" class="btn btn-primary px-4 py-2">View All</a>
-    </div>
+        
     </section>
 @endsection
