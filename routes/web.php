@@ -403,7 +403,6 @@ Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSucc
 Route::get('/United/data/analytic/{domain}', [FrontendController::class, 'United_analytic'])
     ->name('usnited.analyticks');
 Route::get('/analytics/queries-data/{domain}', [FrontendController::class, 'getQueriesData']);
-Route::get('/all_makes', [FrontendController::class, 'all_makes'])->name('all.makes');
 
 Route::fallback(function () {
     

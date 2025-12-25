@@ -999,10 +999,6 @@ public function getQueriesData(Request $request, $domain)
         'data' => $data,
     ]);
 }
-   function all_makes(){
-    $carMakes=CarMakes::all();
-    return view('Frontend.allmake',compact('carMakes'));
-   }
-
+ 
 
 }
