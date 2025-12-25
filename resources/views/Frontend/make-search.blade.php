@@ -62,12 +62,7 @@
 
     <div class="pagination" id="pagination1"></div>
 </section>
-@if(isset($Content->seo_content_make) && $Content->seo_content_make)
-<section class="seo_content">
-    {!! $Content->seo_content_make !!}
-</section>
 
-@endif
 <section class="carMakes">
     <div class="section-text">
         <h3>TOP MAKES</h3>
@@ -104,6 +99,12 @@
         @endif
     </div>
 </section>
+@if(isset($Content->seo_content_make) && $Content->seo_content_make)
+<section class="seo_content">
+    {!! $Content->seo_content_make !!}
+</section>
+
+@endif
 <script>
     function contactSupplier(isActive, number, title) {
         if (isActive == 1) {
