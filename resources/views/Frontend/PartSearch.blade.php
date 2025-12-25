@@ -390,7 +390,7 @@
 .seo_content h2 {
     font-size: 1.875rem;
   
-    padding-left: 15px;
+    padding-left: 7px;
 }
 
 .seo_content h3 {
