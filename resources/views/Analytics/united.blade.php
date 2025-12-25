@@ -265,9 +265,12 @@
                         <span class="text-gray-600 text-sm" style="color: black">Percentage </span>
                         <span class="text-yellow-700 text-sm font-bold" style="color: black; margin-left: 10px;">{{$percentDifferencetoday}} %</span>
                     </div>
-                    <div class="h-2 w-full bg-yellow-200 rounded">
-                        <div class="h-2 bg-yellow-400 rounded" style="{{$percentDifferencetoday}}%;"></div>
-                    </div>
+                   <div class="h-2 w-full bg-yellow-200 rounded">
+    <div class="h-2 rounded" 
+         style="width: {{ abs($percentDifferencetoday) }}%; 
+                background-color: {{ $percentDifferencetoday >= 0 ? '#10b981' : '#ef4444' }};">
+    </div>
+</div>
                 </div>
             </div>
             <div class="w-12 h-12 bg-yellow-200 rounded-lg flex items-center justify-center">
