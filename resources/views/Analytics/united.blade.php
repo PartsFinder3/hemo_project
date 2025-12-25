@@ -275,24 +275,7 @@
             </div>
         </div>
         <!-- Prices Day -->
-        <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
-            <div>
-                <p class="text-gray-700 mb-2 font-medium">last 3 month</p>
-                <h2 class="text-gray-900 font-bold mb-3">{{ $last3MonthsData }}</h2>
-                <div class="flex items-center gap-2">
-                    <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
-                        <i class="bi bi-arrow-up-right me-1"></i>12.5%
-                    </span>
-                    <span class="text-gray-600 text-sm">from last month</span>
-                </div>
-            </div>
-            <div class="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center">
-                <i class="bi bi-file-text text-blue-600 text-xl"></i>
-            </div>
-        </div>
-
-        <!-- Approved Queries -->
-        <div class="bg-green-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
+           <div class="bg-green-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
                 <p class="text-gray-700 mb-1 font-medium">Last week</p>
                 <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $lastWeekData }}</h2>
@@ -310,6 +293,24 @@
                 <i class="bi bi-check-circle text-green-600 text-xl"></i>
             </div>
         </div>
+        <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
+            <div>
+                <p class="text-gray-700 mb-2 font-medium">last 3 month</p>
+                <h2 class="text-gray-900 font-bold mb-3">{{ $last3MonthsData }}</h2>
+                <div class="flex items-center gap-2">
+                    <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
+                        <i class="bi bi-arrow-up-right me-1"></i>12.5%
+                    </span>
+                    <span class="text-gray-600 text-sm">from last month</span>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center">
+                <i class="bi bi-file-text text-blue-600 text-xl"></i>
+            </div>
+        </div>
+
+        <!-- Approved Queries -->
+     
 
     </div>
 
