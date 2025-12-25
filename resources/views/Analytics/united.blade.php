@@ -245,6 +245,8 @@
                 <div class="country-badge">
                     <i class="bi bi-geo-alt" style="transform: translateY(-7px);"></i>
                     @php
+                    use Carbon\Carbon;
+                    $now = Carbon::now();
                     use App\Models\Domain;
                          $currentDomain = Domain::where('domain_url', $thisdomain)->first();
                     @endphp
@@ -252,7 +254,7 @@
                 </div>
                 <span class="text-muted small">
                     <i class="bi bi-calendar3 me-1"></i>
-                    Last updated: Today, 10:30 AM
+                    Last updated: {{ $now->format('l, d M Y, h:i A') }}
                 </span>
             </div>
         </div>
