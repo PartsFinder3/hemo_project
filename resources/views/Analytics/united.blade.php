@@ -242,7 +242,10 @@
             <div class="d-flex align-items-center gap-3">
                 <div class="country-badge">
                     <i class="bi bi-geo-alt"></i>
-                    {{$domain->name}}
+                    @php
+                         $currentDomain = Domain::where('domain_url', $thisdomain)->first();
+                    @endphp
+                    {{$currentDomain->name}}
                 </div>
                 <span class="text-muted small">
                     <i class="bi bi-calendar3 me-1"></i>
