@@ -400,7 +400,8 @@ Route::get('/generate-seo/make/{id}', [FrontendController::class, 'generateSeoMa
 Route::get('/generate-seo/parts/{id}', [FrontendController::class, 'generateSeoPart'])->name('generate.seo.part');
 
 Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSuccess'])->name('generate.seo.success');
-
+Route::get('/United/data/analytic', [FrontendController::class, 'United_analytic'])
+    ->name('usnited.analyticks');
 
 Route::fallback(function () {
     
@@ -543,3 +544,4 @@ Route::post('/admin/parts/search', [SparePartsController::class, 'search'])
 
 
     Route::get('/get-models/{make_id}', [FrontendController::class, 'getModels']);
+

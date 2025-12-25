@@ -133,6 +133,7 @@
                         </li>
                     </ul>
                 </li>
+                 
                  <li class="sidebar-item has-sub">
                 <a href="#" class="sidebar-link">
                     <i class="fa-solid fa-chart-line"></i>
@@ -173,7 +174,25 @@
                     </ul>
                 </li>
 
+                    <li class="sidebar-item  has-sub">
+                    <a href="#" class="sidebar-link">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>Domain Analytics</span>
+                    </a>
 
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                         <a href="{{ route('usnited.analyticks') }}" class="submenu-link">United Arab Emirates</a>
+
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('category.show') }}" class="submenu-link">Oman</a>
+                        </li>
+                         <li class="submenu-item ">
+                            <a href="{{ route('category.show') }}" class="submenu-link">Gorgeia</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="fa-solid fa-blog"></i>

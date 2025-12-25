@@ -14,7 +14,8 @@ class Buyers extends Model
         'whatsapp',
         'country_code',
         'city',
-        'country'
+        'country',
+        'domain'
     ];
     protected $table = 'buyers';
 

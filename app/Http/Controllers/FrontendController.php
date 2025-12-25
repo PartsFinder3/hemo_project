@@ -183,14 +183,16 @@ public function sendProductInquiry(Request $request)
             'country_code.required' => 'Please select a country code.',
             'country.required' => 'Please select a country.'
         ]);
-       
+       $domain = $request->getHost();   // live domain get karega
+       $domain = preg_replace('/^www\./', '', $domain); // www remove
+      
         $buyer = Buyers::create([
             'country_code' => $request->country_code,
             'whatsapp' => $request->whatsapp,
-            
+            'domain'       => $domain,
             'city' => $request->city,
         ]);
-
+           dd($buyer);
 
         // Update the buyer_inquiry with the buyer_id
         $buyerInquiry->update(['buyer_id' => $buyer->id]);
@@ -908,6 +910,17 @@ Do not explain the process.
  public function getModels($make_id)
 {
     $models=CarModels::where('car_make_id', $make_id)->get();
+ 
     return response()->json($models);
 }
+
+      function United_analytic(){
+        return view('Analytics.united');
+      }
+
+
+
+
+
+
 }
