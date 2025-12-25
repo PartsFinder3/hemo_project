@@ -955,7 +955,46 @@ if ($yesterdayData == 0) {
       }
 
 
+public function getQueriesData(Request $request)
+{
+    $domain = 'partsfinder.ae';
+    $range = $request->input('range', '3m'); // default 3 months
 
+    $labels = [];
+    $data = [];
+
+    if ($range == '7d') {
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::today()->subDays($i);
+            $labels[] = $date->format('d M');
+            $data[] = Buyers::where('domain', $domain)
+                            ->whereDate('created_at', $date)
+                            ->count();
+        }
+    } elseif ($range == '30d') {
+        for ($i = 29; $i >= 0; $i--) {
+            $date = Carbon::today()->subDays($i);
+            $labels[] = $date->format('d M');
+            $data[] = Buyers::where('domain', $domain)
+                            ->whereDate('created_at', $date)
+                            ->count();
+        }
+    } elseif ($range == '3m') {
+        for ($i = 2; $i >= 0; $i--) {
+            $month = Carbon::today()->subMonths($i);
+            $labels[] = $month->format('M Y');
+            $data[] = Buyers::where('domain', $domain)
+                            ->whereMonth('created_at', $month->month)
+                            ->whereYear('created_at', $month->year)
+                            ->count();
+        }
+    }
+
+    return response()->json([
+        'labels' => $labels,
+        'data' => $data,
+    ]);
+}
 
 
 

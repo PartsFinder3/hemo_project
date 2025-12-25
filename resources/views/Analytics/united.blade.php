@@ -345,20 +345,27 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // ===== Queries Line Chart with Enhanced Colors =====
-    const ctx = document.getElementById('queriesChart');
-    if (ctx) {
-        const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+    const chartCard = document.querySelector('.card');
+    let queriesChart; // global variable for chart instance
+
+    // Function to render chart
+    function renderChart(labels, data) {
+        const ctx = document.getElementById('queriesChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, 'rgba(67, 97, 238, 0.3)');
         gradient.addColorStop(1, 'rgba(67, 97, 238, 0.05)');
-        
-        new Chart(ctx, {
+
+        if (queriesChart) {
+            queriesChart.destroy(); // destroy previous chart if exists
+        }
+
+        queriesChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                labels: labels,
                 datasets: [{
-                    label: 'Today Queries',
-                    data: [980, 1040, 1120, 1247, 1150, 1320, 1280],
+                    label: 'Queries',
+                    data: data,
                     borderColor: '#4361ee',
                     backgroundColor: gradient,
                     borderWidth: 3,
@@ -369,153 +376,39 @@ document.addEventListener("DOMContentLoaded", function () {
                     pointBorderWidth: 3,
                     pointRadius: 6,
                     pointHoverRadius: 8
-                },
-                {
-                    label: 'Prices day',
-                    data: [720, 780, 850, 894, 820, 950, 910],
-                    borderColor: '#10b981',
-                    backgroundColor: 'rgba(16, 185, 129, 0.05)',
-                    borderWidth: 3,
-                    fill: false,
-                    tension: 0.4,
-                    borderDash: [5, 5],
-                    pointBackgroundColor: '#10b981',
-                    pointBorderColor: '#ffffff',
-                    pointBorderWidth: 3,
-                    pointRadius: 6
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            padding: 20,
-                            usePointStyle: true,
-                            pointStyle: 'circle',
-                            font: {
-                                size: 12
-                            }
-                        }
-                    },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                        backgroundColor: 'rgba(30, 41, 59, 0.9)',
-                        titleFont: {
-                            size: 13
-                        },
-                        bodyFont: {
-                            size: 13
-                        },
-                        padding: 12,
-                        cornerRadius: 8
-                    }
+                    legend: { position: 'top' },
+                    tooltip: { mode: 'index', intersect: false }
                 },
                 scales: {
                     y: {
-                        beginAtZero: false,
-                        min: 600,
-                        grid: {
-                            color: 'rgba(0,0,0,0.04)',
-                            drawBorder: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 11
-                            },
-                            padding: 10,
-                            callback: function(value) {
-                                return value.toLocaleString();
-                            }
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 11
-                            },
-                            padding: 10
-                        }
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'nearest'
-                }
-            }
-        });
-    }
-
-    // ===== Status Doughnut Chart =====
-    const statusCtx = document.getElementById('statusChart');
-    if (statusCtx) {
-        new Chart(statusCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Approved', 'Pending', 'Rejected'],
-                datasets: [{
-                    data: [894, 243, 110],
-                    backgroundColor: [
-                        '#10b981',
-                        '#f59e0b',
-                        '#ef4444'
-                    ],
-                    borderColor: '#ffffff',
-                    borderWidth: 3,
-                    hoverOffset: 20,
-                    hoverBackgroundColor: [
-                        '#0da271',
-                        '#d97706',
-                        '#dc2626'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '75%',
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(30, 41, 59, 0.9)',
-                        padding: 10,
-                        cornerRadius: 6,
-                        bodyFont: {
-                            size: 13
-                        },
-                        callbacks: {
-                            label: function(context) {
-                                const label = context.label || '';
-                                const value = context.raw || 0;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = Math.round((value / total) * 100);
-                                return `${label}: ${value.toLocaleString()} (${percentage}%)`;
-                            }
-                        }
+                        beginAtZero: true,
+                        ticks: { callback: function(value) { return value.toLocaleString(); } }
                     }
                 }
             }
         });
     }
 
-    // Time Range Selector
+    // Initial chart load (default range: 3 months)
+    fetch(`/analytics/queries-data?range=3m`)
+        .then(res => res.json())
+        .then(res => {
+            renderChart(res.labels, res.data);
+        });
+
+    // ===== Time Range Selector =====
     const timeRange = document.getElementById('timeRange');
     if (timeRange) {
         timeRange.addEventListener('change', function() {
-            // Here you would typically fetch new data based on the selected range
-            console.log('Time range changed to:', this.value);
-            
-            // Show loading state
-            const chartCard = document.querySelector('.card');
-            const originalContent = chartCard.innerHTML;
+            const range = this.value;
+
+            // Show loading spinner
             chartCard.innerHTML = `
                 <div class="card-body d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
                     <div class="spinner-border text-primary mb-3" role="status">
@@ -524,12 +417,109 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p class="text-muted">Loading data for ${this.options[this.selectedIndex].text}...</p>
                 </div>
             `;
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                chartCard.innerHTML = originalContent;
-                console.log('Chart data refreshed for:', this.value);
-            }, 1000);
+
+            // Fetch data via AJAX
+            fetch(`/analytics/queries-data?range=${range}`)
+                .then(res => res.json())
+                .then(res => {
+                    chartCard.innerHTML = `
+                        <div class="card-body p-4">
+                            <div class="chart-container">
+                                <canvas id="queriesChart"></canvas>
+                            </div>
+                        </div>
+                    `;
+                    renderChart(res.labels, res.data);
+                });
+        });
+    }
+});document.addEventListener("DOMContentLoaded", function () {
+    const chartCard = document.querySelector('.card');
+    let queriesChart; // global variable for chart instance
+
+    // Function to render chart
+    function renderChart(labels, data) {
+        const ctx = document.getElementById('queriesChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(67, 97, 238, 0.3)');
+        gradient.addColorStop(1, 'rgba(67, 97, 238, 0.05)');
+
+        if (queriesChart) {
+            queriesChart.destroy(); // destroy previous chart if exists
+        }
+
+        queriesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Queries',
+                    data: data,
+                    borderColor: '#4361ee',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#4361ee',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 3,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { mode: 'index', intersect: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { callback: function(value) { return value.toLocaleString(); } }
+                    }
+                }
+            }
+        });
+    }
+
+    // Initial chart load (default range: 3 months)
+    fetch(`/analytics/queries-data?range=3m`)
+        .then(res => res.json())
+        .then(res => {
+            renderChart(res.labels, res.data);
+        });
+
+    // ===== Time Range Selector =====
+    const timeRange = document.getElementById('timeRange');
+    if (timeRange) {
+        timeRange.addEventListener('change', function() {
+            const range = this.value;
+
+            // Show loading spinner
+            chartCard.innerHTML = `
+                <div class="card-body d-flex flex-column align-items-center justify-content-center" style="height: 300px;">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-muted">Loading data for ${this.options[this.selectedIndex].text}...</p>
+                </div>
+            `;
+
+            // Fetch data via AJAX
+            fetch(`/analytics/queries-data?range=${range}`)
+                .then(res => res.json())
+                .then(res => {
+                    chartCard.innerHTML = `
+                        <div class="card-body p-4">
+                            <div class="chart-container">
+                                <canvas id="queriesChart"></canvas>
+                            </div>
+                        </div>
+                    `;
+                    renderChart(res.labels, res.data);
+                });
         });
     }
 });
