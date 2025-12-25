@@ -101,8 +101,9 @@
 </section>
 @if(isset($Content->seo_content_make) && $Content->seo_content_make)
 <section class="seo_content">
+     <hr style="border-top: 4px solid #773403; margin: 30px 0;">
     {!! $Content->seo_content_make !!}
-     <hr style="color: var(--accent-color);">
+    <hr style="border-top: 4px solid #522201; margin: 30px 0;">
 </section>
 
 @endif
