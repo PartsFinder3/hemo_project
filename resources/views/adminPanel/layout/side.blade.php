@@ -182,7 +182,7 @@
 
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                         <a href="{{ route('usnited.analyticks') }}" class="submenu-link">United Arab Emirates</a>
+                        <a href="{{ route('usnited.analyticks','partsfinder.ae') }}" class="submenu-link">United Arab Emirates</a>
 
                         </li>
                         <li class="submenu-item ">
