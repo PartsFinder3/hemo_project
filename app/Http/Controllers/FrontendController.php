@@ -936,7 +936,15 @@ Do not explain the process.
                 ->whereDate('created_at', '>=', Carbon::today()->subMonths(3))
                 ->count();
        
-        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData'));
+       
+       
+       // ===== Percentage Difference Today vs Yesterday =====
+if ($yesterdayData == 0) {
+    $percentDifferencetoday = $todayData > 0 ? 100 : 0;
+} else {
+    $percentDifferencetoday = round((($todayData - $yesterdayData) / $yesterdayData) * 100, 1);
+}
+        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday'));
       }
 
 
