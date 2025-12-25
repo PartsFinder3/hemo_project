@@ -197,7 +197,9 @@
         align-items: center;
         gap: 8px;
     }
-    
+    .country-badge i {
+    transform: translateY(-2px); /* adjust value as needed */
+}
     .section-title {
         font-weight: 600;
         color: var(--dark-color);
@@ -241,7 +243,7 @@
             <h3 class="header-title fw-bold mb-2">Domain : {{$thisdomain}}</h3>
             <div class="d-flex align-items-center gap-3">
                 <div class="country-badge">
-                    <i class="bi bi-geo-alt"></i>
+                    <i class="bi bi-geo-alt" style="transform: translateY(-2px);"></i>
                     @php
                     use App\Models\Domain;
                          $currentDomain = Domain::where('domain_url', $thisdomain)->first();
