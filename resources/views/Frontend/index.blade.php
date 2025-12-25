@@ -419,64 +419,7 @@
 
 <div id="ads"></div>
   <!-- FIRST ADS SECTION - Part Ads -->
-<section class="ad-cards">
-    <div class="section-text">
-        <h3>TOP ADS</h3>
-        <h2>Find the Best Deals For You</h2>
-    </div>
-    <div class="filters">
-        <a href="#" class="active">All</a>
-        @foreach ($randomParts as $part)
-            <a href="{{ route('part.ads', ['partName' => Str::slug($part->name), 'id' => $part->id]) }}">
-                {{ $part->name }}
-            </a>
-        @endforeach
-    </div>
 
-    <div class="grid" id="productGrid1">
-        <!-- Example Card -->
-        @foreach ($ads as $ad)
-            <div class="card">
-                @php
-                    $images = json_decode($ad->images, true);
-                @endphp
-
-                @if(!empty($images[0]))
-                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid" alt="Product">
-                @endif
-                
-                <div class="card-body">
-                    <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                        class="card-title">{{ $ad->title }}</a>
-                    <div class="price">{{ $ad->currency }} {{ $ad->price }}</div>
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: {{ $ad->condition }} <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    
-                    <div class="buttons">
-                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-                            target="_blank"
-                            class="btn btn-sm btn-success w-100 my-1">
-                            <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                        </a>
-                        
-                      <a class="btn call" href="tel:+971508046134" onclick="callSupplier('1', '+971508046134')">Click to Call</a>
-
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-                <!-- Pagination Centered -->
-             <div class="col-12 d-flex justify-content-center mt-4">
-    {{ $ads->appends(['scroll' => 'ads'])->fragment('ads')->links('pagination::bootstrap-5') }}
-</div>
-
-    
-</section>
 
         <section class="carMakes" id="carMakes">
         <div class="section-text">
