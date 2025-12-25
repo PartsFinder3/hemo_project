@@ -184,17 +184,17 @@
    
 }
 .part-card {
-    width: 200px;
-    height: 150px;
+    width: 250px;
+    height: 180px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 0px;
+    gap: 10px;
     overflow: hidden;
     background: #fff;
     transition: 0.3s ease;
