@@ -277,8 +277,8 @@
         <!-- Prices Day -->
            <div class="bg-green-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
-                <p class="text-gray-700 mb-1 font-medium">Last week</p>
-                <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $lastWeekData }}</h2>
+                <p class="text-gray-700 mb-1 font-medium">Yersterday</p>
+                <h2 class="text-gray-900 font-bold text-2xl mb-2">{{$yesterdayData}}</h2>
                 <div class="mt-2">
                     <div class="flex justify-between mb-1">
                         <span class="text-gray-600 text-sm">Approval Rate</span>
@@ -295,8 +295,8 @@
         </div>
         <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
-                <p class="text-gray-700 mb-2 font-medium">last 3 month</p>
-                <h2 class="text-gray-900 font-bold mb-3">{{ $last3MonthsData }}</h2>
+                <p class="text-gray-700 mb-2 font-medium">Last week</p>
+                <h2 class="text-gray-900 font-bold mb-3">{{ $lastWeekData }}</h2>
                 <div class="flex items-center gap-2">
                     <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
                         <i class="bi bi-arrow-up-right me-1"></i>12.5%
