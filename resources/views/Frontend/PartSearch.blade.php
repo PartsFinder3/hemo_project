@@ -383,13 +383,13 @@
 
 .seo_content h1 {
     font-size: 2.25rem;
-    border-bottom: 3px solid #4299e1;
+  
     padding-bottom: 10px;
 }
 
 .seo_content h2 {
     font-size: 1.875rem;
-    border-left: 4px solid #4299e1;
+  
     padding-left: 15px;
 }
 
