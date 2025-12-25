@@ -1,7 +1,11 @@
 @extends('Frontend.layout.main')
 
 @section('main-section')
-
+@php
+    // اگر $image موجود نہیں تو default image use کرو
+    $heroImage = $image ?? 'storage/profile_images/hero_section_image_1.png';
+    use App\Models\SeoContentMake;
+@endphp
 
 
 @include('Frontend.hero_section', [
