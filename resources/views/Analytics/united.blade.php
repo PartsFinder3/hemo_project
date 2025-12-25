@@ -238,7 +238,7 @@
     <!-- Header -->
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5">
         <div>
-            <h3 class="header-title fw-bold mb-2">United Arab Emirates Dashboard</h3>
+            <h3 class="header-title fw-bold mb-2">Domain : {{$thisdomain}}</h3>
             <div class="d-flex align-items-center gap-3">
                 <div class="country-badge">
                     <i class="bi bi-geo-alt"></i>
