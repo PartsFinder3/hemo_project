@@ -257,7 +257,7 @@
         <!-- Prices Day -->
         <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
-                <p class="text-gray-700 mb-2 font-medium">Prices Day</p>
+                <p class="text-gray-700 mb-2 font-medium">Yesterday Day</p>
                 <h2 class="text-gray-900 font-bold mb-3">{{ $last3MonthsData }}</h2>
                 <div class="flex items-center gap-2">
                     <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
