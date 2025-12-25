@@ -102,6 +102,7 @@
 @if(isset($Content->seo_content_make) && $Content->seo_content_make)
 <section class="seo_content">
     {!! $Content->seo_content_make !!}
+     <hr style="color: var(--accent-color);">
 </section>
 
 @endif

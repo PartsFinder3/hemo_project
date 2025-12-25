@@ -141,6 +141,7 @@
     @if(!empty($content))
         {!! $content->content !!}
     @endif
+    <hr style="color: var(--accent-color);">
 </section>
     <!-- Locations -->
 
