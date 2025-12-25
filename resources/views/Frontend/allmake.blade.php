@@ -19,6 +19,8 @@
                 </a>
             @endforeach
         </div>
-        
+            <div class="pagination-links">
+        {{ $carMakes->links() }}
+    </div>
     </section>
 @endsection
