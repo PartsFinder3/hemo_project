@@ -298,7 +298,7 @@
                     <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
                         <i class="bi bi-arrow-up-right me-1"></i>{{$percentDifferenceWeek}}
                     </span>
-                    <span class="text-gray-600 text-sm">from last month</span>
+                    <span class="text-gray-600 text-sm">Compared to last week</span>
                 </div>
             </div>
             <div class="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center">
