@@ -916,7 +916,7 @@ Do not explain the process.
 
       function United_analytic($domain){
           
-
+           $thisdomain=$domain;
         $todayData = Buyers::where('domain', $domain)
                 ->whereDate('created_at', Carbon::today())
                 ->count();
@@ -951,7 +951,7 @@ if ($yesterdayData == 0) {
 } else {
     $percentDifferencetoday = round((($todayData - $yesterdayData) / $yesterdayData) * 100, 1);
 }
-        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek','domain'));
+        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek','thisdomain'));
       }
 
 
