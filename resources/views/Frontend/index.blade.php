@@ -451,11 +451,10 @@
 </div>
 
     </section>
-    <section class="spareParts" id="sParts">
+    <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
-            
              <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
                         href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
                 <div class="part-card">
@@ -472,9 +471,6 @@
                  </a>
             @endforeach
         </div>
-         <div class="col-12 d-flex justify-content-center mt-4">
-    {{ $sParts->fragment('sParts')->links('pagination::bootstrap-5') }}
-</div>
     </section>
    
 
