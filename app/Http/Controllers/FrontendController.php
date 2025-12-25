@@ -290,9 +290,7 @@ public function sendProductInquiry(Request $request)
             }
           $content=SparePartSeo::where('part_id',$id)->first();
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
-        $carMakes = CarMakes::whereNotNull('logo')
-            ->take(24)
-            ->get();
+      
         $models = CarModels::all();
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
@@ -305,7 +303,7 @@ public function sendProductInquiry(Request $request)
         return view('Frontend.PartSearch', compact(
             'part',
             'meta',
-            'carMakes',
+            
             'makes',
             'models',
             'years',
