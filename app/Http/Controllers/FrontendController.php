@@ -988,6 +988,24 @@ public function getQueriesData(Request $request)
                             ->whereYear('created_at', $month->year)
                             ->count();
         }
+    } elseif ($range == '6m') {
+        for ($i = 5; $i >= 0; $i--) {
+            $month = Carbon::today()->subMonths($i);
+            $labels[] = $month->format('M Y');
+            $data[] = Buyers::where('domain', $domain)
+                            ->whereMonth('created_at', $month->month)
+                            ->whereYear('created_at', $month->year)
+                            ->count();
+        }
+    } elseif ($range == '1y') {
+        for ($i = 11; $i >= 0; $i--) {
+            $month = Carbon::today()->subMonths($i);
+            $labels[] = $month->format('M Y');
+            $data[] = Buyers::where('domain', $domain)
+                            ->whereMonth('created_at', $month->month)
+                            ->whereYear('created_at', $month->year)
+                            ->count();
+        }
     }
 
     return response()->json([
@@ -995,6 +1013,7 @@ public function getQueriesData(Request $request)
         'data' => $data,
     ]);
 }
+
 
 
 
