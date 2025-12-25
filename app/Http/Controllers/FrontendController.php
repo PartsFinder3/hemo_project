@@ -192,7 +192,7 @@ public function sendProductInquiry(Request $request)
             'domain'       => $domain,
             'city' => $request->city,
         ]);
-         
+           dd($buyer);
 
         // Update the buyer_inquiry with the buyer_id
         $buyerInquiry->update(['buyer_id' => $buyer->id]);
