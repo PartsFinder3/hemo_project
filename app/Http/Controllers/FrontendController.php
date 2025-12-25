@@ -930,12 +930,19 @@ Do not explain the process.
             $lastWeekData = Buyers::where('domain', $domain)
                 ->whereDate('created_at', '>=', Carbon::today()->subDays(6))
                 ->count();
-
+    $previousWeekData = Buyers::where('domain', $domain)
+            ->whereDate('created_at', '>=', Carbon::today()->subDays(13))
+            ->whereDate('created_at', '<=', Carbon::today()->subDays(7))
+            ->count();
             // ===== Last 3 Months =====
             $last3MonthsData = Buyers::where('domain', $domain)
                 ->whereDate('created_at', '>=', Carbon::today()->subMonths(3))
                 ->count();
-       
+           if ($previousWeekData == 0) {
+        $percentDifferenceWeek = $lastWeekData > 0 ? 100 : 0;
+    } else {
+        $percentDifferenceWeek = round((($lastWeekData - $previousWeekData) / $previousWeekData) * 100, 1);
+    }
        
        
        // ===== Percentage Difference Today vs Yesterday =====
@@ -944,7 +951,7 @@ if ($yesterdayData == 0) {
 } else {
     $percentDifferencetoday = round((($todayData - $yesterdayData) / $yesterdayData) * 100, 1);
 }
-        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday'));
+        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData','percentDifferencetoday','percentDifferenceWeek'));
       }
 
 

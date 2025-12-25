@@ -296,7 +296,7 @@
                 <h2 class="text-gray-900 font-bold mb-3">{{ $lastWeekData }}</h2>
                 <div class="flex items-center gap-2">
                     <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
-                        <i class="bi bi-arrow-up-right me-1"></i>12.5%
+                        <i class="bi bi-arrow-up-right me-1"></i>{{$percentDifferenceWeek}}
                     </span>
                     <span class="text-gray-600 text-sm">from last month</span>
                 </div>
