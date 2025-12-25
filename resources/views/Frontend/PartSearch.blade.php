@@ -141,7 +141,7 @@
     @if(!empty($content))
         {!! $content->content !!}
     @endif
- <hr style="border-top: 4px solid #ff6a00; margin: 30px 0;">
+ <hr style="border-top: 4px solid #9e4404; margin: 30px 0;">
 </section>
     <!-- Locations -->
 
