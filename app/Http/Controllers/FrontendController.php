@@ -999,7 +999,10 @@ public function getQueriesData(Request $request, $domain)
         'data' => $data,
     ]);
 }
-
+   function all_makes(){
+    $carMakes=CarMakes::paginate(100);
+    return view('Frontend.allmake',compact('carMakes'));
+   }
 
 
 }
