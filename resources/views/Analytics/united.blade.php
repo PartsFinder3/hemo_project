@@ -254,6 +254,26 @@
 
     <!-- Stats Cards Row -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        
+        <!-- Today -->
+        <div class="bg-yellow-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
+              <div>
+                <p class="text-gray-700 mb-1 font-medium">Today</p>
+                <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $todayData }}</h2>
+                <div class="mt-2">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-600 text-sm">Approval Rate</span>
+                        <span class="text-yellow-700 text-sm font-bold">71.7%</span>
+                    </div>
+                    <div class="h-2 w-full bg-yellow-200 rounded">
+                        <div class="h-2 bg-yellow-400 rounded" style="width: 71.7%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-yellow-200 rounded-lg flex items-center justify-center">
+                <i class="bi bi-check-circle text-yellow-600 text-xl"></i>
+            </div>
+        </div>
         <!-- Prices Day -->
         <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
             <div>
@@ -291,25 +311,6 @@
             </div>
         </div>
 
-        <!-- Today -->
-        <div class="bg-yellow-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
-            <div>
-                <p class="text-gray-700 mb-1 font-medium">Today</p>
-                <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $todayData }}</h2>
-                <div class="mt-2">
-                    <div class="flex justify-between mb-1">
-                        <span class="text-gray-600 text-sm">Approval Rate</span>
-                        <span class="text-yellow-700 text-sm font-bold">71.7%</span>
-                    </div>
-                    <div class="h-2 w-full bg-yellow-200 rounded">
-                        <div class="h-2 bg-yellow-400 rounded" style="width: 71.7%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-12 h-12 bg-yellow-200 rounded-lg flex items-center justify-center">
-                <i class="bi bi-check-circle text-yellow-600 text-xl"></i>
-            </div>
-        </div>
     </div>
 
     <!-- Graph Section -->
