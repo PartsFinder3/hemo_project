@@ -233,6 +233,7 @@
 }
 </style>
 
+
 <div class="container-fluid py-4">
     <!-- Header -->
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5">
@@ -251,73 +252,68 @@
         </div>
     </div>
 
-  <!-- Stats Cards Row -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-    <!-- Total Queries -->
-    <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
-        <div>
-            <p class="text-gray-700 mb-2 font-medium">Prices Day</p>
-            <h2 class="text-gray-900 font-bold mb-3">1,247</h2>
-            <div class="flex items-center gap-2">
-                <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
-                    <i class="bi bi-arrow-up-right me-1"></i>12.5%
-                </span>
-                <span class="text-gray-600 text-sm">from last month</span>
+    <!-- Stats Cards Row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <!-- Prices Day -->
+        <div class="bg-blue-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
+            <div>
+                <p class="text-gray-700 mb-2 font-medium">Prices Day</p>
+                <h2 class="text-gray-900 font-bold mb-3">{{ $last3MonthsData }}</h2>
+                <div class="flex items-center gap-2">
+                    <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-sm flex items-center">
+                        <i class="bi bi-arrow-up-right me-1"></i>12.5%
+                    </span>
+                    <span class="text-gray-600 text-sm">from last month</span>
+                </div>
             </div>
-            <div class="h-2 w-full bg-blue-200 rounded mt-3">
-                <div class="h-2 bg-blue-500 rounded" style="width: 85%;"></div>
+            <div class="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center">
+                <i class="bi bi-file-text text-blue-600 text-xl"></i>
             </div>
         </div>
-        <div class="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center">
-            <i class="bi bi-file-text text-blue-600 text-xl"></i>
+
+        <!-- Approved Queries -->
+        <div class="bg-green-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
+            <div>
+                <p class="text-gray-700 mb-1 font-medium">Approved Queries</p>
+                <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $lastWeekData }}</h2>
+                <div class="mt-2">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-600 text-sm">Approval Rate</span>
+                        <span class="text-green-700 text-sm font-bold">71.7%</span>
+                    </div>
+                    <div class="h-2 w-full bg-green-200 rounded">
+                        <div class="h-2 bg-green-500 rounded" style="width: 71.7%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-green-200 rounded-lg flex items-center justify-center">
+                <i class="bi bi-check-circle text-green-600 text-xl"></i>
+            </div>
+        </div>
+
+        <!-- Today -->
+        <div class="bg-yellow-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
+            <div>
+                <p class="text-gray-700 mb-1 font-medium">Today</p>
+                <h2 class="text-gray-900 font-bold text-2xl mb-2">{{ $todayData }}</h2>
+                <div class="mt-2">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-600 text-sm">Approval Rate</span>
+                        <span class="text-yellow-700 text-sm font-bold">71.7%</span>
+                    </div>
+                    <div class="h-2 w-full bg-yellow-200 rounded">
+                        <div class="h-2 bg-yellow-400 rounded" style="width: 71.7%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-yellow-200 rounded-lg flex items-center justify-center">
+                <i class="bi bi-check-circle text-yellow-600 text-xl"></i>
+            </div>
         </div>
     </div>
 
-    <!-- Approved Queries -->
-    <div class="bg-green-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
-        <div>
-            <p class="text-gray-700 mb-1 font-medium">Approved Queries</p>
-            <h2 class="text-gray-900 font-bold text-2xl mb-2">894</h2>
-            <div class="mt-2">
-                <div class="flex justify-between mb-1">
-                    <span class="text-gray-600 text-sm">Approval Rate</span>
-                    <span class="text-green-700 text-sm font-bold">71.7%</span>
-                </div>
-                <div class="h-2 w-full bg-green-200 rounded">
-                    <div class="h-2 bg-green-500 rounded" style="width: 71.7%;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="w-12 h-12 bg-green-200 rounded-lg flex items-center justify-center">
-            <i class="bi bi-check-circle text-green-600 text-xl"></i>
-        </div>
-    </div>
-
-    <!-- Today -->
-    <div class="bg-yellow-100 rounded-xl shadow-md p-4 flex justify-between items-start hover:shadow-xl transition">
-        <div>
-            <p class="text-gray-700 mb-1 font-medium">Today</p>
-            <h2 class="text-gray-900 font-bold text-2xl mb-2">894</h2>
-            <div class="mt-2">
-                <div class="flex justify-between mb-1">
-                    <span class="text-gray-600 text-sm">Approval Rate</span>
-                    <span class="text-yellow-700 text-sm font-bold">71.7%</span>
-                </div>
-                <div class="h-2 w-full bg-yellow-200 rounded">
-                    <div class="h-2 bg-yellow-400 rounded" style="width: 71.7%;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="w-12 h-12 bg-yellow-200 rounded-lg flex items-center justify-center">
-            <i class="bi bi-check-circle text-yellow-600 text-xl"></i>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Main Content Grid -->
+    <!-- Graph Section -->
     <div class="row mb-4">
-        <!-- Graph Section -->
         <div class="col-lg-8 mb-4">
             <div class="card h-100">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 border-bottom">
@@ -342,13 +338,9 @@
                 </div>
             </div>
         </div>
-
-       
     </div>
 
-  
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 

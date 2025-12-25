@@ -917,27 +917,26 @@ Do not explain the process.
       function United_analytic(){
         $domain = 'partsfinder.ae';
 
-        // ===== Today =====
         $todayData = Buyers::where('domain', $domain)
-            ->whereDate('created_at', Carbon::today())
-            ->get();
+                ->whereDate('created_at', Carbon::today())
+                ->count();
 
-        // ===== Yesterday =====
-        $yesterdayData = Buyers::where('domain', $domain)
-            ->whereDate('created_at', Carbon::yesterday())
-            ->get();
+            // ===== Yesterday =====
+            $yesterdayData = Buyers::where('domain', $domain)
+                ->whereDate('created_at', Carbon::yesterday())
+                ->count();
 
-        // ===== Last 7 Days =====
-        $lastWeekData = Buyers::where('domain', $domain)
-            ->whereDate('created_at', '>=', Carbon::today()->subDays(6))
-            ->get();
+            // ===== Last 7 Days =====
+            $lastWeekData = Buyers::where('domain', $domain)
+                ->whereDate('created_at', '>=', Carbon::today()->subDays(6))
+                ->count();
 
-        // ===== Last 3 Months =====
-        $last3MonthsData = Buyers::where('domain', $domain)
-            ->whereDate('created_at', '>=', Carbon::today()->subMonths(3))
-            ->get();
-        dd($todayData);
-        return view('Analytics.united');
+            // ===== Last 3 Months =====
+            $last3MonthsData = Buyers::where('domain', $domain)
+                ->whereDate('created_at', '>=', Carbon::today()->subMonths(3))
+                ->count();
+       
+        return view('Analytics.united',compact('todayData','yesterdayData','last3MonthsData','lastWeekData'));
       }
 
 
