@@ -300,6 +300,7 @@ public function sendProductInquiry(Request $request)
             ->take(5)
             ->get();
         $cities = City::where('domain_id',$domain_id)->get();
+        
         return view('Frontend.PartSearch', compact(
             'part',
             'meta',
@@ -448,7 +449,7 @@ public function sendProductInquiry(Request $request)
             ->take(5)
             ->get();
 
-        $cities = City::all();
+         $cities = City::where('domain_id',$domain_id)->get();
         $randomMakes = CarMakes::limit(8)->get();
 
         return view('Frontend.city-search', compact(
