@@ -386,7 +386,7 @@ public function sendProductInquiry(Request $request)
             ->take(5)
             ->get();
         $Content=SeoContentMake::where('make_id',$id)->first();
-        $cities = City::all();
+        $cities = City::where('domain_id',$currentDomain->id)->get();
         $randomMakes = CarMakes::limit(8)->get();
         
         return view('Frontend.make-search', compact(
