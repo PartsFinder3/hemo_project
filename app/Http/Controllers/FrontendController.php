@@ -427,16 +427,7 @@ public function sendProductInquiry(Request $request)
                 ->where('is_approved', true)
             ;
         })->latest()->get();
- $host =$request->getHost();
-          $Domains=Domain::all();
-        $currentDomain = $Domains->first(function($domain) use ($host) {
-                return $domain->domain_url == $host;
-            });
-              if ($currentDomain) {
-                $domain_id = $currentDomain->id;
-            } else {
-                $domain_id = null; // یا کوئی default value
-            }
+ 
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
         $carAds = CarAds::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
