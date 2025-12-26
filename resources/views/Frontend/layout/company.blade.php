@@ -31,6 +31,7 @@
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 4px solid #e57224;
 }
 
 .about-content:hover {
@@ -45,7 +46,7 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, #e57224, #e57224);
+   
     border-radius: 4px 0 0 4px;
 }
 
