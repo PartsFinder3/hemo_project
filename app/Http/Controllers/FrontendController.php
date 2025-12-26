@@ -70,7 +70,7 @@ public function index(Request $request)
     $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
     $randomMakes = CarMakes::limit(8)->get();
     $sParts = SpareParts::take(60)->get();
-    $cities = City::all();
+    $cities = City::where('domain_id ',$domain_id)->get();
 
     // ===== PAGINATION =====
     $ads = Ads::where('is_approved', true)
