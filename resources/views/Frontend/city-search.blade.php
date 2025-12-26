@@ -266,6 +266,22 @@
 ])
 
     </main>
+<section class="abd-locations-section">
+    <div class="abd-locations-header">
+        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the {{$city->name}}</h2>
+    </div>
+    <div class="abd-locations-grid">
+        @if(optional($domain)->cities)
+            @foreach ($domain->cities as $city)
+                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="abd-location-card">
+                    <i class="fa-solid fa-location-dot abd-location-icon"></i>
+                    <span class="abd-location-name">{{ $city->name }}</span>
+                </a>
+            @endforeach
+        @endif
+    </div>
+</section>
+
 
     <section class="carMakes">
         <div class="section-text">
@@ -284,7 +300,27 @@
             @endforeach
         </div>
     </section>
-
+ <section class="spareParts">
+        <h2>Popular Car Spare Parts in UAE</h2>
+        <div class="popular-part-container">
+            @foreach ($sParts as $p)
+             <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
+                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+                <div class="part-card">
+                    @if ($p->image)
+                        
+                      <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
+                    @else
+                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
+                    @endif
+                   
+                        {{ $p->name }}
+                   
+                </div>
+                 </a>
+            @endforeach
+        </div>
+    </section>
  
         <section class="ad-cards">
         <div class="section-text">
@@ -342,22 +378,6 @@
 
         <div class="pagination" id="pagination2"></div>
     </section>
-
-<section class="abd-locations-section">
-    <div class="abd-locations-header">
-        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the {{$city->name}}</h2>
-    </div>
-    <div class="abd-locations-grid">
-        @if(optional($domain)->cities)
-            @foreach ($domain->cities as $city)
-                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="abd-location-card">
-                    <i class="fa-solid fa-location-dot abd-location-icon"></i>
-                    <span class="abd-location-name">{{ $city->name }}</span>
-                </a>
-            @endforeach
-        @endif
-    </div>
-</section>
 
 
 

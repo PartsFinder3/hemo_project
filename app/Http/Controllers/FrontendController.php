@@ -412,7 +412,7 @@ public function sendProductInquiry(Request $request)
     public function adByCity(Request $request , $slug, $id)
     {
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
-
+  $sParts = SpareParts::take(60)->get();
          $domain = Domain::with('cities')->first();
         $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
@@ -463,7 +463,8 @@ public function sendProductInquiry(Request $request)
             'cities',
             'randomMakes',
             'domain',
-            'getFAQS'
+            'getFAQS',
+            'sParts'
         ));
     }
 
