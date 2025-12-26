@@ -299,6 +299,9 @@ public function sendProductInquiry(Request $request)
             ->orderBy('ads_count', 'desc')
             ->take(5)
             ->get();
+               $host = $request->getHost();
+    $currentDomain = Domain::where('domain_url', $host)->first();
+    $domain_id = $currentDomain?->id;
         $cities = City::where('domain_id',$domain_id)->get();
         
         return view('Frontend.PartSearch', compact(
@@ -363,7 +366,7 @@ public function sendProductInquiry(Request $request)
             ->where('is_approved', true)
             ->latest()->get();
            $host =$request->getHost();
-                $Domains=Domain::all();
+               
                 $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
@@ -388,7 +391,9 @@ public function sendProductInquiry(Request $request)
             ->take(5)
             ->get();
         $Content=SeoContentMake::where('make_id',$id)->first();
-       
+          $host = $request->getHost();
+    $currentDomain = Domain::where('domain_url', $host)->first();
+    $domain_id = $currentDomain?->id;
         $cities =City::where('domain_id',$domain_id)->get();;
         $randomMakes = CarMakes::limit(8)->get();
         
@@ -416,7 +421,7 @@ public function sendProductInquiry(Request $request)
     {
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
   $sParts = SpareParts::take(60)->get();
-         $domain = Domain::with('cities')->first();
+      
         $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
                 ->where('is_approved', true)
@@ -449,7 +454,9 @@ public function sendProductInquiry(Request $request)
             ->orderBy('ads_count', 'desc')
             ->take(5)
             ->get();
-            dd($domain_id);
+              $host = $request->getHost();
+    $currentDomain = Domain::where('domain_url', $host)->first();
+    $domain_id = $currentDomain?->id;
         $cities = City::where('domain_id',$domain_id)->get();
         $randomMakes = CarMakes::limit(8)->get();
 
