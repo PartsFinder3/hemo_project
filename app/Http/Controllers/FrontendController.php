@@ -362,11 +362,12 @@ public function sendProductInquiry(Request $request)
         $carAds = CarAds::where('car_make_id', $make->id)
             ->where('is_approved', true)
             ->latest()->get();
-            $host =$request->getHost();
+           $host =$request->getHost();
                 $Domains=Domain::all();
                 $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
+            dd($currentDomain);
               if ($currentDomain) {
                 $domain_id = $currentDomain->id;
             } else {
