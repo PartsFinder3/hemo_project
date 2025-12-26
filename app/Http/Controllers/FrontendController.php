@@ -59,7 +59,7 @@ public function index(Request $request)
     // ===== NORMAL DATA (NO CACHE) =====
     $getFAQS = Faq::where('domain_id', $domain_id)->get();
      $carMakes = CarMakes::paginate(48); 
-    $domain = Domain::first();
+    $domain = $currentDomain;
     $models = CarModels::all();
     $makes = CarMakes::all();
     $years = Years::orderBy('year', 'desc')->get();
