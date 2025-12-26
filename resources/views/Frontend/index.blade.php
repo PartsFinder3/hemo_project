@@ -493,7 +493,8 @@
 </section>
 
 
-@if($domain->companyData->about_us )
+@if(optional($domain->companyData)->about_us)
+
     @include('Frontend.layout.company')
     @endif
     <style>
