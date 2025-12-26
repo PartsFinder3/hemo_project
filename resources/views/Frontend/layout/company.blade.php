@@ -198,6 +198,7 @@
     }
 }
 </style>
+@if($domain->companyData->about_us )
 <section class="about">
     <div class="container py-5">
         <div class="row">
@@ -211,7 +212,7 @@
         </div>
     </div>
 </section>
-
+@endif
 
     <!-- FAQs -->
 @if($getFAQS->count() > 0)
