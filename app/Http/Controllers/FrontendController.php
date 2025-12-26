@@ -299,7 +299,7 @@ public function sendProductInquiry(Request $request)
             ->orderBy('ads_count', 'desc')
             ->take(5)
             ->get();
-        $cities = City::all();
+        $cities = City::where('domain_id',$domain_id)->get();
         return view('Frontend.PartSearch', compact(
             'part',
             'meta',
