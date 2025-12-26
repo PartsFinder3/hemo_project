@@ -472,7 +472,6 @@ public function sendProductInquiry(Request $request)
             'randomParts',
             'cities',
             'randomMakes',
-            'domain',
             'getFAQS',
             'sParts'
         ));
