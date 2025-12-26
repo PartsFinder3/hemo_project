@@ -388,7 +388,7 @@ public function sendProductInquiry(Request $request)
             ->get();
         $Content=SeoContentMake::where('make_id',$id)->first();
        
-        $cities = City::where('domain_id',$domain_id)->get();
+        $cities =City::where('domain_id',$domain_id)->get();;
         $randomMakes = CarMakes::limit(8)->get();
         
         return view('Frontend.make-search', compact(
@@ -449,7 +449,7 @@ public function sendProductInquiry(Request $request)
             ->take(5)
             ->get();
 
-         $cities = City::where('domain_id',$domain_id)->get();
+        $cities = City::where('domain_id',$domain_id)->get();
         $randomMakes = CarMakes::limit(8)->get();
 
         return view('Frontend.city-search', compact(
