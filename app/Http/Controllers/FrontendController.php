@@ -367,7 +367,7 @@ public function sendProductInquiry(Request $request)
                 $currentDomain = $Domains->first(function($domain) use ($host) {
                 return $domain->domain_url == $host;
             });
-            dd($currentDomain);
+           
               if ($currentDomain) {
                 $domain_id = $currentDomain->id;
             } else {
@@ -449,7 +449,7 @@ public function sendProductInquiry(Request $request)
             ->orderBy('ads_count', 'desc')
             ->take(5)
             ->get();
-
+            dd($domain_id);
         $cities = City::where('domain_id',$domain_id)->get();
         $randomMakes = CarMakes::limit(8)->get();
 
