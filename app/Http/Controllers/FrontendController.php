@@ -50,11 +50,9 @@ public function index(Request $request)
 {
 
 
-    $host = preg_replace('/^www\./', '', $request->getHost());
-
-    // ===== DOMAIN RESOLVE =====
+        $host = $request->getHost();
     $currentDomain = Domain::where('domain_url', $host)->first();
-
+ 
     $domain_id  = $currentDomain?->id;
     $domain_map = $currentDomain?->map_img ?? 'logo/1759938974_map.webp';
 
@@ -70,9 +68,7 @@ public function index(Request $request)
     $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
     $randomMakes = CarMakes::limit(8)->get();
     $sParts = SpareParts::take(60)->get();
-        $host = $request->getHost();
-    $currentDomain = Domain::where('domain_url', $host)->first();
-    $domain_id = $currentDomain?->id;
+
     $cities = City::where('domain_id',$domain_id)->get();
 
     // ===== PAGINATION =====
