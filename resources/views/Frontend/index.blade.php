@@ -493,8 +493,9 @@
 </section>
 
 
-
+@if($domain->companyData->about_us )
     @include('Frontend.layout.company')
+    @endif
     <style>
         .search-card {
     background: rgba(255, 255, 255, 0.95);
