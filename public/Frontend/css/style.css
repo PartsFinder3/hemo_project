@@ -2206,6 +2206,7 @@ h2.section-title {
     #productGrid1 {
         grid-template-columns: 1fr;
         gap: 15px;
+        margin: auto;
     }
 
     #productGrid1 .buttons {
