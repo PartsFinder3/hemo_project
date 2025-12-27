@@ -502,10 +502,10 @@ public function sendProductInquiry(Request $request)
         $meta['description'] = $seoTemplate_d 
             ? str_replace('{brand}', $make->name, $seoTemplate_d->description) 
             : null;
-           $sParts = SpareParts::with('seo')
+      
+  $sParts = SpareParts::with('seo')
     ->whereNotNull('image')  // sirf jinke paas image hai
     ->paginate(60);
-
         // Structure data
         $meta['structure_data'] = <<<JSON
         {
