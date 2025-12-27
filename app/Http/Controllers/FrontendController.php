@@ -502,7 +502,7 @@ public function sendProductInquiry(Request $request)
         $meta['description'] = $seoTemplate_d 
             ? str_replace('{brand}', $make->name, $seoTemplate_d->description) 
             : null;
-         $sParts = SpareParts::pagination(60);
+         $sParts = SpareParts::paginate(60);
 
         // Structure data
         $meta['structure_data'] = <<<JSON
