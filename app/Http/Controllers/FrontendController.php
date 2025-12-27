@@ -74,12 +74,11 @@ public function index(Request $request)
 
     $cities = City::where('domain_id',$domain_id)->get();
    
-    // ===== PAGINATION =====
-    $ads = Ads::where('is_approved', true)
-        ->where('domain', $host)
-        ->latest()
-        ->paginate(8);
-  
+ 
+  $ads = Ads::withoutGlobalScopes()->where('is_approved', true)
+    ->where('domain', $host)
+    ->get();
+dd($ads);
     $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
     $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
    $meta['structure_data'] = <<<JSON
