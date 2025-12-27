@@ -686,7 +686,7 @@
     }
         .make:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        box-shadow: 0 8px 20px #ff6a00;
         border-color: #ff6a00;
     }
 </style>
