@@ -38,8 +38,9 @@
 
 
 #productGrid1 {
+    
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
 }
 
@@ -488,12 +489,12 @@
 </div>
 
     </section>
-    <section class="spareParts" id="spareParts">
+    <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
-            <a class="part-link"
-   href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+             <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
+                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
                 <div class="part-card">
                     @if ($p->image)
                         
@@ -507,8 +508,8 @@
                 </div>
                  </a>
             @endforeach
-            <div style="display: flex; justify-content: center; margin-top: 20px; width:100%;">
-    {{ $sParts->fragment('spareParts')->links('pagination::bootstrap-5') }}
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+    {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
         </div>
     </section>
@@ -537,56 +538,15 @@
     @include('Frontend.layout.company')
    
     <style>
-          /* Pagination */
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-top: 40px;
-        padding: 20px 0;
-    }
-    
-    .pagination a {
-        padding: 10px 18px;
-        border: 1px solid #ff6a00;
-        border-radius: 4px;
-        text-decoration: none;
-        color: #333;
-        transition: all 0.3s ease;
-        font-weight: 500;
-    }
-    
-    .pagination a:hover,
-    .pagination a.active {
-        background: #ff6a00;
-        color: white;
-        border-color: #ff6a00;
-    }
-        #productGrid1 {
-    width: 80%;
-    max-width: 1400px;   /* optional but recommended */
-    margin: 0 auto;      /* CENTER */
-    
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-}
         .spareParts {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     max-width: 90% !important;
-   margin-left: 63px !important;
+   margin-left: 46px !important;
     padding: 30px;
 }
-.part-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px #ff7700;
-
-}
-
         .search-card {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
@@ -688,7 +648,7 @@
 /* Hover effect */
 .part-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px #ff7700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     border-color: #ccc;
 }
 
@@ -707,27 +667,27 @@
     color: black;
     margin-top: 5px;
 }
-    .make {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        width: 160px;
-        height: 130px; /* Fixed height for brand cards */
-        text-decoration: none;
-        color: #333;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        padding: 15px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        background: white;
-    }
-    
+.make {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 150px;           /* fixed width */
+    height: 115px;          /* fixed height */
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    background: #fff;
+}
 
 .make:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px #ff7700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     border-color: #ccc;
 }
 
@@ -970,57 +930,6 @@
         width: 120px;
         height: 45px;
         font-size: 13px;
-    }
-}
-/* Tablet */
-@media (max-width: 1024px) {
-    #productGrid1 {
-        width: 95%;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    #productGrid1 {
-        width: 100%;
-        padding: 0 12px;
-
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
-
-   #productGrid1 .card {
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-    #productGrid1 .card img {
-        height: 140px;
-        object-fit: cover;
-    }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-    #productGrid1 {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        margin: auto;
-    }
-
-    #productGrid1 .buttons {
-        flex-direction: column;
-    }
-
-    #productGrid1 .buttons a {
-        height: 44px;
-        font-size: 14px;
-    }
-    .part-card {
-        width: 100%;
-        max-width: 220px;
-        margin: 0 auto;
     }
 }
 </style>
