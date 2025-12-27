@@ -379,11 +379,7 @@
     }
 
     /* Makes/Brands Section with Fixed Images */
-    .carMakes {
-        padding: 50px 20px;
-        background: #f9f9f9;
-        margin: 50px 0;
-    }
+ 
     
     .section-text {
         text-align: center;
