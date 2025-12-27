@@ -449,7 +449,7 @@
         <div class="col-12 d-flex justify-content-center mt-4">
     {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
 </div>
-{{ $carMakes->links() }}
+
     </section>
     <section class="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
