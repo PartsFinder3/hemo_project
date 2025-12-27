@@ -684,7 +684,11 @@
         transition: all 0.3s ease;
         background: white;
     }
-    
+        .make:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        border-color: #ff6a00;
+    }
 </style>
 
 @endsection
