@@ -1021,6 +1021,7 @@
         width: 100%;
         max-width: 220px;
         margin: 0 auto !important;
+        margin-right: -50px !important;
     }
 }
 .popular-part-container {
