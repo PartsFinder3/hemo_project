@@ -102,12 +102,12 @@ public function index(Request $request)
         "availableLanguage": ["English", "Arabic"]
       },
       "sameAs": [
-        "https://www.facebook.com/partsfinderuae/",
+   "https://www.facebook.com/partsfinderuae/",
         "https://medium.com/@partsfinder",
         "https://www.pinterest.com/partsfinderae/",
-        "https://www.facebook.com/partsfinderuae/",
-        "https://medium.com/@partsfinder",
-        "https://www.pinterest.com/partsfinderae/"
+        "https://www.reddit.com/user/Aggressive_Sea4965/",
+"https://www.linkedin.com/in/parts-finder-uae/",
+"https://x.com/partsfinderae1"
 
       ]
     },
@@ -128,12 +128,13 @@ public function index(Request $request)
         "addressCountry": "AE"
       },
       "sameAs": [
-        "https://www.facebook.com/partsfinderuae/",
+    "https://www.facebook.com/partsfinderuae/",
         "https://medium.com/@partsfinder",
         "https://www.pinterest.com/partsfinderae/",
-        "https://www.facebook.com/partsfinderuae/",
-        "https://medium.com/@partsfinder",
-        "https://www.pinterest.com/partsfinderae/"
+        "https://www.reddit.com/user/Aggressive_Sea4965/",
+"https://www.linkedin.com/in/parts-finder-uae/",
+"https://x.com/partsfinderae1"
+
       ],
       "parentOrganization": {
         "@id": "https://{$host}/#organization"
