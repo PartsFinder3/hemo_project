@@ -546,6 +546,12 @@
    margin-left: 63px !important;
     padding: 30px;
 }
+.part-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px #ff7700;
+
+}
+
         .search-card {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
