@@ -1018,8 +1018,8 @@
         font-size: 14px;
     }
     .part-card {
-        width: 300px !important;
-      
+        width: 100%;
+        max-width: 220px;
         margin: 0 auto !important;
         
     }
@@ -1042,15 +1042,27 @@
 }
 /* Card size fix */
 .part-card {
-    width: 100%;
-    max-width: 220px;
-    margin: 0 auto !important;
+    width: 220px;
+    height: 180px;
 }
 
 /* ===== Mobile Fix ===== */
-@media (max-width: 480px) {
-    .spareParts{
-       margin-left: 0px !important;
+@media (max-width: 768px) {
+    .popular-part-container {
+        justify-content: center !important;
+    }
+
+    .part-card {
+        width: 100%;
+        max-width: 260px; 
+        margin: 0px !important;    /* center look */
+    }
+}
+@media (max-width: 768px) {
+    .part-card {
+        width: 100% !important;
+        max-width: 260px !important;
+        margin: 0 auto !important;
     }
 }
 </style>
