@@ -712,10 +712,10 @@
 }
 
 .make:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-color: #ccc;
-}
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px #ff6a00;
+        border-color: #ff6a00;
+    }
 
 .make img {
     width: 90%;            /* fixed image width */
