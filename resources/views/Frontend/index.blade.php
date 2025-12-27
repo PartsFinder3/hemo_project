@@ -44,7 +44,7 @@
 }
 
 #productGrid1 .card {
-    width: 300px;
+    width: 100%;
     padding: 0; /* remove all padding */
     display: flex;
     flex-direction: column;
