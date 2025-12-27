@@ -541,14 +541,7 @@ nav {
     box-shadow: none;
 }
 
-.spareParts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 90% !important;
-    padding: 30px;
-}
+
 
 .spareParts h2 {
     font-size: 30px;

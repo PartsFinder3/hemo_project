@@ -535,6 +535,14 @@
     @include('Frontend.layout.company')
    
     <style>
+        .spareParts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90% !important;
+    padding: 30px;
+}
         .search-card {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
