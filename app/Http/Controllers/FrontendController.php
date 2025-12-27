@@ -583,7 +583,9 @@ public function sendProductInquiry(Request $request)
     public function adByCity(Request $request , $slug, $id)
     {
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
-  $sParts = SpareParts::take(60)->get();
+     $sParts = SpareParts::with('seo')
+    ->whereNotNull('image')  // sirf jinke paas image hai
+    ->paginate(60);
       
     $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
     $query->where('city_id', $city->id)
@@ -599,7 +601,9 @@ public function sendProductInquiry(Request $request)
             ;
         })->latest()->get();
     
-        $carMakes = CarMakes::whereNotNull('logo')->take(24)->get();
+             $carMakes = CarMakes::whereNotNull('logo')   // image ho
+    ->whereHas('seoContent')                // seo content ho
+    ->paginate(52); 
         $models = CarModels::all();
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();

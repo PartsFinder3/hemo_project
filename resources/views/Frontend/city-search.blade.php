@@ -309,7 +309,7 @@
     {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
 
-    <section class="carMakes">
+    <section class="carMakes" id="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
             <h2>Browse By Brands</h2>
@@ -324,9 +324,12 @@
                     <h4>{{ strtoupper($m->name) }}</h4>
                 </a>
             @endforeach
+               <div class="col-12 d-flex justify-content-center mt-4">
+    {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
+</div>
         </div>
     </section>
- <section class="spareParts">
+ <section class="spareParts" id="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
@@ -345,6 +348,9 @@
                 </div>
                  </a>
             @endforeach
+              <div style="display: flex; justify-content: center; margin-top: 20px; width:100%;">
+    {{ $sParts->fragment('spareParts')->links('pagination::bootstrap-5') }}
+</div>
         </div>
     </section>
  
