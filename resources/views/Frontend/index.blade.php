@@ -1020,6 +1020,7 @@
     .part-card {
         width: 100%;
         max-width: 220px;
+        margin-left: -50px !important;
         margin: 0 auto !important;
         
     }
