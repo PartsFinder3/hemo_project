@@ -217,7 +217,14 @@
 
 <style>
 
-
+#productGrid1 {
+     width: 80% !important;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+    gap: 15px; 
+       
+   
+}
     .spareParts {
     display: flex;
     flex-direction: column;
@@ -233,14 +240,7 @@
 .footer-section{
             margin-top: 20px !important;
         }
-#productGrid1 {
-     width: 80% !important;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; 
-       
-   
-}
+
 .part-card {
     width: 250px;
     height: 180px;
