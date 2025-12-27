@@ -164,6 +164,15 @@
 </script>
 
 <style>
+        .spareParts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90% !important;
+   margin-left: 46px !important;
+    padding: 30px;
+}
     /* Fixed Image Container for Ads */ .footer-section{
             margin-top: 20px !important;
         }
