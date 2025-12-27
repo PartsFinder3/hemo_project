@@ -957,6 +957,9 @@
         height: 45px;
         font-size: 13px;
     }
+    .spareParts {
+     margin: 0px !important;
+    }
 }
 </style>
     @if (request()->scroll == 'ads')
