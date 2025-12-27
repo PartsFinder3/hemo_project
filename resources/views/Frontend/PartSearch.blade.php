@@ -668,23 +668,23 @@
 .seo_content > *:last-child {
     margin-bottom: 0 !important;
 }
-.make {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 150px;
-    height: 115px;
-    margin: 10px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    background: #fff;
-}
+    .make {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 160px;
+        height: 130px; /* Fixed height for brand cards */
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
 </style>
 
 @endsection
