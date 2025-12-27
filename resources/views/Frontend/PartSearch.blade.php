@@ -234,10 +234,11 @@
             margin-top: 20px !important;
         }
 #productGrid1 {
+     width: 80% !important;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; /* space between cards */
-        width: 80% !important;
+    gap: 15px; 
+       
    
 }
 .part-card {
