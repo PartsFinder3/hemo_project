@@ -1147,7 +1147,7 @@ public function getQueriesData(Request $request, $domain)
     ]); 
     $content= $response->choices[0]->message->content;
     
-    return view('city_check',compact($content));
+    return view('city_check',compact('content'));
       
   }
 }
