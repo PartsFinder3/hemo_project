@@ -459,7 +459,7 @@
                     </div>
                 </div>
             @endforeach
-<div class="d-flex justify-content-center mt-4">
+<div style="display: flex; justify-content: center; margin-top: 20px;">
     {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
         </div>
