@@ -1020,7 +1020,6 @@
     .part-card {
         width: 100%;
         max-width: 220px;
-        margin-left: -50px !important;
         margin: 0 auto !important;
         
     }
@@ -1043,16 +1042,17 @@
 }
 /* Card size fix */
 .part-card {
-    width: 220px;
-    height: 180px;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto !important;
 }
 
 /* ===== Mobile Fix ===== */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     .part-card {
-        width: 100% !important;
-        max-width: 260px !important;
-        margin: 0 auto !important;
+        flex: 0 0 100%;  /* take full width of container */
+        max-width: 220px; /* optional */
+        margin: 0 auto;   /* center it */
     }
 }
 </style>
