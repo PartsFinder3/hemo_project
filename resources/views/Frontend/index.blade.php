@@ -971,9 +971,6 @@
         height: 45px;
         font-size: 13px;
     }
-    .spareParts{
-       margin-left: 0px !important;
-    }
 }
 /* Tablet */
 @media (max-width: 1024px) {
@@ -1020,8 +1017,11 @@
         height: 44px;
         font-size: 14px;
     }
-    .spareParts{
-       margin-left: 0px !important;
+    .part-card {
+        width: 100%;
+        max-width: 220px;
+        margin: 0 auto !important;
+        
     }
 }
 .popular-part-container {
