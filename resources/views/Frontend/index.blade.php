@@ -538,6 +538,32 @@
     @include('Frontend.layout.company')
    
     <style>
+           /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 40px;
+        padding: 20px 0;
+    }
+    
+    .pagination a {
+        padding: 10px 18px;
+        border: 1px solid #ff6a00;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+    
+    .pagination a:hover,
+    .pagination a.active {
+        background: #ff6a00;
+        color: white;
+        border-color: #ff6a00;
+    }
         .spareParts {
     display: flex;
     flex-direction: column;
