@@ -124,9 +124,9 @@ public function index(Request $request)
         "addressCountry": "AE"
       },
       "sameAs": [
-        "https://www.facebook.com/partsfinderuae/",
-        "https://medium.com/@partsfinder",
-        "https://www.pinterest.com/partsfinderae/"
+        "https://x.com/partsfinderae1",
+        "https://www.reddit.com/user/Aggressive_Sea4965/",
+        "https://www.linkedin.com/in/parts-finder-uae/"
       ],
       "parentOrganization": {
         "@id": "https://{$host}/#organization"
