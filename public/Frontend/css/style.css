@@ -580,7 +580,7 @@ nav {
 
 .part-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 10px #ff7700;
+    box-shadow: 0 10px 20px #ff7700;
 
 }
 
