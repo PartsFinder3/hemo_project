@@ -541,7 +541,7 @@
     justify-content: center;
     align-items: center;
     max-width: 90% !important;
-   margin-left: 40px;
+   margin-left: 46px !important;
     padding: 30px;
 }
         .search-card {
