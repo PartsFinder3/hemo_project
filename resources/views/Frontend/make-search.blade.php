@@ -52,7 +52,7 @@
 
                         <a href="javascript:void(0)" class="btn call"
                             onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                            <i class="fa-solid fa-phone"></i> Call
+                            <i class="fa-solid fa-phone"></i>Click  Call
                         </a>
                     </div>
                 </div>
