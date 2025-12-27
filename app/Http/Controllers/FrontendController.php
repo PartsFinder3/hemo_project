@@ -1146,11 +1146,8 @@ public function getQueriesData(Request $request, $domain)
         ],
     ]); 
     $content= $response->choices[0]->message->content;
-    dd($content);
-
-   
-
-    return back()->with('success', "SEO content generated successfully for {$part->name}");
+    
+    return view('city_check',compact($content));
       
   }
 }
