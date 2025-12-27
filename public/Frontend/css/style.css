@@ -803,11 +803,12 @@ nav {
     cursor: pointer;
 }
 
-.make:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
+  .make:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        border-color: #ff6a00;
+    }
+    
 .make img {
     width: 100px;
     height: 70px;
