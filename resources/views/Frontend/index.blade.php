@@ -572,14 +572,14 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
-        .spareParts {
+.spareParts {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    max-width: 90% !important;
-   margin: auto;
-    padding: 30px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px 12px;
 }
 .part-card:hover {
     transform: translateY(-5px);
