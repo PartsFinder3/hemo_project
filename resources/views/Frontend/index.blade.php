@@ -572,14 +572,14 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
-.spareParts {
+        .spareParts {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 30px 12px;
+    max-width: 90% !important;
+   margin-left: 63px !important;
+    padding: 30px;
 }
 .part-card:hover {
     transform: translateY(-5px);
@@ -1020,49 +1020,7 @@
     .part-card {
         width: 100%;
         max-width: 220px;
-        margin: 0 auto !important;
-        
-    }
-}
-.popular-part-container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important; /* Center horizontally */
-    align-items: flex-start; /* optional */
-    gap: 15px !important;
-    width: 100%;
-    margin: 0 auto;
-}
-
-/* Card link bhi center ho */
-.part-link {
-    display: flex !important;
-    justify-content: center !important;
-    text-decoration: none;
-}
-/* Card size fix */
-.part-card {
-    width: 220px;
-    height: 180px;
-}
-
-/* ===== Mobile Fix ===== */
-@media (max-width: 768px) {
-    .popular-part-container {
-        justify-content: center !important;
-    }
-
-    .part-card {
-        width: 100%;
-        max-width: 260px; 
-        margin: 0px !important;    /* center look */
-    }
-}
-@media (max-width: 768px) {
-    .part-card {
-        width: 100% !important;
-        max-width: 260px !important;
-        margin: 0 auto !important;
+        margin: 0 auto;
     }
 }
 </style>
