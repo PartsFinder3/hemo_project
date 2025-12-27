@@ -985,6 +985,7 @@
     #productGrid1 {
         width: 100%;
         padding: 0 12px;
+
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
@@ -1005,6 +1006,7 @@
     #productGrid1 {
         grid-template-columns: 1fr;
         gap: 15px;
+        margin: auto;
     }
 
     #productGrid1 .buttons {
