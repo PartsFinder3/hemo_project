@@ -537,6 +537,15 @@
     @include('Frontend.layout.company')
    
     <style>
+        #productGrid1 {
+    width: 80%;
+    max-width: 1400px;   /* optional but recommended */
+    margin: 0 auto;      /* CENTER */
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
         .spareParts {
     display: flex;
     flex-direction: column;
