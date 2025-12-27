@@ -1018,7 +1018,7 @@
         font-size: 14px;
     }
     .part-card {
-        width: 100%;
+        width: 200px;
         max-width: 220px;
         margin: 0 auto !important;
         
