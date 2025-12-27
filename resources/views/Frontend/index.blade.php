@@ -414,48 +414,50 @@
 
 
 <div id="ads"></div>
-<!-- FIRST ADS SECTION - Part Ads -->
+  <!-- FIRST ADS SECTION - Part Ads -->
 
-<div class="grid-container" style="overflow-x:auto; max-width:1100px; margin:auto;">
-    <div class="grid" id="productGrid1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
-        @foreach ($ads as $ad)
-            <div class="card">
-                @php
-                    $images = json_decode($ad->images, true);
-                @endphp
+ <div class="grid" id="productGrid1">
+            <!-- Example Card -->
+            @foreach ($ads as $ad)
+                <div class="card">
+                    @php
+                        $images = json_decode($ad->images, true);
+                    @endphp
 
-                @if (is_array($images) && isset($images[0]))
-                    <img src="{{ asset($images[0]) }}" alt="Product">
-                @endif
-                <div class="card-body">
-                    <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}" class="card-title">{{ $ad->title }}</a>
-                    <div class="price">AED {{ $ad->price }}</div>
-                    <div class="meta">
-                        Availability: In Stock <br>
-                        Condition: {{ $ad->condition }} <br>
-                        Delivery: Ask Supplier <br>
-                        Warranty: Ask Supplier
-                    </div>
-                    <div class="buttons">
-                        <a href="javascript:void(0)" class="btn whatsapp"
-                            onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                        </a>
+                    @if (is_array($images) && isset($images[0]))
+                        <img src="{{ asset('' . $images[0]) }}" alt="Product">
+                    @endif
+                    <div class="card-body">
+                        <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}" class="card-title">{{ $ad->title }}</a>
+                        <div class="price">AED {{ $ad->price }}</div>
+                        <div class="meta">
+                            Availability: In Stock <br>
+                            Condition: {{ $ad->condition }} <br>
+                            Delivery: Ask Supplier <br>
+                            Warranty: Ask Supplier
+                        </div>
+                        @php
+                            $ad->shop->supplier->whatsapp;
+                        @endphp
+                        <div class="buttons">
+                            <a href="javascript:void(0)" class="btn whatsapp"
+                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                            </a>
 
-                        <a href="javascript:void(0)" class="btn call"
-                            onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                            <i class="fa-solid fa-phone"></i> Click to Call
-                        </a>
+                            <a href="javascript:void(0)" class="btn call"
+                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                                <i class="fa-solid fa-phone"></i> Click to Call
+                            </a>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
-
-    <div class="d-flex justify-content-center mt-4">
-        {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
-    </div>
+            @endforeach
+<div class="d-flex justify-content-center mt-4 w-100">
+    {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
+        </div>
 
         <section class="carMakes" id="carMakes">
         <div class="section-text">
