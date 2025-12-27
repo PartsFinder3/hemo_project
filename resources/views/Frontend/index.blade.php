@@ -39,10 +39,8 @@
 
 #productGrid1 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; /* space between cards */
- 
-   
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
 }
 
 #productGrid1 .card {
