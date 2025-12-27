@@ -1049,10 +1049,8 @@
 
 /* ===== Mobile Fix ===== */
 @media (max-width: 480px) {
-    .part-card {
-        flex: 0 0 100%;  /* take full width of container */
-        max-width: 220px; /* optional */
-        margin: 0 auto;   /* center it */
+    .spareParts{
+       margin-left: 0px !important;
     }
 }
 </style>
