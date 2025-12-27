@@ -579,12 +579,10 @@ public function sendProductInquiry(Request $request)
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
   $sParts = SpareParts::take(60)->get();
       
-        $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
-            $query->where('city_id', $city->id)
-                ->where('is_approved', true)
-            ;
-        })->latest()->pagination(8);
-      
+    $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
+    $query->where('city_id', $city->id)
+          ->where('is_approved', true);
+})->latest()->paginate(8);
     $host = $request->getHost();
     $currentDomain = Domain::where('domain_url', $host)->first();
     $domain_id = $currentDomain?->id;
