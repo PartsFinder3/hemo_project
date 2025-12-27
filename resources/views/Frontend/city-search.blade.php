@@ -263,21 +263,6 @@
 ])
 
     </main>
-<section class="abd-locations-section">
-    <div class="abd-locations-header">
-        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the {{$city->name}}</h2>
-    </div>
-    <div class="abd-locations-grid">
-        @if(optional($domain)->cities)
-            @foreach ($domain->cities as $city)
-                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="abd-location-card">
-                    <i class="fa-solid fa-location-dot abd-location-icon"></i>
-                    <span class="abd-location-name">{{ $city->name }}</span>
-                </a>
-            @endforeach
-        @endif
-    </div>
-</section>
 
 <div id="ads"></div>
   <!-- FIRST ADS SECTION - Part Ads -->
@@ -418,6 +403,21 @@
         <div class="pagination" id="pagination2"></div>
     </section>
 
+<section class="abd-locations-section">
+    <div class="abd-locations-header">
+        <h2>Auto Parts for Cars, Vans, SUVs Anywhere in the {{$city->name}}</h2>
+    </div>
+    <div class="abd-locations-grid">
+        @if(optional($domain)->cities)
+            @foreach ($domain->cities as $city)
+                <a href="{{ route('city.ads', ['slug' => $city->slug, 'id' => $city->id]) }}" class="abd-location-card">
+                    <i class="fa-solid fa-location-dot abd-location-icon"></i>
+                    <span class="abd-location-name">{{ $city->name }}</span>
+                </a>
+            @endforeach
+        @endif
+    </div>
+</section>
 
 
 
