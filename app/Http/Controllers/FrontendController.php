@@ -824,7 +824,7 @@ Keep content helpful, practical, and easy to read
 Highlight main keywords and the site name using <strong> tags inside paragraphs
 
 
-Include the site name partsfinder.ae in every output
+Include the site name partsfinder.ae in every output in bold <strong> wordings.
 
 
 Do not change keyword wording or intent
@@ -989,7 +989,7 @@ Keep content helpful, practical, and easy to read
 Highlight main keywords and the site name using <strong> tags inside paragraphs
 
 
-Include the site name partsfinder.ae in every output
+Include the site name partsfinder.ae in every output in bold <strong> wordings.
 
 
 Do not change keyword wording or intent
@@ -1257,7 +1257,7 @@ public function getQueriesData(Request $request, $domain)
             Highlight main keywords and the site name using <strong> tags inside paragraphs
 
 
-            Include the site name partsfinder.ae in every output
+            Include the site name partsfinder.ae in every output in bold <strong> wordings.
 
 
             Use the {$city} name inside headings
