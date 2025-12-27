@@ -583,7 +583,7 @@ public function sendProductInquiry(Request $request)
             $query->where('city_id', $city->id)
                 ->where('is_approved', true)
             ;
-        })->latest()->get();
+        })->latest()->pagination(8);
       
     $host = $request->getHost();
     $currentDomain = Domain::where('domain_url', $host)->first();
