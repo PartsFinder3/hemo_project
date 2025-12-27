@@ -77,7 +77,7 @@ public function index(Request $request)
  
   $ads = Ads::withoutGlobalScopes()->where('is_approved', true)
     ->where('domain', $host)
-    ->get();
+    ->paginate(8);
 
     $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
     $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
