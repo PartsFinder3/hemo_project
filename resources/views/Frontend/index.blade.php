@@ -1023,6 +1023,39 @@
         margin: 0 auto !important;
     }
 }
+.popular-part-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   /* 🔥 CENTER ITEMS */
+    gap: 15px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Card link bhi center ho */
+.part-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* Card size fix */
+.part-card {
+    width: 220px;
+    height: 180px;
+}
+
+/* ===== Mobile Fix ===== */
+@media (max-width: 768px) {
+    .popular-part-container {
+        justify-content: center !important;
+    }
+
+    .part-card {
+        width: 100%;
+        max-width: 260px;     /* center look */
+    }
+}
 </style>
     @if (request()->scroll == 'ads')
    <script>
