@@ -421,49 +421,45 @@
 <div id="ads"></div>
   <!-- FIRST ADS SECTION - Part Ads -->
 
- <div class="grid" id="productGrid1">
-            <!-- Example Card -->
-            @foreach ($ads as $ad)
-                <div class="card">
-                    @php
-                        $images = json_decode($ad->images, true);
-                    @endphp
+<div class="grid" id="productGrid1">
+    @foreach ($ads as $ad)
+        <div class="card">
+            @php
+                $images = json_decode($ad->images, true);
+            @endphp
 
-                    @if (is_array($images) && isset($images[0]))
-                        <img src="{{ asset('' . $images[0]) }}" alt="Product">
-                    @endif
-                    <div class="card-body">
-                        <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}" class="card-title">{{ $ad->title }}</a>
-                        <div class="price">AED {{ $ad->price }}</div>
-                        <div class="meta">
-                            Availability: In Stock <br>
-                            Condition: {{ $ad->condition }} <br>
-                            Delivery: Ask Supplier <br>
-                            Warranty: Ask Supplier
-                        </div>
-                        @php
-                            $ad->shop->supplier->whatsapp;
-                        @endphp
-                        <div class="buttons">
-                            <a href="javascript:void(0)" class="btn whatsapp"
-                                onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                            </a>
-
-                            <a href="javascript:void(0)" class="btn call"
-                                onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                <i class="fa-solid fa-phone"></i> Click to Call
-                            </a>
-                        </div>
-
-                    </div>
+            @if (is_array($images) && isset($images[0]))
+                <img src="{{ asset($images[0]) }}" alt="Product">
+            @endif
+            <div class="card-body">
+                <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}" class="card-title">{{ $ad->title }}</a>
+                <div class="price">AED {{ $ad->price }}</div>
+                <div class="meta">
+                    Availability: In Stock <br>
+                    Condition: {{ $ad->condition }} <br>
+                    Delivery: Ask Supplier <br>
+                    Warranty: Ask Supplier
                 </div>
-            @endforeach
+                <div class="buttons">
+                    <a href="javascript:void(0)" class="btn whatsapp"
+                        onclick="contactSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}', '{{ $ad->title }}')">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+
+                    <a href="javascript:void(0)" class="btn call"
+                        onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                        <i class="fa-solid fa-phone"></i> Click to Call
+                    </a>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
+<!-- Pagination OUTSIDE the grid -->
 <div style="display: flex; justify-content: center; margin-top: 20px;">
     {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
-        </div>
-
         <section class="carMakes" id="carMakes">
         <div class="section-text">
             <h3>TOP MAKES</h3>
