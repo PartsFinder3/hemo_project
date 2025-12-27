@@ -50,7 +50,7 @@ public function index(Request $request)
 {
 
 
-        $host = $request->getHost();
+      $host = preg_replace('/^www\./', '', $request->getHost());
     $currentDomain = Domain::where('domain_url', $host)->first();
  
     $domain_id  = $currentDomain?->id;
@@ -72,12 +72,13 @@ public function index(Request $request)
     $sParts = SpareParts::take(60)->get();
 
     $cities = City::where('domain_id',$domain_id)->get();
-     
+   
     // ===== PAGINATION =====
     $ads = Ads::where('is_approved', true)
         ->where('domain', $host)
         ->latest()
         ->paginate(8);
+    dd($ads);
     $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
     $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
    $meta['structure_data'] = <<<JSON
