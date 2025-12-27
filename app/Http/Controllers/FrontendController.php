@@ -81,7 +81,7 @@ public function index(Request $request)
 
     $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
     $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
-   $meta['structure_data'] = <<<JSON
+  $meta['structure_data'] = <<<JSON
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -92,8 +92,163 @@ public function index(Request $request)
       "url": "https://{$host}/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://partsfinder.ae/storage/logo/1766031053.webp"
+        "url": "https://{$host}/storage/logo/1766031053.webp"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+971502566002",
+        "contactType": "customer service",
+        "areaServed": "AE",
+        "availableLanguage": ["English", "Arabic"]
+      },
+      "sameAs": [
+        "https://www.facebook.com/partsfinderuae/",
+        "https://medium.com/@partsfinder",
+        "https://www.pinterest.com/partsfinderae/"
+      ]
+    },
+    {
+      "@type": "AutomotiveBusiness",
+      "@id": "https://{$host}/#localbusiness",
+      "name": "PartsFinder UAE",
+      "url": "https://{$host}/",
+      "logo": "https://{$host}/storage/logo/1766031053.webp",
+      "telephone": "+971502566002",
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Arab Emirates"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AE"
+      },
+      "sameAs": [
+        "https://www.facebook.com/partsfinderuae/",
+        "https://medium.com/@partsfinder",
+        "https://www.pinterest.com/partsfinderae/"
+      ],
+      "parentOrganization": {
+        "@id": "https://{$host}/#organization"
       }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://{$host}/#website",
+      "url": "https://{$host}/",
+      "name": "PartsFinder UAE",
+      "publisher": {
+        "@id": "https://{$host}/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://{$host}/#webpage",
+      "url": "https://{$host}/",
+      "name": "PartsFinder UAE – Auto Spare Parts Sourcing Platform",
+      "description": "PartsFinder UAE helps drivers and workshops source auto spare parts from verified sellers across all UAE emirates.",
+      "publisher": {
+        "@id": "https://{$host}/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://{$host}/#website"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://{$host}/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does PartsFinder help me locate car spare parts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PartsFinder connects you with multiple UAE-based spare parts suppliers through a single request, allowing you to compare availability, pricing, and delivery options."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there any cost to submit a spare parts request?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, submitting a spare parts request on PartsFinder is completely free. You only pay if you decide to buy from a seller."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which vehicle components can I source through your platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can source mechanical, electrical, interior, exterior, and performance-related auto parts, depending on seller availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I compare offers before making a decision?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you may receive multiple offers from different sellers, helping you compare prices, conditions, and warranty options."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does PartsFinder operate as an online auto parts store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, PartsFinder is a sourcing platform that connects buyers with independent spare parts sellers across the UAE."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will sellers contact me directly after I submit a request?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, sellers may contact you directly using the details you provide, solely to respond to your parts request."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are genuine and OEM parts available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, sellers may offer genuine, OEM, or aftermarket parts so you can choose according to your requirements and budget."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I request parts for older or imported vehicles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, PartsFinder supports requests for older, imported, and rare vehicle models, subject to seller inventory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can I receive responses from sellers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many users receive responses within hours, depending on the part type and vehicle details."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is PartsFinder available across the UAE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, PartsFinder supports spare parts sourcing across all UAE emirates, including major cities and surrounding areas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to commit to a purchase after submitting a request?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, there is no obligation to purchase. You remain in full control of whether or not to proceed with any offer."
+          }
+        }
+      ]
     }
   ]
 }
