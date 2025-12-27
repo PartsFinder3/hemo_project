@@ -55,7 +55,7 @@ public function index(Request $request)
  
     $domain_id  = $currentDomain?->id;
     $domain_map = $currentDomain?->map_img ?? 'logo/1759938974_map.webp';
-
+    
     // ===== NORMAL DATA (NO CACHE) =====
     $getFAQS = Faq::where('domain_id', $domain_id)->get();
      $carMakes = CarMakes::whereNotNull('logo')   // image ho
@@ -72,7 +72,7 @@ public function index(Request $request)
     $sParts = SpareParts::take(60)->get();
 
     $cities = City::where('domain_id',$domain_id)->get();
-
+    dd($host);
     // ===== PAGINATION =====
     $ads = Ads::where('is_approved', true)
         ->where('domain', $host)
