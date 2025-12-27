@@ -747,43 +747,121 @@ public function generateSeoMake($id)
             [
                 'role' => 'user',
                 'content' => "
-Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
-
+  Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
+Variable
 Brand: {$brand}
-Target Country: UAE
-Content Placement: Bottom of brand/category page
-Search Intent: Commercial + Informational
 
-Guidelines:
-- Around 450–550 words
-- Professional, informative tone
-- No hype or sales language
-- No competitor mentions
-- No call-to-action buttons
-- Plain text output
-- Use clear headings and short paragraphs
-- Headings should vary naturally based on the brand
-- Do not follow a fixed outline or repeated structure
-- Assign proper Headings 2 <h2> and <p> tags accordingly.
-- Put my main keywords and site name in <strong> tag inside <p>
-- Also add site name partsfinder.ae in every output. 
 
-Content Focus:
-- Used and second-hand auto spare parts
-- Availability and affordability in UAE
-- Brand reliability and market presence
-- Common replacement parts and ownership considerations
-- Practical guidance for buyers and vehicle owners
-- The upper structure is not always final. Also, you can shuffle and change headings from your side.
+Content Placement
+ Bottom section of a brand or category page
+Search Intent
+ Commercial + Informational
+Writing Guidelines
+Length: 450–550 words
 
-SEO Rules:
-- Naturally include “used {$brand} spare parts” within the first 100 words
-- Use related keywords organically (auto spare parts in UAE, used spare parts in UAE, genuine and after market spare parts in UAE)
-- No keyword stuffing
-- Keep content helpful and readable
 
-Output only the final content.
-Do not explain the process.
+Tone: Professional and informative
+
+
+Language: Very simple English, written for non-native speakers
+
+
+Style: Natural and human-like, must not sound AI-generated, do not use tough and bad words, make it simple. 
+
+
+No hype, no promotional or sales language
+
+
+No competitor names or comparisons
+
+
+No call-to-action buttons
+
+
+Output must be plain text only
+
+
+Use short paragraphs and clear headings
+
+
+Do not follow a fixed or repeated structure
+
+
+Headings should vary naturally based on the brand and topic flow
+
+
+Use proper HTML tags with spacing:
+
+
+Headings: <h2>
+
+
+Paragraphs: <p>
+
+
+SEO & Formatting Rules
+Use the phrase “used  {$brand} spare parts” naturally within the first 100 words
+
+
+Include related keywords organically:
+
+
+auto spare parts in UAE
+
+
+used spare parts in UAE
+
+
+genuine and aftermarket spare parts in UAE
+
+
+Avoid keyword stuffing
+
+
+Keep content helpful, practical, and easy to read
+
+
+Highlight main keywords and the site name using <strong> tags inside paragraphs
+
+
+Include the site name partsfinder.ae in every output
+
+
+Do not change keyword wording or intent
+
+
+Content Focus Areas
+Used and second-hand  {$brand} auto spare parts
+
+
+Availability and affordability in the UAE
+
+
+{brand} reliability and market presence
+
+
+Common replacement parts for  {$brand} vehicles
+
+
+Ownership and maintenance considerations
+
+
+Practical guidance for buyers and vehicle owners
+
+
+Headings and structure may be shuffled or adjusted naturally
+
+
+Output Rules
+Output only the final content
+
+
+Do not explain the process
+
+
+Do not add notes, comments, or formatting explanations
+
+
 
 
 
@@ -834,43 +912,121 @@ public function generateSeoPart($id)
             [
                 'role' => 'user',
                 'content' => "
-     Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
-
+   Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
+Variable
 Brand: {$brand}
-Target Country: UAE
-Content Placement: Bottom of brand/category page
-Search Intent: Commercial + Informational
 
-Guidelines:
-- Around 450–550 words
-- Professional, informative tone
-- No hype or sales language
-- No competitor mentions
-- No call-to-action buttons
-- Plain text output
-- Use clear headings and short paragraphs
-- Headings should vary naturally based on the brand
-- Do not follow a fixed outline or repeated structure
-- Assign proper Headings 2 <h2> and <p> tags accordingly.
-- Put my main keywords and site name in <strong> tag inside <p>
-- Also add site name partsfinder.ae in every output. 
 
-Content Focus:
-- Used and second-hand auto spare parts
-- Availability and affordability in UAE
-- Brand reliability and market presence
-- Common replacement parts and ownership considerations
-- Practical guidance for buyers and vehicle owners
-- The upper structure is not always final. Also, you can shuffle and change headings from your side.
+Content Placement
+ Bottom section of a brand or category page
+Search Intent
+ Commercial + Informational
+Writing Guidelines
+Length: 450–550 words
 
-SEO Rules:
-- Naturally include “used {$brand} spare parts” within the first 100 words
-- Use related keywords organically (auto spare parts in UAE, used spare parts in UAE, genuine and after market spare parts in UAE)
-- No keyword stuffing
-- Keep content helpful and readable
 
-Output only the final content.
-Do not explain the process.
+Tone: Professional and informative
+
+
+Language: Very simple English, written for non-native speakers
+
+
+Style: Natural and human-like, must not sound AI-generated, do not use tough and bad words, make it simple. 
+
+
+No hype, no promotional or sales language
+
+
+No competitor names or comparisons
+
+
+No call-to-action buttons
+
+
+Output must be plain text only
+
+
+Use short paragraphs and clear headings
+
+
+Do not follow a fixed or repeated structure
+
+
+Headings should vary naturally based on the brand and topic flow
+
+
+Use proper HTML tags with spacing:
+
+
+Headings: <h2>
+
+
+Paragraphs: <p>
+
+
+SEO & Formatting Rules
+Use the phrase “used  {$brand} spare parts” naturally within the first 100 words
+
+
+Include related keywords organically:
+
+
+auto spare parts in UAE
+
+
+used spare parts in UAE
+
+
+genuine and aftermarket spare parts in UAE
+
+
+Avoid keyword stuffing
+
+
+Keep content helpful, practical, and easy to read
+
+
+Highlight main keywords and the site name using <strong> tags inside paragraphs
+
+
+Include the site name partsfinder.ae in every output
+
+
+Do not change keyword wording or intent
+
+
+Content Focus Areas
+Used and second-hand  {$brand} auto spare parts
+
+
+Availability and affordability in the UAE
+
+
+{brand} reliability and market presence
+
+
+Common replacement parts for  {$brand} vehicles
+
+
+Ownership and maintenance considerations
+
+
+Practical guidance for buyers and vehicle owners
+
+
+Headings and structure may be shuffled or adjusted naturally
+
+
+Output Rules
+Output only the final content
+
+
+Do not explain the process
+
+
+Do not add notes, comments, or formatting explanations
+
+
 
 
 
