@@ -977,6 +977,50 @@ ease;
 .seo_content > *:last-child {
     margin-bottom: 0 !important;
 }
+/* Tablet */
+@media (max-width: 1024px) {
+    #productGrid1 {
+        width: 95%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #productGrid1 {
+        width: 100%;
+        padding: 0 12px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    #productGrid1 .card {
+        width: 100%;
+        height: auto;
+    }
+
+    #productGrid1 .card img {
+        height: 140px;
+        object-fit: cover;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    #productGrid1 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    #productGrid1 .buttons {
+        flex-direction: column;
+    }
+
+    #productGrid1 .buttons a {
+        height: 44px;
+        font-size: 14px;
+    }
+}
 </style>
 
 @endsection
