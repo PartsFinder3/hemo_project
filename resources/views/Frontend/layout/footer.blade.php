@@ -72,18 +72,27 @@
                         +971 50 256 6002
                     </a>
 
-                 <div class="social-icons">
-                   <a href="https://www.facebook.com/partsfinderuae/" class="social-icon facebook" target="_blank" aria-label="Visit PartsFinder on Facebook">
-    <i class="fab fa-facebook-f" aria-hidden="true"></i>
-</a>
-<a href="https://medium.com/@partsfinder" class="social-icon medium" target="_blank" aria-label="Visit PartsFinder on Medium">
-    <i class="fab fa-medium-m" aria-hidden="true"></i>
-</a>
-<a href="https://www.pinterest.com/partsfinderae/" class="social-icon pinterest" target="_blank" aria-label="Visit PartsFinder on Pinterest">
-    <i class="fab fa-pinterest-p" aria-hidden="true"></i>
-</a>
+             <div class="social-icons">
+    <a href="https://www.facebook.com/partsfinderuae/" class="social-icon facebook" target="_blank" aria-label="Visit PartsFinder on Facebook">
+        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+    </a>
+    <a href="https://medium.com/@partsfinder" class="social-icon medium" target="_blank" aria-label="Visit PartsFinder on Medium">
+        <i class="fab fa-medium-m" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.pinterest.com/partsfinderae/" class="social-icon pinterest" target="_blank" aria-label="Visit PartsFinder on Pinterest">
+        <i class="fab fa-pinterest-p" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.reddit.com/user/Aggressive_Sea4965/" class="social-icon reddit" target="_blank" aria-label="Visit PartsFinder on Reddit">
+        <i class="fab fa-reddit-alien" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/parts-finder-uae/" class="social-icon linkedin" target="_blank" aria-label="Visit PartsFinder on LinkedIn">
+        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+    </a>
+    <a href="https://x.com/partsfinderae1" class="social-icon x" target="_blank" aria-label="Visit PartsFinder on X">
+        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+    </a>
+</div>
 
-                </div>
 
                 </div>
             </div>
