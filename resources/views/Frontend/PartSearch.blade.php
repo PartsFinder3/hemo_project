@@ -218,12 +218,13 @@
 <style>
 
 #productGrid1 {
-     width: 80% !important;
+    width: 80%;
+    max-width: 1400px;   /* optional but recommended */
+    margin: 0 auto;      /* CENTER */
+    
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-    gap: 15px; 
-       
-   
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
     .spareParts {
     display: flex;
@@ -234,8 +235,6 @@
      margin-left: 63px !important;
     padding: 30px;
 }
-
-/* Responsive */
 
 .footer-section{
             margin-top: 20px !important;
