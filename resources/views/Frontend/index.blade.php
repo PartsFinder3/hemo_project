@@ -1021,25 +1021,25 @@
         width: 100%;
         max-width: 220px;
         margin: 0 auto !important;
-        margin-right: -50px !important;
+        
     }
 }
 .popular-part-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;   /* 🔥 CENTER ITEMS */
-    gap: 15px;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important; /* Center horizontally */
+    align-items: flex-start; /* optional */
+    gap: 15px !important;
     width: 100%;
     margin: 0 auto;
 }
 
 /* Card link bhi center ho */
 .part-link {
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
     text-decoration: none;
 }
-
 /* Card size fix */
 .part-card {
     width: 220px;
@@ -1048,14 +1048,10 @@
 
 /* ===== Mobile Fix ===== */
 @media (max-width: 768px) {
-    .popular-part-container {
-        justify-content: center !important;
-    }
-
     .part-card {
-        width: 100%;
-        max-width: 260px; 
-        margin: 0px !important;    /* center look */
+        width: 100% !important;
+        max-width: 260px !important;
+        margin: 0 auto !important;
     }
 }
 </style>
