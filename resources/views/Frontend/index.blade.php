@@ -1017,6 +1017,11 @@
         height: 44px;
         font-size: 14px;
     }
+    .part-card {
+        width: 100%;
+        max-width: 220px;
+        margin: 0 auto;
+    }
 }
 </style>
     @if (request()->scroll == 'ads')
