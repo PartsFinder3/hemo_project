@@ -70,7 +70,9 @@ public function index(Request $request)
     $carAds = CarAds::where('is_approved', true)->latest()->get();
     $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
     $randomMakes = CarMakes::limit(8)->get();
-   $sParts = SpareParts::paginate(60);
+   $sParts = SpareParts::with('seo')
+    ->whereNotNull('image')  // sirf jinke paas image hai
+    ->paginate(60);
 
     $cities = City::where('domain_id',$domain_id)->get();
    

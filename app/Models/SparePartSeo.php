@@ -14,4 +14,8 @@ class SparePartSeo extends Model
         'content',
         'part_id',
     ];
+     public function seo()
+    {
+        return $this->hasOne(SparePartSeo::class, 'part_id'); // part_id foreign key
+    }
 }
