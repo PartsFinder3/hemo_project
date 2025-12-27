@@ -45,4 +45,8 @@ class SpareParts extends Model
     public function partsMeta(){
         return $this->hasMany(PartsMeta::class,'part_id');
     }
+    public function seo()
+{
+    return $this->hasOne(SparePartSeo::class, 'part_id'); // SparePartSeo table me foreign key 'part_id'
+}
 }
