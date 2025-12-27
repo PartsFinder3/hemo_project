@@ -584,7 +584,7 @@ public function sendProductInquiry(Request $request)
                 ->where('is_approved', true)
             ;
         })->latest()->get();
-        dd($ads);
+      
     $host = $request->getHost();
     $currentDomain = Domain::where('domain_url', $host)->first();
     $domain_id = $currentDomain?->id;
