@@ -492,8 +492,8 @@
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
-             <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
-                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+            <a class="part-link"
+   href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
                 <div class="part-card">
                     @if ($p->image)
                         
@@ -578,7 +578,7 @@
     justify-content: center;
     align-items: center;
     max-width: 90% !important;
-   margin-left: 63px !important;
+   margin: auto;
     padding: 30px;
 }
 .part-card:hover {
