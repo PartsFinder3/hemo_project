@@ -1017,12 +1017,7 @@
         height: 44px;
         font-size: 14px;
     }
-    .part-card {
-        width: 200px;
-        max-width: 220px;
-        margin: 0 auto !important;
-        
-    }
+   
 }
 .popular-part-container {
     display: flex !important;
