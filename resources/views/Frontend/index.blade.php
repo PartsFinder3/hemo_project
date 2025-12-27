@@ -507,7 +507,7 @@
                 </div>
                  </a>
             @endforeach
-            <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <div style="display: flex; justify-content: center; margin-top: 20px; width:100%;">
     {{ $sParts->fragment('spareParts')->links('pagination::bootstrap-5') }}
 </div>
         </div>
