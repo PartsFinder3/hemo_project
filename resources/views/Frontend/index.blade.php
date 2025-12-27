@@ -1053,7 +1053,8 @@
 
     .part-card {
         width: 100%;
-        max-width: 260px;     /* center look */
+        max-width: 260px; 
+        margin: 0px !important;    /* center look */
     }
 }
 </style>
