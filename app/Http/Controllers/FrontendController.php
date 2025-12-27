@@ -1145,7 +1145,8 @@ public function getQueriesData(Request $request, $domain)
             ]
         ],
     ]); 
-    dd($response);
+    $content= $response->choices[0]->message->content;
+    dd($content);
 
    
 
