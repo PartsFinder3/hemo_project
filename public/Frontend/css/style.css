@@ -2159,6 +2159,7 @@ h2.section-title {
         padding: 0 12px;
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+        margin: auto;
     }
 
     #productGrid1 .card {
@@ -2178,7 +2179,9 @@ h2.section-title {
     #productGrid1 {
         width: 95%;
         grid-template-columns: repeat(2, 1fr);
+        margin: auto;
     }
+    
 }
 
 /* Mobile */
@@ -2188,6 +2191,7 @@ h2.section-title {
         padding: 0 12px;
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+        margin: auto;
     }
 
     #productGrid1 .card {
