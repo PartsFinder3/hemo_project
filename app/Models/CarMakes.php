@@ -36,4 +36,8 @@ class CarMakes extends Model
     {
         return $this->hasMany(ShopMakes::class);
     }
+    public function seoContent()
+{
+    return $this->hasOne(SeoContentMake::class, 'make_id');
+}
 }

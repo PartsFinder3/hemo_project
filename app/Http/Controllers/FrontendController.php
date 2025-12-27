@@ -58,7 +58,9 @@ public function index(Request $request)
 
     // ===== NORMAL DATA (NO CACHE) =====
     $getFAQS = Faq::where('domain_id', $domain_id)->get();
-     $carMakes = CarMakes::paginate(52); 
+     $carMakes = CarMakes::whereNotNull('logo')   // image ho
+    ->whereHas('seoContent')                // seo content ho
+    ->paginate(52); 
     $domain = $currentDomain;
     $models = CarModels::all();
     $makes = CarMakes::all();
