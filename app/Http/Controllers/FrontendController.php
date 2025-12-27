@@ -51,7 +51,7 @@ public function index(Request $request)
 
 
       $host = preg_replace('/^www\./', '', $request->getHost());
-      dd($host);
+    
     $currentDomain = Domain::where('domain_url', $host)->first();
  
     $domain_id  = $currentDomain?->id;
