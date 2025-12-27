@@ -329,6 +329,11 @@
         margin-top: 20px;
     }
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
 </style>
 <div class="hero-section_p">
