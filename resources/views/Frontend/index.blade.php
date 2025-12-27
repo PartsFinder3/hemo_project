@@ -990,10 +990,10 @@
         gap: 12px;
     }
 
-    #productGrid1 .card {
-        width: 100%;
-        height: auto;
-    }
+   #productGrid1 .card {
+    width: 100% !important;
+    margin: 0 !important;
+}
 
     #productGrid1 .card img {
         height: 140px;
