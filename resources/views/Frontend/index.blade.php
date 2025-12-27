@@ -44,7 +44,7 @@
 }
 
 #productGrid1 .card {
-    width: 100%;
+    width: 300px;
     padding: 0; /* remove all padding */
     display: flex;
     flex-direction: column;
@@ -1019,7 +1019,7 @@
     }
     .part-card {
         width: 300px !important;
-        max-width: 220px;
+      
         margin: 0 auto !important;
         
     }
