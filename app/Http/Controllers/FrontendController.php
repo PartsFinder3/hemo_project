@@ -833,7 +833,7 @@ public function generateSeoPart($id)
             [
                 'role' => 'user',
                 'content' => "
-Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
+     Write SEO-optimized content for an auto spare parts brand page on partsfinder.ae.
 
 Brand: {$brand}
 Target Country: UAE
@@ -870,6 +870,7 @@ SEO Rules:
 
 Output only the final content.
 Do not explain the process.
+
 
 
                         "
@@ -998,5 +999,157 @@ public function getQueriesData(Request $request, $domain)
     ]);
 }
  
+  function test_city(){
+       $city = "Dubai";
+      $country="UAE";
+    if (!$city) {
+        return back()->with('error','make not found');
+    }
 
+  
+   $keys = [
+        env('OPENAI_KEY1'),
+        env('OPENAI_KEY2'),
+        env('OPENAI_KEY3'),
+        env('OPENAI_KEY4'),
+        env('OPENAI_KEY5')
+    ];
+      $key = $keys[array_rand($keys)];
+     $client = OpenAI::client($key);
+    $brand=$city;
+    $response = $client->chat()->create([
+        'model' => 'gpt-4o-mini',
+        'messages' => [
+            [
+                'role' => 'user',
+                'content' => "
+            Write SEO-optimized content for an auto spare parts city page on partsfinder.ae.
+            Variables
+            City: {$city}
+            Country: {$country}
+
+            Content Placement
+            Bottom section of a brand or category page
+            Search Intent
+            Commercial + Informational
+            Writing Guidelines
+            Length: 450–550 words
+
+
+            Tone: Professional and informative
+
+
+            Language: Very simple English, written for non-native speakers
+
+
+            Style: Natural and human-like, must not sound AI-generated, do not use tough and bad words, make it simple. 
+
+
+            No hype, no promotional or sales language
+
+
+            No competitor names or comparisons
+
+
+            No call-to-action buttons
+
+
+            Output must be plain text only
+
+
+            Use short paragraphs and clear headings
+
+
+            Do not follow a fixed or repeated structure
+
+
+            Headings should vary naturally based on content flow
+
+
+            Use proper HTML tags with spacing:
+
+
+            Headings: <h2>
+
+
+            Paragraphs: <p>
+
+
+            SEO & Formatting Rules
+            Use the phrase “used spare parts” naturally within the first 100 words
+
+
+            Include related keywords organically:
+
+
+            auto spare parts in {$country}
+
+
+            used spare parts in {$country}
+ 
+
+            genuine and aftermarket spare parts in {$country}
+
+
+            Avoid keyword stuffing
+
+
+            Keep content helpful, practical, and easy to read
+
+
+            Highlight main keywords and the site name using <strong> tags inside paragraphs
+
+
+            Include the site name partsfinder.ae in every output
+
+
+            Use the {$city} name inside headings
+
+
+            Do not change keyword wording or intent
+
+
+            Content Focus Areas
+            Used and second-hand auto spare parts
+
+
+            Availability and affordability in {$country}
+
+
+            Market reliability and presence
+
+
+            Common replacement parts
+
+
+            Vehicle ownership and maintenance considerations
+
+
+            Practical guidance for buyers and vehicle owners
+
+
+            Headings and structure may be shuffled or adjusted naturally
+
+
+            Output Rules
+            Output only the final content
+
+
+            Do not explain the process
+
+
+            Do not add notes, comments, or formatting explanations
+
+
+                        "
+            ]
+        ],
+    ]); 
+    dd($response);
+
+   
+
+    return back()->with('success', "SEO content generated successfully for {$part->name}");
+      
+  }
 }

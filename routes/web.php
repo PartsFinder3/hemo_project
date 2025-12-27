@@ -398,6 +398,7 @@ Route::get('/Found/pages/',[FrontendController::class,'found_pages'])->name('fou
 Route::get('/generate-seo/make/{id}', [FrontendController::class, 'generateSeoMake'])->name('generate.seo.make');
 
 Route::get('/generate-seo/parts/{id}', [FrontendController::class, 'generateSeoPart'])->name('generate.seo.part');
+Route::get('/test_city', [FrontendController::class, 'test_city'])->name('test_city.seo.city');
 
 Route::get('/generate-seo/success', [FrontendController::class, 'generateSeoSuccess'])->name('generate.seo.success');
 Route::get('/United/data/analytic/{domain}', [FrontendController::class, 'United_analytic'])
