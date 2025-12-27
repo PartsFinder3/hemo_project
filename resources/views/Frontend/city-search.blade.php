@@ -533,7 +533,7 @@
     justify-content: center;
     align-items: center;
     max-width: 90% !important;
-   margin-left: 46px !important;
+     margin-left: 63px !important;
     padding: 30px;
 }
     .pagination {
