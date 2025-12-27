@@ -540,9 +540,9 @@ public function sendProductInquiry(Request $request)
     $domain_id = $currentDomain?->id; 
               
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
-        $carMakes = CarMakes::whereNotNull('logo')
-            ->take(60)
-            ->get();
+         $carMakes = CarMakes::whereNotNull('logo')   // image ho
+    ->whereHas('seoContent')                // seo content ho
+    ->paginate(52); 
 
         $models = CarModels::all();
         $makes = CarMakes::all();

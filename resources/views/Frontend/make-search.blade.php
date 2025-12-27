@@ -80,6 +80,9 @@
                 <h4>{{ strtoupper($m->name) }}</h4>
             </a>
         @endforeach
+         <div class="col-12 d-flex justify-content-center mt-4">
+    {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
+</div>
     </div>
 </section>
  <section class="spareParts" id="spareParts">
@@ -538,7 +541,7 @@ ease;
     
     .pagination a {
         padding: 10px 18px;
-        border: 1px solid #ddd;
+        border: 1px solid #ff6a00;
         border-radius: 4px;
         text-decoration: none;
         color: #333;
