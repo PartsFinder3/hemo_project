@@ -63,7 +63,7 @@
     <div class="pagination" id="pagination1"></div>
 </section>
 
-<section class="carMakes">
+<section class="carMakes" id="carMakes">
     <div class="section-text">
         <h3>TOP MAKES</h3>
         <h2>Browse By Brands</h2>
