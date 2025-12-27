@@ -584,6 +584,7 @@ public function sendProductInquiry(Request $request)
                 ->where('is_approved', true)
             ;
         })->latest()->get();
+        dd($ads);
     $host = $request->getHost();
     $currentDomain = Domain::where('domain_url', $host)->first();
     $domain_id = $currentDomain?->id;
@@ -593,7 +594,7 @@ public function sendProductInquiry(Request $request)
                 ->where('is_approved', true)
             ;
         })->latest()->get();
-
+    
         $carMakes = CarMakes::whereNotNull('logo')->take(24)->get();
         $models = CarModels::all();
         $makes = CarMakes::all();
