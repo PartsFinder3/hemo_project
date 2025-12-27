@@ -82,7 +82,7 @@
         @endforeach
     </div>
 </section>
- <section class="spareParts">
+ <section class="spareParts" id="spareParts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
@@ -101,6 +101,9 @@
                 </div>
                  </a>
             @endforeach
+                        <div style="display: flex; justify-content: center; margin-top: 20px; width:100%;">
+    {{ $sParts->fragment('spareParts')->links('pagination::bootstrap-5') }}
+</div>
         </div>
     </section>
 <!-- Locations Section -->
