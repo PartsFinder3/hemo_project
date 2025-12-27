@@ -237,8 +237,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
     gap: 15px; /* space between cards */
-    width: 80%; /* your grid width */
-    margin: 0 auto; /* centers the grid horizontally */
+        width: 80%;
+   
 }
 .part-card {
     width: 250px;
