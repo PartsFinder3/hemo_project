@@ -463,36 +463,29 @@
 <div style="display: flex; justify-content: center; margin-top: 20px;">
     {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
-        <section class="carMakes" id="carMakes">
-        <div class="section-text">
-            <h3>TOP MAKES</h3>
-            <h2>Browse By Brands</h2>
-        </div>
+   
+<section class="carMakes" id="carMakes">
+    <div class="section-text">
+        <h3>TOP MAKES</h3>
+        <h2>Browse By Brands</h2>
+    </div>
 
-        <div class="brands">
-            @foreach ($carMakes as $make)
-             @php
-              
-                 $Content=SeoContentMake::where('make_id',$make->id)->first();
-                 @endphp
-                 @if($make->logo && $Content)
-                 <a href="{{ route('make.ads', ['slug' => $make->slug, 'id' => $make->id]) }}" class="make">
-                    @if($make->logo)
-               
-                      <img src="{{ asset('storage/' . $make->logo) }}" alt="{{ $make->name }}">
-                      
-
-                    @endif
-                    <h4>{{ strtoupper($make->name) }}</h4>
-                </a>
-                 @endif
-            @endforeach
-        </div>
-        <div class="col-12 d-flex justify-content-center mt-4">
+    <div class="brands">
+        @foreach ($carMakes as $m)
+            <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}" class="make">
+                @if($m->logo)
+                    <div class="make-image-container">
+                        <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}" onerror="this.src='{{ asset('images/brand-placeholder.png') }}'">
+                    </div>
+                @endif
+                <h4>{{ strtoupper($m->name) }}</h4>
+            </a>
+        @endforeach
+         <div class="col-12 d-flex justify-content-center mt-4">
     {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
 </div>
-
-    </section>
+    </div>
+</section>
     <section class="spareParts" id="parts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
