@@ -497,6 +497,9 @@ public function sendProductInquiry(Request $request)
 
     public function adByMakes(Request $request , $slug, $id)
     {
+         $sPartsPage = $request->input('parts_page', 1);
+    $adsPage = $request->input('ads_page', 1);
+    $carMakesPage = $request->input('makes_page', 1);
         $make = CarMakes::where('id', $id)->where('slug', $slug)->firstOrFail();
         $seoTitle_t = SeoTitle::find($make->tamp_title_id);
         $meta['title'] = $seoTitle_t 
@@ -508,9 +511,9 @@ public function sendProductInquiry(Request $request)
             ? str_replace('{brand}', $make->name, $seoTemplate_d->description) 
             : null;
       
-  $sParts = SpareParts::with('seo')
-    ->whereNotNull('image')  // sirf jinke paas image hai
-    ->paginate(60);
+   $sParts = SpareParts::with('seo')
+        ->whereNotNull('image')  
+        ->paginate(60, ['*'], 'parts_page', $sPartsPage);
         // Structure data
         $meta['structure_data'] = <<<JSON
         {
@@ -545,9 +548,9 @@ public function sendProductInquiry(Request $request)
     $domain_id = $currentDomain?->id; 
               
         $getFAQS=Faq::where('domain_id',$domain_id)->get();
-         $carMakes = CarMakes::whereNotNull('logo')   // image ho
-    ->whereHas('seoContent')                // seo content ho
-    ->paginate(52); 
+    $carMakes = CarMakes::whereNotNull('logo')
+        ->whereHas('seoContent')
+        ->paginate(52, ['*'], 'makes_page', $carMakesPage);
 
         $models = CarModels::all();
         $makes = CarMakes::all();
