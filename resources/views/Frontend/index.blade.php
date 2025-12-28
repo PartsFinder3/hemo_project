@@ -902,7 +902,6 @@
     gap: 8px;
     width: 200px;
     height: 60px;
-    background: linear-gradient(to right, #f4f4f4 50%, #ff6a00 50%);
     background-size: 200% 100%;
     background-position: right bottom;
     padding: 10px;
