@@ -900,23 +900,24 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;  /* fixed width */
-    height: 60px;  /* fixed height */
-    background-color: #f4f4f4;
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(to right, #f4f4f4 50%, #ff6a00 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
     padding: 10px;
     border-radius: 10px;
     color: #ff6a00;
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .abd-location-card:hover {
-    background-color: #ff6a00;
+    background-position: left bottom;
     color: #fff;
     transform: translateY(-3px);
 }
-
 .abd-location-icon {
     font-size: 18px;
 }
