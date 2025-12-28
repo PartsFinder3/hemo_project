@@ -517,7 +517,6 @@
     color: #ff6a00; /* text color changes on hover */
     transform: translateY(-3px);
 }
-    
     .abd-location-icon {
         font-size: 18px;
     }
