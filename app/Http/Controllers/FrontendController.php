@@ -631,7 +631,7 @@ public function sendProductInquiry(Request $request)
            
         $cities = City::where('domain_id',$domain_id)->get();
         $randomMakes = CarMakes::limit(8)->get();
-
+        $Content=CityContent::where('city_id',$id)->first();
         return view('Frontend.city-search', compact(
             'city',
             'ads',
@@ -645,7 +645,8 @@ public function sendProductInquiry(Request $request)
             'cities',
             'randomMakes',
             'getFAQS',
-            'sParts'
+            'sParts',
+            'Content'
         ));
     }
 
