@@ -39,7 +39,7 @@
 
 #productGrid1 {
     width:80%;
-    mar
+    margin-left: 63px !important;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
