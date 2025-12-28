@@ -38,11 +38,12 @@
 
 
 #productGrid1 {
-    width:80%;
-    margin-left: 126px !important;
+    width: 100%;          /* take full width of container */
+    max-width: 1200px;    /* optional, keep content centered */
+    margin: 0 auto;       /* center the grid */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr); /* force 4 columns */
+    gap: 20px;            /* space between cards */
 }
 
 #productGrid1 .card {
