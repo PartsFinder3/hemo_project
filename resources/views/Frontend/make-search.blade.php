@@ -494,31 +494,29 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
     
-    .abd-location-card {
-display: flex;
+.abd-location-card {
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     width: 200px;
     height: 60px;
-    color: #ff6a00;
+    background: linear-gradient(to right, #ff6a00 50%, #f4f4f4 50%);
+    background-size: 200% 100%;
+    background-position: left bottom; /* start from left */
     padding: 10px;
     border-radius: 10px;
-    color: #333;
+    color: #fff; /* text color starts as white for contrast */
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.3s 
-ease;
-    border: 1px solid #e0e0e0;
-    background-color: #f4f4f4;
-    }
-    
-    .abd-location-card:hover {
-        
-        color: white;
-        transform: translateY(-3px);
-        border-color: #ff6a00;
-    }
+    transition: all 0.5s ease;
+}
+
+.abd-location-card:hover {
+    background-position: right bottom; /* slide to right */
+    color: #ff6a00; /* text color changes on hover */
+    transform: translateY(-3px);
+}
     
     .abd-location-icon {
         font-size: 18px;
