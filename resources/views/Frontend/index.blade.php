@@ -963,6 +963,9 @@
     .spareParts {
      margin: 0px !important;
     }
+     .abd-location-name {
+        font-size: 10px !important;
+    }
 }
 </style>
     @if (request()->scroll == 'ads')
