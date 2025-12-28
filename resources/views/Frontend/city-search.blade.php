@@ -1014,6 +1014,9 @@
         height: 45px;
         font-size: 13px;
     }
+        .abd-location-name {
+        font-size: 10px !important;
+    }
 }
    /* Pagination */
     .pagination {

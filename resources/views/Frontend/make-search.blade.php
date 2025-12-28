@@ -1020,6 +1020,10 @@ ease;
         height: 44px;
         font-size: 14px;
     }
+
+        .abd-location-name {
+        font-size: 10px !important;
+    }
 }
 @media (max-width: 600px) {
   .spareParts {

@@ -221,6 +221,9 @@
         margin-left: 0px !important;
         margin: auto !important;
     }
+        .abd-location-name {
+        font-size: 10px !important;
+    }
 }
 </style>
 @endsection
