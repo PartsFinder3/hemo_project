@@ -414,10 +414,13 @@ public function sendProductInquiry(Request $request)
 
     public function adByPart( Request $request, $partName, $id)
     {
-           $sParts = SpareParts::with('seo')
-    ->whereNotNull('image')  // sirf jinke paas image hai
-    ->paginate(60);
-          $carMakes = CarMakes::paginate(48); 
+           $sPartsPage = $request->input('parts_page', 1);
+    $carMakesPage = $request->input('makes_page', 1);
+    $adsPage = $request->input('ads_page', 1);
+    $sParts = SpareParts::with('seo')
+        ->whereNotNull('image')  
+        ->paginate(60, ['*'], 'parts_page', $sPartsPage);
+         $carMakes = CarMakes::paginate(48, ['*'], 'makes_page', $carMakesPage);
         $part = SpareParts::findOrFail($id);
          $seoTitle_t = SeoTitle::find($part->tamp_title_id);
            $meta['title'] = $seoTitle_t 
