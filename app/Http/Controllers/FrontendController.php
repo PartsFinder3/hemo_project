@@ -1421,7 +1421,7 @@ Do not explain the process.
             ]
         ],
     ]); 
-    SeoContentMake::updateOrCreate(
+    CityContent::updateOrCreate(
         ['city_id' => $city->id],
         ['content' => $response->choices[0]->message->content]
     );
