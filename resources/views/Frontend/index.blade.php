@@ -423,7 +423,7 @@
 
 <div id="ads"></div>
   <!-- FIRST ADS SECTION - Part Ads -->
-<div class="grid {{ request()->scroll == 'ads' ? 'scroll_posint' : '' }}" id="productGrid1">
+
 <div class="grid" id="productGrid1">
     @foreach ($ads as $ad)
         <div class="card">
