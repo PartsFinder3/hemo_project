@@ -141,6 +141,8 @@
 @media (max-width: 600px) {
     #productGrid1 {
         grid-template-columns: 1fr;
+        margin-left: 0px !important;
+        margin: auto !important;
     }
 }
 /* ======= Responsive 992px (Tablet + Mobile Large) ======= */
@@ -892,29 +894,29 @@
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
-
 .abd-location-card {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;  /* fixed width */
-    height: 60px;  /* fixed height */
-    background-color: #f4f4f4;
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(to right, #ff6a00 50%, #f4f4f4 50%);
+    background-size: 200% 100%;
+    background-position: left bottom; /* start from left */
     padding: 10px;
     border-radius: 10px;
-    color: #ff6a00;
+    color: #fff; /* text color starts as white for contrast */
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .abd-location-card:hover {
-    background-color: #ff6a00;
-    color: #fff;
+    background-position: right bottom; /* slide to right */
+    color: #ff6a00; /* text color changes on hover */
     transform: translateY(-3px);
 }
-
 .abd-location-icon {
     font-size: 18px;
 }
@@ -960,6 +962,9 @@
     }
     .spareParts {
      margin: 0px !important;
+    }
+     .abd-location-name {
+        font-size: 10px !important;
     }
 }
 </style>
