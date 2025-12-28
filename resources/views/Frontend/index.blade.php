@@ -513,7 +513,7 @@
                  </a>
             @endforeach
             <div style="display: flex; justify-content: center; margin-top: 20px;">
-    {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
+    {{ $sParts->fragment('parts')->links('pagination::bootstrap-5') }}
 </div>
         </div>
     </section>
