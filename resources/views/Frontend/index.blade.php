@@ -141,8 +141,6 @@
 @media (max-width: 600px) {
     #productGrid1 {
         grid-template-columns: 1fr;
-        margin-left: 0px !important;
-        margin: auto !important;
     }
 }
 /* ======= Responsive 992px (Tablet + Mobile Large) ======= */
