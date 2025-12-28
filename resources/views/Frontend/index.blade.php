@@ -901,21 +901,44 @@
     gap: 8px;
     width: 200px;
     height: 60px;
-    background: linear-gradient(to right, #ff6a00 50%, #f4f4f4 50%);
-    background-size: 200% 100%;
-    background-position: left bottom; /* start from left */
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff; /* text color starts as white for contrast */
+    background: #ff7700; /* initial solid background */
+    color: white;        /* initial text color */
     font-weight: 500;
     text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Create sliding effect using pseudo-element */
+.abd-location-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ff7700 50%, #fff 50%);
+    z-index: 0;
     transition: all 0.5s ease;
 }
 
-.abd-location-card:hover {
-    background-position: right bottom; /* slide to right */
-    color: #ff6a00; /* text color changes on hover */
-    transform: translateY(-3px);
+/* Text above pseudo-element */
+.abd-location-card span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.5s ease;
+}
+
+/* Hover effect */
+.abd-location-card:hover::before {
+    left: 0; /* slide gradient over */
+}
+
+.abd-location-card:hover span {
+    color: #fff; /* text becomes white */
 }
 .abd-location-icon {
     font-size: 18px;
