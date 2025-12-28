@@ -1366,122 +1366,50 @@ public function getQueriesData(Request $request, $domain)
             [
                 'role' => 'user',
                 'content' => "
-            Write SEO-optimized content for an auto spare parts city page on partsfinder.ae.
-            Variables
-            City: {$city}
-            Country: {$country}
-
-            Content Placement
-            Bottom section of a brand or category page
-            Search Intent
-            Commercial + Informational
-            Writing Guidelines
-            Length: 450–550 words
-
-
-            Tone: Professional and informative
-
-
-            Language: Very simple English, written for non-native speakers
-
-
-            Style: Natural and human-like, must not sound AI-generated, do not use tough and bad words, make it simple. 
-
-
-            No hype, no promotional or sales language
-
-
-            No competitor names or comparisons
-
-
-            No call-to-action buttons
-
-
-            Output must be plain text only
-
-
-            Use short paragraphs and clear headings
-
-
-            Do not follow a fixed or repeated structure
-
-
-            Headings should vary naturally based on content flow
-
-
-            Use proper HTML tags with spacing:
-
-
-            Headings: <h2>
-
-
-            Paragraphs: <p>
-
-
-            SEO & Formatting Rules
-            Use the phrase “used spare parts” naturally within the first 100 words
-
-
-            Include related keywords organically:
-
-
-            auto spare parts in {$country}
-
-
-            used spare parts in {$country}
- 
-
-            genuine and aftermarket spare parts in {$country}
-
-
-            Avoid keyword stuffing
-
-
-            Keep content helpful, practical, and easy to read
-
-
-            Highlight main keywords and the site name using <strong> tags inside paragraphs
-
-
-            Include the site name partsfinder.ae in every output in bold <strong> wordings.
-
-
-            Use the {$city} name inside headings
-
-
-            Do not change keyword wording or intent
-
-
-            Content Focus Areas
-            Used and second-hand auto spare parts
-
-
-            Availability and affordability in {$country}
-
-
-            Market reliability and presence
-
-
-            Common replacement parts
-
-
-            Vehicle ownership and maintenance considerations
-
-
-            Practical guidance for buyers and vehicle owners
-
-
-            Headings and structure may be shuffled or adjusted naturally
-
-
-            Output Rules
-            Output only the final content
-
-
-            Do not explain the process
-
-
-            Do not add notes, comments, or formatting explanations
+Write SEO-optimized content for an auto spare parts city page on partsfinder.ae.
+
+City: {$city}
+Target Country: {$country}
+Content Placement: Bottom of brand/category page
+Search Intent: Commercial + Informational
+
+Guidelines:
+- Around 450–550 words
+- Professional, informative tone
+- No hype or sales language
+- No competitor mentions
+- No call-to-action buttons
+- Plain text output
+- Use clear headings and short paragraphs
+- Headings should vary naturally based on the brand
+- Do not follow a fixed outline or repeated structure
+- Assign proper Headings 2 <h2> and paragraph <p> tags accordingly with spaces on them.
+- Put my main keywords and site name in <strong> tag inside <p>
+- Also add site name partsfinder.ae in every output. 
+- Also use the city name in headings
+- Write it clear and easy language, do not make it sound like ai generated content. Use really simple english wordings as you are writing for non-english people.
+- Use the city name in multiple headings
+- Naturally include “{$city} near me” and “auto spare parts near me in {$city}” in both headings and paragraph content
+
+
+
+
+Content Focus:
+- Used and second-hand auto spare parts
+- Availability and affordability in {$country}
+- Brand reliability and market presence
+- Common replacement parts and ownership considerations
+- Practical guidance for buyers and vehicle owners
+- The upper structure is not always final. Also, you can shuffle and change headings from your side.
+
+SEO Rules:
+- Naturally include “used {$city} spare parts” within the first 100 words
+- Use related keywords organically (auto spare parts in {$country}, used spare parts in {$country}, genuine and aftermarket spare parts in {$country})
+- No keyword stuffing
+- Keep content helpful and readable
+
+Output only the final content.
+Do not explain the process.
 
 
                         "
