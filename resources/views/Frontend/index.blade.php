@@ -459,8 +459,9 @@
     @endforeach
 </div>
 
+<!-- Pagination OUTSIDE the grid -->
 <div style="display: flex; justify-content: center; margin-top: 20px;">
-    {{ $ads->appends(['makes_page' => request('makes_page'), 'parts_page' => request('parts_page')])->links('pagination::bootstrap-5') }}
+    {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
         <section class="carMakes" id="carMakes">
         <div class="section-text">
@@ -487,8 +488,8 @@
                  @endif
             @endforeach
         </div>
-        <div style="display: flex; justify-content: center; margin-top: 20px;">
-    {{ $carMakes->appends(['parts_page' => request('parts_page'), 'ads_page' => request('ads_page')])->links('pagination::bootstrap-5') }}
+        <div class="col-12 d-flex justify-content-center mt-4">
+    {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
 </div>
 
     </section>
@@ -511,8 +512,8 @@
                 </div>
                  </a>
             @endforeach
-         <div style="display: flex; justify-content: center; margin-top: 20px;">
-    {{ $sParts->appends(['makes_page' => request('makes_page'), 'ads_page' => request('ads_page')])->links('pagination::bootstrap-5') }}
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+    {{ $ads->fragment('ads')->links('pagination::bootstrap-5') }}
 </div>
         </div>
     </section>
