@@ -493,7 +493,7 @@
 </div>
 
     </section>
-    <section class="spareParts">
+    <section class="spareParts" id="parts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
             @foreach ($sParts as $p)
