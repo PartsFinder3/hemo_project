@@ -1021,6 +1021,13 @@ ease;
         font-size: 14px;
     }
 }
+@media (max-width: 600px) {
+  .spareParts {
+   
+        margin-left: 0px !important;
+        margin: auto !important;
+    }
+}
 </style>
 
 @endsection
