@@ -703,7 +703,12 @@
     color: #ff6a00; /* text color changes on hover */
     transform: translateY(-3px);
 }
-
+    .pagination .active,
+.pagination .page-item.active .page-link {
+    background: #ff7700 !important;
+    color: white !important;
+    border-color: #ff7700 !important;
+}
 .abd-location-icon {
     font-size: 18px;
 }
