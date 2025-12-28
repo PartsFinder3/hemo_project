@@ -126,6 +126,7 @@
     </div>
 </section>
 
+
 @if(isset($Content->seo_content_make) && $Content->seo_content_make)
 <section class="seo_content">
      <hr style="
@@ -701,14 +702,13 @@
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
-
-.abd-location-card {
+.abd-locations-section .abd-locations-grid .abd-location-card {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;  /* fixed width */
-    height: 60px;  /* fixed height */
+    width: 200px;
+    height: 60px;
     background-color: #f4f4f4;
     padding: 10px;
     border-radius: 10px;
@@ -718,7 +718,7 @@
     transition: all 0.3s ease;
 }
 
-.abd-location-card:hover {
+.abd-locations-section .abd-locations-grid .abd-location-card:hover {
     background-color: #ff6a00;
     color: #fff;
     transform: translateY(-3px);
