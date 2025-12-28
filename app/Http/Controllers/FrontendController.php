@@ -56,12 +56,14 @@ public function index(Request $request)
  
     $domain_id  = $currentDomain?->id;
     $domain_map = $currentDomain?->map_img ?? 'logo/1759938974_map.webp';
-    
+        $carMakesPage = $request->input('makes_page', 1);
+    $sPartsPage = $request->input('parts_page', 1);
+    $adsPage = $request->input('ads_page', 1);
     // ===== NORMAL DATA (NO CACHE) =====
     $getFAQS = Faq::where('domain_id', $domain_id)->get();
-     $carMakes = CarMakes::whereNotNull('logo')   // image ho
-    ->whereHas('seoContent')                // seo content ho
-    ->paginate(52); 
+ $carMakes = CarMakes::whereNotNull('logo')
+        ->whereHas('seoContent')
+        ->paginate(52, ['*'], 'makes_page', $carMakesPage);
     $domain = $currentDomain;
     $models = CarModels::all();
     $makes = CarMakes::all();
@@ -70,16 +72,17 @@ public function index(Request $request)
     $carAds = CarAds::where('is_approved', true)->latest()->get();
     $randomParts = SpareParts::withCount('ads')->orderBy('ads_count', 'desc')->take(5)->get();
     $randomMakes = CarMakes::limit(8)->get();
-   $sParts = SpareParts::with('seo')
-    ->whereNotNull('image')  // sirf jinke paas image hai
-    ->paginate(60);
+    $sParts = SpareParts::with('seo')
+        ->whereNotNull('image')
+        ->paginate(60, ['*'], 'parts_page', $sPartsPage);
 
     $cities = City::where('domain_id',$domain_id)->get();
    
  
-  $ads = Ads::withoutGlobalScopes()->where('is_approved', true)
-    ->where('domain', $host)
-    ->paginate(8);
+    $ads = Ads::withoutGlobalScopes()
+        ->where('is_approved', true)
+        ->where('domain', $host)
+        ->paginate(8, ['*'], 'ads_page', $adsPage);
 
     $meta['title']="Auto Spare Parts in UAE | Used, New & Aftermarket Car Parts – PartsFinder";
     $meta['description']=" Find used, new, and aftermarket auto spare parts in UAE. Compare prices from trusted sellers across Dubai, Sharjah, Abu Dhabi, and more with PartsFinder";
