@@ -261,6 +261,11 @@
     background: #fff;
     transition: 0.3s ease;
 }
+.part-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px #ff7700;
+    border-color: #ff7700;
+}
 #productGrid1 .card {
     width: 100%;
     padding: 0; /* remove all padding */
