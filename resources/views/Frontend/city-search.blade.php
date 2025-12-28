@@ -1052,5 +1052,11 @@
         margin: auto !important;
     }
 }
+    .pagination .active,
+.pagination .page-item.active .page-link {
+    background: #ff7700 !important;
+    color: white !important;
+    border-color: #ff7700 !important;
+}
  </style>
 @endsection
