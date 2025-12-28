@@ -27,6 +27,7 @@ use App\Models\PartMeta;
 use App\Models\SeoTitle;
 use App\Models\SeoTamplate;
 use App\Models\SeoContentMake;
+use App\Models\CityContent;
 use App\Models\SparePartSeo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -1342,9 +1343,13 @@ public function getQueriesData(Request $request, $domain)
     ]);
 }
  
-  function test_city(){
-       $city = "Dubai";
-      $country="UAE";
+  function create_seo__city(Request $request, $id){
+      $host = preg_replace('/^www\./', '', $request->getHost());
+    
+    $currentDomain = Domain::where('domain_url', $host)->first();
+      $city=City::find($id);
+      
+      $country=$currentDomain->name;
     if (!$city) {
         return back()->with('error','make not found');
     }
@@ -1416,9 +1421,12 @@ Do not explain the process.
             ]
         ],
     ]); 
-    $content= $response->choices[0]->message->content;
-    
-    return view('city_check',compact('content'));
+    SeoContentMake::updateOrCreate(
+        ['city_id' => $city->id],
+        ['content' => $response->choices[0]->message->content]
+    );
+     return back()->with('success', "SEO content generated successfully for {$city->name}");
+      
       
   }
 }

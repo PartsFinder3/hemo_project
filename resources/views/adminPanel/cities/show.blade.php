@@ -129,6 +129,18 @@
                                                 class="fa-solid fa-trash"></i>
                                             Delete</a>
                                             @endif
+                                                    @php
+             $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
+        @endphp
+                 @if ($seoExists)
+            <span class="badge bg-warning">
+                <i class="fa-solid fa-check"></i>Generated
+            </span>
+        @else
+        <a class="btn btn-warning btn-sm" href="{{ route('city.seo.city', $make->id) }}">
+            <i class="fa-solid fa-chart-line"></i> Content Generate
+        </a>
+        @endif
                                     </td>
                                 </tr>
                             @endforeach
