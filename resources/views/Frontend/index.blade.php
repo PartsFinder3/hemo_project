@@ -894,7 +894,6 @@
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
-
 .abd-location-card {
     display: flex;
     align-items: center;
@@ -902,19 +901,20 @@
     gap: 8px;
     width: 200px;
     height: 60px;
+    background: linear-gradient(to right, #ff6a00 50%, #f4f4f4 50%);
     background-size: 200% 100%;
-    background-position: right bottom;
+    background-position: left bottom; /* start from left */
     padding: 10px;
     border-radius: 10px;
-    color: #ff6a00;
+    color: #fff; /* text color starts as white for contrast */
     font-weight: 500;
     text-decoration: none;
     transition: all 0.5s ease;
 }
 
 .abd-location-card:hover {
-    background-position: left bottom;
-    color: #fff;
+    background-position: right bottom; /* slide to right */
+    color: #ff6a00; /* text color changes on hover */
     transform: translateY(-3px);
 }
 .abd-location-icon {
