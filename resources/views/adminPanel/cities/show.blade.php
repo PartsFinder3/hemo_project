@@ -137,7 +137,7 @@
                 <i class="fa-solid fa-check"></i>Generated
             </span>
         @else
-        <a class="btn btn-warning btn-sm" href="{{ route('city.seo.city', $make->id) }}">
+        <a class="btn btn-warning btn-sm" href="{{ route('city.seo.city', $city->id) }}">
             <i class="fa-solid fa-chart-line"></i> Content Generate
         </a>
         @endif
