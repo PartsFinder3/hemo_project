@@ -568,6 +568,12 @@
         color: white;
         border-color: #ff6a00;
     }
+    .pagination .active,
+.pagination .page-item.active .page-link {
+    background: #ff7700 !important;
+    color: white !important;
+    border-color: #ff7700 !important;
+}
         .spareParts {
     display: flex;
     flex-direction: column;
