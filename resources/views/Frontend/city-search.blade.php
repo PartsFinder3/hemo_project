@@ -442,7 +442,7 @@
     margin: 30px 0;
 ">
 </section>
-
+@endif
 
     <script>
         function contactSupplier(isActive, number, title) {
