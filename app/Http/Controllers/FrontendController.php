@@ -591,15 +591,20 @@ public function sendProductInquiry(Request $request)
 
     public function adByCity(Request $request , $slug, $id)
     {
+         $sPartsPage = $request->input('parts_page', 1);
+    $carMakesPage = $request->input('makes_page', 1);
+    $adsPage = $request->input('ads_page', 1);
         $city = City::where('id', $id)->where('slug', $slug)->firstOrFail();
-     $sParts = SpareParts::with('seo')
-    ->whereNotNull('image')  // sirf jinke paas image hai
-    ->paginate(60);
+         $sParts = SpareParts::with('seo')
+        ->whereNotNull('image')
+        ->paginate(60, ['*'], 'parts_page', $sPartsPage);
       
     $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
-    $query->where('city_id', $city->id)
-          ->where('is_approved', true);
-})->latest()->paginate(8);
+            $query->where('city_id', $city->id)
+                  ->where('is_approved', true);
+        })
+        ->latest()
+        ->paginate(8, ['*'], 'ads_page', $adsPage);
     $host = $request->getHost();
     $currentDomain = Domain::where('domain_url', $host)->first();
     $domain_id = $currentDomain?->id;
@@ -610,9 +615,9 @@ public function sendProductInquiry(Request $request)
             ;
         })->latest()->get();
     
-             $carMakes = CarMakes::whereNotNull('logo')   // image ho
-    ->whereHas('seoContent')                // seo content ho
-    ->paginate(52); 
+          $carMakes = CarMakes::whereNotNull('logo')
+        ->whereHas('seoContent')
+        ->paginate(52, ['*'], 'makes_page', $carMakesPage);
         $models = CarModels::all();
         $makes = CarMakes::all();
         $years = Years::orderBy('year', 'desc')->get();
