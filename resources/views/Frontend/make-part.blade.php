@@ -215,5 +215,12 @@
      margin-left: 63px !important;
     padding: 30px;
 }
+@media (max-width: 600px) {
+  .spareParts {
+   
+        margin-left: 0px !important;
+        margin: auto !important;
+    }
+}
 </style>
 @endsection
