@@ -93,8 +93,8 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-<link rel="icon"  href="{{ asset($faviconPath) }}?v={{ time() }}"  type="{{ $faviconMime }}">
-<link rel="shortcut icon" href="{{ asset($faviconPath) }}?v={{ time() }}" type="{{ $faviconMime }}">
+<link rel="icon"  href="{{ asset($logoPath) }}?v={{ time() }}"  type="{{ $faviconMime }}">
+<link rel="shortcut icon" href="{{ asset($logoPath) }}?v={{ time() }}" type="{{ $faviconMime }}">
 
 <meta property="og:image" content="{{ asset('storage/'.$logo) }}">
   @yield('head-section')
