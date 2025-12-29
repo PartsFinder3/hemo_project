@@ -15,6 +15,17 @@
         $logo = $currentDomain && $currentDomain->logo ? $currentDomain->logo : 'logo/44444.png';
         $favicon = $currentDomain && $currentDomain->map_img ? $currentDomain->map_img : 'logo/44444.png';
       $currentDomainUrl = Request::getSchemeAndHttpHost();
+      $logoPath = 'storage/' . $logo;
+      $faviconExt = strtolower(pathinfo($logo, PATHINFO_EXTENSION));
+        $faviconMime = match($faviconExt) {
+        'ico' => 'image/x-icon',
+        'svg' => 'image/svg+xml',
+        'png' => 'image/png',
+        'jpg', 'jpeg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        default => 'image/png',
+        };
+
    @endphp
 
 @if(isset($meta) && $meta)
@@ -82,7 +93,8 @@
     @if ($scripts->count() > 0)
         @foreach ($scripts as $script) {!! $script->script_content !!} @endforeach
     @endif
-<link rel="icon"  href="{{ asset('storage/'.$logo) }}" type="image/png">
+<link rel="icon"  href="{{ asset($faviconPath) }}?v={{ time() }}"  type="{{ $faviconMime }}">
+<link rel="shortcut icon" href="{{ asset($faviconPath) }}?v={{ time() }}" type="{{ $faviconMime }}">
 
 <meta property="og:image" content="{{ asset('storage/'.$logo) }}">
   @yield('head-section')
