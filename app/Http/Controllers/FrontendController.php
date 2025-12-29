@@ -613,7 +613,17 @@ public function sendProductInquiry(Request $request)
                     $seoTitle_t->tittle
                 )
                 : null;
- $meta['structure_data'] = <<<JSON
+
+            $seoTemplate_d = SeoTamplate::find($city->tamp_id);
+
+            $meta['description'] = $seoTemplate_d
+                ? str_replace(
+                    ['{City}', '{Country}'],
+                    [$city->name, $country],
+                    $seoTemplate_d->description
+                )
+                : null;
+                 $meta['structure_data'] = <<<JSON
         {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
@@ -633,15 +643,6 @@ public function sendProductInquiry(Request $request)
             }
         }
         JSON;
-            $seoTemplate_d = SeoTamplate::find($city->tamp_id);
-
-            $meta['description'] = $seoTemplate_d
-                ? str_replace(
-                    ['{City}', '{Country}'],
-                    [$city->name, $country],
-                    $seoTemplate_d->description
-                )
-                : null;
     $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
                   ->where('is_approved', true);
