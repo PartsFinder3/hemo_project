@@ -226,7 +226,7 @@
     margin: 0 auto;       /* center the grid */
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* force 4 columns */
-    gap: 20px;            /* space between cards */
+    gap: 20px;           
 }
 
     .spareParts {
@@ -441,6 +441,7 @@
 @media (max-width: 480px) {
     .abd-locations-section {
         padding: 20px 10px;
+        margin-top: 50px;
     }
     .abd-locations-header h2 {
         font-size: 20px;

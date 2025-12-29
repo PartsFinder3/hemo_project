@@ -739,6 +739,7 @@
 @media (max-width: 480px) {
     .abd-locations-section {
         padding: 20px 10px;
+        margin-top: 50px;
     }
     .abd-locations-header h2 {
         font-size: 20px;
