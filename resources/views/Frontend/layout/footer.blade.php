@@ -39,11 +39,16 @@
         font-size: 20px;
     }
 }
-
+#scrollTopBtn i {
+    font-size: 22px;
+    line-height: 1;
+}
     </style>
     <footer class="footer-section">
         <!-- Scroll to Top Button -->
-<button id="scrollTopBtn" title="Go to top">↑</button>
+<button id="scrollTopBtn" title="Go to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
 
            @php
         use Illuminate\Support\Facades\Request;
