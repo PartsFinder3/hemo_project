@@ -629,23 +629,23 @@ public function sendProductInquiry(Request $request)
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://partsfinder.ae/{$city->slug}/#webpage",
-      "url": "https://partsfinder.ae/cities/show/ads/{$city->slug}/{$city->id}",
+      "@id": "$host/{$city->slug}/#webpage",
+      "url": "$host/cities/show/ads/{$city->slug}/{$city->id}",
       "name": "Auto Spare Parts in {$city->name}, {$country} | PartsFinder",
       "description": "{$meta['description']}",
       "isPartOf": {
         "@type": "WebSite",
-        "@id": "https://partsfinder.ae/#website"
+        "@id": "$host/#website"
       }
     },
     {
       "@type": "Service",
-      "@id": "https://partsfinder.ae/{$city->slug}/#service",
+      "@id": "$host/{$city->slug}/#service",
       "name": "Auto Spare Parts in {$city->name}",
       "description": "Platform for finding used, genuine, and aftermarket auto spare parts in {$city->name}, {$country}.",
       "provider": {
         "@type": "Organization",
-        "@id": "https://partsfinder.ae/#organization"
+        "@id": "$host/#organization"
       },
       "areaServed": {
         "@type": "City",
@@ -658,7 +658,7 @@ public function sendProductInquiry(Request $request)
     },
     {
       "@type": "Place",
-      "@id": "https://partsfinder.ae/{$city->slug}/#place",
+      "@id": "$host/{$city->slug}/#place",
       "name": "{$city->name}",
       "address": {
         "@type": "PostalAddress",
@@ -669,7 +669,7 @@ public function sendProductInquiry(Request $request)
     {
       "@type": "CollectionPage",
       "name": "{$city->name}",
-      "image": "https://partsfinder.ae/storage/{$city->logo}",
+      "image": "$host/storage/{$city->logo}",
       "description": "{$meta['description']}",
       "brand": {
         "@type": "Brand",
@@ -677,7 +677,7 @@ public function sendProductInquiry(Request $request)
       },
       "offers": {
         "@type": "Offer",
-        "url": "https://partsfinder.ae/cities/show/ads/{$city->name}/{$city->id}",
+        "url": "$host/cities/show/ads/{$city->name}/{$city->id}",
         "priceCurrency": "AED",
         "price": "On Demand",
         "availability": "https://schema.org/InStock"
