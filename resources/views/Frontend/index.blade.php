@@ -982,6 +982,9 @@
      .abd-location-name {
         font-size: 10px !important;
     }
+    .pagination {
+        width: auto !important;
+    }
 }
 </style>
     @if (request()->scroll == 'ads')
