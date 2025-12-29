@@ -430,7 +430,7 @@
         @endif
     </div>
 </section>
-@if(isset($Content) && $Content->content)
+@if(isset($Content) && $Content)
 <section class="seo_content">
      <hr style="
     border: none;
@@ -438,7 +438,7 @@
     opacity: 1;
     margin: 30px 0;
 ">
-    {!! $Content->content !!}
+    {!! $Content!!}
     <hr style="
     border: none;
     border-top: 4px solid #FF7100;
