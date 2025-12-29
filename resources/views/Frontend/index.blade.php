@@ -475,17 +475,22 @@
             <a href="{{ route('make.ads', ['slug' => $m->slug, 'id' => $m->id]) }}" class="make">
                 @if($m->logo)
                     <div class="make-image-container">
-                        <img src="{{ asset('storage/' . $m->logo) }}" alt="{{ $m->name }}" onerror="this.src='{{ asset('images/brand-placeholder.png') }}'">
+                        <img src="{{ asset('storage/' . $m->logo) }}"
+                             alt="{{ $m->name }}"
+                             onerror="this.src='{{ asset('images/brand-placeholder.png') }}'">
                     </div>
                 @endif
                 <h4>{{ strtoupper($m->name) }}</h4>
             </a>
         @endforeach
-         <div class="col-12 d-flex justify-content-center mt-4">
-    {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
-</div>
+    </div>
+
+    <!-- Pagination ALWAYS new line -->
+    <div class="col-12 d-flex justify-content-center mt-4">
+        {{ $carMakes->fragment('carMakes')->links('pagination::bootstrap-5') }}
     </div>
 </section>
+
     <section class="spareParts" id="parts">
         <h2>Popular Car Spare Parts in UAE</h2>
         <div class="popular-part-container">
