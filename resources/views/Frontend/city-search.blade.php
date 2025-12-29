@@ -1013,9 +1013,15 @@
     }
 }
 @media (max-width: 480px) {
+    .ad-cards {
+        padding: 30px 4%;
+        margin-top: 68px;
+    }
+}
+@media (max-width: 480px) {
     .abd-locations-section {
         padding: 20px 10px;
-        margin-top: 50px;
+      
     }
     .abd-locations-header h2 {
         font-size: 20px;
