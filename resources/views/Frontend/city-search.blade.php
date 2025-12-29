@@ -46,7 +46,12 @@
     grid-template-columns: repeat(4, 1fr); /* force 4 columns */
     gap: 20px;            /* space between cards */
 }
-
+.carMakes {
+    padding: 50px 20px;
+    background: #f9f9f9;
+    margin: 50px 0;
+    margin-top: 122px;
+}
 #productGrid1 .card {
     width: 100%;
     padding: 0; /* remove all padding */
