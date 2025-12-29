@@ -7,6 +7,7 @@ use App\Models\SeoTamplate;
 use App\Models\SpareParts;
 use App\Models\CarMakes;
 use App\Models\CarModels;
+use App\Models\City;
 use App\Models\SeoTitle;
 class SeoController extends Controller
 {
@@ -80,6 +81,31 @@ class SeoController extends Controller
         public function assign_tamp_make($id)
         {
             $parts = CarMakes::findOrFail($id);
+                    
+            // Get assigned Title Template
+            $getTitle = $parts->tamp_title_id 
+                ? SeoTitle::find($parts->tamp_title_id) 
+                : null;
+             
+            // Get assigned Description Template
+            $getTamp = $parts->tamp_id 
+                ? SeoTamplate::find($parts->tamp_id) 
+                : null;
+
+            // All description templates
+            $allTemplte = SeoTamplate::where('type', 'makes')->get();
+
+            // All title templates
+            $allTitle = SeoTitle::where('type', 'makes')->get();
+
+            return view(
+                'adminPanel.partsMeta.make',
+                compact('getTamp', 'allTemplte', 'parts', 'getTitle', 'allTitle')
+            );
+        }
+         public function assign_tamp_city($id)
+        {
+            $parts = City::findOrFail($id);
                     
             // Get assigned Title Template
             $getTitle = $parts->tamp_title_id 
