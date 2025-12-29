@@ -35,6 +35,7 @@
                             <option value="makes">makes</option>
                             <option value="models">models</option>
                             <option value="parts">parts</option>
+                            <option value="city">city</option>
                         </select>
                     </div>
             </div>
