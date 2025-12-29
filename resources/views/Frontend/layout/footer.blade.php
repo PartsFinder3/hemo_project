@@ -1,8 +1,31 @@
     <!-- Footer Section -->
     <style>
-       
+       #scrollTopBtn {
+    display: none; /* Initially hidden */
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 99;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    background-color: #ff7700;
+    color: white;
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+#scrollTopBtn:hover {
+    background-color: #e65c00;
+}
+
     </style>
     <footer class="footer-section">
+        <button id="scrollTopBtn" title="Go to top">
+    ↑
+</button>
            @php
         use Illuminate\Support\Facades\Request;
         use App\Models\Domain;
@@ -134,6 +157,25 @@
                 window.location.reload();
             }
         }
+
+
+        // Get the button
+let scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "block";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+};
+
+// Scroll to top smoothly
+scrollTopBtn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
     </script>
     <script src="{{ asset('Frontend/js/script.js') }}"></script>
     <!-- Bootstrap JavaScript Libraries -->
