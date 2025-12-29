@@ -171,14 +171,13 @@
 </script>
 
 <style>
-           #productGrid1 {
-    width: 80%;
-    max-width: 1400px;   /* optional but recommended */
-    margin: 0 auto;      /* CENTER */
-    
+#productGrid1 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 20px;
 }
         .spareParts {
     display: flex;
