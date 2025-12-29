@@ -552,7 +552,6 @@
         margin-top: 40px;
         padding: 20px 0;
         width: 800px;
-        margin: auto;
     }
     
     .pagination a {
