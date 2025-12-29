@@ -565,6 +565,7 @@
     margin-top: 30px;
     gap: 8px;
     flex-wrap: wrap;
+    width: 800px;
 }
 
 .pagination button {
@@ -583,15 +584,12 @@
     border-color: var(--accent-color);
 }
 
-.pagination button.active {
-    background: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
-}
-
-.pagination button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.pagination .active,
+.pagination .page-item.active .page-link,
+.pagination .disabled .page-link {
+    background: #ff7700 !important;
+    color: white !important;
+    border-color: #ff7700 !important;
 }
 </style>
     <style>
@@ -1273,6 +1271,9 @@
     .seo_content table {
         display: block;
         overflow-x: auto;
+    }
+     .pagination {
+        width: auto !important;
     }
 }
 

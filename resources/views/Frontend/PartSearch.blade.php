@@ -708,6 +708,7 @@
         gap: 10px;
         margin-top: 40px;
         padding: 20px 0;
+        width: 800px;
     }
     
     .pagination a {
@@ -732,9 +733,13 @@
         margin-left: 0px !important;
         margin: auto !important;
     }
+     .pagination {
+        width: auto !important;
+    }
 }
-    .pagination .active,
-.pagination .page-item.active .page-link {
+   .pagination .active,
+.pagination .page-item.active .page-link,
+.pagination .disabled .page-link {
     background: #ff7700 !important;
     color: white !important;
     border-color: #ff7700 !important;
