@@ -629,8 +629,8 @@ public function sendProductInquiry(Request $request)
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "$host/{$city->slug}/#webpage",
-      "url": "$host/cities/show/ads/{$city->slug}/{$city->id}",
+      "@id": "https://$host/{$city->slug}/#webpage",
+      "url": "https://$host/cities/show/ads/{$city->slug}/{$city->id}",
       "name": "Auto Spare Parts in {$city->name}, {$country} | PartsFinder",
       "description": "{$meta['description']}",
       "isPartOf": {
@@ -640,12 +640,12 @@ public function sendProductInquiry(Request $request)
     },
     {
       "@type": "Service",
-      "@id": "$host/{$city->slug}/#service",
+      "@id": "https://$host/{$city->slug}/#service",
       "name": "Auto Spare Parts in {$city->name}",
       "description": "Platform for finding used, genuine, and aftermarket auto spare parts in {$city->name}, {$country}.",
       "provider": {
         "@type": "Organization",
-        "@id": "$host/#organization"
+        "@id": "https://$host/#organization"
       },
       "areaServed": {
         "@type": "City",
@@ -658,7 +658,7 @@ public function sendProductInquiry(Request $request)
     },
     {
       "@type": "Place",
-      "@id": "$host/{$city->slug}/#place",
+      "@id": "https://$host/{$city->slug}/#place",
       "name": "{$city->name}",
       "address": {
         "@type": "PostalAddress",
@@ -669,7 +669,7 @@ public function sendProductInquiry(Request $request)
     {
       "@type": "CollectionPage",
       "name": "{$city->name}",
-      "image": "$host/storage/{$city->logo}",
+      "image": "https://$host/storage/{$city->logo}",
       "description": "{$meta['description']}",
       "brand": {
         "@type": "Brand",
@@ -677,7 +677,7 @@ public function sendProductInquiry(Request $request)
       },
       "offers": {
         "@type": "Offer",
-        "url": "$host/cities/show/ads/{$city->name}/{$city->id}",
+        "url": "https://$host/cities/show/ads/{$city->name}/{$city->id}",
         "priceCurrency": "AED",
         "price": "On Demand",
         "availability": "https://schema.org/InStock"
