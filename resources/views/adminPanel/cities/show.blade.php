@@ -122,33 +122,37 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" href="{{ route('city.active', $city->id) }}"><i
-                                                class="fa-solid fa-pen-to-square"></i>
-                                            Active</a>
-                                             @if (auth()->guard('admins')->user()->role == 'admin')
-                                        <a class="btn btn-danger" href="{{ route('city.delete', $city->id) }}"><i
-                                                class="fa-solid fa-trash"></i>
-                                            Delete</a>
-                                            @endif
-                                            <a class="btn btn-warning btn-sm" href="{{ route('city.seo', $city->id) }}">
-                                        <i class="fa-solid fa-chart-line"></i> SEO
-                                    </a>
-                                                    @php
-             $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
-        @endphp
-                 @if ($seoExists)
-            <span class="badge bg-warning">
-                <i class="fa-solid fa-check"></i>Generated
-            </span>
-        @else
+    <a class="btn btn-info" href="{{ route('city.active', $city->id) }}">
+        <i class="fa-solid fa-pen-to-square"></i> Active
+    </a>
+
+    @if (auth()->guard('admins')->user()->role == 'admin')
+        <a class="btn btn-danger" href="{{ route('city.delete', $city->id) }}">
+            <i class="fa-solid fa-trash"></i> Delete
+        </a>
+    @endif
+
+    <a class="btn btn-warning btn-sm" href="{{ route('city.seo', $city->id) }}">
+        <i class="fa-solid fa-chart-line"></i> SEO
+    </a>
+</td>
+
+<td>
+    @php
+        $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
+    @endphp
+
+    @if ($seoExists)
+        <span class="badge bg-warning me-1">
+            <i class="fa-solid fa-check"></i> Generated
+        </span>
+    @else
         <a class="btn btn-warning btn-sm" href="{{ route('city.seo.city', $city->id) }}">
             <i class="fa-solid fa-chart-line"></i> Content Generate
         </a>
-        @endif
+    @endif
 
-                                    </td>
-                  <td>
-                             @if ($city->tamp_id != null)
+    @if ($city->tamp_id != null)
         <span class="badge bg-success me-1">
             <i class="fa-solid fa-file-lines"></i> Description
         </span>
@@ -159,7 +163,7 @@
             <i class="fa-solid fa-heading"></i> Title
         </span>
     @endif
-                  </td>
+</td>
                                 </tr>
                             @endforeach
                         </tbody>
