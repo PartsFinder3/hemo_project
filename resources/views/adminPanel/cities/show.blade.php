@@ -106,6 +106,7 @@
                                 <th>City</th>
                                 <th>Active</th>
                                 <th>Action</th>
+                                <th>SEO Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,6 +130,9 @@
                                                 class="fa-solid fa-trash"></i>
                                             Delete</a>
                                             @endif
+                                            <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $make->id) }}">
+                                        <i class="fa-solid fa-chart-line"></i> SEO
+                                    </a>
                                                     @php
              $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
         @endphp
@@ -141,6 +145,17 @@
             <i class="fa-solid fa-chart-line"></i> Content Generate
         </a>
         @endif
+         @if ($make->tamp_id != null)
+        <span class="badge bg-success me-1">
+            <i class="fa-solid fa-file-lines"></i> Description
+        </span>
+    @endif
+
+    @if ($make->tamp_title_id != null)
+        <span class="badge bg-primary">
+            <i class="fa-solid fa-heading"></i> Title
+        </span>
+    @endif
                                     </td>
                                 </tr>
                             @endforeach
