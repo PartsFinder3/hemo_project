@@ -118,10 +118,10 @@ class SeoController extends Controller
                 : null;
 
             // All description templates
-            $allTemplte = SeoTamplate::where('type', 'makes')->get();
+            $allTemplte = SeoTamplate::where('type', 'city')->get();
 
             // All title templates
-            $allTitle = SeoTitle::where('type', 'makes')->get();
+            $allTitle = SeoTitle::where('type', 'city')->get();
 
             return view(
                 'adminPanel.partsMeta.make',
