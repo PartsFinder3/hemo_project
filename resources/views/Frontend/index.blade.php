@@ -551,6 +551,7 @@
         gap: 10px;
         margin-top: 40px;
         padding: 20px 0;
+        width: 500px;
     }
     
     .pagination a {
