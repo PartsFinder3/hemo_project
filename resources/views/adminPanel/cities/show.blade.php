@@ -145,7 +145,10 @@
             <i class="fa-solid fa-chart-line"></i> Content Generate
         </a>
         @endif
-         @if ($city->tamp_id != null)
+
+                                    </td>
+                  <td>
+                             @if ($city->tamp_id != null)
         <span class="badge bg-success me-1">
             <i class="fa-solid fa-file-lines"></i> Description
         </span>
@@ -156,7 +159,7 @@
             <i class="fa-solid fa-heading"></i> Title
         </span>
     @endif
-                                    </td>
+                  </td>
                                 </tr>
                             @endforeach
                         </tbody>
