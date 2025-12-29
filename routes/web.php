@@ -384,6 +384,8 @@ Route::delete('/tamplate/{id}', [SeoController::class, 'destroy'])->name('tampla
 Route::post('/assign_tamp_parts/{id}', [SeoController::class, 'assign_tamp_parts'])->name('tamplate.assign_tamp_parts');
 Route::get('/assign_tamp_make/{id}', [SeoController::class, 'assign_tamp_make'])->name('makes.seo');
 Route::post('/assign_tamp_make_post/{id}', [SeoController::class, 'assign_tamp_make_post'])->name('makes.seo.post');
+Route::get('/assign_tamp_city/{id}', [SeoController::class, 'assign_tamp_make'])->name('city.seo');
+
 Route::get('SeoTitles', [SeoController::class, 'SeoTitles'])->name('SEO.SeoTitles');
 Route::post('SeotitleAdd', [SeoController::class, 'store_title'])->name('tamplate.tittle.add');
 Route::delete('/tamplate/title/{id}', [SeoController::class, 'destroy_title'])->name('tamplate.tittle.destroy');

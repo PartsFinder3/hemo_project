@@ -99,71 +99,77 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>Country</th>
-                                <th>City</th>
-                                <th>Active</th>
-                                <th>Action</th>
-                                <th>SEO Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cities as $city)
-                                <tr>
-                                    <td>{{ $city->domain->name }}</td>
-                                    <td>{{ $city->name }}</td>
-                                    <td>
-                                        @if ($city->active)
-                                            Active
-                                        @else
-                                            Inactive
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" href="{{ route('city.active', $city->id) }}"><i
-                                                class="fa-solid fa-pen-to-square"></i>
-                                            Active</a>
-                                             @if (auth()->guard('admins')->user()->role == 'admin')
-                                        <a class="btn btn-danger" href="{{ route('city.delete', $city->id) }}"><i
-                                                class="fa-solid fa-trash"></i>
-                                            Delete</a>
-                                            @endif
-                                            <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $city->id) }}">
-                                        <i class="fa-solid fa-chart-line"></i> SEO
+          <table class="table table-striped" id="table1">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Active</th>
+                        <th>Action</th>
+                        <th>SEO Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($cities as $city)
+                        <tr>
+                            <td>{{ $city->domain->name ?? 'N/A' }}</td>
+                            <td>{{ $city->name }}</td>
+
+                            <td>
+                                @if ($city->active)
+                                    <span class="badge bg-success">Active</span>
+                                @else
+                                    <span class="badge bg-secondary">Inactive</span>
+                                @endif
+                            </td>
+
+                            <td>
+                                <a class="btn btn-info btn-sm" href="{{ route('city.active', $city->id) }}">
+                                    <i class="fa-solid fa-pen-to-square"></i> Active
+                                </a>
+
+                                @if (auth()->guard('admins')->user()->role == 'admin')
+                                    <a class="btn btn-danger btn-sm" href="{{ route('city.delete', $city->id) }}">
+                                        <i class="fa-solid fa-trash"></i> Delete
                                     </a>
-                                                    @php
-             $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
-        @endphp
-                 @if ($seoExists)
-            <span class="badge bg-warning">
-                <i class="fa-solid fa-check"></i>Generated
-            </span>
-        @else
-        <a class="btn btn-warning btn-sm" href="{{ route('city.seo.city', $city->id) }}">
-            <i class="fa-solid fa-chart-line"></i> Content Generate
-        </a>
-        @endif
+                                @endif
 
-                                    </td>
-                  <td>
-                             @if ($city->tamp_id != null)
-        <span class="badge bg-success me-1">
-            <i class="fa-solid fa-file-lines"></i> Description
-        </span>
-    @endif
+                                <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $city->id) }}">
+                                    <i class="fa-solid fa-chart-line"></i> SEO
+                                </a>
 
-    @if ($city->tamp_title_id != null)
-        <span class="badge bg-primary">
-            <i class="fa-solid fa-heading"></i> Title
-        </span>
-    @endif
-                  </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @if ($city->cityContent)
+                                    <span class="badge bg-warning">
+                                        <i class="fa-solid fa-check"></i> Generated
+                                    </span>
+                                @else
+                                    <a class="btn btn-success btn-sm" href="{{ route('city.seo', $city->id) }}">
+                                        <i class="fa-solid fa-plus"></i> Generate
+                                    </a>
+                                @endif
+                            </td>
+
+                            <td>
+                                @if ($city->tamp_id)
+                                    <span class="badge bg-success me-1">
+                                        <i class="fa-solid fa-file-lines"></i> Description
+                                    </span>
+                                @endif
+
+                                @if ($city->tamp_title_id)
+                                    <span class="badge bg-primary">
+                                        <i class="fa-solid fa-heading"></i> Title
+                                    </span>
+                                @endif
+
+                                @if (!$city->tamp_id && !$city->tamp_title_id)
+                                    <span class="badge bg-danger">Not Generated</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
                 </div>
             </div>
 
