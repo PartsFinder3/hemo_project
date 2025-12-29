@@ -130,7 +130,7 @@
                                                 class="fa-solid fa-trash"></i>
                                             Delete</a>
                                             @endif
-                                            <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $make->id) }}">
+                                            <a class="btn btn-warning btn-sm" href="{{ route('makes.seo', $city->id) }}">
                                         <i class="fa-solid fa-chart-line"></i> SEO
                                     </a>
                                                     @php
