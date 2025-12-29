@@ -623,26 +623,70 @@ public function sendProductInquiry(Request $request)
                     $seoTemplate_d->description
                 )
                 : null;
-                 $meta['structure_data'] = <<<JSON
-        {
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "{$city->name}",
-            "image": "https://partsfinder.ae/storage/{$city->logo}",
-            "description": "{$meta['description']}",
-            "brand": {
-                "@type": "Brand",
-                "name": "{$city->name}"
-            },
-            "offers": {
-                "@type": "Offer",
-                "url": "https://partsfinder.ae/makes/show/ads/{$city->name}/{$city->id}",
-                "priceCurrency": "AED",
-                "price": "One Demand",
-                "availability": "https://schema.org/InStock"
-            }
+      $meta['structure_data'] = <<<JSON
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://partsfinder.ae/{$city}/#webpage",
+      "url": "https://partsfinder.ae/{$city}/",
+      "name": "Auto Spare Parts in {$city->name}, {$country} | PartsFinder",
+      "description": "{$meta['description']}",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://partsfinder.ae/#website"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://partsfinder.ae/{$city}/#service",
+      "name": "Auto Spare Parts in {$city->name}",
+      "description": "Platform for finding used, genuine, and aftermarket auto spare parts in {$city->name}, {$country}.",
+      "provider": {
+        "@type": "Organization",
+        "@id": "https://partsfinder.ae/#organization"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "{$city->name}",
+        "containedInPlace": {
+          "@type": "Country",
+          "name": "{$country}"
         }
-        JSON;
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://partsfinder.ae/{$city}/#place",
+      "name": "{$city->name}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{$city->name}",
+        "addressCountry": "{$country}"
+      }
+    },
+    {
+      "@type": "CollectionPage",
+      "name": "{$city->name}",
+      "image": "https://partsfinder.ae/storage/{$city->logo}",
+      "description": "{$meta['description']}",
+      "brand": {
+        "@type": "Brand",
+        "name": "{$city->name}"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://partsfinder.ae/cities/show/ads/{$city->name}/{$city->id}",
+        "priceCurrency": "AED",
+        "price": "On Demand",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
+}
+JSON;
+
     $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
                   ->where('is_approved', true);
