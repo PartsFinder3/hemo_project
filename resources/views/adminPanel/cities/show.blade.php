@@ -145,13 +145,13 @@
             <i class="fa-solid fa-chart-line"></i> Content Generate
         </a>
         @endif
-         @if ($make->tamp_id != null)
+         @if ($city->tamp_id != null)
         <span class="badge bg-success me-1">
             <i class="fa-solid fa-file-lines"></i> Description
         </span>
     @endif
 
-    @if ($make->tamp_title_id != null)
+    @if ($city->tamp_title_id != null)
         <span class="badge bg-primary">
             <i class="fa-solid fa-heading"></i> Title
         </span>
