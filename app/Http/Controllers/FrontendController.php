@@ -592,6 +592,11 @@ public function sendProductInquiry(Request $request)
 
     public function adByCity(Request $request , $slug, $id)
     {
+              $host = preg_replace('/^www\./', '', $request->getHost());
+    
+    $currentDomain = Domain::where('domain_url', $host)->first();
+ 
+    $country  = $currentDomain->name;
          $sPartsPage = $request->input('parts_page', 1);
     $carMakesPage = $request->input('makes_page', 1);
     $adsPage = $request->input('ads_page', 1);
@@ -599,7 +604,25 @@ public function sendProductInquiry(Request $request)
          $sParts = SpareParts::with('seo')
         ->whereNotNull('image')
         ->paginate(60, ['*'], 'parts_page', $sPartsPage);
-      
+     $seoTitle_t = SeoTitle::find($city->tamp_title_id);
+
+            $meta['title'] = $seoTitle_t
+                ? str_replace(
+                    ['{City}', '{Country}'],
+                    [$city->name, $country],
+                    $seoTitle_t->tittle
+                )
+                : null;
+
+            $seoTemplate_d = SeoTamplate::find($city->tamp_id);
+
+            $meta['description'] = $seoTemplate_d
+                ? str_replace(
+                    ['{City}', '{Country}'],
+                    [$city->name, $country],
+                    $seoTemplate_d->description
+                )
+                : null;
     $ads = Ads::whereHas('shop.supplier', function ($query) use ($city) {
             $query->where('city_id', $city->id)
                   ->where('is_approved', true);
