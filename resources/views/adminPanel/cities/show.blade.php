@@ -135,22 +135,23 @@
                                         <a class="btn btn-warning btn-sm" href="{{ route('city.seo', $city->id) }}">
                                             <i class="fa-solid fa-chart-line"></i> SEO
                                         </a>
+                                            @php
+                                                $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
+                                            @endphp
+
+                                            @if ($seoExists)
+                                                <span class="badge bg-warning me-1">
+                                                    <i class="fa-solid fa-check"></i> Generated
+                                                </span>
+                                            @else
+                                                <a class="btn btn-warning btn-sm me-1"
+                                                href="{{ route('city.seo.city', $city->id) }}">
+                                                    <i class="fa-solid fa-chart-line"></i> Content Generate
+                                                </a>
+                                            @endif
                                     </td>
               <td>
-    @php
-        $seoExists = \App\Models\CityContent::where('city_id', $city->id)->exists();
-    @endphp
 
-    @if ($seoExists)
-        <span class="badge bg-warning me-1">
-            <i class="fa-solid fa-check"></i> Generated
-        </span>
-    @else
-        <a class="btn btn-warning btn-sm me-1"
-           href="{{ route('city.seo.city', $city->id) }}">
-            <i class="fa-solid fa-chart-line"></i> Content Generate
-        </a>
-    @endif
 
     @if ($city->tamp_id != null)
         <span class="badge bg-success me-1">
