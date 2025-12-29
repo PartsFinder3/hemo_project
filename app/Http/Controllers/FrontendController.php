@@ -630,7 +630,7 @@ public function sendProductInquiry(Request $request)
     {
       "@type": "WebPage",
       "@id": "https://partsfinder.ae/{$city->slug}/#webpage",
-      "url": "https://partsfinder.ae/{$city->slug}/",
+      "url": "https://partsfinder.ae/cities/show/ads/{$city->slug}/{$city->id}",
       "name": "Auto Spare Parts in {$city->name}, {$country} | PartsFinder",
       "description": "{$meta['description']}",
       "isPartOf": {
