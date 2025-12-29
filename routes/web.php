@@ -385,6 +385,7 @@ Route::post('/assign_tamp_parts/{id}', [SeoController::class, 'assign_tamp_parts
 Route::get('/assign_tamp_make/{id}', [SeoController::class, 'assign_tamp_make'])->name('makes.seo');
 Route::post('/assign_tamp_make_post/{id}', [SeoController::class, 'assign_tamp_make_post'])->name('makes.seo.post');
 Route::get('/assign_tamp_city/{id}', [SeoController::class, 'assign_tamp_city'])->name('city.seo');
+Route::post('/assign_tamp_city_post/{id}', [SeoController::class, 'assign_tamp_city_post'])->name('city.seo.post');
 
 Route::get('SeoTitles', [SeoController::class, 'SeoTitles'])->name('SEO.SeoTitles');
 Route::post('SeotitleAdd', [SeoController::class, 'store_title'])->name('tamplate.tittle.add');

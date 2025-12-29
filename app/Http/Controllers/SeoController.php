@@ -124,7 +124,7 @@ class SeoController extends Controller
             $allTitle = SeoTitle::where('type', 'city')->get();
 
             return view(
-                'adminPanel.partsMeta.make',
+                'adminPanel.partsMeta.city',
                 compact('getTamp', 'allTemplte', 'parts', 'getTitle', 'allTitle')
             );
         }
@@ -140,7 +140,18 @@ class SeoController extends Controller
          
             return back()->with('success', 'Template successfully assigned!');
         }
-public function assign_tamp_model($id)
+        function assign_tamp_city_post(Request $request,$id){
+              $parts = City::findOrFail($id);
+            $parts->tamp_id = $request->seo_template_id;
+
+
+            $parts->tamp_title_id = $request->title_template_id;
+            $parts->save();
+         
+            return back()->with('success', 'Template successfully assigned!');
+         }
+
+        public function assign_tamp_model($id)
 {
     $parts = CarModels::findOrFail($id);
 
