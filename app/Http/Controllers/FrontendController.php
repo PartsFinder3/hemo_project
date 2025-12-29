@@ -629,8 +629,8 @@ public function sendProductInquiry(Request $request)
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://partsfinder.ae/{$city}/#webpage",
-      "url": "https://partsfinder.ae/{$city}/",
+      "@id": "https://partsfinder.ae/{$city->slug}/#webpage",
+      "url": "https://partsfinder.ae/{$city->slug}/",
       "name": "Auto Spare Parts in {$city->name}, {$country} | PartsFinder",
       "description": "{$meta['description']}",
       "isPartOf": {
@@ -640,7 +640,7 @@ public function sendProductInquiry(Request $request)
     },
     {
       "@type": "Service",
-      "@id": "https://partsfinder.ae/{$city}/#service",
+      "@id": "https://partsfinder.ae/{$city->slug}/#service",
       "name": "Auto Spare Parts in {$city->name}",
       "description": "Platform for finding used, genuine, and aftermarket auto spare parts in {$city->name}, {$country}.",
       "provider": {
@@ -658,7 +658,7 @@ public function sendProductInquiry(Request $request)
     },
     {
       "@type": "Place",
-      "@id": "https://partsfinder.ae/{$city}/#place",
+      "@id": "https://partsfinder.ae/{$city->slug}/#place",
       "name": "{$city->name}",
       "address": {
         "@type": "PostalAddress",
