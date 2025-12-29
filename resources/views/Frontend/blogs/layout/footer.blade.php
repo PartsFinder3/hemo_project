@@ -1,5 +1,76 @@
     <!-- Footer Section -->
+    <style>
+/* Scroll to Top Button – Premium Style */
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 999;
+
+    width: 54px;
+    height: 54px;
+
+    background: linear-gradient(135deg, #ff7700, #ff9a3c);
+    color: #fff;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 8px 25px rgba(255, 119, 0, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+
+    transition: all 0.35s ease;
+}
+
+/* Icon styling */
+#scrollTopBtn i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+#scrollTopBtn:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow:
+        0 12px 35px rgba(255, 119, 0, 0.65);
+}
+
+/* Icon move on hover */
+#scrollTopBtn:hover i {
+    transform: translateY(-2px);
+}
+
+/* Active (click) effect */
+#scrollTopBtn:active {
+    transform: scale(0.95);
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    #scrollTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+    }
+
+    #scrollTopBtn i {
+        font-size: 18px;
+    }
+}
+    </style>    <!-- Footer Section -->
     <footer class="footer-section">
+        <button id="scrollTopBtn" title="Go to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
         <div class="container">
             <div class="row">
                 <!-- Company Info -->
@@ -104,6 +175,21 @@
                 window.location.reload();
             }
         }
+        let scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "flex";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+};
+
+// Scroll smoothly to top on click
+scrollTopBtn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
     </script>
     <script src="{{ asset('Frontend/js/script.js') }}"></script>
     <!-- Bootstrap JavaScript Libraries -->
