@@ -116,7 +116,7 @@ class SeoController extends Controller
             $getTamp = $parts->tamp_id 
                 ? SeoTamplate::find($parts->tamp_id) 
                 : null;
-           dd($getTamp);
+           dd($getTitle->tittle);
             // All description templates
             $allTemplte = SeoTamplate::where('type', 'city')->get();
 
