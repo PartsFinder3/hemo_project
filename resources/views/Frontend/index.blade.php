@@ -491,30 +491,33 @@
     </div>
 </section>
 
-    <section class="spareParts" id="parts">
-        <h2>Popular Car Spare Parts in UAE</h2>
-        <div class="popular-part-container">
-            @foreach ($sParts as $p)
-             <a style="text-decoration: none; color: black; width:250px; margin-left:30px; "
-                        href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+<section class="spareParts" id="parts">
+    <h2>Popular Car Spare Parts in UAE</h2>
+
+    <div class="popular-part-container">
+        @foreach ($sParts as $p)
+            <a style="text-decoration: none; color: black; width:250px; margin-left:30px;"
+               href="{{ route('part.ads', ['partName' => Str::slug($p->name), 'id' => $p->id]) }}">
+
                 <div class="part-card">
                     @if ($p->image)
-                        
-                      <img src="{{ asset('storage/' . $p->image) }}" alt="Spare Part" >
+                        <img src="{{ asset('storage/' . $p->image) }}" alt="{{ $p->name }}">
                     @else
-                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}" />
+                        <img src="{{ asset('Frontend/assets/quote.png') }}" alt="{{ $p->name }}">
                     @endif
-                   
-                        {{ $p->name }}
-                   
+
+                    {{ $p->name }}
                 </div>
-                 </a>
-            @endforeach
-            <div style="display: flex; justify-content: center; margin-top: 20px;">
-    {{ $sParts->fragment('parts')->links('pagination::bootstrap-5') }}
-</div>
-        </div>
-    </section>
+            </a>
+        @endforeach
+    </div>
+
+    <!-- Pagination always on new line -->
+    <div class="d-flex justify-content-center mt-4">
+        {{ $sParts->fragment('parts')->links('pagination::bootstrap-5') }}
+    </div>
+</section>
+
    
 
     <!-- Map -->
