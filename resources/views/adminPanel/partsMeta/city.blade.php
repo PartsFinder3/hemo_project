@@ -2,7 +2,7 @@
 @section('main-section')
 
 <div class="container mt-4">
-<a href="{{ route('makes.show') }}" class="btn btn-secondary mb-3">← Back</a>
+<a href="{{ route('city.show') }}" class="btn btn-secondary mb-3">← Back</a>
 
     <h2>Assign SEO Template to Product</h2>
 
