@@ -669,7 +669,8 @@ public function sendProductInquiry(Request $request)
             'randomMakes',
             'getFAQS',
             'sParts',
-            'Content'
+            'Content',
+            'meta'
         ));
     }
 
