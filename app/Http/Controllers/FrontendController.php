@@ -719,11 +719,12 @@ JSON;
         $cities = City::where('domain_id',$domain_id)->get();
         $randomMakes = CarMakes::limit(8)->get();
         $ContentOther=CityContent::where('city_id',$id)->first();
-         $Content = str_replace(
-        ['partsfinder.ae', 'United Arab Emirates'],
-        [$host, $currentDomain->name],
-        $ContentOther->content
-    );
+       $Content = str_replace(
+            'partsfinder.ae', // text to replace
+            $host,            // replacement variable
+            $ContentOther->content // original content
+        );
+    
         return view('Frontend.city-search', compact(
             'city',
             'ads',
