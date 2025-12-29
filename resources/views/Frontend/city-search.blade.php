@@ -38,14 +38,13 @@
 }
 
 
-       #productGrid1 {
-    width: 80%;
-    max-width: 1400px;   /* optional but recommended */
-    margin: 0 auto;      /* CENTER */
-    
+#productGrid1 {
+    width: 100%;          /* take full width of container */
+    max-width: 1200px;    /* optional, keep content centered */
+    margin: 0 auto;       /* center the grid */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr); /* force 4 columns */
+    gap: 20px;            /* space between cards */
 }
 
 #productGrid1 .card {
