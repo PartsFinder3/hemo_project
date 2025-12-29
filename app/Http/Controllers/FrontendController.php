@@ -613,7 +613,26 @@ public function sendProductInquiry(Request $request)
                     $seoTitle_t->tittle
                 )
                 : null;
-
+ $meta['structure_data'] = <<<JSON
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "{$make->name}",
+            "image": "https://partsfinder.ae/storage/{$make->logo}",
+            "description": "{$meta['description']}",
+            "brand": {
+                "@type": "Brand",
+                "name": "{$make->name}"
+            },
+            "offers": {
+                "@type": "Offer",
+                "url": "https://partsfinder.ae/makes/show/ads/{$make->name}/{$make->id}",
+                "priceCurrency": "AED",
+                "price": "One Demand",
+                "availability": "https://schema.org/InStock"
+            }
+        }
+        JSON;
             $seoTemplate_d = SeoTamplate::find($city->tamp_id);
 
             $meta['description'] = $seoTemplate_d
