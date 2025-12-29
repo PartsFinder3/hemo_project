@@ -1,9 +1,50 @@
     <!-- Footer Section -->
     <style>
-       
+       /* Scroll to Top Button */
+#scrollTopBtn {
+    display: none; /* hidden by default */
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    background: #ff7700; /* website primary color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover effect */
+#scrollTopBtn:hover {
+    background-color: #e65c00;
+    transform: scale(1.1);
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    #scrollTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
     </style>
     <footer class="footer-section">
-        
+        <!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
            @php
         use Illuminate\Support\Facades\Request;
         use App\Models\Domain;
@@ -135,6 +176,23 @@
                 window.location.reload();
             }
         }
+        // Get the button
+let scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// Show button when user scrolls down 100px
+window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollTopBtn.style.display = "flex";
+    } else {
+        scrollTopBtn.style.display = "none";
+    }
+};
+
+// Scroll smoothly to top on click
+scrollTopBtn.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
     </script>
     <script src="{{ asset('Frontend/js/script.js') }}"></script>
     <!-- Bootstrap JavaScript Libraries -->
