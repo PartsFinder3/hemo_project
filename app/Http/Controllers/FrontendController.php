@@ -617,16 +617,16 @@ public function sendProductInquiry(Request $request)
         {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "{$make->name}",
-            "image": "https://partsfinder.ae/storage/{$make->logo}",
+            "name": "{$city->name}",
+            "image": "https://partsfinder.ae/storage/{$city->logo}",
             "description": "{$meta['description']}",
             "brand": {
                 "@type": "Brand",
-                "name": "{$make->name}"
+                "name": "{$city->name}"
             },
             "offers": {
                 "@type": "Offer",
-                "url": "https://partsfinder.ae/makes/show/ads/{$make->name}/{$make->id}",
+                "url": "https://partsfinder.ae/makes/show/ads/{$city->name}/{$city->id}",
                 "priceCurrency": "AED",
                 "price": "One Demand",
                 "availability": "https://schema.org/InStock"
