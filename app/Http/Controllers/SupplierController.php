@@ -63,14 +63,47 @@ class SupplierController extends Controller
        
         return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
+    function addSupplierAdmin(Request $request){
+            $request->validate([
+                        'city_id'       => 'required|exists:cities,id',
+                        'name'          => 'required|string|max:255',
+                        'business_name' => 'required|string|max:255',
+                        'email'         => 'required|email|max:255',
+                        'country_code'  => 'required|string|max:10',
+                        'phone'         => 'required|string|max:20',
+                    ]);
+   
+        $cleanPhone = preg_replace('/[\s\-\(\)\+]/', '', $request->phone);
+        $cleanCode  = preg_replace('/[\s\-\(\)\+]/', '', $request->country_code);
 
+        $whatsapp = '+' . $cleanCode . $cleanPhone; // always add +
+
+
+        // Check duplicate after cleaning
+        if (Requests::where('whatsapp', $whatsapp)->exists()) {
+       
+
+            return back()->with('error', 'Already singup ');
+        }
+       
+        // Create new request
+        $newRequest = new Requests();
+        $newRequest->city_id       = $request->city_id;
+        $newRequest->name          = $request->name;
+        $newRequest->business_name = $request->business_name;
+        $newRequest->email         = $request->email;
+        $newRequest->whatsapp      = $whatsapp;
+        $newRequest->save();
+        return back()->with('success','Successfully Add');
+    }
 
 
     public function showRequests()
     {
+         $cities = City::all();
         $domain = Domain::first();
       $requests = Requests::latest()->paginate(10);
-        return view('adminPanel.SupplierRequests.show', compact('requests','domain'));
+        return view('adminPanel.SupplierRequests.show', compact('requests','domain','cities'));
     }
 
     public function acceptRequest($id)

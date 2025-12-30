@@ -165,9 +165,10 @@ Route::post('/admin/blogs/update/{id}', [BlogController::class, 'update'])->name
 Route::get('/admin/blogs/delete/{id}', [BlogController::class, 'destroy'])->name('blogs.delete');
 Route::get('/admin/blogs/show/{id}', [BlogController::class, 'show'])->name('blogs.show');
 
-
 //<--------------------------------- Supplier --------------------------------->
 Route::get('/supplier-signup', [SupplierController::class, 'requestPage'])->name('supplier.signup');
+Route::post('/addSupplierAdmin', [SupplierController::class, 'addSupplierAdmin'])->name('supplier.create.add.admin');
+
 Route::get('/supplier-requests', [SupplierController::class, 'showRequests'])->name('supplier.requests');
 Route::post('/supplier-requests/approve/{id}', [SupplierController::class, 'acceptRequest'])->name('supplier.approve');
 Route::get('/supplier-requests/reject/{id}', [SupplierController::class, 'rejectRequest'])->name('supplier.reject');
