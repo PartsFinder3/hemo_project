@@ -551,3 +551,5 @@ Route::post('/admin/parts/search', [SparePartsController::class, 'search'])
 
     Route::get('/get-models/{make_id}', [FrontendController::class, 'getModels']);
 
+
+    Route::get('/Content_information', [FrontendController::class, 'Content_information'])->name('Content_information');
