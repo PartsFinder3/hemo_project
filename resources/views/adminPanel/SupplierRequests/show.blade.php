@@ -57,7 +57,7 @@
                                     <td>{{ $request->name }}</td>
                                     <td>{{ $request->business_name }}</td>
                                     <td>{{ $request->city->name }}</td>
-                                   <td>{{ \Illuminate\Support\Str::limit($request->email, 40) }}</td>
+                                   <td>{{ \Illuminate\Support\Str::limit($request->email, 20) }}</td>
                                     <td>{{ $request->whatsapp }}</td>
                                     <td>
                                         @if ($request->status == 'approved')
