@@ -46,10 +46,10 @@ class SupplierController extends Controller
 
 
         // Check duplicate after cleaning
-        if (User::where('whatsapp', $whatsapp)->exists()) {
+        if (Requests::where('whatsapp', $whatsapp)->exists()) {
        
 
-            // return back()->withErrors(['error' => 'This WhatsApp number is already taken.'])->withInput();
+            return back()->with('error', 'Already singup ');
         }
        
         // Create new request
