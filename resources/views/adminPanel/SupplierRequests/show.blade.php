@@ -79,7 +79,7 @@
                                                     class="fa-solid fa-trash"></i>
                                                 Reject</a>
                                         </span>
-                                         <a href="javascript:void(0)" class="btn whatsapp"
+                                         <a href="javascript:void(0)" class="btn bt_sup_whatsapp"
                                                     onclick="contactSupplier('{{ $request->whatsapp }}')">
                                                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                                                 </a>
@@ -105,20 +105,12 @@
         }
     </script>
     <style>
-        .buttons a.whatsapp{
-    flex: 1;                    /* equal width */
-    text-align: center;
-    padding: 10px;              /* same padding */
-    height: 50px;               /* fixed height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
+  .bt_sup_whatsapp{
+    width: 60px;
+    height: 40px;
+    color: green;
+    background: white;
+  }
 
     </style>
 @endsection
