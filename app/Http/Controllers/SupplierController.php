@@ -61,7 +61,7 @@ class SupplierController extends Controller
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
        
-        return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
+        return redirect()->route('Content_information')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
     function addSupplierAdmin(Request $request){
             $request->validate([

@@ -56,6 +56,8 @@ use App\Http\Middleware\MSubscription;
 
 // <----------------------------- Admin Auth ----------------------------->
 
+    Route::get('/Content_information', [FrontendController::class, 'Content_information'])->name('Content_information');
+
 Route::get('/admin/login', [AuthController::class, 'adminLoginPage'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'adminLoginPost'])->name('admin.login.post');
 
@@ -551,5 +553,3 @@ Route::post('/admin/parts/search', [SparePartsController::class, 'search'])
 
     Route::get('/get-models/{make_id}', [FrontendController::class, 'getModels']);
 
-
-    Route::get('/Content_information', [FrontendController::class, 'Content_information'])->name('Content_information');
