@@ -49,7 +49,7 @@ class SupplierController extends Controller
         if (Requests::where('whatsapp', $whatsapp)->exists()) {
             return back()->withErrors(['error' => 'This WhatsApp number is already taken.'])->withInput();
         }
-     
+       return "good";
         // Create new request
         $newRequest = new Requests();
         $newRequest->city_id       = $request->city_id;
@@ -58,7 +58,7 @@ class SupplierController extends Controller
         $newRequest->email         = $request->email;
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
-         return "good";
+       
         // return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
 
