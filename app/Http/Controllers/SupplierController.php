@@ -38,7 +38,7 @@ class SupplierController extends Controller
             'country_code'  => 'required|string|max:10',
             'phone'         => 'required|string|max:20',
         ]);
-
+   dd($request);
         $cleanPhone = preg_replace('/[\s\-\(\)\+]/', '', $request->phone);
         $cleanCode  = preg_replace('/[\s\-\(\)\+]/', '', $request->country_code);
 
