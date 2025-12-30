@@ -79,6 +79,10 @@
                                                     class="fa-solid fa-trash"></i>
                                                 Reject</a>
                                         </span>
+                                         <a href="javascript:void(0)" class="btn whatsapp"
+                                                    onclick="contactSupplier('{{ $request->whatsapp }}')">
+                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                                                </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -93,4 +97,11 @@
 
         </section>
     </div>
+    <script>
+        function contactSupplier(whatsapp) {
+                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+                window.open(`https://wa.me/${cleanWhatsapp}`, '_blank');
+          
+        }
+    </script>
 @endsection
