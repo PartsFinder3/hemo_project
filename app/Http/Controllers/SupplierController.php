@@ -38,7 +38,7 @@ class SupplierController extends Controller
             'country_code'  => 'required|string|max:10',
             'phone'         => 'required|string|max:20',
         ]);
-    dd($request->all());
+   
         $cleanPhone = preg_replace('/[\s\-\(\)\+]/', '', $request->phone);
         $cleanCode  = preg_replace('/[\s\-\(\)\+]/', '', $request->country_code);
 
@@ -49,7 +49,7 @@ class SupplierController extends Controller
         if (Requests::where('whatsapp', $whatsapp)->exists()) {
             return back()->withErrors(['error' => 'This WhatsApp number is already taken.'])->withInput();
         }
-
+     
         // Create new request
         $newRequest = new Requests();
         $newRequest->city_id       = $request->city_id;
@@ -58,8 +58,8 @@ class SupplierController extends Controller
         $newRequest->email         = $request->email;
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
-        
-        return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
+         return "good";
+        // return redirect()->route('frontend.index')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
 
 
