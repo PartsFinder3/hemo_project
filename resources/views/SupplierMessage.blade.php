@@ -194,6 +194,29 @@
 .p_head{
  margin-left: 160px;
 }
+.btn-home {
+    background: #1549a5;
+    color: #fff;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(255, 119, 0, 0.4);
+        position: absolute;
+    margin-left: 50%;
+}
+
+.btn-home:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(255, 119, 0, 0.5);
+    background: linear-gradient(135deg, #ff9900, #ff7700);
+}
+
 @media (max-width: 480px) {
     .title-text h1{
         font-size: 17px;
@@ -206,7 +229,28 @@
       .logo-img{
         height: 105px !important;
       }
+      .btn-home{
+     background: #1549a5;
+    color: #fff;
+    font-weight: 600;
+    padding: 6px 7px;
+    border-radius: 7;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(255, 119, 0, 0.4);
+    position: absolute;
+    width: 91px;
+    height: 36px;
+    top: 90px;
+    left: 77px;
+      }
 }
+
+
 </style>
 <body>
       @if (session('success'))
@@ -246,6 +290,9 @@
                   <strong>Urgent supplier approval required</strong>  
                 </p>
             </div>
+            <button class="btn btn-home" onclick="window.location.href='/'">
+    <i class="fas fa-home"></i> Home
+</button>
         </div>
         
     </div>
