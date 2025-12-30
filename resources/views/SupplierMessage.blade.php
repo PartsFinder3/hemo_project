@@ -206,9 +206,15 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 8px 20px rgba(255, 119, 0, 0.4);
+  
         position: absolute;
     margin-left: 50%;
+}
+
+.btn-home:hover {
+    transform: translateY(-2px);
+   
+    background: #1549a5;
 }
 
 @media (max-width: 480px) {
