@@ -48,8 +48,7 @@ class SupplierController extends Controller
         // Check duplicate after cleaning
         if (Requests::where('whatsapp', $whatsapp)->exists()) {
        
-
-            return back()->with('error', 'Already singup ');
+      return "alllready applid ";
         }
        
         // Create new request
