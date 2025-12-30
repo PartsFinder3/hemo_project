@@ -211,12 +211,6 @@
     margin-left: 50%;
 }
 
-.btn-home:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(255, 119, 0, 0.5);
-    background: linear-gradient(135deg, #ff9900, #ff7700);
-}
-
 @media (max-width: 480px) {
     .title-text h1{
         font-size: 17px;
@@ -290,9 +284,10 @@
                   <strong>Urgent supplier approval required</strong>  
                 </p>
             </div>
+            
             <button class="btn btn-home" onclick="window.location.href='/'">
     <i class="fas fa-home"></i> Home
-</button>
+</button></a>
         </div>
         
     </div>
