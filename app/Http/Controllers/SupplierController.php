@@ -69,7 +69,7 @@ class SupplierController extends Controller
     public function showRequests()
     {
         $domain = Domain::first();
-         $requests = Requests::paginate(10); 
+      $requests = Requests::latest()->paginate(10);
         return view('adminPanel.SupplierRequests.show', compact('requests','domain'));
     }
 
