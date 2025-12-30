@@ -191,6 +191,7 @@ Route::get('/supplier/subscription/{id}', [PaymentController::class, 'index'])->
 
 
 // <-------------------------------- Inquiries --------------------------------->
+
 Route::get('/inquiries/create/{supplierId}', [InquiryController::class, 'create'])->name('inquiries.create');
 Route::post('/inquiries/create/{supplierId}', [InquiryController::class, 'store'])->name('inquiries.store');
 Route::get('/inquiries', [InquiryController::class, 'index'])->name('inquiries.index');

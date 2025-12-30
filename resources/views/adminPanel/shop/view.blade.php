@@ -146,7 +146,12 @@
                     </div>
                 </div>
             </div>
-
+           <div class="mt-3">
+                <a href="{{ route('inquiries.create', $shop->supplier->id) }}" 
+                class="btn btn-warning btn-sm">
+                <i class="bi bi-pencil-square"></i> Update Inquiry Limit
+                </a>
+            </div>
             <!-- Location & Hours -->
             <div class="card shadow-sm border-0 rounded-3 mt-4">
                 <div class="card-body">
