@@ -44,11 +44,12 @@ class SupplierController extends Controller
 
         $whatsapp = '+' . $cleanCode . $cleanPhone; // always add +
 
-return "good";
+
         // Check duplicate after cleaning
         if (Requests::where('whatsapp', $whatsapp)->exists()) {
             return back()->withErrors(['error' => 'This WhatsApp number is already taken.'])->withInput();
         }
+        return "good";
        
         // Create new request
         $newRequest = new Requests();
