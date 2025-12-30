@@ -13,9 +13,11 @@
                     <h3>Supplier Requests</h3>
                 </div>
             </div>
-<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#large">
-    Add Supplier
-</button>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#large">
+                        <i class="fa-solid fa-plus me-1"></i> Add Supplier
+                    </button>
+                </div>
 
         </div>
         <section class="section">
@@ -112,68 +114,69 @@
             </div>
 
             <div class="modal-body">
-                <form action="{{ route('supplier.create.add.admin') }}" method="POST">
-                    @csrf
+    <form action="{{ route('supplier.create.add.admin') }}" method="POST">
+        @csrf
 
-                    <div class="mb-3">
-                        <label class="abdul-form-label">
-                            <i class="fas fa-user me-2"></i>Full Name
-                        </label>
-                        <input type="text" class="abdul-form-control"
-                               placeholder="Enter your full name" name="name" required>
-                    </div>
+        <div class="row g-3">
 
-                    <div class="mb-3">
-                        <label class="abdul-form-label">
-                            <i class="fas fa-building me-2"></i>Business Name
-                        </label>
-                        <input type="text" class="abdul-form-control"
-                               placeholder="Enter your business name" name="business_name" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="abdul-form-label">
-                            <i class="fas fa-city me-2"></i>Select City
-                        </label>
-                        <select class="abdul-form-select" name="city_id" required>
-                            <option value="" disabled selected>Choose city</option>
-                            @foreach($cities as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="abdul-form-label">
-                            <i class="fas fa-envelope me-2"></i>Email
-                        </label>
-                        <input type="email" class="abdul-form-control"
-                               placeholder="Enter your email" name="email" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="abdul-form-label">
-                            <i class="fas fa-phone me-2"></i>Country Code
-                        </label>
-                        <select class="abdul-form-select" name="country_code">
-                            <option value="">Select Country</option>
-                            @include('Frontend.contries')
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="abdul-form-label">
-                            <i class="fas fa-phone me-2"></i>Phone Number
-                        </label>
-                        <input type="tel" class="abdul-form-control"
-                               placeholder="Enter phone number" name="phone" required>
-                    </div>
-
-                    <button type="submit" class="abdul-btn-signup w-100">
-                        <i class="fas fa-user-check me-2"></i> Sign Up
-                    </button>
-                </form>
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    <i class="fas fa-user me-2"></i>Full Name
+                </label>
+                <input type="text" class="form-control" name="name" required>
             </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    <i class="fas fa-building me-2"></i>Business Name
+                </label>
+                <input type="text" class="form-control" name="business_name" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    <i class="fas fa-city me-2"></i>City
+                </label>
+                <select class="form-select" name="city_id" required>
+                    <option disabled selected>Select City</option>
+                    @foreach($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">
+                    <i class="fas fa-envelope me-2"></i>Email
+                </label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">
+                    <i class="fas fa-flag me-2"></i>Country Code
+                </label>
+                <select class="form-select" name="country_code">
+                    @include('Frontend.contries')
+                </select>
+            </div>
+
+            <div class="col-md-8">
+                <label class="form-label fw-semibold">
+                    <i class="fas fa-phone me-2"></i>Phone Number
+                </label>
+                <input type="tel" class="form-control" name="phone" required>
+            </div>
+
+        </div>
+
+        <div class="modal-footer border-0 mt-4">
+            <button type="submit" class="btn btn-success w-100">
+                <i class="fas fa-check-circle me-1"></i> Save Supplier
+            </button>
+        </div>
+    </form>
+</div>
 
         </div>
     </div>
@@ -195,6 +198,18 @@
     background: white;
     padding-top: 1px;
   }
+.modal-content {
+    border-radius: 12px;
+}
+
+.modal-header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+}
 
     </style>
 @endsection
