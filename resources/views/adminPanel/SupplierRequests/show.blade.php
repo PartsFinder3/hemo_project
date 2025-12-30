@@ -104,4 +104,21 @@
           
         }
     </script>
+    <style>
+        .buttons a.whatsapp{
+    flex: 1;                    /* equal width */
+    text-align: center;
+    padding: 10px;              /* same padding */
+    height: 50px;               /* fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+    </style>
 @endsection
