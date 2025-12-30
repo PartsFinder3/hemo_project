@@ -106,10 +106,11 @@
     </script>
     <style>
   .bt_sup_whatsapp{
-    width: 60px;
-    height: 40px;
+  width: 110px;
+    height: 48px;
     color: green;
     background: white;
+    padding-top: 1px;
   }
 
     </style>
