@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-           <div class="mt-3">
+           <div class="mt-3" style="margin-left: 40%">
                 <a href="{{ route('inquiries.create', $shop->supplier->id) }}" 
                 class="btn btn-warning btn-sm">
                 <i class="bi bi-pencil-square"></i> Update Inquiry Limit
