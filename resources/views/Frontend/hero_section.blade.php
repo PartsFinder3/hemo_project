@@ -101,7 +101,7 @@
     justify-content: flex-start;  /* ✅ left align */
     align-items: center;          /* optional */
     top: -60px;
-    left: 45%;
+    left: 47%;
     position: absolute;
     text-align: left;             /* center hatao */
 }
