@@ -23,7 +23,7 @@ class AdController extends Controller
 {
     public function index($id)
     {
-        return "oo";
+       
         $shop = Auth::guard('supplier')->user()->shop;
         $ad = Ads::where('shop_id', $shop->id)->latest()->get()->map(function ($item) {
             $item->ad_type = 'ad';
