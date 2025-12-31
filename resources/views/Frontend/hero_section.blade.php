@@ -67,6 +67,7 @@
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+    height: auto;
 }
 .part_finder_card {
     flex: 1 1 45%;
