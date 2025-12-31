@@ -55,7 +55,7 @@
 
 @media (max-width: 480px) {
     .hero_section_text h1 {
-        font-size: 25px !important;
+        font-size: 22px !important;
     }
 }
 
