@@ -38,6 +38,11 @@
                                                 <input type="hidden" name="suplier_id"
                                                 value="{{ $Supplier->id ?? '' }}">
                                         </div>
+                                         <div class="mb-3">
+                                            <label for="" class="form-label">Businees Name</label>
+                                            <input type="text" class="form-control" name="Sup_name" id=""
+                                                value="{{ $shop->name ?? '' }}">
+                                        </div>
                                         <div class="form-group">
                                             <label for="first-name-vertical">About</label>
                                             <textarea name="description" id="" class="form-control" rows="3">{{ $profile->description ?? '' }}</textarea>
