@@ -529,5 +529,26 @@ $('#car-make').on('change', function() {
         $('#car-model').empty().append('<option value="">Select Model</option>').trigger('change');
     }
 });
+<script>
+$(document).ready(function () {
 
+    // Hide condition section initially
+    $('#condition-group').hide();
+
+    // When PART is selected (Select2 multiple)
+    $('#parts-dropdown-parts').on('change', function () {
+
+        let selectedParts = $(this).val();
+
+        if (selectedParts && selectedParts.length > 0) {
+            // Show condition when part selected
+            $('#condition-group').slideDown();
+        } else {
+            // Hide again if no part selected
+            $('#condition-group').slideUp();
+        }
+    });
+
+});
+</script>
 </script>
