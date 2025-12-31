@@ -264,7 +264,7 @@
 }
 </style>
 @include('Frontend.hero_section', [
-   'part' => '<span class="hiliter">' . $city->name . '</span> Parts for Sale in UAE',
+   'part' => '<span class="hiliter" >' . $city->name . '</span> Parts for Sale in UAE',
    'image' => 'https://partsfinder.ae/storage/profile_images/hero_section_image_1.png'
 ])
 

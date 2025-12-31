@@ -120,7 +120,8 @@ nav {
     color: #000;         
     font-weight: bold;  
     padding: 2px 5px;    
-    border-radius: 3px;     
+    border-radius: 3px;    
+    z-index: 9999;  
 }
 
 .hero-btns {
