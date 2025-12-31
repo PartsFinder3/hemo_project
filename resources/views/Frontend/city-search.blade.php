@@ -262,6 +262,12 @@
     height: 200px;
     object-fit: contain;
 }
+.hero_section_text {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3px;
+     z-index: 9999; 
+}
 </style>
 @include('Frontend.hero_section', [
    'part' => '<span class="hiliter" >' . $city->name . '</span> Parts for Sale in UAE',
