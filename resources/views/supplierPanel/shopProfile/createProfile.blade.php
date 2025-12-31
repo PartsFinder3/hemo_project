@@ -33,8 +33,8 @@
 
                                         <div class="mb-3">
                                             <label for="" class="form-label">Name</label>
-                                            <input type="text" class="form-control" name="address" id=""
-                                                value="{{ $profile->name ?? '' }}">
+                                            <input type="text" class="form-control" name="name" id=""
+                                                value="{{ $Supplier->name ?? '' }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="first-name-vertical">About</label>

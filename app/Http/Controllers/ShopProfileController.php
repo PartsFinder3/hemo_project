@@ -41,9 +41,10 @@ class ShopProfileController extends Controller
     public function createProfile($id)
     {
         $shop = Shops::findOrFail($id);
+        $Supplier=Suppliers::find($shop->supplier_id)->first();
         $profile = ShopProfile::where('shop_id', $shop->id)->first();
 
-        return view('supplierPanel.shopProfile.createProfile', compact('shop', 'profile'));
+        return view('supplierPanel.shopProfile.createProfile', compact('shop', 'profile','Supplier'));
     }
 
     public function createParts($id)
