@@ -78,7 +78,7 @@
     justify-content: flex-end; 
     position: relative;
     z-index: 2;
-    margin-left: -10px;
+    margin-left: -20px;
 }
 
 .car {
