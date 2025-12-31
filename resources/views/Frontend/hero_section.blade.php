@@ -51,13 +51,15 @@ body, main, header, nav, .hero-section, .hero-section_p {
     position: relative;
     height: auto;
 }
+
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    justify-content: center; /* center content inside the card */
+    margin-left: 50px;
     position: relative;
     z-index: 2;
 }
+
 .car {
     width: 400px;
     max-width: 450px;
@@ -70,20 +72,22 @@ body, main, header, nav, .hero-section, .hero-section_p {
 }
 
 .hero_image_section {
-    flex: 1 1 50%;
+    flex: 1 1 45%;
     display: flex;
-    justify-content: center; /* center the image inside container */
+    justify-content: flex-start;
     align-items: center;
-    position: relative; /* changed from absolute */
-    text-align: center;
+    position: absolute;
+    top: -60px;
+    left: 46%;
+    text-align: left;
 }
 
-
 .hero_image_section img {
-    max-width: 100%;
+    max-width: 540px;
     width: 100%;
     height: auto;
 }
+
 /* ===== Button ===== */
 .find-btn {
     width: 100%;
@@ -211,9 +215,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     .part_finder_card, .hero_image_section {
         flex: 1 1 100%;
         margin: 0 auto;
-        
     }
-    .part_finder_card { margin-left: 30px; }
     .car { max-width: 420px; }
     .hero_section_text h1 { font-size: 32px; }
 }
