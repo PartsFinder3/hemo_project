@@ -78,7 +78,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     align-items: center;
     position: absolute;
     top: -60px;
-    left: 46%;
+    left: 40%;
     text-align: left;
 }
 
