@@ -105,7 +105,7 @@
     text-align: left;             /* center hatao */
 }
 .hero_image_section img {
-    max-width: 500px;
+    max-width: 540px;
     width: 100%;
     height: auto;
 }
