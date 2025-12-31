@@ -40,7 +40,7 @@
                                         </div>
                                          <div class="mb-3">
                                             <label for="" class="form-label">Businees Name</label>
-                                            <input type="text" class="form-control" name="Sup_name" id=""
+                                            <input type="text" class="form-control" name="Businees_name" id=""
                                                 value="{{ $shop->name ?? '' }}">
                                         </div>
                                         <div class="form-group">
