@@ -32,9 +32,9 @@
                                     <div class="col-12">
 
                                         <div class="mb-3">
-                                            <label for="" class="form-label">Address</label>
+                                            <label for="" class="form-label">Name</label>
                                             <input type="text" class="form-control" name="address" id=""
-                                                value="{{ $profile->address ?? '' }}">
+                                                value="{{ $profile->name ?? '' }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="first-name-vertical">About</label>
