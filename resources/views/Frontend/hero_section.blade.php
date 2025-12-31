@@ -245,8 +245,12 @@ margin-top:10px;
         padding: 8px !important;
         margin-top: 30px !important;
     }
+    .hero_image_section{
+       top: -10px;
+    }
     .hero_image_section img {
         max-width: 220px !important;
+        
     }
     .hero_section_text h1 {
         font-size: 20px !important;
