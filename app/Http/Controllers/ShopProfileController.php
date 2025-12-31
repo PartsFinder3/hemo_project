@@ -41,7 +41,7 @@ class ShopProfileController extends Controller
     public function createProfile($id)
     {
         $shop = Shops::findOrFail($id);
-        $Supplier=Suppliers::find($shop->supplier_id)->get();
+        $Supplier=Suppliers::find($shop->supplier_id);
         dd($shop);
         $profile = ShopProfile::where('shop_id', $shop->id)->first();
 
