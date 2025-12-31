@@ -254,7 +254,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 .dropdown,
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
-    min-height: 36px !important;   /* smaller than 45px */
+    min-height: 40px !important;   /* smaller than 45px */
     height: 36px !important;
     padding: 4px 8px !important;
     font-size: 14px;               /* smaller font */
@@ -266,7 +266,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 }
 
 .select2-selection__arrow {
-    height: 36px !important;
+    height: 40px !important;
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
