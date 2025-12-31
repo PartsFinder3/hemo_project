@@ -44,6 +44,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* force 4 columns */
     gap: 20px;            /* space between cards */
+    margin: auto;
 }
 
 #productGrid1 .card {
