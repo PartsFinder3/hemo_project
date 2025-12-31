@@ -104,7 +104,7 @@
     max-width: 500px;
     width: 100%;
     height: auto;
-    object-fit: cover;
+    float: left;
 }
 
 /* ===== Button ===== */
