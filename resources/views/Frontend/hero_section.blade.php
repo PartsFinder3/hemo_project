@@ -396,14 +396,14 @@ margin-top:10px;
 }
 .active-step .select2-selection,
 .active-step {
-    border: 2px solid #28a745 !important;
+    border: 1px solid #28a745 !important;
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
     transition: all 0.3s ease;
 }
 
 /* Condition box green */
 .condition-active {
-    border: 2px solid #28a745 !important;
+    border: 1px solid #28a745 !important;
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
 }
 </style>
