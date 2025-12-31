@@ -171,6 +171,13 @@
 </script>
 
 <style>
+    .hero_section_text {
+    position: relative;      /* relative positioning is fine */
+    z-index: 9999;           /* very high so it appears above almost everything */
+    margin-top: 0;           /* remove any spacing pushing it down */
+    padding-top: 20px;       /* optional padding from top */
+    text-align: center;      
+}
 #productGrid1 {
     width: 100%;
     max-width: 1200px;
