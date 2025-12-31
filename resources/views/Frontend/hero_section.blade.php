@@ -334,7 +334,9 @@ margin-top:10px;
 
 /* Select2 selected item بھی bold */
 .select2-container--default .select2-selection__rendered {
-    font-weight: bold !important;
+      font-size: 13px !important;   /* size kam */
+    font-weight: 600 !important;  /* medium bold */
+    padding: 3px 6px !important;
 }
 .highlight-border {
     border: 2px solid red !important;
