@@ -250,7 +250,30 @@ body, main, header, nav, .hero-section, .hero-section_p {
     .radio-option label { font-size: 11px !important; }
     .secound_hero_section { gap: 15px; padding: 0 5px !important; }
 }
+/* Reduce the height of inputs and Select2 fields */
+.dropdown,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    min-height: 36px !important;   /* smaller than 45px */
+    height: 36px !important;
+    padding: 4px 8px !important;
+    font-size: 14px;               /* smaller font */
+}
 
+.select2-selection__rendered {
+    line-height: 28px !important;  /* adjust to fit smaller height */
+    padding-top: 0 !important;
+}
+
+.select2-selection__arrow {
+    height: 36px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    font-size: 12px !important;    /* smaller tags inside multi-select */
+    padding: 2px 5px !important;
+    line-height: 1 !important;
+}
 </style>
 
 <div class="hero_section_text">
