@@ -90,7 +90,7 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     float: none; /* float ہٹا دیا */
-        margin-left: 113px !important;
+        margin-left: 93px !important;
 
 }
 
