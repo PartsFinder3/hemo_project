@@ -59,6 +59,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     height: 470px;
     display: block;
+        margin-left: 0px;
 }
 
 
