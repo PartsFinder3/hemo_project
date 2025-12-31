@@ -30,6 +30,12 @@
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
+
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Address</label>
+                                            <input type="text" class="form-control" name="address" id=""
+                                                value="{{ $profile->address ?? '' }}">
+                                        </div>
                                         <div class="form-group">
                                             <label for="first-name-vertical">About</label>
                                             <textarea name="description" id="" class="form-control" rows="3">{{ $profile->description ?? '' }}</textarea>
