@@ -263,7 +263,7 @@
     object-fit: contain;
 }
 .secound_hero_section{
-    margin-top: 50px;
+    margin-top: 70px;
 }
 </style>
 @include('Frontend.hero_section', [
