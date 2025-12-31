@@ -199,7 +199,7 @@
 @media (max-width: 768px) {
 
     .hero_section_text h1 {
-        font-size: 2rem !important;
+        font-size: 22px !important;
         line-height: 1.2;
     }
 
