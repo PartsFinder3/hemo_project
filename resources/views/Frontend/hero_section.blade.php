@@ -386,6 +386,14 @@ margin-top:10px;
 #condition-group {
     display: none;
 }
+.select2-container--default 
+.select2-selection--multiple 
+.select2-selection__choice {
+    font-size: 13px !important;   /* font chota */
+    font-weight: 500 !important;  /* normal / medium */
+    padding: 3px 6px !important;
+    line-height: 1.2 !important;
+}
 </style>
 
 <div class="hero_section_text">
