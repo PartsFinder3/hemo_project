@@ -250,7 +250,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
      .part_finder_card {
         margin-left: 0 !important;
         flex: 1 1 100%;
-        margin-left: 27px !important;
+        margin-left: auto !important;
     }
     .find-btn { font-size: 16px; height: 45px; }
 }
