@@ -407,6 +407,14 @@ margin-top:10px;
     border: 1px solid #28a745 !important;
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
 }
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: normal !important;
+    padding-top: 2px !important;   /* 👈 text thora upar */
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding-top: 2px !important;   /* 👈 multiple ke liye bhi */
+}
 </style>
 
 <div class="hero_section_text">
