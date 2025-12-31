@@ -410,10 +410,12 @@ margin-top:10px;
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: normal !important;
     padding-top: 2px !important;   /* 👈 text thora upar */
+      color: #000 !important;  
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     padding-top: 2px !important;   /* 👈 multiple ke liye bhi */
+      color: #000 !important;  
 }
 </style>
 
