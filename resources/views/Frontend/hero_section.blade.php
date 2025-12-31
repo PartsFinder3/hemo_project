@@ -540,24 +540,32 @@ $(document).ready(function() {
 $('#car-make').on('change', function() {
     var makeId = $(this).val();
 
+    var $model = $('#car-model');
+
     if(makeId) {
+        // Show "Loading Models..." while fetching
+        $model.empty().append('<option value="">Loading models...</option>').trigger('change');
+
         $.ajax({
             url: "{{ url('get-models') }}/" + makeId, // Laravel url() helper
             type: 'GET',
             success: function(data) {
-                var $model = $('#car-model');
-                $model.empty();
-                $model.append('<option value="">Select Model</option>');
+                $model.empty(); // Clear old options
+                $model.append('<option value="">Select Model</option>'); // Default
 
                 $.each(data, function(key, model) {
                     $model.append('<option value="'+model.id+'">'+model.name+'</option>');
                 });
 
+                // Refresh Select2
                 $model.trigger('change');
+            },
+            error: function() {
+                $model.empty().append('<option value="">Error loading models</option>').trigger('change');
             }
         });
     } else {
-        $('#car-model').empty().append('<option value="">Select Model</option>').trigger('change');
+        $model.empty().append('<option value="">Select Model</option>').trigger('change');
     }
 });
 
