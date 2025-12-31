@@ -100,6 +100,7 @@
     justify-content: flex-start;  /* ✅ left align */
     align-items: center;          /* optional */
     margin-top: 20px;
+    margin-left: -50px !important;
     text-align: left;             /* center hatao */
 }
 .hero_image_section img {
