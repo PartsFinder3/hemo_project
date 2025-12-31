@@ -383,6 +383,9 @@ margin-top:10px;
     width: 100% !important;
     box-sizing: border-box;
 }
+#condition-group {
+    display: none;
+}
 </style>
 
 <div class="hero_section_text">
