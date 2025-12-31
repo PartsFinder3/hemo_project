@@ -56,7 +56,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    margin-left: 50px;
+    margin-left: 68px;
     position: relative;
     z-index: 2;
 }
