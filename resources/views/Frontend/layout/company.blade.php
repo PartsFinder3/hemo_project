@@ -69,7 +69,7 @@
     left: 0;
     width: 60px;
     height: 3px;
-    background: linear-gradient(to right, #4361ee, #3a0ca3);
+ 
     border-radius: 2px;
 }
 
