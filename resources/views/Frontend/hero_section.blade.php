@@ -79,7 +79,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     align-items: center;
     position: absolute;
     top: -60px;
-    left: 40%;
+    left: 45%;
     text-align: left;
 }
 
@@ -87,6 +87,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     max-width: 540px;
     width: 100%;
     height: auto;
+    
 }
 
 /* ===== Button ===== */
