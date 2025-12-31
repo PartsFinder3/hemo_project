@@ -394,6 +394,18 @@ margin-top:10px;
     padding: 3px 6px !important;
     line-height: 1.2 !important;
 }
+.active-step .select2-selection,
+.active-step {
+    border: 2px solid #28a745 !important;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
+    transition: all 0.3s ease;
+}
+
+/* Condition box green */
+.condition-active {
+    border: 2px solid #28a745 !important;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
+}
 </style>
 
 <div class="hero_section_text">
@@ -556,6 +568,57 @@ $(document).ready(function () {
         } else {
             // Hide again if no part selected
             $('#condition-group').slideUp();
+        }
+    });
+
+});
+</script>
+<script>
+$(document).ready(function () {
+
+    // Helper: remove all active states
+    function resetSteps() {
+        $('.form-group').removeClass('active-step');
+        $('.condition-section').removeClass('condition-active');
+    }
+
+    // Initial state → Make active
+    resetSteps();
+    $('#make-group').addClass('active-step');
+
+    // MAKE selected
+    $('#car-make').on('change', function () {
+        if ($(this).val()) {
+            resetSteps();
+            $('#model-group').addClass('active-step');
+        }
+    });
+
+    // MODEL selected
+    $('#car-model').on('change', function () {
+        if ($(this).val()) {
+            resetSteps();
+            $('#year-group').addClass('active-step');
+        }
+    });
+
+    // YEAR selected
+    $('#car-year').on('change', function () {
+        if ($(this).val()) {
+            resetSteps();
+            $('select[name="parts[]"]').closest('.form-group')
+                .addClass('active-step')
+                .slideDown();
+        }
+    });
+
+    // PART selected
+    $('#parts-dropdown-parts').on('change', function () {
+        let parts = $(this).val();
+        if (parts && parts.length > 0) {
+            resetSteps();
+            $('#condition-group').slideDown();
+            $('.condition-section').addClass('condition-active');
         }
     });
 
