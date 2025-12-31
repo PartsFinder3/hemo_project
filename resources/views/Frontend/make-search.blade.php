@@ -1033,7 +1033,7 @@
 }
 .hero_image_section {
 
-    top: -23px;
+    top: -2px;
                /* center hatao */
 }
 </style>
