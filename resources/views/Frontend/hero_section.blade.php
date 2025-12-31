@@ -215,6 +215,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     .part_finder_card, .hero_image_section {
         flex: 1 1 100%;
         margin: 0 auto;
+        top: 0px !important;
     }
     .car { max-width: 420px; }
     .hero_section_text h1 { font-size: 32px; }
