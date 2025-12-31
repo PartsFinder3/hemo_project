@@ -178,124 +178,90 @@ margin-top:10px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
-/* ===== Responsive ===== */
 @media (max-width: 992px) {
     .secound_hero_section {
         flex-direction: column;
         align-items: center;
-        gap: 30px;
+        gap: 25px;
         padding: 0 20px;
     }
-
-    .part_finder_card,
-    .hero_image_section {
+    .part_finder_card, .hero_image_section {
         flex: 1 1 100%;
+        margin: 0 auto;
     }
-
     .car {
         max-width: 420px;
     }
+    .hero_section_text h1 {
+        font-size: 32px;
+    }
 }
 
+/* ===== Tablets ===== */
 @media (max-width: 768px) {
-    .hero_section_text {
-           margin-top: 10px;
-        font-size: 2rem;
-        line-height: 1.2;
-    }
-
     .car {
+        max-width: 380px;
         padding: 15px;
         border-radius: 15px;
     }
-
     .hero_image_section img {
         max-width: 300px;
     }
-
+    .hero_section_text h1 {
+        font-size: 26px;
+    }
     .find-btn {
         font-size: 16px;
         height: 45px;
     }
-
-    .radio-group {
-        flex-direction: row;
-        gap: 10px;
-    }
 }
-@media (max-width: 550px) {
-    .secound_hero_section .car {
-        max-width: 330px !important;
-        padding: 10px !important;
-        margin-top: 40px !important;
-        margin-left: 0px !important;
-    }
 
-    .secound_hero_section .hero_image_section img {
+/* ===== Mobile ===== */
+@media (max-width: 550px) {
+    .car {
+        max-width: 330px !important;
+        margin-top: 40px !important;
+        margin-left: 0 !important;
+        padding: 10px !important;
+    }
+    .hero_image_section img {
         max-width: 260px !important;
     }
-
+    .hero_section_text h1 {
+        font-size: 22px !important;
+    }
     .radio-option label {
         font-size: 12px !important;
     }
-
     .hero-section_p {
-        height: auto !important;
+        min-height: auto !important;
     }
 }
 
-@media (max-width: 480px) {
-    .car {
-        max-width: 330px;
-        padding: 10px;
-        margin-top: 40px;
-        margin-left: 0px;
-    }
-
-    .hero_image_section img {
-        max-width: 260px;
-    }
-
-    .radio-option label {
-        font-size: 12px;
-    }
-    .hero-section_p {
-        height: auto;
-    }
-}
-.select2-selection--single.highlight-border,
-.select2-selection--multiple.highlight-border {
-    border: 2px solid red !important;
-}
+/* ===== Small Mobile (Extra Small) ===== */
 @media (max-width: 380px) {
-    .secound_hero_section {
-        margin-top: -15px;
-        padding: 0 10px !important;
-        gap: 15px;
-    }
-
     .car {
         max-width: 280px !important;
         padding: 8px !important;
         margin-top: 30px !important;
     }
-
     .hero_image_section img {
         max-width: 220px !important;
     }
-
     .hero_section_text h1 {
         font-size: 20px !important;
         margin-top: 20px;
     }
-
     .find-btn {
         font-size: 14px !important;
         height: 40px !important;
     }
-
     .radio-option label {
         font-size: 11px !important;
+    }
+    .secound_hero_section {
+        gap: 15px;
+        padding: 0 10px !important;
     }
 }
 
