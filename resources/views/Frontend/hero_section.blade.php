@@ -98,13 +98,14 @@
     flex: 1 1 45%;
     text-align: center;
     margin-top: 20px;
+      justify-content: flex-start; /* left */
 }
 
 .hero_image_section img {
     max-width: 500px;
     width: 100%;
     height: auto;
-    float: left;
+    float: none;
 }
 
 /* ===== Button ===== */
