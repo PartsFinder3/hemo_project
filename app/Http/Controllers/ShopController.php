@@ -85,6 +85,9 @@ class ShopController extends Controller
         'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
+    $Suppleire=Suppliers::find($request->suplier_id);
+    $Suppleire->name=$request->Sup_name;
+    $Suppleire->save();
 
     // ✅ Get Shop
     $shop = Shops::findOrFail($id);
