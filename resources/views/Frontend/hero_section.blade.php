@@ -237,7 +237,7 @@ margin-top:10px;
         min-height: auto !important;
     }
 .part_finder_card{
-        margin-left: -176px !important;
+        margin-left: -100px !important;
     }
 }
 
