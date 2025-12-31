@@ -96,16 +96,16 @@
 
 .hero_image_section {
     flex: 1 1 45%;
-    text-align: center;
+    display: flex;                /* ✅ YE MISSING THA */
+    justify-content: flex-start;  /* ✅ left align */
+    align-items: center;          /* optional */
     margin-top: 20px;
-      justify-content: flex-start; /* left */
+    text-align: left;             /* center hatao */
 }
-
 .hero_image_section img {
     max-width: 500px;
     width: 100%;
     height: auto;
-    float: none;
 }
 
 /* ===== Button ===== */
