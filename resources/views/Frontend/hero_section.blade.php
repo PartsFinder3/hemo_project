@@ -399,6 +399,7 @@ margin-top:10px;
     border: 1px solid #28a745 !important;
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
     transition: all 0.3s ease;
+    border-radius: 3px;
 }
 
 /* Condition box green */
