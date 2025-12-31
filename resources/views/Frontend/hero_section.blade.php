@@ -75,7 +75,7 @@
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    margin-left: 93px;
+    
     position: relative;
     z-index: 2;
    
@@ -90,7 +90,8 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     float: none; /* float ہٹا دیا */
-    margin-left: 0; /* margin-left ہٹا دیا */
+        margin-left: 93px;
+
 }
 
 .hero_image_section {
