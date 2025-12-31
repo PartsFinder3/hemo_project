@@ -38,7 +38,7 @@
     font-weight: bold;
     width: auto;
     margin-right: 5px !important;
-  
+    z-index: 9999;
 }
 
 /* ===== Responsive ===== */
