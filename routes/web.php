@@ -292,6 +292,7 @@ Route::get('supplier/shops/hours/update/{id}', [ShopProfileController::class, 'c
     Route::get('/shop/ads/{id}/toggle-car-active', [AdController::class, 'isCarActive'])->name('supplier.ads.toggleCarActive');
     // Ads
     Route::get('/shop/ads/create', [AdController::class, 'create'])->name('shop.supplier.ads.create');
+    Route::get('/shop/ads/create/shop', [AdController::class, 'create'])->name('shop.ads.create');
     Route::get('/shop/ads/create-car', [AdController::class, 'createCar'])->name('shop.supplier.ads.createCar');
 
     Route::post('/shop/ads/store', [AdController::class, 'store'])->name('shop.supplier.ads.store');
