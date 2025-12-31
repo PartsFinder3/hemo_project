@@ -50,7 +50,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     flex-wrap: wrap;
     position: relative;
     height: auto;
-    margin-left: 40px !important;
+    margin-left: 60px !important;
 }
 
 .part_finder_card {
