@@ -28,14 +28,14 @@ class AdController extends Controller
             $item->ad_type = 'ad';
             return $item;
         });
-
+      dd($shop->id);
         $car = CarAds::where('shop_id', $shop->id)->latest()->get()->map(function ($item) {
             $item->ad_type = 'car';
             return $item;
         });
 
         $ads = $ad->merge($car)->sortByDesc('created_at');
-
+       
         return view('supplierPanel.ads.show', compact('ads'));
     }
 
