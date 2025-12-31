@@ -529,6 +529,8 @@ $('#car-make').on('change', function() {
         $('#car-model').empty().append('<option value="">Select Model</option>').trigger('change');
     }
 });
+
+</script>
 <script>
 $(document).ready(function () {
 
@@ -550,5 +552,4 @@ $(document).ready(function () {
     });
 
 });
-</script>
 </script>
