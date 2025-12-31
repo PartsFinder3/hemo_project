@@ -247,19 +247,22 @@ margin-top:10px;
 @media (max-width: 380px) {
     .car {
         max-width: 280px !important;
-        padding: 8px !important;
-        margin-top: 30px !important;
+        margin: 15px auto 0 auto !important;
+        padding: 10px !important;
     }
-    .hero_image_section{
-       top: -300px;
+    .hero_image_section {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin: 5px auto 0 auto;
     }
     .hero_image_section img {
         max-width: 220px !important;
-        
     }
     .hero_section_text h1 {
         font-size: 20px !important;
-        margin-top: 20px;
+        margin-top: 15px;
+        line-height: 1.2;
     }
     .find-btn {
         font-size: 14px !important;
@@ -270,10 +273,11 @@ margin-top:10px;
     }
     .secound_hero_section {
         gap: 15px;
-        padding: 0 10px !important;
+        padding: 0 5px !important;
     }
-      .part_finder_card{
-        margin-left: -176px !important;
+    .part_finder_card {
+        margin-left: 0 !important;
+        flex: 1 1 100%;
     }
 }
 
