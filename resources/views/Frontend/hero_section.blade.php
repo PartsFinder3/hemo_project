@@ -61,18 +61,13 @@
 }
 
 .secound_hero_section {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
     flex-wrap: wrap;
     position: relative;
-    /* margin-top: -20px; */
-
 }
-
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
