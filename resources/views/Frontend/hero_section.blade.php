@@ -81,7 +81,7 @@
    
 }
 
-.car {
+.car_1 {
     width: 400px;
     max-width: 450px;
     background: rgba(255, 255, 255, 0.95);
@@ -387,7 +387,7 @@ margin-top:10px;
 
 <div class="secound_hero_section">
     <div class="part_finder_card">
-        <div class="car">
+        <div class="car_1">
             <div class="card-header">
                 <div class="free-text">100% FREE</div>
                 <div class="search-title">Search Your Part Here</div>
