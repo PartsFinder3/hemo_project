@@ -75,7 +75,7 @@
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-    margin-left: 100px;
+    margin-left: 93px;
     position: relative;
     z-index: 2;
    
