@@ -99,8 +99,8 @@
     display: flex;                /* ✅ YE MISSING THA */
     justify-content: flex-start;  /* ✅ left align */
     align-items: center;          /* optional */
-    top: 25px;
-    left: 50%;
+    top: 20px;
+    left: 45%;
     position: absolute;
     text-align: left;             /* center hatao */
 }
