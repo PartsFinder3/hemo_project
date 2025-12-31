@@ -236,6 +236,9 @@ margin-top:10px;
     .hero-section_p {
         min-height: auto !important;
     }
+.part_finder_card{
+        margin-left: -176px !important;
+    }
 }
 
 /* ===== Small Mobile (Extra Small) ===== */
@@ -266,6 +269,9 @@ margin-top:10px;
     .secound_hero_section {
         gap: 15px;
         padding: 0 10px !important;
+    }
+      .part_finder_card{
+        margin-left: -176px !important;
     }
 }
 
