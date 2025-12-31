@@ -310,70 +310,94 @@ body, main, header, nav, .hero-section, .hero-section_p {
 }
 @media (min-width: 768px) and (max-width: 1024px) {
 
-    /* Hero Section */
+    /* Hero Section Text */
+    .hero_section_text {
+        font-size: 28px !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .hero_section_text h1 {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Hero & Finder Card Layout */
     .secound_hero_section {
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 20px;
+        padding: 0 20px;
+        position: relative;
     }
 
-    .hero_image_section {
-        position: relative;
-        top: 0;
-        left: 0;
+    .part_finder_card {
+        flex: 1 1 100%;
+        margin-left: 0 !important;
+    }
+
+    .car {
+        max-width: 420px !important;
         margin: 0 auto;
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    /* Hero Image */
+    .hero_image_section {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin: 20px auto 0;
+        justify-content: center;
         text-align: center;
     }
 
     .hero_image_section img {
-        width: 280px; /* Adjust size for tablet */
+        max-width: 400px !important;
+        width: 100%;
         height: auto;
     }
 
-    .part_finder_card {
-        max-width: 480px;
-        margin: 0 auto;
+    /* Select2 Inputs */
+    .dropdown,
+    .select2-container--default .select2-selection--single,
+    .select2-container--default .select2-selection--multiple {
+        min-height: 38px !important;
+        height: 38px !important;
+        font-size: 14px !important;
+        padding: 4px 8px !important;
     }
 
-    /* Ads Grid */
-    #productGrid1 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+    .select2-selection__rendered {
+        line-height: 28px !important;
     }
 
-    /* Card Buttons & Icons */
-    #productGrid1 .buttons {
-        flex-direction: row;
-        gap: 8px;
+    .select2-selection__arrow {
+        height: 38px !important;
     }
 
-    #productGrid1 .buttons a {
-        font-size: 13px;
-        height: 38px;
-        padding: 8px;
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        font-size: 12px !important;
+        padding: 2px 5px !important;
+        line-height: 1 !important;
     }
 
-    #productGrid1 .buttons a i {
-        font-size: 14px;
+    /* Find Button */
+    .find-btn {
+        font-size: 16px !important;
+        height: 45px !important;
     }
 
-    /* Filters / Tabs */
-    .filters {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
+    /* Radio Options */
+    .radio-option label {
+        font-size: 13px !important;
     }
 
-    .filters a {
-        font-size: 13px;
-        padding: 6px 14px;
-    }
-
-    /* Spare Parts Section */
-    .spareParts {
-        margin-left: 0 !important;
-        padding: 20px;
+    /* Condition Section */
+    .condition-section {
+        padding: 8px !important;
     }
 }
 </style>
