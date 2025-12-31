@@ -21,10 +21,15 @@ body, main, header, nav, .hero-section, .hero-section_p {
 }
 
 .hero_section_text {
-    width: 100%;
+    position: absolute;      /* یہ ضروری ہے */
+    top: 50%;                /* vertical center */
+    left: 50%;               /* horizontal center */
+    transform: translate(-50%, -50%);
+    z-index: 10;             /* image سے اوپر دکھانے کے لیے */
     text-align: center;
-    margin-bottom: 10px;
-    z-index: 9999; 
+    color: #fff;             /* اگر background image dark ہے */
+    width: 100%;
+    padding: 0 20px;
 }
 
 .hero_section_text h1, .h1 {
