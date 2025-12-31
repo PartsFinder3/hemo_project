@@ -274,6 +274,19 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding: 2px 5px !important;
     line-height: 1 !important;
 }
+#parts-dropdown-parts + .select2-container--default .select2-selection--multiple {
+    min-height: 40px;       /* starting height */
+    max-height: none;       /* کوئی max limit نہیں */
+    height: auto !important;
+    overflow: hidden;
+}
+
+/* ہر selected item چھوٹا رکھیں */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    padding: 3px 6px !important;
+}
 </style>
 
 <div class="hero_section_text">
