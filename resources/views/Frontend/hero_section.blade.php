@@ -231,12 +231,26 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* Mobile (≤550px) */
 @media (max-width: 550px) {
     .car { max-width: 320px !important; margin: 20px auto !important; padding: 12px !important; }
-    .hero_image_section { position: relative !important; top:0; left:0; margin:10px auto; justify-content:center; text-align:center; }
-    .hero_image_section img { max-width: 260px !important; }
+       .hero_image_section {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+    }
+
+   .hero_image_section img {
+        max-width: 300px !important; /* adjust as needed */
+        height: auto;
+    }
     .hero_section_text h1 { font-size: 22px !important; }
     .radio-option label { font-size: 12px !important; }
     .secound_hero_section { gap: 20px; padding: 0 10px !important; }
-    .part_finder_card { margin-left: 0 !important; flex: 1 1 100%; }
+     .part_finder_card {
+        margin-left: 0 !important;
+        flex: 1 1 100%;
+    }
     .find-btn { font-size: 16px; height: 45px; }
 }
 
@@ -248,7 +262,13 @@ body, main, header, nav, .hero-section, .hero-section_p {
     .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
     .find-btn { font-size: 14px !important; height: 40px !important; }
     .radio-option label { font-size: 11px !important; }
-    .secound_hero_section { gap: 15px; padding: 0 5px !important; }
+   .secound_hero_section {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center;
+        gap: 20px;
+    }
+
 }
 /* Reduce the height of inputs and Select2 fields */
 .dropdown,
