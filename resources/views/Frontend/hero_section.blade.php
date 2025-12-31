@@ -81,7 +81,7 @@
    
 }
 
-.car_1 {
+.car {
     width: 400px;
     max-width: 450px;
     background: rgba(255, 255, 255, 0.95);
@@ -90,7 +90,7 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     float: none; /* float ہٹا دیا */
-        margin-left: 93px;
+        margin-left: 113px;
 
 }
 
@@ -387,7 +387,7 @@ margin-top:10px;
 
 <div class="secound_hero_section">
     <div class="part_finder_card">
-        <div class="car_1">
+        <div class="car">
             <div class="card-header">
                 <div class="free-text">100% FREE</div>
                 <div class="search-title">Search Your Part Here</div>
