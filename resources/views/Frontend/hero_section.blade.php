@@ -3,9 +3,8 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
-/* ===== Hero Section ===== */
-    body, main, header, nav, .hero-section, .hero-section_p {
-    background-image: none !important;
+/* ===== General Hero Section ===== */
+body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
 
@@ -20,46 +19,29 @@
     position: relative;
     padding: 20px 0;
 }
-.h1, h1 {
-    font-size: 40px !important;
-    display: flex;
-    justify-content: center;
-}
+
 .hero_section_text {
     width: 100%;
     text-align: center;
-    margin-bottom: 3px;
-     z-index: 9999; 
+    margin-bottom: 10px;
+    z-index: 9999; 
+}
+
+.hero_section_text h1, .h1 {
+    font-size: 40px !important;
+    display: flex;
+    justify-content: center;
+    line-height: 1.2;
 }
 
 .hero_section_text .hiliter {
-    display: inline;   /* inline رکھیں تاکہ text کے ساتھ flow ہو */
+    display: inline;
     padding: 0 3px;
     font-weight: bold;
-    width: auto;
-    margin-right: 5px !important;
-    z-index: 9999;
+    margin-right: 5px;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 992px) {
-    .hero_section_text h1 {
-        font-size: 32px;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero_section_text h1 {
-        font-size: 26px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero_section_text h1 {
-        font-size: 22px !important;
-    }
-}
-
+/* ===== Hero Content Section ===== */
 .secound_hero_section {
     display: flex;
     flex-direction: row;
@@ -69,13 +51,13 @@
     position: relative;
     height: auto;
 }
+
 .part_finder_card {
     flex: 1 1 45%;
     display: flex;
-     margin-left: 93px !important;
+    margin-left: 50px;
     position: relative;
     z-index: 2;
-   
 }
 
 .car {
@@ -84,23 +66,22 @@
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    float: none; /* float ہٹا دیا */
-        margin-left: 49px !important;
-
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-left: 0;
 }
 
 .hero_image_section {
     flex: 1 1 45%;
-    display: flex;                /* ✅ YE MISSING THA */
-    justify-content: flex-start;  /* ✅ left align */
-    align-items: center;          /* optional */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
     top: -60px;
     left: 46%;
-    position: absolute;
-    text-align: left;             /* center hatao */
+    text-align: left;
 }
+
 .hero_image_section img {
     max-width: 540px;
     width: 100%;
@@ -111,7 +92,7 @@
 .find-btn {
     width: 100%;
     background: linear-gradient(135deg, #ff6a00, #ff9500);
-    color: white;
+    color: #fff;
     padding: 10px;
     border: none;
     border-radius: 12px;
@@ -120,13 +101,14 @@
     cursor: pointer;
     height: 50px;
 }
+
 /* ===== Dropdown ===== */
 .dropdown {
     width: 100%;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #ccc;
-    font-weight: bold !important;
+    font-weight: bold;
 }
 
 /* ===== Condition Section ===== */
@@ -135,15 +117,13 @@
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #e1e5e9;
-margin-top:10px;
-
+    margin-top: 10px;
 }
 
 .radio-group {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
-    margin-top: 5px;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .radio-option {
@@ -152,14 +132,14 @@ margin-top:10px;
     gap: 5px;
 }
 
-/* ===== Select2 styling ===== */
+/* ===== Select2 Styling ===== */
 .select2-container--default {
     width: 100% !important;
     font-size: 16px;
-
 }
-.select2-container--default .select2-selection--single,
-.select2-container--default .select2-selection--multiple {
+
+.select2-selection--single,
+.select2-selection--multiple {
     min-height: 45px !important;
     height: auto !important;
     padding: 6px 10px !important;
@@ -168,17 +148,63 @@ margin-top:10px;
     flex-wrap: wrap;
 }
 
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center;
+.select2-selection__rendered {
+    line-height: 45px !important;
+    font-weight: bold !important;
+    padding-top: 2px;
+    color: #000 !important;
 }
 
-/* Each selected item */
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    margin-top: 4px;
-    margin-bottom: 4px;
+.select2-selection__arrow {
+    height: 45px !important;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 3px 6px !important;
+    line-height: 1.2 !important;
+}
+
+/* Search Icon for Select2 */
+.select2-search--inline::after,
+.select2-search--dropdown::after {
+    content: "\1F50D"; /* 🔍 */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+}
+
+.select2-search--inline .select2-search__field,
+.select2-search--dropdown .select2-search__field {
+    padding-right: 30px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Active Steps Highlight */
+.active-step .select2-selection,
+.active-step {
+    border: 1px solid #28a745 !important;
+    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.condition-active {
+    border: 1px solid #28a745 !important;
+    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
+}
+
+/* ===============================
+        Responsive Fixes
+================================ */
+
+/* Large tablets and below */
 @media (max-width: 992px) {
     .secound_hero_section {
         flex-direction: column;
@@ -190,210 +216,41 @@ margin-top:10px;
         flex: 1 1 100%;
         margin: 0 auto;
     }
-    .car {
-        max-width: 420px;
-    }
-    .hero_section_text h1 {
-        font-size: 32px;
-    }
+    .car { max-width: 420px; }
+    .hero_section_text h1 { font-size: 32px; }
 }
 
-/* ===== Tablets ===== */
+/* Tablets (≤768px) */
 @media (max-width: 768px) {
-    .car {
-        max-width: 380px;
-        padding: 15px;
-        border-radius: 15px;
-    }
-    .hero_image_section img {
-        max-width: 300px;
-    }
-    .hero_section_text h1 {
-        font-size: 26px;
-    }
-    .find-btn {
-        font-size: 16px;
-        height: 45px;
-    }
+    .car { max-width: 380px; padding: 15px; border-radius: 15px; }
+    .hero_image_section img { max-width: 300px; }
+    .hero_section_text h1 { font-size: 26px; }
+    .find-btn { font-size: 16px; height: 45px; }
 }
 
-/* ===== Mobile ===== */
+/* Mobile (≤550px) */
 @media (max-width: 550px) {
-    .car {
-        max-width: 330px !important;
-        margin-top: 40px !important;
-        margin-left: 0 !important;
-        padding: 10px !important;
-    }
-    .hero_image_section img {
-        max-width: 260px !important;
-    }
-    .hero_section_text h1 {
-        font-size: 22px !important;
-    }
-    .radio-option label {
-        font-size: 12px !important;
-    }
-    .hero-section_p {
-        min-height: auto !important;
-    }
-.part_finder_card{
-        margin-left: 10px !important;
-
-    }
+    .car { max-width: 320px !important; margin: 20px auto !important; padding: 12px !important; }
+    .hero_image_section { position: relative !important; top:0; left:0; margin:10px auto; justify-content:center; text-align:center; }
+    .hero_image_section img { max-width: 260px !important; }
+    .hero_section_text h1 { font-size: 22px !important; }
+    .radio-option label { font-size: 12px !important; }
+    .secound_hero_section { gap: 20px; padding: 0 10px !important; }
+    .part_finder_card { margin-left: 0 !important; flex: 1 1 100%; }
+    .find-btn { font-size: 16px; height: 45px; }
 }
 
-/* ===== Small Mobile (Extra Small) ===== */
+/* Small Mobile (≤380px) */
 @media (max-width: 380px) {
-    .car {
-        max-width: 280px !important;
-        margin: 15px auto 0 auto !important;
-        padding: 10px !important;
-    }
-    .hero_image_section {
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-        margin: 5px auto 0 auto;
-    }
-    .hero_image_section img {
-        max-width: 220px !important;
-    }
-    .hero_section_text h1 {
-        font-size: 20px !important;
-        margin-top: 15px;
-        line-height: 1.2;
-    }
-    .find-btn {
-        font-size: 14px !important;
-        height: 40px !important;
-    }
-    .radio-option label {
-        font-size: 11px !important;
-    }
-    .secound_hero_section {
-        gap: 15px;
-        padding: 0 5px !important;
-    }
-    .part_finder_card {
-        margin-left: 0 !important;
-        flex: 1 1 100%;
-    }
+    .car { max-width: 280px !important; margin: 15px auto; padding: 10px !important; }
+    .hero_image_section { margin:5px auto; }
+    .hero_image_section img { max-width: 220px !important; }
+    .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
+    .find-btn { font-size: 14px !important; height: 40px !important; }
+    .radio-option label { font-size: 11px !important; }
+    .secound_hero_section { gap: 15px; padding: 0 5px !important; }
 }
 
-.select2-container--default.select2-container--focus .select2-selection--multiple {
-    border: solid black 1px;
-    outline: 0;
-    height: auto;
-}
-.form-group {
-    width: 100%;
-    margin-bottom: 12px;
-}
-.select2-container--default .select2-selection--single {
-    height: 45px !important;
-    padding: 8px !important;
-    display: flex;
-    align-items: center;
-}
-
-.select2-selection__rendered {
-    line-height: 45px !important;
-}
-
-.select2-selection__arrow {
-    height: 45px !important;
-}
-/* Select2 options bold */
-.select2-container--default .select2-results__option {
-    font-weight: bold !important;
-}
-
-/* Select2 selected item بھی bold */
-.select2-container--default .select2-selection__rendered {
-    font-weight: bold !important;
-}
-.highlight-border {
-    border: 2px solid red !important;
-}
-.select2-search--dropdown {
-    position: relative;
-}
-
-.select2-search--dropdown::after {
-    content: "\1F50D"; /* 🔍 */
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #999;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.select2-search--dropdown .select2-search__field {
-    padding-right: 32px !important;
-}
-
-/* ===============================
-   MULTIPLE (PARTS) SEARCH ICON
-================================ */
-.select2-search--inline {
-    position: relative;
-    width: 100%;
-}
-
-.select2-search--inline::after {
-    content: "\1F50D"; /* 🔍 */
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #999;
-    pointer-events: none;
-}
-
-.select2-search--inline .select2-search__field {
-    padding-right: 30px !important;
-    width: 100% !important;
-    box-sizing: border-box;
-}
-#condition-group {
-    display: none;
-}
-.select2-container--default 
-.select2-selection--multiple 
-.select2-selection__choice {
-    font-size: 13px !important;   /* font chota */
-    font-weight: 500 !important;  /* normal / medium */
-    padding: 3px 6px !important;
-    line-height: 1.2 !important;
-}
-.active-step .select2-selection,
-.active-step {
-    border: 1px solid #28a745 !important;
-    box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
-    transition: all 0.3s ease;
-    border-radius: 3px;
-}
-
-/* Condition box green */
-.condition-active {
-    border: 1px solid #28a745 !important;
-    box-shadow: 0 0 8px rgba(40, 167, 69, 0.6) !important;
-}
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: normal !important;
-    padding-top: 2px !important;   /* 👈 text thora upar */
-      color: #000 !important;  
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__rendered {
-    padding-top: 2px !important;   /* 👈 multiple ke liye bhi */
-      color: #000 !important;  
-}
 </style>
 
 <div class="hero_section_text">
