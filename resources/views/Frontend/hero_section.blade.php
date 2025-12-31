@@ -251,7 +251,7 @@ margin-top:10px;
         margin-top: 30px !important;
     }
     .hero_image_section{
-       top: -10px;
+       top: -30fr;
     }
     .hero_image_section img {
         max-width: 220px !important;
