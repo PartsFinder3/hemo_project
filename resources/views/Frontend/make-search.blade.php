@@ -1031,6 +1031,11 @@
     color: white !important;
     border-color: #ff7700 !important;
 }
+.hero_image_section {
+
+    top: -23px;
+               /* center hatao */
+}
 </style>
 
 @endsection
