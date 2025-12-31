@@ -308,6 +308,74 @@ body, main, header, nav, .hero-section, .hero-section_p {
     line-height: 1.2 !important;
     padding: 3px 6px !important;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Hero Section */
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .hero_image_section {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero_image_section img {
+        width: 280px; /* Adjust size for tablet */
+        height: auto;
+    }
+
+    .part_finder_card {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    /* Ads Grid */
+    #productGrid1 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Card Buttons & Icons */
+    #productGrid1 .buttons {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    #productGrid1 .buttons a {
+        font-size: 13px;
+        height: 38px;
+        padding: 8px;
+    }
+
+    #productGrid1 .buttons a i {
+        font-size: 14px;
+    }
+
+    /* Filters / Tabs */
+    .filters {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .filters a {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+
+    /* Spare Parts Section */
+    .spareParts {
+        margin-left: 0 !important;
+        padding: 20px;
+    }
+}
 </style>
 
 <div class="hero_section_text">
