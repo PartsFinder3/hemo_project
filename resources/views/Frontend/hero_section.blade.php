@@ -29,6 +29,7 @@
     width: 100%;
     text-align: center;
     margin-bottom: 3px;
+     z-index: 9999; 
 }
 
 .hero_section_text .hiliter {
