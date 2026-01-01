@@ -1,3 +1,9 @@
+<!-- Cropper CSS -->
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+
+<!-- Cropper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
 @extends('adminPanel.layout.main')
 @section('main-section')
     <header class="mb-3">
@@ -64,21 +70,20 @@
                                     @enderror
                                 </div>
                              <div class="col-12">
-   <div class="mb-3">
+<div class="col-12">
+    <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
-        <img id="cover-preview" 
-             src="{{ isset($profile) && $profile->cover ? asset('storage/' . $profile->cover) : '' }}" 
-             alt="Cover Image" 
-             style="max-width: 200px; display: {{ isset($profile) && $profile->cover ? 'block' : 'none' }}; margin-bottom:10px;">
-        <input type="file" class="form-control" name="cover" id="cover">
+        <input type="file" class="form-control" name="cover" id="cover" accept="image/*">
+        @error('cover')
+            <div class="alert alert-danger mt-2">{{ $message }}</div>
+        @enderror
     </div>
-
-    @error('cover')
-        <div class="alert alert-danger mt-2">
-            {{ $message }}
-        </div>
-    @enderror
 </div>
+
+
+
+<!-- Hidden input to store cropped image -->
+<input type="hidden" name="cover_cropped" id="cover_cropped">
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Image</label>
@@ -105,6 +110,23 @@
 
         </section>
     </div>
+    <!-- Crop Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Cover Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="crop-image" style="max-width: 100%;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop-button" class="btn btn-success">Crop & Use Image</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const coverInput = document.getElementById('cover');
