@@ -431,9 +431,9 @@ main{
 }
     .hero_image_section img { 
       max-width: 249px !important;
-      margin-left: 51px;
       
-       
+      
+        margin-left: -4px;
         margin-top: 38px;
      }
     
