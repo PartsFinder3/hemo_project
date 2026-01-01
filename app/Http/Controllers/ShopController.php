@@ -73,7 +73,8 @@ class ShopController extends Controller
     {
         $shop = Shops::findOrFail($id);
         $profile = ShopProfile::where('shop_id', $shop->id)->first();
-        return view('adminPanel.shopProfile.create', compact('shop', 'profile'));
+        $Supplier=Suppliers::find($shop->supplier_id);
+        return view('adminPanel.shopProfile.create', compact('shop', 'profile','Supplier'));
     }
 
   public function storeProfile(Request $request, $id)
