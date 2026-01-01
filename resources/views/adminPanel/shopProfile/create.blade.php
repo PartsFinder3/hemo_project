@@ -46,6 +46,18 @@
                         @csrf
                         <div class="form-body">
                             <div class="row">
+                                    <div class="mb-3">
+                                            <label for="" class="form-label">User Name</label>
+                                            <input type="text" class="form-control" name="Sup_name" id=""
+                                                value="{{ $Supplier->name ?? '' }}">
+                                                <input type="hidden" name="suplier_id"
+                                                value="{{ $Supplier->id ?? '' }}">
+                                        </div>
+                                         <div class="mb-3">
+                                            <label for="" class="form-label">Businees Name</label>
+                                            <input type="text" class="form-control" name="Businees_name" id=""
+                                                value="{{ $shop->name ?? '' }}">
+                                        </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="first-name-vertical">About</label>

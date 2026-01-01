@@ -93,7 +93,7 @@ class ShopController extends Controller
     $shop = Shops::findOrFail($id);
     $shop->name=$request->Businees_name;
     $shop->save();
-    // ✅ Get or create ShopProfile
+    
     $profile = ShopProfile::firstOrNew(['shop_id' => $shop->id]);
 
     // ✅ Update text fields
