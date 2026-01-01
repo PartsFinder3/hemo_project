@@ -292,19 +292,21 @@
                                     @if ($p && $p->profile_image)
                                         <img src="{{ asset('storage/' . $p->profile_image) }}" alt="Shop Logo"
                                             class="supplier-image">
-                                       @else
+                                      
+  @else
             <div style="
                 width:120px;
                 height:120px;
                 border-radius:50%;
-                background:#f1f3f5;
+                background:linear-gradient(135deg,#ff9f43,#ff6b6b);
                 display:flex;
                 align-items:center;
                 justify-content:center;
-                border:2px solid #dee2e6;
+                border:3px solid #fff;
+                box-shadow:0 6px 18px rgba(0,0,0,0.15);
             ">
-                <i class="fa-solid fa-user"
-                   style="font-size:48px; color:#6c757d;"></i>
+                <i class="fa-solid fa-shop"
+                   style="font-size:46px; color:#fff;"></i>
             </div>
         @endif
                                 </div>
