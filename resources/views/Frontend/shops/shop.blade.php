@@ -1013,7 +1013,7 @@
             margin: 30px auto;
             padding: 1.5rem;
             max-width: 1200px;
-            margin-top: 10% !important;
+            margin-top: 7% !important;
         }
 
         .section-title {
