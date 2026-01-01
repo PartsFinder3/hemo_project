@@ -310,20 +310,9 @@
 
             <div class="message-text">
 
-@php
-    $name = session('name');
-    $businessName = session('businessName');
-@endphp
 
- <strong> Hello, {{$name}},
-    {{$businessName}}
-We offer free ad posting for auto spare parts sellers on our official website: 
-   partsfinder.ae
-If you have an auto parts shop in the UAE, you can list your products with us completely free.
-I will give you a free of cost customer for increasing your Business.
-
-Let us know if you’re interested.
-</strong> 
+ <strong> Hello Supplier,
+If you want a fast approval, please contact us.<br> Thank you for using our platform!</strong> 
             </div>
 
             <div class="supplier-info">
