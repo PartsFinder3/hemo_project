@@ -149,8 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const cropBtn     = document.getElementById('crop-button');
     const hiddenInput = document.getElementById('cover_cropped');
 
-    const cropModalEl = document.getElementById('cropModal');
-    const cropModal   = new bootstrap.Modal(cropModalEl);
+    const cropModal   = new bootstrap.Modal(document.getElementById('cropModal'));
 
     coverInput.addEventListener('change', function (e) {
 
@@ -160,29 +159,23 @@ document.addEventListener('DOMContentLoaded', function () {
         cropImage.src = URL.createObjectURL(file);
         cropModal.show();
 
-        if (cropper) {
-            cropper.destroy();
-            cropper = null;
-        }
+        if (cropper) cropper.destroy();
 
         cropper = new Cropper(cropImage, {
-            viewMode: 2,               // 🔒 strict boundaries
-            aspectRatio: 16 / 5,       // 🔒 fixed 240px style ratio
+            viewMode: 1,                 // ✅ ALLOW MOVE
+            aspectRatio: 16 / 5,
             autoCropArea: 1,
 
-            dragMode: 'move',          // ✅ image move only
+            dragMode: 'move',            // ✅ IMAGE MOVE ONLY
             movable: true,
             zoomable: true,
 
-            cropBoxResizable: false,   // ❌ resize disable
-            cropBoxMovable: false,     // ❌ move disable
-            toggleDragModeOnDblclick: false,
+            cropBoxResizable: false,     // ❌ resize disabled
+            cropBoxMovable: false,       // ❌ move disabled
 
             scalable: false,
             rotatable: false,
-
-            minCropBoxWidth: 1920,     // 🔒 HARD LOCK
-            minCropBoxHeight: 600,
+            toggleDragModeOnDblclick: false,
 
             background: false,
             responsive: true,
@@ -194,14 +187,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!cropper) return;
 
         const canvas = cropper.getCroppedCanvas({
-            width: 1920,   // 🔥 NEVER export 240px
+            width: 1920,
             height: 600,
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high'
         });
 
         hiddenInput.value = canvas.toDataURL('image/jpeg', 0.95);
-
         cropModal.hide();
     });
 
