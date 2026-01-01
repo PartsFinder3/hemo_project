@@ -418,13 +418,16 @@ main{
     .search-title{
         padding-bottom: 13px;
     }
+     .hero_section_text h1{
+    font-size: 17px !important;
+}
     .hero_image_section img { 
       max-width: 249px !important;
       
         margin-left: -4px;
         margin-top: 38px;
      }
-       .hero_section_text h1 { font-size: 17px !important; margin-top: 15px; }
+    
     .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
     .find-btn { font-size: 14px !important; height: 40px !important; }
     .radio-option label { font-size: 11px !important; }
