@@ -256,6 +256,19 @@ body, main, header, nav, .hero-section, .hero-section_p {
         margin-left: auto !important;
     }
     .find-btn { font-size: 16px; height: 45px; }
+    .part_finder_card {
+        margin-left: 0 !important;
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .car {
+        width: 100% !important;
+        max-width: 95% !important; /* thora gap side se */
+        margin: 0 auto !important;
+    }
+
 }
 
 /* Small Mobile (≤380px) */
@@ -629,14 +642,4 @@ $(document).ready(function () {
     });
 
     // PART selected
-    $('#parts-dropdown-parts').on('change', function () {
-        let parts = $(this).val();
-        if (parts && parts.length > 0) {
-            resetSteps();
-            $('#condition-group').slideDown();
-            $('.condition-section').addClass('condition-active');
-        }
-    });
-
-});
-</script>
+    $('#part
