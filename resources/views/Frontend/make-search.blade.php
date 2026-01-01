@@ -1087,6 +1087,13 @@
         margin-top: 1px;
     }
 }
+@media (max-width: 770px) {
+     
+        .car {
+        
+        margin-left: 135px;
+    }
+}
 </style>
 
 @endsection
