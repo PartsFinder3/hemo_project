@@ -308,7 +308,43 @@ main{
 }
 }
 /* Small Mobile (≤380px) */
-
+@media (max-width: 420px) {
+    .car {
+    max-width: 320px !important;
+     margin: auto;
+      padding: 10px !important;
+      margin-left: 20px !important;
+       }
+    .hero_image_section 
+    { 
+         margin-left: -30px !important; 
+         margin-top: -35px !important;
+    }
+    .search-title{
+        padding-bottom: 13px;
+    }
+    .hero_image_section img { 
+      max-width: 249px !important;
+      
+        margin-left: -4px;
+        margin-top: 38px;
+     }
+    .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
+    .find-btn { font-size: 14px !important; height: 40px !important; }
+    .radio-option label { font-size: 11px !important; }
+   .secound_hero_section {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center;
+        gap: 20px;
+    }
+     .part_finder_card {
+   margin-left: -40px !important;  
+}
+    main {
+        min-height: 68vh;
+    }
+}
 @media (max-width: 380px) {
     .car {
     max-width: 320px !important;
