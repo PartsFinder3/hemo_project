@@ -996,6 +996,9 @@
         padding: 30px 4%;
         margin-top: 82px;
     }
+    .brands{
+        gap: 5px;
+    }
 }
 </style>
     @if (request()->scroll == 'ads')
