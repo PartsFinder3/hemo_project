@@ -65,21 +65,21 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="col-12">
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Cover Image</label>
-                                            @if (isset($profile) && $profile->cover)
-                                                <img src="{{ asset('storage/' . $profile->cover) }}" alt="Cover Image"
-                                                    style="max-width: 200px; display: block; margin-bottom: 10px;">
-                                            @endif
-                                            <input type="file" class="form-control" name="cover" id="">
-                                        </div>
-                                        @error('cover')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+<div class="col-12">
+    <div class="mb-3">
+        <label for="cover" class="form-label">Cover Image</label>
+          @if (isset($profile) && $profile->cover)
+                                            <img src="{{ asset('storage/' . $profile->cover) }}" alt="Profile Image" style="max-width: 200px; display: block; margin-bottom: 10px;">
+                                        @endif
+        <input type="file" class="form-control"  id="cover" accept="image/*">
+        @error('cover')
+            <div class="alert alert-danger mt-2">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+<!-- Hidden input to store cropped image -->
+<!-- Hidden input to store cropped image -->
+<input type="hidden" name="cover_cropped" id="cover_cropped">
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">Profile Image</label>
@@ -108,4 +108,90 @@
             </div>
         </div>
     </div>
+        <!-- Crop Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Cover Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="crop-image" style="max-width: 100%;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="crop-button" class="btn btn-success">Crop & Use Image</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let cropper;
+    const coverInput = document.getElementById('cover');
+    const cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
+    const cropImage = document.getElementById('crop-image');
+    const coverCroppedInput = document.getElementById('cover_cropped');
+
+    coverInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if(file) {
+            const url = URL.createObjectURL(file);
+            cropImage.src = url;
+
+            // Show modal
+            cropModal.show();
+
+            // Destroy previous cropper
+            if(cropper) cropper.destroy();
+
+            cropper = new Cropper(cropImage, {
+                viewMode: 1,
+                movable: true,
+                zoomable: true,
+                scalable: false,
+                autoCropArea: 1,
+                aspectRatio: NaN, // width flexible
+                cropBoxResizable: true,
+                ready() {
+                    // Set crop box fixed height 180px, full width
+                    const containerData = cropper.getContainerData();
+                    cropper.setCropBoxData({
+                        width: containerData.width,
+                        height: 180
+                    });
+                }
+            });
+        }
+    });
+
+    document.getElementById('crop-button').addEventListener('click', function() {
+        if(cropper) {
+            const canvas = cropper.getCroppedCanvas({
+                width: cropper.getContainerData().width, // full width
+                height: 180 // fixed height
+            });
+
+            // Save cropped image as base64 in hidden input
+            coverCroppedInput.value = canvas.toDataURL('image/jpeg');
+
+            // Optional: Show preview below input
+            let preview = document.getElementById('cover-preview');
+            if(!preview){
+                preview = document.createElement('img');
+                preview.id = 'cover-preview';
+                preview.style.maxWidth = '100%';
+                preview.style.display = 'block';
+                coverInput.parentNode.appendChild(preview);
+            }
+            preview.src = coverCroppedInput.value;
+
+            // Close modal
+            cropModal.hide();
+        }
+    });
+});
+</script>
+
 @endsection
