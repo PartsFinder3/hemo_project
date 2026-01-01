@@ -197,7 +197,7 @@
     padding: 1.2rem;
     display: flex;
     flex-direction: column;
-    height: 260px; /* Set a fixed height for all cards */
+    height: 290px; /* Set a fixed height for all cards */
     justify-content: space-between; /* Push buttons to bottom */
 }
 
