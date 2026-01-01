@@ -39,6 +39,8 @@ body, main, header, nav, .hero-section, .hero-section_p {
     padding: 0 3px;
     font-weight: bold;
     margin-right: 5px;
+      display: inline-block;
+        white-space: nowrap; 
 }
 
 /* ===== Hero Content Section ===== */
