@@ -49,16 +49,14 @@
     margin-bottom: 20px !important;
     height: 240px;
 }
+
 .shop_name h3 {
     font-size: 1.8rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
-    white-space: nowrap;       /* prevent wrapping */
-    overflow: hidden;          /* hide overflow text */
-    text-overflow: ellipsis;   /* show "..." if too long */
-    margin-top: 42px;
 }
+
 .inqueries {
     width: auto;
     padding: 10px;
@@ -132,7 +130,7 @@
     color: black;
     text-decoration: none;
     border-radius: 8px;
-   
+    border: 2px solid #007bff;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
@@ -241,9 +239,21 @@
     transition: all 0.3s;
 }
 
+.btn-product.whatsapp {
+    background: #198754;
+}
 
+.btn-product.whatsapp:hover {
+    background: #128c7e;
+}
 
+.btn-product.call {
+    background: #fd7e14;
+}
 
+.btn-product.call:hover {
+    background: #e66a00;
+}
 
 /* ============ OPENING HOURS CARD ============ */
 .info-card {
