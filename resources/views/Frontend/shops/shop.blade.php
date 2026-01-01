@@ -112,7 +112,7 @@
 .button_sides {
     width: 300px;
     height: 100%;
-       margin-left: 149px;
+       margin-left: 249px;
 
     display: flex;
     align-items: center;
