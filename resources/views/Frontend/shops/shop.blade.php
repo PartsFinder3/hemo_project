@@ -613,76 +613,7 @@ h2 {
 
 /* Small Mobile (375px - 575px) */
 @media (max-width: 575px) {
-    .image_box {
-        width: 98%;
-        height: 150px;
-        margin-top: 20px !important;
-    }
-       .shop_name {
-        display: flex;
-        justify-content: center; /* center horizontally */
-        width: 100%;            /* full width container */
-    }
-     .shop_name h3 {
-        margin: 0;              /* remove side margins */
-        text-align: center;     /* center text */
-        white-space: nowrap;    /* keep ellipsis if too long */
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .cover_system {
-        width: 98%;
-        margin: 10px auto;
-    }
-    
-    .profile_photo {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .shop_name h3 {
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        padding-left: 30px;
-    }
-    
-    .inqueries {
-        font-size: 0.85rem;
-        padding: 5px;
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .stat-item {
-        display: block;
-        margin: 3px 0;
-    }
-    
-    .icons_media {
-        gap: 8px;
-        margin-top: 8px;
-    }
-    
-    .icons {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .icons img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 180px;
-        height: 40px;
-    }
+   
     
     .gallery-grid {
         grid-template-columns: 1fr;
@@ -734,47 +665,7 @@ h2 {
 
 /* Very Small Mobile (below 375px) */
 @media (max-width: 374px) {
-    .image_box {
-        height: 130px;
-    }
-     .shop_name {
-        display: flex;
-        justify-content: center; /* center horizontally */
-        width: 100%;            /* full width container */
-    }
-     .shop_name h3 {
-        margin: 0;              /* remove side margins */
-        text-align: center;     /* center text */
-        white-space: nowrap;    /* keep ellipsis if too long */
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .profile_photo {
-        width: 70px;
-        height: 70px;
-    }
-    
-    
-    
-    .inqueries {
-        font-size: 0.8rem;
-    }
-    
-    .icons {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .icons img {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .btn {
-        width: 160px;
-        height: 38px;
-        font-size: 0.85rem;
-    }
+  
     
     .products-grid {
         gap: 10px;
@@ -812,62 +703,9 @@ h2 {
         font-size: 0.85rem;
     }
 }
-@media (max-width: 767px) {
-    .information-contanier {
-        width: 300px;       /* match desktop width */
-        margin-left: auto;
-        margin-right: auto;
-    }
 
-    .shop_name h3 {
-        font-size: 1.8rem;  /* keep same size as desktop */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-}
-/* Landscape Mode Adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
-    .image_box {
-        height: 120px;
-    }
-       .shop_name {
-        display: flex;
-        justify-content: center; /* center horizontally */
-        width: 100%;            /* full width container */
-    }
-     .shop_name h3 {
-        margin: 0;              /* remove side margins */
-        text-align: center;     /* center text */
-        white-space: nowrap;    /* keep ellipsis if too long */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin-top: 0px;
-        margin-top: 0px;
-    }
-    .cover_system {
-        height: auto;
-        min-height: 120px;
-        flex-direction: row;
-        align-items: center;
-    }
-    
-    .profile_photo {
-        width: 80px;
-        height: 80px;
-        margin: 0;
-    }
-    
-    .information-contanier {
-        margin-left: 15px !important;
-        margin-top: 0;
-        text-align: left;
-        align-items: flex-start;
-    }
-    
-    .button_sides {
-        margin-top: 0;
-    }
+   
     
     .products-grid {
         grid-template-columns: repeat(3, 1fr) !important;
