@@ -278,7 +278,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
         gap: 20px;
     }
       .part_finder_card {
-       margin-left: 10px !important;  
+       margin-left: -50px !important;  
     }
 }
 /* Reduce the height of inputs and Select2 fields */
