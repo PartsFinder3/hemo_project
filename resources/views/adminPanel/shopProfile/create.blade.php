@@ -63,20 +63,22 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="col-12">
-                                   <div class="mb-3">
-                                        <label for="cover" class="form-label">Cover Image</label>
-                                        <img id="cover-preview" src="{{ isset($profile) && $profile->cover ? asset('storage/' . $profile->cover) : '' }}" 
-                                            alt="Cover Image" style="max-width: 200px; display: {{ isset($profile) && $profile->cover ? 'block' : 'none' }}; margin-bottom:10px;">
-                                        <input type="file" class="form-control" name="cover" id="cover">
-                                    </div>
+                             <div class="col-12">
+   <div class="mb-3">
+        <label for="cover" class="form-label">Cover Image</label>
+        <img id="cover-preview" 
+             src="{{ isset($profile) && $profile->cover ? asset('storage/' . $profile->cover) : '' }}" 
+             alt="Cover Image" 
+             style="max-width: 200px; display: {{ isset($profile) && $profile->cover ? 'block' : 'none' }}; margin-bottom:10px;">
+        <input type="file" class="form-control" name="cover" id="cover">
+    </div>
 
-                                    @error('cover')
-                                        <div class="alert alert-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+    @error('cover')
+        <div class="alert alert-danger mt-2">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Image</label>
@@ -103,9 +105,8 @@
 
         </section>
     </div>
-    <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Cover image preview
     const coverInput = document.getElementById('cover');
     const coverPreview = document.getElementById('cover-preview');
 
@@ -116,18 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coverPreview.style.display = 'block';
         }
     });
-
-    // Profile image preview
-    const profileInput = document.getElementById('profile_image');
-    const profilePreview = document.getElementById('profile-preview');
-
-    profileInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            profilePreview.src = URL.createObjectURL(file);
-            profilePreview.style.display = 'block';
-        }
-    });
 });
 </script>
+
 @endsection
