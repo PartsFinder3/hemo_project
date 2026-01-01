@@ -284,6 +284,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
          margin-left: -30px !important; 
          margin-top: -35px !important;
     }
+    .search-title{
+        padding-bottom: 13px;
+    }
     .hero_image_section img { 
       
         max-width: 196px !important;
