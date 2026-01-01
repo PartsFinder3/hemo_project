@@ -168,34 +168,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-       function contactSupplier(name, whatsapp, business_name, isActive) {
-                    if (isActive === '1') {
-                        const message = `
+            function contactSupplier(name, whatsapp,business_name) {
+            if (isActive === '1') {
+                const message = encodeURIComponent(`
                 Hello, ${name}
-                ${business_name}
+                    ${business_name}
+                    We offer free ad posting for auto spare parts sellers on our official website:
+                    partsfinder.ae
 
-                We offer free ad posting for auto spare parts sellers on our official website:
-                *partsfinder.ae*
+                    If you have an auto parts shop in the UAE, you can list your products with us completely free.
+                    I will give you a free of cost customer for increasing your Business.
 
-                If you have an auto parts shop in the UAE, you can list your products with us completely free.
-                I will give you a free-of-cost customer to help increase your business.
+                    Let us know if you’re interested.
 
-                Let us know if you’re interested.
-                        `;
-
-                        // Encode message for URL
-                        const encodedMessage = encodeURIComponent(message);
-
-                        // Clean WhatsApp number (only digits)
-                        const cleanWhatsapp = whatsapp.replace(/\D/g, '');
-
-                        // Open WhatsApp chat
-                        window.open(`https://wa.me/${cleanWhatsapp}?text=${encodedMessage}`, '_blank');
-                    } else {
-                        alert('Supplier is currently inactive');
-                    }
-                }
-
+                                
+            `);
+                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+                window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
+            } else {
+                alert('Supplier is currently inactive');
+            }
+        }
     </script>
     <style>
   .bt_sup_whatsapp{
