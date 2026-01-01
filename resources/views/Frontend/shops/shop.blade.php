@@ -523,6 +523,7 @@ h2 {
     
     .shop_name h3 {
         font-size: 1.5rem;
+        margin-top: 0px !important;
     }
     
     .inqueries {
