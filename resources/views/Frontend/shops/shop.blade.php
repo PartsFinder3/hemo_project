@@ -579,6 +579,10 @@ h2 {
         width: 100%;
         border-radius: 0px;
     }
+    .profile_photo{
+        width: 115px;
+    height: 98px;
+    }
     .products-grid {
         gap: 10px;
     }
