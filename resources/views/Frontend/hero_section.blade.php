@@ -283,7 +283,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
     { 
          
     }
-    .hero_image_section img { max-width: 220px !important; }
+    .hero_image_section img {
+         max-width: 260px !important; 
+        }
     .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
     .find-btn { font-size: 14px !important; height: 40px !important; }
     .radio-option label { font-size: 11px !important; }
