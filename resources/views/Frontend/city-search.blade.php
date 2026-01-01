@@ -574,7 +574,7 @@
     flex-wrap: wrap;
     width: 800px;
     margin: auto;
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
 }
 
 .pagination button {
