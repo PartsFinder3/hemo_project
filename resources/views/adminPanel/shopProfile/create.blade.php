@@ -80,8 +80,6 @@
     </div>
 </div>
 
-
-
 <!-- Hidden input to store cropped image -->
 <input type="hidden" name="cover_cropped" id="cover_cropped">
                                 <div class="col-12">
@@ -111,6 +109,7 @@
         </section>
     </div>
     <!-- Crop Modal -->
+<!-- Crop Modal -->
 <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -129,14 +128,57 @@
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    let cropper;
     const coverInput = document.getElementById('cover');
-    const coverPreview = document.getElementById('cover-preview');
+    const cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
+    const cropImage = document.getElementById('crop-image');
+    const coverCroppedInput = document.getElementById('cover_cropped');
 
     coverInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
-        if (file) {
-            coverPreview.src = URL.createObjectURL(file);
-            coverPreview.style.display = 'block';
+        if(file) {
+            const url = URL.createObjectURL(file);
+            cropImage.src = url;
+
+            // Show modal
+            cropModal.show();
+
+            // Destroy previous cropper
+            if(cropper) cropper.destroy();
+
+            cropper = new Cropper(cropImage, {
+                aspectRatio: 16/9, // Cover ratio
+                viewMode: 1,
+                movable: true,
+                zoomable: true,
+                cropBoxResizable: true,
+            });
+        }
+    });
+
+    document.getElementById('crop-button').addEventListener('click', function() {
+        if(cropper) {
+            const canvas = cropper.getCroppedCanvas({
+                width: 1600,
+                height: 900
+            });
+
+            // Save cropped image as base64 in hidden input
+            coverCroppedInput.value = canvas.toDataURL('image/jpeg');
+
+            // Optional: Show small preview below input
+            let preview = document.getElementById('cover-preview');
+            if(!preview){
+                preview = document.createElement('img');
+                preview.id = 'cover-preview';
+                preview.style.maxWidth = '200px';
+                preview.style.display = 'block';
+                coverInput.parentNode.appendChild(preview);
+            }
+            preview.src = coverCroppedInput.value;
+
+            // Close modal
+            cropModal.hide();
         }
     });
 });
