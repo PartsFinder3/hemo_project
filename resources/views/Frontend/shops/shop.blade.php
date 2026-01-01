@@ -4,7 +4,7 @@
 /* ============ MAIN LAYOUT STYLES ============ */
 .image_box {
     width: 100%;
-    height: 240px;
+    height: 280px;
     max-width: 1200px;
     aspect-ratio: 16 / 5; /* maintain proper width:height ratio */
     margin: 50px auto 20px auto;
