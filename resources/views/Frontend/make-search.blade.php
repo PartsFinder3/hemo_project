@@ -1062,12 +1062,12 @@
 
      
 }
-@media (max-width: 395px) {
+@media (max-width: 400px) {
      .hero_image_section img{
               
            max-width: 214px !important;
-                margin-left: 20px;
-        margin-top: -45px;
+            margin-left: 45px;
+        margin-top: 67px;
     }
 }
 </style>
