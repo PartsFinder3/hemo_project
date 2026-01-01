@@ -294,9 +294,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
         justify-content: center;
         gap: 20px;
     }
-      .part_finder_card {
-       margin-left: -40px !important;  
-    }
+     .part_finder_card {
+   margin-left: -40px !important;  
+}
 }
 /* Reduce the height of inputs and Select2 fields */
 .dropdown,
@@ -642,4 +642,14 @@ $(document).ready(function () {
     });
 
     // PART selected
-    $('#part
+    $('#parts-dropdown-parts').on('change', function () {
+        let parts = $(this).val();
+        if (parts && parts.length > 0) {
+            resetSteps();
+            $('#condition-group').slideDown();
+            $('.condition-section').addClass('condition-active');
+        }
+    });
+
+});
+</script>
