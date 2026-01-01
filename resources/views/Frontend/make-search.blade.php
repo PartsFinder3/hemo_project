@@ -1087,7 +1087,7 @@
         margin-top: 1px;
     }
 }
-@media (max-width: 770px) and (max-width: 825px) {
+@media (max-width: 770px) and (max-width: 820px) {
      
         .car {
         
