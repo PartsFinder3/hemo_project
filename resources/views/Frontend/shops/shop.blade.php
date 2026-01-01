@@ -685,42 +685,46 @@
  <div class="cover_system">
     <div class="profile_photo"   style="background-image: url('{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/default-avatar.png') }}');">
     </div>
-    <div class="information-contanier">
-          <div class="shop_name">
-            <h3>{{ $shop->name ?? 'Shop Name Here' }}</h3>
-          </div>
-          <div class="inqueries">
-           <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
-            <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
-          </div>
-       <div class="icons_media">
-    <!-- Facebook -->
-    <div class="icons" style="background-color: #4267B2">
-        <a href="https://www.facebook.com/yourpage" target="_blank" aria-label="Visit our Facebook page">
-            <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook Icon">
-        </a>
+   <div class="information-container">
+    <div class="shop_name">
+        <h3>{{ $shop->name ?? 'Shop Name Here' }}</h3>
     </div>
 
-    <!-- X / Twitter -->
-    <div class="icons" style="background-color: black">
-        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Visit our Twitter profile">
-            <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="Twitter Icon">
-        </a>
+    <div class="inqueries">
+        <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
+        <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
     </div>
 
-    <!-- LinkedIn -->
-    <div class="icons" style="background-color: #0077b5">
-        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="Visit our LinkedIn profile">
-            <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn Icon">
-        </a>
-    </div>
+    <div class="icons_media">
+        <!-- Facebook -->
+        <div class="icon facebook">
+            <a href="https://www.facebook.com/yourpage" target="_blank" aria-label="Visit our Facebook page">
+                <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook Icon">
+            </a>
+        </div>
 
-    <!-- WhatsApp -->
-    <div class="icons" style="background-color:#25d366">
-        <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="Chat with us on WhatsApp">
-            <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp Icon">
-        </a>
+        <!-- Twitter / X -->
+        <div class="icon twitter">
+            <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Visit our Twitter profile">
+                <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="Twitter Icon">
+            </a>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="icon linkedin">
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="Visit our LinkedIn profile">
+                <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn Icon">
+            </a>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="icon whatsapp">
+            <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="Chat with us on WhatsApp">
+                <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp Icon">
+            </a>
+        </div>
     </div>
+</div>
 </div>
 
 
@@ -1670,6 +1674,70 @@ h2 {
         height: 60px;
         bottom: -30px;
         left: 10px;
+    }
+}
+.information-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.shop_name h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.inqueries {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.icons_media {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.icon img {
+    width: 24px;
+    height: 24px;
+}
+
+.icon:hover {
+    transform: scale(1.15);
+}
+
+/* Individual colors */
+.icon.facebook { background-color: #4267B2; }
+.icon.twitter { background-color: #000000; }
+.icon.linkedin { background-color: #0077b5; }
+.icon.whatsapp { background-color: #25d366; }
+
+/* Responsive */
+@media (max-width: 576px) {
+    .inqueries {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .icons_media {
+        gap: 8px;
     }
 }
     </style>
