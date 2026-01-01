@@ -469,7 +469,32 @@
         margin-top: 38px;
     }
 }
-
+@media (max-width: 770px) and (max-width: 820px) {
+     
+        .car {
+        
+        margin-left: 135px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .car {
+        max-width: 420px !important;
+        margin: 0 auto;
+        padding: 18px;
+        border-radius: 18px;
+        margin-left: 153px;
+    }
+}
+@media (min-width: 1024px){
+    .car {
+    margin-left: 0px;
+    }
+}
+@media (min-width: 912px){
+    .car {
+    margin-left: 198px;
+    }
+}
 /* SEO Content Section */
 .seo_content {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
