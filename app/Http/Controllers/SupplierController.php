@@ -51,7 +51,8 @@ class SupplierController extends Controller
 
             return back()->with('error', 'Already singup ');
         }
-       
+        $name=$request->name;
+        $businessName=$request->business_name;
         // Create new request
         $newRequest = new Requests();
         $newRequest->city_id       = $request->city_id;
@@ -61,7 +62,12 @@ class SupplierController extends Controller
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
        
-        return redirect()->route('Content_information')->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
+        return redirect()
+    ->route('Content_information', [
+        'name' => $name,
+        'businessName' => $businessName
+    ])
+    ->with('success', 'Your request has been submitted successfully. Our team will contact you soon!');
     }
     function addSupplierAdmin(Request $request){
             $request->validate([
