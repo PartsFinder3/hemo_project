@@ -333,6 +333,9 @@
         max-width: 100%;
         margin-top: 20px;
     }
+    .card{
+        margin: auto !important;
+    }
 }
 .pagination {
     display: flex;
