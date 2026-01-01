@@ -69,7 +69,6 @@
                                         </div>
                                     @enderror
                                 </div>
-                             <div class="col-12">
 <div class="col-12">
     <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
@@ -79,8 +78,6 @@
         @enderror
     </div>
 </div>
-
-<!-- Hidden input to store cropped image -->
 <input type="hidden" name="cover_cropped" id="cover_cropped">
                                 <div class="col-12">
                                     <div class="mb-3">
@@ -109,7 +106,6 @@
         </section>
     </div>
     <!-- Crop Modal -->
-<!-- Crop Modal -->
 <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -147,11 +143,22 @@ document.addEventListener('DOMContentLoaded', function() {
             if(cropper) cropper.destroy();
 
             cropper = new Cropper(cropImage, {
-                aspectRatio: 16/9, // Cover ratio
                 viewMode: 1,
                 movable: true,
                 zoomable: true,
+                scalable: false,
+                autoCropArea: 1,
+                aspectRatio: NaN, // width flexible
                 cropBoxResizable: true,
+                ready() {
+                    // Set fixed crop height (180px) in pixels relative to image
+                    const containerData = cropper.getContainerData();
+                    const scale = 180 / containerData.height;
+                    cropper.setCropBoxData({
+                        width: containerData.width,
+                        height: 180
+                    });
+                }
             });
         }
     });
@@ -159,8 +166,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('crop-button').addEventListener('click', function() {
         if(cropper) {
             const canvas = cropper.getCroppedCanvas({
-                width: 1600,
-                height: 900
+                width: coverInput.parentNode.offsetWidth, // full width of container
+                height: 180, // fixed height
             });
 
             // Save cropped image as base64 in hidden input
@@ -171,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if(!preview){
                 preview = document.createElement('img');
                 preview.id = 'cover-preview';
-                preview.style.maxWidth = '200px';
+                preview.style.maxWidth = '100%';
                 preview.style.display = 'block';
                 coverInput.parentNode.appendChild(preview);
             }
