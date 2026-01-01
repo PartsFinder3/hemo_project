@@ -990,6 +990,11 @@
     }
     .pagination {
         width: auto !important;
+        margin-top: 95px;
+    }
+        .carMakes {
+        padding: 30px 4%;
+        margin-top: 82px;
     }
 }
 </style>
