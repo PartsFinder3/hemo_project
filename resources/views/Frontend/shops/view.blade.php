@@ -292,10 +292,21 @@
                                     @if ($p && $p->profile_image)
                                         <img src="{{ asset('storage/' . $p->profile_image) }}" alt="Shop Logo"
                                             class="supplier-image">
-                                    @else
-                                        <img src="https://via.placeholder.com/120x100/4a90e2/ffffff?text=Auto+Parts"
-                                            alt="Default Image" class="supplier-image">
-                                    @endif
+                                       @else
+            <div style="
+                width:120px;
+                height:120px;
+                border-radius:50%;
+                background:#f1f3f5;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border:2px solid #dee2e6;
+            ">
+                <i class="fa-solid fa-user"
+                   style="font-size:48px; color:#6c757d;"></i>
+            </div>
+        @endif
                                 </div>
                             </div>
 
