@@ -1053,6 +1053,10 @@
                 margin-left: 30px !important;
                 margin-top: 42px !important;
     }
+        .hero_section_text h1 {
+        font-size: 16px !important;
+        margin-top: 15px;
+    }
 }
 </style>
 
