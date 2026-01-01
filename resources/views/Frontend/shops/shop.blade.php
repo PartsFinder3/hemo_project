@@ -499,7 +499,18 @@ h2 {
         height: 180px;
         margin-top: 30px !important;
     }
-    
+       .shop_name {
+        display: flex;
+        justify-content: center; /* center horizontally */
+        width: 100%;            /* full width container */
+    }
+     .shop_name h3 {
+        margin: 0;              /* remove side margins */
+        text-align: center;     /* center text */
+        white-space: nowrap;    /* keep ellipsis if too long */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .cover_system {
         width: 95%;
         padding: 15px 0;
@@ -604,7 +615,18 @@ h2 {
         height: 150px;
         margin-top: 20px !important;
     }
-    
+       .shop_name {
+        display: flex;
+        justify-content: center; /* center horizontally */
+        width: 100%;            /* full width container */
+    }
+     .shop_name h3 {
+        margin: 0;              /* remove side margins */
+        text-align: center;     /* center text */
+        white-space: nowrap;    /* keep ellipsis if too long */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .cover_system {
         width: 98%;
         margin: 10px auto;
@@ -711,15 +733,24 @@ h2 {
     .image_box {
         height: 130px;
     }
-    
+     .shop_name {
+        display: flex;
+        justify-content: center; /* center horizontally */
+        width: 100%;            /* full width container */
+    }
+     .shop_name h3 {
+        margin: 0;              /* remove side margins */
+        text-align: center;     /* center text */
+        white-space: nowrap;    /* keep ellipsis if too long */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .profile_photo {
         width: 70px;
         height: 70px;
     }
     
-    .shop_name h3 {
-        font-size: 1.2rem;
-    }
+    
     
     .inqueries {
         font-size: 0.8rem;
@@ -796,7 +827,18 @@ h2 {
     .image_box {
         height: 120px;
     }
-    
+       .shop_name {
+        display: flex;
+        justify-content: center; /* center horizontally */
+        width: 100%;            /* full width container */
+    }
+     .shop_name h3 {
+        margin: 0;              /* remove side margins */
+        text-align: center;     /* center text */
+        white-space: nowrap;    /* keep ellipsis if too long */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .cover_system {
         height: auto;
         min-height: 120px;
