@@ -494,6 +494,9 @@
     .car {
         margin-left: 0px;
     }
+    main{
+        min-height: 78vh;
+    }
 }
 /* SEO Content Section */
 .seo_content {
