@@ -1062,7 +1062,7 @@
 
      
 }
-@media (max-width: 440px) {
+@media (max-width: 395px) {
      .hero_image_section img{
               
            max-width: 214px !important;
