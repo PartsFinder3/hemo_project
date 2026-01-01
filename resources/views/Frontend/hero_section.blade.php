@@ -205,7 +205,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* ===============================
         Responsive Fixes
 ================================ */
-@media (min-width: 1024px) and (max-width: 1199px) {
+@media (min-width: 1024px) and (max-width: 1199px) and (max-width: 913px){
 
     main{
         min-height: 68vh;
