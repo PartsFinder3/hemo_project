@@ -14,12 +14,12 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+/* ===== HERO / COVER SECTION ===== */
 .cover_system {
     width: 83%;
-    height: 150px;
     margin: 20px auto;
     display: flex;
-    flex-direction: row;
+    flex-wrap: nowrap; /* Prevent wrapping */
     align-items: center;
     gap: 20px;
 }
@@ -28,49 +28,33 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 4px solid white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Never shrink below this */
 }
-
 .information-contanier {
-    width: 300px;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    margin-left: 20px !important;
+    flex-shrink: 1; /* Allow shrinking */
+    min-width: 120px; /* Minimum width to prevent collapsing */
 }
-
 .information-contanier {
     margin-top: 20px;
     margin-bottom: 20px !important;
     height: 240px;
 }
-
 .shop_name h3 {
     font-size: 1.8rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-    white-space: nowrap;       /* prevent wrapping */
-    overflow: hidden;          /* hide overflow text */
-    text-overflow: ellipsis;   /* show "..." if too long */
-       margin-top: 50px;
-
+    white-space: nowrap; /* Stay in one line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 50px;
 }
 
+
 .inqueries {
-    width: auto;
-    padding: 10px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
+    flex-wrap: nowrap; /* Don't wrap */
+    overflow-x: auto;  /* Allow scrolling if needed */
 }
 
 .stat-item {
@@ -83,7 +67,26 @@
     align-items: center;
     gap: 5px;
 }
+.icons_media {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: nowrap; /* Stay in one line */
+}
 
+/* ===== BUTTONS (WhatsApp + Call) ===== */
+.button_sides {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Buttons can wrap if too small */
+    gap: 10px;
+    margin-left: auto; /* Push to the right */
+}
+
+.buttons .btn {
+    flex: 1 1 140px; /* Allow shrinking but maintain width */
+    min-width: 120px; /* Minimum width before wrapping */
+}
 .icons_media {
     display: flex;
     gap: 10px;
@@ -658,6 +661,40 @@ h2 {
 .gallery-item {
     animation: fadeInUp 0.6s ease-out;
 }
+/* Mobile (below 767px) */
+@media (max-width: 767px) {
+    .cover_system {
+        width: 95%;
+        gap: 10px;
+    }
+    .profile_photo {
+        width: 120px;
+        height: 120px;
+    }
+    .shop_name h3 {
+        font-size: 1.3rem;
+    }
+    .information-contanier {
+        min-width: 80px;
+    }
+
+    /* Allow buttons to wrap on small screens */
+    .button_sides {
+        justify-content: flex-start;
+    }
+}
+
+/* Extra small mobile (below 375px) */
+@media (max-width: 374px) {
+    .profile_photo {
+        width: 100px;
+        height: 100px;
+    }
+    .shop_name h3 {
+        font-size: 1.1rem;
+    }
+}
+
 </style>
  <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
 
