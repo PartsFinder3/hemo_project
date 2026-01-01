@@ -84,13 +84,14 @@
 <div class="col-12">
     <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
-        <input type="file" class="form-control" name="cover" id="cover" accept="image/*">
+        <input type="file" class="form-control"  id="cover" accept="image/*">
         @error('cover')
             <div class="alert alert-danger mt-2">{{ $message }}</div>
         @enderror
     </div>
 </div>
-<input type="hidden" name="cover_cropped" id="cover_cropped">
+<!-- Hidden input to store cropped image -->
+<input type="hidden" name="cover" id="cover_cropped">
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Image</label>
@@ -163,9 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 aspectRatio: NaN, // width flexible
                 cropBoxResizable: true,
                 ready() {
-                    // Set fixed crop height (180px) in pixels relative to image
+                    // Set crop box fixed height 180px, full width
                     const containerData = cropper.getContainerData();
-                    const scale = 180 / containerData.height;
                     cropper.setCropBoxData({
                         width: containerData.width,
                         height: 180
@@ -178,14 +178,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('crop-button').addEventListener('click', function() {
         if(cropper) {
             const canvas = cropper.getCroppedCanvas({
-                width: coverInput.parentNode.offsetWidth, // full width of container
-                height: 180, // fixed height
+                width: cropper.getContainerData().width, // full width
+                height: 180 // fixed height
             });
 
             // Save cropped image as base64 in hidden input
             coverCroppedInput.value = canvas.toDataURL('image/jpeg');
 
-            // Optional: Show small preview below input
+            // Optional: Show preview below input
             let preview = document.getElementById('cover-preview');
             if(!preview){
                 preview = document.createElement('img');
