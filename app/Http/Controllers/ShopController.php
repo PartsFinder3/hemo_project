@@ -77,65 +77,84 @@ class ShopController extends Controller
         return view('adminPanel.shopProfile.create', compact('shop', 'profile','Supplier'));
     }
 
-  public function storeProfile(Request $request, $id)
+ public function storeProfile(Request $request, $id)
 {
     // ✅ Validation
     $request->validate([
-        'description' => 'nullable|string',
-        'address' => 'nullable|string',
-           'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'description'     => 'nullable|string',
+        'address'         => 'nullable|string',
+        'profile_image'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
-    $Suppleire=Suppliers::find($request->suplier_id);
-    $Suppleire->name=$request->Sup_name;
-    $Suppleire->save();
 
-    // ✅ Get Shop
+    // ✅ Update Supplier
+    $supplier = Suppliers::findOrFail($request->suplier_id);
+    $supplier->name = $request->Sup_name;
+    $supplier->save();
+
+    // ✅ Update Shop
     $shop = Shops::findOrFail($id);
-    $shop->name=$request->Businees_name;
+    $shop->name = $request->Businees_name;
     $shop->save();
-    
-    $profile = ShopProfile::firstOrNew(['shop_id' => $shop->id]);
 
-    // ✅ Update text fields
+    // ✅ Profile
+    $profile = ShopProfile::firstOrNew(['shop_id' => $shop->id]);
     $profile->description = $request->description;
-    $profile->address = $request->address;
-        if ($request->cover_cropped) {
-            $image = $request->cover_cropped; // base64
-            $image = str_replace('data:image/jpeg;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $fileName = 'cover_' . time() . '.jpg';
+    $profile->address     = $request->address;
+
+    /* ===============================
+       🔥 COVER IMAGE (BASE64 → WEBP)
+    =============================== */
+    if ($request->cover_cropped) {
+
+        $base64 = $request->cover_cropped;
+        $base64 = preg_replace('#^data:image/\w+;base64,#i', '', $base64);
+        $imageData = base64_decode($base64);
+
+        $image = imagecreatefromstring($imageData);
+        if ($image !== false) {
+
+            $fileName  = 'cover_' . time() . '.webp';
             $directory = storage_path('app/public/covers');
 
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0755, true);
             }
 
-            File::put($directory . '/' . $fileName, base64_decode($image));
+            // ✅ Convert to WEBP (HIGH QUALITY)
+            imagewebp($image, $directory . '/' . $fileName, 85);
+            imagedestroy($image);
 
             $profile->cover = 'covers/' . $fileName;
         }
-    // ✅ Handle Cover Image
-  
-    // ✅ Handle Profile Image
-    if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid()) {
+    }
+
+    /* ===============================
+       🔥 PROFILE IMAGE → WEBP
+    =============================== */
+    if ($request->hasFile('profile_image')) {
+
         $file = $request->file('profile_image');
-        $fileName = time() . '_' . $file->getClientOriginalName();
+        $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
 
-        $directory = storage_path('app/public/profile_images');
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true);
+        if ($image !== false) {
+
+            $fileName  = 'profile_' . time() . '.webp';
+            $directory = storage_path('app/public/profile_images');
+
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0755, true);
+            }
+
+            imagewebp($image, $directory . '/' . $fileName, 85);
+            imagedestroy($image);
+
+            $profile->profile_image = 'profile_images/' . $fileName;
         }
-
-        $file->move($directory, $fileName);
-
-        $profile->profile_image = 'profile_images/' . $fileName;
     }
 
     // ✅ Save profile
     $profile->save();
 
-    // ✅ Redirect back with success
     return redirect()->back()->with('success', 'Shop profile updated successfully.');
 }
 
