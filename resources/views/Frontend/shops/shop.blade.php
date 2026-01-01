@@ -57,6 +57,7 @@
     white-space: nowrap;       /* prevent wrapping */
     overflow: hidden;          /* hide overflow text */
     text-overflow: ellipsis;   /* show "..." if too long */
+    margin-top: 42px;
 }
 .inqueries {
     width: auto;
