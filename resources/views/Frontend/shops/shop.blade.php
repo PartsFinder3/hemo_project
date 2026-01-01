@@ -5,9 +5,9 @@
 .image_box {
     width: 100%;
     max-width: 1200px;
-    aspect-ratio: 16/5; /* maintain ratio, automatically adjusts height */
+    aspect-ratio: 16 / 5; /* maintain proper width:height ratio */
     margin: 50px auto 20px auto;
-    background-size: cover;
+    background-size: cover; /* fills container, crops if needed */
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 12px;
