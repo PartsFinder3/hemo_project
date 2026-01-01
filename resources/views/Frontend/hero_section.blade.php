@@ -303,7 +303,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
      .part_finder_card {
    margin-left: -40px !important;  
 }
-
+main{
+    min-height: 87vh;
+}
 }
 /* Small Mobile (≤380px) */
 
