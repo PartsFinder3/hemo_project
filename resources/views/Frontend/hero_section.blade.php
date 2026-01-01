@@ -232,68 +232,43 @@ body, main, header, nav, .hero-section, .hero-section_p {
 }
 
 /* Mobile (≤550px) */
-================================ */
-@media (max-width: 576px) {
-
-    /* Hero main container */
-    .secound_hero_section {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 20px !important;
-        padding: 0 10px !important;
-        margin: 0 !important;
-    }
-
-    /* Card wrapper */
-    .part_finder_card {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        display: flex;
-        justify-content: center;
-    }
-
-    /* Actual card */
-    .car {
-        width: 90% !important;     /* ✅ 90% width */
-        max-width: 90% !important;
-        margin: 0 auto !important;
-        padding: 15px !important;
-        border-radius: 16px;
-    }
-
-    /* Image section */
-    .hero_image_section {
+@media (max-width: 550px) {
+    .car { max-width: 320px !important; margin: 20px auto !important; padding: 12px !important; }
+       .hero_image_section {
         position: relative !important;
         top: 0 !important;
         left: 0 !important;
-        margin: 10px auto 0 !important; /* ✅ card ke bilkul neeche */
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+    }
+
+   .hero_image_section img {
+        max-width: 300px !important; /* adjust as needed */
+        height: auto;
+    }
+    .hero_section_text h1 { font-size: 22px !important; }
+    .radio-option label { font-size: 12px !important; }
+    .secound_hero_section { gap: 20px; padding: 0 10px !important; }
+     .part_finder_card {
+        margin-left: 0 !important;
+        flex: 1 1 100%;
+        margin-left: auto !important;
+    }
+    .find-btn { font-size: 16px; height: 45px; }
+    .part_finder_card {
+        margin-left: 0 !important;
         width: 100% !important;
         display: flex;
         justify-content: center;
-        align-items: center;
-        text-align: center;
     }
 
-    .hero_image_section img {
-        width: 85% !important;
-        max-width: 280px !important;
-        height: auto;
+    .car {
+        width: 100% !important;
+        max-width: 95% !important; /* thora gap side se */
+        margin: 0 auto !important;
     }
 
-    /* Heading */
-    .hero_section_text h1 {
-        font-size: 22px !important;
-        line-height: 1.3;
-        margin-bottom: 10px;
-    }
-
-    /* Button */
-    .find-btn {
-        height: 45px !important;
-        font-size: 16px !important;
-    }
 }
 
 /* Small Mobile (≤380px) */
