@@ -84,6 +84,9 @@
 <div class="col-12">
     <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
+          @if (isset($profile) && $profile->cover)
+                                            <img src="{{ asset('storage/' . $profile->cover) }}" alt="Profile Image" style="max-width: 200px; display: block; margin-bottom: 10px;">
+                                        @endif
         <input type="file" class="form-control"  id="cover" accept="image/*">
         @error('cover')
             <div class="alert alert-danger mt-2">{{ $message }}</div>
