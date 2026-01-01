@@ -1,383 +1,705 @@
 @extends('Frontend.layout.main')
 @section('main-section')
-<style>
-.image_box {
-    width:83%;
-    height: 240px;
-    margin: 20px auto; 
-    margin-top: 50px !important;
-    background-size: cover;        /* image پورے box میں fit ہو جائے */
-    background-position: center;   /* image center سے show ہو */
-    background-repeat: no-repeat;  /* image repeat نہ ہو */
-}
-.inqueries {
-    width:auto ;
-    padding: 10px;
-    display: flex;
-    flex-direction: row; /* horizontal alignment */
-    flex-wrap: nowrap;   /* items same line me rahen */
-    align-items: center; /* vertical alignment */
-    gap: 10px;           /* items ke beech gap */
-}
-
-.cover_system{
-    width: 83%;
-    height: 150px;
-     margin: 20px auto; 
-    /* background-color: red; */
-    display: flex;
-    flex-direction: row;
-}
-.profile_photo{
-    width: 150px;
-    height: 150px;
+<div class="shop-profile-container">
+    <!-- Cover Image Section -->
+    <div class="shop-cover-section" style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
+    </div>
     
-    border-radius: 50%;
-        background-size: cover;        /* image پورے box میں fit ہو جائے */
-    background-position: center;   /* image center سے show ہو */
-    background-repeat: no-repeat; 
-}
-.information-contanier{
-   width: 300px;
-   height: 100%;
+    <!-- Shop Profile Card -->
+    <div class="shop-profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar" style="background-image: url('{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/default-avatar.png') }}');">
+            </div>
+            <div class="profile-info">
+                <h1 class="shop-name">{{ $shop->name ?? 'Shop Name Here' }}</h1>
+                <div class="shop-stats">
+                    <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
+                    <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/yourpage" target="_blank" class="social-icon facebook" aria-label="Facebook">
+                        <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook">
+                    </a>
+                    <a href="https://twitter.com/yourprofile" target="_blank" class="social-icon twitter" aria-label="Twitter">
+                        <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="Twitter">
+                    </a>
+                    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
+                        <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="https://wa.me/yourphonenumber" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp">
+                        <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}" target="_blank" class="btn whatsapp-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                    WhatsApp
+                </a>
+                <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn call-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Opening Hours Section -->
+    @if($shopHours)
+    <div class="info-section opening-hours">
+        <h2><i class="far fa-clock"></i> Opening Hours</h2>
+        <div class="hours-grid">
+            @php
+                $hours = [
+                    'Monday' => $shopHours->monday,
+                    'Tuesday' => $shopHours->tuesday,
+                    'Wednesday' => $shopHours->wednesday,
+                    'Thursday' => $shopHours->thursday,
+                    'Friday' => $shopHours->friday,
+                    'Saturday' => $shopHours->saturday,
+                    'Sunday' => $shopHours->sunday,
+                ];
+            @endphp
 
-   display: flex;
-   flex-direction: column;
-   margin-left: 20px !important;
+            @foreach($hours as $day => $time)
+                <div class="day-row">
+                    <span class="day">{{ $day }}</span>
+                    <span class="time">{{ $time }}</span>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+    
+    <!-- Products Section -->
+    <div class="info-section products-section">
+        <h2><i class="fas fa-box"></i> Products</h2>
+        <div class="products-grid" id="productGrid1">
+            @if($shopAds && $shopAds->count())
+                @foreach($shopAds as $ad)
+                    <div class="product-card">
+                        @php
+                            $images = json_decode($ad->images, true);
+                        @endphp
+
+                        @if (is_array($images) && isset($images[0]))
+                            <div class="product-image">
+                                <img src="{{ asset($images[0]) }}" alt="{{ $ad->title }}">
+                            </div>
+                        @endif
+                        
+                        <div class="product-body">
+                            <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
+                                class="product-title">{{ $ad->title }}</a>
+                            
+                            <div class="product-meta">
+                                <span>Availability: In Stock</span>
+                                <span>Delivery: Ask Supplier</span>
+                                <span>Warranty: Ask Supplier</span>
+                            </div>
+                            
+                            <div class="product-buttons">
+                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
+                                   target="_blank"
+                                   class="product-btn whatsapp-btn">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </a>
+
+                                <a href="javascript:void(0)"
+                                   class="product-btn call-btn"
+                                   onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
+                                    <i class="fas fa-phone"></i> Call Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <div class="no-products">
+                    <p>No products available at the moment.</p>
+                </div>
+            @endif
+        </div>
+        <div id="pagination1" class="pagination"></div>
+    </div>
+    
+    <!-- Gallery Section -->
+    @if(isset($shopGallery) && count($shopGallery))
+    <div class="info-section gallery-section">
+        <h2><i class="fas fa-images"></i> Gallery</h2>
+        <div class="gallery-grid">
+            @foreach($shopGallery as $item)
+                <div class="gallery-item">
+                    <img src="{{ asset('storage/'.$item->image_path) }}" alt="Gallery Image" 
+                         onclick="openImageModal('{{ asset('storage/'.$item->image_path) }}')">
+                </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+</div>
+
+<style>
+/* Base Styles */
+.shop-profile-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.information-contanier {
+/* Cover Section */
+.shop-cover-section {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
     margin-top: 20px;
-    margin-bottom: 20px !important;
-    height: 240px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.icons_media {
+/* Shop Profile Card */
+.shop-profile-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    margin: -50px auto 30px;
+    padding: 70px 20px 20px;
+    position: relative;
+    max-width: 100%;
+}
+
+.profile-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: absolute;
+    top: -60px;
+    left: 30px;
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.shop-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.shop-stats {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.social-icons {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
-.icons {
+.social-icon {
     width: 40px;
     height: 40px;
+    border-radius: 8px;
     display: flex;
-    justify-content: center;
     align-items: center;
-   border-radius: 5px;
+    justify-content: center;
     transition: transform 0.3s;
 }
 
-.icons img {
-    width: 24px;  /* icon size */
-    height: 24px;
+.social-icon:hover {
+    transform: translateY(-3px);
 }
 
-.icons:hover {
-    transform: scale(1.1);
+.social-icon img {
+    width: 20px;
+    height: 20px;
 }
-.button_sides{
-    width: 300px;
-    height: 100%;
 
-    margin-left: 350px;
-}
-.buttons {
+.facebook { background: #4267B2; }
+.twitter { background: #000; }
+.linkedin { background: #0077b5; }
+.whatsapp { background: #25d366; }
+
+.contact-buttons {
     display: flex;
-    flex-direction: row;
-    gap: 10px; 
-    margin-top: 60px;
-    
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .btn {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 5px; 
-    width: 120px;
-    height: 40px;
-   background-color: white; 
-    color: black;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
     text-decoration: none;
-    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s;
     border: none;
-    font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    min-width: 140px;
+    justify-content: center;
 }
 
-.btn:hover {
-    background-color: #e0e0e0;
+.whatsapp-btn {
+    background: #25d366;
+    color: white;
+}
+
+.whatsapp-btn:hover {
+    background: #128c7e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.call-btn {
+    background: #fd7e14;
+    color: white;
+}
+
+.call-btn:hover {
+    background: #e66a00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 126, 20, 0.3);
 }
 
 .btn img {
     width: 20px;
     height: 20px;
 }
-.btn.whatsapp {
-     border:1px solid #007bff;  /* WhatsApp green */
-    background-color: white;
-    color: black;
+
+/* Info Sections */
+.info-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
-.btn.call {
-   border:1px solid #007bff; /* Blue color for call */
-      background-color: white;
-      color: black;
+.info-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-.btn.call:hover{
-  background-color: white !important;
-}
-.btn.whatsapp:hover{
-  background-color: white !important;
-}
-/* Add these responsive styles to your existing CSS */
 
-/* ============ TABLET (768px - 991px) ============ */
+/* Opening Hours */
+.hours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.day-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.day-row:last-child {
+    border-bottom: none;
+}
+
+.day {
+    font-weight: 600;
+    color: #333;
+}
+
+.time {
+    color: #666;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.product-body {
+    padding: 15px;
+}
+
+.product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    min-height: 2.8em;
+}
+
+.product-title:hover {
+    color: #fd7e14;
+}
+
+.product-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.product-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-btn {
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    min-width: 40px;
+}
+
+.pagination button:hover {
+    background: #f8f9fa;
+    border-color: #fd7e14;
+}
+
+.pagination button.active {
+    background: #fd7e14;
+    color: white;
+    border-color: #fd7e14;
+}
+
+/* Modal */
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-products {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+/* Responsive Styles */
+
+/* Tablet (768px - 991px) */
 @media (max-width: 991px) {
-    /* Cover system adjustments */
-    .cover_system {
-        width: 90%;
-        height: auto;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 20px 0;
-    }
-    
-    .profile_photo {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto;
-    }
-    
-    .information-contanier {
-        margin-left: 0 !important;
-        margin-top: 15px;
-        align-items: center;
-    }
-    
-    .button_sides {
-        margin-left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    
-    .buttons {
-        margin-top: 20px;
-    }
-    
-    /* Products grid for tablet */
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px;
-        padding: 0 15px;
-    }
-    
-    /* Gallery grid for tablet */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    /* Shop profile adjustments */
-    .shop-cover-wrapper {
-        height: 200px;
-    }
-    
-    .shop-avatar {
-        width: 120px;
-        height: 120px;
-        bottom: -60px;
-        left: 30px;
-    }
-    
-    .shop-profile-content {
-        padding: 70px 20px 25px;
-    }
-    
-    .shop-name {
-        font-size: 1.8rem;
-    }
-    
-    /* Info card adjustments */
-    .info-card {
-        margin: 20px 15px;
-        padding: 1.2rem;
-    }
-    
-    h2 {
-        margin-left: 30px;
-    }
-    
-    .mb-3 {
-        margin-left: 30px;
-    }
-}
-
-/* ============ MOBILE (576px - 767px) ============ */
-@media (max-width: 767px) {
-    /* Image box adjustments */
-    .image_box {
-        width: 95%;
-        height: 180px;
-        margin: 20px auto;
-        margin-top: 30px !important;
-    }
-    
-    /* Cover system mobile layout */
-    .cover_system {
-        width: 95%;
-        padding: 15px 0;
-    }
-    
-    .profile_photo {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .information-contanier h3 {
-        font-size: 1.5rem;
-    }
-    
-    .inqueries {
-        padding: 8px;
-        font-size: 0.9rem;
-    }
-    
-    /* Button adjustments */
-    .button_sides {
-        margin-top: 15px;
-    }
-    
-    .buttons {
-        width: 100%;
-        justify-content: center;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 110px;
-        height: 38px;
-        font-size: 0.9rem;
-    }
-    
-    /* Products grid for mobile */
-    .products-grid {
-        grid-template-columns: 1fr !important;
-        gap: 15px;
+    .shop-profile-container {
         padding: 0 10px;
     }
     
-    /* Gallery grid for mobile */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+    .shop-cover-section {
+        height: 200px;
     }
     
-    .gallery-item {
-        height: 150px;
-    }
-    
-    /* Shop profile mobile adjustments */
     .shop-profile-card {
-        margin-left: 0;
-        width: 95%;
-        margin: 0 auto 20px;
+        padding: 60px 15px 15px;
+        margin-top: -40px;
     }
     
-    .shop-cover-wrapper {
-        height: 180px;
-    }
-    
-    .shop-avatar {
+    .profile-avatar {
         width: 100px;
         height: 100px;
-        bottom: -50px;
+        top: -50px;
         left: 20px;
     }
     
-    .shop-name {
-        font-size: 1.6rem;
+    .profile-header {
         flex-direction: column;
-        gap: 8px;
+        text-align: center;
     }
     
-    .shop-stats {
-        gap: 10px;
-        margin: 15px 0;
+    .profile-info {
+        min-width: auto;
     }
     
-    .stat-item {
-        padding: 6px 12px;
-        font-size: 0.9rem;
-    }
-    
-    .shop-contact-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .shop-contact-buttons a {
-        width: 200px;
+    .contact-buttons {
+        width: 100%;
         justify-content: center;
     }
     
-    /* Info card mobile */
-    .info-card {
-        margin: 15px 10px;
-        padding: 1rem;
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
-    h2 {
-        margin-left: 20px;
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile (576px - 767px) */
+@media (max-width: 767px) {
+    .shop-cover-section {
+        height: 180px;
+        border-radius: 8px;
+    }
+    
+    .shop-name {
         font-size: 1.5rem;
+        margin-top: 10px;
     }
     
-    .mb-3 {
-        margin-left: 20px;
+    .shop-stats {
+        justify-content: center;
+        gap: 10px;
     }
     
-    /* Opening hours adjustments */
-    .hours-grid {
-        font-size: 0.9rem;
+    .stat-item {
+        font-size: 0.85rem;
+        padding: 6px 12px;
     }
     
-    .day-row {
-        padding: 0.6rem;
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
     }
     
-    /* Product card mobile */
-    .product-card {
-        margin: 0 5px;
+    .btn {
+        width: 100%;
+        max-width: 250px;
     }
     
-    .product-image {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .gallery-item {
         height: 160px;
     }
     
-    .product-title {
-        font-size: 0.95rem;
-        min-height: 2.8em;
+    .info-section {
+        padding: 15px;
     }
     
-    .product-meta {
-        font-size: 0.8rem;
+    .info-section h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Small Mobile (375px - 575px) */
+@media (max-width: 575px) {
+    .shop-cover-section {
+        height: 150px;
+        margin-top: 10px;
     }
     
-    .btn-product {
-        padding: 0.7rem 0;
-        font-size: 0.9rem;
+    .shop-profile-card {
+        margin-top: -30px;
+        padding: 50px 10px 10px;
     }
     
-    /* Pagination mobile */
-    .pagination {
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        top: -40px;
+        left: 15px;
+        border-width: 3px;
+    }
+    
+    .shop-name {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .social-icon img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-item {
+        height: 200px;
+    }
+    
+    .day-row {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 5px;
-        margin: 15px 0;
+    }
+    
+    .time {
+        align-self: flex-end;
     }
     
     .pagination button {
@@ -387,1462 +709,232 @@
     }
 }
 
-/* ============ SMALL MOBILE (375px - 575px) ============ */
-@media (max-width: 575px) {
-    /* Image box for small mobile */
-    .image_box {
-        width: 98%;
-        height: 150px;
-        margin-top: 20px !important;
-    }
-    
-    /* Cover system for small mobile */
-    .cover_system {
-        width: 98%;
-        margin: 10px auto;
-    }
-    
-    .profile_photo {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .information-contanier h3 {
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-    }
-    
-    .inqueries {
-        font-size: 0.85rem;
-        padding: 5px;
-    }
-    
-    .inqueries .stat-item {
-        display: block;
-        margin: 3px 0;
-    }
-    
-    /* Icons adjustment */
-    .icons_media {
-        gap: 8px;
-        margin-top: 8px;
-    }
-    
-    .icons {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .icons img {
-        width: 20px;
-        height: 20px;
-    }
-    
-    /* Buttons for small mobile */
-    .buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .btn {
-        width: 180px;
-        height: 40px;
-    }
-    
-    /* Shop profile for small mobile */
-    .shop-cover-wrapper {
-        height: 150px;
-    }
-    
-    .shop-avatar {
-        width: 80px;
-        height: 80px;
-        bottom: -40px;
-        left: 15px;
-        border-width: 3px;
-    }
-    
-    .shop-profile-content {
-        padding: 60px 15px 20px;
-    }
-    
-    .shop-name {
-        font-size: 1.4rem;
-    }
-    
-    .shop-stats {
-        flex-direction: column;
-        gap: 8px;
-        align-items: center;
-    }
-    
-    .stat-item {
-        width: fit-content;
-        min-width: 150px;
-        text-align: center;
-    }
-    
-    /* Gallery for small mobile */
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .gallery-item {
-        height: 180px;
-    }
-    
-    h2 {
-        margin-left: 15px;
-        font-size: 1.3rem;
-    }
-    
-    .mb-3 {
-        margin-left: 15px;
-    }
-    
-    /* Product card adjustments */
-    .product-image {
-        height: 140px;
-    }
-    
-    .product-body {
-        padding: 1rem;
-    }
-    
-    /* Opening hours for small mobile */
-    .day-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-    
-    .day {
-        min-width: auto;
-    }
-    
-    /* Modal adjustments */
-    .modal-content {
-        width: 95%;
-        height: 80%;
-    }
-    
-    .modal-close {
-        top: 10px;
-        right: 20px;
-        font-size: 30px;
-    }
-}
-
-/* ============ VERY SMALL MOBILE (below 375px) ============ */
+/* Very Small Mobile (below 375px) */
 @media (max-width: 374px) {
-    /* Further adjustments for very small screens */
-    .image_box {
+    .shop-cover-section {
         height: 130px;
     }
     
-    .profile_photo {
+    .profile-avatar {
         width: 70px;
         height: 70px;
+        top: -35px;
+        left: 10px;
     }
     
-    .information-contanier h3 {
+    .shop-name {
         font-size: 1.2rem;
     }
     
-    .inqueries {
+    .stat-item {
         font-size: 0.8rem;
-    }
-    
-    .icons {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .icons img {
-        width: 18px;
-        height: 18px;
+        padding: 5px 10px;
     }
     
     .btn {
-        width: 160px;
-        height: 38px;
-        font-size: 0.85rem;
-    }
-    
-    /* Shop profile */
-    .shop-cover-wrapper {
-        height: 120px;
-    }
-    
-    .shop-avatar {
-        width: 60px;
-        height: 60px;
-        bottom: -30px;
-        left: 10px;
-    }
-    
-    .shop-name {
-        font-size: 1.2rem;
-    }
-    
-    .shop-verified-badge {
-        font-size: 0.75rem;
-        padding: 4px 10px;
-    }
-    
-    /* Products */
-    .products-grid {
-        padding: 0 5px;
-        gap: 10px;
-    }
-    
-    .product-card {
-        border-radius: 8px;
-    }
-    
-    .product-title {
+        padding: 10px;
         font-size: 0.9rem;
     }
     
-    .btn-product {
-        font-size: 0.85rem;
-        padding: 0.6rem 0;
+    .products-grid {
+        gap: 10px;
     }
     
-    /* Gallery */
-    .gallery-item {
-        height: 150px;
-    }
-    
-    /* Text adjustments */
-    h2 {
-        margin-left: 10px;
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 1.1rem;
-    }
-    
-    /* Pagination */
-    .pagination button {
-        padding: 5px 10px;
-        min-width: 30px;
-        font-size: 0.85rem;
-    }
-}
-
-/* ============ LANDSCAPE MODE ADJUSTMENTS ============ */
-@media (max-height: 600px) and (orientation: landscape) {
-    .image_box {
-        height: 120px;
-    }
-    
-    .cover_system {
-        height: auto;
-        min-height: 120px;
-        flex-direction: row;
-        align-items: center;
-    }
-    
-    .profile_photo {
-        width: 80px;
-        height: 80px;
-        margin: 0;
-    }
-    
-    .information-contanier {
-        margin-left: 15px !important;
-        margin-top: 0;
-        text-align: left;
-        align-items: flex-start;
-    }
-    
-    .button_sides {
-        margin-top: 0;
-    }
-    
-    .shop-cover-wrapper {
-        height: 150px;
-    }
-    
-    .shop-avatar {
-        width: 80px;
-        height: 80px;
-        bottom: -40px;
-    }
-}
-
-
-/* ============ TOUCH FRIENDLY ELEMENTS ============ */
-
-</style>
- <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
-
- </div>
- <div class="cover_system">
-    <div class="profile_photo"   style="background-image: url('{{ $profile && $profile->profile_image ? asset('storage/' . $profile->profile_image) : asset('assets/compiled/jpg/default-avatar.png') }}');">
-    </div>
-    <div class="information-contanier">
-          <div class="shop_name">
-            <h3>{{ $shop->name ?? 'Shop Name Here' }}</h3>
-          </div>
-          <div class="inqueries">
-           <span class="stat-item">📦 {{$totalAds}} Items Listed</span>
-            <span class="stat-item">💬 {{$inquiryCount}} Enquiries</span>
-          </div>
-       <div class="icons_media">
-    <!-- Facebook -->
-    <div class="icons" style="background-color: #4267B2">
-        <a href="https://www.facebook.com/yourpage" target="_blank" aria-label="Visit our Facebook page">
-            <img src="https://platform-cdn.sharethis.com/img/facebook.svg" alt="Facebook Icon">
-        </a>
-    </div>
-
-    <!-- X / Twitter -->
-    <div class="icons" style="background-color: black">
-        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Visit our Twitter profile">
-            <img src="https://platform-cdn.sharethis.com/img/twitter.svg" alt="Twitter Icon">
-        </a>
-    </div>
-
-    <!-- LinkedIn -->
-    <div class="icons" style="background-color: #0077b5">
-        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="Visit our LinkedIn profile">
-            <img src="https://platform-cdn.sharethis.com/img/linkedin.svg" alt="LinkedIn Icon">
-        </a>
-    </div>
-
-    <!-- WhatsApp -->
-    <div class="icons" style="background-color:#25d366">
-        <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="Chat with us on WhatsApp">
-            <img src="https://platform-cdn.sharethis.com/img/whatsapp.svg" alt="WhatsApp Icon">
-        </a>
-    </div>
-</div>
-
-
-    </div>
-    <div class="button_sides">
-        <div class="buttons">
-            
-            <a href="https://wa.me/{{ preg_replace('/\D/', '', $shop->supplier->whatsapp) }}"  target="_blank" class="btn whatsapp">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                Whatsapp
-            </a>
-            <a href="tel:{{ $shop->supplier->whatsapp }}" class="btn call">
-                <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Call">
-                Call
-            </a>
-        </div>
-
-            </div>
-        </div>
-
-    
-  
-</div>
-
-
-        <!-- Opening Hours Card -->
-        @if($shopHours)
-        <div class="info-card mt-4" style="margin-top: 30px;">
-            <div class="section-title">Opening Hours</div>
-            <div class="hours-grid">
-                @php
-                    $hours = [
-                        'Monday' => $shopHours->monday,
-                        'Tuesday' => $shopHours->tuesday,
-                        'Wednesday' => $shopHours->wednesday,
-                        'Thursday' => $shopHours->thursday,
-                        'Friday' => $shopHours->friday,
-                        'Saturday' => $shopHours->saturday,
-                        'Sunday' => $shopHours->sunday,
-                    ];
-                @endphp
-
-                @foreach($hours as $day => $time)
-                    <div class="day-row">
-                        <span class="day">{{ $day }}</span>
-                        <span class="time">{{ $time }}</span>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
-
-        <!-- Products Grid -->
-        <div class="products-grid mt-4" id="productGrid1">
-            @if($shopAds && $shopAds->count())
-                @foreach($shopAds as $ad)
-                    <div class="card product-card">
-                        @php
-                            $images = json_decode($ad->images, true);
-                        @endphp
-
-                        @if (is_array($images) && isset($images[0]))
-                            <div class="product-image">
-                                <img src="{{ asset($images[0]) }}" alt="Product">
-                            </div>
-                        @endif
-                        
-                        <div class="product-body">
-                            <a href="{{ route('view.ad', ['slug' => Str::slug($ad->title), 'id' => $ad->id]) }}"
-                                class="product-title">{{ $ad->title }}</a>
-                            
-                            <div class="product-meta">
-                                Availability: In Stock <br>
-                                Delivery: Ask Supplier <br>
-                                Warranty: Ask Supplier
-                            </div>
-                            
-                            <div class="product-buttons">
-                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $ad->shop->supplier->whatsapp) }}?text={{ urlencode('Hello, I am interested in your ad: ' . $ad->title) }}"
-                                   target="_blank"
-                                   class="btn-product whatsapp">
-                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp
-                                </a>
-
-                                <a href="javascript:void(0)"
-                                   class="btn-product call"
-                                   onclick="callSupplier('{{ $ad->shop->supplier->is_active }}', '{{ $ad->shop->supplier->whatsapp }}')">
-                                    <i class="fa-solid fa-phone me-1"></i> Click to Call
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
-        </div>
-        <div id="pagination1" class="pagination d-flex justify-content-center mt-3"></div>
-    </div>
-
-    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <img id="modalImage" class="modal-image" src="" alt="">
-        </div>
-    </div>
-    <h2 class="mt-4 mb-3" style="margin-left: 50px;">Gallery</h2>
-        @if(isset($shopGallery) && count($shopGallery))
-        <div class="info-card mt-4">
-            <div class="section-title">Shop Gallery</div>
-
-            <div class="gallery-grid">
-                @foreach($shopGallery as $item)
-                    <div class="gallery-item">
-                        <img src="{{ asset('storage/'.$item->image_path) }}" alt="Gallery Image" onclick="openImageModal('{{ asset($item->image_path) }}')">
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
-
-    <style>
-        /* Reset backgrounds */
-     
-.pc-cover-section.cover_image {
-    width: 100%;
-    height: 200px; /* final height */
-    overflow: hidden;
-    position: relative;
-}
-.pc-cover-section.cover_image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-        /* Profile Card Styles */
-        .pc-card {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto 30px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            background: #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-left: 4%;
-        }
-
-        .pc-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        /* Cover Section */
-        .pc-cover-section {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .pc-cover-image {
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .pc-card:hover .pc-cover-image {
-            transform: scale(1.05);
-        }
-
-   
-
-        /* Profile Avatar */
-        .profile-avatar {
-            position: absolute;
-            bottom: -75px;
-            left: 50px;
-        }
-
-        .profile-avatar img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        /* Profile Content */
-        .pc-profile-content {
-            padding: 90px 30px 30px;
-            text-align: center;
-            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-        }
-
-        .pc-shop-name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .pc-verified-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: #fff;
-            padding: 6px 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 20px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-        }
-
-        /* Shop Stats */
-        .pc-shop-stats {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .pc-stat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            color: #555;
-            font-weight: 500;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        /* Contact Buttons */
-        .pc-contact-buttons {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .pc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .pc-btn-success {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: white;
-        }
-
-        .pc-btn-warning {
-            background: linear-gradient(135deg, #ffc107, #fd7e14);
-            color: white;
-        }
-
-        .pc-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            text-decoration: none;
-            color: white;
-        }
-
-        /* Info Card (Opening Hours) */
-        .info-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin: 30px auto;
-            padding: 1.5rem;
-            max-width: 1200px;
-            margin-top: 7% !important;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 1.2rem;
-        }
-
-        .hours-grid {
-            display: grid;
-            gap: 0.5rem;
-        }
-
-        .day-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .day-row:last-child {
-            border-bottom: none;
-        }
-
-        .day {
-            font-weight: 600;
-            color: #333;
-            min-width: 100px;
-        }
-
-        .time {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Products Grid */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-}
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-           
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 180px; /* Fixed height */
-            overflow: hidden;
-            background: #f8f9fa;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ensures full image fits without cropping */
-            padding: 10px;
-            background-color: white;
-        }
-        
-        .product-body {
-            padding: 1.2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.8rem;
-            line-height: 1.4;
-            min-height: 3em; /* Fixed height for title */
-            overflow: hidden;
-        }
-
-        .product-title:hover {
-            color: #fd7e14;
-        }
-        
-        .product-meta {
-            margin-bottom: 1.2rem;
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-        
-        .product-buttons {
-            display: flex;
-            flex-direction: column; /* stack buttons vertically */
-            gap: 0.7rem;
-            width: 100%;
-        }
-
-        .btn-product {
-            width: 100%;            /* full width buttons */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0.8rem 0;
-            text-decoration: none !important;
-            border-radius: 6px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .btn-product.whatsapp {
-            background: #198754;
-        }
-
-        .btn-product.whatsapp:hover {
-            background: #128c7e;
-        }
-
-        .btn-product.call {
-            background: #fd7e14;
-        }
-
-        .btn-product.call:hover {
-            background: #e66a00;
-        }
-
-        /* Image Modal */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-content {
-            position: relative;
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 800px;
-            height: 90%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-image {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 8px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Pagination Styles */
-        .pagination {
-            display: flex;
-            gap: 8px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .pagination button {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            min-width: 40px;
-        }
-
-        .pagination button:hover {
-            background: #f8f9fa;
-            border-color: #fd7e14;
-            transform: translateY(-2px);
-        }
-
-        .pagination button.active {
-            background: #fd7e14;
-            color: white;
-            border-color: #fd7e14;
-            box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .pc-card, .info-card, .products-grid {
-                max-width: 95%;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .pc-cover-section {
-                height: 250px;
-            }
-            
-            .profile-avatar {
-                left: 30px;
-                bottom: -60px;
-            }
-            
-            .profile-avatar img {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .pc-profile-content {
-                padding: 70px 20px 25px;
-            }
-            
-            .pc-shop-name {
-                font-size: 1.8rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .pc-cover-section {
-                height: 200px;
-            }
-            
-            .profile-avatar {
-                left: 20px;
-                bottom: -50px;
-            }
-            
-            .profile-avatar img {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .pc-shop-name {
-                font-size: 1.6rem;
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .pc-shop-stats {
-                gap: 15px;
-            }
-            
-            .pc-stat-item {
-                font-size: 0.9rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .pc-card, .info-card {
-                border-radius: 15px;
-            }
-            
-            .pc-cover-section {
-                height: 180px;
-            }
-            
-            .profile-avatar {
-                left: 15px;
-                bottom: -40px;
-            }
-            
-            .profile-avatar img {
-                width: 80px;
-                height: 80px;
-                border-width: 3px;
-            }
-            
-            .pc-profile-content {
-                padding: 60px 15px 20px;
-            }
-            
-            .pc-shop-name {
-                font-size: 1.4rem;
-            }
-            
-            .pc-contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .pc-btn {
-                width: 200px;
-                justify-content: center;
-            }
-            
-            .info-card {
-                padding: 1rem;
-            }
-            
-            .pagination {
-                gap: 5px;
-            }
-            
-            .pagination button {
-                padding: 6px 12px;
-                min-width: 35px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .pc-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 15px;
-}
-
-.gallery-item {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: pointer;
-    background: #f8f9fa;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-    transition: transform .3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.03);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-h2 {
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 10px;
-    font-weight: bold;
-    padding-left: 5px;
-}
-.mb-3{
-    margin-bottom: 1rem !important;
-    margin-left: 20px;
-}
-.cover_image {
-    width: 100%;
-    max-width: 1200px; /* optional, card ke size ke liye */
-    height: 200px;
-    overflow: hidden;
-    background-color: white;
-    margin: 0 auto;
-    position: relative; /* zarurat hai overlay aur avatar ke liye */
-}
-
-.cover_image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-/* Shop Profile Card */
-.shop-profile-card {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto 30px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    background: #fff;
-}
-
-/* Cover Section */
-.shop-cover-wrapper {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-}
-
-.shop-cover-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.shop-cover-wrapper:hover .shop-cover-image {
-    transform: scale(1.05);
-}
-
-.shop-cover-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.2); /* optional overlay */
-}
-
-/* Profile Avatar */
-.shop-avatar {
-    width: 150px;              /* size adjust karo */
-    height: 150px;
-    border-radius: 50%;        /* circle shape */
-    background-size: cover;    /* image div me fit ho jaye */
-    background-position: center; /* center the image */
-    border: 4px solid #fff;    /* optional white border */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* optional shadow */
-    position: absolute;
-    bottom: -75px;
-    left: 40px;
-}
-
-.shop-avatar img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 4px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-/* Content Section */
-.shop-profile-content {
-    padding: 90px 30px 30px;
-    text-align: center;
-}
-
-.shop-name {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.shop-verified-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: #fff;
-    padding: 5px 12px;
-    font-size: 0.85rem;
-    border-radius: 20px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.shop-stats {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.stat-item {
-    background: rgba(255,255,255,0.8);
-    padding: 8px 16px;
-    border-radius: 12px;
-    font-weight: 500;
-    color: #555;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.shop-contact-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.shop-contact-buttons a {
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.btn-whatsapp {
-    background: #25d366;
-}
-
-.btn-whatsapp:hover {
-    background: #128c7e;
-}
-
-.btn-call {
-    background: #fd7e14;
-}
-
-.btn-call:hover {
-    background: #e66a00;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .shop-cover-wrapper {
-        height: 200px;
-    }
-
-    .shop-avatar img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .shop-name {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .shop-cover-wrapper {
-        height: 150px;
-    }
-
-    .shop-avatar img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .shop-name {
-        font-size: 1.4rem;
-    }
-
-    .shop-contact-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .shop-contact-buttons a {
-        width: 150px;
-        justify-content: center;
-    }
-}
-.shop-cover-wrapper {
-    position: relative;
-    width: 100%;
-    height: 250px; /* adjust as needed */
-    background-size: cover;       /* image div me fit ho jaye */
-    background-position: center;  /* center the image */
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
-
-.shop-cover-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.2); /* optional overlay */
-}
-
-
-
-@media (max-width: 992px) {
-    .shop-cover-wrapper {
-        height: 200px;
-    }
-    .shop-avatar {
-        width: 120px;
-        height: 120px;
-        bottom: -60px;
-        left: 30px;
-    }
-}
-
-@media (max-width: 768px) {
-    .shop-cover-wrapper {
+    .product-image {
         height: 180px;
     }
-    .shop-avatar {
-        width: 100px;
-        height: 100px;
-        bottom: -50px;
-        left: 20px;
+    
+    .gallery-item {
+        height: 180px;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        max-height: 80%;
     }
 }
 
-@media (max-width: 576px) {
-    .shop-cover-wrapper {
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .shop-cover-section {
         height: 150px;
     }
-    .shop-avatar {
+    
+    .shop-profile-card {
+        margin-top: -30px;
+        padding: 50px 15px 15px;
+    }
+    
+    .profile-avatar {
         width: 80px;
         height: 80px;
-        bottom: -40px;
-        left: 15px;
+        top: -40px;
+    }
+    
+    .profile-header {
+        flex-direction: row;
+    }
+    
+    .profile-info {
+        text-align: left;
     }
 }
 
-@media (max-width: 350px) {
-    .shop-cover-wrapper {
-        height: 120px;   /* chhoti screen ke liye */
+/* Touch Friendly Elements */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .product-btn,
+    .pagination button {
+        min-height: 44px;
+        min-width: 44px;
     }
-    .shop-avatar {
-        width: 60px;
-        height: 60px;
-        bottom: -30px;
-        left: 10px;
+    
+    .social-icon {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .product-card {
+        touch-action: manipulation;
     }
 }
-    </style>
+</style>
 
-    <script>
-        // Initialize pagination
-        function setupPagination(gridId, paginationId, perPage = 12) {
-            const grid = document.getElementById(gridId);
-            const pagination = document.getElementById(paginationId);
+<script>
+// Pagination Function
+function setupPagination(gridId, paginationId, perPage = 8) {
+    const grid = document.getElementById(gridId);
+    const pagination = document.getElementById(paginationId);
 
-            // Check if elements exist
-            if (!grid || !pagination) {
-                console.error('Grid or pagination element not found:', {gridId, paginationId});
-                return;
-            }
+    if (!grid || !pagination) return;
 
-            const products = Array.from(grid.querySelectorAll(".product-card"));
-            console.log('Found', products.length, 'products');
-            
-            // If no products, hide pagination
-            if (products.length === 0) {
-                pagination.style.display = 'none';
-                return;
-            }
+    const products = Array.from(grid.querySelectorAll(".product-card"));
+    
+    if (products.length === 0) {
+        pagination.style.display = 'none';
+        return;
+    }
 
-            const totalPages = Math.ceil(products.length / perPage);
-            console.log('Total pages:', totalPages);
+    const totalPages = Math.ceil(products.length / perPage);
 
-            // If only one page, hide pagination
-            if (totalPages <= 1) {
-                pagination.style.display = 'none';
-                // Show all products
-                products.forEach(product => product.style.display = 'block');
-                return;
-            }
+    if (totalPages <= 1) {
+        pagination.style.display = 'none';
+        products.forEach(product => product.style.display = 'block');
+        return;
+    }
 
-            // Show pagination
-            pagination.style.display = 'flex';
+    pagination.style.display = 'flex';
 
-            function showPage(page) {
-                console.log('Showing page', page);
-                products.forEach((product, index) => {
-                    const shouldShow = (index >= (page - 1) * perPage && index < page * perPage);
-                    product.style.display = shouldShow ? 'block' : 'none';
-                });
-
-                // Update active button
-                pagination.querySelectorAll("button").forEach((btn) => {
-                    btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
-                });
-            }
-
-            function createPaginationButtons() {
-                pagination.innerHTML = "";
-
-                // Previous button
-                const prevBtn = document.createElement("button");
-                prevBtn.innerHTML = "&laquo;";
-                prevBtn.title = "Previous";
-                prevBtn.addEventListener("click", () => {
-                    const activeBtn = pagination.querySelector("button.active");
-                    const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
-                    if (current > 1) showPage(current - 1);
-                });
-                pagination.appendChild(prevBtn);
-
-                // Page buttons
-                for (let i = 1; i <= totalPages; i++) {
-                    const btn = document.createElement("button");
-                    btn.innerText = i;
-                    btn.dataset.page = i;
-                    btn.addEventListener("click", () => showPage(i));
-                    pagination.appendChild(btn);
-                }
-
-                // Next button
-                const nextBtn = document.createElement("button");
-                nextBtn.innerHTML = "&raquo;";
-                nextBtn.title = "Next";
-                nextBtn.addEventListener("click", () => {
-                    const activeBtn = pagination.querySelector("button.active");
-                    const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
-                    if (current < totalPages) showPage(current + 1);
-                });
-                pagination.appendChild(nextBtn);
-            }
-
-            createPaginationButtons();
-            showPage(1); // Show first page initially
-        }
-
-        // Other functions
-        function contactSupplier(isActive, whatsapp, title) {
-            if (isActive === '1') {
-                const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
-                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
-                window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
-            } else {
-                alert('Supplier is currently inactive');
-            }
-        }
-
-        function callSupplier(isActive, whatsapp) {
-            if (isActive === '1') {
-                window.location.href = `tel:${whatsapp}`;
-            } else {
-                alert('Supplier is currently inactive');
-            }
-        }
-
-        function openImageModal(src) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'block';
-            modalImg.src = src;
-        }
-
-        function closeImageModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, setting up pagination...');
-            
-            // Setup pagination
-            setupPagination('productGrid1', 'pagination1', 12);
-            
-            // Add ripple effect to buttons
-            document.querySelectorAll('.pc-btn, .btn-product').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    this.appendChild(ripple);
-
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeImageModal();
-                }
-            });
-            
-            // Close modal when clicking outside image
-            document.getElementById('imageModal')?.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeImageModal();
-                }
-            });
+    function showPage(page) {
+        products.forEach((product, index) => {
+            const shouldShow = (index >= (page - 1) * perPage && index < page * perPage);
+            product.style.display = shouldShow ? 'block' : 'none';
         });
 
-        // Also try to setup pagination when window loads (as backup)
-        window.addEventListener('load', function() {
-            console.log('Window loaded, checking pagination...');
-            const pagination = document.getElementById('pagination1');
-            if (pagination && pagination.innerHTML.trim() === '') {
-                console.log('Pagination not initialized, setting up again...');
-                setupPagination('productGrid1', 'pagination1', 12);
-            }
+        pagination.querySelectorAll("button").forEach((btn) => {
+            btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
         });
-    </script>
+    }
 
+    function createPaginationButtons() {
+        pagination.innerHTML = "";
+
+        // Previous button
+        if (totalPages > 1) {
+            const prevBtn = document.createElement("button");
+            prevBtn.innerHTML = "&laquo;";
+            prevBtn.title = "Previous";
+            prevBtn.addEventListener("click", () => {
+                const activeBtn = pagination.querySelector("button.active");
+                const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+                if (current > 1) showPage(current - 1);
+            });
+            pagination.appendChild(prevBtn);
+        }
+
+        // Page buttons
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.innerText = i;
+            btn.dataset.page = i;
+            btn.addEventListener("click", () => showPage(i));
+            pagination.appendChild(btn);
+        }
+
+        // Next button
+        if (totalPages > 1) {
+            const nextBtn = document.createElement("button");
+            nextBtn.innerHTML = "&raquo;";
+            nextBtn.title = "Next";
+            nextBtn.addEventListener("click", () => {
+                const activeBtn = pagination.querySelector("button.active");
+                const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+                if (current < totalPages) showPage(current + 1);
+            });
+            pagination.appendChild(nextBtn);
+        }
+    }
+
+    createPaginationButtons();
+    showPage(1);
+}
+
+// Supplier Contact Functions
+function callSupplier(isActive, whatsapp) {
+    if (isActive === '1') {
+        window.location.href = `tel:${whatsapp}`;
+    } else {
+        alert('Supplier is currently unavailable');
+    }
+}
+
+// Image Modal Functions
+function openImageModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImg.src = src;
+}
+
+function closeImageModal() {
+    document.getElementById('imageModal').style.display = 'none';
+}
+
+// Initialize on DOM Load
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup pagination
+    setupPagination('productGrid1', 'pagination1', 8);
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeImageModal();
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('imageModal')?.addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('modal-close')) {
+            closeImageModal();
+        }
+    });
+    
+    // Touch support for mobile
+    document.querySelectorAll('.gallery-item, .product-card').forEach(item => {
+        item.addEventListener('touchstart', function() {
+            this.style.opacity = '0.9';
+        });
+        
+        item.addEventListener('touchend', function() {
+            this.style.opacity = '1';
+        });
+    });
+});
+
+// Fallback initialization
+window.addEventListener('load', function() {
+    const pagination = document.getElementById('pagination1');
+    if (pagination && pagination.innerHTML.trim() === '') {
+        setupPagination('productGrid1', 'pagination1', 8);
+    }
+});
+</script>
 @endsection
