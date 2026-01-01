@@ -22,7 +22,7 @@
 
 .cover_system{
     width: 83%;
-    height: 150px;
+    height: 166px;
      margin: 20px auto; 
     /* background-color: red; */
     display: flex;
