@@ -741,7 +741,11 @@ h2 {
         transform: translateY(0);
     }
 }
-
+@media (max-width: 991px) {
+    .buttons {
+        margin-top: 56px;
+    }
+}
 .product-card,
 .info-card,
 .gallery-item {
