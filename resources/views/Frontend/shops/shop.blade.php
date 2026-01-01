@@ -3,15 +3,16 @@
 <style>
 /* ============ MAIN LAYOUT STYLES ============ */
 .image_box {
-    width: 83%;
-    height: 240px;
-    margin: 20px auto; 
-    margin-top: 50px !important;
-    background-size: cover;
+    width: 100%;  /* better to be responsive */
+    max-width: 1200px; /* avoid stretching too much */
+    height: 240px; 
+    margin: 50px auto 20px auto;
+    background-size: cover; /* keep cover for full fill */
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    image-rendering: auto; /* improve rendering */
 }
 
 .cover_system {
