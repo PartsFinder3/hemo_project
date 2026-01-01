@@ -312,6 +312,7 @@
 
 
  <strong> Hello Supplier,
+    <br>
 If you want a fast approval, please contact us.<br> Thank you for using our platform!</strong> 
             </div>
 
