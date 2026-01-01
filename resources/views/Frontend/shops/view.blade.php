@@ -298,7 +298,7 @@
                 width:120px;
                 height:120px;
                 border-radius:50%;
-                background:linear-gradient(135deg,#ff9f43,#ff6b6b);
+                background:linear-gradient(135deg,#ff7700,#ff6b6b);
                 display:flex;
                 align-items:center;
                 justify-content:center;
