@@ -14,12 +14,12 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* ===== HERO / COVER SECTION ===== */
 .cover_system {
     width: 83%;
+    height: 150px;
     margin: 20px auto;
     display: flex;
-    flex-wrap: nowrap; /* Prevent wrapping */
+    flex-direction: row;
     align-items: center;
     gap: 20px;
 }
@@ -28,33 +28,49 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    flex-shrink: 0; /* Never shrink below this */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 4px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    flex-shrink: 0;
 }
+
 .information-contanier {
+    width: 300px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    flex-shrink: 1; /* Allow shrinking */
-    min-width: 120px; /* Minimum width to prevent collapsing */
+    margin-left: 20px !important;
 }
+
 .information-contanier {
     margin-top: 20px;
     margin-bottom: 20px !important;
     height: 240px;
 }
+
 .shop_name h3 {
     font-size: 1.8rem;
-    white-space: nowrap; /* Stay in one line */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 50px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    white-space: nowrap;       /* prevent wrapping */
+    overflow: hidden;          /* hide overflow text */
+    text-overflow: ellipsis;   /* show "..." if too long */
+       margin-top: 50px;
+
 }
 
-
 .inqueries {
+    width: auto;
+    padding: 10px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
     gap: 10px;
-    flex-wrap: nowrap; /* Don't wrap */
-    overflow-x: auto;  /* Allow scrolling if needed */
+    margin-bottom: 15px;
 }
 
 .stat-item {
@@ -67,26 +83,7 @@
     align-items: center;
     gap: 5px;
 }
-.icons_media {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    flex-wrap: nowrap; /* Stay in one line */
-}
 
-/* ===== BUTTONS (WhatsApp + Call) ===== */
-.button_sides {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; /* Buttons can wrap if too small */
-    gap: 10px;
-    margin-left: auto; /* Push to the right */
-}
-
-.buttons .btn {
-    flex: 1 1 140px; /* Allow shrinking but maintain width */
-    min-width: 120px; /* Minimum width before wrapping */
-}
 .icons_media {
     display: flex;
     gap: 10px;
@@ -115,8 +112,7 @@
 .button_sides {
     width: 300px;
     height: 100%;
-       margin-left: 289px;
-
+    margin-left: 350px;
     display: flex;
     align-items: center;
 }
@@ -435,6 +431,47 @@ h2 {
 
 /* Tablet (768px - 991px) */
 @media (max-width: 991px) {
+    .image_box,
+    .cover_system,
+    .products-grid,
+    .info-card,
+    .pagination {
+        width: 90%;
+    }
+    
+    .cover_system {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    .profile_photo {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+    }
+    
+    .information-contanier {
+        margin-left: 0 !important;
+        margin-top: 15px;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .button_sides {
+        margin-left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    .buttons {
+        margin-top: 20px;
+        justify-content: center;
+    }
     
     .products-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -457,10 +494,49 @@ h2 {
 
 /* Mobile (576px - 767px) */
 @media (max-width: 767px) {
-     .image_box {
-        width: 100%;
-        border-radius: 0px;
+    .image_box {
+        width: 95%;
+        height: 180px;
+        margin-top: 30px !important;
     }
+    
+    .cover_system {
+        width: 95%;
+        padding: 15px 0;
+    }
+    
+    .profile_photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .shop_name h3 {
+        font-size: 1.5rem;
+    }
+    
+    .inqueries {
+        padding: 8px;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .button_sides {
+        margin-top: 15px;
+    }
+    
+    .buttons {
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .btn {
+        width: 110px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+    
     .products-grid {
         grid-template-columns: 1fr !important;
         gap: 15px;
@@ -524,20 +600,69 @@ h2 {
 /* Small Mobile (375px - 575px) */
 @media (max-width: 575px) {
     .image_box {
-        width: 100%;
-        border-radius: 0px;
+        width: 98%;
+        height: 150px;
+        margin-top: 20px !important;
     }
+    
+    .cover_system {
+        width: 98%;
+        margin: 10px auto;
+    }
+    
+    .profile_photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .shop_name h3 {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .inqueries {
+        font-size: 0.85rem;
+        padding: 5px;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .stat-item {
+        display: block;
+        margin: 3px 0;
+    }
+    
+    .icons_media {
+        gap: 8px;
+        margin-top: 8px;
+    }
+    
+    .icons {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .icons img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .btn {
+        width: 180px;
+        height: 40px;
+    }
+    
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 10px;
     }
-     .profile_photo{
-        width: 115px;
-    height: 98px;
-    }
-    .shop_name h3{
-            font-size: 19px;
-    }
+    
     .gallery-item {
         height: 180px;
     }
@@ -583,18 +708,39 @@ h2 {
 
 /* Very Small Mobile (below 375px) */
 @media (max-width: 374px) {
-    
     .image_box {
-        width: 100%;
-        border-radius: 0px;
+        height: 130px;
     }
-    .profile_photo{
-        width: 115px;
-    height: 98px;
+    
+    .profile_photo {
+        width: 70px;
+        height: 70px;
     }
-    .shop_name h3{
-            font-size: 19px;
+    
+    .shop_name h3 {
+        font-size: 1.2rem;
     }
+    
+    .inqueries {
+        font-size: 0.8rem;
+    }
+    
+    .icons {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .icons img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .btn {
+        width: 160px;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+    
     .products-grid {
         gap: 10px;
     }
@@ -631,18 +777,70 @@ h2 {
         font-size: 0.85rem;
     }
 }
+@media (max-width: 767px) {
+    .information-contanier {
+        width: 300px;       /* match desktop width */
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .shop_name h3 {
+        font-size: 1.8rem;  /* keep same size as desktop */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
 /* Landscape Mode Adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
     .image_box {
-        width: 100%;
-        border-radius: 0px;
+        height: 120px;
     }
+    
+    .cover_system {
+        height: auto;
+        min-height: 120px;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .profile_photo {
+        width: 80px;
+        height: 80px;
+        margin: 0;
+    }
+    
+    .information-contanier {
+        margin-left: 15px !important;
+        margin-top: 0;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    .button_sides {
+        margin-top: 0;
+    }
+    
     .products-grid {
         grid-template-columns: repeat(3, 1fr) !important;
     }
 }
 
+/* Touch Friendly Elements */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .btn-product,
+    .pagination button,
+    .icons {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .product-title,
+    .gallery-item {
+        touch-action: manipulation;
+    }
+}
 
 /* Animation */
 @keyframes fadeInUp {
@@ -661,40 +859,6 @@ h2 {
 .gallery-item {
     animation: fadeInUp 0.6s ease-out;
 }
-/* Mobile (below 767px) */
-@media (max-width: 767px) {
-    .cover_system {
-        width: 95%;
-        gap: 10px;
-    }
-    .profile_photo {
-        width: 120px;
-        height: 120px;
-    }
-    .shop_name h3 {
-        font-size: 1.3rem;
-    }
-    .information-contanier {
-        min-width: 80px;
-    }
-
-    /* Allow buttons to wrap on small screens */
-    .button_sides {
-        justify-content: flex-start;
-    }
-}
-
-/* Extra small mobile (below 375px) */
-@media (max-width: 374px) {
-    .profile_photo {
-        width: 100px;
-        height: 100px;
-    }
-    .shop_name h3 {
-        font-size: 1.1rem;
-    }
-}
-
 </style>
  <div class="image_box"  style="background-image: url('{{ $profile && $profile->cover ? asset('storage/'. $profile->cover) : asset('assets/compiled/jpg/Head.png') }}');">
 
