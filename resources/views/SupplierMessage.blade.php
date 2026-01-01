@@ -310,6 +310,10 @@
 
             <div class="message-text">
 
+@php
+    $name = session('name');
+    $businessName = session('businessName');
+@endphp
 
  <strong> Hello, {{$name}},
     {{$businessName}}

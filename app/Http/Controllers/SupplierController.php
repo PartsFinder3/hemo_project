@@ -61,13 +61,11 @@ class SupplierController extends Controller
         $newRequest->email         = $request->email;
         $newRequest->whatsapp      = $whatsapp;
         $newRequest->save();
-       
-        return redirect()
-    ->route('Content_information', [
-        'name' => $name,
-        'businessName' => $businessName
-    ])
-    ->with('success', 'Your request has been submitted successfully. Our team will contact you soon!');
+       session([
+            'name' => $name,
+            'businessName' => $businessName,
+        ]);
+        return redirect()->route('Content_information',compact('name','businessName'))->with('success', 'Your Request has submmited successfully, Our team will contact you soon!!');
     }
     function addSupplierAdmin(Request $request){
             $request->validate([
