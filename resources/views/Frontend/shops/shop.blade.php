@@ -510,6 +510,7 @@ h2 {
         white-space: nowrap;    /* keep ellipsis if too long */
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-top: 0px;
     }
     .cover_system {
         width: 95%;
@@ -523,7 +524,8 @@ h2 {
     
     .shop_name h3 {
         font-size: 1.5rem;
-        margin-top: 0px !important;
+        margin-top: 0px;
+        margin-top: 0px;
     }
     
     .inqueries {
@@ -839,6 +841,8 @@ h2 {
         white-space: nowrap;    /* keep ellipsis if too long */
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-top: 0px;
+        margin-top: 0px;
     }
     .cover_system {
         height: auto;
