@@ -221,7 +221,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* Tablets (≤768px) */
 @media (max-width: 768px) {
     .car { max-width: 380px; padding: 15px; border-radius: 15px; }
-    .hero_image_section img { max-width: 300px; }
+    .hero_image_section img { 
+        max-width: 300px;
+     }
     .hero_section_text h1 { font-size: 26px; }
     .find-btn { font-size: 16px; height: 45px; }
 }
@@ -429,8 +431,9 @@ main{
 }
     .hero_image_section img { 
       max-width: 249px !important;
+      margin-left: 51px;
       
-        margin-left: -4px;
+       
         margin-top: 38px;
      }
     
