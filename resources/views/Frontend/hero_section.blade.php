@@ -277,7 +277,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
         justify-content: center;
         gap: 20px;
     }
-
+      .part_finder_card {
+       margin-left: 10px !important;  
+    }
 }
 /* Reduce the height of inputs and Select2 fields */
 .dropdown,
