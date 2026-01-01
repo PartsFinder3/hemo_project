@@ -496,7 +496,7 @@ h2 {
 /* Mobile (576px - 767px) */
 @media (max-width: 767px) {
     .image_box {
-        width: 95%;
+        width: 100%;
         height: 180px;
         margin-top: 30px !important;
     }
