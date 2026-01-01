@@ -1055,9 +1055,9 @@
     }
     .hero_image_section img{
               
-                max-width: 196px !important;
-        margin-left: 51px;
-        margin-top: 38px;
+           max-width: 214px !important;
+                margin-left: 20px;
+        margin-top: -45px;
     }
      
 }
