@@ -27,12 +27,16 @@ body, main, header, nav, .hero-section, .hero-section_p {
     z-index: 9999; 
 }
 
-.hero_section_text h1, .h1 {
+.hero_section_text h1,
+.h1 {
     font-size: 40px !important;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;          /* ✅ new line allow */
+    text-align: center;       /* ✅ text center */
     line-height: 1.2;
 }
+
 
 .hero_section_text .hiliter {
     display: inline;
