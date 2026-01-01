@@ -454,7 +454,7 @@ h2 {
 
 /* Mobile (576px - 767px) */
 @media (max-width: 767px) {
-     .image_b{
+     .image_box {
         width: 100%;
         border-radius: 0px;
     }
@@ -520,7 +520,7 @@ h2 {
 
 /* Small Mobile (375px - 575px) */
 @media (max-width: 575px) {
-     .image_b{
+    .image_box {
         width: 100%;
         border-radius: 0px;
     }
@@ -575,7 +575,7 @@ h2 {
 /* Very Small Mobile (below 375px) */
 @media (max-width: 374px) {
     
-    .image_b{
+    .image_box {
         width: 100%;
         border-radius: 0px;
     }
@@ -618,7 +618,7 @@ h2 {
 
 /* Landscape Mode Adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
-    .image_b{
+    .image_box {
         width: 100%;
         border-radius: 0px;
     }
