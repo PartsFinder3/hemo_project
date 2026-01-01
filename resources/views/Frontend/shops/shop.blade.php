@@ -741,7 +741,7 @@ h2 {
         transform: translateY(0);
     }
 }
-@media (max-width: 991px) {
+@media (max-width: 350px) {
     .buttons {
         margin-top: 56px;
     }
