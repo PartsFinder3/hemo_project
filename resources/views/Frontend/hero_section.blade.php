@@ -207,7 +207,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 ================================ */
 @media (max-width: 1030px) {
     .secound_hero_section {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 25px;
         padding: 0 20px;
