@@ -1103,6 +1103,11 @@
         margin-left: 153px;
     }
 }
+@media (min-width: 1024px){
+    .car {
+    margin-left: 0px;
+    }
+}
 </style>
 
 @endsection
