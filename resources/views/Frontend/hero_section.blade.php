@@ -288,8 +288,8 @@ body, main, header, nav, .hero-section, .hero-section_p {
         padding-bottom: 13px;
     }
     .hero_image_section img { 
+      max-width: 249px !important;
       
-        max-width: 196px !important;
         margin-left: -4px;
         margin-top: 38px;
      }
