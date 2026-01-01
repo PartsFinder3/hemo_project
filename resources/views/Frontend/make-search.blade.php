@@ -1050,8 +1050,8 @@
          margin-top: 55px !important;
     }
     .hero_image_section img{
-                margin-left: 30px;
-                margin-top: 42px;
+                margin-left: 30px !important;
+                margin-top: 42px !important;
     }
 }
 </style>
