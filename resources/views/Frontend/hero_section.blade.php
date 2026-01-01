@@ -205,6 +205,29 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* ===============================
         Responsive Fixes
 ================================ */
+@media (max-width: 1030px) {
+    .secound_hero_section {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 0 20px;
+    }
+    .part_finder_card, .hero_image_section {
+        flex: 1 1 100%;
+        margin: 0 auto;
+        top: 0px !important;
+    }
+    .car { max-width: 420px; }
+    .hero_section_text h1 { font-size: 32px; }
+}
+
+/* Tablets (≤768px) */
+@media (max-width: 768px) {
+    .car { max-width: 380px; padding: 15px; border-radius: 15px; }
+    .hero_image_section img { max-width: 300px; }
+    .hero_section_text h1 { font-size: 26px; }
+    .find-btn { font-size: 16px; height: 45px; }
+}
 
 /* Large tablets and below */
 @media (max-width: 992px) {
