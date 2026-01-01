@@ -69,10 +69,10 @@
                                                     class="fa-solid fa-trash"></i>
                                                 Reject</a>
                                         </span>
-                                         <a href="javascript:void(0)" class="btn bt_sup_whatsapp"
-                                                    onclick="contactSupplier('{{  $request->name }}', '{{  $request->whatsapp }}', '{{  $request->business_name }}')">
-                                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                                </a>
+                                       <a href="javascript:void(0)" class="btn bt_sup_whatsapp"
+   onclick="contactSupplier('{{ $request->name }}', '{{ $request->whatsapp }}', '{{ $request->business_name }}', '{{ $request->status == 'approved' ? '1' : '0' }}')">
+   <i class="fa-brands fa-whatsapp"></i> WhatsApp
+</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -168,27 +168,26 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-            function contactSupplier(name, whatsapp,business_name) {
-            if (isActive === '1') {
-                const message = encodeURIComponent(`
-                Hello, ${name}
-                    ${business_name}
-                    We offer free ad posting for auto spare parts sellers on our official website:
-                    partsfinder.ae
+function contactSupplier(name, whatsapp, business_name, isActive) {
+    if (isActive === '1') {
+        const message = `Hello, ${name}
+${business_name}
 
-                    If you have an auto parts shop in the UAE, you can list your products with us completely free.
-                    I will give you a free of cost customer for increasing your Business.
+We offer free ad posting for auto spare parts sellers on our official website:
+*partsfinder.ae*
 
-                    Let us know if you’re interested.
+If you have an auto parts shop in the UAE, you can list your products with us completely free.
+I will give you a free-of-cost customer to help increase your business.
 
-                                
-            `);
-                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
-                window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
-            } else {
-                alert('Supplier is currently inactive');
-            }
-        }
+Let us know if you’re interested.`;
+
+        const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/${cleanWhatsapp}?text=${encodedMessage}`, '_blank');
+    } else {
+        alert('Supplier is currently inactive');
+    }
+}
     </script>
     <style>
   .bt_sup_whatsapp{
