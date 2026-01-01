@@ -130,7 +130,7 @@
     color: black;
     text-decoration: none;
     border-radius: 8px;
-    border: 2px solid #007bff;
+    
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
