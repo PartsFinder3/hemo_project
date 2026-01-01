@@ -83,7 +83,7 @@ class ShopController extends Controller
     $request->validate([
         'description' => 'nullable|string',
         'address' => 'nullable|string',
-        'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+           'cover' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
     $Suppleire=Suppliers::find($request->suplier_id);
@@ -100,23 +100,23 @@ class ShopController extends Controller
     // ✅ Update text fields
     $profile->description = $request->description;
     $profile->address = $request->address;
+        if ($request->cover_cropped) {
+            $image = $request->cover_cropped; // base64
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $fileName = 'cover_' . time() . '.jpg';
+            $directory = storage_path('app/public/covers');
 
-    // ✅ Handle Cover Image
-    if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
-        $file = $request->file('cover');
-        $fileName = time() . '_' . $file->getClientOriginalName();
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0755, true);
+            }
 
-        $directory = storage_path('app/public/covers');
-        if (!File::exists($directory)) {
-            File::makeDirectory($directory, 0755, true);
+            File::put($directory . '/' . $fileName, base64_decode($image));
+
+            $profile->cover = 'covers/' . $fileName;
         }
-
-        // Move file as-is
-        $file->move($directory, $fileName);
-
-        $profile->cover = 'covers/' . $fileName;
-    }
-
+    // ✅ Handle Cover Image
+  
     // ✅ Handle Profile Image
     if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid()) {
         $file = $request->file('profile_image');

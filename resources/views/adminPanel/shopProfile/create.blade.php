@@ -91,7 +91,8 @@
     </div>
 </div>
 <!-- Hidden input to store cropped image -->
-<input type="hidden" name="cover" id="cover_cropped">
+<!-- Hidden input to store cropped image -->
+<input type="hidden" name="cover_cropped" id="cover_cropped">
                                 <div class="col-12">
                                     <div class="mb-3">
                                         <label for="" class="form-label">Profile Image</label>
