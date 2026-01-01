@@ -148,13 +148,7 @@
     height: 20px;
 }
 
-.btn.whatsapp {
-    border-color: #25d366;
-}
 
-.btn.call {
-    border-color: #fd7e14;
-}
 
 /* ============ PRODUCTS SECTION ============ */
 .products-grid {
