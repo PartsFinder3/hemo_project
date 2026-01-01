@@ -454,7 +454,10 @@ h2 {
 
 /* Mobile (576px - 767px) */
 @media (max-width: 767px) {
-   
+     .image_b{
+        width: 100%;
+        border-radius: 0px;
+    }
     .products-grid {
         grid-template-columns: 1fr !important;
         gap: 15px;
@@ -517,7 +520,10 @@ h2 {
 
 /* Small Mobile (375px - 575px) */
 @media (max-width: 575px) {
-   
+     .image_b{
+        width: 100%;
+        border-radius: 0px;
+    }
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -612,7 +618,10 @@ h2 {
 
 /* Landscape Mode Adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
-  
+    .image_b{
+        width: 100%;
+        border-radius: 0px;
+    }
     .products-grid {
         grid-template-columns: repeat(3, 1fr) !important;
     }
