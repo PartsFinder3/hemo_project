@@ -490,9 +490,9 @@
     margin-left: 0px;
     }
 }
-@media (min-width: 912px){
+@media (min-width: 912px) {
     .car {
-    margin-left: 198px;
+        margin-left: 0px;
     }
 }
 /* SEO Content Section */
