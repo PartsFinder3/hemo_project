@@ -70,7 +70,7 @@
                                                 Reject</a>
                                         </span>
                                          <a href="javascript:void(0)" class="btn bt_sup_whatsapp"
-                                                    onclick="contactSupplier('{{ $request->whatsapp }}')">
+                                                    onclick="contactSupplier('{{  $request->name }}', '{{  $request->whatsapp }}', '{{  $request->business_name }}')">
                                                     <i class="fa-brands fa-whatsapp"></i> WhatsApp
                                                 </a>
                                     </td>
@@ -168,11 +168,34 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function contactSupplier(whatsapp) {
-                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
-                window.open(`https://wa.me/${cleanWhatsapp}`, '_blank');
-          
-        }
+       function contactSupplier(name, whatsapp, business_name, isActive) {
+                    if (isActive === '1') {
+                        const message = `
+                Hello, ${name}
+                ${business_name}
+
+                We offer free ad posting for auto spare parts sellers on our official website:
+                *partsfinder.ae*
+
+                If you have an auto parts shop in the UAE, you can list your products with us completely free.
+                I will give you a free-of-cost customer to help increase your business.
+
+                Let us know if you’re interested.
+                        `;
+
+                        // Encode message for URL
+                        const encodedMessage = encodeURIComponent(message);
+
+                        // Clean WhatsApp number (only digits)
+                        const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+
+                        // Open WhatsApp chat
+                        window.open(`https://wa.me/${cleanWhatsapp}?text=${encodedMessage}`, '_blank');
+                    } else {
+                        alert('Supplier is currently inactive');
+                    }
+                }
+
     </script>
     <style>
   .bt_sup_whatsapp{
