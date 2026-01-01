@@ -205,48 +205,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* ===============================
         Responsive Fixes
 ================================ */
-@media (min-width: 1024px) and (max-width: 1199px) {
 
-    .secound_hero_section {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 30px;
-        margin-left: 0 !important;
-        padding: 0 20px;
-    }
-
-    .part_finder_card {
-        flex: 0 0 420px;
-        margin: 0 !important;
-        display: flex;
-        justify-content: center;
-    }
-
-    .car {
-        margin: 0 !important;
-        width: 100%;
-        max-width: 420px;
-    }
-
-    .hero_image_section {
-        position: relative !important;   /* 🔥 absolute removed */
-        top: 0 !important;
-        left: 0 !important;
-        flex: 0 0 420px;
-        margin: 0 !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .hero_image_section img {
-        max-width: 420px;
-        width: 100%;
-        height: auto;
-    }
-}
 
 /* Tablets (≤768px) */
 @media (max-width: 768px) {
