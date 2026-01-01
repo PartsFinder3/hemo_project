@@ -1110,7 +1110,7 @@
 }
 @media (min-width: 912px){
     .car {
-    margin-left: 0px;
+    margin-left: 198px;
     }
 }
 </style>
