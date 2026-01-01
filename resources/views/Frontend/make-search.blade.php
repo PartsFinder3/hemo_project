@@ -1094,6 +1094,15 @@
         margin-left: 135px;
     }
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+    .car {
+        max-width: 420px !important;
+        margin: 0 auto;
+        padding: 18px;
+        border-radius: 18px;
+        margin-left: 153px;
+    }
+}
 </style>
 
 @endsection
