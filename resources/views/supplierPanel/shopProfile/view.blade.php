@@ -7,7 +7,7 @@
                 <div class="card shadow-sm border-0 rounded-3">
                     <!-- Cover Image -->
                     @if ($profile && $profile->cover)
-                        <img src="{{ asset('storage/' . $profile->cover) }}" class="card-img-top rounded-top" alt="Cover" style="height: 200px;">
+                        <img src="{{ asset('storage/' . $profile->cover) }}" class="card-img-top rounded-top" alt="Cover" style=" height: 480px;">
                     @else
                         <img src="{{ asset('assets/compiled/jpg/Head.png') }}" class="card-img-top rounded-top" alt="Cover">
                     @endif
