@@ -55,6 +55,10 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    white-space: nowrap;       /* prevent wrapping */
+    overflow: hidden;          /* hide overflow text */
+    text-overflow: ellipsis;   /* show "..." if too long */
+   
 }
 
 .inqueries {
