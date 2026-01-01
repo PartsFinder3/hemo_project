@@ -458,6 +458,7 @@ h2 {
         margin-top: 15px;
         align-items: center;
         width: 100%;
+        height: 114px;
     }
     
     .button_sides {
