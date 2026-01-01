@@ -169,7 +169,7 @@
 
     <script>
 function contactSupplier(name, whatsapp, business_name, isActive) {
-    if (isActive === '1') {
+
         const message = `Hello, ${name}
 ${business_name}
 
@@ -184,9 +184,6 @@ Let us know if you’re interested.`;
         const cleanWhatsapp = whatsapp.replace(/\D/g, '');
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/${cleanWhatsapp}?text=${encodedMessage}`, '_blank');
-    } else {
-        alert('Supplier is currently inactive');
-    }
 }
     </script>
     <style>
