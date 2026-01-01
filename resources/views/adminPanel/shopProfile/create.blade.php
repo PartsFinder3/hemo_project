@@ -140,70 +140,71 @@
     </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    let cropper;
-    const coverInput = document.getElementById('cover');
-    const cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
-    const cropImage = document.getElementById('crop-image');
-    const coverCroppedInput = document.getElementById('cover_cropped');
+document.addEventListener('DOMContentLoaded', function () {
 
-    coverInput.addEventListener('change', function(e) {
+    let cropper = null;
+
+    const coverInput  = document.getElementById('cover');
+    const cropImage   = document.getElementById('crop-image');
+    const cropBtn     = document.getElementById('crop-button');
+    const hiddenInput = document.getElementById('cover_cropped');
+
+    const cropModalEl = document.getElementById('cropModal');
+    const cropModal   = new bootstrap.Modal(cropModalEl);
+
+    coverInput.addEventListener('change', function (e) {
+
         const file = e.target.files[0];
-        if(file) {
-            const url = URL.createObjectURL(file);
-            cropImage.src = url;
+        if (!file) return;
 
-            // Show modal
-            cropModal.show();
+        cropImage.src = URL.createObjectURL(file);
+        cropModal.show();
 
-            // Destroy previous cropper
-            if(cropper) cropper.destroy();
-
-            cropper = new Cropper(cropImage, {
-                viewMode: 1,
-                movable: true,
-                zoomable: true,
-                scalable: false,
-                autoCropArea: 1,
-                aspectRatio: NaN, // width flexible
-                cropBoxResizable: true,
-                ready() {
-                    // Set crop box fixed height 180px, full width
-                    const containerData = cropper.getContainerData();
-                    cropper.setCropBoxData({
-                        width: containerData.width,
-                        height: 180
-                    });
-                }
-            });
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
         }
+
+        cropper = new Cropper(cropImage, {
+            viewMode: 2,               // 🔒 strict boundaries
+            aspectRatio: 16 / 5,       // 🔒 fixed 240px style ratio
+            autoCropArea: 1,
+
+            dragMode: 'move',          // ✅ image move only
+            movable: true,
+            zoomable: true,
+
+            cropBoxResizable: false,   // ❌ resize disable
+            cropBoxMovable: false,     // ❌ move disable
+            toggleDragModeOnDblclick: false,
+
+            scalable: false,
+            rotatable: false,
+
+            minCropBoxWidth: 1920,     // 🔒 HARD LOCK
+            minCropBoxHeight: 600,
+
+            background: false,
+            responsive: true,
+        });
     });
 
-    document.getElementById('crop-button').addEventListener('click', function() {
-        if(cropper) {
-            const canvas = cropper.getCroppedCanvas({
-                width: cropper.getContainerData().width, // full width
-                height: 180 // fixed height
-            });
+    cropBtn.addEventListener('click', function () {
 
-            // Save cropped image as base64 in hidden input
-            coverCroppedInput.value = canvas.toDataURL('image/jpeg');
+        if (!cropper) return;
 
-            // Optional: Show preview below input
-            let preview = document.getElementById('cover-preview');
-            if(!preview){
-                preview = document.createElement('img');
-                preview.id = 'cover-preview';
-                preview.style.maxWidth = '100%';
-                preview.style.display = 'block';
-                coverInput.parentNode.appendChild(preview);
-            }
-            preview.src = coverCroppedInput.value;
+        const canvas = cropper.getCroppedCanvas({
+            width: 1920,   // 🔥 NEVER export 240px
+            height: 600,
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high'
+        });
 
-            // Close modal
-            cropModal.hide();
-        }
+        hiddenInput.value = canvas.toDataURL('image/jpeg', 0.95);
+
+        cropModal.hide();
     });
+
 });
 </script>
 

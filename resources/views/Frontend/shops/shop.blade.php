@@ -916,72 +916,174 @@ h2 {
 
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        // Initialize pagination
+        function setupPagination(gridId, paginationId, perPage = 12) {
+            const grid = document.getElementById(gridId);
+            const pagination = document.getElementById(paginationId);
 
-    let cropper = null;
+            // Check if elements exist
+            if (!grid || !pagination) {
+                console.error('Grid or pagination element not found:', {gridId, paginationId});
+                return;
+            }
 
-    const coverInput  = document.getElementById('cover');
-    const cropImage   = document.getElementById('crop-image');
-    const cropBtn     = document.getElementById('crop-button');
-    const hiddenInput = document.getElementById('cover_cropped');
+            const products = Array.from(grid.querySelectorAll(".product-card"));
+            console.log('Found', products.length, 'products');
+            
+            // If no products, hide pagination
+            if (products.length === 0) {
+                pagination.style.display = 'none';
+                return;
+            }
 
-    const cropModalEl = document.getElementById('cropModal');
-    const cropModal   = new bootstrap.Modal(cropModalEl);
+            const totalPages = Math.ceil(products.length / perPage);
+            console.log('Total pages:', totalPages);
 
-    coverInput.addEventListener('change', function (e) {
+            // If only one page, hide pagination
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                // Show all products
+                products.forEach(product => product.style.display = 'block');
+                return;
+            }
 
-        const file = e.target.files[0];
-        if (!file) return;
+            // Show pagination
+            pagination.style.display = 'flex';
 
-        cropImage.src = URL.createObjectURL(file);
-        cropModal.show();
+            function showPage(page) {
+                console.log('Showing page', page);
+                products.forEach((product, index) => {
+                    const shouldShow = (index >= (page - 1) * perPage && index < page * perPage);
+                    product.style.display = shouldShow ? 'block' : 'none';
+                });
 
-        if (cropper) {
-            cropper.destroy();
-            cropper = null;
+                // Update active button
+                pagination.querySelectorAll("button").forEach((btn) => {
+                    btn.classList.toggle("active", parseInt(btn.dataset.page) === page);
+                });
+            }
+
+            function createPaginationButtons() {
+                pagination.innerHTML = "";
+
+                // Previous button
+                const prevBtn = document.createElement("button");
+                prevBtn.innerHTML = "&laquo;";
+                prevBtn.title = "Previous";
+                prevBtn.addEventListener("click", () => {
+                    const activeBtn = pagination.querySelector("button.active");
+                    const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+                    if (current > 1) showPage(current - 1);
+                });
+                pagination.appendChild(prevBtn);
+
+                // Page buttons
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement("button");
+                    btn.innerText = i;
+                    btn.dataset.page = i;
+                    btn.addEventListener("click", () => showPage(i));
+                    pagination.appendChild(btn);
+                }
+
+                // Next button
+                const nextBtn = document.createElement("button");
+                nextBtn.innerHTML = "&raquo;";
+                nextBtn.title = "Next";
+                nextBtn.addEventListener("click", () => {
+                    const activeBtn = pagination.querySelector("button.active");
+                    const current = activeBtn ? parseInt(activeBtn.dataset.page) : 1;
+                    if (current < totalPages) showPage(current + 1);
+                });
+                pagination.appendChild(nextBtn);
+            }
+
+            createPaginationButtons();
+            showPage(1); // Show first page initially
         }
 
-        cropper = new Cropper(cropImage, {
-            viewMode: 2,               // 🔒 strict boundaries
-            aspectRatio: 16 / 5,       // 🔒 fixed 240px style ratio
-            autoCropArea: 1,
+        // Other functions
+        function contactSupplier(isActive, whatsapp, title) {
+            if (isActive === '1') {
+                const message = encodeURIComponent(`Hello, I'm interested in: ${title}`);
+                const cleanWhatsapp = whatsapp.replace(/\D/g, '');
+                window.open(`https://wa.me/${cleanWhatsapp}?text=${message}`, '_blank');
+            } else {
+                alert('Supplier is currently inactive');
+            }
+        }
 
-            dragMode: 'move',          // ✅ image move only
-            movable: true,
-            zoomable: true,
+        function callSupplier(isActive, whatsapp) {
+            if (isActive === '1') {
+                window.location.href = `tel:${whatsapp}`;
+            } else {
+                alert('Supplier is currently inactive');
+            }
+        }
 
-            cropBoxResizable: false,   // ❌ resize disable
-            cropBoxMovable: false,     // ❌ move disable
-            toggleDragModeOnDblclick: false,
+        function openImageModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = src;
+        }
 
-            scalable: false,
-            rotatable: false,
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
 
-            minCropBoxWidth: 1920,     // 🔒 HARD LOCK
-            minCropBoxHeight: 600,
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up pagination...');
+            
+            // Setup pagination
+            setupPagination('productGrid1', 'pagination1', 12);
+            
+            // Add ripple effect to buttons
+            document.querySelectorAll('.pc-btn, .btn-product').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    this.appendChild(ripple);
 
-            background: false,
-            responsive: true,
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                }
+            });
+            
+            // Close modal when clicking outside image
+            document.getElementById('imageModal')?.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeImageModal();
+                }
+            });
         });
-    });
 
-    cropBtn.addEventListener('click', function () {
-
-        if (!cropper) return;
-
-        const canvas = cropper.getCroppedCanvas({
-            width: 1920,   // 🔥 NEVER export 240px
-            height: 600,
-            imageSmoothingEnabled: true,
-            imageSmoothingQuality: 'high'
+        // Also try to setup pagination when window loads (as backup)
+        window.addEventListener('load', function() {
+            console.log('Window loaded, checking pagination...');
+            const pagination = document.getElementById('pagination1');
+            if (pagination && pagination.innerHTML.trim() === '') {
+                console.log('Pagination not initialized, setting up again...');
+                setupPagination('productGrid1', 'pagination1', 12);
+            }
         });
+    </script>
 
-        hiddenInput.value = canvas.toDataURL('image/jpeg', 0.95);
-
-        cropModal.hide();
-    });
-
-});
-</script>
 @endsection
