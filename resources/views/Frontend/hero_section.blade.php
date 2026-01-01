@@ -287,7 +287,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
     .hero_image_section img { 
       
         max-width: 196px !important;
-        margin-left: 51px;
+        margin-left: -4px;
         margin-top: 38px;
      }
     .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
