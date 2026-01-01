@@ -484,6 +484,9 @@
         border-radius: 18px;
         margin-left: 153px;
     }
+    main{
+        min-height: 78vh;
+    }
 }
 @media (min-width: 1024px){
     .car {
