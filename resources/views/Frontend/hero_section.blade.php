@@ -266,7 +266,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
       padding: 10px !important;
       margin-left: 20px !important;
        }
-    .hero_image_section { margin:5px auto; }
+    .hero_image_section 
+    { 
+         margin-left: -30px !important; 
+    }
     .hero_image_section img { max-width: 220px !important; }
     .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
     .find-btn { font-size: 14px !important; height: 40px !important; }
