@@ -777,7 +777,20 @@ h2 {
         font-size: 0.85rem;
     }
 }
+@media (max-width: 767px) {
+    .information-contanier {
+        width: 300px;       /* match desktop width */
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .shop_name h3 {
+        font-size: 1.8rem;  /* keep same size as desktop */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
 /* Landscape Mode Adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
     .image_box {
