@@ -342,7 +342,9 @@ main{
      .part_finder_card {
    margin-left: -40px !important;  
 }
-
+    main {
+        min-height: 68vh;
+    }
 }
 /* Reduce the height of inputs and Select2 fields */
 .dropdown,
