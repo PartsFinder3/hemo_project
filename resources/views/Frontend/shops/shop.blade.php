@@ -466,7 +466,7 @@ h2 {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+                margin-top: 74px;
     }
     
     .buttons {
