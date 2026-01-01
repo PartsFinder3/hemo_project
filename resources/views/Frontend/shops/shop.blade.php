@@ -569,7 +569,10 @@ h2 {
 /* Very Small Mobile (below 375px) */
 @media (max-width: 374px) {
     
-    
+    .image_b{
+        width: 100%;
+        border-radius: 0px;
+    }
     .products-grid {
         gap: 10px;
     }
