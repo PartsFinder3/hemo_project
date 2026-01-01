@@ -284,7 +284,12 @@ body, main, header, nav, .hero-section, .hero-section_p {
          margin-left: -30px !important; 
          margin-top: -35px !important;
     }
-    .hero_image_section img { max-width: 220px !important; }
+    .hero_image_section img { 
+      
+        max-width: 196px !important;
+        margin-left: 51px;
+        margin-top: 38px;
+     }
     .hero_section_text h1 { font-size: 20px !important; margin-top: 15px; }
     .find-btn { font-size: 14px !important; height: 40px !important; }
     .radio-option label { font-size: 11px !important; }
@@ -297,6 +302,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
      .part_finder_card {
    margin-left: -40px !important;  
 }
+
 }
 /* Reduce the height of inputs and Select2 fields */
 .dropdown,
