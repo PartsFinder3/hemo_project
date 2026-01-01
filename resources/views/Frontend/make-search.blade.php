@@ -1059,7 +1059,16 @@
                 margin-left: 20px;
         margin-top: -45px;
     }
+
      
+}
+@media (max-width: 440px) {
+     .hero_image_section img{
+              
+           max-width: 214px !important;
+                margin-left: 20px;
+        margin-top: -45px;
+    }
 }
 </style>
 
