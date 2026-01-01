@@ -49,14 +49,15 @@
     margin-bottom: 20px !important;
     height: 240px;
 }
-
 .shop_name h3 {
     font-size: 1.8rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    white-space: nowrap;       /* prevent wrapping */
+    overflow: hidden;          /* hide overflow text */
+    text-overflow: ellipsis;   /* show "..." if too long */
 }
-
 .inqueries {
     width: auto;
     padding: 10px;
