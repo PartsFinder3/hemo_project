@@ -921,85 +921,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let cropper = null;
 
-    const coverInput = document.getElementById('cover');
-    const cropImage  = document.getElementById('crop-image');
-    const cropBtn    = document.getElementById('crop-button');
+    const coverInput  = document.getElementById('cover');
+    const cropImage   = document.getElementById('crop-image');
+    const cropBtn     = document.getElementById('crop-button');
     const hiddenInput = document.getElementById('cover_cropped');
 
     const cropModalEl = document.getElementById('cropModal');
-    const cropModal = new bootstrap.Modal(cropModalEl);
+    const cropModal   = new bootstrap.Modal(cropModalEl);
 
-    // When user selects image
     coverInput.addEventListener('change', function (e) {
 
         const file = e.target.files[0];
         if (!file) return;
 
-        // Create preview URL
-        const url = URL.createObjectURL(file);
-        cropImage.src = url;
-
+        cropImage.src = URL.createObjectURL(file);
         cropModal.show();
 
-        // Destroy old cropper
         if (cropper) {
             cropper.destroy();
             cropper = null;
         }
 
-        // INIT CROPPER (Facebook style)
         cropper = new Cropper(cropImage, {
-            viewMode: 1,
-            aspectRatio: 16 / 5,       // COVER RATIO
+            viewMode: 2,               // 🔒 strict boundaries
+            aspectRatio: 16 / 5,       // 🔒 fixed 240px style ratio
             autoCropArea: 1,
 
-            movable: true,             // image move
-            zoomable: true,             // zoom allowed
+            dragMode: 'move',          // ✅ image move only
+            movable: true,
+            zoomable: true,
+
+            cropBoxResizable: false,   // ❌ resize disable
+            cropBoxMovable: false,     // ❌ move disable
+            toggleDragModeOnDblclick: false,
+
             scalable: false,
             rotatable: false,
 
-            cropBoxResizable: false,   // ❌ user resize NA kare
-            cropBoxMovable: false,     // ❌ user move NA kare
-            dragMode: 'move',          // sirf image move ho
+            minCropBoxWidth: 1920,     // 🔒 HARD LOCK
+            minCropBoxHeight: 600,
 
-            responsive: true,
             background: false,
+            responsive: true,
         });
     });
 
-    // Crop button click
     cropBtn.addEventListener('click', function () {
 
         if (!cropper) return;
 
-        // EXPORT IN HIGH QUALITY (VERY IMPORTANT)
         const canvas = cropper.getCroppedCanvas({
-            width: 1920,     // HD WIDTH
-            height: 600,     // HD HEIGHT (16:5)
+            width: 1920,   // 🔥 NEVER export 240px
+            height: 600,
             imageSmoothingEnabled: true,
             imageSmoothingQuality: 'high'
         });
 
-        // Save base64 (high quality)
         hiddenInput.value = canvas.toDataURL('image/jpeg', 0.95);
-
-        // Optional preview (admin side)
-        let preview = document.getElementById('cover-preview');
-        if (!preview) {
-            preview = document.createElement('img');
-            preview.id = 'cover-preview';
-            preview.style.width = '100%';
-            preview.style.maxHeight = '240px';
-            preview.style.objectFit = 'cover';
-            preview.style.marginTop = '10px';
-            coverInput.parentNode.appendChild(preview);
-        }
-        preview.src = hiddenInput.value;
 
         cropModal.hide();
     });
 
 });
 </script>
-
 @endsection
