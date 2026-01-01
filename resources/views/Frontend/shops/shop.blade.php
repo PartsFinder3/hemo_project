@@ -499,6 +499,7 @@ h2 {
         width: 100%;
         height: 180px;
         margin-top: 30px !important;
+        border-radius: 2px;
     }
        .shop_name {
         display: flex;
