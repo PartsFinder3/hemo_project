@@ -165,10 +165,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 ready() {
                     // Set fixed crop height (180px) in pixels relative to image
                     const containerData = cropper.getContainerData();
-                    const scale = 240 / containerData.height;
+                    const scale = 180 / containerData.height;
                     cropper.setCropBoxData({
                         width: containerData.width,
-                        height: 240
+                        height: 180
                     });
                 }
             });
