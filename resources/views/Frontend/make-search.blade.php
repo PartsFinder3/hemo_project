@@ -1046,7 +1046,7 @@
 @media (max-width: 380px) {
      .hero_image_section 
     { 
-         margin-left: -30px !important; 
+         margin-left: -20px !important; 
          margin-top: 55px !important;
     }
 }
