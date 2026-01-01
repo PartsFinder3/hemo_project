@@ -205,22 +205,47 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* ===============================
         Responsive Fixes
 ================================ */
-@media (max-width: 1030px) {
-    .secound_hero_section {
-        flex-direction: row;
-        align-items: center;
-        gap: 25px;
-        padding: 0 20px;
-    }
-    .part_finder_card, .hero_image_section {
-        flex: 1 1 100%;
-        margin: 0 auto;
-        top: 0px !important;
-    }
-    .car { max-width: 420px; }
-    .hero_section_text h1 { font-size: 32px; }
-}
+@media (min-width: 1040px) {
 
+    .secound_hero_section {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 40px;
+        position: relative;
+        margin-left: 0 !important;
+    }
+
+    .part_finder_card {
+        flex: 0 0 420px;
+        margin: 0 !important;
+        justify-content: flex-end;
+    }
+
+    .car {
+        width: 100% !important;
+        max-width: 420px !important;
+        margin: 0 !important;
+    }
+
+    .hero_image_section {
+        position: relative !important;   /* ❌ absolute hataya */
+        top: 0 !important;
+        left: 0 !important;
+        flex: 0 0 480px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0 !important;
+    }
+
+    .hero_image_section img {
+        max-width: 480px !important;
+        width: 100%;
+        height: auto;
+    }
+}
 /* Tablets (≤768px) */
 @media (max-width: 768px) {
     .car { max-width: 380px; padding: 15px; border-radius: 15px; }
