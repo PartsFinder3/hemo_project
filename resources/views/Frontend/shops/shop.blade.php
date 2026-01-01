@@ -528,7 +528,13 @@ h2 {
         grid-template-columns: 1fr;
         gap: 10px;
     }
-    
+     .profile_photo{
+        width: 115px;
+    height: 98px;
+    }
+    .shop_name h3{
+            font-size: 19px;
+    }
     .gallery-item {
         height: 180px;
     }
@@ -582,6 +588,9 @@ h2 {
     .profile_photo{
         width: 115px;
     height: 98px;
+    }
+    .shop_name h3{
+            font-size: 19px;
     }
     .products-grid {
         gap: 10px;
