@@ -197,6 +197,8 @@
     padding: 1.2rem;
     display: flex;
     flex-direction: column;
+    height: 220px; /* Set a fixed height for all cards */
+    justify-content: space-between; /* Push buttons to bottom */
 }
 
 .product-title {
@@ -204,25 +206,23 @@
     font-weight: 600;
     color: #333;
     text-decoration: none;
-    display: block;
-    margin-bottom: 0.8rem;
-    line-height: 1.4;
-    min-height: 3em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show max 2 lines */
+    -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-bottom: 0.5rem;
 }
-
 .product-title:hover {
     color: #fd7e14;
 }
 
 .product-meta {
-    margin-bottom: 1.2rem;
     font-size: 0.85rem;
     color: #666;
-    line-height: 1.6;
-    flex-grow: 1;
+    line-height: 1.4;
+    overflow: hidden;
+    flex-grow: 1; /* take remaining space if needed */
 }
-
 .product-buttons {
     display: flex;
     flex-direction: column;
