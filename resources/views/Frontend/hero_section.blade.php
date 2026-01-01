@@ -261,7 +261,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 /* Small Mobile (≤380px) */
 @media (max-width: 380px) {
     .car {
-    max-width: 280px !important;
+    max-width: 320px !important;
      margin: auto;
       padding: 10px !important;
       margin-left: 20px !important;
