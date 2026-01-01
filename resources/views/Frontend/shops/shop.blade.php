@@ -499,7 +499,7 @@ h2 {
         width: 100%;
         height: 180px;
         margin-top: 30px !important;
-        border-radius: 2px;
+        border-radius: 8px;
     }
        .shop_name {
         display: flex;
