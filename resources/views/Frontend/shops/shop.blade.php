@@ -239,21 +239,9 @@
     transition: all 0.3s;
 }
 
-.btn-product.whatsapp {
-    background: #198754;
-}
 
-.btn-product.whatsapp:hover {
-    background: #128c7e;
-}
 
-.btn-product.call {
-    background: #fd7e14;
-}
 
-.btn-product.call:hover {
-    background: #e66a00;
-}
 
 /* ============ OPENING HOURS CARD ============ */
 .info-card {
