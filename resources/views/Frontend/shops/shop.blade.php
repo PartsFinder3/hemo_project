@@ -643,6 +643,7 @@ h2 {
     .shop_name h3 {
         font-size: 1.3rem;
         margin-bottom: 5px;
+        padding-left: 20px;
     }
     
     .inqueries {
