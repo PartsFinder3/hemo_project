@@ -459,9 +459,16 @@
        .abd-location-name {
         font-size: 10px !important;
     }
+
 }
 
-
+@media (max-width: 440px) {
+    .hero_image_section img {
+        max-width: 249px !important;
+        margin-left: 35px;
+        margin-top: 38px;
+    }
+}
 
 /* SEO Content Section */
 .seo_content {
