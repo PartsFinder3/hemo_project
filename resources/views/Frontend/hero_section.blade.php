@@ -697,36 +697,7 @@ main{
 </div>
 </div>
 <script>
-    $(document).ready(function(){
-    // Show first step
-    $('#make-group').show().addClass('active-step');
-
-    $('#car-make').on('change', function(){
-        if($(this).val()){
-            $('#model-group').slideDown().addClass('active-step');
-            $('#make-group').removeClass('active-step');
-        }
-    });
-
-    $('#car-model').on('change', function(){
-        if($(this).val()){
-            $('#year-group').slideDown().addClass('active-step');
-            $('#model-group').removeClass('active-step');
-        }
-    });
-
-    $('#car-year').on('change', function(){
-        $('#parts-dropdown-parts').closest('.form-group').slideDown().addClass('active-step');
-        $('#year-group').removeClass('active-step');
-    });
-
-    $('#parts-dropdown-parts').on('change', function(){
-        if($(this).val().length > 0){
-            $('#condition-group').slideDown().addClass('condition-active');
-            $('#parts-dropdown-parts').closest('.form-group').removeClass('active-step');
-        }
-    });
-});
+    
 $(document).ready(function() {
 
     // ===============================
