@@ -786,33 +786,36 @@ JSON;
 
         return view('Frontend.about',compact('meta' , 'domain'));
     }
-
 public function viewAd($slug, $id)
 {
-    $ad = Ads::where('slug', $slug)->firstOrFail();
+    // Fetch by ID
+    $ad = Ads::findOrFail($id);
 
-   
+    // If slug mismatch, redirect to correct slug (301 for SEO)
+    if ($ad->slug !== $slug) {
+        return redirect()->route('view.ad', ['slug' => $ad->slug, 'id' => $ad->id], 301);
+    }
 
     // Meta data
     $meta = [
-          'title' => Str::limit($ad->title, 60, ''), 
-       'description' => Str::limit(str_replace('**', '', $ad->description), 140, ''),
+        'title' => Str::limit($ad->title, 60, ''), 
+        'description' => Str::limit(str_replace('**', '', strip_tags($ad->description)), 140, ''),
     ];
-   $images = json_decode($ad->images, true);
 
- $imagesf = $ad?->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
-    // ✅ Structured Data (Schema.org)
-  $firstImage = is_array($imagesf) && count($imagesf) > 0 ? $imagesf[0] : null;
+    // Images
+    $imagesf = $ad->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
+    $firstImage = is_array($imagesf) && count($imagesf) > 0 ? $imagesf[0] : null;
+    $imageUrl = $firstImage
+        ? asset('storage/' . str_replace('storage/', '', $firstImage))
+        : asset('storage/default.webp');
 
-$imageUrl = $firstImage
-    ? 'https://partsfinder.ae/storage/' . str_replace('storage/', '', $firstImage)
-    : null;
+    // Structured Data
     $structuredData = [
         "@context" => "https://schema.org",
         "@type" => "Product",
         "name" => $meta['title'],
         "description" => $meta['description'],
-       "image" => $imageUrl,
+        "image" => $imageUrl,
         "url" => url()->current(),
         "sku" => $ad->id,
         "brand" => [
