@@ -659,7 +659,7 @@ main{
     </div>
 
 <div class="hero_image_section">
-    <img src="{{ asset($image) }}" alt="parts finder UAE" >
+    <img src="{{ asset($image) }}" alt="parts finder UAE"   fetchpriority="high">
 </div>
 </div>
 <script>
