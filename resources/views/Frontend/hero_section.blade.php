@@ -7,15 +7,7 @@
 body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
-/* سب dropdowns کو شروع میں چھپا دیں */
-/* سب dropdowns اور condition section کو شروع میں چھپائیں */
-#car-make,
-#car-model,
-#car-year,
-#parts-dropdown-parts,
-#condition-group {
-    visibility: hidden;  /* جگہ تو رہے گی، لیکن نظر نہیں آئیں گے */
-}
+
 .hero-section_p {
     width: 100%;
     min-height: 630px;
@@ -686,12 +678,7 @@ main{
 </div>
 <script>
 $(document).ready(function() {
-   function activateStep($el) {
-        // Remove active from all steps
-        $('#car-make, #car-model, #car-year, #parts-dropdown-parts, #condition-group').removeClass('active-step condition-active');
-        // Add active class
-        $el.addClass('active-step');
-    }
+
     // ===============================
     // Initialize Select2 for all dropdowns
     // ===============================
@@ -779,41 +766,5 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
     });
 
 });
-<script>
-$(document).ready(function() {
-    // سب dropdowns اور condition section کا hover/focus effect
-    function setActiveBorder($el) {
-        // سبھی سے active class ہٹا دیں
-        $('#car-make, #car-model, #car-year, #parts-dropdown-parts, #condition-group').removeClass('condition-active active-step');
-        // current element پر add کریں
-        $el.addClass('active-step condition-active');
-    }
-
-    // make پر فوکس یا change ہونے پر
-    $('#car-make').on('focus change', function() {
-        setActiveBorder($(this));
-    });
-
-    // model پر فوکس یا change ہونے پر
-    $('#car-model').on('focus change', function() {
-        setActiveBorder($(this));
-    });
-
-    // year پر فوکس یا change ہونے پر
-    $('#car-year').on('focus change', function() {
-        setActiveBorder($(this));
-    });
-
-    // parts dropdown پر فوکس یا change ہونے پر
-    $('#parts-dropdown-parts').on('focus change', function() {
-        setActiveBorder($(this).closest('.form-group'));
-    });
-
-    // condition radio پر click ہونے پر
-    $('#condition-group input[type=radio]').on('click', function() {
-        setActiveBorder($('#condition-group'));
-    });
-});
-</script>
 
 </script>
