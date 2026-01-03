@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Resizer</title>
+<title>Resize Online Images</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -21,7 +21,7 @@
         border-radius: 12px;
         box-shadow: 0 6px 18px rgba(0,0,0,0.1);
         text-align: center;
-        width: 320px;
+        width: 400px;
     }
 
     h2 {
@@ -29,12 +29,18 @@
         color: #333;
     }
 
-    input[type="file"] {
-        display: block;
-        margin: 20px auto;
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        resize: none;
+        font-size: 14px;
     }
 
     button {
+        margin-top: 15px;
         background: #ff7700;
         border: none;
         padding: 12px 25px;
@@ -59,14 +65,14 @@
 <body>
 
 <div class="container">
-    <h2>Resize Images</h2>
-    <form action="/resize-images" method="POST" enctype="multipart/form-data">
+    <h2>Resize Online Images</h2>
+    <form action="/resize-urls" method="POST">
         <!-- CSRF token for Laravel -->
         @csrf
-        <input type="file" name="images[]" multiple accept="image/*">
+        <textarea name="image_urls" placeholder="Paste image URLs here, one per line"></textarea>
         <button type="submit">OK</button>
     </form>
-    <p class="info">Select one or multiple images to resize</p>
+    <p class="info">Paste all image links here. One link per line.</p>
 </div>
 
 </body>
