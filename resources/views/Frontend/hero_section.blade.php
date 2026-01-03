@@ -677,10 +677,11 @@ main{
 </div>
 </div>
 <script>
+<script>
 $(document).ready(function() {
 
     // ===============================
-    // Select2 Initialize
+    // Initialize Select2
     // ===============================
     function initSelect2($el, placeholder = 'Select an option') {
         $el.select2({
@@ -695,7 +696,7 @@ $(document).ready(function() {
         });
     }
 
-    // Initialize once
+    // Initialize all dropdowns
     initSelect2($('#car-make'), 'Select Make');
     initSelect2($('#car-model'), 'Select Model');
     initSelect2($('#car-year'), 'Select Year');
@@ -708,30 +709,25 @@ $(document).ready(function() {
     $('#condition-group').hide();
 
     // ===============================
-    // Show parts dropdown on Year select
+    // Steps array for wizard-style active border
     // ===============================
-    $('#car-year').on('change', function() {
-        let $partsGroup = $('#parts-dropdown-parts').closest('.form-group');
-        $partsGroup.slideDown();
-    });
+    const steps = [
+        $('#car-make'),
+        $('#car-model'),
+        $('#car-year'),
+        $('#parts-dropdown-parts'),
+        $('#condition-group')
+    ];
 
-    // ===============================
-    // Show condition when a part is selected
-    // ===============================
-    $('#parts-dropdown-parts').on('select2:select select2:unselect', function() {
-        let selectedParts = $(this).val();
-        if (selectedParts && selectedParts.length > 0) {
-            $('#condition-group').slideDown();
-        } else {
-            $('#condition-group').slideUp();
-        }
-    });
-
-    // ===============================
-    // Active border effect
-    // ===============================
-    function setActiveBorder($el) {
+    // Remove all active borders
+    function resetActiveBorders() {
         $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
+    }
+
+    // Activate specific step
+    function activateStep(index) {
+        resetActiveBorders();
+        let $el = steps[index];
 
         if ($el.is('select')) {
             $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
@@ -740,23 +736,60 @@ $(document).ready(function() {
         }
     }
 
-    // Make, Model, Year focus/change
-    $('#car-make, #car-model, #car-year').on('focus change', function() {
-        setActiveBorder($(this));
+    // ===============================
+    // Initial step (Make)
+    // ===============================
+    activateStep(0);
+
+    // ===============================
+    // Make selected → Model active
+    // ===============================
+    $('#car-make').on('change', function() {
+        if ($(this).val()) {
+            activateStep(1);
+        } else {
+            activateStep(0);
+        }
     });
 
-    // Parts dropdown
-    $('#parts-dropdown-parts').on('select2:open select2:select select2:unselect', function() {
-        setActiveBorder($(this));
+    // Model selected → Year active
+    $('#car-model').on('change', function() {
+        if ($(this).val()) {
+            activateStep(2);
+        } else {
+            activateStep(1);
+        }
     });
 
-    // Condition radio click
+    // Year selected → Parts active
+    $('#car-year').on('change', function() {
+        let $partsGroup = $('#parts-dropdown-parts').closest('.form-group');
+        $partsGroup.slideDown();
+        if ($(this).val()) {
+            activateStep(3);
+        } else {
+            activateStep(2);
+        }
+    });
+
+    // Parts selected → Condition active
+    $('#parts-dropdown-parts').on('select2:select select2:unselect', function() {
+        let selectedParts = $(this).val();
+        if (selectedParts && selectedParts.length > 0) {
+            $('#condition-group').slideDown();
+            activateStep(4);
+        } else {
+            activateStep(3);
+        }
+    });
+
+    // Condition click → highlight itself
     $('#condition-group input[type=radio]').on('click', function() {
-        setActiveBorder($('#condition-group'));
+        activateStep(4);
     });
 
     // ===============================
-    // Dynamic models load
+    // Dynamic models load via AJAX
     // ===============================
     $('#car-make').on('change', function() {
         var makeId = $(this).val();
