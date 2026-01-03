@@ -55,7 +55,7 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Sara Khan</h3>
+                        <h3 class="name">Mohammed Al Falasi</h3>
                         <p class="customer-role">Marketing Director</p>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Omar Al Hashmi</h3>
+                        <h3 class="name">Khalid Al Suwaidi</h3>
                         <p class="customer-role">Startup Founder</p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Fatima Yusuf</h3>
+                        <h3 class="name">Saeed Al Hammadi</h3>
                         <p class="customer-role">Freelancer</p>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Hassan Qureshi</h3>
+                        <h3 class="name">Hamdan Al Shamsi</h3>
                         <p class="customer-role">Product Manager</p>
                     </div>
                 </div>
