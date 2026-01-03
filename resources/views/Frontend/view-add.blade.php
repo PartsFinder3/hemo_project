@@ -137,7 +137,7 @@
             <div class="col-md-6">
            @php
                 // Check if $ad exists and has images
-               
+                $images = $ad?->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
             @endphp
 
                 <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
