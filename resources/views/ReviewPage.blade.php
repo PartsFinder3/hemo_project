@@ -222,6 +222,7 @@
         border: 1px solid rgba(255, 119, 0, 0.1);
         position: relative;
         overflow: hidden;
+        height: 420px;
     }
     
     .review-card::before {
