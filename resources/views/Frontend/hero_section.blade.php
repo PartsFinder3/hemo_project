@@ -7,14 +7,26 @@
 body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
-/* سب dropdowns کو شروع میں چھپا دیں */
-/* سب dropdowns اور condition section کو شروع میں چھپائیں */
-#car-make,
-#car-model,
-#car-year,
+#make-group,
+#model-group,
+#year-group,
 #parts-dropdown-parts,
 #condition-group {
-    visibility: hidden;  /* جگہ تو رہے گی، لیکن نظر نہیں آئیں گے */
+    display: none;
+}
+
+/* Active Steps Highlight */
+.active-step .select2-selection,
+.active-step {
+    border: 2px solid #28a745 !important;
+    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.condition-active {
+    border: 2px solid #28a745 !important;
+    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
 }
 .hero-section_p {
     width: 100%;
@@ -685,6 +697,36 @@ main{
 </div>
 </div>
 <script>
+    $(document).ready(function(){
+    // Show first step
+    $('#make-group').show().addClass('active-step');
+
+    $('#car-make').on('change', function(){
+        if($(this).val()){
+            $('#model-group').slideDown().addClass('active-step');
+            $('#make-group').removeClass('active-step');
+        }
+    });
+
+    $('#car-model').on('change', function(){
+        if($(this).val()){
+            $('#year-group').slideDown().addClass('active-step');
+            $('#model-group').removeClass('active-step');
+        }
+    });
+
+    $('#car-year').on('change', function(){
+        $('#parts-dropdown-parts').closest('.form-group').slideDown().addClass('active-step');
+        $('#year-group').removeClass('active-step');
+    });
+
+    $('#parts-dropdown-parts').on('change', function(){
+        if($(this).val().length > 0){
+            $('#condition-group').slideDown().addClass('condition-active');
+            $('#parts-dropdown-parts').closest('.form-group').removeClass('active-step');
+        }
+    });
+});
 $(document).ready(function() {
 
     // ===============================
