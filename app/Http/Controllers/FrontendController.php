@@ -805,7 +805,7 @@ public function viewAd($slug, $id)
   $firstImage = is_array($imagesf) && count($imagesf) > 0 ? $imagesf[0] : null;
 
 $imageUrl = $firstImage
-    ? 'https://partsfinder.ae/' . str_replace('storage/', '', $firstImage)
+    ? 'https://partsfinder.ae/storage/' . str_replace('storage/', '', $firstImage)
     : null;
     $structuredData = [
         "@context" => "https://schema.org",
