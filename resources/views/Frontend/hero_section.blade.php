@@ -729,37 +729,24 @@ $(document).ready(function() {
 
     // ===============================
     // Active border effect
-function updateStepBorders() {
-    // Remove all previous highlights
+    // ===============================
+   function setActiveBorder($el) {
     $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
 
-    // Step 1: Make
-    if (!$('#car-make').val()) {
-        $('#car-make').next('.select2-container').find('.select2-selection').addClass('condition-active');
-    }
-    // Step 2: Model
-    else if (!$('#car-model').val()) {
-        $('#car-model').next('.select2-container').find('.select2-selection').addClass('condition-active');
-    }
-    // Step 3: Parts
-    else if (!$('#parts-dropdown-parts').val() || $('#parts-dropdown-parts').val().length === 0) {
-        $('#parts-dropdown-parts').next('.select2-container').find('.select2-selection').addClass('condition-active');
-    }
-    // Step 4: Condition
-    else {
-        $('#condition-group').addClass('condition-active');
+    // Next field logic
+    let $next;
+    if ($el.is('#car-make')) $next = $('#car-model');
+    else if ($el.is('#car-model')) $next = $('#car-year');
+    else if ($el.is('#car-year')) $next = $('#parts-dropdown-parts');
+    else if ($el.is('#parts-dropdown-parts')) $next = $('#condition-group');
+    else $next = $el;
+
+    if ($next.is('select')) {
+        $next.next('.select2-container').find('.select2-selection').addClass('condition-active');
+    } else {
+        $next.addClass('condition-active');
     }
 }
-
-// ===============================
-// Call on page load
-// ===============================
-updateStepBorders();
-
-// ===============================
-// Call after each change
-// ===============================
-
     // Make, Model, Year focus/change
     $('#car-make, #car-model, #car-year').on('focus change', function() {
         setActiveBorder($(this));
