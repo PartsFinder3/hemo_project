@@ -599,7 +599,19 @@ main{
     color: #000 !important;
     font-weight: bold;
 }
+.select2-container--default 
+.select2-selection--multiple 
+.select2-selection__choice {
+    padding-left: 10px !important;   /* 👈 text left gap */
+    padding-right: 8px !important;
+}
 
+/* remove (×) icon ka gap */
+.select2-container--default 
+.select2-selection--multiple 
+.select2-selection__choice__remove {
+    margin-right: 6px !important;    /* 👈 icon aur text ke darmiyan gap */
+}
 </style>
 
 <div class="hero_section_text">
