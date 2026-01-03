@@ -37,7 +37,8 @@ use Illuminate\Http\Request;
 use App\Services\InquiryService;
 use App\Jobs\GenerateSeoContentJob;
 use function Ramsey\Uuid\v1;
-
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 class FrontendController extends Controller
 {
     protected $inquiryService;
@@ -1533,4 +1534,43 @@ Do not explain the process.
     return view('imagesresizePage');
   }
 
+  public function images_resiz_post(Request $request)
+{
+    // 1. Validate input
+    $request->validate([
+        'image_url' => 'required|url'
+    ]);
+
+    $url = $request->input('image_url');
+
+    try {
+        // 2. Get the image content from URL
+        $imageContent = file_get_contents($url);
+
+        if(!$imageContent){
+            return back()->with('error', 'Unable to fetch image from URL.');
+        }
+
+        // 3. Create Intervention Image instance
+        $img = Image::make($imageContent);
+
+        // 4. Resize - keep original aspect ratio, max width 800px, max height 800px
+        $img->resize(800, 800, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize(); // prevent enlarging
+        });
+
+        // 5. Save resized image to storage (public folder)
+        $fileName = 'resized_' . time() . '.webp'; // WebP for smaller size
+        $path = 'public/resized_images/' . $fileName;
+        Storage::put($path, $img->encode('webp', 85)); // 85% quality
+
+        // 6. Return success + path
+        $urlPath = Storage::url($path); // URL for frontend
+        return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View Image</a>");
+
+    } catch (\Exception $e) {
+        return back()->with('error', 'Error: ' . $e->getMessage());
+    }
+}
 }
