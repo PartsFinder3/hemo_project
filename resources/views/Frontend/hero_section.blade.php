@@ -779,5 +779,41 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
     });
 
 });
+<script>
+$(document).ready(function() {
+    // سب dropdowns اور condition section کا hover/focus effect
+    function setActiveBorder($el) {
+        // سبھی سے active class ہٹا دیں
+        $('#car-make, #car-model, #car-year, #parts-dropdown-parts, #condition-group').removeClass('condition-active active-step');
+        // current element پر add کریں
+        $el.addClass('active-step condition-active');
+    }
+
+    // make پر فوکس یا change ہونے پر
+    $('#car-make').on('focus change', function() {
+        setActiveBorder($(this));
+    });
+
+    // model پر فوکس یا change ہونے پر
+    $('#car-model').on('focus change', function() {
+        setActiveBorder($(this));
+    });
+
+    // year پر فوکس یا change ہونے پر
+    $('#car-year').on('focus change', function() {
+        setActiveBorder($(this));
+    });
+
+    // parts dropdown پر فوکس یا change ہونے پر
+    $('#parts-dropdown-parts').on('focus change', function() {
+        setActiveBorder($(this).closest('.form-group'));
+    });
+
+    // condition radio پر click ہونے پر
+    $('#condition-group input[type=radio]').on('click', function() {
+        setActiveBorder($('#condition-group'));
+    });
+});
+</script>
 
 </script>
