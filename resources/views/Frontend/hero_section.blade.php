@@ -206,10 +206,10 @@ body, main, header, nav, .hero-section, .hero-section_p {
     border-radius: 3px;
     transition: all 0.3s ease;
 }
-
 .condition-active {
-    border: 1px solid #28a745 !important;
-    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
+    border: 2px solid #28a745 !important;  /* green border */
+    box-shadow: 0 0 8px rgba(40,167,69,0.5) !important;
+    transition: all 0.3s ease;
 }
 
 /* ===============================
@@ -771,12 +771,18 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
 <script>
 $(document).ready(function() {
     // سب dropdowns اور condition section کا hover/focus effect
-    function setActiveBorder($el) {
-        // سبھی سے active class ہٹا دیں
-        $('#car-make, #car-model, #car-year, #parts-dropdown-parts, #condition-group').removeClass('condition-active active-step');
-        // current element پر add کریں
-        $el.addClass('active-step condition-active');
+ function setActiveBorder($el) {
+    // Remove active from all
+    $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
+
+    // Add active to Select2 if it's a select
+    if ($el.is('select')) {
+        $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
+    } else {
+        // else normal element (like radio)
+        $el.addClass('condition-active');
     }
+}
 
     // make پر فوکس یا change ہونے پر
     $('#car-make').on('focus change', function() {
