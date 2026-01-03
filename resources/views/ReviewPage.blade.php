@@ -160,18 +160,17 @@
         margin-bottom: 50px;
     }
     
-    .section-title {
-        font-size: 2.5rem;
-        color: black !important;
-        margin-bottom: 10px;
-        font-weight: 700;
-        letter-spacing: -0.5px;
-    }
+.section-title {
+    font-size: 2.5rem;
+    color: black; /* Pure black text for the title */
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
     
-    .section-title .highlight {
-        color: #ff7700;
-        position: relative;
-    }
+ .section-title .highlight {
+    color: #ff7700; 
+}
     
     .section-title .highlight::after {
         content: '';
