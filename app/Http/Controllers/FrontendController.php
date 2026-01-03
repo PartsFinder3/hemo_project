@@ -800,18 +800,14 @@ public function viewAd($slug, $id)
     ];
 $images = json_decode($ad->images, true);
 
-$imagePath = is_array($images) && count($images) > 0
-    ? $images[0]
-    : null;
-
-$imageUrl = $imagePath ? asset('storage/' . ltrim($imagePath, '/')) : null;
+ $images = $ad?->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
     // ✅ Structured Data (Schema.org)
     $structuredData = [
         "@context" => "https://schema.org",
         "@type" => "Product",
         "name" => $meta['title'],
         "description" => $meta['description'],
-       "image" => $imageUrl,
+       "image" => $images,
         "url" => url()->current(),
         "sku" => $ad->id,
         "brand" => [
