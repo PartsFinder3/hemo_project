@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resize Online Images</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -63,7 +64,17 @@
 </style>
 </head>
 <body>
+    @if(session('success'))
+    <script>
+        swal("Success!", "{{ session('success') }}", "success");
+    </script>
+@endif
 
+@if(session('error'))
+    <script>
+        swal("Error!", "{{ session('error') }}", "error");
+    </script>
+@endif
 <div class="container">
     <h2>Resize Online Images</h2>
     <form action="{{route('imagesresiz.post')}}" method="POST">
