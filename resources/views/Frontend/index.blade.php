@@ -546,7 +546,7 @@
 
 
     @include('Frontend.layout.company')
-   
+    
     <style>
            /* Pagination */
     .pagination {

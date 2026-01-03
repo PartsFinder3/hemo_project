@@ -255,6 +255,7 @@
         </div>
     </section>
     @endif
+    @include('ReviewPage')
     <section class="cta-banner">
         <div class="cta-content">
             <h2>Find Car Spare Parts Online Today</h2>
