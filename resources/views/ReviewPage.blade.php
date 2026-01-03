@@ -1,7 +1,7 @@
 <!-- Review Section -->
 <section class="review-section">
     <div class="section-header">
-        <h2 class="section-title" style="color: black">What Our <span class="highlight">Customers</span> Say</h2>
+        <h2>What Our <span >Customers</span> Say</h2>
         <p class="section-subtitle">Read authentic reviews from people who've experienced our service</p>
     </div>
     
