@@ -768,35 +768,3 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
 });
 
 </script>
-<script>
-    $(document).ready(function() {
-
-    // Add a class for active border (green)
-    $('<style>')
-        .prop('type', 'text/css')
-        .html('.model-active { border: 2px solid #28a745 !important; box-shadow: 0 0 8px rgba(40,167,69,0.5); transition: all 0.3s ease; }')
-        .appendTo('head');
-
-    // When user selects a make
-    $('#car-make').on('change', function() {
-        var makeId = $(this).val();
-        var $model = $('#car-model');
-
-        if(makeId) {
-            // Highlight the Model dropdown
-            $model.addClass('model-active');
-        } else {
-            // Remove highlight if no Make selected
-            $model.removeClass('model-active');
-        }
-    });
-
-    // Optional: remove highlight when model is selected
-    $('#car-model').on('change', function() {
-        if($(this).val()) {
-            $(this).removeClass('model-active');
-        }
-    });
-
-});
-</script>
