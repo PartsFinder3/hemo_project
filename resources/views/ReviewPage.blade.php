@@ -439,10 +439,8 @@
         
         // Right button click
         rightBtn.addEventListener('click', () => {
-            if (currentIndex < cards.length - visibleCards) {
-                currentIndex++;
-                updateSliderPosition();
-            }
+          currentIndex++;
+updateSliderPosition();
         });
         
         // Left button click
