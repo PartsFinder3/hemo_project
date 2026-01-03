@@ -1,7 +1,9 @@
 <!-- Review Section -->
 <section class="review-section">
     <div class="section-header">
-        <h2>What Our <span >Customers</span> Say</h2>
+      <h2 style="font-family: 'Arial Black', Gadget, sans-serif; font-size: 2.5rem; color: black;">
+    What Our <span style="color: #ff7700;">Customers</span> Say
+</h2>
         <p class="section-subtitle">Read authentic reviews from people who've experienced our service</p>
     </div>
     
