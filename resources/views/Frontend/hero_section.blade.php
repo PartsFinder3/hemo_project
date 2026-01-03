@@ -686,54 +686,73 @@ main{
 </div>
 <script>
 $(document).ready(function() {
-
-    // Function to activate a step (green border)
-    function activateStep($el) {
+   function activateStep($el) {
         // Remove active from all steps
         $('#car-make, #car-model, #car-year, #parts-dropdown-parts, #condition-group').removeClass('active-step condition-active');
         // Add active class
         $el.addClass('active-step');
     }
-
     // ===============================
     // Initialize Select2 for all dropdowns
     // ===============================
-    function initSelect2($el, placeholder = 'Select an option') {
-        $el.select2({
-            width: '100%',
-            placeholder: placeholder,
-            allowClear: false,
-        });
+ function initSelect2($el, placeholder = 'Select an option') {
+    $el.select2({
+        width: '100%',
+        placeholder: placeholder,
+        allowClear: false, // ❌ don't allow clearing, keeps your first <option> visible
+    });
 
-        $el.on('select2:open', function() {
-            $('.select2-search__field').attr('placeholder', 'Search here');
-        });
+    // Add search placeholder inside Select2 input
+    $el.on('select2:open', function() {
+        $('.select2-search__field').attr('placeholder', 'Search here');
+    });
 
-        if (!$el.val()) {
-            $el.val('').trigger('change.select2'); 
-        }
+    // If no value is selected, make sure first option is selected visually
+    if (!$el.val()) {
+        $el.val('').trigger('change.select2'); 
     }
+}
 
-    initSelect2($('#car-make'), 'Select Make');
-    initSelect2($('#car-model'), 'Select Model');
-    initSelect2($('#car-year'), 'Select Year');
-    initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
+// Initialize all dropdowns
+initSelect2($('#car-make'), 'Select Make');
+initSelect2($('#car-model'), 'Select Model');
+initSelect2($('#car-year'), 'Select Year');
+initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
+    // ===============================
+    // Hide parts dropdown initially
+    // ===============================
+    $('#parts-dropdown-parts').closest('.form-group').hide();
 
-    // Initially hide model, year, parts, condition
-    $('#car-model, #car-year, #parts-dropdown-parts, #condition-group').closest('.form-group').hide();
+    // Show parts dropdown when a Year is selected
+    $('#car-year').on('change', function() {
+        let $partsGroup = $('#parts-dropdown-parts').closest('.form-group');
+        $partsGroup.slideDown();
 
-    // Step 1: Activate Make on page load
-    activateStep($('#car-make'));
+        // Refresh Select2 to make sure placeholder is applied
+        initSelect2($('#parts-dropdown-parts'), 'Select Parts');
+    });
 
     // ===============================
-    // Make change -> load Models
+    // Show/Hide Condition Section
+    // ===============================
+    $('#condition-group').hide();
+    $('#parts-dropdown-parts').on('change', function() {
+        let selectedParts = $(this).val();
+        if (selectedParts && selectedParts.length > 0) {
+            $('#condition-group').slideDown();
+        } else {
+            $('#condition-group').slideUp();
+        }
+    });
+
+    // ===============================
+    // Load Models Dynamically when Make changes
     // ===============================
     $('#car-make').on('change', function() {
         var makeId = $(this).val();
         var $model = $('#car-model');
 
         if(makeId) {
-            $model.closest('.form-group').slideDown();
             $model.empty().append('<option value="">Loading models...</option>').trigger('change');
 
             $.ajax({
@@ -745,56 +764,20 @@ $(document).ready(function() {
                     $.each(data, function(key, model) {
                         $model.append('<option value="'+model.id+'">'+model.name+'</option>');
                     });
-                    initSelect2($model, 'Select Model');
-                    // Activate Model dropdown
-                    activateStep($model);
+
+                    // Refresh Select2 and placeholder
+                    initSelect2($model);
                 },
                 error: function() {
                     $model.empty().append('<option value="">Error loading models</option>').trigger('change');
                 }
             });
         } else {
-            $model.closest('.form-group').slideUp();
-            activateStep($('#car-make')); // revert to Make active
+            $model.empty().append('<option value="">Select Model</option>').trigger('change');
+            initSelect2($model);
         }
     });
 
-    // Step 2: When Model selected -> show Year
-    $('#car-model').on('change', function() {
-        var $year = $('#car-year');
-        if($(this).val()) {
-            $year.closest('.form-group').slideDown();
-            activateStep($year);
-        } else {
-            $year.closest('.form-group').slideUp();
-            activateStep($('#car-make'));
-        }
-    });
-
-    // Step 3: When Year selected -> show Parts
-    $('#car-year').on('change', function() {
-        var $parts = $('#parts-dropdown-parts');
-        if($(this).val()) {
-            $parts.closest('.form-group').slideDown();
-            activateStep($parts);
-        } else {
-            $parts.closest('.form-group').slideUp();
-            activateStep($('#car-year'));
-        }
-    });
-
-    // Step 4: When Parts selected -> show Condition
-    $('#parts-dropdown-parts').on('change', function() {
-        var $condition = $('#condition-group');
-        if($(this).val() && $(this).val().length > 0) {
-            $condition.slideDown();
-            $condition.addClass('condition-active'); // green border
-            $parts.removeClass('active-step'); // remove green from parts
-        } else {
-            $condition.slideUp();
-            $condition.removeClass('condition-active');
-            $parts.addClass('active-step');
-        }
-    });
 });
+
 </script>
