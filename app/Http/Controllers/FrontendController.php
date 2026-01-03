@@ -802,12 +802,17 @@ public function viewAd($slug, $id)
 
  $imagesf = $ad?->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
     // ✅ Structured Data (Schema.org)
+  $firstImage = is_array($imagesf) && count($imagesf) > 0 ? $imagesf[0] : null;
+
+$imageUrl = $firstImage
+    ? 'https://partsfinder.ae/' . str_replace('storage/', '', $firstImage)
+    : null;
     $structuredData = [
         "@context" => "https://schema.org",
         "@type" => "Product",
         "name" => $meta['title'],
         "description" => $meta['description'],
-       "image" => "patsfinder.ae/".$imagesf,
+       "image" => "patsfinder.ae/".$imageUrl,
         "url" => url()->current(),
         "sku" => $ad->id,
         "brand" => [
