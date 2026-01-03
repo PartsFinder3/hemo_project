@@ -796,7 +796,7 @@ public function viewAd($slug, $id)
     // Meta data
     $meta = [
           'title' => Str::limit($ad->title, 60, ''), 
-         'description' => Str::limit($ad->description, 140, ''),
+       'description' => Str::limit(str_replace('**', '', $ad->description), 140, ''),
     ];
 
     // ✅ Structured Data (Schema.org)
