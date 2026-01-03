@@ -1535,49 +1535,48 @@ Do not explain the process.
   }
 public function images_resiz_post(Request $request)
 {
-    // 1️⃣ Validate input
     $request->validate([
-        'image_url' => 'required|string' // hum string le rahe hain, URL ya local path
+        'image_url' => 'required|url'
     ]);
 
-    $imagePath = $request->input('image_url');
+    $url = $request->input('image_url');
+
+    // Step 1: Fetch image content safely
+    try {
+        $imageContent = @file_get_contents($url);
+        if (!$imageContent) {
+            return back()->with('error', 'Cannot fetch image from this URL.');
+        }
+    } catch (\Exception $e) {
+        return back()->with('error', 'Error fetching image: ' . $e->getMessage());
+    }
+
+    // Step 2: Make image
+    try {
+        $img = Image::make($imageContent);
+    } catch (\Exception $e) {
+        return back()->with('error', 'Error creating image: ' . $e->getMessage());
+    }
+
+    // Step 3: Resize
+    $img->resize(800, 800, function ($constraint) {
+        $constraint->aspectRatio();
+        $constraint->upsize();
+    });
+
+    // Step 4: Save
+    $fileName = 'resized_' . time() . '.webp';
+    $path = 'public/resized_images/' . $fileName;
 
     try {
-        // 2️⃣ Check if file exists (local path or storage)
-        if (!file_exists(public_path($imagePath))) {
-            return back()->with('error', "File not found at: {$imagePath}");
-        }
-
-        // 3️⃣ Create Intervention Image instance
-        $img = \Intervention\Image\Facades\Image::make(public_path($imagePath));
-
-        // 4️⃣ Resize image (maintain aspect ratio)
-        $img->resize(800, 800, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize(); // don't enlarge
-        });
-
-        // 5️⃣ Save resized image (same folder or new folder)
-        $fileName = 'resized_' . time() . '.webp';
-        $savePath = public_path('storage/resized_images/' . $fileName);
-
-        // Ensure folder exists
-        if (!file_exists(public_path('storage/resized_images'))) {
-            mkdir(public_path('storage/resized_images'), 0755, true);
-        }
-
-        $img->save($savePath, 85); // 85% quality
-
-        $urlPath = asset('storage/resized_images/' . $fileName);
-
-        // ✅ Success
-        return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View Here</a>");
-
+        Storage::put($path, $img->encode('webp', 85));
     } catch (\Exception $e) {
-        // 6️⃣ Full debug
-        return back()->with('error', "Error: " . $e->getMessage());
+        return back()->with('error', 'Failed to save image: ' . $e->getMessage());
     }
+
+    $urlPath = Storage::url($path);
+
+    return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View</a>");
+}
 }
 
-
-}
