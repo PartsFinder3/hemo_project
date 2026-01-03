@@ -222,7 +222,7 @@
         border: 1px solid rgba(255, 119, 0, 0.1);
         position: relative;
         overflow: hidden;
-        height: 420px;
+        height: 299px;
     }
     
     .review-card::before {
@@ -268,6 +268,7 @@
         margin-bottom: 25px;
         text-align: left;
         font-style: italic;
+        height: 115px;
     }
     
     /* Customer Info */
