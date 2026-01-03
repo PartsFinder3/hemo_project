@@ -625,7 +625,7 @@ main{
     <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple required>
          <option value="">Select Part</option>
         
-        <option value="">Select a year</option>
+        <option value="">Select a Part</option>
                @foreach ($parts as $part)
             <option value="{{ $part->id }}">{{ $part->name }}</option>
         @endforeach
