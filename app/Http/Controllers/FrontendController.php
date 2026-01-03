@@ -786,40 +786,63 @@ JSON;
         return view('Frontend.about',compact('meta' , 'domain'));
     }
 
- public function viewAd($slug, $id)
+public function viewAd($slug, $id)
 {
-    $ad = Ads::where('slug', $slug)->firstOrFail(); // ensure ad exists
+    $ad = Ads::where('slug', $slug)->firstOrFail();
 
-    // Helper function to truncate by sentence
-    function truncateSentence($text, $maxLength = 150) {
-        if (strlen($text) <= $maxLength) {
+    // Sentence-safe truncate function
+    function truncateSentence($text, $maxLength = 150)
+    {
+        if (mb_strlen($text) <= $maxLength) {
             return $text;
         }
 
-        // Split text into sentences
-        $sentences = preg_split('/([.!?]+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
+        $sentences = preg_split('/(?<=[.!?])\s+/', $text);
         $result = '';
-        $length = 0;
 
         foreach ($sentences as $sentence) {
-            $sentence = trim($sentence);
-            if ($length + strlen($sentence) > $maxLength) {
+            if (mb_strlen($result . ' ' . $sentence) > $maxLength) {
                 break;
             }
-            $result .= $sentence . ' ';
-            $length += strlen($sentence) + 1;
+            $result .= ' ' . $sentence;
         }
 
         return trim($result);
     }
 
+    // Meta data
     $meta = [
-        'title' => truncateSentence($ad->title, 60),         // 60 chars max for title
-        'description' => truncateSentence($ad->description, 150), // 150 chars max for description
+        'title' => truncateSentence($ad->title, 60),
+        'description' => truncateSentence($ad->description, 160),
     ];
+
+    // ✅ Structured Data (Schema.org)
+    $structuredData = [
+        "@context" => "https://schema.org",
+        "@type" => "Product",
+        "name" => $meta['title'],
+        "description" => $meta['description'],
+        "image" => asset('storage/' . $ad->image),
+        "url" => url()->current(),
+        "sku" => $ad->id,
+        "brand" => [
+            "@type" => "Brand",
+            "name" => "PartsFinder"
+        ],
+        "offers" => [
+            "@type" => "Offer",
+            "priceCurrency" => "AED",
+            "price" => $ad->price ?? "0",
+            "availability" => "https://schema.org/InStock",
+            "url" => url()->current()
+        ]
+    ];
+
+    $meta['structure_data'] = json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
     return view('Frontend.view-add', compact('ad', 'meta'));
 }
+
     public function viewCarAd($slug, $id)
     {
         $ad = CarAds::where('id', $id)->where('slug', $slug)->firstOrFail();
