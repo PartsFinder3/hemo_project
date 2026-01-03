@@ -767,73 +767,46 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
 
 });
 
-</script><script>
+</script>
+<script>
 $(document).ready(function() {
-
     // سب dropdowns اور condition section کا hover/focus effect
-    function setActiveBorder($el) {
-        // سب سے پہلے active ہٹا دیں
-        $('.select2-container .select2-selection, #condition-group, .form-group').removeClass('condition-active');
+ function setActiveBorder($el) {
+    // Remove active from all
+    $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
 
-        // اگر select ہے تو اس کا select2 active کریں
-        if ($el.is('select')) {
-            $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
-        } else {
-            // normal element (radio یا div) active کریں
-            $el.addClass('condition-active');
-        }
+    // Add active to Select2 if it's a select
+    if ($el.is('select')) {
+        $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
+    } else {
+        // else normal element (like radio)
+        $el.addClass('condition-active');
     }
+}
 
-    // sequence function: اگلے فیلڈ پر green اور focus
-    function activateNext(currentId) {
-        switch(currentId) {
-            case 'car-make':
-                setActiveBorder($('#car-model'));
-                $('#car-model').select2('open'); // model کا dropdown کھولیں
-                break;
-            case 'car-model':
-                setActiveBorder($('#car-year'));
-                $('#car-year').focus(); // year input پر focus
-                break;
-            case 'car-year':
-                setActiveBorder($('#parts-dropdown-parts').closest('.form-group'));
-                $('#parts-dropdown-parts').select2('open'); // parts dropdown کھولیں
-                break;
-            case 'parts-dropdown-parts':
-                setActiveBorder($('#condition-group'));
-                // condition پر click کرانا optional ہے
-                break;
-        }
-    }
-
-    // Make پر focus یا change
+    // make پر فوکس یا change ہونے پر
     $('#car-make').on('focus change', function() {
         setActiveBorder($(this));
-        activateNext('car-make'); // next field activate کریں
     });
 
-    // Model پر focus یا change
+    // model پر فوکس یا change ہونے پر
     $('#car-model').on('focus change', function() {
         setActiveBorder($(this));
-        activateNext('car-model');
     });
 
-    // Year پر focus یا change
+    // year پر فوکس یا change ہونے پر
     $('#car-year').on('focus change', function() {
         setActiveBorder($(this));
-        activateNext('car-year');
     });
 
-    // Parts dropdown پر focus یا change
+    // parts dropdown پر فوکس یا change ہونے پر
     $('#parts-dropdown-parts').on('focus change', function() {
         setActiveBorder($(this).closest('.form-group'));
-        activateNext('parts-dropdown-parts');
     });
 
-    // Condition radio پر click
+    // condition radio پر click ہونے پر
     $('#condition-group input[type=radio]').on('click', function() {
         setActiveBorder($('#condition-group'));
     });
-
 });
 </script>
