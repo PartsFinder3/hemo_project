@@ -584,6 +584,18 @@ main{
         padding: 8px !important;
     }
 }
+/* Make all Select2 selected text black */
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #000 !important;   /* black text */
+    font-weight: bold;        /* optional: bold text */
+}
+
+/* Also make the placeholder text black instead of grey */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #000 !important;
+    font-weight: normal;
+}
 </style>
 
 <div class="hero_section_text">
@@ -601,7 +613,7 @@ main{
                 @csrf
             <div class="form-group" id="make-group">
     <select class="dropdown" id="car-make" name="car_make_id" required>
-      
+         <option value="">Select Make</option>
         @foreach ($makes as $make)
             <option value="{{ $make->id }}">{{ $make->name }}</option>
         @endforeach
