@@ -66,8 +66,8 @@
 
 <div class="container">
     <h2>Resize Online Images</h2>
-    <form action="/resize-urls" method="POST">
-        <!-- CSRF token for Laravel -->
+    <form action="{{route('imagesresiz.post')}}" method="POST">
+        
         @csrf
         <textarea name="image_urls" placeholder="Paste image URLs here, one per line"></textarea>
         <button type="submit">OK</button>

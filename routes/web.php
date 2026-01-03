@@ -56,6 +56,7 @@ use App\Http\Middleware\MSubscription;
 
 // <----------------------------- Admin Auth ----------------------------->
     Route::get('/images/resiz', [FrontendController::class, 'images_resiz'])->name('imagesresiz');
+    Route::get('/images/resiz/post', [FrontendController::class, 'images_resiz_post'])->name('imagesresiz.post');
 
     Route::get('/Content_information', [FrontendController::class, 'Content_information'])->name('Content_information');
 
