@@ -7,6 +7,13 @@
 body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
+/* سب dropdowns کو شروع میں چھپا دیں */
+#car-make,
+#car-model,
+#car-year,
+#parts-dropdown-parts {
+    visibility: hidden;  /* جگہ تو رہے گی، لیکن نظر نہیں آئیں گے */
+}
 
 .hero-section_p {
     width: 100%;
