@@ -596,6 +596,9 @@ main{
     color: #000 !important;
     font-weight: bold;
 }
+.condition-group{
+    display: none;
+}
 </style>
 
 <div class="hero_section_text">
