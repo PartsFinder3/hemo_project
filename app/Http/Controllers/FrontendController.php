@@ -786,13 +786,40 @@ JSON;
         return view('Frontend.about',compact('meta' , 'domain'));
     }
 
-    public function viewAd($slug, $id)
-    {
-        $ad = Ads::where('slug', $slug)->first();
-      
-        return view('Frontend.view-add', compact('ad'));
+ public function viewAd($slug, $id)
+{
+    $ad = Ads::where('slug', $slug)->firstOrFail(); // ensure ad exists
+
+    // Helper function to truncate by sentence
+    function truncateSentence($text, $maxLength = 150) {
+        if (strlen($text) <= $maxLength) {
+            return $text;
+        }
+
+        // Split text into sentences
+        $sentences = preg_split('/([.!?]+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
+        $result = '';
+        $length = 0;
+
+        foreach ($sentences as $sentence) {
+            $sentence = trim($sentence);
+            if ($length + strlen($sentence) > $maxLength) {
+                break;
+            }
+            $result .= $sentence . ' ';
+            $length += strlen($sentence) + 1;
+        }
+
+        return trim($result);
     }
 
+    $meta = [
+        'title' => truncateSentence($ad->title, 60),         // 60 chars max for title
+        'description' => truncateSentence($ad->description, 150), // 150 chars max for description
+    ];
+
+    return view('Frontend.view-add', compact('ad', 'meta'));
+}
     public function viewCarAd($slug, $id)
     {
         $ad = CarAds::where('id', $id)->where('slug', $slug)->firstOrFail();
