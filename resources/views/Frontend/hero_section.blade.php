@@ -680,45 +680,50 @@ main{
 $(document).ready(function() {
 
     // ===============================
-    // Select2 Initialize
+    // Initialize Select2 for all dropdowns
     // ===============================
-    function initSelect2($el, placeholder = 'Select an option') {
-        $el.select2({
-            width: '100%',
-            placeholder: placeholder,
-            allowClear: false
-        });
+ function initSelect2($el, placeholder = 'Select an option') {
+    $el.select2({
+        width: '100%',
+        placeholder: placeholder,
+        allowClear: false, // ❌ don't allow clearing, keeps your first <option> visible
+    });
 
-        // Search input placeholder
-        $el.on('select2:open', function() {
-            $('.select2-search__field').attr('placeholder', 'Search here');
-        });
+    // Add search placeholder inside Select2 input
+    $el.on('select2:open', function() {
+        $('.select2-search__field').attr('placeholder', 'Search here');
+    });
+
+    // If no value is selected, make sure first option is selected visually
+    if (!$el.val()) {
+        $el.val('').trigger('change.select2'); 
     }
+}
 
-    // Initialize once
-    initSelect2($('#car-make'), 'Select Make');
-    initSelect2($('#car-model'), 'Select Model');
-    initSelect2($('#car-year'), 'Select Year');
-    initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
-
+// Initialize all dropdowns
+initSelect2($('#car-make'), 'Select Make');
+initSelect2($('#car-model'), 'Select Model');
+initSelect2($('#car-year'), 'Select Year');
+initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
     // ===============================
-    // Hide parts & condition initially
+    // Hide parts dropdown initially
     // ===============================
     $('#parts-dropdown-parts').closest('.form-group').hide();
-    $('#condition-group').hide();
 
-    // ===============================
-    // Show parts dropdown on Year select
-    // ===============================
+    // Show parts dropdown when a Year is selected
     $('#car-year').on('change', function() {
         let $partsGroup = $('#parts-dropdown-parts').closest('.form-group');
         $partsGroup.slideDown();
+
+        // Refresh Select2 to make sure placeholder is applied
+        initSelect2($('#parts-dropdown-parts'), 'Select Parts');
     });
 
     // ===============================
-    // Show condition when a part is selected
+    // Show/Hide Condition Section
     // ===============================
-    $('#parts-dropdown-parts').on('select2:select select2:unselect', function() {
+    $('#condition-group').hide();
+    $('#parts-dropdown-parts').on('change', function() {
         let selectedParts = $(this).val();
         if (selectedParts && selectedParts.length > 0) {
             $('#condition-group').slideDown();
@@ -728,42 +733,7 @@ $(document).ready(function() {
     });
 
     // ===============================
-    // Active border effect
-    // ===============================
-   function setActiveBorder($el) {
-    $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
-
-    // Next field logic
-    let $next;
-    if ($el.is('#car-make')) $next = $('#car-model');
-    else if ($el.is('#car-model')) $next = $('#car-year');
-    else if ($el.is('#car-year')) $next = $('#parts-dropdown-parts');
-    else if ($el.is('#parts-dropdown-parts')) $next = $('#condition-group');
-    else $next = $el;
-
-    if ($next.is('select')) {
-        $next.next('.select2-container').find('.select2-selection').addClass('condition-active');
-    } else {
-        $next.addClass('condition-active');
-    }
-}
-    // Make, Model, Year focus/change
-    $('#car-make, #car-model, #car-year').on('focus change', function() {
-        setActiveBorder($(this));
-    });
-
-    // Parts dropdown
-    $('#parts-dropdown-parts').on('select2:open select2:select select2:unselect', function() {
-        setActiveBorder($(this));
-    });
-
-    // Condition radio click
-    $('#condition-group input[type=radio]').on('click', function() {
-        setActiveBorder($('#condition-group'));
-    });
-
-    // ===============================
-    // Dynamic models load
+    // Load Models Dynamically when Make changes
     // ===============================
     $('#car-make').on('change', function() {
         var makeId = $(this).val();
@@ -781,7 +751,9 @@ $(document).ready(function() {
                     $.each(data, function(key, model) {
                         $model.append('<option value="'+model.id+'">'+model.name+'</option>');
                     });
-                    $model.trigger('change'); // refresh select2
+
+                    // Refresh Select2 and placeholder
+                    initSelect2($model);
                 },
                 error: function() {
                     $model.empty().append('<option value="">Error loading models</option>').trigger('change');
@@ -789,8 +761,52 @@ $(document).ready(function() {
             });
         } else {
             $model.empty().append('<option value="">Select Model</option>').trigger('change');
+            initSelect2($model);
         }
     });
 
+});
+
+</script>
+<script>
+$(document).ready(function() {
+    // سب dropdowns اور condition section کا hover/focus effect
+ function setActiveBorder($el) {
+    // Remove active from all
+    $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
+
+    // Add active to Select2 if it's a select
+    if ($el.is('select')) {
+        $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
+    } else {
+        // else normal element (like radio)
+        $el.addClass('condition-active');
+    }
+}
+
+    // make پر فوکس یا change ہونے پر
+    $('#car-make').on('focus change', function() {
+        setActiveBorder($(this));
+    });
+
+    // model پر فوکس یا change ہونے پر
+    $('#car-model').on('focus change', function() {
+        setActiveBorder($(this));
+    });
+
+    // year پر فوکس یا change ہونے پر
+    $('#car-year').on('focus change', function() {
+        setActiveBorder($(this));
+    });
+
+    // parts dropdown پر فوکس یا change ہونے پر
+    $('#parts-dropdown-parts').on('focus change', function() {
+        setActiveBorder($(this).closest('.form-group'));
+    });
+
+    // condition radio پر click ہونے پر
+    $('#condition-group input[type=radio]').on('click', function() {
+        setActiveBorder($('#condition-group'));
+    });
 });
 </script>
