@@ -8,13 +8,14 @@ body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
 /* سب dropdowns کو شروع میں چھپا دیں */
+/* سب dropdowns اور condition section کو شروع میں چھپائیں */
 #car-make,
 #car-model,
 #car-year,
-#parts-dropdown-parts {
+#parts-dropdown-parts,
+#condition-group {
     visibility: hidden;  /* جگہ تو رہے گی، لیکن نظر نہیں آئیں گے */
 }
-
 .hero-section_p {
     width: 100%;
     min-height: 630px;
