@@ -111,7 +111,7 @@
         gtag('config', 'G-E6ZGW2V8LH');
     </script>
 <meta property="og:image" content="{{ asset('storage/'.$logo) }}">
-  @yield('head-section')
+  {{-- @yield('head-section') --}}
 </head>
 <style>
     @font-face {
