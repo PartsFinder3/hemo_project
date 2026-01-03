@@ -601,7 +601,7 @@ main{
                 @csrf
             <div class="form-group" id="make-group">
     <select class="dropdown" id="car-make" name="car_make_id" required>
-        
+         <option value="">Select Make</option>
         @foreach ($makes as $make)
             <option value="{{ $make->id }}">{{ $make->name }}</option>
         @endforeach
@@ -609,7 +609,7 @@ main{
 </div>
 <div class="form-group" id="model-group">
     <select class="dropdown" id="car-model" name="car_model_id" style="font-weight: bold" required>
-        
+         <option value="">Select Model</option>
         @foreach ($models as $model)
             <option value="{{ $model->id }}">{{ $model->name }}</option>
         @endforeach
@@ -617,7 +617,7 @@ main{
 </div>
 <div class="form-group" id="year-group">
     <select class="dropdown" id="car-year" name="year_id" required>
-       
+        <option value="">Select Year</option>
         @foreach ($years as $year)
             <option value="{{ $year->id }}">{{ $year->year }}</option>
         @endforeach
@@ -625,7 +625,7 @@ main{
 </div>
 <div class="form-group" id="year-group" style="display: none">
     <select class="dropdown" id="parts-dropdown-parts" name="parts[]" multiple required>
-       
+         <option value="">Select Part</option>
         
         <option value="">Select a Part</option>
                @foreach ($parts as $part)
