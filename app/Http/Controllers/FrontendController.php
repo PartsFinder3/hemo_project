@@ -805,7 +805,7 @@ public function viewAd($slug, $id)
         "@type" => "Product",
         "name" => $meta['title'],
         "description" => $meta['description'],
-        "image" => asset('storage/' . $ad->image),
+        "image" => asset('storage/' . $ad->images),
         "url" => url()->current(),
         "sku" => $ad->id,
         "brand" => [
