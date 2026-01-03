@@ -735,36 +735,59 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
     // ===============================
     // Load Models Dynamically when Make changes
     // ===============================
-    $('#car-make').on('change', function() {
-        var makeId = $(this).val();
-        var $model = $('#car-model');
+$('#car-make').on('change', function() {
+    var makeId = $(this).val();
+    var $model = $('#car-model');
 
-        if(makeId) {
-            $model.empty().append('<option value="">Loading models...</option>').trigger('change');
+    if(makeId) {
+        // Set temporary placeholder "Loading models..."
+        $model.val(null).trigger('change'); // clear current selection
+        $model.select2({
+            width: '100%',
+            placeholder: 'Loading models...',
+            allowClear: false
+        });
 
-            $.ajax({
-                url: "{{ url('get-models') }}/" + makeId,
-                type: 'GET',
-                success: function(data) {
-                    $model.empty();
-                    $model.append('<option value="">Select Model</option>');
-                    $.each(data, function(key, model) {
-                        $model.append('<option value="'+model.id+'">'+model.name+'</option>');
-                    });
+        // Optionally disable the dropdown while loading
+        $model.prop('disabled', true);
 
-                    // Refresh Select2 and placeholder
-                    initSelect2($model);
-                },
-                error: function() {
-                    $model.empty().append('<option value="">Error loading models</option>').trigger('change');
-                }
-            });
-        } else {
-            $model.empty().append('<option value="">Select Model</option>').trigger('change');
-            initSelect2($model);
-        }
-    });
+        $.ajax({
+            url: "{{ url('get-models') }}/" + makeId,
+            type: 'GET',
+            success: function(data) {
+                $model.empty();
+                $model.append('<option value=""></option>'); // needed for placeholder
+                $.each(data, function(key, model) {
+                    $model.append('<option value="'+model.id+'">'+model.name+'</option>');
+                });
 
+                // Re-enable and reset placeholder
+                $model.prop('disabled', false);
+                $model.select2({
+                    width: '100%',
+                    placeholder: 'Select Model',
+                    allowClear: false
+                });
+            },
+            error: function() {
+                $model.empty();
+                $model.append('<option value=""></option>');
+                $model.select2({
+                    width: '100%',
+                    placeholder: 'Error loading models',
+                    allowClear: false
+                });
+            }
+        });
+    } else {
+        $model.val(null).trigger('change');
+        $model.select2({
+            width: '100%',
+            placeholder: 'Select Model',
+            allowClear: false
+        });
+    }
+});
 });
 
 </script>
