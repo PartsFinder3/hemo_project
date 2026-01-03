@@ -730,16 +730,23 @@ $(document).ready(function() {
     // ===============================
     // Active border effect
     // ===============================
-    function setActiveBorder($el) {
-        $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
+   function setActiveBorder($el) {
+    $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
 
-        if ($el.is('select')) {
-            $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
-        } else {
-            $el.addClass('condition-active');
-        }
+    // Next field logic
+    let $next;
+    if ($el.is('#car-make')) $next = $('#car-model');
+    else if ($el.is('#car-model')) $next = $('#car-year');
+    else if ($el.is('#car-year')) $next = $('#parts-dropdown-parts');
+    else if ($el.is('#parts-dropdown-parts')) $next = $('#condition-group');
+    else $next = $el;
+
+    if ($next.is('select')) {
+        $next.next('.select2-container').find('.select2-selection').addClass('condition-active');
+    } else {
+        $next.addClass('condition-active');
     }
-
+}
     // Make, Model, Year focus/change
     $('#car-make, #car-model, #car-year').on('focus change', function() {
         setActiveBorder($(this));
