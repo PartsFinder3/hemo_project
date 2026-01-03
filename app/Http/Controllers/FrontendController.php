@@ -798,16 +798,16 @@ public function viewAd($slug, $id)
           'title' => Str::limit($ad->title, 60, ''), 
        'description' => Str::limit(str_replace('**', '', $ad->description), 140, ''),
     ];
-$images = json_decode($ad->images, true);
+   $images = json_decode($ad->images, true);
 
- $images = $ad?->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
+ $imagesf = $ad?->images ? (is_string($ad->images) ? json_decode($ad->images, true) : $ad->images) : [];
     // ✅ Structured Data (Schema.org)
     $structuredData = [
         "@context" => "https://schema.org",
         "@type" => "Product",
         "name" => $meta['title'],
         "description" => $meta['description'],
-       "image" => $images,
+       "image" => $imagesf,
         "url" => url()->current(),
         "sku" => $ad->id,
         "brand" => [
