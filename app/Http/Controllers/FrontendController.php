@@ -1535,50 +1535,47 @@ Do not explain the process.
   }
 public function images_resiz_post(Request $request)
 {
+    // 1️⃣ Validate input
     $request->validate([
-        'image_url' => 'required|url'
+        'image_url' => 'required|string' // hum string le rahe hain, URL ya local path
     ]);
 
-    $url = $request->input('image_url');
+    $imagePath = $request->input('image_url');
 
     try {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        $imageContent = curl_exec($ch);
-        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        if(curl_errno($ch)) {
-            return back()->with('error', 'Curl error: ' . curl_error($ch));
-        }
-        curl_close($ch);
-
-        if(!$imageContent || $httpStatus != 200) {
-            return back()->with('error', 'Unable to fetch image from URL. HTTP status: '.$httpStatus);
+        // 2️⃣ Check if file exists (local path or storage)
+        if (!file_exists(public_path($imagePath))) {
+            return back()->with('error', "File not found at: {$imagePath}");
         }
 
-        $img = \Intervention\Image\Facades\Image::make($imageContent);
+        // 3️⃣ Create Intervention Image instance
+        $img = \Intervention\Image\Facades\Image::make(public_path($imagePath));
 
+        // 4️⃣ Resize image (maintain aspect ratio)
         $img->resize(800, 800, function ($constraint) {
             $constraint->aspectRatio();
-            $constraint->upsize();
+            $constraint->upsize(); // don't enlarge
         });
 
+        // 5️⃣ Save resized image (same folder or new folder)
         $fileName = 'resized_' . time() . '.webp';
-        $path = 'public/resized_images/' . $fileName;
+        $savePath = public_path('storage/resized_images/' . $fileName);
 
-        $saved = \Illuminate\Support\Facades\Storage::put($path, $img->encode('webp', 85));
-
-        if(!$saved){
-            return back()->with('error', 'Failed to save image. Check storage permissions.');
+        // Ensure folder exists
+        if (!file_exists(public_path('storage/resized_images'))) {
+            mkdir(public_path('storage/resized_images'), 0755, true);
         }
 
-        $urlPath = \Illuminate\Support\Facades\Storage::url($path);
+        $img->save($savePath, 85); // 85% quality
 
-        return back()->with('success', 'Image resized successfully! <a href="'.$urlPath.'" target="_blank">View Here</a>');
+        $urlPath = asset('storage/resized_images/' . $fileName);
+
+        // ✅ Success
+        return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View Here</a>");
 
     } catch (\Exception $e) {
-        return back()->with('error', 'Exception: '.$e->getMessage());
+        // 6️⃣ Full debug
+        return back()->with('error', "Error: " . $e->getMessage());
     }
 }
 
