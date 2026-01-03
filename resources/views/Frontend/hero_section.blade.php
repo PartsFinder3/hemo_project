@@ -670,28 +670,29 @@ $(document).ready(function() {
     // ===============================
     // Initialize Select2 for all dropdowns
     // ===============================
-   function initSelect2($el, placeholder = 'Select an option') {
-    // Clear current selection
-    $el.val(null).trigger('change');
-
-    // Initialize Select2
+ function initSelect2($el, placeholder = 'Select an option') {
     $el.select2({
         width: '100%',
         placeholder: placeholder,
-        allowClear: true // ✅ allows clearing the selection
+        allowClear: false, // ❌ don't allow clearing, keeps your first <option> visible
     });
 
     // Add search placeholder inside Select2 input
     $el.on('select2:open', function() {
         $('.select2-search__field').attr('placeholder', 'Search here');
     });
-}
-    // Initialize all dropdowns
-    initSelect2($('#car-make'));
-    initSelect2($('#car-model'));
-    initSelect2($('#car-year'));
-    initSelect2($('#parts-dropdown-parts'), 'Select parts');
 
+    // If no value is selected, make sure first option is selected visually
+    if (!$el.val()) {
+        $el.val('').trigger('change.select2'); 
+    }
+}
+
+// Initialize all dropdowns
+initSelect2($('#car-make'), 'Select Make');
+initSelect2($('#car-model'), 'Select Model');
+initSelect2($('#car-year'), 'Select Year');
+initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
     // ===============================
     // Hide parts dropdown initially
     // ===============================
