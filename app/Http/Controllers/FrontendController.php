@@ -807,7 +807,7 @@ public function viewAd($slug, $id)
         "@type" => "Product",
         "name" => $meta['title'],
         "description" => $meta['description'],
-       "image" => $imagesf,
+       "image" => "patsfinder.ae/".$imagesf,
         "url" => url()->current(),
         "sku" => $ad->id,
         "brand" => [
