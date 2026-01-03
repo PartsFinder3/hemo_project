@@ -148,7 +148,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 
 .select2-selection--single,
 .select2-selection--multiple {
-    min-height: 45px !important;
+    min-height: 40px !important;
     height: auto !important;
     padding: 6px 10px !important;
     display: flex;
@@ -156,42 +156,30 @@ body, main, header, nav, .hero-section, .hero-section_p {
     flex-wrap: wrap;
 }
 
+
 .select2-selection__rendered {
-    line-height: 45px !important;
+    line-height: 28px !important;
     font-weight: bold !important;
-    padding-top: 2px;
+    padding-top: 0 !important;
     color: #000 !important;
 }
 
 .select2-selection__arrow {
-    height: 45px !important;
+    height: 40px !important;
 }
-
+/* Multi-select choice styling */
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     font-size: 13px !important;
-    font-weight: 500 !important;
-    padding: 3px 6px !important;
     line-height: 1.2 !important;
+    padding: 3px 6px !important;
 }
-
-/* Search Icon for Select2 */
-.select2-search--inline::after,
-.select2-search--dropdown::after {
-    content: "\1F50D"; /* 🔍 */
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color: #999;
-    pointer-events: none;
-}
-
-/* Select2 کے ان پٹ کے اندر سرچ آئیکن ڈالنے کے لیے */
+/* ===== Search Icon inside Select2 Input ===== */
+.select2-container--default .select2-search--dropdown,
 .select2-container--default .select2-search--inline {
     position: relative;
 }
 
+.select2-container--default .select2-search--dropdown::after,
 .select2-container--default .select2-search--inline::after {
     content: "\1F50D"; /* 🔍 */
     position: absolute;
@@ -203,6 +191,9 @@ body, main, header, nav, .hero-section, .hero-section_p {
     pointer-events: none;
 }
 
+.select2-container--default .select2-search--inline .select2-search__field {
+    padding-right: 30px; /* space for icon */
+}
 /* آئیکن کے لیے جگہ دینے کے لیے ان پٹ کا padding */
 .select2-container--default .select2-search--inline .select2-search__field {
     padding-right: 30px; /* آئیکن کے لیے جگہ */
@@ -675,143 +666,89 @@ main{
 </div>
 <script>
 $(document).ready(function() {
-    $('#car-make, #car-model, #car-year').select2({
-       
-        width: '100%'
-    });
 
-  $('#parts-dropdown-parts').select2({
-    placeholder: 'Select parts',
-    width: '100%'
-});
-});
-</script>
-<script>
-$(document).ready(function() {
+    // ===============================
     // Initialize Select2 for all dropdowns
-    $('#car-make, #car-model, #car-year, select[name="parts[]"]').select2({
-    
-        width: '100%'
+    // ===============================
+    $('#car-make, #car-model, #car-year, #parts-dropdown-parts').select2({
+        width: '100%',
+        placeholder: 'Select an option'
     });
 
-    // Hide parts dropdown initially (already hidden via style, just in case)
-    $('select[name="parts[]"]').closest('.form-group').hide();
+    // Add search placeholder inside Select2
     $(document).on('select2:open', function () {
         $('.select2-search__field').attr('placeholder', 'Search here');
     });
-    // When Year is selected
-    $('#car-year').on('change', function() {
-        // Show the parts dropdown
-        $('select[name="parts[]"]').closest('.form-group').slideDown();
 
-        // Optional: focus/select2 refresh
-        $('select[name="parts[]"]').select2({
+    // ===============================
+    // Hide parts dropdown initially
+    // ===============================
+    $('#parts-dropdown-parts').closest('.form-group').hide();
+
+    // Show parts dropdown when a Year is selected
+    $('#car-year').on('change', function() {
+        let $partsGroup = $('#parts-dropdown-parts').closest('.form-group');
+        $partsGroup.slideDown();
+
+        // Refresh Select2
+        $('#parts-dropdown-parts').select2({
             placeholder: 'Select Parts',
             width: '100%'
         });
     });
-});
-$('#car-make').on('change', function() {
-    var makeId = $(this).val();
 
-    var $model = $('#car-model');
-
-    if(makeId) {
-        // Show "Loading Models..." while fetching
-        $model.empty().append('<option value="">Loading models...</option>').trigger('change');
-
-        $.ajax({
-            url: "{{ url('get-models') }}/" + makeId, // Laravel url() helper
-            type: 'GET',
-            success: function(data) {
-                $model.empty(); // Clear old options
-                $model.append('<option value="">Select Model</option>'); // Default
-
-                $.each(data, function(key, model) {
-                    $model.append('<option value="'+model.id+'">'+model.name+'</option>');
-                });
-
-                // Refresh Select2
-                $model.trigger('change');
-            },
-            error: function() {
-                $model.empty().append('<option value="">Error loading models</option>').trigger('change');
-            }
-        });
-    } else {
-        $model.empty().append('<option value="">Select Model</option>').trigger('change');
-    }
-});
-
-</script>
-<script>
-$(document).ready(function () {
-
-    // Hide condition section initially
+    // ===============================
+    // Show/Hide Condition Section
+    // ===============================
     $('#condition-group').hide();
-
-    // When PART is selected (Select2 multiple)
-    $('#parts-dropdown-parts').on('change', function () {
-
+    $('#parts-dropdown-parts').on('change', function() {
         let selectedParts = $(this).val();
-
         if (selectedParts && selectedParts.length > 0) {
-            // Show condition when part selected
             $('#condition-group').slideDown();
         } else {
-            // Hide again if no part selected
             $('#condition-group').slideUp();
         }
     });
 
-});
-</script>
-<script>
-$(document).ready(function () {
-
-    // Helper: remove all active states
+    // ===============================
+    // Active Steps Highlight Helper
+    // ===============================
     function resetSteps() {
         $('.form-group').removeClass('active-step');
         $('.condition-section').removeClass('condition-active');
     }
 
-    // Initial state → Make active
-    resetSteps();
-    $('#make-group').addClass('active-step');
+    resetSteps(); // Initial state
 
-    // MAKE selected
-    $('#car-make').on('change', function () {
-        if ($(this).val()) {
-            resetSteps();
-            $('#model-group').addClass('active-step');
-        }
-    });
+    // ===============================
+    // Load Models Dynamically when Make changes
+    // ===============================
+    $('#car-make').on('change', function() {
+        var makeId = $(this).val();
+        var $model = $('#car-model');
 
-    // MODEL selected
-    $('#car-model').on('change', function () {
-        if ($(this).val()) {
-            resetSteps();
-            $('#year-group').addClass('active-step');
-        }
-    });
+        if(makeId) {
+            // Show "Loading Models..." while fetching
+            $model.empty().append('<option value="">Loading models...</option>').trigger('change');
 
-    // YEAR selected
-$('#car-year').on('change', function() {
-    const $partsSelect = $('select[name="parts[]"]');
-    const $partsGroup = $partsSelect.closest('.form-group');
-    $partsGroup.slideDown();
+            $.ajax({
+                url: "{{ url('get-models') }}/" + makeId, // Laravel URL helper
+                type: 'GET',
+                success: function(data) {
+                    $model.empty();
+                    $model.append('<option value="">Select Model</option>');
+                    $.each(data, function(key, model) {
+                        $model.append('<option value="'+model.id+'">'+model.name+'</option>');
+                    });
 
-    // If Select2 already initialized, refresh it
-    $partsSelect.select2('open');
-    setTimeout(() => $partsSelect.select2('close'), 0);
-});
-    // PART selected
-    $('#parts-dropdown-parts').on('change', function () {
-        let parts = $(this).val();
-        if (parts && parts.length > 0) {
-            resetSteps();
-            $('#condition-group').slideDown();
-            $('.condition-section').addClass('condition-active');
+                    $model.trigger('change'); // refresh Select2
+                },
+                error: function() {
+                    $model.empty().append('<option value="">Error loading models</option>').trigger('change');
+                }
+            });
+        } else {
+            $model.empty().append('<option value="">Select Model</option>').trigger('change');
         }
     });
 
