@@ -25,14 +25,14 @@
                     </div>
                     <div class="review-date">2 days ago</div>
                 </div>
-                <p class="message">"Amazing service! The team went above and beyond to deliver exactly what I needed. Highly recommend to anyone looking for quality work."</p>
+                <p class="message">"I needed a rare spare part for my car and found it instantly on partsfinder.ae. Fast delivery and genuine products — highly recommend!"</p>
                 <div class="customer-info">
                     <div class="avatar">
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">John Doe</h3>
-                        <p class="customer-role">Small Business Owner</p>
+                        <h3 class="name">Ahmed Al Mansoori</h3>
+                        <p class="customer-role">Business Owner</p>
                     </div>
                 </div>
             </div>
@@ -49,13 +49,13 @@
                     </div>
                     <div class="review-date">1 week ago</div>
                 </div>
-                <p class="message">"Very professional and fast delivery. The communication was excellent throughout the project. Would definitely work with them again."</p>
+                <p class="message">"Great selection of parts and very user-friendly search. I found exactly what I needed without any hassle!"</p>
                 <div class="customer-info">
                     <div class="avatar" style="background-color: #4CAF50;">
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Jane Smith</h3>
+                        <h3 class="name">Sara Khan</h3>
                         <p class="customer-role">Marketing Director</p>
                     </div>
                 </div>
@@ -73,13 +73,13 @@
                     </div>
                     <div class="review-date">2 weeks ago</div>
                 </div>
-                <p class="message">"Exceeded my expectations! The final result was even better than I imagined. The attention to detail was remarkable."</p>
+                <p class="message">"Excellent prices and reliable quality. partsfinder.ae saved me time and money. The customer support was also very helpful"</p>
                 <div class="customer-info">
                     <div class="avatar" style="background-color: #2196F3;">
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Ali Khan</h3>
+                        <h3 class="name">Omar Al Hashmi</h3>
                         <p class="customer-role">Startup Founder</p>
                     </div>
                 </div>
@@ -97,13 +97,13 @@
                     </div>
                     <div class="review-date">3 weeks ago</div>
                 </div>
-                <p class="message">"Good, but can improve in some areas. The overall experience was positive, though there were minor communication delays."</p>
+                <p class="message">"Ordered multiple items and everything arrived perfectly packed and on time. A trustworthy place for auto parts!"</p>
                 <div class="customer-info">
                     <div class="avatar" style="background-color: #9C27B0;">
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">Sara Ahmed</h3>
+                        <h3 class="name">Fatima Yusuf</h3>
                         <p class="customer-role">Freelancer</p>
                     </div>
                 </div>
@@ -121,13 +121,13 @@
                     </div>
                     <div class="review-date">1 month ago</div>
                 </div>
-                <p class="message">"Great experience overall. The project was delivered on time and within budget. I'm satisfied with the results."</p>
+                <p class="message">"partsfinder.ae makes finding spare parts so easy. The filters and search options are superb — will shop here again!"</p>
                 <div class="customer-info">
                     <div class="avatar" style="background-color: #FF9800;">
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="customer-details">
-                        <h3 class="name">David Lee</h3>
+                        <h3 class="name">Hassan Qureshi</h3>
                         <p class="customer-role">Product Manager</p>
                     </div>
                 </div>
