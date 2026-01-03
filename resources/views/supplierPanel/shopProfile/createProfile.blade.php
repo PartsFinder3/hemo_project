@@ -77,7 +77,7 @@
           @if (isset($profile) && $profile->cover)
                                             <img src="{{ asset('storage/' . $profile->cover) }}" alt="Profile Image" style="max-width: 200px; display: block; margin-bottom: 10px;">
                                         @endif
-        <input type="file" class="form-control"  id="cover" accept="image/*">
+        <input type="file" class="form-control" id="cover" name="cover" accept="image/*">
         @error('cover')
             <div class="alert alert-danger mt-2">{{ $message }}</div>
         @enderror
@@ -133,69 +133,61 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
     let cropper;
     const coverInput = document.getElementById('cover');
-    const cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
     const cropImage = document.getElementById('crop-image');
+    const cropModalEl = document.getElementById('cropModal');
+    const cropModal = new bootstrap.Modal(cropModalEl);
     const coverCroppedInput = document.getElementById('cover_cropped');
 
-    coverInput.addEventListener('change', function(e) {
+    coverInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
-        if(file) {
-            const url = URL.createObjectURL(file);
-            cropImage.src = url;
+        if (!file) return;
 
-            // Show modal
+        const reader = new FileReader();
+        reader.onload = function () {
+            cropImage.src = reader.result;
             cropModal.show();
 
-            // Destroy previous cropper
-            if(cropper) cropper.destroy();
+            if (cropper) cropper.destroy();
 
             cropper = new Cropper(cropImage, {
                 viewMode: 1,
-                movable: true,
-                zoomable: true,
+                dragMode: 'move',        // ✅ only move
+                cropBoxMovable: false,   // ❌ resize disable
+                cropBoxResizable: false,
+                zoomable: false,         // ❌ zoom disable
                 scalable: false,
+                rotatable: false,
                 autoCropArea: 1,
-                aspectRatio: NaN, // width flexible
-                cropBoxResizable: true,
+                responsive: true,
                 ready() {
-                    // Set crop box fixed height 180px, full width
-                    const containerData = cropper.getContainerData();
+                    const container = cropper.getContainerData();
                     cropper.setCropBoxData({
-                        width: containerData.width,
+                        left: 0,
+                        top: (container.height - 180) / 2,
+                        width: container.width,
                         height: 180
                     });
                 }
             });
-        }
+        };
+        reader.readAsDataURL(file);
     });
 
-    document.getElementById('crop-button').addEventListener('click', function() {
-        if(cropper) {
-            const canvas = cropper.getCroppedCanvas({
-                width: cropper.getContainerData().width, // full width
-                height: 180 // fixed height
-            });
+    document.getElementById('crop-button').addEventListener('click', function () {
+        if (!cropper) return;
 
-            // Save cropped image as base64 in hidden input
-            coverCroppedInput.value = canvas.toDataURL('image/jpeg');
+        const canvas = cropper.getCroppedCanvas({
+            height: 180,
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high'
+        });
 
-            // Optional: Show preview below input
-            let preview = document.getElementById('cover-preview');
-            if(!preview){
-                preview = document.createElement('img');
-                preview.id = 'cover-preview';
-                preview.style.maxWidth = '100%';
-                preview.style.display = 'block';
-                coverInput.parentNode.appendChild(preview);
-            }
-            preview.src = coverCroppedInput.value;
-
-            // Close modal
-            cropModal.hide();
-        }
+        coverCroppedInput.value = canvas.toDataURL('image/jpeg', 0.95); // ✅ quality safe
+        cropModal.hide();
     });
 });
 </script>

@@ -602,7 +602,7 @@ main{
 .select2-container--default 
 .select2-selection--multiple 
 .select2-selection__choice {
-    padding-left: 15px !important;   /* 👈 text left gap */
+    padding-left: 15px !important;   
     padding-right: 12px !important;
 }
 
@@ -610,7 +610,7 @@ main{
 .select2-container--default 
 .select2-selection--multiple 
 .select2-selection__choice__remove {
-    margin-right: 6px !important;    /* 👈 icon aur text ke darmiyan gap */
+    margin-right: 6px !important;   
 }
 </style>
 
