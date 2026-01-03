@@ -210,7 +210,7 @@
     
     /* Review Card */
     .review-card {
-          min-width: 300px; 
+        width: 300px; 
         background: white;
         padding: 30px;
         border-radius: 16px;
