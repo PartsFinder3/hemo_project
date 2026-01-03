@@ -1543,7 +1543,7 @@ Do not explain the process.
 
     $url = $request->input('image_url');
 
-    try {
+ 
         // 2. Get the image content from URL
         $imageContent = file_get_contents($url);
 
@@ -1567,10 +1567,8 @@ Do not explain the process.
 
         // 6. Return success + path
         $urlPath = Storage::url($path); // URL for frontend
-        return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View Image</a>");
+        return "resiz images ok ";
 
-    } catch (\Exception $e) {
-        return back()->with('error', 'Error: ' . $e->getMessage());
-    }
+   
 }
 }
