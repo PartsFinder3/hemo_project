@@ -235,7 +235,7 @@
                     </tr>
                     <tr>
                         <td>Description</td>
-                       <td>{{ $ad->description }}</td>
+                     <td>{{ \Illuminate\Support\Str::limit(str_replace('**', '', strip_tags($ad->description)), 140) }}</td>
                     </tr>
                     {{-- <tr>
                         <td>Part Category</td>
