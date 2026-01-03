@@ -7,26 +7,14 @@
 body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
-#make-group,
-#model-group,
-#year-group,
+/* سب dropdowns کو شروع میں چھپا دیں */
+/* سب dropdowns اور condition section کو شروع میں چھپائیں */
+#car-make,
+#car-model,
+#car-year,
 #parts-dropdown-parts,
 #condition-group {
-    display: none;
-}
-
-/* Active Steps Highlight */
-.active-step .select2-selection,
-.active-step {
-    border: 2px solid #28a745 !important;
-    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.condition-active {
-    border: 2px solid #28a745 !important;
-    box-shadow: 0 0 8px rgba(40,167,69,0.6) !important;
+    visibility: hidden;  /* جگہ تو رہے گی، لیکن نظر نہیں آئیں گے */
 }
 .hero-section_p {
     width: 100%;
@@ -697,7 +685,6 @@ main{
 </div>
 </div>
 <script>
-    
 $(document).ready(function() {
 
     // ===============================
