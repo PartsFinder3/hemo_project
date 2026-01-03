@@ -39,6 +39,7 @@ use App\Jobs\GenerateSeoContentJob;
 use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Str;
 class FrontendController extends Controller
 {
     protected $inquiryService;
@@ -790,30 +791,12 @@ public function viewAd($slug, $id)
 {
     $ad = Ads::where('slug', $slug)->firstOrFail();
 
-    // Sentence-safe truncate function
-    function truncateSentence($text, $maxLength = 150)
-    {
-        if (mb_strlen($text) <= $maxLength) {
-            return $text;
-        }
-
-        $sentences = preg_split('/(?<=[.!?])\s+/', $text);
-        $result = '';
-
-        foreach ($sentences as $sentence) {
-            if (mb_strlen($result . ' ' . $sentence) > $maxLength) {
-                break;
-            }
-            $result .= ' ' . $sentence;
-        }
-
-        return trim($result);
-    }
+   
 
     // Meta data
     $meta = [
-        'title' => truncateSentence($ad->title, 60),
-        'description' => truncateSentence($ad->description, 160),
+          'title' => Str::limit($ad->title, 60, ''), 
+         'description' => Str::limit($ad->description, 160, ''),
     ];
 
     // ✅ Structured Data (Schema.org)
