@@ -783,15 +783,15 @@ $(document).ready(function () {
     });
 
     // YEAR selected
-    $('#car-year').on('change', function () {
-        if ($(this).val()) {
-            resetSteps();
-            $('select[name="parts[]"]').closest('.form-group')
-                .addClass('active-step')
-                .slideDown();
-        }
-    });
+$('#car-year').on('change', function() {
+    const $partsSelect = $('select[name="parts[]"]');
+    const $partsGroup = $partsSelect.closest('.form-group');
+    $partsGroup.slideDown();
 
+    // If Select2 already initialized, refresh it
+    $partsSelect.select2('open');
+    setTimeout(() => $partsSelect.select2('close'), 0);
+});
     // PART selected
     $('#parts-dropdown-parts').on('change', function () {
         let parts = $(this).val();
