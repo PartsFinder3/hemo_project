@@ -79,6 +79,8 @@
                                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <!-- Preview container for cropped image -->
+                                    <div id="cover-preview-container"></div>
                                 </div>
                                 
                                 <!-- Hidden inputs for cropped data -->
@@ -184,9 +186,34 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="cancel-crop">
+                    <i class="bi bi-x-circle"></i> Cancel
+                </button>
                 <button type="button" id="crop-button" class="btn btn-success">
                     <i class="bi bi-check-circle"></i> Apply Crop
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Cropped Image Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title">Delete Cropped Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="bi bi-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+                <h5 class="mt-3">Are you sure?</h5>
+                <p>This will remove the cropped image. You'll need to upload a new image.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="confirm-delete" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Delete
                 </button>
             </div>
         </div>
@@ -219,6 +246,20 @@
         max-width: 95%;
     }
     
+    .preview-card {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 10px;
+        background: #f8f9fa;
+    }
+    
+    .preview-card img {
+        max-height: 150px;
+        object-fit: cover;
+        border-radius: 6px;
+    }
+    
     @media (max-width: 768px) {
         #cropModal .modal-dialog {
             max-width: 100%;
@@ -237,12 +278,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const cropModal = new bootstrap.Modal(cropModalEl, {
         keyboard: false
     });
+    const deleteModalEl = document.getElementById('deleteModal');
+    const deleteModal = new bootstrap.Modal(deleteModalEl);
     const coverCroppedInput = document.getElementById('cover_cropped');
     const cropDataInput = document.getElementById('crop_data');
     const previewElement = document.getElementById('crop-preview');
     const qualityRange = document.getElementById('qualityRange');
     const qualityValue = document.getElementById('qualityValue');
     const aspectRatioSelect = document.getElementById('aspectRatio');
+    const previewContainer = document.getElementById('cover-preview-container');
 
     // File validation
     const validateFile = (file) => {
@@ -261,6 +305,44 @@ document.addEventListener('DOMContentLoaded', function () {
         
         return true;
     };
+
+    // Function to show cropped image preview
+    function showCroppedPreview(imageData) {
+        const previewHTML = `
+            <div class="preview-card">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h6 class="mb-0"><i class="bi bi-check-circle-fill text-success"></i> Cropped Image Ready</h6>
+                    <button type="button" class="btn btn-sm btn-outline-danger" id="delete-cropped">
+                        <i class="bi bi-trash"></i> Remove
+                    </button>
+                </div>
+                <div class="text-center">
+                    <img src="${imageData}" alt="Cropped Preview" class="img-fluid mb-2" style="max-width: 100%; height: 150px; object-fit: cover;">
+                    <p class="text-muted mb-0">This image will be saved when you submit the form.</p>
+                </div>
+            </div>
+        `;
+        
+        previewContainer.innerHTML = previewHTML;
+        
+        // Add event listener to delete button
+        document.getElementById('delete-cropped').addEventListener('click', function() {
+            deleteModal.show();
+        });
+    }
+
+    // Function to clear cropped image
+    function clearCroppedImage() {
+        coverCroppedInput.value = '';
+        cropDataInput.value = '';
+        previewContainer.innerHTML = '';
+        coverInput.value = '';
+        
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
+    }
 
     coverInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
@@ -384,6 +466,12 @@ document.addEventListener('DOMContentLoaded', function () {
         qualityRange.addEventListener('input', function () {
             qualityValue.textContent = Math.round(this.value * 100) + '%';
         });
+
+        // Cancel crop button
+        document.getElementById('cancel-crop').addEventListener('click', function() {
+            clearCroppedImage();
+            cropModal.hide();
+        });
     }
 
     function updatePreview() {
@@ -408,6 +496,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Apply crop button
     document.getElementById('crop-button').addEventListener('click', function () {
         if (!cropper) return;
         
@@ -437,50 +526,41 @@ document.addEventListener('DOMContentLoaded', function () {
         // Store in hidden input
         coverCroppedInput.value = croppedImage;
         
-        // Create a preview in the form
-        const previewContainer = coverInput.parentElement.querySelector('.preview-container');
-        if (previewContainer) {
-            previewContainer.remove();
-        }
-        
-        const newPreview = document.createElement('div');
-        newPreview.className = 'preview-container mt-2';
-        newPreview.innerHTML = `
-            <div class="alert alert-info p-2">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>Image cropped successfully (${Math.round(quality * 100)}% quality)</span>
-                    <button type="button" class="btn btn-sm btn-outline-secondary ms-auto" id="change-crop">
-                        Change Crop
-                    </button>
-                </div>
-            </div>
-        `;
-        
-        coverInput.parentElement.appendChild(newPreview);
-        
-        // Add change crop button functionality
-        document.getElementById('change-crop')?.addEventListener('click', function() {
-            cropModal.show();
-        });
+        // Show preview of cropped image
+        showCroppedPreview(croppedImage);
         
         // Hide modal
         cropModal.hide();
         
-        // Clean up
+        // Clean up cropper
         if (cropper) {
             cropper.destroy();
             cropper = null;
         }
     });
 
-    // Clean up when modal is hidden
+    // Confirm delete button
+    document.getElementById('confirm-delete').addEventListener('click', function() {
+        clearCroppedImage();
+        deleteModal.hide();
+    });
+
+    // Clean up when crop modal is hidden
     cropModalEl.addEventListener('hidden.bs.modal', function () {
+        // Only clear if user closed modal without cropping
+        if (cropper && !coverCroppedInput.value) {
+            coverInput.value = ''; // Clear the file input
+        }
+        
         if (cropper && !coverCroppedInput.value) {
             cropper.destroy();
             cropper = null;
-            coverInput.value = ''; // Clear the file input if crop wasn't applied
         }
+    });
+    
+    // Clean up when delete modal is hidden
+    deleteModalEl.addEventListener('hidden.bs.modal', function () {
+        // Nothing to do here
     });
 });
 </script>
