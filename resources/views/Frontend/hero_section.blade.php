@@ -670,15 +670,23 @@ $(document).ready(function() {
     // ===============================
     // Initialize Select2 for all dropdowns
     // ===============================
-    $('#car-make, #car-model, #car-year, #parts-dropdown-parts').select2({
-        width: '100%',
-        placeholder: 'Select an option'
-    });
+    function initSelect2($el, placeholder = 'Select an option') {
+        $el.select2({
+            width: '100%',
+            placeholder: placeholder
+        });
 
-    // Add search placeholder inside Select2
-    $(document).on('select2:open', function () {
-        $('.select2-search__field').attr('placeholder', 'Search here');
-    });
+        // Add search placeholder inside Select2 input
+        $el.on('select2:open', function() {
+            $('.select2-search__field').attr('placeholder', 'Search here');
+        });
+    }
+
+    // Initialize all dropdowns
+    initSelect2($('#car-make'));
+    initSelect2($('#car-model'));
+    initSelect2($('#car-year'));
+    initSelect2($('#parts-dropdown-parts'), 'Select parts');
 
     // ===============================
     // Hide parts dropdown initially
@@ -690,11 +698,8 @@ $(document).ready(function() {
         let $partsGroup = $('#parts-dropdown-parts').closest('.form-group');
         $partsGroup.slideDown();
 
-        // Refresh Select2
-        $('#parts-dropdown-parts').select2({
-            placeholder: 'Select Parts',
-            width: '100%'
-        });
+        // Refresh Select2 to make sure placeholder is applied
+        initSelect2($('#parts-dropdown-parts'), 'Select Parts');
     });
 
     // ===============================
@@ -711,16 +716,6 @@ $(document).ready(function() {
     });
 
     // ===============================
-    // Active Steps Highlight Helper
-    // ===============================
-    function resetSteps() {
-        $('.form-group').removeClass('active-step');
-        $('.condition-section').removeClass('condition-active');
-    }
-
-    resetSteps(); // Initial state
-
-    // ===============================
     // Load Models Dynamically when Make changes
     // ===============================
     $('#car-make').on('change', function() {
@@ -728,11 +723,10 @@ $(document).ready(function() {
         var $model = $('#car-model');
 
         if(makeId) {
-            // Show "Loading Models..." while fetching
             $model.empty().append('<option value="">Loading models...</option>').trigger('change');
 
             $.ajax({
-                url: "{{ url('get-models') }}/" + makeId, // Laravel URL helper
+                url: "{{ url('get-models') }}/" + makeId,
                 type: 'GET',
                 success: function(data) {
                     $model.empty();
@@ -741,7 +735,8 @@ $(document).ready(function() {
                         $model.append('<option value="'+model.id+'">'+model.name+'</option>');
                     });
 
-                    $model.trigger('change'); // refresh Select2
+                    // Refresh Select2 and placeholder
+                    initSelect2($model);
                 },
                 error: function() {
                     $model.empty().append('<option value="">Error loading models</option>').trigger('change');
@@ -749,8 +744,10 @@ $(document).ready(function() {
             });
         } else {
             $model.empty().append('<option value="">Select Model</option>').trigger('change');
+            initSelect2($model);
         }
     });
 
 });
+
 </script>
