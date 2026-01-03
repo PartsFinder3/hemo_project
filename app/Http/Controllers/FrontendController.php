@@ -1533,50 +1533,50 @@ Do not explain the process.
   function images_resiz(){
     return view('imagesresizePage');
   }
-public function images_resiz_post(Request $request)
-{
-    $request->validate([
-        'image_url' => 'required|url'
-    ]);
+// public function images_resiz_post(Request $request)
+// {
+//     $request->validate([
+//         'image_url' => 'required|url'
+//     ]);
 
-    $url = $request->input('image_url');
+//     $url = $request->input('image_url');
 
-    // Step 1: Fetch image content safely
-    try {
-        $imageContent = @file_get_contents($url);
-        if (!$imageContent) {
-            return back()->with('error', 'Cannot fetch image from this URL.');
-        }
-    } catch (\Exception $e) {
-        return back()->with('error', 'Error fetching image: ' . $e->getMessage());
-    }
+//     // Step 1: Fetch image content safely
+//     try {
+//         $imageContent = @file_get_contents($url);
+//         if (!$imageContent) {
+//             return back()->with('error', 'Cannot fetch image from this URL.');
+//         }
+//     } catch (\Exception $e) {
+//         return back()->with('error', 'Error fetching image: ' . $e->getMessage());
+//     }
 
-    // Step 2: Make image
-    try {
-        $img = Image::make($imageContent);
-    } catch (\Exception $e) {
-        return back()->with('error', 'Error creating image: ' . $e->getMessage());
-    }
+//     // Step 2: Make image
+//     try {
+//         $img = Image::make($imageContent);
+//     } catch (\Exception $e) {
+//         return back()->with('error', 'Error creating image: ' . $e->getMessage());
+//     }
 
-    // Step 3: Resize
-    $img->resize(800, 800, function ($constraint) {
-        $constraint->aspectRatio();
-        $constraint->upsize();
-    });
+//     // Step 3: Resize
+//     $img->resize(800, 800, function ($constraint) {
+//         $constraint->aspectRatio();
+//         $constraint->upsize();
+//     });
 
-    // Step 4: Save
-    $fileName = 'resized_' . time() . '.webp';
-    $path = 'public/resized_images/' . $fileName;
+//     // Step 4: Save
+//     $fileName = 'resized_' . time() . '.webp';
+//     $path = 'public/resized_images/' . $fileName;
 
-    try {
-        Storage::put($path, $img->encode('webp', 85));
-    } catch (\Exception $e) {
-        return back()->with('error', 'Failed to save image: ' . $e->getMessage());
-    }
+//     try {
+//         Storage::put($path, $img->encode('webp', 85));
+//     } catch (\Exception $e) {
+//         return back()->with('error', 'Failed to save image: ' . $e->getMessage());
+//     }
 
-    $urlPath = Storage::url($path);
+//     $urlPath = Storage::url($path);
 
-    return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View</a>");
-}
+//     return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View</a>");
+// }
 }
 

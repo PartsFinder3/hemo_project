@@ -95,68 +95,34 @@
     @endif
 <link rel="icon"  href="{{ asset($logoPath) }}?v={{ time() }}"  type="{{ $faviconMime }}">
 <link rel="shortcut icon" href="{{ asset($logoPath) }}?v={{ time() }}" type="{{ $faviconMime }}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <meta property="og:image" content="{{ asset('storage/'.$logo) }}">
   @yield('head-section')
 </head>
-
-<body>
-    <!-- Toast Container -->
-<div class="toast-container
-        position-fixed top-0 start-0 p-3" style="z-index: 1100;">
-    @if (session('success'))
-        <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
-            aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ session('success') }}
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive"
-            aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    {{ session('error') }}
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-        </div>
-    @endif
-    </div>
-
-    <main>
-        <nav>
-    <a href="{{ $currentDomainUrl }}">
-
-    <div class="logo">
-        <img src="{{ asset('storage/'.$logo) }}" alt="Go to PartsFinder Home">
-    </div>
-</a>
-            <div class="nav-menu" id="nav-menu">
-                <ul>
-                    <li><a href="{{ route('frontend.index') }}">Home</a></li>
-                    <li><a href="{{ route('about.page') }}">About</a></li>
-                    <li><a href="{{ route('frontend.blogs') }}">Blogs</a></li>
-                </ul>
-<span class="hero-btns">
-<a href="{{ route('supplier.login') }}" class="login-btn">Login</a>
-<a href="{{ route('frontend.signup') }}" class="signup-btn">Sign Up</a>
-</span>
-            </div>
-            <div class="burger-menu" id="burger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
 <style>
+    @font-face {
+    font-family: "Font Awesome 6 Free";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-regular-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Font Awesome 6 Free";
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Font Awesome 6 Brands";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2") format("woff2");
+}
     .hero-btns a.login-btn {
     display: inline-block;
     padding: 10px 20px;
@@ -301,6 +267,63 @@ height: 35px;
 }
 
 </style>
+
+<body>
+    <!-- Toast Container -->
+<div class="toast-container
+        position-fixed top-0 start-0 p-3" style="z-index: 1100;">
+    @if (session('success'))
+        <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ session('success') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ session('error') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+    </div>
+
+    <main>
+        <nav>
+    <a href="{{ $currentDomainUrl }}">
+
+    <div class="logo">
+        <img src="{{ asset('storage/'.$logo) }}" alt="Go to PartsFinder Home">
+    </div>
+</a>
+            <div class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="{{ route('frontend.index') }}">Home</a></li>
+                    <li><a href="{{ route('about.page') }}">About</a></li>
+                    <li><a href="{{ route('frontend.blogs') }}">Blogs</a></li>
+                </ul>
+<span class="hero-btns">
+<a href="{{ route('supplier.login') }}" class="login-btn">Login</a>
+<a href="{{ route('frontend.signup') }}" class="signup-btn">Sign Up</a>
+</span>
+            </div>
+            <div class="burger-menu" id="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
 
 <script>
 $(document).ready(function() {
