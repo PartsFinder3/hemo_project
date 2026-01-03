@@ -670,7 +670,7 @@ $(document).ready(function() {
     // ===============================
     // Initialize Select2 for all dropdowns
     // ===============================
-    function initSelect2($el, placeholder = 'Select an option') {
+    function initSelect2($el, placeholder = '') {
         $el.select2({
             width: '100%',
             placeholder: placeholder
