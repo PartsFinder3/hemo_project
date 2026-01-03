@@ -735,40 +735,36 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
     // ===============================
     // Load Models Dynamically when Make changes
     // ===============================
- $('#car-make').on('change', function() {
-    var makeId = $(this).val();          // جو make یوزر نے select کی، اس کی ID
-    var $model = $('#car-model');        // model dropdown کا reference
+    $('#car-make').on('change', function() {
+        var makeId = $(this).val();
+        var $model = $('#car-model');
 
-    if(makeId) {                         // اگر کوئی make select ہوئی ہے
-        // پہلے model dropdown کو خالی کریں اور "loading..." دکھائیں
-        $model.empty().append('<option value="">Loading models...</option>').trigger('change');
+        if(makeId) {
+            $model.empty().append('<option value="">Loading models...</option>').trigger('change');
 
-        // AJAX request کریں تاکہ selected make کے models لائیں
-        $.ajax({
-            url: "{{ url('get-models') }}/" + makeId,  // Laravel route جو models دیتا ہے
-            type: 'GET',
-            success: function(data) {
-                // data جو server سے آیا اسے dropdown میں ڈالیں
-                $model.empty();                            // پہلے خالی کریں
-                $model.append('<option value="">Select Model</option>'); // default option
+            $.ajax({
+                url: "{{ url('get-models') }}/" + makeId,
+                type: 'GET',
+                success: function(data) {
+                    $model.empty();
+                    $model.append('<option value="">Select Model</option>');
+                    $.each(data, function(key, model) {
+                        $model.append('<option value="'+model.id+'">'+model.name+'</option>');
+                    });
 
-                // ہر model کو option میں ڈالیں
-                $.each(data, function(key, model) {
-                    $model.append('<option value="'+model.id+'">'+model.name+'</option>');
-                });
+                    // Refresh Select2 and placeholder
+                    initSelect2($model);
+                },
+                error: function() {
+                    $model.empty().append('<option value="">Error loading models</option>').trigger('change');
+                }
+            });
+        } else {
+            $model.empty().append('<option value="">Select Model</option>').trigger('change');
+            initSelect2($model);
+        }
+    });
 
-                // Select2 کو refresh کریں تاکہ نیا content دکھے
-                $model.trigger('change');  // trigger change for Select2
-            },
-            error: function() {
-                $model.empty().append('<option value="">Error loading models</option>').trigger('change');
-            }
-        });
-    } else {
-        // اگر make empty ہے تو model dropdown کو reset کریں
-        $model.empty().append('<option value="">Select Model</option>').trigger('change');
-    }
-});
 });
 
 </script>
