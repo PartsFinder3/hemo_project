@@ -187,13 +187,26 @@ select2-search--inline::after,
     pointer-events: none;
 }
 
-.select2-search--inline .select2-search__field,
-.select2-search--dropdown .select2-search__field {
-    padding-right: 30px !important;
-    width: 100% !important;
-    box-sizing: border-box;
+/* Select2 کے ان پٹ کے اندر سرچ آئیکن ڈالنے کے لیے */
+.select2-container--default .select2-search--inline {
+    position: relative;
 }
 
+.select2-container--default .select2-search--inline::after {
+    content: "\1F50D"; /* 🔍 */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #999;
+    pointer-events: none;
+}
+
+/* آئیکن کے لیے جگہ دینے کے لیے ان پٹ کا padding */
+.select2-container--default .select2-search--inline .select2-search__field {
+    padding-right: 30px; /* آئیکن کے لیے جگہ */
+}
 /* Active Steps Highlight */
 .active-step .select2-selection,
 .active-step {
