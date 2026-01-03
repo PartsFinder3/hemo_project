@@ -77,13 +77,14 @@ class ShopController extends Controller
         return view('adminPanel.shopProfile.create', compact('shop', 'profile','Supplier'));
     }
 
- public function storeProfile(Request $request, $id)
+public function storeProfile(Request $request, $id)
 {
-    // ✅ Validation
+    // ✅ Validation (add size limit for cropped image)
     $request->validate([
-        'description'     => 'nullable|string',
-        'address'         => 'nullable|string',
-        'profile_image'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'description'     => 'nullable|string|max:1000',
+        'address'         => 'nullable|string|max:255',
+        'profile_image'   => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:5120',
+        'cover_cropped'   => 'nullable|string', // base64 image
     ]);
 
     // ✅ Update Supplier
@@ -96,35 +97,71 @@ class ShopController extends Controller
     $shop->name = $request->Businees_name;
     $shop->save();
 
-    // ✅ Profile
+    // ✅ Get or Create Profile
     $profile = ShopProfile::firstOrNew(['shop_id' => $shop->id]);
+    
+    // ✅ Store old file paths for deletion
+    $oldCover = $profile->cover;
+    $oldProfileImage = $profile->profile_image;
+    
     $profile->description = $request->description;
     $profile->address     = $request->address;
 
     /* ===============================
        🔥 COVER IMAGE (BASE64 → WEBP)
     =============================== */
-    if ($request->cover_cropped) {
-
-        $base64 = $request->cover_cropped;
-        $base64 = preg_replace('#^data:image/\w+;base64,#i', '', $base64);
-        $imageData = base64_decode($base64);
-
-        $image = imagecreatefromstring($imageData);
-        if ($image !== false) {
-
-            $fileName  = 'cover_' . time() . '.webp';
+    if ($request->cover_cropped && $request->cover_cropped !== 'data:,') {
+        try {
+            $base64 = $request->cover_cropped;
+            
+            // ✅ Validate base64 format
+            if (!preg_match('/^data:image\/(jpeg|jpg|png|gif|webp);base64,/', $base64)) {
+                throw new \Exception('Invalid image format');
+            }
+            
+            $base64 = preg_replace('#^data:image/\w+;base64,#i', '', $base64);
+            $imageData = base64_decode($base64);
+            
+            if (!$imageData) {
+                throw new \Exception('Failed to decode base64 image');
+            }
+            
+            $image = imagecreatefromstring($imageData);
+            if ($image === false) {
+                throw new \Exception('Failed to create image from string');
+            }
+            
+            // ✅ Generate unique filename
+            $fileName  = 'cover_' . $shop->id . '_' . time() . '.webp';
             $directory = storage_path('app/public/covers');
-
+            
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0755, true);
             }
-
+            
+            $filePath = $directory . '/' . $fileName;
+            
             // ✅ Convert to WEBP (HIGH QUALITY)
-            imagewebp($image, $directory . '/' . $fileName, 85);
+            $quality = 85; // 0-100 (higher = better quality, larger file)
+            $success = imagewebp($image, $filePath, $quality);
+            
+            if (!$success) {
+                throw new \Exception('Failed to save WebP image');
+            }
+            
             imagedestroy($image);
-
+            
+            // ✅ Delete old cover if exists
+            if ($oldCover && File::exists(storage_path('app/public/' . $oldCover))) {
+                File::delete(storage_path('app/public/' . $oldCover));
+            }
+            
             $profile->cover = 'covers/' . $fileName;
+            
+        } catch (\Exception $e) {
+            // Log error but don't stop the process
+            \Log::error('Cover image processing error: ' . $e->getMessage());
+            // Optionally keep the old cover image
         }
     }
 
@@ -132,23 +169,79 @@ class ShopController extends Controller
        🔥 PROFILE IMAGE → WEBP
     =============================== */
     if ($request->hasFile('profile_image')) {
-
-        $file = $request->file('profile_image');
-        $image = imagecreatefromstring(file_get_contents($file->getRealPath()));
-
-        if ($image !== false) {
-
-            $fileName  = 'profile_' . time() . '.webp';
+        try {
+            $file = $request->file('profile_image');
+            
+            // ✅ Additional file validation
+            if (!$file->isValid()) {
+                throw new \Exception('Invalid file upload');
+            }
+            
+            // ✅ Check file size (in bytes)
+            if ($file->getSize() > 5242880) { // 5MB
+                throw new \Exception('File size exceeds 5MB limit');
+            }
+            
+            // ✅ Get image info
+            $imageInfo = getimagesize($file->getRealPath());
+            if (!$imageInfo) {
+                throw new \Exception('Invalid image file');
+            }
+            
+            // ✅ Create image resource based on type
+            switch ($imageInfo[2]) {
+                case IMAGETYPE_JPEG:
+                    $image = imagecreatefromjpeg($file->getRealPath());
+                    break;
+                case IMAGETYPE_PNG:
+                    $image = imagecreatefrompng($file->getRealPath());
+                    // Preserve transparency for PNG
+                    imagesavealpha($image, true);
+                    break;
+                case IMAGETYPE_WEBP:
+                    $image = imagecreatefromwebp($file->getRealPath());
+                    break;
+                case IMAGETYPE_GIF:
+                    $image = imagecreatefromgif($file->getRealPath());
+                    break;
+                default:
+                    throw new \Exception('Unsupported image format');
+            }
+            
+            if ($image === false) {
+                throw new \Exception('Failed to create image resource');
+            }
+            
+            // ✅ Generate unique filename
+            $fileName  = 'profile_' . $shop->id . '_' . time() . '.webp';
             $directory = storage_path('app/public/profile_images');
-
+            
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0755, true);
             }
-
-            imagewebp($image, $directory . '/' . $fileName, 85);
+            
+            $filePath = $directory . '/' . $fileName;
+            
+            // ✅ Convert to WEBP with quality
+            $quality = 85;
+            $success = imagewebp($image, $filePath, $quality);
+            
+            if (!$success) {
+                throw new \Exception('Failed to save WebP image');
+            }
+            
             imagedestroy($image);
-
+            
+            // ✅ Delete old profile image if exists
+            if ($oldProfileImage && File::exists(storage_path('app/public/' . $oldProfileImage))) {
+                File::delete(storage_path('app/public/' . $oldProfileImage));
+            }
+            
             $profile->profile_image = 'profile_images/' . $fileName;
+            
+        } catch (\Exception $e) {
+            \Log::error('Profile image processing error: ' . $e->getMessage());
+            // Keep old image if new one fails
         }
     }
 
@@ -157,7 +250,6 @@ class ShopController extends Controller
 
     return redirect()->back()->with('success', 'Shop profile updated successfully.');
 }
-
     public function createParts($id)
     {
         $shop = Shops::findOrFail($id);
