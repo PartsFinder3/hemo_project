@@ -162,7 +162,7 @@
     
     .section-title {
         font-size: 2.5rem;
-        color: black;
+        color: black !important;
         margin-bottom: 10px;
         font-weight: 700;
         letter-spacing: -0.5px;
