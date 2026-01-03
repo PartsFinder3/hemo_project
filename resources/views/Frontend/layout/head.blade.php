@@ -57,6 +57,10 @@
 @endif
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fonts -->
+     <link rel="preload" 
+          as="image" 
+          href="{{ asset('storage/profile_images/hero_section_image_1.png') }}" 
+          fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
