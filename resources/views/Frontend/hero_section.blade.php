@@ -769,44 +769,73 @@ initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
 
 </script>
 <script>
-$(document).ready(function() {
-    // سب dropdowns اور condition section کا hover/focus effect
- function setActiveBorder($el) {
-    // Remove active from all
-    $('.select2-container .select2-selection, #condition-group').removeClass('condition-active');
+    $(document).ready(function() {
 
-    // Add active to Select2 if it's a select
-    if ($el.is('select')) {
-        $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
-    } else {
-        // else normal element (like radio)
-        $el.addClass('condition-active');
+    function setActiveBorder($el) {
+        $('.select2-container .select2-selection, #condition-group, .form-group').removeClass('condition-active');
+
+        if ($el.is('select')) {
+            $el.next('.select2-container').find('.select2-selection').addClass('condition-active');
+        } else {
+            $el.addClass('condition-active');
+        }
     }
-}
 
-    // make پر فوکس یا change ہونے پر
+    function activateNext(currentId) {
+        switch(currentId) {
+            case 'car-make':
+                $('#car-model').closest('.form-group').slideDown(); // make sure it's visible
+                initSelect2($('#car-model'), 'Select Model');       // refresh Select2
+                setActiveBorder($('#car-model'));
+                $('#car-model').select2('open');
+                break;
+            case 'car-model':
+                $('#car-year').closest('.form-group').slideDown();
+                initSelect2($('#car-year'), 'Select Year');
+                setActiveBorder($('#car-year'));
+                $('#car-year').focus();
+                break;
+            case 'car-year':
+                $('#parts-dropdown-parts').closest('.form-group').slideDown();
+                initSelect2($('#parts-dropdown-parts'), 'Select Part(s)');
+                setActiveBorder($('#parts-dropdown-parts').closest('.form-group'));
+                $('#parts-dropdown-parts').select2('open');
+                break;
+            case 'parts-dropdown-parts':
+                $('#condition-group').slideDown();
+                setActiveBorder($('#condition-group'));
+                break;
+        }
+    }
+
+    // On change/focus events
     $('#car-make').on('focus change', function() {
         setActiveBorder($(this));
+        if ($(this).val()) activateNext('car-make');
     });
 
-    // model پر فوکس یا change ہونے پر
     $('#car-model').on('focus change', function() {
         setActiveBorder($(this));
+        if ($(this).val()) activateNext('car-model');
     });
 
-    // year پر فوکس یا change ہونے پر
     $('#car-year').on('focus change', function() {
         setActiveBorder($(this));
+        if ($(this).val()) activateNext('car-year');
     });
 
-    // parts dropdown پر فوکس یا change ہونے پر
     $('#parts-dropdown-parts').on('focus change', function() {
         setActiveBorder($(this).closest('.form-group'));
+        if ($(this).val() && $(this).val().length > 0) activateNext('parts-dropdown-parts');
     });
 
-    // condition radio پر click ہونے پر
     $('#condition-group input[type=radio]').on('click', function() {
         setActiveBorder($('#condition-group'));
     });
+
+    // Hide parts and condition initially
+    $('#parts-dropdown-parts').closest('.form-group').hide();
+    $('#condition-group').hide();
 });
+
 </script>
