@@ -403,96 +403,92 @@
         }
     }
 </style>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const slider = document.querySelector('.review-slider');
-        const leftBtn = document.querySelector('.slide-btn.left');
-        const rightBtn = document.querySelector('.slide-btn.right');
-        const dots = document.querySelectorAll('.dot');
-        const cards = document.querySelectorAll('.review-card');
-        
-        let scrollAmount = 0;
-        const cardWidth = cards[0].offsetWidth + 30; // width + gap
-        const maxScroll = slider.scrollWidth - slider.parentElement.clientWidth;
-        let currentIndex = 0;
-        
-        // Calculate how many cards are visible at once
-        const visibleCards = Math.floor(slider.parentElement.clientWidth / cardWidth);
-        
-        // Initialize dots
-        function updateDots() {
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.review-slider');
+    const leftBtn = document.querySelector('.slide-btn.left');
+    const rightBtn = document.querySelector('.slide-btn.right');
+    const dots = document.querySelectorAll('.dot');
+    const cards = document.querySelectorAll('.review-card');
+
+    let currentIndex = 0;
+
+    // Function to calculate widths
+    function getCardWidth() {
+        const cardStyle = getComputedStyle(cards[0]);
+        const gap = parseInt(getComputedStyle(slider).gap) || 0;
+        return cards[0].offsetWidth + gap;
+    }
+
+    function getMaxIndex() {
+        const visibleCards = Math.floor(slider.parentElement.clientWidth / getCardWidth());
+        return Math.max(cards.length - visibleCards, 0);
+    }
+
+    function updateSliderPosition() {
+        const scrollAmount = currentIndex * getCardWidth();
+        slider.style.transform = `translateX(-${scrollAmount}px)`;
+        updateDots();
+    }
+
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    // Button clicks
+    rightBtn.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex > getMaxIndex()) currentIndex = getMaxIndex();
+        updateSliderPosition();
+    });
+
+    leftBtn.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) currentIndex = 0;
+        updateSliderPosition();
+    });
+
+    // Dot clicks
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            currentIndex = parseInt(dot.getAttribute('data-index'));
+            if (currentIndex > getMaxIndex()) currentIndex = getMaxIndex();
+            updateSliderPosition();
+        });
+    });
+
+    // Auto slide
+    let autoSlide = setInterval(() => {
+        if (currentIndex < getMaxIndex()) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
         }
-        
-        // Update slider position
-        function updateSliderPosition() {
-            scrollAmount = currentIndex * cardWidth;
-            if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-            if (scrollAmount < 0) scrollAmount = 0;
-            
-            slider.style.transform = `translateX(-${scrollAmount}px)`;
-            updateDots();
-        }
-        
-        // Right button click
-        rightBtn.addEventListener('click', () => {
-          currentIndex++;
-updateSliderPosition();
-        });
-        
-        // Left button click
-        leftBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSliderPosition();
-            }
-        });
-        
-        // Dot click
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                currentIndex = parseInt(dot.getAttribute('data-index'));
-                updateSliderPosition();
-            });
-        });
-        
-        // Auto slide every 5 seconds
-        let autoSlide = setInterval(() => {
-            if (currentIndex < cards.length - visibleCards) {
+        updateSliderPosition();
+    }, 5000);
+
+    // Pause auto-slide on hover
+    slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    slider.parentElement.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(() => {
+            if (currentIndex < getMaxIndex()) {
                 currentIndex++;
             } else {
                 currentIndex = 0;
             }
             updateSliderPosition();
         }, 5000);
-        
-        // Pause auto slide on hover
-        slider.parentElement.addEventListener('mouseenter', () => {
-            clearInterval(autoSlide);
-        });
-        
-        slider.parentElement.addEventListener('mouseleave', () => {
-            autoSlide = setInterval(() => {
-                if (currentIndex < cards.length - visibleCards) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                }
-                updateSliderPosition();
-            }, 5000);
-        });
-        
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const newMaxScroll = slider.scrollWidth - slider.parentElement.clientWidth;
-            if (scrollAmount > newMaxScroll) scrollAmount = newMaxScroll;
-            slider.style.transform = `translateX(-${scrollAmount}px)`;
-        });
-        
-        // Initialize dots
-        updateDots();
     });
+
+    // Update on window resize
+    window.addEventListener('resize', () => {
+        if (currentIndex > getMaxIndex()) currentIndex = getMaxIndex();
+        updateSliderPosition();
+    });
+
+    // Initialize
+    updateSliderPosition();
+});
 </script>
