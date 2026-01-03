@@ -7,7 +7,10 @@
 body, main, header, nav, .hero-section, .hero-section_p {
     background: none !important;
 }
-
+#parts-dropdown-parts, #condition-group {
+    display: none;   /* hidden initially */
+    transition: all 0.3s ease;
+}
 .hero-section_p {
     width: 100%;
     min-height: 630px;
@@ -596,9 +599,7 @@ main{
     color: #000 !important;
     font-weight: bold;
 }
-.condition-group{
-    display: none;
-}
+
 </style>
 
 <div class="hero_section_text">
