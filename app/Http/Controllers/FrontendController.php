@@ -1551,8 +1551,10 @@ public function images_resiz_post(Request $request)
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // follow redirects
         $imageContent = curl_exec($ch);
         $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
+       
+            if(curl_errno($ch)) {
+                return response()->json(['error' => 'Curl error: ' . curl_error($ch)], 400);
+            }
         if (!$imageContent || $httpStatus != 200) {
             return response()->json(['error' => 'Unable to fetch image from URL.'], 400);
         }
