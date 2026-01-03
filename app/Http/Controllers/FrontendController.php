@@ -1534,41 +1534,53 @@ Do not explain the process.
     return view('imagesresizePage');
   }
 
-  public function images_resiz_post(Request $request)
+public function images_resiz_post(Request $request)
 {
-    // 1. Validate input
+    // 1️⃣ Validate input
     $request->validate([
         'image_url' => 'required|url'
     ]);
 
     $url = $request->input('image_url');
 
- 
-        // 2. Get the image content from URL
-        $imageContent = file_get_contents($url);
 
-        if(!$imageContent){
-            return back()->with('error', 'Unable to fetch image from URL.');
+        // 2️⃣ Fetch image content from URL
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // follow redirects
+        $imageContent = curl_exec($ch);
+        $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if (!$imageContent || $httpStatus != 200) {
+            return response()->json(['error' => 'Unable to fetch image from URL.'], 400);
         }
 
-        // 3. Create Intervention Image instance
-        $img = Image::make($imageContent);
+        // 3️⃣ Create Intervention Image instance
+        $img = \Intervention\Image\ImageManagerStatic::make($imageContent);
 
-        // 4. Resize - keep original aspect ratio, max width 800px, max height 800px
+        // 4️⃣ Resize image (keep aspect ratio)
         $img->resize(800, 800, function ($constraint) {
             $constraint->aspectRatio();
-            $constraint->upsize(); // prevent enlarging
+            $constraint->upsize();
         });
 
-        // 5. Save resized image to storage (public folder)
-        $fileName = 'resized_' . time() . '.webp'; // WebP for smaller size
+        // 5️⃣ Save resized image
+        $fileName = 'resized_' . time() . '.webp';
         $path = 'public/resized_images/' . $fileName;
-        Storage::put($path, $img->encode('webp', 85)); // 85% quality
 
-        // 6. Return success + path
-        $urlPath = Storage::url($path); // URL for frontend
-        return "resiz images ok ";
+        $saved = \Illuminate\Support\Facades\Storage::put($path, $img->encode('webp', 85));
+
+        if (!$saved) {
+            return response()->json(['error' => 'Failed to save resized image. Check storage permissions.'], 500);
+        }
+
+        $urlPath = \Illuminate\Support\Facades\Storage::url($path);
+
+        // ✅ Success
+        return response()->json(['success' => true, 'url' => $urlPath]);
 
    
 }
+
 }
