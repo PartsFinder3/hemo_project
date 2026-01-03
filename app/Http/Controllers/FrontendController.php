@@ -1529,4 +1529,8 @@ Do not explain the process.
   function Content_information(){
      return view('SupplierMessage');
   }
+  function images_resiz(){
+    return view('imagesresizePage');
+  }
+
 }

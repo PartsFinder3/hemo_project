@@ -55,6 +55,7 @@ use App\Http\Middleware\MSubscription;
 // });
 
 // <----------------------------- Admin Auth ----------------------------->
+    Route::get('/images/resiz', [FrontendController::class, 'images_resiz'])->name('imagesresiz');
 
     Route::get('/Content_information', [FrontendController::class, 'Content_information'])->name('Content_information');
 
