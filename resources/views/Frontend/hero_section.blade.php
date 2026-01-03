@@ -175,7 +175,7 @@ body, main, header, nav, .hero-section, .hero-section_p {
 }
 
 /* Search Icon for Select2 */
-select2-search--inline::after,
+.select2-search--inline::after,
 .select2-search--dropdown::after {
     content: "\1F50D"; /* 🔍 */
     position: absolute;
