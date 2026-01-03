@@ -602,8 +602,8 @@ main{
 .select2-container--default 
 .select2-selection--multiple 
 .select2-selection__choice {
-    padding-left: 10px !important;   /* 👈 text left gap */
-    padding-right: 8px !important;
+    padding-left: 15px !important;   /* 👈 text left gap */
+    padding-right: 12px !important;
 }
 
 /* remove (×) icon ka gap */
