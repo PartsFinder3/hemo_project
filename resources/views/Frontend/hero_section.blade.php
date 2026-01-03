@@ -670,18 +670,22 @@ $(document).ready(function() {
     // ===============================
     // Initialize Select2 for all dropdowns
     // ===============================
-    function initSelect2($el, placeholder = '') {
-        $el.select2({
-            width: '100%',
-            placeholder: placeholder
-        });
+   function initSelect2($el, placeholder = 'Select an option') {
+    // Clear current selection
+    $el.val(null).trigger('change');
 
-        // Add search placeholder inside Select2 input
-        $el.on('select2:open', function() {
-            $('.select2-search__field').attr('placeholder', 'Search here');
-        });
-    }
+    // Initialize Select2
+    $el.select2({
+        width: '100%',
+        placeholder: placeholder,
+        allowClear: true // ✅ allows clearing the selection
+    });
 
+    // Add search placeholder inside Select2 input
+    $el.on('select2:open', function() {
+        $('.select2-search__field').attr('placeholder', 'Search here');
+    });
+}
     // Initialize all dropdowns
     initSelect2($('#car-make'));
     initSelect2($('#car-model'));
