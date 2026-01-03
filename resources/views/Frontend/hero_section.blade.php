@@ -759,14 +759,7 @@ updateStepBorders();
 // ===============================
 // Call after each change
 // ===============================
-$('#car-make, #car-model, #parts-dropdown-parts').on('change', function() {
-    updateStepBorders();
-});
 
-// Condition radio click
-$('#condition-group input[type=radio]').on('click', function() {
-    updateStepBorders();
-});
     // Make, Model, Year focus/change
     $('#car-make, #car-model, #car-year').on('focus change', function() {
         setActiveBorder($(this));
