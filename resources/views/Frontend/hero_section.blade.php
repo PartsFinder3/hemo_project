@@ -594,7 +594,7 @@ main{
 /* Also make the placeholder text black instead of grey */
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
     color: #000 !important;
-    font-weight: normal;
+    font-weight: bold;
 }
 </style>
 
