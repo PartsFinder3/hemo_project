@@ -243,6 +243,7 @@ Route::get('/admin/scripts/ad/edit/{id}', [ScriptController::class, 'adunitedit'
 Route::post('/admin/scripts/ad/edit/{id}', [ScriptController::class, 'adunitupdate'])->name('admin.scripts.adunit.update');
 Route::post('/admin/scripts/ad/delete/{id}', [ScriptController::class, 'adunitdestroy'])->name('admin.scripts.adunit.delete');
 
+
 // Courier Routes
 Route::get('/admin/couriers', [App\Http\Controllers\CourierController::class, 'index'])->name('admin.couriers.index');
 Route::post('/admin/couriers/store', [App\Http\Controllers\CourierController::class, 'store'])->name('admin.couriers.store');
