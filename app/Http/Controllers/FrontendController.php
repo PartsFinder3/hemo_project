@@ -1576,50 +1576,131 @@ Do not explain the process.
   function images_resiz(){
     return view('imagesresizePage');
   }
-// public function images_resiz_post(Request $request)
-// {
-//     $request->validate([
-//         'image_url' => 'required|url'
-//     ]);
+public function images_resiz_post(Request $request)
+{
+    $request->validate([
+        'image_urls' => 'required|string'
+    ]);
 
-//     $url = $request->input('image_url');
-
-//     // Step 1: Fetch image content safely
-//     try {
-//         $imageContent = @file_get_contents($url);
-//         if (!$imageContent) {
-//             return back()->with('error', 'Cannot fetch image from this URL.');
-//         }
-//     } catch (\Exception $e) {
-//         return back()->with('error', 'Error fetching image: ' . $e->getMessage());
-//     }
-
-//     // Step 2: Make image
-//     try {
-//         $img = Image::make($imageContent);
-//     } catch (\Exception $e) {
-//         return back()->with('error', 'Error creating image: ' . $e->getMessage());
-//     }
-
-//     // Step 3: Resize
-//     $img->resize(800, 800, function ($constraint) {
-//         $constraint->aspectRatio();
-//         $constraint->upsize();
-//     });
-
-//     // Step 4: Save
-//     $fileName = 'resized_' . time() . '.webp';
-//     $path = 'public/resized_images/' . $fileName;
-
-//     try {
-//         Storage::put($path, $img->encode('webp', 85));
-//     } catch (\Exception $e) {
-//         return back()->with('error', 'Failed to save image: ' . $e->getMessage());
-//     }
-
-//     $urlPath = Storage::url($path);
-
-//     return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View</a>");
-// }
+    $urlsText = $request->input('image_urls');
+    $urls = array_filter(preg_split('/\r\n|\r|\n/', $urlsText));
+    
+    // Limit number of URLs to process
+    $maxUrls = 10;
+    if (count($urls) > $maxUrls) {
+        return back()->with('error', "Maximum {$maxUrls} images can be processed at a time.");
+    }
+    
+    $validUrls = [];
+    $errors = [];
+    $successCount = 0;
+    $errorMessages = [];
+    
+    // Process each URL
+    foreach ($urls as $index => $url) {
+        $url = trim($url);
+        
+        // Validate URL format
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            $errors[] = "Line " . ($index + 1) . ": Invalid URL format - {$url}";
+            continue;
+        }
+        
+        // Check if URL ends with image extension
+        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
+        $extension = pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_EXTENSION);
+        if (!in_array(strtolower($extension), $imageExtensions)) {
+            $errors[] = "Line " . ($index + 1) . ": URL doesn't appear to be an image - {$url}";
+            continue;
+        }
+        
+        $validUrls[] = $url;
+    }
+    
+    if (empty($validUrls)) {
+        return back()->with('error', "No valid image URLs found. " . implode('<br>', $errors));
+    }
+    
+    $processedImages = [];
+    
+    foreach ($validUrls as $url) {
+        try {
+            // Fetch image content
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
+            
+            $imageContent = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            
+            if ($httpCode != 200 || !$imageContent) {
+                $errorMessages[] = "Failed to fetch image: {$url} (HTTP Code: {$httpCode})";
+                continue;
+            }
+            
+            // Create image instance
+            try {
+                $img = Image::make($imageContent);
+            } catch (\Exception $e) {
+                $errorMessages[] = "Invalid image format for: {$url}";
+                continue;
+            }
+            
+            // Resize image
+            $img->resize(800, 800, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            
+            // Generate unique filename
+            $originalName = pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME);
+            $fileName = 'resized_' . $originalName . '_' . time() . '_' . rand(1000, 9999) . '.webp';
+            $path = 'public/resized_images/' . $fileName;
+            
+            // Save image
+            Storage::put($path, $img->encode('webp', 85));
+            
+            $urlPath = Storage::url($path);
+            $processedImages[] = $urlPath;
+            $successCount++;
+            
+        } catch (\Exception $e) {
+            $errorMessages[] = "Error processing {$url}: " . $e->getMessage();
+            continue;
+        }
+    }
+    
+    // Prepare response
+    $responseMessages = [];
+    
+    if ($successCount > 0) {
+        $responseMessages[] = "Successfully processed {$successCount} image(s).";
+        
+        foreach ($processedImages as $index => $imagePath) {
+            $responseMessages[] = "<a href='{$imagePath}' target='_blank'>Image " . ($index + 1) . "</a>";
+        }
+    }
+    
+    if (!empty($errorMessages)) {
+        $responseMessages[] = "<br><strong>Errors:</strong><br>" . implode('<br>', $errorMessages);
+    }
+    
+    if (!empty($errors)) {
+        $responseMessages[] = "<br><strong>Validation Errors:</strong><br>" . implode('<br>', $errors);
+    }
+    
+    $finalMessage = implode('<br>', $responseMessages);
+    
+    if ($successCount > 0) {
+        return back()->with('success', $finalMessage);
+    } else {
+        return back()->with('error', $finalMessage);
+    }
+}
 }
 

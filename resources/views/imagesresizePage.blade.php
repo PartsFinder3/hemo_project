@@ -12,8 +12,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         margin: 0;
+        padding: 20px;
     }
 
     .container {
@@ -22,7 +23,8 @@
         border-radius: 12px;
         box-shadow: 0 6px 18px rgba(0,0,0,0.1);
         text-align: center;
-        width: 400px;
+        width: 100%;
+        max-width: 500px;
     }
 
     h2 {
@@ -32,12 +34,14 @@
 
     textarea {
         width: 100%;
-        height: 150px;
-        padding: 10px;
+        height: 200px;
+        padding: 12px;
         border-radius: 6px;
         border: 1px solid #ccc;
-        resize: none;
+        resize: vertical;
         font-size: 14px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
     }
 
     button {
@@ -50,6 +54,7 @@
         font-size: 16px;
         cursor: pointer;
         transition: background 0.3s;
+        width: 100%;
     }
 
     button:hover {
@@ -60,31 +65,56 @@
         font-size: 14px;
         color: #666;
         margin-top: 15px;
+        text-align: left;
+    }
+    
+    .loading {
+        display: none;
+        margin-top: 10px;
+        color: #ff7700;
     }
 </style>
 </head>
 <body>
     @if(session('success'))
     <script>
-        swal("Success!", "{{ session('success') }}", "success");
+        swal("Success!", "{{ session('success')|raw }}", "success");
     </script>
-@endif
+    @endif
 
-@if(session('error'))
+    @if(session('error'))
     <script>
         swal("Error!", "{{ session('error') }}", "error");
     </script>
-@endif
+    @endif
+
 <div class="container">
     <h2>Resize Online Images</h2>
-    <form action="{{route('imagesresiz.post')}}" method="POST">
-        
+    <form action="{{route('imagesresiz.post')}}" method="POST" id="resizeForm">
         @csrf
-        <textarea name="image_urls" placeholder="Paste image URLs here, one per line"></textarea>
-        <button type="submit">OK</button>
+        <textarea name="image_urls" placeholder="Paste image URLs here, one per line.
+Example:
+https://example.com/image1.jpg
+https://example.com/image2.png
+https://example.com/image3.webp"></textarea>
+        <div class="loading" id="loading">Processing images, please wait...</div>
+        <button type="submit" id="submitBtn">Resize Images</button>
     </form>
-    <p class="info">Paste all image links here. One link per line.</p>
+    <p class="info">
+        <strong>Instructions:</strong><br>
+        1. Paste all image links here (one link per line)<br>
+        2. Maximum 10 images at a time<br>
+        3. Supported formats: JPG, PNG, GIF, WEBP<br>
+        4. Images will be resized to max 800x800px
+    </p>
 </div>
 
+<script>
+    document.getElementById('resizeForm').addEventListener('submit', function() {
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').innerText = 'Processing...';
+    });
+</script>
 </body>
 </html>
