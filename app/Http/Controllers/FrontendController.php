@@ -1580,7 +1580,6 @@ public function resizeImageFromCDN(Request $request)
             'image_url' => 'required|url'
         ]);
 
-        try {
             // Fetch remote image content
             $imageContent = file_get_contents($request->image_url);
             if (!$imageContent) {
@@ -1601,9 +1600,7 @@ public function resizeImageFromCDN(Request $request)
 
             return back()->with('success', "Image resized successfully: <a href='/images/{$fileName}' target='_blank'>View</a>");
 
-        } catch (\Exception $e) {
-            return back()->with('error', "Error: " . $e->getMessage());
-        }
+      
     }
    public function resizeCdnPage() {
     return view('imagesresizePage'); // یہ blade view ہونا چاہیے: resources/views/imagesresizePage.blade.php
