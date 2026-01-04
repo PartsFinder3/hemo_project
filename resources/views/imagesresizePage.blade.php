@@ -39,13 +39,13 @@
             <br>
             <button type="submit">Resize Image</button>
         </form>
-        
+
         @if(session('success'))
             <div style="color: green; margin-top: 20px;">
                 {!! session('success') !!}
             </div>
         @endif
-        
+
         @if(session('error'))
             <div style="color: red; margin-top: 20px;">
                 {{ session('error') }}

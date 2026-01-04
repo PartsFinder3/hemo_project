@@ -39,7 +39,7 @@ use App\Jobs\GenerateSeoContentJob;
 use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Image;
+use Intervention\Image\Facades\Image;
 class FrontendController extends Controller
 {
     protected $inquiryService;
