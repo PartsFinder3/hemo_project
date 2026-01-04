@@ -1585,7 +1585,6 @@ public function images_resiz_post(Request $request)
     $urlsText = $request->input('image_urls');
     $urls = array_filter(preg_split('/\r\n|\r|\n/', $urlsText));
     
-    // Limit number of URLs to process
     $maxUrls = 10;
     if (count($urls) > $maxUrls) {
         return back()->with('error', "Maximum {$maxUrls} images can be processed at a time.");
@@ -1596,21 +1595,11 @@ public function images_resiz_post(Request $request)
     $successCount = 0;
     $errorMessages = [];
     
-    // Process each URL
     foreach ($urls as $index => $url) {
         $url = trim($url);
         
-        // Validate URL format
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
             $errors[] = "Line " . ($index + 1) . ": Invalid URL format - {$url}";
-            continue;
-        }
-        
-        // Check if URL ends with image extension
-        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
-        $extension = pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_EXTENSION);
-        if (!in_array(strtolower($extension), $imageExtensions)) {
-            $errors[] = "Line " . ($index + 1) . ": URL doesn't appear to be an image - {$url}";
             continue;
         }
         
@@ -1625,7 +1614,7 @@ public function images_resiz_post(Request $request)
     
     foreach ($validUrls as $url) {
         try {
-            // Fetch image content
+            // Fetch image content using cURL
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -1633,6 +1622,8 @@ public function images_resiz_post(Request $request)
             curl_setopt($ch, CURLOPT_TIMEOUT, 30);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             
             $imageContent = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -1643,13 +1634,9 @@ public function images_resiz_post(Request $request)
                 continue;
             }
             
-            // Create image instance
-            try {
-                $img = Image::make($imageContent);
-            } catch (\Exception $e) {
-                $errorMessages[] = "Invalid image format for: {$url}";
-                continue;
-            }
+            // Use ImageManager directly instead of facade
+            $imageManager = new \Intervention\Image\ImageManager();
+            $img = $imageManager->make($imageContent);
             
             // Resize image
             $img->resize(800, 800, function ($constraint) {
@@ -1659,6 +1646,9 @@ public function images_resiz_post(Request $request)
             
             // Generate unique filename
             $originalName = pathinfo(parse_url($url, PHP_URL_PATH), PATHINFO_FILENAME);
+            if (empty($originalName)) {
+                $originalName = 'image';
+            }
             $fileName = 'resized_' . $originalName . '_' . time() . '_' . rand(1000, 9999) . '.webp';
             $path = 'public/resized_images/' . $fileName;
             
