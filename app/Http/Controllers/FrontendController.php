@@ -1605,8 +1605,8 @@ public function resizeImageFromCDN(Request $request)
             return back()->with('error', "Error: " . $e->getMessage());
         }
     }
-      function images_resiz(){
-    return view('resizeCdnPage');
+      function resizeCdnPage(){
+    return view('imagesresizePage');
   }
 }
 
