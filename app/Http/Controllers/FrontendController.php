@@ -40,6 +40,7 @@ use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic;
 class FrontendController extends Controller
 {
     protected $inquiryService;
