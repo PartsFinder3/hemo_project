@@ -300,5 +300,28 @@ $(document).ready(function() {
     });
 });
 </script>
-   
+   <script>
+$(document).ready(function() {
+
+    function updateTitle() {
+        // Get selected text
+        let make = $('#carMake option:selected').text();
+        let model = $('#carModel option:selected').text();
+        let part = $('#partSelect option:selected').text();
+
+        // Only include real selections
+        let titleParts = [];
+        if (make && make !== "Select one") titleParts.push(make);
+        if (model && model !== "Select one") titleParts.push(model);
+        if (part && part !== "Select one") titleParts.push(part);
+
+        // Set title input
+        $('#titleField').val(titleParts.join(' - '));
+    }
+
+    // Trigger title update when Make, Model, or Part changes
+    $('#carMake, #carModel, #partSelect').change(updateTitle);
+
+});
+</script>
 @endsection
