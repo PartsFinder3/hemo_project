@@ -1573,9 +1573,7 @@ Do not explain the process.
   function Content_information(){
      return view('SupplierMessage');
   }
-  function images_resiz(){
-    return view('imagesresizePage');
-  }
+
 public function resizeImageFromCDN(Request $request)
     {
         $request->validate([
@@ -1607,5 +1605,8 @@ public function resizeImageFromCDN(Request $request)
             return back()->with('error', "Error: " . $e->getMessage());
         }
     }
+      function images_resiz(){
+    return view('resizeCdnPage');
+  }
 }
 
