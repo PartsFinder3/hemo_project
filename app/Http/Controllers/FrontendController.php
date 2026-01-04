@@ -38,7 +38,7 @@ use App\Services\InquiryService;
 use App\Jobs\GenerateSeoContentJob;
 use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 
 class FrontendController extends Controller
