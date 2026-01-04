@@ -55,8 +55,8 @@ use App\Http\Middleware\MSubscription;
 // });
 
 // <----------------------------- Admin Auth ----------------------------->
-   Route::get('/images/resiz', [FrontendController::class, 'images_resiz'])->name('imagesresiz');
-Route::post('/images/resiz/post', [FrontendController::class, 'images_resiz_post'])->name('imagesresiz.post');
+Route::get('/resize-cdn', [FrontendController::class, 'resizeCdnPage'])->name('resize.cdn.page');
+Route::post('/resize-cdn', [FrontendController::class, 'resizeImageFromCDN'])->name('resize.cdn');
     Route::get('/Content_information', [FrontendController::class, 'Content_information'])->name('Content_information');
 
 Route::get('/admin/login', [AuthController::class, 'adminLoginPage'])->name('admin.login');
