@@ -1580,6 +1580,8 @@ public function resizeImageFromCDN(Request $request)
             'image_url' => 'required|url'
         ]);
 
+
+        
             // Fetch remote image content
             $imageContent = file_get_contents($request->image_url);
             if (!$imageContent) {
