@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
-use Intervention\Image\Facades\Image;
+
 return [
 
     /*
@@ -168,7 +168,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-          Intervention\Image\ImageServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -182,7 +181,8 @@ return [
     |
     */
 
-'aliases' => [
-    // Other aliases...
-    'Image' => Intervention\Image\Facades\Image::class,
-],
+    'aliases' => Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+    ])->toArray(),
+
+];
