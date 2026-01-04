@@ -39,7 +39,7 @@ use App\Jobs\GenerateSeoContentJob;
 use function Ramsey\Uuid\v1;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
+use Image;
 class FrontendController extends Controller
 {
     protected $inquiryService;
@@ -1578,126 +1578,16 @@ Do not explain the process.
   }
 public function resizeImageFromCDN(Request $request)
 {
-    $request->validate([
-        'image_url' => 'required|url'
-    ]);
+        $image = $request->file('image_url');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
 
-    $url = $request->input('image_url');
-    
-    try {
-        // Step 1: Download image from CDN
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
-        
-        $imageContent = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-        
-        if ($httpCode != 200 || !$imageContent) {
-            return back()->with('error', 'Cannot fetch image from CDN.');
-        }
-        
-        // Step 2: Create temporary file
-        $tempFile = tempnam(sys_get_temp_dir(), 'cdn_image');
-        file_put_contents($tempFile, $imageContent);
-        
-        // Step 3: Get image info
-        $imageInfo = @getimagesize($tempFile);
-        if (!$imageInfo) {
-            @unlink($tempFile);
-            return back()->with('error', 'Not a valid image file.');
-        }
-        
-        list($width, $height, $type) = $imageInfo;
-        
-        // Step 4: Calculate new dimensions (max 800x800)
-        $maxWidth = 800;
-        $maxHeight = 800;
-        
-        if ($width > $height) {
-            $newWidth = $maxWidth;
-            $newHeight = intval($height * $maxWidth / $width);
-        } else {
-            $newHeight = $maxHeight;
-            $newWidth = intval($width * $maxHeight / $height);
-        }
-        
-        // Step 5: Resize based on image type
-        switch ($type) {
-            case IMAGETYPE_JPEG:
-                $srcImage = imagecreatefromjpeg($tempFile);
-                break;
-            case IMAGETYPE_PNG:
-                $srcImage = imagecreatefrompng($tempFile);
-                break;
-            case IMAGETYPE_GIF:
-                $srcImage = imagecreatefromgif($tempFile);
-                break;
-            case IMAGETYPE_WEBP:
-                if (function_exists('imagecreatefromwebp')) {
-                    $srcImage = imagecreatefromwebp($tempFile);
-                } else {
-                    @unlink($tempFile);
-                    return back()->with('error', 'WEBP format not supported.');
-                }
-                break;
-            default:
-                @unlink($tempFile);
-                return back()->with('error', 'Unsupported image format.');
-        }
-        
-        if (!$srcImage) {
-            @unlink($tempFile);
-            return back()->with('error', 'Failed to process image.');
-        }
-        
-        // Step 6: Create new image
-        $dstImage = imagecreatetruecolor($newWidth, $newHeight);
-        
-        // Preserve transparency for PNG/GIF
-        if ($type == IMAGETYPE_PNG || $type == IMAGETYPE_GIF) {
-            imagealphablending($dstImage, false);
-            imagesavealpha($dstImage, true);
-            $transparent = imagecolorallocatealpha($dstImage, 255, 255, 255, 127);
-            imagefilledrectangle($dstImage, 0, 0, $newWidth, $newHeight, $transparent);
-        }
-        
-        // Resize
-        imagecopyresampled($dstImage, $srcImage, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-        
-        // Step 7: Save as WEBP
-        $fileName = 'resized_cdn_' . time() . '.webp';
-        $path = 'public/resized_images/' . $fileName;
-        
-        if (function_exists('imagewebp')) {
-            ob_start();
-            imagewebp($dstImage, null, 85);
-            $webpContent = ob_get_clean();
-            Storage::put($path, $webpContent);
-        } else {
-            // Fallback to original format
-            ob_start();
-            imagejpeg($dstImage, null, 85);
-            $imageContent = ob_get_clean();
-            Storage::put($path, $imageContent);
-        }
-        
-        // Step 8: Cleanup
-        imagedestroy($srcImage);
-        imagedestroy($dstImage);
-        @unlink($tempFile);
-        
-        $urlPath = Storage::url($path);
-        
-        return back()->with('success', "Image resized successfully! <a href='{$urlPath}' target='_blank'>View Image</a>");
-        
-    } catch (\Exception $e) {
-        return back()->with('error', 'Error: ' . $e->getMessage());
-    }
+        $path = public_path('images/' . $filename);
+
+        Image::make($image)
+            ->resize(300, 300)
+            ->save($path);
+
+        return "Image has been resized successfully!";
 }
 }
 
