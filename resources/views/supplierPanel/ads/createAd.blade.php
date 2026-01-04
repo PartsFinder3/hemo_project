@@ -112,9 +112,9 @@
                                            <input type="hidden" name="domain" value="{{ request()->getHost() }}">
                                         <div class="mb-3">
                                             <label class="form-label">Engine Size</label>
-                                  <select class="form-select form-select-lg" name="engine_size_id" id="engineSelect">
+<select class="form-select form-select-lg" name="engine_size_id" id="engineSelect">
     <option value="">Select one</option>
-    <option value="na">N/A</option>
+    <option value="0">N/A</option>
 
     @foreach ($engineSize as $size)
         <option value="{{ $size->id }}">{{ $size->size }}</option>
