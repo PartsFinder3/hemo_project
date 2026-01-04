@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
-
+use Intervention\Image\Facades\Image;
 return [
 
     /*
@@ -181,8 +181,7 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
-    ])->toArray(),
-
+  'aliases' => Facade::defaultAliases()->merge([
+    'Image' =>Intervention\Image\Image::class,
+])->toArray(),
 ];
