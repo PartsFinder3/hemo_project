@@ -1578,16 +1578,29 @@ Do not explain the process.
   }
 public function resizeImageFromCDN(Request $request)
 {
-        $image = $request->file('image_url');
-        $filename = time() . '.' . $image->getClientOriginalExtension();
+    $request->validate([
+        'image_url' => 'required|url'
+    ]);
 
-        $path = public_path('images/' . $filename);
+    // Fetch remote image content
+    $imageContent = file_get_contents($request->image_url);
+    if (!$imageContent) {
+        return back()->with('error', 'Cannot fetch image from URL.');
+    }
 
-        Image::make($image)
-            ->resize(300, 300)
-            ->save($path);
+    // Create image instance
+    $img = Image::make($imageContent)
+        ->resize(300, 300, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
 
-        return "Image has been resized successfully!";
+    // Save image locally
+    $fileName = 'resized_' . time() . '.webp';
+    $path = public_path('images/' . $fileName);
+    $img->save($path, 85); // 85% quality
+
+    return back()->with('success', "Image resized successfully: <a href='/images/{$fileName}' target='_blank'>View</a>");
 }
 }
 
