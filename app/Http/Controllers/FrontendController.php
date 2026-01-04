@@ -1605,8 +1605,8 @@ public function resizeImageFromCDN(Request $request)
             return back()->with('error', "Error: " . $e->getMessage());
         }
     }
-      function resizeCdnPage(){
-    return view('imagesresizePage');
-  }
+   public function resizeCdnPage() {
+    return view('imagesresizePage'); // یہ blade view ہونا چاہیے: resources/views/imagesresizePage.blade.php
+}
 }
 
