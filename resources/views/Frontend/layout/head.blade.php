@@ -101,16 +101,11 @@
 <link rel="shortcut icon" href="{{ asset($logoPath) }}?v={{ time() }}" type="{{ $faviconMime }}">
 
 <script defer src="https://scripts.clarity.ms/js/clarity.js"></script>
-<script src="https://scripts.clarity.ms" defer></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E6ZGW2V8LH"></script>
 
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-E6ZGW2V8LH');
-</script>
+
 <meta property="og:image" content="{{ asset('storage/'.$logo) }}">
  
 </head>
